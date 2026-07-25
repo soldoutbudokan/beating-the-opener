@@ -1,0 +1,51 @@
+2017-18: trained on 36998, predicted 7647
+2018-19: trained on 44645, predicted 7545
+2019-20: trained on 52190, predicted 6835
+2020-21: trained on 59025, predicted 7583
+2021-22: trained on 66608, predicted 7812
+2022-23: trained on 74420, predicted 7789
+2023-24: trained on 82209, predicted 7778
+2024-25: trained on 89987, predicted 7670
+2025-26: trained on 97657, predicted 2927
+
+=== Out-of-sample 2017-18..2025-26: 63586 matches ===
+model      logloss   vs open       t          p
+open       1.00112  +0.00000     nan        nan
+close      0.99768  +0.00343   10.67   1.50e-26
+recal      1.00107  +0.00005    0.46   6.48e-01
+fund       1.03627  -0.03516  -33.24  2.81e-240
+blend      1.02282  -0.02170  -24.19  1.21e-128
+
+blend vs CLOSE: diff -0.02514 (t=-26.39, p=1.14e-152)  -> close better
+
+blend improvement over open by season (positive = blend better):
+            mean  size
+season                
+2017-18 -0.03178  7647
+2018-19 -0.03685  7545
+2019-20 -0.02579  6835
+2020-21 -0.02465  7583
+2021-22 -0.01651  7812
+2022-23 -0.01471  7789
+2023-24 -0.01304  7778
+2024-25 -0.01623  7670
+2025-26 -0.00895  2927
+
+by tier: blend vs open / blend vs close (positive = blend better):
+                   n  vs_open  vs_close
+tier                                   
+lower_england  11012 -0.02240  -0.02588
+scotland        4941 -0.02938  -0.03318
+second         14018 -0.02184  -0.02480
+small_top       9745 -0.02339  -0.02882
+top            12212 -0.02373  -0.02650
+
+[Pinnacle early @ EV>2%] bets=67191 ROI=-2.988% (t=-5.11) CLV=-3.756%
+
+[Pinnacle early @ EV>5%] bets=56058 ROI=-3.260% (t=-5.02) CLV=-3.823%
+
+[best-of-book early @ EV>2%] bets=76725 ROI=-0.277% (t=-0.49) CLV=-0.983%
+
+[best-of-book early @ EV>5%] bets=65212 ROI=-0.324% (t=-0.52) CLV=-0.953%
+
+saved per-match predictions -> results/preds.pkl
