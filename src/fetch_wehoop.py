@@ -6,8 +6,8 @@ Not committed (gitignored) - refetchable any time.
 Usage: python3 src/fetch_wehoop.py
 """
 import os
-import time
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 OUT = os.path.join(ROOT, "data", "wehoop")
@@ -20,23 +20,25 @@ FILES = (
 )
 
 
+def fetch(rel):
+    dest = os.path.join(OUT, os.path.basename(rel))
+    # current season file changes daily - always refetch it
+    if os.path.exists(dest) and "2026" not in rel:
+        return
+    try:
+        urllib.request.urlretrieve(f"{BASE}/{rel}", dest)
+        print(f"ok  {os.path.basename(rel)} "
+              f"({os.path.getsize(dest)//1024}KB)", flush=True)
+    except Exception as e:
+        print(f"FAIL {rel}: {e}", flush=True)
+        if os.path.exists(dest):
+            os.remove(dest)
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
-    for rel in FILES:
-        dest = os.path.join(OUT, os.path.basename(rel))
-        # current season file changes daily - always refetch it
-        if os.path.exists(dest) and "2026" not in rel:
-            continue
-        url = f"{BASE}/{rel}"
-        try:
-            urllib.request.urlretrieve(url, dest)
-            print(f"ok  {os.path.basename(rel)} "
-                  f"({os.path.getsize(dest)//1024}KB)", flush=True)
-        except Exception as e:
-            print(f"FAIL {rel}: {e}", flush=True)
-            if os.path.exists(dest):
-                os.remove(dest)
-        time.sleep(0.2)
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        list(ex.map(fetch, FILES))
     print("WEHOOP_COMPLETE", flush=True)
 
 
