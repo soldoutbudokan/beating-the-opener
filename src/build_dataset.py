@@ -51,7 +51,7 @@ def main():
     df["Date"] = pd.to_datetime(df["Date"], format="mixed", dayfirst=True, errors="coerce")
     df = df.dropna(subset=["Date"]).sort_values(["Date", "Div", "HomeTeam"]).reset_index(drop=True)
 
-    for c in KEEP[5:]:
+    for c in KEEP[8:]:  # odds columns only (Div..FTR are cols 0-7)
         df[c] = pd.to_numeric(df[c], errors="coerce")
         df.loc[df[c] <= 1.0, c] = np.nan  # decimal odds must exceed 1
 
