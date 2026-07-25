@@ -21,7 +21,12 @@ KEEP = [
     # closing odds
     "PSCH", "PSCD", "PSCA", "B365CH", "B365CD", "B365CA",
     "MaxCH", "MaxCD", "MaxCA", "AvgCH", "AvgCD", "AvgCA",
+    # early over/under 2.5 (Pinnacle/market post-2019, Betbrain before)
+    "P>2.5", "P<2.5", "Avg>2.5", "Avg<2.5", "BbAv>2.5", "BbAv<2.5",
+    # early Asian handicap: line + prices
+    "AHh", "BbAHh", "PAHH", "PAHA", "BbAvAHH", "BbAvAHA",
 ]
+HANDICAP_COLS = {"AHh", "BbAHh"}  # can be <= 1.0 (e.g. -0.5, 0, 0.25) - not odds
 
 
 def load_one(path):
@@ -57,12 +62,20 @@ def main():
 
     for c in KEEP[12:]:  # odds columns only (Div..AST are cols 0-11)
         df[c] = pd.to_numeric(df[c], errors="coerce")
-        df.loc[df[c] <= 1.0, c] = np.nan  # decimal odds must exceed 1
+        if c not in HANDICAP_COLS:
+            df.loc[df[c] <= 1.0, c] = np.nan  # decimal odds must exceed 1
 
     # unified early max/avg: Betbrain pre-2019, Market Max/Avg after
     for side in "HDA":
         df[f"EMax{side}"] = df[f"Max{side}"].fillna(df[f"BbMx{side}"])
         df[f"EAvg{side}"] = df[f"Avg{side}"].fillna(df[f"BbAv{side}"])
+
+    # unified early over/under + Asian handicap
+    df["EOv"] = df["P>2.5"].fillna(df["Avg>2.5"]).fillna(df["BbAv>2.5"])
+    df["EUn"] = df["P<2.5"].fillna(df["Avg<2.5"]).fillna(df["BbAv<2.5"])
+    df["EAHh"] = df["AHh"].fillna(df["BbAHh"])
+    df["EAHH"] = df["PAHH"].fillna(df["BbAvAHH"])
+    df["EAHA"] = df["PAHA"].fillna(df["BbAvAHA"])
 
     df["FTHG"] = pd.to_numeric(df["FTHG"], errors="coerce")
     df["FTAG"] = pd.to_numeric(df["FTAG"], errors="coerce")

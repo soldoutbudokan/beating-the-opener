@@ -1,0 +1,36 @@
+63586 OOS matches 2017-07-28..2026-01-14
+
+== betting sims (flat 1u, ens model) ==
+Pinnacle early EV>2%: n=5208 ROI=+2.502% (t=1.21) CLV=-0.358% (t=-2.68) +seasons=6/9
+Pinnacle early EV>5%: n=668 ROI=+4.796% (t=0.74) CLV=+0.596% (t=1.31) +seasons=5/9
+
+best-book early EV>2%: n=31192 ROI=+5.180% (t=5.77) CLV=+2.172% (t=41.71) +seasons=9/9
+best-book early EV>5%: n=8269 ROI=+7.465% (t=3.62) CLV=+4.243% (t=33.85) +seasons=9/9
+
+avg-book early EV>2%: n=1016 ROI=+0.125% (t=0.03) CLV=-2.335% (t=-7.80) +seasons=6/9
+avg-book early EV>5%: n=113 ROI=+7.938% (t=0.55) CLV=-3.067% (t=-2.37) +seasons=6/9
+
+== best-book EV>2% by tier ==
+  lower_england: n=4283 ROI=+4.566% (t=2.06) CLV=+1.417% (t=10.73) +seasons=5/7
+  scotland: n=2148 ROI=+5.493% (t=1.73) CLV=+2.605% (t=11.99) +seasons=5/7
+  second: n=7356 ROI=+4.489% (t=2.57) CLV=+2.075% (t=22.66) +seasons=6/7
+  small_top: n=5174 ROI=+6.027% (t=2.61) CLV=+2.413% (t=16.64) +seasons=6/7
+  top: n=8681 ROI=+4.601% (t=2.56) CLV=+2.381% (t=23.36) +seasons=7/7
+
+== best-book EV>2% by side ==
+  A: n=9751 ROI=+4.363% (t=2.49) CLV=+2.477% (t=21.28) +seasons=6/9
+  D: n=10022 ROI=+6.000% (t=3.75) CLV=+2.083% (t=39.13) +seasons=8/9
+  H: n=11419 ROI=+5.157% (t=3.85) CLV=+1.989% (t=22.02) +seasons=7/9
+
+== best-book EV>2% by odds bucket ==
+  odds <2: n=5841 ROI=+4.877% (t=4.77) CLV=+1.810% (t=22.83) +seasons=8/9
+  odds 2-3: n=7721 ROI=+3.790% (t=2.71) CLV=+1.877% (t=19.33) +seasons=8/9
+  odds 3-5: n=14893 ROI=+5.698% (t=4.25) CLV=+1.988% (t=29.69) +seasons=8/9
+  odds 5-10: n=2219 ROI=+4.502% (t=0.89) CLV=+3.716% (t=10.68) +seasons=5/9
+  odds >10: n=518 ROI=+17.313% (t=0.87) CLV=+9.299% (t=9.89) +seasons=5/9
+
+== primary endpoint ==
+ens beats open in 9/9 seasons (sign test p=0.0039)
+per-match paired t=5.08, p=3.81e-07
+
+max drawdown (units): -126.5 on 31192 bets; final: +1615.6u
