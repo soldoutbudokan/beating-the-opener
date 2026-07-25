@@ -15,10 +15,10 @@ import glob
 import gzip
 import json
 import os
-import sys
 import time
 import urllib.error
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 RAW = os.path.join(ROOT, "data", "raw", "bp")
@@ -41,6 +41,7 @@ SEASONS = {
            ("2026-09-01", "2026-11-01")],
 }
 PAUSE = 0.35
+WORKERS = 8
 
 
 def get(url, tries=4):
@@ -105,7 +106,8 @@ def main():
         events = fetch_events(season)
         # oldest first: earliest data is closest to rolling off upstream
         events.sort(key=lambda e: e["scheduled"])
-        n_done = n_skip = 0
+        jobs = []
+        n_skip = 0
         for e in events:
             eid, sched = e["id"], e["scheduled"][:10]
             if sched >= today:
@@ -114,18 +116,26 @@ def main():
                 path = os.path.join(RAW, "offers", f"{eid}_{mid}.json.gz")
                 if os.path.exists(path):
                     n_skip += 1
-                    continue
-                d = get(f"{API}/offers?sport=WNBA&market_id={mid}&event_id={eid}&location=ALL")
-                if d is None:
-                    print(f"FAIL offers event {eid} market {mid}", flush=True)
-                    continue
-                save_gz(path, d)
-                n_done += 1
-                if n_done % 100 == 0:
-                    print(f"  {season}: {n_done} fetched, {n_skip} skipped "
-                          f"(at {sched})", flush=True)
-                time.sleep(PAUSE)
-        print(f"season {season} done: {n_done} fetched, {n_skip} already had", flush=True)
+                else:
+                    jobs.append((eid, mid, path, sched))
+
+        done = [0]
+
+        def fetch_one(job):
+            eid, mid, path, sched = job
+            d = get(f"{API}/offers?sport=WNBA&market_id={mid}&event_id={eid}&location=ALL")
+            if d is None:
+                print(f"FAIL offers event {eid} market {mid}", flush=True)
+                return
+            save_gz(path, d)
+            done[0] += 1
+            if done[0] % 250 == 0:
+                print(f"  {season}: {done[0]}/{len(jobs)} (at {sched})", flush=True)
+            time.sleep(PAUSE)
+
+        with ThreadPoolExecutor(max_workers=WORKERS) as ex:
+            list(ex.map(fetch_one, jobs))
+        print(f"season {season} done: {done[0]} fetched, {n_skip} already had", flush=True)
 
     n = len(glob.glob(os.path.join(RAW, "offers", "*.json.gz")))
     print(f"archive: {n} offer files", flush=True)
