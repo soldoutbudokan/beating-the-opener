@@ -3,12 +3,19 @@
 == betting sims (flat 1u, ens model) ==
 Pinnacle early EV>2%: n=5208 ROI=+2.502% (t=1.21) CLV=-0.358% (t=-2.68) +seasons=6/9
 Pinnacle early EV>5%: n=668 ROI=+4.796% (t=0.74) CLV=+0.596% (t=1.31) +seasons=5/9
+Pinnacle early EV>8%: n=120 ROI=+9.875% (t=0.58) CLV=+1.227% (t=0.94) +seasons=5/8
 
 best-book early EV>2%: n=31192 ROI=+5.180% (t=5.77) CLV=+2.172% (t=41.71) +seasons=9/9
 best-book early EV>5%: n=8269 ROI=+7.465% (t=3.62) CLV=+4.243% (t=33.85) +seasons=9/9
+best-book early EV>8%: n=2263 ROI=+11.977% (t=2.44) CLV=+6.815% (t=21.42) +seasons=7/9
 
 avg-book early EV>2%: n=1016 ROI=+0.125% (t=0.03) CLV=-2.335% (t=-7.80) +seasons=6/9
 avg-book early EV>5%: n=113 ROI=+7.938% (t=0.55) CLV=-3.067% (t=-2.37) +seasons=6/9
+avg-book early EV>8%: n=26 ROI=+48.885% (t=1.57) CLV=-3.876% (t=-1.33) +seasons=4/6
+
+B365-only early EV>2%: n=5918 ROI=+5.729% (t=2.63) CLV=+1.152% (t=8.95) +seasons=8/9
+B365-only early EV>5%: n=1434 ROI=+9.789% (t=1.90) CLV=+2.872% (t=9.06) +seasons=5/9
+B365-only early EV>8%: n=353 ROI=+16.779% (t=1.48) CLV=+3.924% (t=4.88) +seasons=6/9
 
 == best-book EV>2% by tier ==
   lower_england: n=4283 ROI=+4.566% (t=2.06) CLV=+1.417% (t=10.73) +seasons=5/7

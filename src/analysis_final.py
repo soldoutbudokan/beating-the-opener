@@ -53,10 +53,14 @@ def main():
     lines.append(f"{len(d)} OOS matches {d['Date'].min().date()}..{d['Date'].max().date()}\n")
 
     lines.append("== betting sims (flat 1u, ens model) ==")
+    # B365-only = the "one soft book, no line shopping" scenario (FanDuel proxy):
+    # EV is computed against that single book's early price, so bets fire only
+    # when THAT book is stale - unlike avg-book, which is never stale by construction.
     for cols, label in [(["PSH", "PSD", "PSA"], "Pinnacle early"),
                         (["EMaxH", "EMaxD", "EMaxA"], "best-book early"),
-                        (["EAvgH", "EAvgD", "EAvgA"], "avg-book early")]:
-        for thr in (0.02, 0.05):
+                        (["EAvgH", "EAvgD", "EAvgA"], "avg-book early"),
+                        (["B365H", "B365D", "B365A"], "B365-only early")]:
+        for thr in (0.02, 0.05, 0.08):
             bets = sim(d, pb, ym, pcm, cols, thr)
             if bets is None:
                 continue
