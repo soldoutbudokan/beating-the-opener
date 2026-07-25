@@ -1,0 +1,839 @@
+<title>Can a model beat the NBA closing line?</title>
+<style>
+  :root {
+    color-scheme: light;
+    --ground: #f5f5f3;
+    --surface: #fdfdfc;
+    --surface-2: #eeeeeb;
+    --ink: #15161a;
+    --ink-2: #55575f;
+    --ink-3: #8a8c94;
+    --rule: #dedeD9;
+    --rule-strong: #c6c6c0;
+    --market: #2a78d6;
+    --model: #eb6834;
+    --invalid: #c0392b;
+    --ok: #1baf7a;
+    --shadow: 0 1px 2px rgba(20,22,26,.06), 0 8px 24px rgba(20,22,26,.05);
+    --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --ground: #121317;
+      --surface: #191a1e;
+      --surface-2: #212227;
+      --ink: #f1f1ef;
+      --ink-2: #a6a8b1;
+      --ink-3: #6f717a;
+      --rule: #2b2d33;
+      --rule-strong: #3c3e45;
+      --market: #3987e5;
+      --model: #d95926;
+      --invalid: #e06b68;
+      --ok: #199e70;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground: #121317;
+    --surface: #191a1e;
+    --surface-2: #212227;
+    --ink: #f1f1ef;
+    --ink-2: #a6a8b1;
+    --ink-3: #6f717a;
+    --rule: #2b2d33;
+    --rule-strong: #3c3e45;
+    --market: #3987e5;
+    --model: #d95926;
+    --invalid: #e06b68;
+    --ok: #199e70;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 0 28px 96px; }
+  .col { max-width: 640px; }
+
+  /* ---------- masthead ---------- */
+  header.masthead {
+    padding: 72px 0 40px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 48px;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 20px;
+  }
+  h1 {
+    font-family: var(--sans);
+    font-weight: 780;
+    letter-spacing: -.028em;
+    line-height: 1.06;
+    font-size: clamp(2.1rem, 5.4vw, 3.3rem);
+    margin: 0 0 22px;
+    text-wrap: balance;
+    max-width: 16ch;
+  }
+  .standfirst {
+    font-size: 1.18rem;
+    color: var(--ink-2);
+    max-width: 60ch;
+    margin: 0;
+    line-height: 1.55;
+  }
+  .byline {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-3);
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  /* ---------- verdict ---------- */
+  .verdict {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--model);
+    border-radius: 3px;
+    padding: 26px 30px;
+    margin: 0 0 56px;
+    box-shadow: var(--shadow);
+  }
+  .verdict p { margin: 0; font-size: 1.06rem; }
+  .verdict .lab {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--model);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* ---------- sections ---------- */
+  section { margin-bottom: 68px; }
+  h2 {
+    font-family: var(--sans);
+    font-weight: 700;
+    letter-spacing: -.018em;
+    font-size: 1.52rem;
+    margin: 0 0 6px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  h2 .num {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-3);
+    letter-spacing: .06em;
+  }
+  h2 + .sub {
+    color: var(--ink-3);
+    font-family: var(--sans);
+    font-size: .92rem;
+    margin: 0 0 24px 38px;
+  }
+  p { margin: 0 0 18px; }
+  a { color: var(--market); }
+  strong { font-weight: 700; }
+
+  /* ---------- stat row ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 28px 0 34px;
+  }
+  .stat { background: var(--surface); padding: 18px 20px; }
+  .stat .k {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+  .stat .v {
+    font-family: var(--mono);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .stat .n { font-family: var(--sans); font-size: .78rem; color: var(--ink-3); margin-top: 7px; }
+
+  /* ---------- figures ---------- */
+  figure {
+    margin: 34px 0;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 24px 26px 20px;
+    box-shadow: var(--shadow);
+  }
+  figcaption {
+    font-family: var(--sans);
+    font-size: .82rem;
+    color: var(--ink-3);
+    margin-top: 16px;
+    line-height: 1.5;
+    border-top: 1px solid var(--rule);
+    padding-top: 13px;
+  }
+  .fig-title {
+    font-family: var(--sans);
+    font-weight: 650;
+    font-size: 1rem;
+    margin: 0 0 3px;
+    letter-spacing: -.01em;
+  }
+  .fig-note { font-family: var(--sans); font-size: .82rem; color: var(--ink-3); margin: 0 0 20px; }
+  .chart-scroll { overflow-x: auto; }
+  svg { display: block; max-width: 100%; }
+  .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-family: var(--sans);
+    font-size: .82rem;
+    color: var(--ink-2);
+    margin-bottom: 16px;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .swatch { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+
+  /* ---------- table ---------- */
+  .tbl-wrap { overflow-x: auto; margin: 26px 0; }
+  table { border-collapse: collapse; width: 100%; font-family: var(--sans); font-size: .87rem; }
+  th, td { text-align: right; padding: 10px 13px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 500;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  tr.hl td { background: var(--surface-2); font-weight: 600; }
+  .pill {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .06em;
+    padding: 2px 7px;
+    border-radius: 2px;
+    border: 1px solid currentColor;
+  }
+  .pill.loses { color: var(--ink-3); }
+  .pill.bench { color: var(--market); }
+
+  /* ---------- callout ---------- */
+  .callout {
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--invalid);
+    background: var(--surface);
+    border-radius: 3px;
+    padding: 20px 24px;
+    margin: 30px 0;
+  }
+  .callout .lab {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--invalid);
+    display: block;
+    margin-bottom: 9px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+
+  ul { margin: 0 0 18px; padding-left: 22px; }
+  li { margin-bottom: 9px; }
+
+  code {
+    font-family: var(--mono);
+    font-size: .87em;
+    background: var(--surface-2);
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+
+  /* ---------- tooltip ---------- */
+  .tip {
+    position: fixed;
+    pointer-events: none;
+    background: var(--ink);
+    color: var(--ground);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    line-height: 1.5;
+    padding: 8px 11px;
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity .12s;
+    z-index: 50;
+    white-space: pre;
+  }
+  .bar-hit:hover { opacity: .82; cursor: default; }
+  :focus-visible { outline: 2px solid var(--market); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 26px;
+    font-family: var(--sans);
+    font-size: .84rem;
+    color: var(--ink-3);
+  }
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">Forecast evaluation · NBA moneyline, spread, total</p>
+  <h1>Can a model beat the NBA closing line?</h1>
+  <p class="standfirst">
+    A win-probability model built from twelve seasons of games, box scores and player
+    rotations, tested against the Vegas closing price on 3,962 held-out games.
+    The honest answer is no — and the way the first version appeared to win is the
+    most useful thing here.
+  </p>
+  <div class="byline">
+    <span>Held out: 2023-24 · 2024-25 · 2025-26</span>
+    <span>15,499 games</span>
+    <span>Line-blind, walk-forward</span>
+  </div>
+</header>
+
+<div class="verdict col">
+  <span class="lab">Verdict</span>
+  <p>
+    The closing line wins on every market tested. The best line-blind model reaches
+    <strong>0.5953</strong> log loss against the closing line's <strong>0.5818</strong>,
+    and an encompassing regression finds the model adds <em>no</em> information the
+    price does not already contain (coefficient −0.08, p = 0.43). An earlier version
+    beat the line and returned +12% simulated ROI. That result was a leak, not an edge.
+    Three separate upper bounds — perfect use of every feature, oracle player ratings
+    fit on the future, and an architecture sweep — all land short of the line, so this
+    is a property of the market rather than of the modelling.
+  </p>
+</div>
+
+<section>
+  <h2><span class="num">01</span> The bar</h2>
+  <p class="sub">What the market actually achieves, before any model exists</p>
+  <div class="col">
+    <p>
+      De-vigged closing moneylines were recovered for 99.8% of games. The overround
+      averages 4.3%, and four different vig-removal methods (multiplicative, additive,
+      Shin, power) agree to within 0.0005 log loss — so the benchmark is not an artifact
+      of how the juice was stripped out.
+    </p>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="k">Log loss</div><div class="v">0.5818</div><div class="n">coin flip = 0.6931</div></div>
+    <div class="stat"><div class="k">Brier</div><div class="v">0.1992</div></div>
+    <div class="stat"><div class="k">Accuracy</div><div class="v">68.9<span style="font-size:1rem">%</span></div><div class="n">straight up</div></div>
+    <div class="stat"><div class="k">Overround</div><div class="v">4.3<span style="font-size:1rem">%</span></div><div class="n">two-way hold</div></div>
+  </div>
+  <div class="col">
+    <p>
+      That is a strong forecast. It also matches published figures for NBA closing
+      lines, which is the first sign the benchmark is sound: a market that looked
+      <em>beatable</em> would more likely mean the odds data was wrong.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">02</span> What the model sees</h2>
+  <p class="sub">Two information tiers, deliberately separated</p>
+  <div class="col">
+    <p>
+      Features are built strictly point-in-time: every rolling statistic updates only
+      after a game's row has been written. On top of Elo and schedule effects sit
+      possession-based efficiency ratings, opponent-adjusted ridge ratings refit weekly,
+      and a minutes-weighted RAPM fit on 1,678 players.
+    </p>
+    <p>
+      The tiers matter because one class of feature — who is dressed tonight — is known
+      publicly about 30 minutes before tip, and is therefore priced into a closing line
+      but <em>not</em> available a day earlier.
+    </p>
+    <ul>
+      <li><strong>Tier A (strict)</strong> — 63 features. Nothing from tonight's game at all: prior results, ratings, rest, travel, form.</li>
+      <li><strong>Tier B (pre-tip)</strong> — 94 features. Adds which established rotation players are available, plus a lineup-adjusted RAPM.</li>
+    </ul>
+    <p>
+      Models are refit walk-forward: predictions for a season come only from seasons
+      before it. Stack weights and blend weights are fit on 2019–2023 and frozen. The
+      three held-out seasons are scored once.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">03</span> Head to head</h2>
+  <p class="sub">3,962 held-out games, log loss (lower is better)</p>
+
+  <figure>
+    <p class="fig-title">Distance from the closing line</p>
+    <p class="fig-note">Bars show log loss minus the closing line's 0.5818. Everything falls on the worse side of zero.</p>
+    <div class="chart-scroll"><svg id="gap" role="img" aria-label="Bar chart of log loss difference versus the closing line. All models score worse."></svg></div>
+    <figcaption>
+      The blends use the closing line <em>as an input</em>; they land on top of it rather
+      than beyond it, which is what "no added information" looks like in practice.
+    </figcaption>
+  </figure>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Forecast</th><th>Log loss</th><th>Brier</th><th>Accuracy</th><th>vs line</th><th>p</th><th></th></tr>
+      </thead>
+      <tbody>
+        <tr class="hl"><td>Vegas closing line</td><td class="num">0.58180</td><td class="num">0.19924</td><td class="num">68.91%</td><td class="num">—</td><td class="num">—</td><td><span class="pill bench">benchmark</span></td></tr>
+        <tr><td>Vegas opening line</td><td class="num">0.59201</td><td class="num">0.20347</td><td class="num">68.12%</td><td class="num">+0.0103</td><td class="num">&lt;0.0001</td><td></td></tr>
+        <tr><td>Model — Tier B (pre-tip)</td><td class="num">0.59531</td><td class="num">0.20479</td><td class="num">67.62%</td><td class="num">+0.0135</td><td class="num">&lt;0.0001</td><td><span class="pill loses">loses</span></td></tr>
+        <tr><td>Model — Tier A (strict)</td><td class="num">0.60663</td><td class="num">0.20954</td><td class="num">66.84%</td><td class="num">+0.0248</td><td class="num">&lt;0.0001</td><td><span class="pill loses">loses</span></td></tr>
+        <tr><td>Elo baseline</td><td class="num">0.62144</td><td class="num">0.21590</td><td class="num">65.45%</td><td class="num">+0.0396</td><td class="num">&lt;0.0001</td><td><span class="pill loses">loses</span></td></tr>
+        <tr><td>Tier A + line blend</td><td class="num">0.58249</td><td class="num">0.19942</td><td class="num">68.75%</td><td class="num">+0.0007</td><td class="num">0.025</td><td><span class="pill loses">loses</span></td></tr>
+        <tr><td>Tier B + line blend</td><td class="num">0.58254</td><td class="num">0.19944</td><td class="num">68.68%</td><td class="num">+0.0007</td><td class="num">0.019</td><td><span class="pill loses">loses</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col">
+    <p>
+      The result is stable across all three seasons — the model never wins a single one —
+      and it holds on the other two markets named in the brief. Against the closing
+      spread the margin model covers 48.7–50.5% (break-even at −110 is 52.38%). Against
+      the closing total it hits 48.8–52.5%, with a worse mean absolute error than the
+      market's own number (15.0 vs 14.3 points).
+    </p>
+  </div>
+
+  <figure>
+    <p class="fig-title">Calibration</p>
+    <p class="fig-note">Predicted probability against observed frequency, decile bins. Both track the diagonal closely.</p>
+    <div class="legend">
+      <span><i class="swatch" style="background:var(--market)"></i> Closing line</span>
+      <span><i class="swatch" style="background:var(--model)"></i> Model (Tier B)</span>
+    </div>
+    <div class="chart-scroll"><svg id="calib" role="img" aria-label="Calibration curve comparing closing line and model against the diagonal."></svg></div>
+    <figcaption>
+      The model is not badly calibrated — it is less <em>sharp</em>. It cannot separate
+      games as confidently as the market, which is where the log-loss gap comes from.
+    </figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2><span class="num">04</span> The false positive</h2>
+  <p class="sub">How the first version "beat" the market by 0.006 and returned +12% ROI</p>
+
+  <div class="col">
+    <p>
+      The first availability features asked a natural question: which players appear in
+      tonight's box score? On held-out data that model tied the closing line, its blend
+      beat the line at p = 0.003, and betting it at real closing prices returned
+      <strong>+12.3% ROI</strong> across 1,835 wagers, positive in every season.
+    </p>
+    <p>
+      Nothing about that is plausible. Edges against closing lines are close to zero;
+      a persistent 12% would be one of the most valuable models in sports. So it was
+      treated as a bug report rather than a finding.
+    </p>
+  </div>
+
+  <div class="callout col">
+    <span class="lab">The leak</span>
+    <p>
+      Blowouts empty the bench. In games decided by 20+ points, teams used 24.3 players
+      between them; in games inside 5 points, 19.4. "Who appeared in the box score" is
+      therefore partly a readout of the final margin — and the winning team empties its
+      bench more, so it leaked direction too.
+    </p>
+  </div>
+
+  <figure>
+    <p class="fig-title">Correlation with the outcome being predicted</p>
+    <p class="fig-note">|correlation| between availability counts and the absolute final margin. A pre-game feature should be near zero.</p>
+    <div class="chart-scroll"><svg id="leak" role="img" aria-label="Bar chart showing availability feature correlation with final margin before and after the fix."></svg></div>
+    <figcaption>
+      Fix: restrict every availability judgement to <em>established rotation players</em>,
+      identified by EWMA minutes from prior games only. Such a player takes the floor in
+      blowouts and close games alike, so his absence reflects health, not game flow.
+      Deep-bench players are excluded entirely.
+    </figcaption>
+  </figure>
+
+  <div class="col">
+    <p>
+      After the fix the apparent edge vanished: Tier B moved from 0.5843 to 0.5953, the
+      blend's advantage disappeared, and no betting threshold was profitable. A leakage
+      guard now runs on every build and fails any feature correlating above 0.12 with
+      the absolute margin.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">05</span> Why the line wins</h2>
+  <p class="sub">Two tests that close the question</p>
+
+  <div class="col">
+    <p>
+      <strong>Encompassing regression.</strong> Fit
+      <code>logit(y) ~ logit(market) + logit(model)</code> on the held-out games. If the
+      model knows anything the price does not, its coefficient is positive and
+      significant. It is neither — −0.08 (p = 0.43) for Tier A, −0.11 (p = 0.40) for
+      Tier B, while the market coefficient sits near 1.1 with z ≈ 10–13. The price
+      encompasses the model completely.
+    </p>
+    <p>
+      <strong>Subset search.</strong> Fourteen regimes where a market might plausibly be
+      soft — early season, playoffs, back-to-backs, heavy injuries, big favourites, coin
+      flips, rest and travel mismatches. The model beat the line in <strong>zero</strong>
+      of them. In the heavy-injury quartile, the supposed home-field advantage of an
+      availability model, the market scored 0.5518 against the model's 0.5699.
+    </p>
+    <p>
+      One last angle: the held-out encompassing fit implied the de-vigged price was
+      slightly under-confident, which would mean a simple sharpening beats it. Fit
+      honestly on validation seasons the correction points the other way (b = 0.95 vs
+      1.13), and applying it out-of-sample makes the forecast worse. That apparent bias
+      was noise.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">06</span> Three ceilings</h2>
+  <p class="sub">Not "we failed to find a win" — bounds showing there isn't one to find</p>
+
+  <div class="col">
+    <p>
+      A negative result is only worth as much as the effort behind it. Each remaining
+      lever was therefore bounded rather than abandoned.
+    </p>
+    <p>
+      <strong>Ceiling 1 — better modelling of these features.</strong> Project the
+      closing line's logit onto the model's; the residual is the market's private
+      information, and it is strongly predictive (coefficient +1.16, z = 9.97). All 95
+      observables jointly explain just <strong>17.6%</strong> of it. Perfectly
+      exploiting every feature in hand — an optimistic in-sample bound — reaches
+      <strong>0.5932</strong>. Still short of 0.5818.
+    </p>
+    <p>
+      <strong>Ceiling 2 — better player ratings.</strong> Rather than reconstruct
+      lineups from play-by-play, RAPM was refit on the <em>entire</em> dataset including
+      the held-out seasons, giving each player a rating no causal system could beat because
+      it is fit on the future. It ranks sensibly — Curry, Green, Leonard, Tatum, Durant.
+      The oracle model scores <strong>0.5915</strong>, still losing by 0.0097
+      (p = 0.0001). Perfect player valuation buys 0.0038 of the 0.0135 required, so
+      stint-level RAPM cannot win.
+    </p>
+    <p>
+      <strong>Ceiling 3 — capacity.</strong> The hyperparameter sweep preferred
+      <em>heavier</em> regularisation (C = 0.003); a neural network did worse; the same
+      ~0.014 gap reproduces on the validation seasons.
+    </p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="k">Market</div><div class="v">0.5818</div><div class="n">the bar</div></div>
+    <div class="stat"><div class="k">Perfect features</div><div class="v">0.5932</div><div class="n">in-sample bound</div></div>
+    <div class="stat"><div class="k">Oracle ratings</div><div class="v">0.5915</div><div class="n">fit on the future</div></div>
+    <div class="stat"><div class="k">Honest model</div><div class="v">0.5953</div><div class="n">causal, walk-forward</div></div>
+  </div>
+
+  <div class="col">
+    <p>
+      The one input that would matter is a <strong>point-in-time injury report</strong> —
+      probable/questionable designations and warm-up scratches are what the closing line
+      is reacting to. It is not retrievable: ESPN's injury block returns
+      today's status regardless of the game requested, and the per-athlete history
+      endpoint is gone. Availability alone was worth 0.011 of the Tier A deficit, which
+      is a fair indication of what a real feed would be worth.
+    </p>
+    <p>
+      So the honest conclusion is not that this model is poor. It lands within 2% of the
+      closing line's log loss, and beats the opening line's accuracy on a strict
+      day-before information set. It is that the closing price aggregates every sharp
+      model <em>plus</em> real-time news <em>plus</em> the information in the order flow
+      itself — and the last two are not in any public post-game dataset.
+    </p>
+  </div>
+</section>
+
+<footer class="col">
+  <p>
+    Data: ESPN results, box scores and odds, 2014-15 through 2025-26 · 15,499 games ·
+    400,559 player-game records. Metrics are log loss and Brier score on de-vigged
+    closing moneylines; significance from a 10,000-sample paired bootstrap on per-game
+    log-loss differences.
+  </p>
+</footer>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<script>
+const DATA = {
+  gap: [
+    {label: "Vegas closing line", v: 0.0,      ll: 0.58180, kind: "mkt"},
+    {label: "Tier A + line blend", v: 0.00069, ll: 0.58249, kind: "blend"},
+    {label: "Tier B + line blend", v: 0.00074, ll: 0.58254, kind: "blend"},
+    {label: "Vegas opening line",  v: 0.01029, ll: 0.59201, kind: "mkt2"},
+    {label: "Model — Tier B",      v: 0.01351, ll: 0.59531, kind: "model"},
+    {label: "Model — Tier A",      v: 0.02483, ll: 0.60663, kind: "model"},
+    {label: "Elo baseline",        v: 0.03964, ll: 0.62144, kind: "model"}
+  ],
+  calib: {
+    market: [[0.1798,0.1511,397],[0.3062,0.2850,379],[0.3910,0.3857,407],[0.4665,0.4787,399],[0.5423,0.5228,394],[0.6034,0.6005,398],[0.6619,0.6545,385],[0.7245,0.7439,410],[0.7938,0.7679,392],[0.8725,0.8903,401]],
+    model:  [[0.2046,0.1587,397],[0.3198,0.3207,396],[0.3985,0.4116,396],[0.4650,0.4773,396],[0.5275,0.5429,396],[0.5851,0.5455,396],[0.6418,0.6616,396],[0.6951,0.7348,396],[0.7603,0.7753,396],[0.8453,0.8640,397]]
+  },
+  leak: [
+    {label: "n active players", before: 0.639, after: null},
+    {label: "n missing players", before: 0.460, after: 0.033}
+  ]
+};
+
+const tip = document.getElementById('tip');
+function showTip(e, html) {
+  tip.textContent = html;
+  tip.style.opacity = 1;
+  const pad = 14;
+  let x = e.clientX + pad, y = e.clientY + pad;
+  const r = tip.getBoundingClientRect();
+  if (x + r.width > window.innerWidth - 8) x = e.clientX - r.width - pad;
+  if (y + r.height > window.innerHeight - 8) y = e.clientY - r.height - pad;
+  tip.style.left = x + 'px';
+  tip.style.top = y + 'px';
+}
+function hideTip() { tip.style.opacity = 0; }
+
+const NS = 'http://www.w3.org/2000/svg';
+function el(n, attrs) {
+  const e = document.createElementNS(NS, n);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  return e;
+}
+function cssv(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+
+/* ---------- chart 1: gap from the line ---------- */
+function drawGap() {
+  const svg = document.getElementById('gap');
+  svg.innerHTML = '';
+  const W = Math.max(560, svg.parentNode.clientWidth), rowH = 38,
+        mL = 168, mR = 74, mT = 26, mB = 34;
+  const H = mT + DATA.gap.length * rowH + mB;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+
+  const max = 0.042;
+  const x = v => mL + (v / max) * (W - mL - mR);
+  const colors = {mkt: cssv('--market'), mkt2: cssv('--market'),
+                  blend: cssv('--ink-3'), model: cssv('--model')};
+
+  for (let g = 0; g <= 0.04; g += 0.01) {
+    svg.appendChild(el('line', {x1: x(g), x2: x(g), y1: mT - 8, y2: mT + DATA.gap.length * rowH,
+      stroke: cssv('--rule'), 'stroke-width': 1}));
+    const t = el('text', {x: x(g), y: H - 12, 'text-anchor': 'middle',
+      fill: cssv('--ink-3'), 'font-size': 11, 'font-family': 'var(--mono)'});
+    t.textContent = g === 0 ? '0' : '+' + g.toFixed(2);
+    svg.appendChild(t);
+  }
+
+  DATA.gap.forEach((d, i) => {
+    const y = mT + i * rowH, h = 15, w = Math.max(x(d.v) - x(0), d.v === 0 ? 0 : 2);
+    const lab = el('text', {x: mL - 14, y: y + h - 2, 'text-anchor': 'end',
+      fill: d.kind === 'mkt' ? cssv('--ink') : cssv('--ink-2'), 'font-size': 12.5,
+      'font-family': 'var(--sans)', 'font-weight': d.kind === 'mkt' ? 650 : 400});
+    lab.textContent = d.label;
+    svg.appendChild(lab);
+
+    if (d.v > 0) {
+      svg.appendChild(el('rect', {x: x(0), y: y, width: w, height: h,
+        rx: 3, fill: colors[d.kind], opacity: d.kind === 'blend' ? .55 : .92}));
+    }
+    const val = el('text', {x: x(d.v) + (d.v > 0 ? 10 : 8), y: y + h - 2,
+      fill: cssv('--ink-2'), 'font-size': 11.5, 'font-family': 'var(--mono)'});
+    val.textContent = d.ll.toFixed(4);
+    svg.appendChild(val);
+
+    const hit = el('rect', {x: mL, y: y - 5, width: W - mL - mR, height: rowH - 4,
+      fill: 'transparent', class: 'bar-hit'});
+    hit.addEventListener('mousemove', e => showTip(e,
+      `${d.label}\nlog loss  ${d.ll.toFixed(5)}\nvs line   ${d.v === 0 ? '—' : '+' + d.v.toFixed(5)}`));
+    hit.addEventListener('mouseleave', hideTip);
+    svg.appendChild(hit);
+  });
+
+  svg.appendChild(el('line', {x1: x(0), x2: x(0), y1: mT - 8, y2: mT + DATA.gap.length * rowH,
+    stroke: cssv('--market'), 'stroke-width': 2}));
+  const cap = el('text', {x: x(0), y: mT - 14, 'text-anchor': 'middle',
+    fill: cssv('--market'), 'font-size': 10.5, 'font-family': 'var(--mono)',
+    'letter-spacing': '.08em'});
+  cap.textContent = 'CLOSING LINE';
+  svg.appendChild(cap);
+}
+
+/* ---------- chart 2: calibration ---------- */
+function drawCalib() {
+  const svg = document.getElementById('calib');
+  svg.innerHTML = '';
+  const W = Math.max(460, Math.min(620, svg.parentNode.clientWidth)),
+        S = W, mL = 52, mR = 20, mT = 18, mB = 44;
+  const H = S * 0.78;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  const px = v => mL + v * (W - mL - mR);
+  const py = v => H - mB - v * (H - mT - mB);
+
+  for (let g = 0; g <= 1.0001; g += 0.25) {
+    svg.appendChild(el('line', {x1: px(g), x2: px(g), y1: py(0), y2: py(1),
+      stroke: cssv('--rule'), 'stroke-width': 1}));
+    svg.appendChild(el('line', {x1: px(0), x2: px(1), y1: py(g), y2: py(g),
+      stroke: cssv('--rule'), 'stroke-width': 1}));
+    const tx = el('text', {x: px(g), y: H - mB + 18, 'text-anchor': 'middle',
+      fill: cssv('--ink-3'), 'font-size': 11, 'font-family': 'var(--mono)'});
+    tx.textContent = g.toFixed(2);
+    svg.appendChild(tx);
+    const ty = el('text', {x: mL - 10, y: py(g) + 4, 'text-anchor': 'end',
+      fill: cssv('--ink-3'), 'font-size': 11, 'font-family': 'var(--mono)'});
+    ty.textContent = g.toFixed(2);
+    svg.appendChild(ty);
+  }
+  svg.appendChild(el('line', {x1: px(0), y1: py(0), x2: px(1), y2: py(1),
+    stroke: cssv('--ink-3'), 'stroke-width': 1.5, 'stroke-dasharray': '4 4'}));
+
+  const series = [['market', cssv('--market'), 'Closing line'],
+                  ['model', cssv('--model'), 'Model (Tier B)']];
+  series.forEach(([key, color, name]) => {
+    const pts = DATA.calib[key];
+    const d = pts.map((p, i) => (i ? 'L' : 'M') + px(p[0]) + ' ' + py(p[1])).join(' ');
+    svg.appendChild(el('path', {d: d, fill: 'none', stroke: color, 'stroke-width': 2,
+      'stroke-linejoin': 'round'}));
+    pts.forEach(p => {
+      svg.appendChild(el('circle', {cx: px(p[0]), cy: py(p[1]), r: 5,
+        fill: color, stroke: cssv('--surface'), 'stroke-width': 2}));
+      const hit = el('circle', {cx: px(p[0]), cy: py(p[1]), r: 13, fill: 'transparent'});
+      hit.addEventListener('mousemove', e => showTip(e,
+        `${name}\npredicted ${p[0].toFixed(3)}\nactual    ${p[1].toFixed(3)}\nn = ${p[2]}`));
+      hit.addEventListener('mouseleave', hideTip);
+      svg.appendChild(hit);
+    });
+  });
+
+  const xl = el('text', {x: (px(0) + px(1)) / 2, y: H - 6, 'text-anchor': 'middle',
+    fill: cssv('--ink-3'), 'font-size': 11.5, 'font-family': 'var(--sans)'});
+  xl.textContent = 'predicted probability';
+  svg.appendChild(xl);
+  const yl = el('text', {x: 14, y: (py(0) + py(1)) / 2, 'text-anchor': 'middle',
+    fill: cssv('--ink-3'), 'font-size': 11.5, 'font-family': 'var(--sans)',
+    transform: `rotate(-90 14 ${(py(0) + py(1)) / 2})`});
+  yl.textContent = 'observed frequency';
+  svg.appendChild(yl);
+}
+
+/* ---------- chart 3: leakage ---------- */
+function drawLeak() {
+  const svg = document.getElementById('leak');
+  svg.innerHTML = '';
+  const W = Math.max(520, svg.parentNode.clientWidth), mL = 154, mR = 90, mT = 30, mB = 44;
+  const rowH = 54, H = mT + DATA.leak.length * rowH + mB;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  const max = 0.7, x = v => mL + (v / max) * (W - mL - mR);
+
+  for (let g = 0; g <= 0.7001; g += 0.1) {
+    svg.appendChild(el('line', {x1: x(g), x2: x(g), y1: mT - 10, y2: mT + DATA.leak.length * rowH,
+      stroke: cssv('--rule'), 'stroke-width': 1}));
+    const t = el('text', {x: x(g), y: H - 22, 'text-anchor': 'middle',
+      fill: cssv('--ink-3'), 'font-size': 11, 'font-family': 'var(--mono)'});
+    t.textContent = g.toFixed(1);
+    svg.appendChild(t);
+  }
+  // acceptable-threshold marker
+  svg.appendChild(el('line', {x1: x(0.12), x2: x(0.12), y1: mT - 10,
+    y2: mT + DATA.leak.length * rowH, stroke: cssv('--ok'), 'stroke-width': 1.5,
+    'stroke-dasharray': '3 3'}));
+  const gt = el('text', {x: x(0.12), y: mT - 16, 'text-anchor': 'middle',
+    fill: cssv('--ok'), 'font-size': 10, 'font-family': 'var(--mono)', 'letter-spacing': '.06em'});
+  gt.textContent = 'GUARD 0.12';
+  svg.appendChild(gt);
+
+  DATA.leak.forEach((d, i) => {
+    const yb = mT + i * rowH;
+    const lab = el('text', {x: mL - 14, y: yb + 22, 'text-anchor': 'end',
+      fill: cssv('--ink-2'), 'font-size': 12.5, 'font-family': 'var(--sans)'});
+    lab.textContent = d.label;
+    svg.appendChild(lab);
+
+    [['before', d.before, cssv('--invalid'), 0],
+     ['after', d.after, cssv('--ok'), 20]].forEach(([tag, v, col, dy]) => {
+      if (v === null) {
+        const t = el('text', {x: mL + 6, y: yb + dy + 13, fill: cssv('--ink-3'),
+          'font-size': 11, 'font-family': 'var(--sans)', 'font-style': 'italic'});
+        t.textContent = 'feature removed';
+        svg.appendChild(t);
+        return;
+      }
+      svg.appendChild(el('rect', {x: x(0), y: yb + dy, width: Math.max(x(v) - x(0), 2),
+        height: 15, rx: 3, fill: col, opacity: .9}));
+      const vt = el('text', {x: x(v) + 9, y: yb + dy + 13, fill: cssv('--ink-2'),
+        'font-size': 11.5, 'font-family': 'var(--mono)'});
+      vt.textContent = v.toFixed(3);
+      svg.appendChild(vt);
+      const hit = el('rect', {x: mL, y: yb + dy - 3, width: W - mL - mR, height: 21,
+        fill: 'transparent', class: 'bar-hit'});
+      hit.addEventListener('mousemove', e => showTip(e,
+        `${d.label}\n${tag === 'before' ? 'v1 (box-score appearance)' : 'v2 (rotation-restricted)'}\n|corr| with |margin| = ${v.toFixed(3)}`));
+      hit.addEventListener('mouseleave', hideTip);
+      svg.appendChild(hit);
+    });
+  });
+
+  const lg = el('text', {x: mL, y: H - 4, fill: cssv('--ink-3'), 'font-size': 11,
+    'font-family': 'var(--sans)'});
+  lg.textContent = 'red = original features · green = after the fix';
+  svg.appendChild(lg);
+}
+
+function drawAll() { drawGap(); drawCalib(); drawLeak(); }
+drawAll();
+window.addEventListener('resize', drawAll);
+const mo = new MutationObserver(drawAll);
+mo.observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', drawAll);
+</script>
