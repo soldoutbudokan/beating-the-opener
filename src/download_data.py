@@ -17,7 +17,7 @@ DIVS = [
     "F1", "F2",                            # France
     "N1", "B1", "P1", "T1", "G1",          # Netherlands, Belgium, Portugal, Turkey, Greece
 ]
-SEASONS = [f"{y % 100:02d}{(y + 1) % 100:02d}" for y in range(2008, 2026)]
+SEASONS = [f"{y % 100:02d}{(y + 1) % 100:02d}" for y in range(2008, 2027)]
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "raw")
 

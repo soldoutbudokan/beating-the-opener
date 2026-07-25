@@ -44,6 +44,7 @@ def load_one(path):
     df = df[KEEP]
     df = df.dropna(subset=["HomeTeam", "AwayTeam", "FTR"])
     df = df[df["FTR"].isin(["H", "D", "A"])]
+    df["Div"] = fname.split("_")[1].replace(".csv", "")  # some rows have it blank
     df["season"] = "20" + season[:2] + "-" + season[2:]
     return df
 
