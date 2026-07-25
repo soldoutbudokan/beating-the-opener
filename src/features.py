@@ -4,12 +4,17 @@ Every feature is computed from STRICTLY EARLIER games (shift-then-ewm within
 player/team). Output: data/panel.pkl, one row per player-game actually played,
 2003-present.
 
+build_panel() also accepts appended FIXTURE stub rows (tonight's games, stats
+NaN, is_fixture=True): they receive the player's state-as-of-today without
+polluting anyone else's features - used by live_pipeline.
+
 Availability features (the injury problem):
   absent_ew_min       EW minutes of teammates missing tonight who played in one
                       of the team's last 2 games. Known at tip (props void on
-                      DNP, books know scratches) - fair vs the CLOSE.
-  absent_prior_ew_min same, but only teammates ALSO missing the previous game
-                      (ongoing publicly-known absences) - fair vs the OPEN.
+                      DNP) - fair vs the CLOSE, not vs the OPEN.
+  absent_prior_ew_min only teammates ALSO missing the previous game (ongoing
+                      publicly-known absences) - fair vs the OPEN. For fixture
+                      rows both are set to the ongoing-absence version.
 """
 import glob
 import os
@@ -43,6 +48,20 @@ def load_player_box():
     return box
 
 
+def load_team_box():
+    parts = [pd.read_parquet(p) for p in sorted(
+        glob.glob(os.path.join(ROOT, "data", "wehoop", "team_box_*.parquet")))]
+    tb = pd.concat(parts, ignore_index=True)
+    tb = tb[~tb.team_abbreviation.isin(ALLSTAR)
+            & ~tb.opponent_team_abbreviation.isin(ALLSTAR)]
+    tb["game_date"] = pd.to_datetime(tb["game_date"])
+    for c in ["field_goals_attempted", "free_throws_attempted", "total_turnovers",
+              "offensive_rebounds", "team_score", "opponent_team_score",
+              "assists", "total_rebounds", "three_point_field_goals_attempted"]:
+        tb[c] = pd.to_numeric(tb[c], errors="coerce")
+    return tb
+
+
 def ew_features(played):
     """Per-player shifted EW means of each stat + per-minute rates."""
     df = played.sort_values(["athlete_id", "game_date"]).copy()
@@ -55,7 +74,6 @@ def ew_features(played):
             out[f"{name}_ew{tag}"] = (
                 prev.groupby(df.athlete_id, sort=False)
                 .transform(lambda s, a=a: s.ewm(alpha=a, min_periods=1).mean()))
-    prev_min = g["minutes"].shift(1)
     for c in ["points", "rebounds", "assists",
               "three_point_field_goals_made", "steals", "blocks", "turnovers"]:
         name = SHORT.get(c, c[:3])
@@ -73,18 +91,9 @@ def ew_features(played):
     return pd.concat([df, feat], axis=1)
 
 
-def team_features():
+def team_features(tb):
     """Team pace/scoring + opponent allowances, shifted EW, from team box."""
-    parts = [pd.read_parquet(p) for p in sorted(
-        glob.glob(os.path.join(ROOT, "data", "wehoop", "team_box_*.parquet")))]
-    tb = pd.concat(parts, ignore_index=True)
-    tb = tb[~tb.team_abbreviation.isin(ALLSTAR)
-            & ~tb.opponent_team_abbreviation.isin(ALLSTAR)]
-    tb["game_date"] = pd.to_datetime(tb["game_date"])
-    for c in ["field_goals_attempted", "free_throws_attempted", "total_turnovers",
-              "offensive_rebounds", "team_score", "opponent_team_score",
-              "assists", "total_rebounds", "three_point_field_goals_attempted"]:
-        tb[c] = pd.to_numeric(tb[c], errors="coerce")
+    tb = tb.copy()
     tb["poss"] = (tb.field_goals_attempted - tb.offensive_rebounds
                   + tb.total_turnovers + 0.44 * tb.free_throws_attempted)
     tb = tb.sort_values(["team_id", "game_date"])
@@ -101,7 +110,7 @@ def team_features():
                "tm_tpa_for_ew"]]
 
 
-def absence_features(box, played):
+def absence_features(box, played, fixture_gids=frozenset()):
     """Per (game, team): EW-minute weight of missing regulars."""
     ew_min = played.set_index(["athlete_id", "game_id"])["min_ewf"]
     rows = []
@@ -113,17 +122,24 @@ def absence_features(box, played):
         played_sets = {gid: set(tg[(tg.game_id == gid) & (tg.minutes > 0)]
                                 .athlete_id) for gid in gids}
         for i, gid in enumerate(gids):
+            is_fix = gid in fixture_gids
             tonight = played_sets[gid]
             absent = absent_prior = 0.0
             for ath, last_i in roster_hist.items():
-                if ath in tonight or i - last_i > 2:
+                if i - last_i > 2:
                     continue
                 w = ew_min.get((ath, gids[last_i]), np.nan)
                 if np.isnan(w) or w < 12:
                     continue
-                absent += w
-                if last_i < i - 1:  # also missed the previous game
-                    absent_prior += w
+                if is_fix:
+                    # tonight's roster unknown: count ongoing absences only
+                    if last_i <= i - 2:
+                        absent += w
+                        absent_prior += w
+                elif ath not in tonight:
+                    absent += w
+                    if last_i < i - 1:
+                        absent_prior += w
             rows.append({"game_id": gid, "team_id": tid,
                          "absent_ew_min": absent,
                          "absent_prior_ew_min": absent_prior})
@@ -132,14 +148,14 @@ def absence_features(box, played):
     return pd.DataFrame(rows)
 
 
-def main():
-    box = load_player_box()
-    played = box[(box.minutes > 0) & ~box.did_not_play].copy()
-    print(f"player-games played: {len(played)} "
-          f"({box.game_date.min().date()} .. {box.game_date.max().date()})")
-
+def build_panel(box, tb, fixture_gids=frozenset()):
+    """box/tb may include fixture stub rows (is_fixture=True, stats NaN)."""
+    if "is_fixture" not in box.columns:
+        box["is_fixture"] = False
+    played = box[((box.minutes > 0) & ~box.did_not_play.fillna(False).astype(bool))
+                 | box.is_fixture].copy()
     panel = ew_features(played)
-    tf = team_features()
+    tf = team_features(tb)
     panel = panel.merge(tf, on=["game_id", "team_id"], how="left")
     opp = tf.rename(columns={c: c.replace("tm_", "opp_") for c in tf.columns
                              if c.startswith("tm_")})
@@ -147,19 +163,24 @@ def main():
                         right_on=["game_id", "team_id"], how="left",
                         suffixes=("", "_oppdup"))
     panel = panel.drop(columns=[c for c in panel.columns if c.endswith("_oppdup")])
-
-    ab = absence_features(box, panel)
+    ab = absence_features(box, panel, fixture_gids)
     panel = panel.merge(ab, on=["game_id", "team_id"], how="left")
     panel["home"] = (panel.home_away == "home").astype(int)
+    return panel
 
+
+def main():
+    box = load_player_box()
+    tb = load_team_box()
+    panel = build_panel(box, tb)
+    panel = panel[~panel.is_fixture]
+    print(f"player-games played: {len(panel)} "
+          f"({box.game_date.min().date()} .. {box.game_date.max().date()})")
     panel.to_pickle(os.path.join(ROOT, "data", "panel.pkl"))
     feat_cols = [c for c in panel.columns if c.endswith(("_ewf", "_ews", "_ew"))
                  or c in ("gp", "rest", "home", "absent_ew_min",
                           "absent_prior_ew_min")]
     print(f"panel: {panel.shape}, {len(feat_cols)} feature cols")
-    print(panel[panel.game_date > '2025-06-01'][
-        ["athlete_display_name", "game_date", "points", "poi_ewf", "min_ewf",
-         "absent_ew_min"]].head(4).to_string() if "poi_ewf" in panel else "")
 
 
 if __name__ == "__main__":

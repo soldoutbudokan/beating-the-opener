@@ -17,6 +17,30 @@ incorporate role changes.
 
 ![results](results/results.png)
 
+## 🔴 Live FanDuel experiment (2026)
+
+The model is being tested with real money on FanDuel for the rest of the 2026
+season: **$100 bankroll (separate from the
+[soccer experiment](https://github.com/soldoutbudokan/beating-the-opener)),
+quarter-Kelly stakes, judged on CLV**. Running record: **[RESULTS.md](RESULTS.md)**.
+
+How it works — full details in **[live/PROTOCOL.md](live/PROTOCOL.md)**:
+
+1. An hourly cloud routine (`wnba-edge-watch`, Opus 5) refreshes data, retrains,
+   and scores today's props into [`live/picks.csv`](live/picks.csv) — but only
+   props whose FanDuel price **is still sitting at the opening line** (the
+   backtested edge is the stale opener; the model does not beat moved prices).
+   It notifies only on strong picks (EV ≥ 6%) or settlements.
+2. The user checks FanDuel; if the price is still at/above the sheet's minimum,
+   bet the quarter-Kelly stake (one bet max per player per game — combo markets
+   are correlated).
+3. Fills are reported conversationally to any Claude session; settlement, CLV
+   (vs the archived closing snapshot at the bet's own line), P&L, and bankroll
+   tracking are automatic.
+
+Backtest expectation at EV≥2%: **+5.4% mean CLV**; positive CLV with losing
+P&L still confirms the model, profit with negative CLV is luck.
+
 ## The wedge: prop openers are not efficient prices
 
 30,372 graded props (points/rebounds/assists/threes/PRA/combos), 2025 season +
