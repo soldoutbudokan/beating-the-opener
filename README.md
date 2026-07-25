@@ -11,6 +11,26 @@ Predecessor project: [nba-win-prob](https://github.com/soldoutbudokan/nba-win-pr
 NBA closing moneyline is unbeatable with public data. This project targets the softer end of what
 FanDuel offers — soccer 1X2 including lower divisions — and the *opening* price rather than the close.
 
+## 🔴 Live FanDuel experiment (2026-27)
+
+The model is being tested with real money on FanDuel for the 2026-27 season:
+**$100 bankroll, quarter-Kelly stakes, judged on CLV** (closing line value converges to
+significance within one season; ROI does not). Running record: **[RESULTS.md](RESULTS.md)**.
+
+How it works — full details in **[live/PROTOCOL.md](live/PROTOCOL.md)**:
+
+1. An hourly cloud routine (`fanduel-edge-watch`, Opus 5) refreshes data, retrains, scores
+   upcoming fixtures into [`live/picks.csv`](live/picks.csv), settles logged bets, and pushes
+   here. It notifies only on strong picks (~2×/week when odds refresh) or settlements.
+2. The user checks FanDuel: a pick is playable when FanDuel's price ≥ the sheet's
+   `min_odds_5pct`; stake = quarter-Kelly at the price obtained (typically $1–3).
+3. Fills are reported conversationally to any Claude session, which logs them to
+   `live/bets.csv` per the protocol; settlement, P&L, CLV, and bankroll tracking are automatic.
+
+Expectation from the single-book backtest (see below): +1% to +3% mean CLV if the edge is real;
+a losing season with clearly positive CLV still confirms the model, and profit with negative
+CLV is just luck.
+
 ![results](results/results.png)
 
 ## The wedge: the opener is not the efficient price
@@ -112,3 +132,6 @@ python3 src/make_chart.py       # -> results/results.png
 
 v1 (naive GBM, negative result) and v2/v3 (intermediate) are kept as `src/train_eval*.py` for
 the record.
+
+Live pipeline (what the routine runs): `python3 src/live_pipeline.py` then
+`python3 src/settle_bets.py`.
