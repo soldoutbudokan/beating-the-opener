@@ -61,6 +61,15 @@ which is why that build was bounded rather than undertaken.
 The sweep preferred *heavier* regularisation (C=0.003), an MLP did worse, and the
 same ~0.014 gap reproduces on validation seasons.
 
+**4. Referee crews — real signal, already priced.**
+`src/fetch_officials.py` + `src/referee_features.py` add point-in-time crew
+tendencies (135 referees, 99.4% coverage). Crew total-points bias correlates
+**+0.094** with actual totals — and **+0.094** with the market's total line, so the
+market prices it as strongly as it predicts. The unpriced residual is +0.024 (not
+significant), and correlation with home wins is −0.002. Adding referees to the
+totals model leaves it at 49.5–51.7% (break-even 52.38%) and MAE 15.02 vs the
+market's 14.26. No improvement on spread either.
+
 **The one input that would matter** is a point-in-time injury report. It is not
 retrievable: ESPN's `injuries` block returns today's status regardless of the game
 requested (a Jan-2025 game returns Jul-2026 designations), and the per-athlete
