@@ -1,0 +1,50 @@
+2017-18: n_train=36998, n_test=7647
+2018-19: n_train=44645, n_test=7545
+2019-20: n_train=52190, n_test=6835
+2020-21: n_train=59025, n_test=7583
+2021-22: n_train=66608, n_test=7812
+2022-23: n_train=74420, n_test=7789
+2023-24: n_train=82209, n_test=7778
+2024-25: n_train=89987, n_test=7670
+2025-26: n_train=97657, n_test=2927
+
+=== OOS 2017-18..2025-26: 63586 matches ===
+model       logloss   vs open       t          p  t_clus     p_clus
+open        1.00112
+close       0.99768  +0.00343   10.67   1.50e-26    4.80   1.66e-06
+stack       1.00086  +0.00026    1.22   2.23e-01    0.72   4.71e-01
+gbmmove     1.00073  +0.00038    4.38   1.21e-05    3.07   2.15e-03
+ens         1.00048  +0.00064    5.01   5.60e-07    2.77   5.65e-03
+
+best=ens; vs CLOSE: -0.00280 (t=-8.49, p=2.05e-17)
+wedge=0.00343, captured=0.00064 (18%)
+
+ens vs open by season:
+            mean  size
+season                
+2017-18  0.00068  7647
+2018-19  0.00101  7545
+2019-20  0.00080  6835
+2020-21  0.00008  7583
+2021-22  0.00114  7812
+2022-23  0.00084  7789
+2023-24  0.00011  7778
+2024-25  0.00040  7670
+2025-26  0.00069  2927
+
+ens vs open by tier:
+                  mean   size
+tier                         
+lower_england  0.00055  11012
+scotland       0.00129   4941
+second         0.00045  14018
+small_top      0.00120   9745
+top            0.00028  12212
+
+betting sim (flat 1u):
+  [PS early EV>2%] bets=5960 ROI=+3.724% (t=1.96) CLV=-0.670%
+  [PS early EV>5%] bets=776 ROI=+5.024% (t=0.87) CLV=+0.274%
+  [best-book early EV>2%] bets=33620 ROI=+5.151% (t=6.09) CLV=+1.887%
+  [best-book early EV>5%] bets=9624 ROI=+8.704% (t=4.78) CLV=+3.838%
+
+saved -> results/preds_v3.pkl

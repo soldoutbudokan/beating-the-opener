@@ -13,6 +13,7 @@ OUT = os.path.join(os.path.dirname(__file__), "..", "data", "matches.pkl")
 
 KEEP = [
     "Div", "Date", "Time", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR",
+    "HS", "AS", "HST", "AST",  # shots / shots on target
     # early (collected Fri/Tue) odds
     "B365H", "B365D", "B365A", "PSH", "PSD", "PSA",
     "MaxH", "MaxD", "MaxA", "AvgH", "AvgD", "AvgA",
@@ -51,7 +52,10 @@ def main():
     df["Date"] = pd.to_datetime(df["Date"], format="mixed", dayfirst=True, errors="coerce")
     df = df.dropna(subset=["Date"]).sort_values(["Date", "Div", "HomeTeam"]).reset_index(drop=True)
 
-    for c in KEEP[8:]:  # odds columns only (Div..FTR are cols 0-7)
+    for c in ["HS", "AS", "HST", "AST"]:
+        df[c] = pd.to_numeric(df[c], errors="coerce")
+
+    for c in KEEP[12:]:  # odds columns only (Div..AST are cols 0-11)
         df[c] = pd.to_numeric(df[c], errors="coerce")
         df.loc[df[c] <= 1.0, c] = np.nan  # decimal odds must exceed 1
 

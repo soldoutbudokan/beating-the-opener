@@ -52,6 +52,8 @@ def main():
     elo = {}
     ew_gf = {}   # EW goals for per match
     ew_ga = {}
+    ew_stf = {}  # EW shots-on-target for / against
+    ew_sta = {}
     form = defaultdict(lambda: deque(maxlen=5))   # recent points
     last_date = {}
     n_played = defaultdict(int)
@@ -65,6 +67,8 @@ def main():
         ea = elo.setdefault(a, float(base))
         gfh = ew_gf.get(h, 1.3); gah = ew_ga.get(h, 1.3)
         gfa = ew_gf.get(a, 1.3); gaa = ew_ga.get(a, 1.3)
+        stfh = ew_stf.get(h, 4.4); stah = ew_sta.get(h, 4.4)
+        stfa = ew_stf.get(a, 4.4); staa = ew_sta.get(a, 4.4)
         d = pd.Timestamp(dates[i])
         rest_h = min((d - last_date[h]).days, 30) if h in last_date else 30
         rest_a = min((d - last_date[a]).days, 30) if a in last_date else 30
@@ -74,6 +78,7 @@ def main():
         rows.append((
             eh, ea, diff, exp_h,
             gfh, gah, gfa, gaa, gfh - gaa, gfa - gah,
+            stfh, stah, stfa, staa, stfh - staa, stfa - stah,
             (sum(form[h]) / len(form[h])) if form[h] else 1.1,
             (sum(form[a]) / len(form[a])) if form[a] else 1.1,
             min(n_played[h], 100), min(n_played[a], 100),
@@ -91,6 +96,12 @@ def main():
         ew_ga[h] = (1 - EW_ALPHA) * gah + EW_ALPHA * ag
         ew_gf[a] = (1 - EW_ALPHA) * gfa + EW_ALPHA * ag
         ew_ga[a] = (1 - EW_ALPHA) * gaa + EW_ALPHA * hg
+        hst, ast = r.HST, r.AST
+        if not (np.isnan(hst) or np.isnan(ast)):
+            ew_stf[h] = (1 - EW_ALPHA) * stfh + EW_ALPHA * hst
+            ew_sta[h] = (1 - EW_ALPHA) * stah + EW_ALPHA * ast
+            ew_stf[a] = (1 - EW_ALPHA) * stfa + EW_ALPHA * ast
+            ew_sta[a] = (1 - EW_ALPHA) * staa + EW_ALPHA * hst
         form[h].append(3.0 if res == 1 else (1.0 if res == 0.5 else 0.0))
         form[a].append(3.0 if res == 0 else (1.0 if res == 0.5 else 0.0))
         last_date[h] = d
@@ -100,6 +111,7 @@ def main():
 
     cols = ["elo_h", "elo_a", "elo_diff", "elo_exp_h",
             "ew_gf_h", "ew_ga_h", "ew_gf_a", "ew_ga_a", "att_edge_h", "att_edge_a",
+            "ew_stf_h", "ew_sta_h", "ew_stf_a", "ew_sta_a", "sot_edge_h", "sot_edge_a",
             "form_h", "form_a", "n_played_h", "n_played_a", "rest_h", "rest_a", "div_idx"]
     feat = pd.DataFrame(rows, columns=cols)
 
