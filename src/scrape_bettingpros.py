@@ -99,6 +99,9 @@ def fetch_events(season):
     if len(out) < len(existing):
         raise RuntimeError(f"merge shrank events_{season} "
                            f"({len(existing)} -> {len(out)}) - refusing to write")
+    if out == existing:  # identical content - don't churn the gzip
+        print(f"season {season}: {len(out)} events (unchanged)", flush=True)
+        return out
     save_gz(path, out)
     print(f"season {season}: {len(out)} events "
           f"({len(out) - len(existing)} new)", flush=True)
