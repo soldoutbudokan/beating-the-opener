@@ -134,10 +134,12 @@ def main():
 
     bets.to_csv(BETS, index=False)
     done = bets[bets.status.isin(["settled", "push", "void"])]
-    start = json.load(open(BANKROLL))["start"]
+    bk = json.load(open(BANKROLL))
+    start = bk["start"]
     current = round(start + done["pnl"].sum(), 2) if len(done) else start
-    json.dump({"start": start, "current": current,
-               "updated": str(pd.Timestamp.now())}, open(BANKROLL, "w"))
+    if current != bk.get("current"):  # write only on change - no commit churn
+        json.dump({"start": start, "current": current,
+                   "updated": str(pd.Timestamp.now())}, open(BANKROLL, "w"))
 
     # ---- RESULTS.md ----
     lines = ["# Live FanDuel WNBA props - results\n",
