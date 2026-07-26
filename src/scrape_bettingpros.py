@@ -69,6 +69,14 @@ def load_gz(path):
 
 
 def fetch_events(season):
+    """Fetch season events and MERGE into the committed archive file.
+
+    The archive is irreplaceable (upstream deletes old seasons), so this must
+    never shrink it: fetched events are unioned with the existing file, and
+    nothing is written when the fetch comes back empty.
+    """
+    path = os.path.join(RAW, f"events_{season}.json.gz")
+    existing = load_gz(path) if os.path.exists(path) else []
     events = []
     for start, end in SEASONS[season]:
         d = get(f"{API}/events?sport=WNBA&start={start}&end={end}")
@@ -81,13 +89,19 @@ def fetch_events(season):
                   flush=True)
         events.extend(evs)
         time.sleep(PAUSE)
-    seen, out = set(), []
-    for e in events:
-        if e["id"] not in seen:
-            seen.add(e["id"])
-            out.append(e)
-    save_gz(os.path.join(RAW, f"events_{season}.json.gz"), out)
-    print(f"season {season}: {len(out)} events", flush=True)
+    if not events:
+        print(f"season {season}: fetch empty - keeping existing "
+              f"{len(existing)} events, writing nothing", flush=True)
+        return existing
+    merged = {e["id"]: e for e in existing}
+    merged.update({e["id"]: e for e in events})
+    out = sorted(merged.values(), key=lambda e: e["scheduled"])
+    if len(out) < len(existing):
+        raise RuntimeError(f"merge shrank events_{season} "
+                           f"({len(existing)} -> {len(out)}) - refusing to write")
+    save_gz(path, out)
+    print(f"season {season}: {len(out)} events "
+          f"({len(out) - len(existing)} new)", flush=True)
     return out
 
 
@@ -98,6 +112,12 @@ def main():
                     help="re-fetch offers for events within N days (lines still moving)")
     args = ap.parse_args()
     seasons = [args.season] if args.season else sorted(SEASONS)
+
+    # canary: if the API is unreachable (e.g. egress-blocked environment),
+    # abort before touching anything - a failed run must not modify the archive
+    if get(f"{API}/markets?sport=WNBA", tries=2) is None:
+        print("SCRAPE_ABORTED: api.bettingpros.com unreachable", flush=True)
+        raise SystemExit(1)
 
     os.makedirs(os.path.join(RAW, "offers"), exist_ok=True)
     today = time.strftime("%Y-%m-%d")
