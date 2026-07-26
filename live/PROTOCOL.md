@@ -19,6 +19,15 @@ A scheduled cloud agent runs the pipeline hourly:
 | commits | pushes to main only when picks changed or bets settled |
 | notifies | push notification ONLY for strong picks (avg-book EV > 1%) or settlements; quiet otherwise |
 
+> **⏸ PAUSED (since 2026-07-26).** The cloud environment's egress policy
+> blocks `www.football-data.co.uk`, so hourly runs were failing before doing
+> anything. To resume: allow that domain in the claude.ai Code environment's
+> network settings, re-enable the routine at the manage link above, and fire a
+> test run. (No fixtures exist until early August anyway, so nothing is being
+> missed while paused.) On a total outage the routine now notifies once, drops
+> a committed `live/outage.json` marker to avoid repeat pings, and clears it
+> on the next healthy run.
+
 Notes:
 - New picks can only appear **~2×/week** (football-data refreshes fixture odds
   Friday afternoon + Tuesday). The hourly cadence just catches refreshes fast
