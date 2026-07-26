@@ -17,10 +17,21 @@ scoreboard is **CLV**, secondary is P&L. Results: [RESULTS.md](../RESULTS.md)
 | commits | pushes to main when picks changed or bets settled |
 | notifies | push notification ONLY for new strong picks (EV >= 6%) or settlements |
 
+> **⏸ PAUSED (since 2026-07-26).** The cloud environment's egress policy
+> blocks `api.bettingpros.com` — the routine cannot fetch lines. To resume:
+> allow that domain (and `raw.githubusercontent.com` for box scores) in the
+> claude.ai Code environment's network settings, then re-enable the routine
+> at the manage link above and fire a test run. First run also verified a
+> now-fixed scraper bug (empty fetch used to truncate the committed archive;
+> it now canary-aborts and never shrinks files).
+
 Notes:
 - Props post the **morning of game day** (ET); most picks appear then and
   disappear as FanDuel moves the line. Hourly polling is the point: the edge
   IS the stale opener.
+- On a total outage the routine notifies once, drops a `live/outage.json`
+  marker (committed) to stay silent on repeat failures, and clears it on the
+  next healthy run.
 - **The pick logic only lists props whose FanDuel price is still at the
   opening line/juice.** Once the line moves, the backtested edge is gone -
   the model does not beat moved prices, so no pick is shown. Don't chase.
