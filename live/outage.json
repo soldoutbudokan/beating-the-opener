@@ -1,4 +1,0 @@
-{
-  "error": "pypi.org + files.pythonhosted.org + archive.ubuntu.com all return 403 (egress blocked); cannot install pandas/numpy/scikit-learn/scipy, so live_pipeline.py and settle_bets.py cannot run. Note: football-data.co.uk is now REACHABLE - the prior block is cleared.",
-  "ts": "2026-07-26T13:47:39Z"
-}
