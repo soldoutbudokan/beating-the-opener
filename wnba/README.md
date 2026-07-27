@@ -8,7 +8,7 @@ EV>2% edges at opening prices goes +10.6% ROI over 1,190 bets with +5.4% CLV
 (player-game-clustered t = 2.9 / 2.3). The closing line remains unbeaten
 (−0.0023, p = 6e-04), as it should.**
 
-Successor to [beating-the-opener](https://github.com/soldoutbudokan/beating-the-opener)
+Successor to [the soccer 1X2 project](../soccer/)
 (soccer 1X2 opener: beaten, 18% of the wedge captured) and
 [nba-win-prob](https://github.com/soldoutbudokan/nba-win-prob) (NBA closing
 moneyline: unbeatable). WNBA props are a much softer market than either: low
@@ -21,7 +21,7 @@ incorporate role changes.
 
 The model is being tested with real money on FanDuel for the rest of the 2026
 season: **$100 bankroll (separate from the
-[soccer experiment](https://github.com/soldoutbudokan/beating-the-opener)),
+[soccer experiment](../soccer/)),
 quarter-Kelly stakes, judged on CLV**. Running record: **[RESULTS.md](RESULTS.md)**.
 
 How it works — full details in **[live/PROTOCOL.md](live/PROTOCOL.md)**:

@@ -1,4 +1,4 @@
-# wnba-props
+# wnba (subproject of beating-the-opener)
 
 Research conclusions + reproduce steps: README.md. Live experiment rules:
 **live/PROTOCOL.md** - read it before touching anything under live/.
