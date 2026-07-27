@@ -34,5 +34,10 @@ Notes for future edits:
 GitHub Pages serves it at
 <https://soldoutbudokan.github.io/beating-the-opener/>. One-time setting:
 **Settings → Pages → Build and deployment → Deploy from a branch → `main`
-/ `docs`.** Until that is switched on, the links from the READMEs 404 and the
-page can only be opened locally.
+/ `docs`.** Pages needs the repo to be public on the free plan. Until that is
+switched on, the links from the READMEs 404 and the page can only be opened
+locally.
+
+`docs/.nojekyll` turns off Jekyll: the page is already final HTML, and Jekyll
+would otherwise try to parse any `{{ … }}` that ends up in a bet log or in the
+inline script.
