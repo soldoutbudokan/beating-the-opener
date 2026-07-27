@@ -1,0 +1,16 @@
+# Fetched and derived data — all regenerable via the src/fetch_*.py scripts.
+# Raw pulls total ~350MB and the modelling tables another ~200MB, so none of it
+# belongs in git. See the "Reproducing" section of the README.
+data/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

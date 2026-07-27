@@ -10,7 +10,7 @@ EV>2% edges at opening prices goes +10.6% ROI over 1,190 bets with +5.4% CLV
 
 Successor to [the soccer 1X2 project](../soccer/)
 (soccer 1X2 opener: beaten, 18% of the wedge captured) and
-[nba-win-prob](https://github.com/soldoutbudokan/nba-win-prob) (NBA closing
+[`nba/`](../nba/) (NBA closing
 moneyline: unbeatable). WNBA props are a much softer market than either: low
 limits, hundreds of prices per slate, and books that are demonstrably slow to
 incorporate role changes.
