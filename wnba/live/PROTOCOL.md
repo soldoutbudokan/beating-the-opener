@@ -17,13 +17,9 @@ scoreboard is **CLV**, secondary is P&L. Results: [RESULTS.md](../RESULTS.md)
 | commits | pushes to main when picks changed or bets settled |
 | notifies | push notification ONLY for new strong picks (EV >= 6%) or settlements |
 
-> **⏸ PAUSED (since 2026-07-26).** The cloud environment's egress policy
-> blocks `api.bettingpros.com` — the routine cannot fetch lines. To resume:
-> allow that domain (and `raw.githubusercontent.com` for box scores) in the
-> claude.ai Code environment's network settings, then re-enable the routine
-> at the manage link above and fire a test run. First run also verified a
-> now-fixed scraper bug (empty fetch used to truncate the committed archive;
-> it now canary-aborts and never shrinks files).
+> Resolved 2026-07-26: the cloud environment now allowlists
+> `api.bettingpros.com` + `raw.githubusercontent.com` (+ package managers).
+> If runs ever fail on a blocked host again, that's where to look.
 
 Notes:
 - Props post the **morning of game day** (ET); most picks appear then and
