@@ -20,6 +20,20 @@ A scheduled cloud agent runs the pipeline hourly:
 | runs | `src/live_pipeline.py` (fresh data → retrain → score fixtures → `live/picks.csv`), then `src/settle_bets.py` (results/CLV → `RESULTS.md`, `live/bankroll.json`, `docs/index.html`) |
 | commits | pushes to main only when picks changed or bets settled |
 | notifies | push notification ONLY for strong picks (avg-book EV > 1%) or settlements; quiet otherwise |
+| reports | whenever `live/picks.csv` is non-empty, the run writes **every** pick as a markdown table at the top of its session reply — see [Pick table](#pick-table-every-run) |
+
+### Pick table (every run)
+
+Any run that produces a non-empty `live/picks.csv` opens its session reply
+with a markdown table of **all** rows — the sub-threshold ones as well as
+`strong=True` — before the run log, commit notes, or anything else. This is
+separate from the push notification, which stays capped at the strong picks:
+the table is the full picture for whoever reads the session afterwards.
+
+Columns: fixture (`home` v `away`), `div`, `date`, `side` (H/D/A), `model_p`,
+`avg_odds`, `max_odds`, `ev_at_avg`, `min_odds_5pct` (the playable price),
+`min_odds_2pct`, and `stake_at_min5`. The sheet already arrives sorted by
+`ev_at_avg` descending — keep that order and mark which rows are `strong`.
 
 > Resolved 2026-07-26: the cloud environment now allowlists
 > `www.football-data.co.uk` (+ package managers). On a total outage the
