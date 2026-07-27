@@ -19,6 +19,10 @@ Rules that apply everywhere:
   instead, then re-run `python3 site/build_site.py` from the repo root.
 - `wnba/data/raw/bp/` is an irreplaceable committed archive (upstream deletes
   old seasons) — never delete, shrink, or gitignore it.
+- **Neither model reads injury/team news** — picks are never injury-checked,
+  by the routines or by anything else. Each PROTOCOL has an "Injury check
+  before you bet" section listing the conditions that void a pick; point the
+  user at it when they're deciding on a fill.
 - Two cloud routines run hourly: `fanduel-edge-watch` (soccer, :51 UTC) and
   `wnba-edge-watch` (wnba, :21 UTC). Their config is documented in each
   PROTOCOL.md.

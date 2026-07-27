@@ -30,6 +30,8 @@ Notes:
 - On a total outage the routine notifies once, drops a `live/outage.json`
   marker (committed) to stay silent on repeat failures, and clears it on the
   next healthy run.
+- A push notification is **not** an injury-checked recommendation - the
+  routine has no injury feed. See [Injury check](#injury-check-before-you-bet).
 - **The pick logic only lists props whose FanDuel price is still at the
   opening line/juice.** Once the line moves, the backtested edge is gone -
   the model does not beat moved prices, so no pick is shown. Don't chase.
@@ -52,6 +54,36 @@ Notes:
   on the same player are heavily correlated; play only the highest-EV row
   for that player.
 - Props void on DNP at FanDuel - mirrored in settlement.
+- **Run the [injury check](#injury-check-before-you-bet) before every fill.**
+
+### Injury check before you bet
+
+**The model is blind to today's news.** Nothing in the pipeline reads an
+injury report. Absences enter only through box scores, and the live model
+deliberately uses only `absent_prior_ew_min` - teammates who ALSO missed the
+previous game, i.e. absences at least two games old (`src/features.py`,
+`src/live_pipeline.py:46`). Tonight's announcements are invisible to it.
+
+Check the injury report / beat reporters before every fill and **skip the
+pick** if any of these holds:
+
+- **The subject is questionable, or on a minutes restriction.** A DNP is
+  harmless - FanDuel voids the prop - but a 14-minute return-from-injury game
+  is a live loser on an over. The void rule protects you from a player not
+  playing, not from a player playing badly.
+- **A >=12-EW-minute teammate is newly out tonight** (played the last game,
+  out now). The model hasn't seen it; FanDuel usually has. If the price still
+  sits at the opener, the "edge" you're reading is unpriced news, not model
+  skill.
+- **A regular is returning tonight after 2+ games out.** Worst case: the model
+  still counts them absent, so it inflates the subject's projected usage.
+  Overs are stale in the wrong direction.
+- Anything else that materially changes the rotation - trade, coach announcing
+  rest, suspension.
+
+If news breaks *after* the fill: **don't chase and don't hedge.** Let it
+settle - CLV records whether the close agreed with you. Add a `notes` entry on
+the `bets.csv` row so the post-mortem is easy.
 
 ## Reporting fills (user -> any Claude session)
 

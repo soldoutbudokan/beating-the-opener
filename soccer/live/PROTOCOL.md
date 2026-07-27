@@ -33,6 +33,9 @@ Notes:
   above.
 - Until the 2026-27 season files exist on football-data (early August 2026),
   runs will report "no upcoming fixtures" — expected, not a bug.
+- A push notification is **not** an injury-checked recommendation — the
+  routine has no team-news feed. See
+  [Injury check](#injury-check-before-you-bet).
 - The routine never edits `bets.csv`, never places bets, never touches `src/`.
 - Leagues assumed on FanDuel: `FANDUEL_LEAGUES` in `src/live_pipeline.py` —
   edit that list if FanDuel doesn't carry something (e.g. E3, SC0).
@@ -47,6 +50,36 @@ Notes:
 - `stake_at_min5` — suggested quarter-Kelly stake at that minimum price.
 - `strong` — True when even an average book clears +1% EV (these trigger the
   notification; the rest of the sheet is worth a scan if you have time).
+
+**Run the [injury check](#injury-check-before-you-bet) before every fill.**
+
+### Injury check before you bet
+
+**The model is team-level and has no squad data at all.** Its features are
+Elo, EWMA goals for/against, EWMA shots on target, form, rest days, division,
+and the opening prices (`src/features.py`) — there is no lineup, minutes, or
+player-availability input anywhere in the pipeline, because the football-data
+CSVs don't carry one. So every bit of injury knowledge the model has is
+secondhand, inherited from the opener: **whatever the market knew when the
+price posted.** News that broke afterwards is invisible to it until it shows
+up in results weeks later — and since picks fire precisely when FanDuel is
+still at that stale opener, this is the model's sharpest blind spot.
+
+Check team news before every fill and **skip the pick** if:
+
+- A first-choice keeper or the side's main goalscorer was ruled out after the
+  opener posted.
+- Two or more regular starters are newly out or suspended.
+- The manager has signalled rotation, or there's a cup/European tie within
+  ~3 days either side. Note `rest_h`/`rest_a` count days since the last
+  *league* match in the dataset, so midweek cup fixtures are invisible to the
+  model — it will read a tired, rotated side as fully rested.
+- The opener looks stale for an obvious non-injury reason too: manager sacked,
+  points deduction, ownership chaos.
+
+If news breaks *after* the fill: **don't chase and don't hedge.** Let it
+settle — CLV records whether the close agreed. Add a `notes` entry on the
+`bets.csv` row.
 
 Sizing (quarter-Kelly, from current bankroll `B` in `live/bankroll.json`):
 
