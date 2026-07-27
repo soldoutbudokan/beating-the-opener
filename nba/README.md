@@ -1,5 +1,9 @@
 # NBA Win Prob
 
+The first control in [beating-the-opener](../README.md): the market where the
+methodology says **no**. Developed as its own repository
+(`soldoutbudokan/nba-win-prob`) and folded in here with its history.
+
 An NBA win-probability model, benchmarked against the Vegas closing line.
 
 Goal: build a model that is **more efficient than the Vegas line** (moneyline /

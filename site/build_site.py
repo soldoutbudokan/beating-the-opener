@@ -27,7 +27,7 @@ REPO = "https://github.com/soldoutbudokan/beating-the-opener"
 
 # ---------------------------------------------------------------- config ----
 # Research numbers are the published results of each subproject - sources in
-# soccer/README.md, wnba/README.md, cricket/README.md, nba-win-prob.
+# soccer/README.md, wnba/README.md, cricket/README.md, nba/README.md.
 
 SOCCER = {
     "id": "soccer", "dir": "soccer", "label": "Soccer 1X2",
@@ -62,12 +62,11 @@ WNBA = {
 MARKETS = [SOCCER, WNBA]
 
 LEDGER = [
-    {"market": "NBA moneyline", "where": "nba-win-prob (control)",
+    {"market": "NBA moneyline", "where": "3 held-out seasons (control)",
      "lazy_open": False, "live_close": True, "verdict": "no",
      "why": "Attention floods the market — even the opening moneyline is "
             "already sharp, so there is no stale price to take.",
-     "capture": None,
-     "link": "https://github.com/soldoutbudokan/nba-win-prob"},
+     "capture": None, "link": "nba/"},
     {"market": "Soccer 1X2", "where": "9 seasons, ~20 leagues",
      "lazy_open": True, "live_close": True, "verdict": "yes",
      "why": "Beaten out-of-sample in 9/9 seasons (sign test p = 0.0039); "
@@ -832,7 +831,7 @@ def evidence_panel():
     <a href="{REPO}/tree/main/soccer">soccer/</a> ·
     <a href="{REPO}/tree/main/wnba">wnba/</a> ·
     <a href="{REPO}/tree/main/cricket">cricket/</a> ·
-    <a href="https://github.com/soldoutbudokan/nba-win-prob">nba-win-prob</a>.
+    <a href="{REPO}/tree/main/nba">nba/</a>.
     Simulations model prices, not frictions — limits, restrictions and
     palpable-error voids are real and unmodelled.</p>
 </section>"""

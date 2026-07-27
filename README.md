@@ -12,7 +12,7 @@ against the close, then bet stale openers in a live experiment scored by CLV.
 
 | market | opener beaten? | wedge captured | live test |
 |---|---|---|---|
-| NBA moneyline ([nba-win-prob](https://github.com/soldoutbudokan/nba-win-prob), control #1) | no — even the open is sharp | — | — |
+| NBA moneyline → [`nba/`](nba/) (control #1) | no — even the open is sharp | — | — |
 | **soccer 1X2** → [`soccer/`](soccer/) | **yes** — 9/9 OOS seasons (p = 0.0039), +5.2% ROI best-of-book sim | 18% | 2026-27 season, from Aug |
 | **WNBA player props** → [`wnba/`](wnba/) | **yes** — both seasons, all 8 markets (p = 6e-12), +10.6% ROI sim | 48% | 🔴 running now |
 | cricket BBL match odds → [`cricket/`](cricket/) (control #2) | no — **no wedge exists**: the close is no better than the open; moves are toss noise | — | — |
@@ -45,6 +45,11 @@ README with the full research writeup, and auto-generated RESULTS.md). Run
 scripts from inside the subdirectory. The WNBA line archive under
 `wnba/data/raw/bp/` is committed because the upstream source deletes old
 seasons — it is irreplaceable.
+
+`nba/` was developed as its own repository (`soldoutbudokan/nba-win-prob`) and
+absorbed here with its history intact — it is the first control, and the
+methodology it rules out is why the later markets were chosen the way they
+were.
 
 `site/build_site.py` renders both markets' live files into `docs/index.html`
 (the scoreboard above) — see [`site/README.md`](site/README.md). Each

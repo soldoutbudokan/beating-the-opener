@@ -1,10 +1,11 @@
 # beating-the-opener (monorepo)
 
 Two live betting experiments share this repo: `soccer/` (1X2 openers) and
-`wnba/` (player props), plus `cricket/` (research-only: BBL tested as a
-second control — no wedge, no live experiment). Each subproject is
-self-contained — run its scripts from inside its directory. Push directly to
-main (solo project).
+`wnba/` (player props), plus two research-only controls where the
+methodology returned "no": `nba/` (closing moneyline unbeatable — absorbed
+from the `nba-win-prob` repo) and `cricket/` (BBL — no wedge exists). Each
+subproject is self-contained — run its scripts from inside its directory.
+Push directly to main (solo project).
 
 Rules that apply everywhere:
 - Live experiment rules live in `<market>/live/PROTOCOL.md` — read the

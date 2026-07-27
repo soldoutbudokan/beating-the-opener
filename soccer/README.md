@@ -7,7 +7,7 @@ opener is demonstrably not an efficient price, and a betting simulation that sho
 early price across books turns the gap into +5.2% ROI over 31,192 bets with +2.2% average
 closing line value (CLV t = 41.7).**
 
-Predecessor project: [nba-win-prob](https://github.com/soldoutbudokan/nba-win-prob) concluded the
+Predecessor project: [`nba/`](../nba/) concluded the
 NBA closing moneyline is unbeatable with public data. This project targets the softer end of what
 FanDuel offers — soccer 1X2 including lower divisions — and the *opening* price rather than the close.
 
