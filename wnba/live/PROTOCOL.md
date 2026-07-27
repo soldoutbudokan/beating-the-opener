@@ -18,6 +18,20 @@ or the
 | runs | quick pre-check (no games + no open bets -> exit in seconds); else data refresh (`fetch_wehoop` -> `build_props` -> `grade_props` -> `features` -> `build_modelset`) -> `live_pipeline.py` -> **notify immediately** on strong picks -> housekeeping (`scrape_bettingpros` for CLV closes -> `settle_bets.py`, which also rebuilds `docs/index.html`) |
 | commits | pushes to main when picks changed or bets settled |
 | notifies | push notification ONLY for new strong picks (EV >= 6%) or settlements |
+| reports | whenever `live/picks.csv` is non-empty, the run writes **every** pick as a markdown table at the top of its session reply - see [Pick table](#pick-table-every-run) |
+
+### Pick table (every run)
+
+Any run that produces a non-empty `live/picks.csv` opens its session reply
+with a markdown table of **all** rows - marginal (EV >= 3%) as well as strong
+- before the run log, commit notes, or anything else. This is separate from
+the push notification, which stays capped at 3 strong picks: the table is the
+full picture for whoever reads the session afterwards.
+
+Columns: player (team), game, market, side, line, FanDuel price, model
+probability, EV, stake, and the skip-if-worse-than price (`min_odds_6pct` for
+strong rows, `min_odds_3pct` for marginal). Sort by EV descending and mark
+which rows are `strong=True`.
 
 > Resolved 2026-07-26: the cloud environment now allowlists
 > `api.bettingpros.com` + `raw.githubusercontent.com` (+ package managers).
