@@ -24,6 +24,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "docs", "index.html")
 REPO = "https://github.com/soldoutbudokan/beating-the-opener"
+PAGES = "https://soldoutbudokan.github.io/beating-the-opener/"
 
 # Self-contained write-ups republished under docs/ so Pages can serve them.
 EXTRA_PAGES = [(os.path.join("nba", "reports", "report.html"),
@@ -1224,6 +1225,9 @@ def render(markets, fragment=False):
 </main>"""
 
     if fragment:
+        # Hosted off-site, so sibling docs/ pages need their absolute home.
+        for _, dst in EXTRA_PAGES:
+            body = body.replace(f'href="{dst}"', f'href="{PAGES}{dst}"')
         return f"<style>{CSS}</style>\n{body}\n<script>{JS}</script>\n"
     return f"""<!doctype html>
 <html lang="en">
