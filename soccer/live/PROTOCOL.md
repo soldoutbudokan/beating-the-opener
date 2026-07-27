@@ -3,7 +3,9 @@
 One-season (2026-27) FanDuel test of the model. **$100 starting bankroll,
 quarter-Kelly sizing, flat discipline.** Primary scoreboard is **CLV**,
 secondary is P&L — see [Scoreboard](#scoreboard) for why. Results live in
-[RESULTS.md](../RESULTS.md) (auto-generated — never hand-edit).
+[RESULTS.md](../RESULTS.md) and on the
+[live scoreboard](https://soldoutbudokan.github.io/beating-the-opener/#soccer)
+(both auto-generated — never hand-edit).
 
 ## The routine
 
@@ -15,7 +17,7 @@ A scheduled cloud agent runs the pipeline hourly:
 | id / manage | `trig_01FKR2Rv98CZho9cUGXvLJiA` — https://claude.ai/code/routines/trig_01FKR2Rv98CZho9cUGXvLJiA |
 | model | claude-opus-5 |
 | schedule | hourly at :51 UTC |
-| runs | `src/live_pipeline.py` (fresh data → retrain → score fixtures → `live/picks.csv`), then `src/settle_bets.py` (results/CLV → `RESULTS.md`, `live/bankroll.json`) |
+| runs | `src/live_pipeline.py` (fresh data → retrain → score fixtures → `live/picks.csv`), then `src/settle_bets.py` (results/CLV → `RESULTS.md`, `live/bankroll.json`, `docs/index.html`) |
 | commits | pushes to main only when picks changed or bets settled |
 | notifies | push notification ONLY for strong picks (avg-book EV > 1%) or settlements; quiet otherwise |
 

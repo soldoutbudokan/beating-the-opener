@@ -3,7 +3,9 @@
 One-season (2026, through ~October) FanDuel test. **$100 starting bankroll
 (separate from the soccer experiment), quarter-Kelly sizing.** Primary
 scoreboard is **CLV**, secondary is P&L. Results: [RESULTS.md](../RESULTS.md)
-(auto-generated - never hand-edit).
+or the
+[live scoreboard](https://soldoutbudokan.github.io/beating-the-opener/#wnba)
+(both auto-generated - never hand-edit).
 
 ## The routine
 
@@ -13,7 +15,7 @@ scoreboard is **CLV**, secondary is P&L. Results: [RESULTS.md](../RESULTS.md)
 | id / manage | `trig_01Ko6Py4ar9tw8QoxPYx8tyw` - https://claude.ai/code/routines/trig_01Ko6Py4ar9tw8QoxPYx8tyw |
 | model | claude-opus-5 |
 | schedule | hourly at :21 UTC |
-| runs | quick pre-check (no games + no open bets -> exit in seconds); else data refresh (`fetch_wehoop` -> `build_props` -> `grade_props` -> `features` -> `build_modelset`) -> `live_pipeline.py` -> **notify immediately** on strong picks -> housekeeping (`scrape_bettingpros` for CLV closes -> `settle_bets.py`) |
+| runs | quick pre-check (no games + no open bets -> exit in seconds); else data refresh (`fetch_wehoop` -> `build_props` -> `grade_props` -> `features` -> `build_modelset`) -> `live_pipeline.py` -> **notify immediately** on strong picks -> housekeeping (`scrape_bettingpros` for CLV closes -> `settle_bets.py`, which also rebuilds `docs/index.html`) |
 | commits | pushes to main when picks changed or bets settled |
 | notifies | push notification ONLY for new strong picks (EV >= 6%) or settlements |
 

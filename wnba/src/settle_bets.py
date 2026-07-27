@@ -3,11 +3,14 @@
 Run after the data refresh (needs fresh wehoop box + BP archive for closes).
 Voids on DNP (stake returned), pushes on exact line, CLV from the archived
 consensus (else FanDuel) closing snapshot re-expressed at the bet's own line.
+Also refreshes the shared HTML scoreboard at docs/index.html.
 """
 import glob
 import gzip
 import json
 import os
+import subprocess
+import sys
 
 import numpy as np
 import pandas as pd
@@ -27,6 +30,17 @@ COLS = ["key", "placed_at", "match_date", "event_id", "market", "player",
         "actual", "clv", "clv_source", "pnl", "notes"]
 MARKET_IDS = {"points": 393, "rebounds": 397, "assists": 391, "threes": 390,
               "pra": 396, "pts_ast": 394, "pts_reb": 395, "reb_ast": 398}
+
+
+def refresh_site():
+    """Rebuild docs/index.html from both markets' live files - never fatal."""
+    try:
+        r = subprocess.run([sys.executable,
+                            os.path.join(ROOT, "..", "site", "build_site.py")],
+                           capture_output=True, text=True, timeout=120)
+        print((r.stdout or r.stderr).strip().splitlines()[-1])
+    except Exception as e:  # a broken page must never block settlement
+        print(f"site build skipped: {e}")
 
 
 def load_box_index():
@@ -143,6 +157,9 @@ def main():
 
     # ---- RESULTS.md ----
     lines = ["# Live FanDuel WNBA props - results\n",
+             "> At a glance: **[live scoreboard]"
+             "(https://soldoutbudokan.github.io/beating-the-opener/#wnba)**"
+             " - same numbers, plus the open picks and the backtest evidence.\n",
              "Quarter-Kelly, $100 starting bankroll, picks from the "
              "[wnba-props model](README.md). CLV = `p_close(at bet line) x "
              "decimal_odds - 1`: whether the bets beat the closing price. CLV "
@@ -184,6 +201,7 @@ def main():
                 f"| {f2(b['pnl'], '{:+.2f}')} | {f2(b['clv'], '{:+.1%}')} |")
     with open(RESULTS_MD, "w") as f:
         f.write("\n".join(lines) + "\n")
+    refresh_site()
     print(f"bankroll ${current:.2f}; {no} open bets")
     print(f"SETTLED {n_settled}" if n_settled else "NOTHING_TO_SETTLE")
 

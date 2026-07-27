@@ -1,5 +1,9 @@
 # Beating the Opener
 
+**[→ Live scoreboard](https://soldoutbudokan.github.io/beating-the-opener/)** —
+bankrolls, CLV, open positions and the evidence behind them, at a glance.
+Rebuilt automatically every time a bet settles.
+
 One project, one thesis, tested market by market: **soft sportsbooks' opening
 lines are inefficient, and the inefficiency is capturable with public data.**
 The method is the same everywhere — anchor on the market's own price, model
@@ -29,8 +33,10 @@ season of CLV is decisive). Hourly cloud routines refresh data, retrain,
 score, and notify on strong picks; fills are reported conversationally and
 settlement is automatic.
 
-- Soccer: [record](soccer/RESULTS.md) · [protocol](soccer/live/PROTOCOL.md)
-- WNBA: [record](wnba/RESULTS.md) · [protocol](wnba/live/PROTOCOL.md)
+- Soccer: [scoreboard](https://soldoutbudokan.github.io/beating-the-opener/#soccer)
+  · [record](soccer/RESULTS.md) · [protocol](soccer/live/PROTOCOL.md)
+- WNBA: [scoreboard](https://soldoutbudokan.github.io/beating-the-opener/#wnba)
+  · [record](wnba/RESULTS.md) · [protocol](wnba/live/PROTOCOL.md)
 
 ## Repo layout
 
@@ -39,3 +45,7 @@ README with the full research writeup, and auto-generated RESULTS.md). Run
 scripts from inside the subdirectory. The WNBA line archive under
 `wnba/data/raw/bp/` is committed because the upstream source deletes old
 seasons — it is irreplaceable.
+
+`site/build_site.py` renders both markets' live files into `docs/index.html`
+(the scoreboard above) — see [`site/README.md`](site/README.md). Each
+`settle_bets.py` run regenerates it, so the page never drifts from the CSVs.

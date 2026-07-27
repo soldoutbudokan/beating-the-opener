@@ -15,7 +15,9 @@ FanDuel offers — soccer 1X2 including lower divisions — and the *opening* pr
 
 The model is being tested with real money on FanDuel for the 2026-27 season:
 **$100 bankroll, quarter-Kelly stakes, judged on CLV** (closing line value converges to
-significance within one season; ROI does not). Running record: **[RESULTS.md](RESULTS.md)**.
+significance within one season; ROI does not). Running record:
+**[live scoreboard](https://soldoutbudokan.github.io/beating-the-opener/#soccer)**
+(at a glance) or **[RESULTS.md](RESULTS.md)** (plain text).
 
 How it works — full details in **[live/PROTOCOL.md](live/PROTOCOL.md)**:
 

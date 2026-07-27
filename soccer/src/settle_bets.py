@@ -1,9 +1,12 @@
 """Settle logged bets: results, P&L, CLV vs the closing line, RESULTS.md.
 
-Run after live_pipeline.py (needs a fresh data/matches.pkl).
+Run after live_pipeline.py (needs a fresh data/matches.pkl). Also refreshes
+the shared HTML scoreboard at docs/index.html.
 """
 import json
 import os
+import subprocess
+import sys
 
 import numpy as np
 import pandas as pd
@@ -20,6 +23,17 @@ COLS = ["key", "placed_at", "match_date", "div", "home", "away", "side",
         "odds_taken", "stake", "model_p", "status", "result", "clv",
         "clv_source", "pnl", "notes"]
 SIDE_IDX = {"H": 0, "D": 1, "A": 2}
+
+
+def refresh_site():
+    """Rebuild docs/index.html from both markets' live files - never fatal."""
+    try:
+        r = subprocess.run([sys.executable,
+                            os.path.join(ROOT, "..", "site", "build_site.py")],
+                           capture_output=True, text=True, timeout=120)
+        print((r.stdout or r.stderr).strip().splitlines()[-1])
+    except Exception as e:  # a broken page must never block settlement
+        print(f"site build skipped: {e}")
 
 
 def close_prob(row, side):
@@ -83,6 +97,9 @@ def main():
 
     # ---- RESULTS.md ----
     lines = ["# Live FanDuel experiment - results\n",
+             "> At a glance: **[live scoreboard]"
+             "(https://soldoutbudokan.github.io/beating-the-opener/#soccer)**"
+             " - same numbers, plus the open picks and the backtest evidence.\n",
              "Quarter-Kelly, $100 starting bankroll, picks from the "
              "[beating-the-opener model](README.md). CLV = closing-line value: "
              "`p_close x odds_taken - 1`. Positive mean CLV means the bets "
@@ -123,6 +140,7 @@ def main():
                          f"| {res_s} | {pnl_s} | {clv_s} |")
     with open(RESULTS_MD, "w") as f:
         f.write("\n".join(lines) + "\n")
+    refresh_site()
 
     print(f"bankroll ${current:.2f}; {no} open bets")
     print(f"SETTLED {n_settled}" if n_settled else "NOTHING_TO_SETTLE")

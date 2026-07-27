@@ -22,7 +22,9 @@ incorporate role changes.
 The model is being tested with real money on FanDuel for the rest of the 2026
 season: **$100 bankroll (separate from the
 [soccer experiment](../soccer/)),
-quarter-Kelly stakes, judged on CLV**. Running record: **[RESULTS.md](RESULTS.md)**.
+quarter-Kelly stakes, judged on CLV**. Running record:
+**[live scoreboard](https://soldoutbudokan.github.io/beating-the-opener/#wnba)**
+(at a glance) or **[RESULTS.md](RESULTS.md)** (plain text).
 
 How it works — full details in **[live/PROTOCOL.md](live/PROTOCOL.md)**:
 
