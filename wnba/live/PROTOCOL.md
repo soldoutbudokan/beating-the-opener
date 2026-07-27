@@ -17,7 +17,7 @@ or the
 | schedule | hourly at :21 UTC |
 | runs | quick pre-check (no games + no open bets -> exit in seconds); else data refresh (`fetch_wehoop` -> `build_props` -> `grade_props` -> `features` -> `build_modelset`) -> `live_pipeline.py` -> **notify immediately** on strong picks -> housekeeping (`scrape_bettingpros` for CLV closes -> `settle_bets.py`, which also rebuilds `docs/index.html`) |
 | commits | pushes to main when picks changed or bets settled |
-| notifies | push notification ONLY for new strong picks (EV >= 6%) or settlements |
+| notifies | push notification ONLY for new strong picks (EV >= 6%) or settlements, and never for a pick already in `bets.csv` - see [No duplicate notifications](#no-duplicate-notifications) |
 | reports | whenever `live/picks.csv` is non-empty, the run writes **every** pick as a markdown table at the top of its session reply - see [Pick table](#pick-table-every-run) |
 
 ### Pick table (every run)
@@ -31,7 +31,22 @@ full picture for whoever reads the session afterwards.
 Columns: player (team), game, market, side, line, FanDuel price, model
 probability, EV, stake, and the skip-if-worse-than price (`min_odds_6pct` for
 strong rows, `min_odds_3pct` for marginal). Sort by EV descending and mark
-which rows are `strong=True`.
+which rows are `strong=True`, and which are already logged in `bets.csv`.
+
+### No duplicate notifications
+
+Before sending a pick notification, drop every candidate whose `key` already
+appears in `live/bets.csv` (any status - the user has already acted on it, and
+a second ping about it is noise). Notify only on what survives; if nothing
+survives, send **no** notification at all, even when `live_pipeline.py`
+printed `NEW_PICKS`. Settlement notifications follow the same rule - only
+bets that settled on *this* run count, never a re-summary of the standing
+ledger.
+
+Dropped picks still belong in the session pick table, marked as already
+logged with the price from `bets.csv`, so the reply keeps the full sheet.
+Silence is the correct outcome for an hour whose only "new" picks are ones
+already filled.
 
 > Resolved 2026-07-26: the cloud environment now allowlists
 > `api.bettingpros.com` + `raw.githubusercontent.com` (+ package managers).

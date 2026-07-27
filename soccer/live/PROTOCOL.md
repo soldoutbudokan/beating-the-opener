@@ -19,7 +19,7 @@ A scheduled cloud agent runs the pipeline hourly:
 | schedule | hourly at :51 UTC |
 | runs | `src/live_pipeline.py` (fresh data → retrain → score fixtures → `live/picks.csv`), then `src/settle_bets.py` (results/CLV → `RESULTS.md`, `live/bankroll.json`, `docs/index.html`) |
 | commits | pushes to main only when picks changed or bets settled |
-| notifies | push notification ONLY for strong picks (avg-book EV > 1%) or settlements; quiet otherwise |
+| notifies | push notification ONLY for strong picks (avg-book EV > 1%) or settlements; never for a pick already in `bets.csv` — see [No duplicate notifications](#no-duplicate-notifications); quiet otherwise |
 | reports | whenever `live/picks.csv` is non-empty, the run writes **every** pick as a markdown table at the top of its session reply — see [Pick table](#pick-table-every-run) |
 
 ### Pick table (every run)
@@ -33,7 +33,23 @@ the table is the full picture for whoever reads the session afterwards.
 Columns: fixture (`home` v `away`), `div`, `date`, `side` (H/D/A), `model_p`,
 `avg_odds`, `max_odds`, `ev_at_avg`, `min_odds_5pct` (the playable price),
 `min_odds_2pct`, and `stake_at_min5`. The sheet already arrives sorted by
-`ev_at_avg` descending — keep that order and mark which rows are `strong`.
+`ev_at_avg` descending — keep that order and mark which rows are `strong`, and
+which are already logged in `bets.csv`.
+
+### No duplicate notifications
+
+Before sending a pick notification, drop every candidate whose `key`
+(`div|date|home|away|side`) already appears in `live/bets.csv` (any status —
+the user has already acted on it, and a second ping about it is noise). Notify
+only on what survives; if nothing survives, send **no** notification at all,
+even when the pipeline reports changed picks. Settlement notifications follow
+the same rule — only bets that settled on *this* run count, never a
+re-summary of the standing ledger.
+
+Dropped picks still belong in the session pick table, marked as already logged
+with the price from `bets.csv`, so the reply keeps the full sheet. Silence is
+the correct outcome for an hour whose only "new" picks are ones already
+filled.
 
 > Resolved 2026-07-26: the cloud environment now allowlists
 > `www.football-data.co.uk` (+ package managers). On a total outage the
