@@ -1,7 +1,3 @@
-data/*.pkl
-data/fixtures.csv
+.DS_Store
 __pycache__/
 *.pyc
-.DS_Store
-*.pkl
-*.parquet
