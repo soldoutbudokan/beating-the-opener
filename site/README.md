@@ -17,6 +17,13 @@ Inputs, all read straight off disk: `<market>/live/bankroll.json`,
 numbers (the ledger and the two simulation tables) are constants at the top of
 the script — sources are each subproject's README.
 
+`EXTRA_PAGES` republishes standalone write-ups that live with their subproject
+— currently `nba/reports/report.html` → `docs/nba-report.html`, linked from the
+evidence ledger. Pages only serves `docs/`, hence the copy; it is refreshed on
+every build so it cannot drift from the original. Keep such a page
+self-contained and give it an absolute back-link, since it is served from a
+different directory than the one it lives in.
+
 Notes for future edits:
 
 - **`docs/index.html` is generated — never hand-edit it.** Both

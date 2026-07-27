@@ -25,6 +25,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "docs", "index.html")
 REPO = "https://github.com/soldoutbudokan/beating-the-opener"
 
+# Self-contained write-ups republished under docs/ so Pages can serve them.
+EXTRA_PAGES = [(os.path.join("nba", "reports", "report.html"),
+                "nba-report.html")]
+
 # ---------------------------------------------------------------- config ----
 # Research numbers are the published results of each subproject - sources in
 # soccer/README.md, wnba/README.md, cricket/README.md, nba/README.md.
@@ -66,7 +70,8 @@ LEDGER = [
      "lazy_open": False, "live_close": True, "verdict": "no",
      "why": "Attention floods the market — even the opening moneyline is "
             "already sharp, so there is no stale price to take.",
-     "capture": None, "link": "nba/"},
+     "capture": None, "link": "nba/",
+     "report": ("nba-report.html", "Read the full write-up")},
     {"market": "Soccer 1X2", "where": "9 seasons, ~20 leagues",
      "lazy_open": True, "live_close": True, "verdict": "yes",
      "why": "Beaten out-of-sample in 9/9 seasons (sign test p = 0.0039); "
@@ -759,14 +764,19 @@ def evidence_panel():
                if r["capture"] else '<span class="muted">no wedge to capture</span>')
         link = r["link"] if r["link"].startswith("http") \
             else f'{REPO}/tree/main/{r["link"]}'
+        report = ""
+        if r.get("report"):
+            href, label = r["report"]
+            report = (f'<a class="ledger-report" href="{href}">'
+                      f'{esc(label)} →</a>')
         rows.append(
             f'<article class="ledger-row">'
             f'<div class="ledger-name"><a href="{link}">{esc(r["market"])}</a>'
             f'<span class="muted">{esc(r["where"])}</span></div>'
             f'<div class="ledger-gates">{gates}</div>'
             f'<div class="ledger-verdict">{verdict}</div>'
-            f'<div class="ledger-why">{esc(r["why"])}<div class="ledger-cap">'
-            f'{cap}</div></div></article>')
+            f'<div class="ledger-why">{esc(r["why"])} {report}'
+            f'<div class="ledger-cap">{cap}</div></div></article>')
 
     def sim(spec):
         body = []
@@ -1058,6 +1068,8 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13.5px}
 .gate-unknown::before{content:"?  "}
 .ledger-verdict{justify-self:end}
 .ledger-why{grid-column:1/-1;font-size:13px;color:var(--ink2);max-width:74ch}
+.ledger-report{color:var(--model);text-decoration:none;white-space:nowrap}
+.ledger-report:hover{text-decoration:underline}
 .ledger-cap{margin-top:8px}
 
 /* meter */
@@ -1244,6 +1256,22 @@ def write_if_changed(path, content):
     return True
 
 
+def copy_pages():
+    """Republish standalone write-ups that live with their subproject.
+
+    Pages only serves docs/, so the page is copied rather than linked; the
+    copy is refreshed here so it cannot drift from the original.
+    """
+    for src, dst in EXTRA_PAGES:
+        path = os.path.join(ROOT, src)
+        if not os.path.exists(path):
+            print(f"missing {src} - skipped")
+            continue
+        with open(path) as fh:
+            if write_if_changed(os.path.join(ROOT, "docs", dst), fh.read()):
+                print(f"docs/{dst} updated")
+
+
 def main():
     markets = [load_market(cfg) for cfg in MARKETS]
     if "--fragment" in sys.argv:
@@ -1251,6 +1279,7 @@ def main():
         write_if_changed(path, render(markets, fragment=True))
         print(f"fragment -> {path}")
         return
+    copy_pages()
     changed = write_if_changed(OUT, render(markets))
     print(f"docs/index.html {'updated' if changed else 'unchanged'}")
 
