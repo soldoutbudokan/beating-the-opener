@@ -80,6 +80,40 @@ def main():
     ov_close = 1 / df["Home Odds Close"].values + 1 / df["Away Odds Close"].values
     print(f"overround open {ov_open.mean():.4f}  close {ov_close.mean():.4f}")
 
+    level_bias_test()
+
+
+def level_bias_test():
+    """4. home-price LEVEL bias check with an out-of-sample split.
+
+    The 2018+ open/close sample shows home 57.6% vs implied 50.6% (p=.03).
+    That hypothesis was formed by peeking, so it is tested on the disjoint
+    2011-2017 seasons (plain odds columns only there). Verdict: it flips sign
+    OOS (47.5% vs 52.0%, flat-home ROI -12.4%) and pools to nothing -> noise.
+    """
+    f = sorted(RAW.glob("big_bash_league*.xlsx"))[-1]
+    df = pd.read_excel(f, sheet_name="Data", header=1)
+    df.columns = [c.replace("\n", " ").strip() for c in df.columns]
+    df["Date"] = pd.to_datetime(df["Date"])
+    df["season"] = np.where(df.Date.dt.month >= 10, df.Date.dt.year, df.Date.dt.year - 1)
+    ok = (pd.to_numeric(df["Home Odds"], errors="coerce").gt(1)
+          & pd.to_numeric(df["Away Odds"], errors="coerce").gt(1)
+          & df["Winner"].isin(["H", "A"])
+          & df["Neutral / Alternative Venue"].isna())
+    print("\n=== 4. home-price level bias (true home games, plain odds) ===")
+    for name, mask in [("2018+ (hypothesis-forming)", ok & df.season.ge(2018)),
+                       ("pre-2018 (out-of-sample)", ok & df.season.lt(2018)),
+                       ("pooled", ok)]:
+        d = df[mask]
+        y = (d.Winner == "H").astype(float).values
+        oh, oa = d["Home Odds"].values.astype(float), d["Away Odds"].values.astype(float)
+        p = (1 / oh) / (1 / oh + 1 / oa)
+        ret = np.where(y == 1, oh - 1, -1.0)
+        bt = stats.binomtest(int(y.sum()), len(d), p.mean())
+        print(f"{name}: n={len(d)}, home {y.mean():.1%} vs implied {p.mean():.1%} "
+              f"(binom p={bt.pvalue:.2g}); flat-home ROI {ret.mean():+.1%} "
+              f"(t={ret.mean() / (ret.std(ddof=1) / np.sqrt(len(d))):.2f})")
+
 
 if __name__ == "__main__":
     main()

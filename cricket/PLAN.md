@@ -25,17 +25,22 @@ phases complete so progress survives across sessions.
   win 57.6% vs open-implied 50.6% (binom p=.03); flat-bet-home ROI +7.7% at
   open / +9.7% at close (t≈1.3–1.5, n.s.). Formed after peeking → needs
   out-of-sample confirmation on BBL 2023/24–2025/26 seasons.
-- [ ] **Phase 2b — OOS test of the home bias.** Get the current cumulative
-  file (adds ~3 seasons, ~180 matches): Wayback SPN failed (their crawler is
-  also 403'd), so it must come through a real browser (user's Chrome or user
-  downloads it manually from
-  https://www.aussportsbetting.com/data/historical-twenty20-big-bash-results-and-odds-data/).
-- [ ] **Phase 3 — model.** Only if 2b confirms something. NOTE: with no
-  move-wedge, the soccer/WNBA move-model architecture does NOT apply here;
-  the candidate edge is a static calibration bias (bet home at open), which
-  needs no ML — just OOS validation and a fair-odds check.
-- [ ] **Phase 4 — live experiment** only if 2b confirms. BBL is Dec–Jan
-  (next season Dec 2026), so live testing waits for the southern summer.
+- [x] **Phase 2b — OOS test of the home bias: REJECTED.** No browser needed
+  after all — the pre-2018 seasons (plain odds columns, n=242, disjoint from
+  the hypothesis-forming 2018+ sample) are a free OOS set. The bias FLIPS
+  SIGN there (home 47.5% vs 52.0% implied; flat-home ROI −12.4%, t=−2.0) and
+  pools to nothing over 12 seasons (52.5% vs 51.4%, p=0.65). Forking-paths
+  artifact; hypothesis dead.
+- [x] ~~Phase 3 — model~~ / ~~Phase 4 — live~~ **CLOSED — nothing cleared
+  the bar.** Verdict: BBL is control #2 (see README.md). No move-wedge to
+  model, no level bias to bet. Optional future top-up: current cumulative
+  xlsx (adds 2023/24–2025/26, doubles the open/close sample) needs a real
+  browser — user can download from
+  https://www.aussportsbetting.com/data/historical-twenty20-big-bash-results-and-odds-data/
+  and drop it in `data/raw/asb/` alongside the wayback copy; re-run
+  `src/wedge_test.py`. Also logged for the future: fade-the-toss-move
+  curiosity (market prices the toss at 55.9% move-alignment; toss wins only
+  49.2% of matches — not an opener edge, thin sample).
 
 ## Decisions & findings log
 

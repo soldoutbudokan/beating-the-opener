@@ -8,14 +8,18 @@ against the close, then bet stale openers in a live experiment scored by CLV.
 
 | market | opener beaten? | wedge captured | live test |
 |---|---|---|---|
-| NBA moneyline ([nba-win-prob](https://github.com/soldoutbudokan/nba-win-prob), the control) | no — the close is efficient | — | — |
+| NBA moneyline ([nba-win-prob](https://github.com/soldoutbudokan/nba-win-prob), control #1) | no — even the open is sharp | — | — |
 | **soccer 1X2** → [`soccer/`](soccer/) | **yes** — 9/9 OOS seasons (p = 0.0039), +5.2% ROI best-of-book sim | 18% | 2026-27 season, from Aug |
 | **WNBA player props** → [`wnba/`](wnba/) | **yes** — both seasons, all 8 markets (p = 6e-12), +10.6% ROI sim | 48% | 🔴 running now |
+| cricket BBL match odds → [`cricket/`](cricket/) (control #2) | no — **no wedge exists**: the close is no better than the open; moves are toss noise | — | — |
 
-The NBA result is what makes the rest credible: the same methodology, honestly
-applied, says the most liquid market's close is unbeatable. The edge only
-appears where attention per price is low — lower-league soccer, prop menus —
-and only at the *open*.
+The two control results are what make the middle rows credible: the same
+methodology, honestly applied, returns "no" twice. An exploitable opener
+needs both a *lazy open* (low attention per price) **and** an *informative
+close* (real information arriving before tip, so there's a correction to
+capture). NBA fails the first — attention floods the market. BBL cricket
+fails the second — the lines move plenty, but toward toss noise, not
+winners. Lower-league soccer and WNBA prop menus satisfy both.
 
 ## Live experiments
 
