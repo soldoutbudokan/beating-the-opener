@@ -50,27 +50,47 @@ def team_abbrs(season):
 
 
 def fetch_schedule(season, abbr):
-    d = get(f"{API}/schedule?sportId=1&startDate={season}-03-01"
-            f"&endDate={season}-11-30")
+    """Day-by-day: the season-range query serves stale gameDate/status for
+    rescheduled games (verified 2026-07-28: makeup-day appearance said
+    Postponed + original May time; the single-day query says Final + real
+    time). Day queries are authoritative."""
+    days = pd.date_range(f"{season}-03-01", f"{season}-11-30").strftime("%Y-%m-%d")
+
+    def one_day(day):
+        d = get(f"{API}/schedule?sportId=1&startDate={day}&endDate={day}")
+        time.sleep(PAUSE)
+        return d.get("dates", []) if d else []
+
     rows = []
-    for dt in d.get("dates", []):
-        for g in dt["games"]:
-            if g.get("gameType") not in KEEP_TYPES:
-                continue
-            rows.append({
-                "gamePk": g["gamePk"], "gameDate": g["gameDate"],
-                "officialDate": g["officialDate"],
-                "doubleHeader": g.get("doubleHeader"),
-                "gameNumber": g.get("gameNumber"),
-                "gameType": g.get("gameType"),
-                "status": g["status"].get("detailedState"),
-                "home_id": g["teams"]["home"]["team"]["id"],
-                "away_id": g["teams"]["away"]["team"]["id"],
-                "home": abbr.get(g["teams"]["home"]["team"]["id"]),
-                "away": abbr.get(g["teams"]["away"]["team"]["id"]),
-                "venue_id": (g.get("venue") or {}).get("id"),
-            })
-    df = pd.DataFrame(rows).drop_duplicates("gamePk")
+    with ThreadPoolExecutor(max_workers=WORKERS) as ex:
+        day_payloads = list(ex.map(one_day, days))
+    for dates in day_payloads:
+        for dt in dates:
+            for g in dt["games"]:
+                if g.get("gameType") not in KEEP_TYPES:
+                    continue
+                rows.append({
+                    "gamePk": g["gamePk"], "gameDate": g["gameDate"],
+                    "officialDate": g["officialDate"],
+                    "doubleHeader": g.get("doubleHeader"),
+                    "gameNumber": g.get("gameNumber"),
+                    "gameType": g.get("gameType"),
+                    "status": g["status"].get("detailedState"),
+                    "home_id": g["teams"]["home"]["team"]["id"],
+                    "away_id": g["teams"]["away"]["team"]["id"],
+                    "home": abbr.get(g["teams"]["home"]["team"]["id"]),
+                    "away": abbr.get(g["teams"]["away"]["team"]["id"]),
+                    "venue_id": (g.get("venue") or {}).get("id"),
+                })
+    # postponed games appear twice under one gamePk; BOTH appearances can
+    # carry the makeup officialDate (verified: original-day row keeps the
+    # stale gameDate + "Postponed", makeup-day row is Final) - prefer the
+    # played row explicitly, then the latest officialDate
+    df = pd.DataFrame(rows)
+    df["_pri"] = (df.status == "Final").astype(int)
+    df = (df.sort_values(["officialDate", "_pri"], kind="mergesort")
+          .drop_duplicates("gamePk", keep="last")
+          .drop(columns="_pri").reset_index(drop=True))
     print(f"{season}: {len(df)} scheduled games "
           f"({(df.status == 'Final').sum()} final)", flush=True)
     return df
