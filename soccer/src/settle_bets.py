@@ -46,6 +46,14 @@ def close_prob(row, side):
     return np.nan, ""
 
 
+def find_match(matches, b):
+    m = matches[(matches["Div"] == b["div"])
+                & (matches["_date"] == str(b["match_date"]))
+                & (matches["HomeTeam"] == b["home"])
+                & (matches["AwayTeam"] == b["away"])]
+    return m.iloc[0] if len(m) else None
+
+
 def main():
     os.makedirs(LIVE, exist_ok=True)
     if not os.path.exists(BETS):
@@ -67,24 +75,34 @@ def main():
     for idx, b in bets.iterrows():
         if b["status"] != "open":
             continue
-        m = matches[(matches["Div"] == b["div"]) & (matches["_date"] == str(b["match_date"]))
-                    & (matches["HomeTeam"] == b["home"]) & (matches["AwayTeam"] == b["away"])]
-        if len(m) == 0:
+        m = find_match(matches, b)
+        if m is None:
             days = (pd.Timestamp.now() - pd.Timestamp(b["match_date"])).days
             if days > 7:
                 bets.loc[idx, "notes"] = "no result after 7d - postponed? check"
             continue
-        m = m.iloc[0]
         won = m["FTR"] == b["side"]
         bets.loc[idx, "status"] = "settled"
         bets.loc[idx, "result"] = "won" if won else "lost"
         bets.loc[idx, "pnl"] = round(
             b["stake"] * (b["odds_taken"] - 1) if won else -b["stake"], 2)
+        n_settled += 1
+
+    # CLV: fresh settlements AND any settled row whose closing odds were not
+    # yet in the CSVs when it settled - backfilled here, never left as a
+    # permanent hole in the primary scoreboard (AUDIT C3)
+    n_clv = 0
+    for idx, b in bets.iterrows():
+        if b["status"] != "settled" or pd.notna(b["clv"]):
+            continue
+        m = find_match(matches, b)
+        if m is None:
+            continue
         pc, src = close_prob(m, b["side"])
         if not np.isnan(pc):
             bets.loc[idx, "clv"] = round(pc * b["odds_taken"] - 1, 4)
             bets.loc[idx, "clv_source"] = src
-        n_settled += 1
+            n_clv += 1
 
     bets.to_csv(BETS, index=False)
     settled = bets[bets["status"] == "settled"]
@@ -123,7 +141,14 @@ def main():
             f"| CLV-expected P&L | ${exp_pnl:+.2f} |", ""]
         if len(clv) >= 2:
             se = clv.std() / np.sqrt(len(clv))
-            lines.append(f"CLV t-stat: {clv.mean() / se:.2f}\n")
+            tline = f"CLV t-stat: {clv.mean() / se:.2f} (iid)"
+            byd = (settled.dropna(subset=["clv"])
+                   .groupby("match_date")["clv"].mean())
+            if len(byd) >= 2 and byd.std() > 0:
+                tc = byd.mean() / (byd.std() / np.sqrt(len(byd)))
+                tline += (f"; {tc:.2f} clustered by match date"
+                          f" ({len(byd)} dates)")
+            lines.append(tline + "\n")
     else:
         lines.append(f"No settled bets yet ({no} open).\n")
 
@@ -143,6 +168,8 @@ def main():
     refresh_site()
 
     print(f"bankroll ${current:.2f}; {no} open bets")
+    if n_clv:
+        print(f"CLV_STAMPED {n_clv}")
     print(f"SETTLED {n_settled}" if n_settled else "NOTHING_TO_SETTLE")
 
 

@@ -27,6 +27,12 @@ STAT_COLS = {
     "reb_ast": ["rebounds", "assists"], "stl_blk": ["steals", "blocks"],
 }
 
+# BettingPros team code -> wehoop abbreviation (shared by live_pipeline and
+# settle_bets - keep the single copy here)
+BP2WH = {"ATL": "ATL", "CHI": "CHI", "CON": "CON", "DAL": "DAL", "GSV": "GS",
+         "IND": "IND", "LAS": "LA", "LVA": "LV", "MIN": "MIN", "NYL": "NY",
+         "PHO": "PHX", "SEA": "SEA", "WAS": "WSH", "TOR": "TOR", "PDX": "POR"}
+
 
 def norm(s):
     s = unicodedata.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()

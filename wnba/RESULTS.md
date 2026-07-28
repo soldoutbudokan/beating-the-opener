@@ -8,7 +8,7 @@ No settled bets yet (4 open).
 
 | date | player | market | side | line | odds | stake | actual | result | P&L | CLV |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 2026-07-29 | Carla Leite | assists | over | 6.5 | 128 | 1.0 |  |  |  |  |
-| 2026-07-29 | Caitlin Clark | threes | over | 2.5 | 108 | 1.0 |  |  |  |  |
-| 2026-07-29 | Kayla McBride | points | over | 17.5 | -120 | 1.0 |  |  |  |  |
-| 2026-07-29 | Emily Engstler | threes | over | 1.5 | 194 | 1.0 |  |  |  |  |
+| 2026-07-28 | Carla Leite | assists | over | 6.5 | 128 | 1.0 |  |  |  |  |
+| 2026-07-28 | Caitlin Clark | threes | over | 2.5 | 108 | 1.0 |  |  |  |  |
+| 2026-07-28 | Kayla McBride | points | over | 17.5 | -120 | 1.0 |  |  |  |  |
+| 2026-07-28 | Emily Engstler | threes | over | 1.5 | 194 | 1.0 |  |  |  |  |

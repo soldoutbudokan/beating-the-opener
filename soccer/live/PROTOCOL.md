@@ -145,7 +145,9 @@ Results and closing odds arrive in the football-data CSVs within ~1-2 days of
 each match; the next routine run then fills `result`, `pnl`,
 `clv = p_close × odds_taken − 1` (closing probs devigged via Shin; Pinnacle
 close if available, else market-average close — recorded in `clv_source`),
-updates the bankroll, and regenerates RESULTS.md. Postponed/unmatched games
+updates the bankroll, and regenerates RESULTS.md. A bet that settles before
+its closing odds are in the CSVs gets a blank `clv` that later runs backfill —
+never a permanent hole in the scoreboard. Postponed/unmatched games
 get flagged in `notes` after 7 days — resolve manually (void → set status
 `void`, pnl 0, with a note).
 

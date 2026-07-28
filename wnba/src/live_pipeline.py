@@ -27,6 +27,7 @@ from odds_utils import amer_to_prob, amer_to_dec, devig_power
 from dist_utils import implied_mu, p_over, sigma, POISSON
 from features import load_player_box, load_team_box, build_panel
 from build_modelset import PANEL_FEATS, norm
+from grade_props import BP2WH
 from train_eval_v2 import add_v2_features, EW_PROJ
 from train_eval import MARKETS, prepare
 
@@ -37,10 +38,8 @@ KEY = "CHi8Hy5CEE4khd46XNYL23dCFX96oUdw6qOt1Dnh"
 
 MARKET_IDS = {"points": 393, "rebounds": 397, "assists": 391, "threes": 390,
               "pra": 396, "pts_ast": 394, "pts_reb": 395, "reb_ast": 398}
-BP2WH = {"ATL": "ATL", "CHI": "CHI", "CON": "CON", "DAL": "DAL", "GSV": "GS",
-         "IND": "IND", "LAS": "LA", "LVA": "LV", "MIN": "MIN", "NYL": "NY",
-         "PHO": "PHX", "SEA": "SEA", "WAS": "WSH", "TOR": "TOR", "PDX": "POR"}
 EV_LIST, EV_STRONG = 0.03, 0.06
+BOOKSUM_LO, BOOKSUM_HI = 1.00, 1.15  # sane two-way vig band (AUDIT C1)
 KELLY_FRACTION, MAX_STAKE_FRAC = 0.25, 0.10
 # open-safe: absent_ew_min needs tonight's roster, unknowable pre-tip
 LIVE_PANEL_FEATS = [c for c in PANEL_FEATS if c != "absent_ew_min"]
@@ -84,11 +83,17 @@ def parse_offer(o):
     """-> dict with open line/costs + FD and consensus current prices."""
     pl = (o.get("participants") or [{}])[0].get("player") or {}
     e = o["_event"]
+    # BP `scheduled` is UTC; the game date everywhere else in this repo
+    # (wehoop, bets.csv match_date) is the ET date (AUDIT C2/H1)
+    et_date = str(pd.Timestamp(e["scheduled"], tz="UTC")
+                  .tz_convert("America/New_York").date())
     row = {"event_id": o["event_id"], "market": o["_market"],
            "player": f"{pl.get('first_name', '')} {pl.get('last_name', '')}".strip(),
            "bp_team": pl.get("team"), "pos": pl.get("position"),
            "home": e["home"], "visitor": e["visitor"],
-           "date": e["scheduled"][:10], "tip": e["scheduled"]}
+           "date": et_date, "tip": e["scheduled"],
+           "open_line_over": np.nan, "open_line_under": np.nan,
+           "open_book_over": np.nan, "open_book_under": np.nan}
     for sel in o.get("selections", []):
         side = sel.get("selection")
         if side not in ("over", "under"):
@@ -96,6 +101,8 @@ def parse_offer(o):
         op = sel.get("opening_line") or {}
         row.setdefault("open_line", op.get("line"))
         row[f"open_{side}_cost"] = op.get("cost")
+        row[f"open_line_{side}"] = op.get("line")
+        row[f"open_book_{side}"] = op.get("book_id")
         row.setdefault("open_book", op.get("book_id"))
         for b in sel.get("books", []):
             if b["id"] not in (0, 10):
@@ -204,6 +211,19 @@ def main():
     props = pd.DataFrame([parse_offer(o) for o in offers])
     props = props[props.open_line.notna() & props.open_over_cost.notna()
                   & props.open_under_cost.notna()].reset_index(drop=True)
+    # C1 guard: BP stores over/under openers as independent records. Only a
+    # SAME-book SAME-line pair with sane total vig is a real two-way quote;
+    # anything else (e.g. FD o1.5 +194 x Fanatics u0.5 +150, booksum 0.74)
+    # fabricates mu_open and manufactures phantom EV.
+    booksum = (amer_to_prob(props.open_over_cost)
+               + amer_to_prob(props.open_under_cost))
+    coherent = ((props.open_line_over == props.open_line_under)
+                & (props.open_book_over == props.open_book_under)
+                & (booksum >= BOOKSUM_LO) & (booksum <= BOOKSUM_HI))
+    if (~coherent).any():
+        print(f"dropped {int((~coherent).sum())} props with mispaired/"
+              f"insane opening quotes (C1 guard)")
+    props = props[coherent].reset_index(drop=True)
 
     model, cols, mom, mom_all = train_model()
     fix, meta = fixture_panel(props)
@@ -251,6 +271,11 @@ def main():
             open_cost = getattr(r, f"open_{side}_cost", np.nan)
             if fd_line != r.open_line or pd.isna(open_cost) \
                     or abs(fd_cost - open_cost) > 15:
+                continue
+            # the model must predict a move TOWARD the bet side; at a sane
+            # stale price, apparent EV with mu_model on the other side of
+            # mu_open can only come from a broken quote (AUDIT C1)
+            if (side == "over") != (mu_model > mu_open):
                 continue
             p_over_m = float(p_over(r.market, np.array([mu_model]),
                                     np.array([fd_line]))[0])

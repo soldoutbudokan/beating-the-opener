@@ -64,6 +64,10 @@ Notes:
 - **The pick logic only lists props whose FanDuel price is still at the
   opening line/juice.** Once the line moves, the backtested edge is gone -
   the model does not beat moved prices, so no pick is shown. Don't chase.
+- **Picks require a coherent opening quote** - over and under from the same
+  book at the same line, booksum in [1.00, 1.15] - and the model's implied
+  mean must move toward the bet side. BP stores the two opening records
+  independently; a mispaired pair fabricates the EV (see AUDIT.md C1).
 - During the All-Star break / offseason runs print `NO_UPCOMING` - expected.
 - The routine never edits `bets.csv`, never places bets, never touches `src/`.
 
@@ -119,9 +123,9 @@ the `bets.csv` row so the post-mortem is easy.
 Plain words: *"got Citron assists over 3.5 at +128 for $2"*, *"skipped the
 rest"*. Claude then appends one row per fill to `live/bets.csv` with
 `status=open`, copying `key`, `event_id`, `market`, `player`, `side`, `line`,
-`model_p` from `live/picks.csv` (`match_date` = the pick's `date`;
-`odds_taken`/`stake` as reported; `placed_at` = today), commits and pushes:
-`live: log N bets <date>`.
+`model_p` from `live/picks.csv` (`match_date` = the pick's `date`, which is
+the **ET game date**; `odds_taken`/`stake` as reported; `placed_at` = today),
+commits and pushes: `live: log N bets <date>`.
 
 Rules for Claude sessions:
 - Never invent or assume a fill; log only what the user explicitly reports.
@@ -131,11 +135,17 @@ Rules for Claude sessions:
 ## Settlement (automatic)
 
 Box scores land in wehoop within ~a day; the next routine run grades each open
-bet (actual stat vs line; DNP -> void, stake returned; exact line -> push),
-computes CLV from the archived closing snapshot re-expressed at the bet's own
-line (consensus close preferred, FanDuel fallback - recorded in `clv_source`),
-updates `live/bankroll.json`, regenerates RESULTS.md. No box row after 3 days
--> voided with a note.
+bet (actual stat vs line; DNP -> void, stake returned; exact line -> push).
+The game is resolved via the bet's `event_id`: its UTC tip in `events.pkl`
+converted to the ET game date, and the box row must belong to one of the
+event's two teams - so a slipped settlement can never grade the player's next
+game (AUDIT C2). CLV comes from the archived closing snapshot re-expressed at
+the bet's own line (consensus close preferred, FanDuel fallback - recorded in
+`clv_source`), and only from a **coherent** close: same book, same line for
+over and under, booksum in [1.00, 1.15] (AUDIT C1). If no usable close is
+archived when the bet settles, `clv` stays blank and later runs backfill it
+(AUDIT C3). Updates `live/bankroll.json`, regenerates RESULTS.md. No box row
+after 3 days -> voided with a note.
 
 ## Scoreboard
 
