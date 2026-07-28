@@ -11,7 +11,7 @@ or the
 
 | | |
 |---|---|
-| name | `edge-watch` (combined with the soccer routine since 2026-07-27; WNBA runs first, soccer second) |
+| name | `edge-watch` (WNBA-only since 2026-07-28 — the soccer live experiment was cancelled before launch, see soccer/live/PROTOCOL.md) |
 | id / manage | `trig_01Ko6Py4ar9tw8QoxPYx8tyw` - https://claude.ai/code/routines/trig_01Ko6Py4ar9tw8QoxPYx8tyw |
 | model | claude-opus-5 |
 | schedule | hourly at :21 UTC |

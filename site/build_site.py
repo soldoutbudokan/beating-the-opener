@@ -37,9 +37,13 @@ EXTRA_PAGES = [(os.path.join("nba", "reports", "report.html"),
 SOCCER = {
     "id": "soccer", "dir": "soccer", "label": "Soccer 1X2",
     "tab": "Soccer 1X2", "sport": "football-data leagues · FanDuel",
+    "cancelled": "Cancelled 2026-07-28 before the first bet — the "
+                 "post-Pinnacle replay (avg-book anchor, the regime live "
+                 "would have run in) shows no edge over its own anchor.",
     "what": "Home/draw/away openers across ~20 European leagues, priced days "
-            "before kickoff.",
-    "idle": "Season opens in August — no fixtures priced yet",
+            "before kickoff. The live experiment was cancelled before launch; "
+            "the research record stays below.",
+    "idle": "Experiment cancelled before launch — no bets were ever placed",
     # post-Pinnacle replay (train_eval_avg.py): model EV>2% .. EV>=5% cells
     # vs the avg close. Placebo-caveated - see soccer/README.md.
     "clv_band": (0.011, 0.020), "clv_band_note": "post-Pinnacle replay",
@@ -47,9 +51,9 @@ SOCCER = {
     "protocol": "soccer/live/PROTOCOL.md", "readme": "soccer/README.md",
     "picks_note": "A pick is playable when FanDuel's price is at or above "
                   "<code>min 5% EV</code>.",
-    "runs": [("Routine", "hourly, :21 UTC"),
-             ("Stake", "quarter-Kelly — $1–3 at this bankroll"),
-             ("Playable when", "FanDuel is at or above the min 5% EV price")],
+    "runs": [("Status", "cancelled 2026-07-28, before the first bet"),
+             ("Why", "post-Pinnacle replay: no edge over its own anchor"),
+             ("Record", "research result below; no live bets were placed")],
 }
 WNBA = {
     "id": "wnba", "dir": "wnba", "label": "WNBA props",
@@ -82,8 +86,9 @@ LEDGER = [
      "lazy_open": True, "live_close": True, "verdict": "yes",
      "why": "Beaten out-of-sample in 9/9 Pinnacle-anchored seasons (sign test "
             "p = 0.0039) — but the post-Pinnacle replay (avg-book anchor, the "
-            "live regime since Jan 2026) shows no edge over its own anchor; "
-            "live is measurement, not harvesting.",
+            "regime live would have run in) shows no edge over its own "
+            "anchor, so the live experiment was cancelled before its first "
+            "bet.",
      "capture": 0.18, "link": "soccer/"},
     {"market": "WNBA props", "where": "2 seasons, 8 prop markets",
      "lazy_open": True, "live_close": True, "verdict": "yes",
@@ -538,7 +543,8 @@ def clv_cell(v):
 def picks_block(m):
     cfg, picks = m["cfg"], m["picks"]
     if not picks:
-        note = m["meta"].get("note") or cfg["idle"]
+        note = cfg["idle"] if cfg.get("cancelled") \
+            else (m["meta"].get("note") or cfg["idle"])
         return empty("No picks on the sheet", esc(note))
     strong = [p for p in picks
               if str(p.get("strong", "")).lower() in ("true", "1")]
@@ -587,6 +593,8 @@ def picks_block(m):
 
 
 def status_pill(m):
+    if m["cfg"].get("cancelled"):
+        return pill("cancelled", "idle")
     if m["open"]:
         return pill(f"{len(m['open'])} live", "live")
     if m["picks"]:
@@ -653,6 +661,20 @@ def market_panel(m):
                  "live/bets.csv."))
     runs = "".join(f"<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>"
                    for k, v in cfg["runs"])
+    if cfg.get("cancelled"):
+        clv_block = (f'<div class="block"><h3>Why there is no record</h3>'
+                     f'<p class="note">{esc(cfg["cancelled"])} Full numbers '
+                     f'in the Evidence tab and the subproject README.</p>'
+                     f'</div>')
+    else:
+        clv_block = f"""
+  <div class="block">
+    <h3>Is it beating the close?</h3>
+    <p class="note">CLV is the scoreboard: one season of profit is noise, one
+      season of closing-line value is decisive. The band is what the backtest
+      says these bets should average.</p>
+    {clv_band(cfg, m['mean_clv'], m['n_clv'])}
+  </div>"""
 
     return f"""
 <section class="panel" id="panel-{cfg['id']}" role="tabpanel"
@@ -671,15 +693,7 @@ def market_panel(m):
     </div>
   </div>
   <div class="tiles">{''.join(tiles)}</div>
-
-  <div class="block">
-    <h3>Is it beating the close?</h3>
-    <p class="note">CLV is the scoreboard: one season of profit is noise, one
-      season of closing-line value is decisive. The band is what the backtest
-      says these bets should average.</p>
-    {clv_band(cfg, m['mean_clv'], m['n_clv'])}
-  </div>
-
+{clv_block}
   <div class="block">
     <h3>On the sheet now</h3>
     {picks_block(m)}
@@ -729,11 +743,12 @@ def live_panel(markets):
          aria-labelledby="tab-live">
   <div class="panel-head">
     <div>
-      <h2>Two live experiments</h2>
-      <p class="lede">Real money on FanDuel, $100 per market, quarter-Kelly
-        stakes. An hourly cloud routine refreshes data, retrains, prices the
-        board and settles bets; every number below comes straight out of that
-        pipeline.</p>
+      <h2>The live experiment</h2>
+      <p class="lede">Real money on FanDuel, quarter-Kelly stakes. WNBA props
+        is live — an hourly cloud routine refreshes data, retrains, prices the
+        board and settles bets. The soccer experiment was cancelled before its
+        first bet when the post-Pinnacle replay showed no edge; its card stays
+        as the record.</p>
     </div>
     <div class="hero">
       <div class="hero-label">Combined bankroll</div>
@@ -1221,7 +1236,8 @@ def render(markets, fragment=False):
     <div class="brand">
       <h1>Beating the opener</h1>
       <p>Soft sportsbooks' opening lines are inefficient. Four markets tested,
-        two beaten, both now running live on FanDuel with real money.</p>
+        two beaten in research, one live on FanDuel with real money — and one
+        experiment cancelled when its regime died.</p>
     </div>
     <div class="stamp">
       <a class="repo-link" href="{REPO}">Source on GitHub ↗</a>

@@ -13,7 +13,7 @@ against the close, then bet stale openers in a live experiment scored by CLV.
 | market | opener beaten? | wedge captured | live test |
 |---|---|---|---|
 | NBA moneyline → [`nba/`](nba/) (control #1) | no — even the open is sharp | — | — |
-| **soccer 1X2** → [`soccer/`](soccer/) | **yes in the Pinnacle era** — 9/9 OOS seasons (p = 0.0039); but the post-Pinnacle replay (the live regime) shows no edge over its own anchor | 18% | 2026-27 from Aug — measurement only |
+| **soccer 1X2** → [`soccer/`](soccer/) | **yes in the Pinnacle era** — 9/9 OOS seasons (p = 0.0039); but the post-Pinnacle replay (the live regime) shows no edge over its own anchor | 18% | cancelled before launch — no edge in the live regime |
 | **WNBA player props** → [`wnba/`](wnba/) | **yes on log loss** (clustered t = 4.8) — but the FanDuel-tradeable cell is ~+3% ROI at t ≈ 0.5 | 55% | 🔴 running now |
 | cricket BBL match odds → [`cricket/`](cricket/) (control #2) | no — **no wedge exists**: the close is no better than the open; moves are toss noise | — | — |
 
@@ -30,18 +30,19 @@ capture). NBA fails the first — attention floods the market. BBL cricket
 fails the second — the lines move plenty, but toward toss noise, not
 winners. Lower-league soccer and WNBA prop menus satisfy both.
 
-## Live experiments
+## Live experiment
 
-Both run on FanDuel with **$100 bankrolls (one per market), quarter-Kelly
-stakes, CLV as the primary scoreboard** (one season of ROI is noise; one
-season of CLV is decisive). Hourly cloud routines refresh data, retrain,
-score, and notify on strong picks; fills are reported conversationally and
-settlement is automatic.
+WNBA props runs on FanDuel with a **$100 bankroll, quarter-Kelly stakes, CLV
+as the primary scoreboard** (one season of ROI is noise; one season of CLV is
+decisive — the board shows raw and shade-adjusted CLV, see wnba/README.md).
+An hourly cloud routine refreshes data, retrains, scores, and notifies on
+strong picks; fills are reported conversationally and settlement is
+automatic.
 
-- Soccer: [scoreboard](https://soldoutbudokan.github.io/beating-the-opener/#soccer)
-  · [record](soccer/RESULTS.md) · [protocol](soccer/live/PROTOCOL.md)
 - WNBA: [scoreboard](https://soldoutbudokan.github.io/beating-the-opener/#wnba)
   · [record](wnba/RESULTS.md) · [protocol](wnba/live/PROTOCOL.md)
+- Soccer (cancelled before launch, 2026-07-28 — no edge in the post-Pinnacle
+  regime): [record](soccer/RESULTS.md) · [protocol](soccer/live/PROTOCOL.md)
 
 ## Repo layout
 

@@ -20,25 +20,16 @@ Predecessor project: [`nba/`](../nba/) concluded the
 NBA closing moneyline is unbeatable with public data. This project targets the softer end of what
 FanDuel offers — soccer 1X2 including lower divisions — and the *opening* price rather than the close.
 
-## 🔴 Live FanDuel experiment (2026-27)
+## Live FanDuel experiment — CANCELLED before launch (2026-07-28)
 
-The model is being tested with real money on FanDuel for the 2026-27 season:
-**$100 bankroll, quarter-Kelly stakes, judged on CLV** (closing line value converges to
-significance within one season; ROI does not). Running record:
-**[live scoreboard](https://soldoutbudokan.github.io/beating-the-opener/#soccer)**
-(at a glance) or **[RESULTS.md](RESULTS.md)** (plain text).
+A 2026-27 real-money test ($100 bankroll, quarter-Kelly, judged on CLV) was
+planned and fully plumbed, but **cancelled before the first bet** when the
+post-Pinnacle re-derivation below showed the live regime has no edge. The
+hourly routine no longer scores soccer; the pipeline and
+[live/PROTOCOL.md](live/PROTOCOL.md) are kept as the record of what would
+have run.
 
-How it works — full details in **[live/PROTOCOL.md](live/PROTOCOL.md)**:
-
-1. An hourly cloud routine (`edge-watch`, Opus 5, shared with the WNBA experiment) refreshes data, retrains, scores
-   upcoming fixtures into [`live/picks.csv`](live/picks.csv), settles logged bets, and pushes
-   here. It notifies only on strong picks (~2×/week when odds refresh) or settlements.
-2. The user checks FanDuel: a pick is playable when FanDuel's price ≥ the sheet's
-   `min_odds_5pct`; stake = quarter-Kelly at the price obtained (typically $1–3).
-3. Fills are reported conversationally to any Claude session, which logs them to
-   `live/bets.csv` per the protocol; settlement, P&L, CLV, and bankroll tracking are automatic.
-
-**Expectation, post-Pinnacle regime** (`src/train_eval_avg.py` — the identical live model
+**Why it was cancelled — the post-Pinnacle regime numbers** (`src/train_eval_avg.py` — the identical live model
 replayed on the avg-book anchor with the avg close as the CLV yardstick, which is what live
 settlement now uses):
 
@@ -51,9 +42,9 @@ settlement now uses):
 
 The placebo bets the anchor's own devigged probabilities — any CLV it also collects is
 best-of-book envelope shopping, not model skill. In this regime the model shows **no
-demonstrated edge**: the live experiment is running as *measurement* (does FanDuel's early
-price beat the average close?), not as harvesting, and a decision on whether it is worth
-running at all belongs to whoever funds the bankroll.
+demonstrated edge**, which is why the experiment was cancelled rather than launched:
+betting real money to measure an effect the backtest already says is zero is not a test,
+it's a fee.
 
 ![results](results/results.png)
 

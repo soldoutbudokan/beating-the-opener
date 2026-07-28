@@ -1,11 +1,12 @@
 # beating-the-opener (monorepo)
 
-Two live betting experiments share this repo: `soccer/` (1X2 openers) and
-`wnba/` (player props), plus two research-only controls where the
-methodology returned "no": `nba/` (closing moneyline unbeatable — absorbed
-from the `nba-win-prob` repo) and `cricket/` (BBL — no wedge exists). Each
-subproject is self-contained — run its scripts from inside its directory.
-Push directly to main (solo project).
+One live betting experiment runs in this repo: `wnba/` (player props).
+`soccer/` (1X2 openers) is research-complete — its live experiment was
+cancelled 2026-07-28 before the first bet (post-Pinnacle replay showed no
+edge; see AUDIT.md). Two research-only controls returned "no": `nba/`
+(closing moneyline unbeatable — absorbed from the `nba-win-prob` repo) and
+`cricket/` (BBL — no wedge exists). Each subproject is self-contained — run
+its scripts from inside its directory. Push directly to main (solo project).
 
 Rules that apply everywhere:
 - Live experiment rules live in `<market>/live/PROTOCOL.md` — read the
@@ -29,6 +30,6 @@ Rules that apply everywhere:
   by the routines or by anything else. Each PROTOCOL has an "Injury check
   before you bet" section listing the conditions that void a pick; point the
   user at it when they're deciding on a fill.
-- One combined cloud routine, `edge-watch`, runs hourly at :21 UTC (WNBA
-  first — its notifications are time-sensitive — then soccer). Its config is
-  documented in each market's PROTOCOL.md.
+- One cloud routine, `edge-watch`, runs hourly at :21 UTC — WNBA only since
+  2026-07-28 (soccer was removed when its experiment was cancelled). Its
+  config is documented in wnba/live/PROTOCOL.md.

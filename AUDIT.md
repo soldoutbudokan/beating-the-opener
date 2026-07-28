@@ -502,3 +502,8 @@ calibration + hardening), `c9406a2` (5/6, soccer), plus this one (6/6, docs).*
   is +0.6% (t 1.1), and its +1.1% CLV is less than the zero-skill placebo's
   +3.7%. README/PROTOCOL now say so, and whether the August experiment is
   worth running at all is flagged as an open decision for the owner.
+
+**Decision (2026-07-28, owner):** the soccer live experiment is **cancelled
+before launch** on the strength of the re-derivation above. The `edge-watch`
+routine is WNBA-only; the soccer pipeline and protocol remain in the repo as
+the record.

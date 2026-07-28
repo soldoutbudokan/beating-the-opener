@@ -1,5 +1,13 @@
 # Live experiment protocol
 
+> **CANCELLED 2026-07-28, before the first bet.** The post-Pinnacle
+> re-derivation (`src/train_eval_avg.py`; [AUDIT.md](../../AUDIT.md) H4/H6)
+> showed the regime the experiment would have run in has **no edge**: the
+> model does not beat its own avg-book anchor, and its envelope CLV is less
+> than a zero-skill placebo's. The `edge-watch` routine no longer runs
+> anything under `soccer/`. No bets were ever placed; this protocol is kept
+> as the record of what would have run.
+
 One-season (2026-27) FanDuel test of the model. **$100 starting bankroll,
 quarter-Kelly sizing, flat discipline.** Primary scoreboard is **CLV**,
 secondary is P&L — see [Scoreboard](#scoreboard) for why. Results live in
@@ -13,7 +21,7 @@ A scheduled cloud agent runs the pipeline hourly:
 
 | | |
 |---|---|
-| name | `edge-watch` (combined with the WNBA routine since 2026-07-27; WNBA runs first, soccer second) |
+| name | `edge-watch` (WNBA-only since 2026-07-28 — soccer was removed when the experiment was cancelled) |
 | id / manage | `trig_01Ko6Py4ar9tw8QoxPYx8tyw` — https://claude.ai/code/routines/trig_01Ko6Py4ar9tw8QoxPYx8tyw |
 | model | claude-opus-5 |
 | schedule | hourly at :21 UTC |
