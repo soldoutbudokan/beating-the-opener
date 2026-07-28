@@ -11,7 +11,7 @@ or the
 
 | | |
 |---|---|
-| name | `wnba-edge-watch` |
+| name | `edge-watch` (combined with the soccer routine since 2026-07-27; WNBA runs first, soccer second) |
 | id / manage | `trig_01Ko6Py4ar9tw8QoxPYx8tyw` - https://claude.ai/code/routines/trig_01Ko6Py4ar9tw8QoxPYx8tyw |
 | model | claude-opus-5 |
 | schedule | hourly at :21 UTC |

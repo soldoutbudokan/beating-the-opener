@@ -13,10 +13,10 @@ A scheduled cloud agent runs the pipeline hourly:
 
 | | |
 |---|---|
-| name | `fanduel-edge-watch` |
-| id / manage | `trig_01FKR2Rv98CZho9cUGXvLJiA` — https://claude.ai/code/routines/trig_01FKR2Rv98CZho9cUGXvLJiA |
+| name | `edge-watch` (combined with the WNBA routine since 2026-07-27; WNBA runs first, soccer second) |
+| id / manage | `trig_01Ko6Py4ar9tw8QoxPYx8tyw` — https://claude.ai/code/routines/trig_01Ko6Py4ar9tw8QoxPYx8tyw |
 | model | claude-opus-5 |
-| schedule | hourly at :51 UTC |
+| schedule | hourly at :21 UTC |
 | runs | `src/live_pipeline.py` (fresh data → retrain → score fixtures → `live/picks.csv`), then `src/settle_bets.py` (results/CLV → `RESULTS.md`, `live/bankroll.json`, `docs/index.html`) |
 | commits | pushes to main only when picks changed or bets settled |
 | notifies | push notification ONLY for strong picks (avg-book EV > 1%) or settlements; never for a pick already in `bets.csv` — see [No duplicate notifications](#no-duplicate-notifications); quiet otherwise |

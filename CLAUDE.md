@@ -29,6 +29,6 @@ Rules that apply everywhere:
   by the routines or by anything else. Each PROTOCOL has an "Injury check
   before you bet" section listing the conditions that void a pick; point the
   user at it when they're deciding on a fill.
-- Two cloud routines run hourly: `fanduel-edge-watch` (soccer, :51 UTC) and
-  `wnba-edge-watch` (wnba, :21 UTC). Their config is documented in each
-  PROTOCOL.md.
+- One combined cloud routine, `edge-watch`, runs hourly at :21 UTC (WNBA
+  first — its notifications are time-sensitive — then soccer). Its config is
+  documented in each market's PROTOCOL.md.

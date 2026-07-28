@@ -21,7 +21,7 @@ significance within one season; ROI does not). Running record:
 
 How it works — full details in **[live/PROTOCOL.md](live/PROTOCOL.md)**:
 
-1. An hourly cloud routine (`fanduel-edge-watch`, Opus 5) refreshes data, retrains, scores
+1. An hourly cloud routine (`edge-watch`, Opus 5, shared with the WNBA experiment) refreshes data, retrains, scores
    upcoming fixtures into [`live/picks.csv`](live/picks.csv), settles logged bets, and pushes
    here. It notifies only on strong picks (~2×/week when odds refresh) or settlements.
 2. The user checks FanDuel: a pick is playable when FanDuel's price ≥ the sheet's
