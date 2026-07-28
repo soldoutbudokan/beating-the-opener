@@ -105,3 +105,22 @@ consistency only.
   this holds season-wide the FD tradeable cell for MLB props is thin —
   quantify at G0.1 per sport before Phase 2 sport selection. (NBA sample had
   FD as the opening book; NFL sample too.)
+- **2026-07-28** Pipeline smoke-tested end-to-end on partial archives.
+  MLB: crosswalk 99.56% (gate ≥99.5% ✓) after two real fixes — (a) StatsAPI
+  season-range schedule queries serve stale gameDate/status for rescheduled
+  games (day-level queries are authoritative; both appearances can carry the
+  makeup officialDate, so played-status must break the tie explicitly);
+  (b) BP lists some DH pairs at identical times → ambiguous ties are dropped
+  (props void), never guessed — accepted ties have 0m pick-gap vs ≥120m
+  runner-up. Grading 99.8% matched / 8% batter voids after separating
+  known-name-DNP (void) from never-seen-name (identity failure).
+  NBA: crosswalk 100.00% (1,322/1,322), grading 100.0% matched, 3.9% void.
+- **2026-07-28** Scraper incidents fixed and re-armed: RemoteDisconnected
+  escaped the retry net (now catches all transport errors); offer writes are
+  now tmp+rename atomic; the NFL events endpoint ignores start/end date
+  params entirely (week-based league — fetch season+week 1..22 instead).
+- **2026-07-28** Early wedge glimpses on 18 days of MLB (NOT verdicts):
+  batter-prop lines almost never move (0-5%); strikeouts move 15.6% with the
+  largest same-line dLL; FD closes exist essentially only for strikeouts;
+  the WNBA-style stale-FD lag cell is ~empty (1 prop of 150). Pooled
+  directional 57.9% (p=.015, n=247).

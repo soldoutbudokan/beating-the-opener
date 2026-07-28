@@ -49,7 +49,9 @@ def get(url, tries=4):
                 "x-api-key": KEY, "User-Agent": "Mozilla/5.0"})
             with urllib.request.urlopen(req, timeout=30) as r:
                 return json.load(r)
-        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as e:
+        # catch ALL transport errors: RemoteDisconnected escapes the
+        # URLError net and killed a 50k-file run 6k files in (2026-07-28)
+        except Exception as e:  # noqa: BLE001
             wait = 2 ** (i + 1)
             print(f"  retry {i+1} in {wait}s: {e}", flush=True)
             time.sleep(wait)
@@ -57,8 +59,12 @@ def get(url, tries=4):
 
 
 def save_gz(path, obj):
-    with gzip.open(path, "wt") as f:
+    # tmp + rename: a killed process must never leave a truncated .gz at
+    # the final path (the fetch-skip would then preserve it forever)
+    tmp = path + ".tmp"
+    with gzip.open(tmp, "wt") as f:
         json.dump(obj, f)
+    os.replace(tmp, path)
 
 
 def load_gz(path):
@@ -84,19 +90,32 @@ def fetch_events(sport, season, raw_dir_sport):
     """
     path = os.path.join(raw_dir_sport, f"events_{season}.json.gz")
     existing = load_gz(path) if os.path.exists(path) else []
-    start, end = SPORTS[sport]["seasons"][season]
     events = []
-    for w0, w1 in windows(start, end):
-        d = get(f"{API}/events?sport={sport}&start={w0}&end={w1}")
-        if d is None:
-            print(f"FAIL events {w0}..{w1}", flush=True)
-            continue
-        evs = d.get("events") or []
-        if len(evs) >= 200:
-            print(f"WARNING: {w0}..{w1} hit the 200-event cap - narrow the window",
-                  flush=True)
-        events.extend(evs)
-        time.sleep(PAUSE)
+    if sport == "NFL":
+        # the NFL events endpoint ignores start/end (week-based league):
+        # date windows return only the current week (verified 2026-07-28,
+        # 16 events for the whole 2025 season). Iterate season weeks:
+        # 1-18 regular, 19-22 playoffs.
+        for week in range(1, 23):
+            d = get(f"{API}/events?sport=NFL&season={season}&week={week}")
+            if d is None:
+                print(f"FAIL events week {week}", flush=True)
+                continue
+            events.extend(d.get("events") or [])
+            time.sleep(PAUSE)
+    else:
+        start, end = SPORTS[sport]["seasons"][season]
+        for w0, w1 in windows(start, end):
+            d = get(f"{API}/events?sport={sport}&start={w0}&end={w1}")
+            if d is None:
+                print(f"FAIL events {w0}..{w1}", flush=True)
+                continue
+            evs = d.get("events") or []
+            if len(evs) >= 200:
+                print(f"WARNING: {w0}..{w1} hit the 200-event cap - narrow "
+                      f"the window", flush=True)
+            events.extend(evs)
+            time.sleep(PAUSE)
     if not events:
         print(f"{sport} {season}: fetch empty - keeping existing "
               f"{len(existing)} events, writing nothing", flush=True)
