@@ -13,9 +13,14 @@ against the close, then bet stale openers in a live experiment scored by CLV.
 | market | opener beaten? | wedge captured | live test |
 |---|---|---|---|
 | NBA moneyline → [`nba/`](nba/) (control #1) | no — even the open is sharp | — | — |
-| **soccer 1X2** → [`soccer/`](soccer/) | **yes** — 9/9 OOS seasons (p = 0.0039), +5.2% ROI best-of-book sim | 18% | 2026-27 season, from Aug |
-| **WNBA player props** → [`wnba/`](wnba/) | **yes** — both seasons, all 8 markets (p = 6e-12), +10.6% ROI sim | 48% | 🔴 running now |
+| **soccer 1X2** → [`soccer/`](soccer/) | **yes in the Pinnacle era** — 9/9 OOS seasons (p = 0.0039); but the post-Pinnacle replay (the live regime) shows no edge over its own anchor | 18% | 2026-27 from Aug — measurement only |
+| **WNBA player props** → [`wnba/`](wnba/) | **yes on log loss** (clustered t = 4.8) — but the FanDuel-tradeable cell is ~+3% ROI at t ≈ 0.5 | 55% | 🔴 running now |
 | cricket BBL match odds → [`cricket/`](cricket/) (control #2) | no — **no wedge exists**: the close is no better than the open; moves are toss noise | — | — |
+
+A 2026-07-28 methodological audit ([AUDIT.md](AUDIT.md)) found the previously
+published live expectations were inflated by measurement artifacts (date-join
+contamination, mispaired quotes, envelope CLV); the numbers above and every
+live pipeline reflect the post-audit, honest versions.
 
 The two control results are what make the middle rows credible: the same
 methodology, honestly applied, returns "no" twice. An exploitable opener

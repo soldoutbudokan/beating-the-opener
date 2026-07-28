@@ -40,12 +40,14 @@ SOCCER = {
     "what": "Home/draw/away openers across ~20 European leagues, priced days "
             "before kickoff.",
     "idle": "Season opens in August — no fixtures priced yet",
-    "clv_band": (0.01, 0.03), "clv_band_note": "backtest",
+    # post-Pinnacle replay (train_eval_avg.py): model EV>2% .. EV>=5% cells
+    # vs the avg close. Placebo-caveated - see soccer/README.md.
+    "clv_band": (0.011, 0.020), "clv_band_note": "post-Pinnacle replay",
     "capture": 0.18, "odds_style": "decimal",
     "protocol": "soccer/live/PROTOCOL.md", "readme": "soccer/README.md",
     "picks_note": "A pick is playable when FanDuel's price is at or above "
                   "<code>min 5% EV</code>.",
-    "runs": [("Routine", "hourly, :51 UTC"),
+    "runs": [("Routine", "hourly, :21 UTC"),
              ("Stake", "quarter-Kelly — $1–3 at this bankroll"),
              ("Playable when", "FanDuel is at or above the min 5% EV price")],
 }
@@ -55,8 +57,11 @@ WNBA = {
     "what": "Points, rebounds, assists, threes and combos — bet only while "
             "the price still sits at the opening line.",
     "idle": "No props on the sheet right now",
-    "clv_band": (0.054, 0.054), "clv_band_note": "backtest, EV≥2%",
-    "capture": 0.48, "odds_style": "american",
+    # honest cell (FD openers, coherent quotes, ET dates) at the live rule,
+    # vs the RAW close - negative is EXPECTED for an under-heavy sheet
+    # against an over-shaded close; clv_cal is the fair yardstick (AUDIT N1)
+    "clv_band": (-0.029, -0.008), "clv_band_note": "backtest, raw close",
+    "capture": 0.55, "odds_style": "american",
     "protocol": "wnba/live/PROTOCOL.md", "readme": "wnba/README.md",
     "picks_note": "Bet the highest-EV row per player per game; if FanDuel has "
                   "moved off the opener, skip — don't chase.",
@@ -75,14 +80,17 @@ LEDGER = [
      "report": ("nba-report.html", "Read the full write-up")},
     {"market": "Soccer 1X2", "where": "9 seasons, ~20 leagues",
      "lazy_open": True, "live_close": True, "verdict": "yes",
-     "why": "Beaten out-of-sample in 9/9 seasons (sign test p = 0.0039); "
-            "+5.2% ROI shopping the best early price.",
+     "why": "Beaten out-of-sample in 9/9 Pinnacle-anchored seasons (sign test "
+            "p = 0.0039) — but the post-Pinnacle replay (avg-book anchor, the "
+            "live regime since Jan 2026) shows no edge over its own anchor; "
+            "live is measurement, not harvesting.",
      "capture": 0.18, "link": "soccer/"},
     {"market": "WNBA props", "where": "2 seasons, 8 prop markets",
      "lazy_open": True, "live_close": True, "verdict": "yes",
-     "why": "Beaten in both seasons and all 8 markets (p = 6e-12); +10.6% ROI "
-            "at opening prices.",
-     "capture": 0.48, "link": "wnba/"},
+     "why": "Opener beaten on log loss (date-clustered t = 4.8), but the "
+            "FanDuel-tradeable cell is ~+3% ROI at t ≈ 0.5 — an edge too "
+            "small for one season to confirm.",
+     "capture": 0.55, "link": "wnba/"},
     {"market": "Cricket BBL", "where": "297 matches (control)",
      "lazy_open": None, "live_close": False, "verdict": "no",
      "why": "The close is no better than the open — lines move plenty, but "
@@ -91,22 +99,27 @@ LEDGER = [
 ]
 
 SOCCER_SIM = {
-    "caption": "Flat 1u at early prices, ensemble model, 2017-18 → 2025-26.",
-    "cols": ["price source", "filter", "bets", "ROI", "CLV", "+seasons"],
-    "rows": [["Pinnacle early", "EV>2%", "5,208", "+2.5%", "−0.4%", "6/9"],
-             ["best-of-book early", "EV>2%", "31,192", "+5.2%", "+2.2%", "9/9"],
-             ["best-of-book early", "EV>5%", "8,269", "+7.5%", "+4.2%", "9/9"],
-             ["average-book early", "EV>2%", "1,016", "+0.1%", "−2.3%", "6/9"]],
-    "best": 1,
+    "caption": "Post-Pinnacle replay (avg-book anchor + avg close — the live "
+               "regime), flat 1u, 6 walk-forward seasons. The placebo bets "
+               "the anchor's own probabilities: CLV it also collects is "
+               "best-of-book envelope shopping, not model skill.",
+    "cols": ["price source", "cell", "bets", "ROI", "CLV", "CLV+ seasons"],
+    "rows": [["best-of-book early", "model EV>2%", "21,767", "+0.6%", "+1.1%", "6/6"],
+             ["best-of-book early", "placebo EV>2%", "5,395", "−0.4%", "+3.7%", "6/6"],
+             ["best-of-book early", "model EV>5%", "7,836", "+0.5%", "+2.0%", "6/6"],
+             ["average-book early", "model EV>1%", "3,701", "−5.2%", "−5.1%", "0/6"]],
+    "best": -1,
 }
 WNBA_SIM = {
-    "caption": "Flat 1u at opening prices, open-safe features, "
-               "Jun 2025 – Jul 2026. t-stats clustered by player-game.",
-    "cols": ["filter", "bets", "player-games", "ROI", "CLV", "days +"],
-    "rows": [["EV>2%", "1,190", "759", "+10.6%", "+5.4%", "55%"],
-             ["EV>4%", "595", "427", "+14.6%", "+9.5%", "56%"],
-             ["EV>6%", "318", "233", "+19.0%", "+13.8%", "55%"]],
-    "best": 0,
+    "caption": "Flat 1u at FanDuel opening prices — coherent quotes, ET "
+               "dates, calibrated model, side must agree with the predicted "
+               "move. Jun 2025 – Jul 2026, t clustered by player-game. CLV* "
+               "is vs the shade-corrected close (AUDIT.md N1).",
+    "cols": ["filter", "bets", "ROI (t)", "CLV vs close", "CLV*"],
+    "rows": [["EV≥2%", "1,379", "+1.7% (0.0)", "−3.1%", "+2.7%"],
+             ["EV≥3% (list)", "935", "+3.1% (0.5)", "−2.9%", "+3.2%"],
+             ["EV≥6% (strong)", "281", "+3.6% (0.6)", "−0.8%", "+6.3%"]],
+    "best": -1,
 }
 
 # ------------------------------------------------------------- data load ----
@@ -419,7 +432,7 @@ def clv_band(cfg, live_clv, n):
     """Where live CLV sits against what the backtest predicts."""
     lo, hi = cfg["clv_band"]
     scale_hi = math.ceil(max(hi * 1.7, 0.06, (live_clv or 0) * 1.3) * 50) / 50
-    scale_lo = math.floor(min(-0.02, (live_clv or 0) * 1.3) * 50) / 50
+    scale_lo = math.floor(min(-0.02, lo * 1.5, (live_clv or 0) * 1.3) * 50) / 50
 
     def pos(v):
         return max(0.0, min(100.0, (v - scale_lo) / (scale_hi - scale_lo) * 100))

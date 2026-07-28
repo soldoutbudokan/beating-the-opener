@@ -422,3 +422,83 @@ bets:
 4. **Soccer, before August** — add the placebo control column permanently; run a
    full walk-forward on the average-book anchor (data exists back to 2012) and drop
    `disavg_*` when the fallback fires; retarget `strong` at the playable condition.
+
+---
+
+# Remediation log — 2026-07-28
+
+*Every item in both passes above was either fixed, measured-and-documented, or
+found to rest on a wrong mechanism (noted below). Commits: `4a5b134` (1/6,
+live-money integrity), `67ea267` (2/6, ET dates), `00d307a` (3-4/6, WNBA
+calibration + hardening), `c9406a2` (5/6, soccer), plus this one (6/6, docs).*
+
+## Fixed in code
+
+- **C1** — pick time AND CLV time now require a coherent two-way quote (same
+  book, same line, booksum 1.00-1.15); the bet side must agree with the
+  predicted move. The Engstler mechanism can no longer produce a pick or a
+  CLV stamp; the live sheet drops ~25% of BP offers under this guard.
+- **C2** — settlement resolves the game by `event_id` (ET date from
+  events.pkl + the box row must belong to one of the event's two teams,
+  probe (0,−1,+1)). Replayed: the McBride slipped-settlement case can no
+  longer grade the next game. `match_date` on the four open bets corrected
+  to ET; the Engstler row carries a fabricated-EV note.
+- **C3** — blank CLV on settled rows is backfilled by later runs, both
+  markets. WNBA also stamps `clv_cal` (see N1 below), backfilled the same way.
+- **H1** — BP event dates are converted UTC→ET at the source. Rebuilt:
+  later-game joins 25.4% → **0.10%**, stored labels match the true game
+  76.7% → **100%**.
+- **H2/N4** — per-side opening records archived; `open_coherent`/`coh_close`
+  flags in the modelset; training and eval restricted to coherent-both-ends.
+- **H3** — the live pipeline scores FanDuel-sourced openers only, and the
+  published expectation is the FD cell.
+- **H5** — `strong` = best-book EV ≥ 5% (the playable condition); the
+  avg-book EV>1% rule is gone.
+- **H6** — `AvgAHH/AvgAHA` added to the dataset and the `EAHH` fallback
+  chain (post-Pinnacle EAHH went 0 → 3652 non-null); `disavg_missing` flag
+  added (N3); `train_eval_avg.py` replays the identical live model on the
+  avg anchor with a permanent placebo control (H4).
+- Medium/Low sweep: Kelly sizes off bankroll minus open stakes; one bet per
+  player per game and bets.csv-dedupe enforced in code (`play`/`already_bet`
+  columns); live CLV t reported match-date-clustered; soccer stakes round to
+  $0.50 with a floor; raw CSV overwrites require a football-data header;
+  result-less historical rows can't score as fixtures; fixture stubs get the
+  real ET game date (rest fix) and deterministic ids; `PANEL_FEATS`
+  single-sourced; dead `--refresh-days` flag removed; site strings and bands
+  regenerated from the honest numbers.
+
+## Measured — and where the audit's mechanism was wrong
+
+- **N1**: the round trip market price → `implied_mu` → `p_over` is *exact*
+  (bias +0.0000) — `SIGMA_AB` was NOT the cause, so it was not refit. The
+  +2pp over-bias lives in the devigged prices themselves, at the open AND
+  the close, i.e. the books shade the popular side and no devig removes a
+  one-sided skew. It is corrected with an expanding per-market logit shift
+  (`fit_shade`) applied to the model and to a second CLV yardstick
+  (`clv_cal`).
+- **The acceptance test (±0.5pp overall / ±1pp per market) is unattainable
+  out-of-sample**: the shade drifts (+1.7pp → +2.6pp → +3.1pp by quarter,
+  then **−1.6pp in Jul 2026**, ~4σ swings; open and close drift together).
+  Expanding-window calibration achieves 0.55pp / 1.38pp walk-forward vs
+  1.79pp raw; trailing windows do worse (they chase the drift). Because the
+  shade can invert, EV is never allowed to come from the shade alone — the
+  move model must point the same way.
+- **The audit's "coherent + calibrated" ROI (+13.4%, t 3.8) does not
+  survive walk-forward calibration + the tradeable-cell restriction**: the
+  honest FD cell at the live rule is ROI +3.1% (pg-t 0.5), CLV −2.9% vs the
+  raw close (mechanical for an under-heavy book), +3.2% (pg-t 7.8) vs the
+  shade-adjusted close. H7 stands: one season cannot resolve effects this
+  small.
+
+## The re-derived bottom lines
+
+- **WNBA**: the opener inefficiency is real (LL edge, clustered t 4.8; wedge
+  59% directional, p 1e-50) but the FanDuel-tradeable edge is statistically
+  indistinguishable from zero at one season's volume. The live experiment
+  continues as measurement; both CLV yardsticks are on the scoreboard.
+- **Soccer**: the 9/9-season result was a Pinnacle-anchor result. In the
+  regime live actually runs in (avg anchor since Jan 2026), the identical
+  model does **not** beat its own anchor (LL −0.0006, t −0.3), best-book ROI
+  is +0.6% (t 1.1), and its +1.1% CLV is less than the zero-skill placebo's
+  +3.7%. README/PROTOCOL now say so, and whether the August experiment is
+  worth running at all is flagged as an open decision for the owner.
