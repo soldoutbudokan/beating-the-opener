@@ -39,7 +39,10 @@ FANDUEL_LEAGUES = ["E0", "E1", "E2", "E3", "SC0", "D1", "D2", "I1", "I2",
 CURRENT_SEASONS = ["2526", "2627"]
 MOM_ALPHA = 0.15
 ENS_W_STACK = 0.4  # weight chosen by the walk-forward's adaptive rule (v4)
-EV_STRONG = 0.01   # avg-book EV that makes a pick "strong" (notify)
+# "strong" (notify) = the PLAYABLE condition: best-book EV >= 5%, the same
+# cell the sheet's min_odds_5pct gate asks FanDuel to clear. The old rule
+# (avg-book EV > 1%) reproduced the backtest's worst slice (AUDIT H5).
+EV_STRONG_MAX = 0.05
 EV_SHEET = 0.02    # max-book EV to appear on the sheet at all
 KELLY_FRACTION = 0.25
 MAX_STAKE_FRac = 0.10
@@ -50,6 +53,7 @@ FUND = ["elo_diff", "elo_exp_h", "att_edge_h", "att_edge_a",
         "overround_anchor"]
 XCOLS = FUND + ["mom_h", "mom_a", "nm_h", "nm_a",
                 "dis_h", "dis_a", "dis_missing", "disavg_h", "disavg_a",
+                "disavg_missing",
                 "p_over", "ou_missing", "p_ah_h", "ah_line", "ah_missing"]
 GBM_COLS = XCOLS + ["div_idx"]
 
@@ -58,7 +62,9 @@ def fetch(url, dest=None, timeout=60):
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
         body = r.read()
-    if dest and len(body) > 500:
+    # only overwrite the raw file with something that actually looks like a
+    # football-data CSV (header carries Div/Date), not an error page
+    if dest and len(body) > 500 and b"Div" in body[:200] and b"Date" in body[:200]:
         with open(dest, "wb") as f:
             f.write(body)
     return body
@@ -86,7 +92,11 @@ def softmax(z):
 
 
 def anchor_probs(df, ps_cols, avg_cols):
-    """Devigged probs from Pinnacle if present, else market average."""
+    """Devigged probs from Pinnacle if present, else market average.
+
+    Returns (p, overround, used_primary) - used_primary marks rows anchored
+    on ps_cols rather than the fallback.
+    """
     ps = df[ps_cols].to_numpy(float)
     avg = df[avg_cols].to_numpy(float)
     p = np.full((len(df), 3), np.nan)
@@ -98,7 +108,7 @@ def anchor_probs(df, ps_cols, avg_cols):
         p[ok_avg] = devig_shin(avg[ok_avg])
     over = np.where(ok_ps, (1 / ps).sum(axis=1) - 1,
                     np.where(ok_avg, (1 / avg).sum(axis=1) - 1, np.nan))
-    return p, over
+    return p, over, ok_ps
 
 
 def three_way_feats(df, zo, tag, cols):
@@ -111,18 +121,26 @@ def three_way_feats(df, zo, tag, cols):
     return z, ok
 
 
-def build_rows(df, is_fixture):
-    """Chronological state pass; returns feature frame aligned to df."""
+def build_rows(df, is_fixture, anchor_cols=("PSH", "PSD", "PSA"),
+               close_cols=("PSCH", "PSCD", "PSCA")):
+    """Chronological state pass; returns feature frame aligned to df.
+
+    anchor_cols/close_cols are the PRIMARY sources (market average is always
+    the fallback) - the avg-anchor re-derivation passes the averages here to
+    replay the post-Pinnacle regime over all of history (AUDIT H6/N3).
+    """
     elo, ew_gf, ew_ga, ew_stf, ew_sta = {}, {}, {}, {}, {}
     form = defaultdict(lambda: deque(maxlen=5))
     last_date, n_played = {}, defaultdict(int)
     mom, nmom = {}, {}
 
-    p_anchor, over = anchor_probs(df, ["PSH", "PSD", "PSA"], ["EAvgH", "EAvgD", "EAvgA"])
+    p_anchor, over, used_ps = anchor_probs(
+        df, list(anchor_cols), ["EAvgH", "EAvgD", "EAvgA"])
     ok_a = ~np.isnan(p_anchor).any(axis=1)
     zo = np.full((len(df), 2), np.nan)
     zo[ok_a] = np.log(p_anchor[ok_a][:, [0, 2]] / p_anchor[ok_a][:, [1]])
-    p_close, _ = anchor_probs(df, ["PSCH", "PSCD", "PSCA"], ["AvgCH", "AvgCD", "AvgCA"])
+    p_close, _, _ = anchor_probs(
+        df, list(close_cols), ["AvgCH", "AvgCD", "AvgCA"])
     ok_c = ~np.isnan(p_close).any(axis=1)
     zc = np.full((len(df), 2), np.nan)
     zc[ok_c] = np.log(p_close[ok_c][:, [0, 2]] / p_close[ok_c][:, [1]])
@@ -190,6 +208,11 @@ def build_rows(df, is_fixture):
     feat["dis_missing"] = (~okb).astype(float)
     za, _ = three_way_feats(df, np.nan_to_num(zo), "disavg", ["EAvgH", "EAvgD", "EAvgA"])
     feat["disavg_h"], feat["disavg_a"] = za[:, 0], za[:, 1]
+    # when the anchor IS the market average, disavg degenerates to exactly 0
+    # while carrying real variance on primary-anchored training rows - flag
+    # it so the model can discount the feature in the fallback regime
+    # (AUDIT N3)
+    feat["disavg_missing"] = (~used_ps).astype(float)
 
     inv_ov, inv_un = 1 / df["EOv"], 1 / df["EUn"]
     feat["p_over"] = (inv_ov / (inv_ov + inv_un)).to_numpy()
@@ -207,7 +230,8 @@ def quarter_kelly(p, odds, bankroll):
     if edge <= 0 or odds <= 1:
         return 0.0
     f = min(KELLY_FRACTION * edge / (odds - 1), MAX_STAKE_FRac)
-    return round(bankroll * f, 2)
+    stake = round(bankroll * f * 2) / 2  # protocol: $0.50 steps
+    return stake if stake >= 0.5 else 0.0  # protocol: skip below $0.50
 
 
 def main():
@@ -240,15 +264,17 @@ def main():
 
     both = pd.concat([hist, fx], ignore_index=True)
     both = both.sort_values(["Date", "Div", "HomeTeam"]).reset_index(drop=True)
-    is_fixture = np.zeros(len(both), bool)
-    is_fixture[-len(fx):] = True if len(fx) else False
-    # concat then sort loses the split point; recompute: fixtures have no FTR
+    # fixtures have no FTR - but a result-less HISTORICAL row must never be
+    # scored as a fixture, so future-dated only (latent bug, AUDIT follow-up)
     is_fixture = both["FTR"].isna().to_numpy()
+    if not os.environ.get("LIVE_TEST_ALLOW_PAST"):
+        is_fixture &= (both["Date"] >= today).to_numpy()
 
     feat, zo, p_anchor = build_rows(both, is_fixture)
 
     # training rows: completed, early+close anchors, 2012+
-    p_close, _ = anchor_probs(both, ["PSCH", "PSCD", "PSCA"], ["AvgCH", "AvgCD", "AvgCA"])
+    p_close, _, _ = anchor_probs(both, ["PSCH", "PSCD", "PSCA"],
+                                 ["AvgCH", "AvgCD", "AvgCA"])
     ok_a = ~np.isnan(zo).any(axis=1)
     ok_c = ~np.isnan(p_close).any(axis=1)
     tr = ~is_fixture & ok_a & ok_c & (both["Date"] >= "2012-07-01").to_numpy()
@@ -311,7 +337,8 @@ def main():
                 "min_odds_2pct": round(min2, 2), "min_odds_5pct": round(min5, 2),
                 "avg_odds": avg[i, j], "max_odds": mx[i, j],
                 "ev_at_avg": round(ev_avg, 4) if not np.isnan(ev_avg) else np.nan,
-                "strong": bool(np.nan_to_num(ev_avg, nan=-1) > EV_STRONG),
+                "ev_at_max": round(ev_max, 4) if not np.isnan(ev_max) else np.nan,
+                "strong": bool(np.nan_to_num(ev_max, nan=-1) > EV_STRONG_MAX),
                 "stake_at_min5": quarter_kelly(p, min5, bankroll),
                 "stake_at_avg": quarter_kelly(p, avg[i, j], bankroll)
                 if not np.isnan(avg[i, j]) else 0.0,
@@ -339,10 +366,10 @@ def _write_picks(picks, note):
     print(f"\n{note}")
     if len(picks):
         strong = picks[picks["strong"]]
-        print(f"picks on sheet: {len(picks)} | strong (avg-book EV>1%): {len(strong)}")
+        print(f"picks on sheet: {len(picks)} | strong (best-book EV>=5%): {len(strong)}")
         if len(strong):
             print(strong[["date", "div", "home", "away", "side", "model_p",
-                          "min_odds_5pct", "stake_at_min5", "ev_at_avg"]]
+                          "min_odds_5pct", "stake_at_min5", "ev_at_max"]]
                   .head(10).to_string(index=False))
     print("NEW_PICKS" if h != old_hash else "NO_CHANGE")
 

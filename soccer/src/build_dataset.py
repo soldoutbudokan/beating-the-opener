@@ -23,8 +23,10 @@ KEEP = [
     "MaxCH", "MaxCD", "MaxCA", "AvgCH", "AvgCD", "AvgCA",
     # early over/under 2.5 (Pinnacle/market post-2019, Betbrain before)
     "P>2.5", "P<2.5", "Avg>2.5", "Avg<2.5", "BbAv>2.5", "BbAv<2.5",
-    # early Asian handicap: line + prices
-    "AHh", "BbAHh", "PAHH", "PAHA", "BbAvAHH", "BbAvAHA",
+    # early Asian handicap: line + prices. AvgAHH/AvgAHA are the modern
+    # market-average columns - without them EAHH went NaN for every row
+    # after Pinnacle left football-data (train/serve skew, AUDIT H6)
+    "AHh", "BbAHh", "PAHH", "PAHA", "AvgAHH", "AvgAHA", "BbAvAHH", "BbAvAHA",
 ]
 HANDICAP_COLS = {"AHh", "BbAHh"}  # can be <= 1.0 (e.g. -0.5, 0, 0.25) - not odds
 
@@ -75,8 +77,8 @@ def main():
     df["EOv"] = df["P>2.5"].fillna(df["Avg>2.5"]).fillna(df["BbAv>2.5"])
     df["EUn"] = df["P<2.5"].fillna(df["Avg<2.5"]).fillna(df["BbAv<2.5"])
     df["EAHh"] = df["AHh"].fillna(df["BbAHh"])
-    df["EAHH"] = df["PAHH"].fillna(df["BbAvAHH"])
-    df["EAHA"] = df["PAHA"].fillna(df["BbAvAHA"])
+    df["EAHA"] = df["PAHA"].fillna(df["AvgAHA"]).fillna(df["BbAvAHA"])
+    df["EAHH"] = df["PAHH"].fillna(df["AvgAHH"]).fillna(df["BbAvAHH"])
 
     df["FTHG"] = pd.to_numeric(df["FTHG"], errors="coerce")
     df["FTAG"] = pd.to_numeric(df["FTAG"], errors="coerce")

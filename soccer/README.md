@@ -5,7 +5,16 @@ across 9 seasons and ~20 leagues — beating it in 9/9 seasons (sign test p = 0.
 per-match paired p = 3.8e-07). The closing line remains unbeaten, as expected — but the
 opener is demonstrably not an efficient price, and a betting simulation that shops the best
 early price across books turns the gap into +5.2% ROI over 31,192 bets with +2.2% average
-closing line value (CLV t = 41.7).**
+closing line value (CLV t = 41.7, but see the placebo caveat below — a zero-skill control
+harvests *more* envelope CLV than the model; the model's real contribution is the ROI).**
+
+**⚠ Regime change (2026): that result is a *Pinnacle-anchor* result. Pinnacle vanished from
+football-data in Jan 2026, and replaying the identical live model on the average-book anchor
+it now runs on ([`src/train_eval_avg.py`](src/train_eval_avg.py), 6 testable seasons) finds
+no edge: the model does not beat its own anchor on log loss (−0.0006, t = −0.3), best-book
+ROI is +0.6% (t = 1.1), and its +1.1% CLV is *less* than the +3.7% a zero-skill placebo
+collects from the best-of-book envelope. Details in [AUDIT.md](../AUDIT.md) (H4/H6/N3) and
+the live-experiment expectation below.**
 
 Predecessor project: [`nba/`](../nba/) concluded the
 NBA closing moneyline is unbeatable with public data. This project targets the softer end of what
@@ -29,9 +38,22 @@ How it works — full details in **[live/PROTOCOL.md](live/PROTOCOL.md)**:
 3. Fills are reported conversationally to any Claude session, which logs them to
    `live/bets.csv` per the protocol; settlement, P&L, CLV, and bankroll tracking are automatic.
 
-Expectation from the single-book backtest (see below): +1% to +3% mean CLV if the edge is real;
-a losing season with clearly positive CLV still confirms the model, and profit with negative
-CLV is just luck.
+**Expectation, post-Pinnacle regime** (`src/train_eval_avg.py` — the identical live model
+replayed on the avg-book anchor with the avg close as the CLV yardstick, which is what live
+settlement now uses):
+
+| cell | bets | ROI | CLV vs avg close | CLV+ seasons |
+|---|---|---|---|---|
+| model, best-book EV>2% | 21,767 | +0.6% (t 1.1) | +1.1% (t 8.6) | 6/6 |
+| **placebo (zero skill), same cell** | 5,395 | −0.4% | **+3.7%** (t 14.9) | 6/6 |
+| model, best-book EV>5% (≈ strong) | 7,836 | +0.5% (t 1.5) | +2.0% (t 10.7) | 6/6 |
+| model, avg-book EV>1% (old notify rule) | 3,701 | −5.2% | −5.1% | 0/6 |
+
+The placebo bets the anchor's own devigged probabilities — any CLV it also collects is
+best-of-book envelope shopping, not model skill. In this regime the model shows **no
+demonstrated edge**: the live experiment is running as *measurement* (does FanDuel's early
+price beat the average close?), not as harvesting, and a decision on whether it is worth
+running at all belongs to whoever funds the bankroll.
 
 ![results](results/results.png)
 
@@ -104,7 +126,14 @@ Positive ROI *and* positive CLV in every tier, every outcome side (H/D/A), and e
 Max drawdown −127u against +1,616u final. The pattern is textbook: the edge is not "the model
 knows things Pinnacle doesn't" — it's **model + line shopping**. Some book's early price is
 almost always stale relative to the model's blend of the sharp consensus + fundamentals, and
-those stale prices systematically fail to survive to the close (that's what CLV t = 41.7 means).
+those stale prices systematically fail to survive to the close.
+
+**Placebo caveat (AUDIT.md H4):** the best-of-book envelope has mean booksum 1.013 and is a
+literal arb on 15% of matches, so *any* calibrated probability harvests CLV from it — a
+zero-skill control betting the opener's own devigged probabilities gets **+2.8%** CLV in this
+Pinnacle-regime sim, *more* than the model's +2.2%. CLV t-stats against the envelope measure
+the envelope. The model's genuine contribution is the ROI gap over that placebo
+(+5.2% vs +1.8%) and the log-loss result above.
 
 ## Caveats, stated plainly
 
@@ -127,7 +156,8 @@ python3 src/download_data.py    # ~400 CSVs from football-data.co.uk
 python3 src/build_dataset.py    # -> data/matches.pkl
 python3 src/features.py         # -> data/features.pkl (leak-free chronological pass)
 python3 src/baselines.py        # the wedge
-python3 src/train_eval_v4.py    # main result -> results/preds_v4.pkl
+python3 src/train_eval_v4.py    # main (Pinnacle-regime) result -> results/preds_v4.pkl
+python3 src/train_eval_avg.py   # post-Pinnacle replay + placebo -> results/avg_anchor.pkl
 python3 src/analysis_final.py   # betting sims, robustness -> results/final_summary.txt
 python3 src/make_chart.py       # -> results/results.png
 ```

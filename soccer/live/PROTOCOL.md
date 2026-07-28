@@ -19,7 +19,7 @@ A scheduled cloud agent runs the pipeline hourly:
 | schedule | hourly at :21 UTC |
 | runs | `src/live_pipeline.py` (fresh data → retrain → score fixtures → `live/picks.csv`), then `src/settle_bets.py` (results/CLV → `RESULTS.md`, `live/bankroll.json`, `docs/index.html`) |
 | commits | pushes to main only when picks changed or bets settled |
-| notifies | push notification ONLY for strong picks (avg-book EV > 1%) or settlements; never for a pick already in `bets.csv` — see [No duplicate notifications](#no-duplicate-notifications); quiet otherwise |
+| notifies | push notification ONLY for strong picks (best-book EV ≥ 5% — the same condition `min_odds_5pct` asks FanDuel to clear; the old avg-book EV>1% rule was the backtest's worst cell, AUDIT H5) or settlements; never for a pick already in `bets.csv` — see [No duplicate notifications](#no-duplicate-notifications); quiet otherwise |
 | reports | whenever `live/picks.csv` is non-empty, the run writes **every** pick as a markdown table at the top of its session reply — see [Pick table](#pick-table-every-run) |
 
 ### Pick table (every run)
@@ -78,8 +78,9 @@ Notes:
   probability. **FanDuel at or above this → playable** (conservative default).
 - `min_odds_2pct` — the ≥2% EV price (aggressive; more bets, thinner edge).
 - `stake_at_min5` — suggested quarter-Kelly stake at that minimum price.
-- `strong` — True when even an average book clears +1% EV (these trigger the
-  notification; the rest of the sheet is worth a scan if you have time).
+- `strong` — True when the best European book clears +5% EV (`ev_at_max` >
+  0.05), i.e. the playable condition is actually met somewhere. These trigger
+  the notification; the rest of the sheet is worth a scan if you have time.
 
 **Run the [injury check](#injury-check-before-you-bet) before every fill.**
 
@@ -153,12 +154,20 @@ get flagged in `notes` after 7 days — resolve manually (void → set status
 
 ## Scoreboard
 
-- **CLV is primary.** Per the backtest (README), single-book bets at ~+2-5% EV
-  should average **+1% to +3% CLV**. At one season's volume (~150-600 bets,
-  σ≈10%/bet) a real CLV edge shows up at ~3σ; the t-stat is printed in
-  RESULTS.md.
+- **CLV is primary, and the yardstick is now the market-average close** —
+  Pinnacle left football-data in Jan 2026, so `clv_source` will read `Avg`
+  (worth ~−0.5pp vs the old Pinnacle-close yardstick on identical bets).
+- **Honest expectation (post-Pinnacle replay, `src/train_eval_avg.py`):** the
+  identical live model on the avg-book anchor shows **no demonstrated edge** —
+  it does not beat its own anchor on log loss, best-book ROI is +0.6%
+  (t = 1.1), and its +1.1% CLV is *less* than a zero-skill placebo's +3.7%
+  (best-of-book envelope shopping). Strong picks (best-book EV ≥ 5%)
+  backtest at ~+2.0% CLV vs the avg close — but so does much worse for the
+  placebo comparison. **This experiment is measurement, not harvesting**;
+  whether it is worth running at all in this regime is an open decision —
+  see AUDIT.md and the README regime-change note.
 - **P&L is secondary.** ROI noise over one season is ±6% or more — a losing
-  season with clearly positive CLV is a *successful* test of the model (and
-  vice versa: profit with negative CLV is luck).
+  season with CLV at expectation is consistent with the model; profit with
+  negative CLV is luck.
 - CLV-expected P&L (Σ stake × clv) in RESULTS.md is the "what you should have
   won" line to compare actual P&L against.
