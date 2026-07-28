@@ -36,10 +36,17 @@ def parse_events():
     rows = []
     for path in sorted(glob.glob(os.path.join(RAW, "events_*.json.gz"))):
         for e in load_gz(path):
+            # `scheduled` is UTC; wehoop (and everything downstream) keys
+            # games by their ET date. Evening tips are UTC next-day, so the
+            # naive [:10] slice put ~half the archive one day late and the
+            # +/-1 box-score join then grabbed the player's NEXT game
+            # (AUDIT H1: 25% feature leakage, 23% wrong labels).
+            et_date = str(pd.Timestamp(e["scheduled"], tz="UTC")
+                          .tz_convert("America/New_York").date())
             row = {
                 "event_id": e["id"], "season": e["season"],
                 "season_type": e.get("season_type"),
-                "scheduled": e["scheduled"], "date": e["scheduled"][:10],
+                "scheduled": e["scheduled"], "date": et_date,
                 "home": e["home"], "visitor": e["visitor"],
                 "status": e.get("status"),
             }
@@ -99,6 +106,14 @@ def parse_offer_file(path, market_name, rows):
                 "open_line": op_o.get("line", op_u.get("line")),
                 "open_over_cost": op_o.get("cost"),
                 "open_under_cost": op_u.get("cost"),
+                # per-side records: the over and under openers are archived
+                # independently and may be different books/lines/times -
+                # needed downstream to tell a real two-way quote from a
+                # fabricated one (AUDIT C1/H2)
+                "open_line_over": op_o.get("line"),
+                "open_line_under": op_u.get("line"),
+                "open_book_over": op_o.get("book_id"),
+                "open_book_under": op_u.get("book_id"),
                 "open_book": op_o.get("book_id", op_u.get("book_id")),
                 "open_created": op_o.get("created", op_u.get("created")),
             })

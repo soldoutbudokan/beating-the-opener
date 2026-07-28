@@ -45,10 +45,16 @@ def side_frame(graded, book, tag):
     g = g.drop_duplicates(["event_id", "market", "player"])
     g[f"p_{tag}"] = devig_power(amer_to_prob(g.over_cost),
                                 amer_to_prob(g.under_cost))
+    # coherent = one real two-way quote: same line both sides, sane vig.
+    # A book's over main at one line paired with its under main at another
+    # fabricates the implied mean (AUDIT C1/N4).
+    bs = amer_to_prob(g.over_cost) + amer_to_prob(g.under_cost)
+    g[f"coh_{tag}"] = ((g.line == g.line_under)
+                       & (bs >= 1.00) & (bs <= 1.15))
     g = g.rename(columns={"line": f"line_{tag}", "over_cost": f"oc_{tag}",
                           "under_cost": f"uc_{tag}", "updated": f"upd_{tag}"})
-    return g[["event_id", "market", "player",
-              f"line_{tag}", f"oc_{tag}", f"uc_{tag}", f"p_{tag}", f"upd_{tag}"]]
+    return g[["event_id", "market", "player", f"line_{tag}", f"oc_{tag}",
+              f"uc_{tag}", f"p_{tag}", f"upd_{tag}", f"coh_{tag}"]]
 
 
 def main():
@@ -60,10 +66,17 @@ def main():
         ["event_id", "market", "player"]).copy()
     base["p_open"] = devig_power(amer_to_prob(base.open_over_cost),
                                  amer_to_prob(base.open_under_cost))
+    base["open_booksum"] = (amer_to_prob(base.open_over_cost)
+                            + amer_to_prob(base.open_under_cost))
+    # a trustworthy opener: same book, same line, sane vig (AUDIT C1/H2)
+    base["open_coherent"] = ((base.open_line_over == base.open_line_under)
+                             & (base.open_book_over == base.open_book_under)
+                             & (base.open_booksum >= 1.00)
+                             & (base.open_booksum <= 1.15))
     base = base[["event_id", "season", "date", "market", "player", "team",
                  "pos", "open_line", "open_over_cost", "open_under_cost",
-                 "p_open", "open_book", "open_created",
-                 "actual", "void", "matched"]]
+                 "p_open", "open_book", "open_created", "open_booksum",
+                 "open_coherent", "actual", "void", "matched"]]
 
     for book, tag in [(0, "close"), (10, "fd")]:
         base = base.merge(side_frame(graded, book, tag),
@@ -87,7 +100,10 @@ def main():
     base["nname"] = base.player.map(norm)
 
     def lookup(r):
-        for delta in (0, 1, -1):
+        # r.date is the ET game date (build_props); +/-1 is a rare-skew
+        # fallback only, and -1 is probed before +1 so a missed join can
+        # never prefer the player's NEXT game (AUDIT H1)
+        for delta in (0, -1, 1):
             d = str((pd.Timestamp(r.date) + pd.Timedelta(days=delta)).date())
             try:
                 return pidx.loc[(r.nname, d)]

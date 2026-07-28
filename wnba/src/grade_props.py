@@ -63,10 +63,10 @@ def main():
 
     def find(nname, date):
         r = idx.get((nname, date))
-        if r is None:  # BP timestamps can straddle midnight vs box-score date
+        if r is None:  # date is the ET game date; +/-1 is a rare-skew fallback
             d = pd.Timestamp(date)
-            r = idx.get((nname, str((d + pd.Timedelta("1D")).date()))) or \
-                idx.get((nname, str((d - pd.Timedelta("1D")).date())))
+            r = idx.get((nname, str((d - pd.Timedelta("1D")).date()))) or \
+                idx.get((nname, str((d + pd.Timedelta("1D")).date())))
         return r
 
     uniq = props[["event_id", "date", "market", "player"]].drop_duplicates().copy()
