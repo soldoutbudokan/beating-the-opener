@@ -1,0 +1,9 @@
+data/*.pkl
+data/mlb/
+data/nba/
+data/nfl/
+data/nhl/
+__pycache__/
+*.pyc
+.DS_Store
+*.parquet
