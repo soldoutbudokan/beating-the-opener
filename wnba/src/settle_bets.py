@@ -23,7 +23,8 @@ import sys
 import numpy as np
 import pandas as pd
 
-from odds_utils import amer_to_prob, amer_to_dec, devig_power
+from odds_utils import (amer_to_prob, amer_to_dec, devig_power, fit_shade,
+                        apply_shade)
 from dist_utils import implied_mu, p_over
 from grade_props import STAT_COLS, norm, BP2WH
 
@@ -36,7 +37,7 @@ ET = "America/New_York"
 
 COLS = ["key", "placed_at", "match_date", "event_id", "market", "player",
         "side", "line", "odds_taken", "stake", "model_p", "status", "result",
-        "actual", "clv", "clv_source", "pnl", "notes"]
+        "actual", "clv", "clv_cal", "clv_source", "pnl", "notes"]
 MARKET_IDS = {"points": 393, "rebounds": 397, "assists": 391, "threes": 390,
               "pra": 396, "pts_ast": 394, "pts_reb": 395, "reb_ast": 398}
 BOOKSUM_LO, BOOKSUM_HI = 1.00, 1.15  # sane two-way vig band
@@ -51,6 +52,33 @@ def refresh_site():
         print((r.stdout or r.stderr).strip().splitlines()[-1])
     except Exception as e:  # a broken page must never block settlement
         print(f"site build skipped: {e}")
+
+
+def market_shades():
+    """Per-market over-shade from the graded archive (expanding window).
+
+    WNBA prop prices overstate P(over) by ~2pp on average at BOTH open and
+    close (AUDIT N1), so raw-close CLV mechanically penalises unders. The
+    scoreboard records CLV against the raw close (`clv`, the standard
+    yardstick) AND against the shade-corrected close (`clv_cal`).
+    """
+    path = os.path.join(ROOT, "data", "modelset.pkl")
+    if not os.path.exists(path):
+        return {}
+    ms = pd.read_pickle(path)
+    if "open_coherent" not in ms.columns:
+        return {}
+    d = ms[ms.actual.notna() & ~ms.void & ms.open_coherent.fillna(False)
+           & (ms.actual != ms.open_line)]
+    if len(d) < 400:
+        return {}
+    y = (d.actual > d.open_line).astype(float)
+    pooled = fit_shade(d.p_open, y)
+    out = {}
+    for mkt in d.market.unique():
+        m = d.market == mkt
+        out[mkt] = fit_shade(d.p_open[m], y[m]) if m.sum() >= 200 else pooled
+    return out
 
 
 def event_meta():
@@ -132,7 +160,7 @@ def close_prob(event_id, market, player, side, line):
             mu_c = float(implied_mu(market, np.array([ov["line"]]),
                                     np.array([p_close]))[0])
             po = float(p_over(market, np.array([mu_c]), np.array([line]))[0])
-            return (po if side == "over" else 1 - po), f"{tag}@{ov['line']}"
+            return po, f"{tag}@{ov['line']}"  # P(over at the bet's line)
     return np.nan, ""
 
 
@@ -141,9 +169,14 @@ def main():
     if not os.path.exists(BETS):
         pd.DataFrame(columns=COLS).to_csv(BETS, index=False)
     bets = pd.read_csv(BETS)
+    for c in COLS:
+        if c not in bets.columns:
+            bets[c] = np.nan
+    bets = bets[COLS]
     for c in ["result", "clv_source", "notes", "status"]:
         bets[c] = bets[c].astype("object")
-    for c in ["line", "odds_taken", "stake", "model_p", "actual", "clv", "pnl"]:
+    for c in ["line", "odds_taken", "stake", "model_p", "actual", "clv",
+              "clv_cal", "pnl"]:
         bets[c] = pd.to_numeric(bets[c], errors="coerce")
     if not os.path.exists(BANKROLL):
         json.dump({"start": 100.0, "current": 100.0}, open(BANKROLL, "w"))
@@ -188,15 +221,21 @@ def main():
 
     # CLV: fresh settlements AND any earlier row whose close snapshot was
     # missing when it settled (backfill - AUDIT C3). Voids carry no CLV.
+    shades = market_shades()
     n_clv = 0
     for i, b in bets.iterrows():
-        if b["status"] not in ("settled", "push") or pd.notna(b["clv"]):
+        if b["status"] not in ("settled", "push") \
+                or (pd.notna(b["clv"]) and pd.notna(b["clv_cal"])):
             continue
-        pc, src = close_prob(int(b["event_id"]), b["market"], b["player"],
+        po, src = close_prob(int(b["event_id"]), b["market"], b["player"],
                              b["side"], float(b["line"]))
-        if not np.isnan(pc):
+        if not np.isnan(po):
             dec = float(amer_to_dec(b["odds_taken"]))
-            bets.loc[i, "clv"] = round(pc * dec - 1, 4)
+            po_cal = float(apply_shade(po, shades.get(b["market"], 0.0)))
+            over = b["side"] == "over"
+            bets.loc[i, "clv"] = round((po if over else 1 - po) * dec - 1, 4)
+            bets.loc[i, "clv_cal"] = round(
+                (po_cal if over else 1 - po_cal) * dec - 1, 4)
             bets.loc[i, "clv_source"] = src
             n_clv += 1
 
@@ -216,8 +255,11 @@ def main():
              " - same numbers, plus the open picks and the backtest evidence.\n",
              "Quarter-Kelly, $100 starting bankroll, picks from the "
              "[wnba-props model](README.md). CLV = `p_close(at bet line) x "
-             "decimal_odds - 1`: whether the bets beat the closing price. CLV "
-             "converges in one season; ROI does not - CLV is the scoreboard.\n"]
+             "decimal_odds - 1`: whether the bets beat the closing price. "
+             "`CLV*` re-expresses the close with the measured market "
+             "over-shade removed (WNBA prop prices overstate P(over) by ~2pp "
+             "on average, so raw CLV mechanically penalises unders - see "
+             "AUDIT.md N1). Both converge far faster than ROI.\n"]
     sett = bets[bets.status == "settled"]
     no = int((bets.status == "open").sum())
     if len(sett):
@@ -225,6 +267,7 @@ def main():
         pnl = sett.pnl.sum()
         wins = int((sett.result == "won").sum())
         clv = done.clv.dropna()
+        clv_cal = done.clv_cal.dropna()
         lines += [
             f"**Bankroll: ${current:.2f}** (start $100)\n",
             "| metric | value |", "|---|---|",
@@ -233,7 +276,10 @@ def main():
             f"{int((bets.status == 'void').sum())} void, {no} open |",
             f"| staked | ${staked:.2f} |",
             f"| P&L | ${pnl:+.2f} ({pnl / staked:+.1%} ROI) |",
-            f"| mean CLV | {clv.mean():+.2%} (n={len(clv)}) |",
+            f"| mean CLV (vs close) | {clv.mean():+.2%} (n={len(clv)}) |",
+            f"| mean CLV* (shade-adj) | "
+            f"{clv_cal.mean():+.2%} (n={len(clv_cal)}) |"
+            if len(clv_cal) else "| mean CLV* (shade-adj) | - |",
             f"| CLV-expected P&L | ${(done.stake * done.clv).sum():+.2f} |", ""]
         if len(clv) >= 2:
             se = clv.std() / np.sqrt(len(clv))
@@ -249,8 +295,8 @@ def main():
     show = bets.sort_values("match_date", ascending=False).head(200)
     if len(show):
         lines += ["| date | player | market | side | line | odds | stake "
-                  "| actual | result | P&L | CLV |",
-                  "|---|---|---|---|---|---|---|---|---|---|---|"]
+                  "| actual | result | P&L | CLV | CLV* |",
+                  "|---|---|---|---|---|---|---|---|---|---|---|---|"]
         for _, b in show.iterrows():
             f2 = lambda v, fmt: fmt.format(v) if pd.notna(v) else ""
             lines.append(
@@ -258,7 +304,8 @@ def main():
                 f"| {b['side']} | {b['line']} | {int(b['odds_taken'])} "
                 f"| {b['stake']} | {f2(b['actual'], '{:g}')} "
                 f"| {b['result'] if pd.notna(b['result']) else ''} "
-                f"| {f2(b['pnl'], '{:+.2f}')} | {f2(b['clv'], '{:+.1%}')} |")
+                f"| {f2(b['pnl'], '{:+.2f}')} | {f2(b['clv'], '{:+.1%}')} "
+                f"| {f2(b['clv_cal'], '{:+.1%}')} |")
     with open(RESULTS_MD, "w") as f:
         f.write("\n".join(lines) + "\n")
     refresh_site()

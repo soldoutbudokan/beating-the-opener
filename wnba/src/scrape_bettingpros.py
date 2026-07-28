@@ -7,8 +7,9 @@ Saves:
   data/raw/bp/events_<season>.json.gz          all events for a season
   data/raw/bp/offers/<event>_<market>.json.gz  one offers payload per event x market
 
-Usage: python3 src/scrape_bettingpros.py [--season 2025] [--refresh-days N]
-Idempotent: skips files that already exist (unless the event was recent).
+Usage: python3 src/scrape_bettingpros.py [--season 2025]
+Idempotent: skips files that already exist. Offers are only fetched once the
+event's date has passed, so the first snapshot is already the close.
 """
 import argparse
 import glob
@@ -111,8 +112,6 @@ def fetch_events(season):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--season", type=int, default=None)
-    ap.add_argument("--refresh-days", type=int, default=3,
-                    help="re-fetch offers for events within N days (lines still moving)")
     args = ap.parse_args()
     seasons = [args.season] if args.season else sorted(SEASONS)
 

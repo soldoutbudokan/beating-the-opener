@@ -47,3 +47,33 @@ def ll_binary(p, y):
     p = np.clip(np.asarray(p, float), 1e-6, 1 - 1e-6)
     y = np.asarray(y, float)
     return -(y * np.log(p) + (1 - y) * np.log(1 - p))
+
+
+def fit_shade(p, y):
+    """Logit shift d such that mean(expit(logit(p) - d)) == mean(y).
+
+    WNBA prop prices systematically overstate P(over) (~+2pp at open AND
+    close - the books shade the popular side, and devigging cannot remove
+    a deliberate one-sided skew; AUDIT N1). Fit per market on strictly
+    PAST graded props, apply to every devigged/market-anchored P(over)
+    before it is used for EV or as a CLV benchmark.
+    """
+    from scipy.optimize import brentq
+    p = np.clip(np.asarray(p, float), 1e-6, 1 - 1e-6)
+    y = np.asarray(y, float)
+    lp = np.log(p / (1 - p))
+    target = y.mean()
+
+    def f(d):
+        return (1.0 / (1.0 + np.exp(-(lp - d)))).mean() - target
+
+    try:
+        return float(brentq(f, -1.0, 1.0, xtol=1e-6))
+    except ValueError:  # no sign change - bias beyond +/-1 logit; don't fit
+        return 0.0
+
+
+def apply_shade(p, d):
+    """Shift P(over) by -d in logit space (see fit_shade)."""
+    p = np.clip(np.asarray(p, float), 1e-6, 1 - 1e-6)
+    return 1.0 / (1.0 + np.exp(-(np.log(p / (1 - p)) - d)))

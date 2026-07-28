@@ -23,12 +23,12 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import HistGradientBoostingRegressor
 
-from odds_utils import amer_to_prob, amer_to_dec, devig_power
+from odds_utils import amer_to_prob, amer_to_dec, devig_power, apply_shade
 from dist_utils import implied_mu, p_over, sigma, POISSON
 from features import load_player_box, load_team_box, build_panel
 from build_modelset import PANEL_FEATS, norm
 from grade_props import BP2WH
-from train_eval_v2 import add_v2_features, EW_PROJ
+from train_eval_v2 import add_v2_features, EW_PROJ, fit_shades
 from train_eval import MARKETS, prepare
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
@@ -127,12 +127,16 @@ def train_model():
         max_iter=300, learning_rate=0.05, max_leaf_nodes=15,
         min_samples_leaf=60, l2_regularization=1.0, random_state=0)
     model.fit(X, tr.move.to_numpy())
+    # per-market over-shade from the graded archive (all strictly past at
+    # pick time): WNBA prop prices overstate P(over) by ~2pp and the model
+    # anchors on them, so every quoted P(over) gets the correction (AUDIT N1)
+    shades = fit_shades(ms, np.ones(len(ms), bool))
     # momentum state for tonight: EW over each player's full history (no shift)
     mom = (ms.sort_values("date").groupby(["player", "market"])["move"]
            .apply(lambda s: s.ewm(alpha=0.25, min_periods=1).mean().iloc[-1]))
     mom_all = (ms.sort_values("date").groupby("player")["move"]
                .apply(lambda s: s.ewm(alpha=0.15, min_periods=1).mean().iloc[-1]))
-    return model, cols, mom, mom_all
+    return model, cols, mom, mom_all, shades
 
 
 def fixture_panel(props):
@@ -145,7 +149,6 @@ def fixture_panel(props):
     tid_by_abbr = (box.sort_values("game_date").groupby("team_abbreviation")
                    .tail(1).set_index("team_abbreviation")["team_id"].to_dict())
     stubs, meta = [], []
-    today = pd.Timestamp.now().normalize()
     for i, r in enumerate(props.itertuples()):
         pr = by_name.get(norm(r.player))
         wh_home = BP2WH.get(r.home, r.home)
@@ -159,9 +162,13 @@ def fixture_panel(props):
         if opp not in tid_by_abbr or wh_team not in tid_by_abbr:
             meta.append(None)
             continue
-        gid = -(1000 + hash((r.event_id,)) % 100000)
+        # deterministic stub id (hash() is salted per process for str ids);
+        # game_date is the actual ET game date, not now() - a game 1-2 days
+        # out was getting its `rest` understated (AUDIT follow-up)
+        gid = -(1000 + int(r.event_id) % 100000)
         stubs.append({
-            "game_id": gid, "game_date": today, "athlete_id": pr.athlete_id,
+            "game_id": gid, "game_date": pd.Timestamp(r.date),
+            "athlete_id": pr.athlete_id,
             "athlete_display_name": pr.athlete_display_name,
             "team_id": tid_by_abbr[wh_team], "team_abbreviation": wh_team,
             "opponent_team_id": tid_by_abbr[opp],
@@ -179,7 +186,8 @@ def fixture_panel(props):
     for gid, sub in sdf.groupby("game_id"):
         for tid, oid in {(t, o) for t, o in zip(sub.team_id, sub.opponent_team_id)}:
             tstubs.append({"game_id": gid, "team_id": tid,
-                           "opponent_team_id": oid, "game_date": today})
+                           "opponent_team_id": oid,
+                           "game_date": sub.game_date.iloc[0]})
     tb2 = pd.concat([tb, pd.DataFrame(tstubs)], ignore_index=True)
     fixture_gids = set(sdf.game_id)
     panel = build_panel(box2, tb2, fixture_gids)
@@ -225,13 +233,31 @@ def main():
               f"insane opening quotes (C1 guard)")
     props = props[coherent].reset_index(drop=True)
 
-    model, cols, mom, mom_all = train_model()
+    # only FanDuel-sourced openers: EV computed off another book's open
+    # (Novig etc.) is untradeable on FanDuel - the honest backtest cell is
+    # FD-opens-only (AUDIT H3) - and this makes the stale-price gate below
+    # a same-book comparison instead of FD-vs-someone-else's-open.
+    n0 = len(props)
+    props = props[props.open_book == 10].reset_index(drop=True)
+    print(f"FanDuel-sourced openers: {len(props)}/{n0}")
+
+    model, cols, mom, mom_all, shades = train_model()
     fix, meta = fixture_panel(props)
 
     bankroll = 100.0
     bk_path = os.path.join(LIVE, "bankroll.json")
     if os.path.exists(bk_path):
         bankroll = json.load(open(bk_path))["current"]
+    # size off capital not already at risk (open stakes were invisible to
+    # Kelly before), and know which keys are already played for dedupe
+    logged_keys = set()
+    bets_path = os.path.join(LIVE, "bets.csv")
+    if os.path.exists(bets_path):
+        prior = pd.read_csv(bets_path)
+        logged_keys = set(prior.key)
+        open_stake = pd.to_numeric(
+            prior.loc[prior.status == "open", "stake"], errors="coerce").sum()
+        bankroll = max(bankroll - float(open_stake), 0.0)
 
     rows = []
     mkt_i = {m: i for i, m in enumerate(MARKETS)}
@@ -272,13 +298,17 @@ def main():
             if fd_line != r.open_line or pd.isna(open_cost) \
                     or abs(fd_cost - open_cost) > 15:
                 continue
-            # the model must predict a move TOWARD the bet side; at a sane
-            # stale price, apparent EV with mu_model on the other side of
-            # mu_open can only come from a broken quote (AUDIT C1)
+            # the model must predict a move TOWARD the bet side: EV may not
+            # come from the shade correction alone (the shade drifts
+            # quarter to quarter), and with a sane quote an "edge" against
+            # the predicted move can only be a broken open (AUDIT C1/N1)
             if (side == "over") != (mu_model > mu_open):
                 continue
             p_over_m = float(p_over(r.market, np.array([mu_model]),
                                     np.array([fd_line]))[0])
+            # market over-shade correction (AUDIT N1), same expanding
+            # per-market fit the backtest uses
+            p_over_m = float(apply_shade(p_over_m, shades.get(r.market, 0.0)))
             p_side = p_over_m if side == "over" else 1 - p_over_m
             dec = float(amer_to_dec(fd_cost))
             ev = p_side * dec - 1
@@ -299,10 +329,18 @@ def main():
                 "open_line": r.open_line})
     picks = pd.DataFrame(rows).sort_values("ev", ascending=False) if rows \
         else pd.DataFrame(columns=["key", "strong"])
+    if len(picks):
+        # one bet per player per game (combo markets on one player are
+        # heavily correlated): only the top-EV row per (event, player) is
+        # playable - the rest stay on the sheet for context
+        picks["play"] = ~picks.duplicated(["event_id", "player"])
+        # protocol's no-duplicate-notification rule, enforced in code
+        picks["already_bet"] = picks.key.isin(logged_keys)
     picks.to_csv(os.path.join(LIVE, "picks.csv"), index=False)
     print(f"picks: {len(picks)} (strong: {int(picks.strong.sum()) if len(picks) else 0})")
 
-    strong_keys = sorted(picks[picks.strong].key) if len(picks) else []
+    strong_keys = sorted(picks[picks.strong & picks.play
+                               & ~picks.already_bet].key) if len(picks) else []
     meta_path = os.path.join(LIVE, "picks_meta.json")
     prev = json.load(open(meta_path))["strong"] if os.path.exists(meta_path) else []
     json.dump({"strong": strong_keys,

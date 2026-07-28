@@ -18,7 +18,7 @@ import pandas as pd
 from scipy import stats
 from sklearn.ensemble import HistGradientBoostingRegressor
 
-from odds_utils import amer_to_dec, ll_binary
+from odds_utils import amer_to_dec, ll_binary, fit_shade, apply_shade
 from dist_utils import p_over
 from train_eval import (MARKETS, PANEL_FEATS, RETRAIN_DAYS, MIN_TRAIN,
                         BURN_IN_DAYS, prepare)
@@ -72,6 +72,22 @@ def features(ms):
     return X.to_numpy(float)
 
 
+MIN_SHADE_N = 200  # per-market obs needed before trusting a market's own fit
+
+
+def fit_shades(ms, tr):
+    """Per-market over-shade (AUDIT N1) from strictly-past graded props."""
+    y_all = (ms.actual > ms.open_line).to_numpy(float)
+    ok = tr & (ms.actual != ms.open_line).to_numpy()  # drop pushes
+    pooled = fit_shade(ms.p_open[ok], y_all[ok]) if ok.sum() >= MIN_SHADE_N else 0.0
+    out = {}
+    for mkt in MARKETS:
+        m = ok & (ms.market == mkt).to_numpy()
+        out[mkt] = fit_shade(ms.p_open[m], y_all[m]) if m.sum() >= MIN_SHADE_N \
+            else pooled
+    return out
+
+
 def walk_forward(ms):
     X_all = features(ms)
     y = ms.move.to_numpy()
@@ -80,6 +96,7 @@ def walk_forward(ms):
     start = pd.Timestamp(dates[0]) + pd.Timedelta(days=BURN_IN_DAYS)
     eval_dates = [d for d in dates if pd.Timestamp(d) >= start]
     pred = np.full(len(ms), np.nan)
+    shade = np.full(len(ms), np.nan)
     for i, d0 in enumerate(eval_dates[::RETRAIN_DAYS]):
         blocks = eval_dates[::RETRAIN_DAYS]
         d1 = blocks[i + 1] if i + 1 < len(blocks) else "9999"
@@ -92,7 +109,11 @@ def walk_forward(ms):
             min_samples_leaf=60, l2_regularization=1.0, random_state=0)
         model.fit(X_all[tr], y[tr])
         pred[te] = model.predict(X_all[te])
+        sh = fit_shades(ms, tr)
+        for mkt, d in sh.items():
+            shade[te & (ms.market == mkt).to_numpy()] = d
     ms["pred_move"] = pred
+    ms["shade"] = shade
     ms["mu_model"] = ms.mu_open + ms.pred_move * ms.scale
     return ms[ms.pred_move.notna()].copy()
 
@@ -103,10 +124,33 @@ def evaluate(ev):
           f"{ev.pred_move.corr(ev.move):.3f}, sd(pred)={ev.pred_move.std():.3f} "
           f"vs sd(move)={ev.move.std():.3f}")
 
+    # -- calibration acceptance (AUDIT N1): fed the market's OWN prices,
+    # shade-corrected P(over) must match the realised over rate
+    acc = ev[ev.actual != ev.open_line]
+    po_cal = apply_shade(acc.p_open, acc.shade)
+    yo = (acc.actual > acc.open_line).astype(float).to_numpy()
+    print("\ncalibration acceptance (market-fed, walk-forward shades):")
+    print(f"  overall: raw {acc.p_open.mean():.4f}  cal {po_cal.mean():.4f}  "
+          f"realized {yo.mean():.4f}  |bias| "
+          f"{abs(po_cal.mean() - yo.mean()) * 100:.2f}pp (need < 0.5)")
+    worst, worst_m = 0.0, ""
+    for mkt in np.unique(acc.market):
+        m = (acc.market == mkt).to_numpy()
+        b = abs(float(apply_shade(acc.p_open[m], acc.shade[m]).mean())
+                - yo[m].mean())
+        if b > worst:
+            worst, worst_m = b, mkt
+    print(f"  worst market: {worst_m} |bias| {worst * 100:.2f}pp (need < 1.0)")
+
+    # -- log loss at the close line (open and model both shade-calibrated,
+    # so the paired diff isolates move-prediction skill; close left raw as
+    # the market benchmark)
     for mkt in np.unique(ev.market):
         m = ev.market == mkt
         ev.loc[m, "pm"] = p_over(mkt, ev.loc[m, "mu_model"], ev.loc[m, "line_close"])
         ev.loc[m, "po"] = p_over(mkt, ev.loc[m, "mu_open"], ev.loc[m, "line_close"])
+    ev["pm"] = apply_shade(ev.pm, ev.shade)
+    ev["po"] = apply_shade(ev.po, ev.shade)
     e = ev[ev.actual != ev.line_close].copy()
     yb = (e.actual > e.line_close).astype(float)
     ll_m, ll_c, ll_o = (ll_binary(e.pm, yb), ll_binary(e.p_close, yb),
@@ -131,20 +175,35 @@ def evaluate(ev):
           f"model {(ev.mu_model - ev.actual).abs().mean():.4f}  "
           f"close {(ev.mu_close - ev.actual).abs().mean():.4f}")
 
-    # bet sim at open prices
+    # -- bet sim at open prices; selection uses CALIBRATED model probs.
+    # CLV reported two ways: vs the raw devigged close (what the live
+    # scoreboard stamps - shares the market's over-shade) and vs the
+    # shade-calibrated close (the honest yardstick; AUDIT N1).
     for mkt in np.unique(ev.market):
         m = ev.market == mkt
         ev.loc[m, "pm_ol"] = p_over(mkt, ev.loc[m, "mu_model"], ev.loc[m, "open_line"])
         c = m & ev.mu_close.notna()
         ev.loc[c, "pc_ol"] = p_over(mkt, ev.loc[c, "mu_close"], ev.loc[c, "open_line"])
+    ev["pm_olc"] = apply_shade(ev.pm_ol, ev.shade)
+    ev["pc_olc"] = apply_shade(ev.pc_ol, ev.shade)
     rows = ev[ev.pm_ol.notna() & ev.pc_ol.notna()]
-    for thresh in (0.02, 0.04, 0.06):
+
+    def tstat(x):
+        return x.mean() / (x.std() / np.sqrt(len(x)))
+
+    def sim(rr, thresh, tag):
         recs = []
-        for r in rows.itertuples():
-            for side, pmod, pcl, cost in [
-                    ("over", r.pm_ol, r.pc_ol, r.open_over_cost),
-                    ("under", 1 - r.pm_ol, 1 - r.pc_ol, r.open_under_cost)]:
+        for r in rr.itertuples():
+            for side, pmod, pcl_raw, pcl_cal, cost in [
+                    ("over", r.pm_olc, r.pc_ol, r.pc_olc, r.open_over_cost),
+                    ("under", 1 - r.pm_olc, 1 - r.pc_ol, 1 - r.pc_olc,
+                     r.open_under_cost)]:
                 if pd.isna(cost):
+                    continue
+                # live rule: the MOVE model must point toward the bet side,
+                # so EV cannot come from the shade correction alone (the
+                # shade drifts quarter-to-quarter; see AUDIT remediation)
+                if (side == "over") != (r.mu_model > r.mu_open):
                     continue
                 o = float(amer_to_dec(cost))
                 if pmod * o - 1 < thresh:
@@ -152,25 +211,29 @@ def evaluate(ev):
                 if r.actual == r.open_line:
                     pnl = 0.0
                 else:
-                    pnl = (o - 1) if (r.actual > r.open_line) == (side == "over") else -1.0
-                recs.append({"pnl": pnl, "clv": pcl * o - 1, "date": r.date,
-                             "mkt": r.market,
+                    pnl = (o - 1) if (r.actual > r.open_line) == (side == "over") \
+                        else -1.0
+                recs.append({"pnl": pnl, "clv_mkt": pcl_raw * o - 1,
+                             "clv_cal": pcl_cal * o - 1, "date": r.date,
+                             "over": side == "over",
                              "pg": f"{r.event_id}_{r.player}"})
         b = pd.DataFrame(recs)
         if len(b) < 10:
-            print(f"EV>{thresh:.0%}: only {len(b)} bets")
-            continue
+            print(f"  EV>{thresh:.0%} {tag}: only {len(b)} bets")
+            return
+        bpg = b.groupby("pg").agg(pnl=("pnl", "mean"), cm=("clv_mkt", "mean"),
+                                  cc=("clv_cal", "mean"))
+        print(f"  EV>{thresh:.0%} {tag}: {len(b)} bets ({len(bpg)} pg, "
+              f"{b.over.mean():.0%} overs), ROI {b.pnl.mean():+.2%} "
+              f"(pg-t {tstat(bpg.pnl):.1f}), CLV-mkt {b.clv_mkt.mean():+.2%} "
+              f"(pg-t {tstat(bpg.cm):.1f}), CLV-cal {b.clv_cal.mean():+.2%} "
+              f"(pg-t {tstat(bpg.cc):.1f})")
 
-        def tstat(x):
-            return x.mean() / (x.std() / np.sqrt(len(x)))
-
-        # cluster by player-game (combo markets on one player overlap heavily)
-        bpg = b.groupby("pg").agg(pnl=("pnl", "mean"), clv=("clv", "mean"))
-        bdt = b.groupby("date").pnl.mean()
-        print(f"EV>{thresh:.0%} at open: {len(b)} bets ({len(bpg)} player-games), "
-              f"ROI {b.pnl.mean():+.2%} (pg-clustered t={tstat(bpg.pnl):.1f}), "
-              f"CLV {b.clv.mean():+.2%} (pg t={tstat(bpg.clv):.1f}), "
-              f"{(bdt > 0).mean():.0%} of {len(bdt)} days positive")
+    print("\nbet sim (coherent quotes both ends, calibrated model):")
+    fd = rows[rows.open_book == 10]
+    for thresh in (0.02, 0.03, 0.06):
+        sim(rows, thresh, "all-books")
+        sim(fd, thresh, "FD-opens ")
     return ev
 
 

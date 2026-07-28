@@ -1,2 +1,3 @@
-key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line
-2682_threes_bridget carleton_over,2026-07-28,2026-07-29 02:00:00,2682,threes,Bridget Carleton,PDX,PDX@LVA,over,2.5,162,0.3944,0.0333,False,162,169,0.5,2.26,2.1,2.5
+key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
+2681_rebounds_caitlin clark_under,2026-07-28,2026-07-29 01:30:00,2681,rebounds,Caitlin Clark,IND,IND@SEA,under,3.5,106,0.5325,0.0969,True,-107,-100,2.0,3.95,4.37,3.5,True,False
+2681_points_caitlin clark_under,2026-07-28,2026-07-29 01:30:00,2681,points,Caitlin Clark,IND,IND@SEA,under,20.5,-110,0.5429,0.0364,False,-111,-104,1.0,20.55,21.17,20.5,False,False

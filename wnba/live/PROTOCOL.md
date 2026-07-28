@@ -68,6 +68,16 @@ Notes:
   book at the same line, booksum in [1.00, 1.15] - and the model's implied
   mean must move toward the bet side. BP stores the two opening records
   independently; a mispaired pair fabricates the EV (see AUDIT.md C1).
+- **Only FanDuel-sourced openers are scored** (AUDIT H3): EV computed off
+  another book's open is untradeable here, and it makes the stale-price
+  gate a same-book comparison.
+- `play=False` rows are lower-EV combo markets on a player who already has
+  a better row - one bet per player per game is enforced in the sheet, and
+  `already_bet=True` rows are excluded from notifications in code.
+- **Known selection caveat (AUDIT N2):** a prop whose price never moves all
+  day pays CLV = -vig no matter what; the stale-price gate cannot tell
+  "hasn't moved yet" from "will never move". Early fills on props that then
+  move are where the CLV comes from; expect a drag from the never-movers.
 - During the All-Star break / offseason runs print `NO_UPCOMING` - expected.
 - The routine never edits `bets.csv`, never places bets, never touches `src/`.
 
@@ -149,9 +159,20 @@ after 3 days -> voided with a note.
 
 ## Scoreboard
 
-- **CLV primary.** Backtest: stale-open bets at EV>=2% averaged **+5.4% CLV**
-  (player-game-clustered t = 2.3). A season of ~150-400 bets resolves a CLV
-  edge of that size decisively.
-- **P&L secondary.** Prop odds near even money, ~2-3 bets/day: ROI noise over
-  a part-season is large. Losing money with clearly positive CLV = the model
-  works; winning with negative CLV = luck.
+Two CLV columns, both stamped at settlement (see README "market over-shade"):
+
+- **`clv`** - vs the raw devigged close, the standard yardstick. The honest
+  backtest expectation at the live rule is **~ -3%**: the sheet is mostly
+  unders and WNBA closing prices overstate P(over) by ~2pp on average, so
+  raw CLV mechanically penalises unders. A raw CLV near -3% is *expected*,
+  not evidence of failure; raw CLV well below that is.
+- **`clv_cal`** - vs the shade-corrected close. Backtest expectation **~+3%
+  at EV>=3%, ~+6% at EV>=6%** - valid only insofar as the measured over-shade
+  persists (it drifts; it briefly inverted in Jul 2026).
+
+**Power, stated plainly (AUDIT H7):** at these effect sizes a single season
+(~150-400 bets, per-player-game CLV sd ~0.095) cannot statistically separate
+the observed CLV from zero - that would need ~4,000 player-games. This
+experiment can *reject* a large edge and *measure* a small one; it cannot
+prove one. P&L is noisier still: losing money with CLV at expectation is
+consistent with the model working; winning with poor CLV is luck.

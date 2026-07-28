@@ -18,22 +18,12 @@ from sklearn.ensemble import HistGradientBoostingRegressor
 
 from odds_utils import amer_to_dec, ll_binary
 from dist_utils import p_over, sigma, POISSON
+from build_modelset import PANEL_FEATS  # single source - live imports it too
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 
 MARKETS = ["points", "rebounds", "assists", "threes", "pra",
            "pts_ast", "pts_reb", "reb_ast"]
-PANEL_FEATS = [
-    "min_ewf", "min_ews", "poi_ewf", "poi_ews", "reb_ewf", "reb_ews",
-    "ass_ewf", "ass_ews", "tpm_ewf", "tpm_ews", "tpa_ewf", "fga_ewf",
-    "fta_ewf", "ste_ewf", "blo_ewf", "tur_ewf",
-    "poi_rate_ewf", "reb_rate_ewf", "ass_rate_ewf", "tpm_rate_ewf",
-    "ste_rate_ewf", "blo_rate_ewf", "tur_rate_ewf",
-    "gp", "rest", "started_ewf", "home",
-    "tm_pace_ew", "tm_pts_for_ew", "tm_pts_against_ew",
-    "opp_pace_ew", "opp_pts_for_ew", "opp_pts_against_ew", "opp_tpa_for_ew",
-    "absent_ew_min", "absent_prior_ew_min",
-]
 RETRAIN_DAYS = 7
 MIN_TRAIN = 400
 BURN_IN_DAYS = 24
@@ -53,6 +43,12 @@ def prepare():
     ms = pd.read_pickle(os.path.join(ROOT, "data", "modelset.pkl"))
     ms = ms[ms.market.isin(MARKETS) & ms.actual.notna() & ~ms.void
             & ms.p_close.notna() & ms.mu_open.notna()].copy()
+    # only coherent two-way quotes at BOTH ends: a mispaired open or close
+    # (different book/line for over vs under, or insane booksum) fabricates
+    # the implied mean it anchors on (AUDIT C1/H2/N4)
+    if "open_coherent" in ms.columns:
+        ms = ms[ms.open_coherent.fillna(False)
+                & ms.coh_close.fillna(False)].copy()
     ms["mkt_i"] = ms.market.map({m: i for i, m in enumerate(MARKETS)})
     ms["open_juice"] = ms.p_open - 0.5
     ms["scale"] = sd(ms.market.values, ms.mu_open.values)
