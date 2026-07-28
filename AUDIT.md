@@ -252,3 +252,173 @@ pipeline needs to be trustworthy.
    fix the strong-pick threshold or the published expectation to refer to the
    same cell, and decide whether an avg-book-priced FanDuel experiment is
    worth running at all given the backtest's own avg-book row is −2.3% CLV.
+
+---
+
+# Follow-up pass — second audit
+
+*Independent re-audit run after the review above, same data vintage. Method was
+deliberately different: measure first, from `preds_v2.pkl` / `preds_v4.pkl` /
+`props.pkl` / `matches.pkl` / the wehoop parquets / the BP archive, and treat the
+code as the explanation rather than the evidence. Most of the findings above
+reproduced; this section records only what is **new or materially sharper**, plus
+the corroborations that firm up the earlier calls.*
+
+## New — not in the first pass
+
+### N1. The distribution layer is over-biased, and it inverts the whole portfolio
+
+`dist_utils.py` is treated above as neutral machinery. It is not. Measured over
+23,644 graded props at the opening line:
+
+- realised over rate **0.4678**
+- model mean P(over) **0.4910** (+2.33pp)
+- **the opener's own implied P(over) 0.4889 (+2.11pp)**
+
+The bias is present when the machinery is fed *the market's own prices*, which
+rules out the market and the model as the cause — it is the parametric inversion.
+~6σ, negative in all 8 markets (`reb_ast` −4.7pp, `threes` −3.8pp, `pra` −0.8pp).
+Likely cause: `SIGMA_AB` is fitted as the variance of the actual around the
+player's *fast EW mean*, folding EW estimation error into σ.
+
+A 2.3pp bias on a coin-flip prop is ~4.5% of EV, so **the entire EV ≥ 3% listing
+tier sits inside the model's own calibration error**. It points at overs, which is
+why the sim is 67-79% overs and why all four live bets are overs. Correcting it on
+both the model and the CLV benchmark (apples-to-apples — the benchmark shares the
+bias, so an overs-heavy book scores inflated CLV automatically):
+
+| | n | % over | ROI | CLV |
+|---|---|---|---|---|
+| as published (EV>2%) | 1,190 | 67% | +10.6% (t=2.9) | +5.35% (t=2.3) |
+| coherent-devig only | 819 | 79% | +11.8% (t=2.7) | +2.71% (t=3.8) |
+| **coherent + calibrated** | 1,595 | **8%** | **+13.4% (t=3.8)** | **+2.48% (t=5.5)** |
+| coherent + calibrated, EV>6% | 245 | 15% | +26.7% (t=3.6) | +8.05% (t=5.3) |
+
+So a calibrated version of this model bets **the opposite side** of what is
+currently on the sheet, and looks better doing it. This is the single largest
+correction available, and it is independent of H1/H2/H3 above.
+
+### N2. The staleness gate is a filter *for* props that structurally cannot pay CLV
+
+A prop whose price never moves returns CLV = −(the vig you paid), deterministically
+— there is no mechanism by which it can pay. Measured:
+
+```
+EV>2% picks, price MOVED open->close   n=1030  ROI +12.31%  CLV +6.84%
+EV>2% picks, price NEVER moved         n= 160  ROI  -0.29%  CLV -4.26% (t=-13.4)
+   coherent-devig subset:                                   CLV -6.84% (t=-43.5)
+```
+
+Replaying the live gate (`live_pipeline.py:252`) against FanDuel's archived close
+on the 1,190 EV≥2% bets:
+
+```
+FanDuel quotes the prop at all       41.3%
+ ...same line at close               29.2%
+ ...passes the full stale gate       18.9%
+
+gate PASSES (FD never moved)   n= 225   ROI  -4.63%   CLV -3.66% (t=-7.7)
+gate BLOCKS (FD moved)         n= 965   ROI +14.17%   CLV +7.45% (t=+2.6)
+```
+
+**Caveat, stated plainly:** this replay uses the *close*, so "passes" means FanDuel
+never moved all season, while the live gate at pick time cannot distinguish "hasn't
+moved yet" from "will never move". −3.66% is therefore a lower bound, not the
+expected live value. The mechanism is the point: the gate is positively correlated
+with the never-move population, and that population is a guaranteed CLV loser. This
+sharpens the ±15¢ note in MEDIUM above from a precision quibble into a selection
+problem.
+
+### N3. Soccer: two trained features go to exactly zero the moment Pinnacle is gone
+
+H6 above identifies the regime change. Two concrete mechanisms, both verified:
+
+- `zo` is `logit(devig_shin(PS if present else EAvg))`, and
+  `three_way_feats(..., EAvg)` returns `logit(devig_shin(EAvg)) − zo`. Under the
+  fallback those are the same quantity, so **`disavg_h` and `disavg_a` are exactly
+  0** for every live fixture (numerically confirmed: max|disavg| = 0.0 over 3,000
+  fallback rows) while carrying real variance in training.
+- `overround_anchor` has median **0.0305** in training (94.4% of 2012+ rows are
+  Pinnacle-anchored); every live row will be avg-anchored at ~**0.0677**, a value
+  only **6.19%** of training rows reach.
+
+Separately: switching the CLV yardstick from the Pinnacle close (overround 1.0387)
+to the average-book close (1.0772) costs about **−0.5 to −0.6pp** of measured CLV
+on identical bets — smaller than the regime change itself, but it moves the live
+result against the published expectation.
+
+### N4. On artifact rows the *close* is broken too, so their CLV is unmeasurable
+
+H2 above excludes mispaired opens. Going further: among bets whose **open** is
+incoherent, the **close** is also incoherent **39.2%** of the time, versus **0.5%**
+for clean rows. Their apparent "+22% CLV" at EV≥6% is therefore not merely
+overstated, it is measuring the same defect twice. The honest cell is
+bets coherent at *both* ends: n=819, ROI +11.8%, CLV **+2.71%** (t=3.8).
+
+## Corroborated independently
+
+- **The Engstler bet (C1).** Re-verified live against the BP API: over 1.5 @ +194
+  (book 10, 18:08:38) vs under 0.5 @ +150 (book 14, 18:24:46), two-way sum
+  **0.7401**. Same conclusion, same mechanism.
+- **The date-join bug (H1),** reached by a different route: resolving each prop's
+  true game via the event schedule converted UTC→ET, then replaying
+  `grade_props.find`. Result **26.83% wrong-game (8,071 of 30,083)**, of which
+  **7,599 are off by exactly +2 days** — consistent with H1's 25.4%. The date
+  convention itself was verified rather than assumed: over 309 evening events the
+  home team has a wehoop game on the ET date **78.0%** of the time and on the UTC
+  date **1.6%**.
+- **The mispaired-quote enrichment (H2).** Base rate of incoherent opening pairs
+  2.18% across 27,009 archived pairs; 30.8% of EV≥2% bets, 34.5% at EV≥3%, and
+  **42.1% at EV≥6%** — a 19× enrichment at the notification threshold.
+- **The soccer placebo (H4).** Substituting the opener's own devigged probabilities
+  for the model — zero information — gives CLV **+2.80%** at EV>2% vs the model's
+  +2.17%, and **+5.02%** vs +4.24% at EV>5%. Decomposed: the 10,706 bets shopping
+  would have found anyway carry +3.94%; the 20,486 the model *adds* carry only
+  **+1.25%**. Underlying arithmetic: max-of-25-books early carries 1.0120 overround
+  (−1.18% blind EV) against the average book's 1.0718 (−6.69%), while the ens
+  deviates from the devigged opener by just **0.76pp** on average.
+- **The soccer notifier (H5).** Confirmed, with a note: priced at best-of-book the
+  notified subset is not negative, it is merely the *worse* slice — playable and
+  notified n=1,893, ROI +5.43%, CLV +3.23%; playable but not notified n=6,376, ROI
+  **+8.07%**, CLV **+4.54%**. The notified picks are where the model disagrees most
+  with the opener (0.0240 vs 0.0108) — its error tail. The −2.32% CLV figure in H5
+  is the avg-book *price*, which the protocol's own playability gate would not let
+  you take; the real cost is that ~77% of the playable set is never surfaced,
+  cutting realised volume ~4× and with it the power of the season.
+
+## Also confirmed, smaller
+
+- `PANEL_FEATS` is defined twice (`build_modelset.py:23`, `train_eval.py:26`); live
+  imports one, the backtest the other. Verified identical today — 36 entries, same
+  order — but nothing asserts it, and a divergence would silently feed the live
+  model a permuted feature vector.
+- `soccer/src/live_pipeline.py:246` `is_fixture = FTR.isna()` would score any
+  result-less historical row as a fixture; currently 0 rows are affected, so it is
+  latent rather than active. The live exposure is the date filter instead — played
+  matches persist in `fixtures.csv` for months.
+- `fixture_panel` stamps `game_date = now()` for a game 1-2 days out, so `rest` is
+  understated on every live row.
+- `hash((r.event_id,))` at `live_pipeline.py:155` is non-deterministic under
+  `PYTHONHASHSEED` if `event_id` is ever a string.
+
+## Revised order of work
+
+The first pass's ordering holds, with N1 inserted — it is cheap, it is independent
+of the date and devig fixes, and it changes which side of the market the model
+bets:
+
+1. **Now** — same-book / same-line / booksum guard at pick time and in
+   `close_prob`; reject any pick where `mu_model` contradicts the recommended side
+   (the Engstler pick had `mu_model` 1.52 < `mu_open` 1.59 yet was listed as the
+   sheet's strongest *over*; that contradiction alone would have caught it); allow
+   CLV backfill.
+2. **Then** — UTC→ET dates (or settle by `event_id`), probe order `(0, −1, +1)`.
+3. **Then, before retraining** — recalibrate `SIGMA_AB` against a conditional
+   projection plus a walk-forward per-market offset. Acceptance test: fed the
+   *market's own* prices, mean implied P(over) must match the realised over rate
+   within 0.5pp overall and 1pp per market. Only then rebuild and retrain, so the
+   clean-subset number is measured against a calibrated model rather than a
+   +2.3pp-biased one.
+4. **Soccer, before August** — add the placebo control column permanently; run a
+   full walk-forward on the average-book anchor (data exists back to 2012) and drop
+   `disavg_*` when the fallback fires; retarget `strong` at the playable condition.
