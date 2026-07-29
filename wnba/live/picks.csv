@@ -1,2 +1,2 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
-2684_threes_jordin canada_under,2026-07-29,2026-07-30 00:00:00,2684,threes,Jordin Canada,ATL,ATL@DAL,under,1.5,-240,0.7335,0.0391,False,-247,-224,2.0,1.05,1.15,1.5,True,False
+2684_points_paige bueckers_under,2026-07-29,2026-07-30 00:00:00,2684,points,Paige Bueckers,DAL,ATL@DAL,under,19.5,100,0.5157,0.0315,False,-100,106,0.5,20.06,20.64,19.5,True,False
