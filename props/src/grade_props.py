@@ -113,18 +113,19 @@ def load_boxes(sport):
         st = pd.concat([pd.read_parquet(p) for p in
                         sorted(glob.glob(os.path.join(ddir, "stats_player_week_*.parquet")))],
                        ignore_index=True)
-        games = pd.read_csv(os.path.join(ddir, "games.csv"))
         team_col = "team" if "team" in st else "recent_team"
         if "passing_interceptions" not in st and "interceptions" in st:
             st["passing_interceptions"] = st["interceptions"]
-        long = pd.concat([
-            games[["game_id", "season", "week", "home_team"]]
-            .rename(columns={"home_team": "tm"}),
-            games[["game_id", "season", "week", "away_team"]]
-            .rename(columns={"away_team": "tm"}),
-        ])
-        st = st.merge(long, left_on=["season", "week", team_col],
-                      right_on=["season", "week", "tm"], how="left")
+        if "game_id" not in st:
+            games = pd.read_csv(os.path.join(ddir, "games.csv"))
+            long = pd.concat([
+                games[["game_id", "season", "week", "home_team"]]
+                .rename(columns={"home_team": "tm"}),
+                games[["game_id", "season", "week", "away_team"]]
+                .rename(columns={"away_team": "tm"}),
+            ])
+            st = st.merge(long, left_on=["season", "week", team_col],
+                          right_on=["season", "week", "tm"], how="left")
         st["native_id"] = st.game_id
         st["nname"] = st.player_display_name.map(norm)
         st["played"] = True  # presence of a stat row is the play indicator

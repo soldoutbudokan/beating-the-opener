@@ -94,6 +94,22 @@ consistency only.
   lifting capture cannot fix a 16-bet/season trade cell (H3 lesson).
   Effort moves to NBA/NFL/NHL where FD sources the openers.**
 
+- **2026-07-29 G0.3 hand audit: PASS.** 500/500 MLB props re-resolved fresh
+  from StatsAPI by gamePk match the graded archive exactly — 0 wrong-game
+  joins, doubleheaders included.
+- **2026-07-29 NBA — PASS, full scope.** G0.1/0.2/0.3 perfect (coverage
+  100%, opens 99.7%, coherent 96.4%, crosswalk 1322/1322, grading 100%
+  matched / 5.9% void). **Four cells pass both gates on the consensus
+  close: assists, rebounds, reb_ast, steals.** FD sources 35.8% of openers
+  and quotes 55.4% of closes — the FD-rich venue. → Phase 2 NBA.
+- **2026-07-29 NFL — FAIL Phase 1** (no [AB] cells; 64 dates, Gate A
+  n-requirements unreachable at 285 games/season). Notable: stale-FD lag
+  cell = 17.1% of FD-sourced openers (594 props) vs MLB's 4.5% — recheck
+  when the 2026 season accumulates. Grading fixed (stats_player_week
+  carries its own game_id; merge collision resolved) — 99.4% matched.
+- **2026-07-29 NHL — FAIL Phase 1** (G0.1 passes; zero [AB] cells;
+  87.2% match rate — abbreviated-name fallback gaps, moot given verdict).
+
 ## Decision log
 
 - **2026-07-28** Project started. Verified by live probes: BettingPros
