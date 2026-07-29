@@ -1,2 +1,1 @@
-key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
-2687_rebounds_aneesah morrow_under,2026-07-30,2026-07-31 00:00:00,2687,rebounds,Aneesah Morrow,CON,CON@CHI,under,8.5,106,0.51,0.0505,False,102,108,1.0,9.13,9.33,8.5,True,False
+key,strong
