@@ -8,10 +8,13 @@ Saves:
   data/raw/bp/offers/<event>_<market>.json.gz  one offers payload per event x market
 
 Usage: python3 src/scrape_bettingpros.py [--season 2025]
+       python3 src/scrape_bettingpros.py --refetch 2679,2680   # re-archive events
 Idempotent: skips files that already exist. Offers are only fetched once the
-event's date has passed, so the first snapshot is already the close.
+event has actually finished (tip + FINAL_CUSHION_H), so the first snapshot is
+already the close.
 """
 import argparse
+import datetime as dt
 import glob
 import gzip
 import json
@@ -43,6 +46,23 @@ SEASONS = {
 }
 PAUSE = 0.35
 WORKERS = 8
+# An event is archivable only once it is over: a WNBA game runs ~2h15m, so
+# tip + 5h clears regulation, OT and a broadcast delay. Compare TIMESTAMPS,
+# never dates - `scheduled` is UTC while the rest of the pipeline keys off the
+# ET game date, and a date-vs-date test gets that boundary wrong in both
+# directions: it skipped 8pm-ET tips for a full extra day (their UTC date is
+# tomorrow's) and it archived 6-8pm-ET tips ~1h in, mid-game, as the "close".
+FINAL_CUSHION_H = 5.0
+
+
+def is_final(event, now=None):
+    """True once `event` is over and its offers are safe to archive as a close."""
+    now = now or dt.datetime.now(dt.timezone.utc)
+    try:
+        tip = dt.datetime.strptime(event["scheduled"], "%Y-%m-%d %H:%M:%S")
+    except (KeyError, TypeError, ValueError):
+        return False
+    return now >= tip.replace(tzinfo=dt.timezone.utc) + dt.timedelta(hours=FINAL_CUSHION_H)
 
 
 def get(url, tries=4):
@@ -112,8 +132,12 @@ def fetch_events(season):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--season", type=int, default=None)
+    ap.add_argument("--refetch", default="",
+                    help="comma-separated event ids to re-archive, overwriting "
+                         "existing files (repairs snapshots taken mid-game)")
     args = ap.parse_args()
     seasons = [args.season] if args.season else sorted(SEASONS)
+    refetch = {int(x) for x in args.refetch.split(",") if x.strip()}
 
     # canary: if the API is unreachable (e.g. egress-blocked environment),
     # abort before touching anything - a failed run must not modify the archive
@@ -122,7 +146,6 @@ def main():
         raise SystemExit(1)
 
     os.makedirs(os.path.join(RAW, "offers"), exist_ok=True)
-    today = time.strftime("%Y-%m-%d")
 
     for season in seasons:
         events = fetch_events(season)
@@ -130,18 +153,21 @@ def main():
         events.sort(key=lambda e: e["scheduled"])
         jobs = []
         n_skip = 0
+        n_pending = 0
         for e in events:
             eid, sched = e["id"], e["scheduled"][:10]
-            if sched >= today:
-                continue  # not closed yet; live pipeline's job
+            if not is_final(e):
+                n_pending += 1
+                continue  # still to come or in progress; live pipeline's job
             for mid in MARKETS:
                 path = os.path.join(RAW, "offers", f"{eid}_{mid}.json.gz")
-                if os.path.exists(path):
+                if os.path.exists(path) and eid not in refetch:
                     n_skip += 1
                 else:
                     jobs.append((eid, mid, path, sched))
 
         done = [0]
+        repaired = [0]
 
         def fetch_one(job):
             eid, mid, path, sched = job
@@ -149,15 +175,25 @@ def main():
             if d is None:
                 print(f"FAIL offers event {eid} market {mid}", flush=True)
                 return
+            # the archive is irreplaceable: never trade a good file for an
+            # empty response (rolled-off event, market never offered)
+            if os.path.exists(path) and not d.get("offers"):
+                print(f"KEEP existing {eid}_{mid}: refetch returned 0 offers",
+                      flush=True)
+                return
+            existed = os.path.exists(path)
             save_gz(path, d)
             done[0] += 1
+            repaired[0] += existed
             if done[0] % 250 == 0:
                 print(f"  {season}: {done[0]}/{len(jobs)} (at {sched})", flush=True)
             time.sleep(PAUSE)
 
         with ThreadPoolExecutor(max_workers=WORKERS) as ex:
             list(ex.map(fetch_one, jobs))
-        print(f"season {season} done: {done[0]} fetched, {n_skip} already had", flush=True)
+        print(f"season {season} done: {done[0]} fetched "
+              f"({repaired[0]} overwritten), {n_skip} already had, "
+              f"{n_pending} not final yet", flush=True)
 
     n = len(glob.glob(os.path.join(RAW, "offers", "*.json.gz")))
     print(f"archive: {n} offer files", flush=True)
