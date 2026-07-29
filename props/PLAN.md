@@ -189,6 +189,36 @@ Verdict rule: a sport passes only if ≥ 1 market cell passes BOTH gates on
 the consensus close. This phase is a screen — no model, no sim, no EV
 table; any modeling would get its own pre-registered phase first.
 
+### Phase 1G verdicts (2026-07-29, gates above unchanged since freeze)
+
+- **QC — PASS both sports.** NHL dual-source agreement 1,394/1,394 (100%),
+  including all 119 shootout games — BP settles on the official
+  SO-inclusive final. WNBA 512/512 (100%) via the learned abbr map
+  (15 teams incl. 2026 expansion TOR/PDX). Coherent-open share ≈ 99% per
+  market in both sports (no market dropped).
+- **NHL games — FAIL per the registered rule** (no market cell passes both
+  gates on the consensus close), **with strong flagged near-misses**:
+  moneyline [B] (dir 55.6%, p=4.1e-4; Gate A dLL +0.0041 — 5× the
+  threshold — but t_dt 2.3 → p≈0.02, needs <0.01); puck line misses ONLY
+  the n floor (dir 77.8%, p=1.1e-7, n_moved=90 < 150); totals fail both.
+  The POOLED row passes both gates on all three close sources (consensus
+  dLL +0.00295 t_dt 3.1, dir 56.2% p=1.6e-6) — recorded as a FLAG, not a
+  pass: pooling correlates ML/PL rows from the same game, which is exactly
+  why the rule pre-committed to market cells. Unlike NHL props (frozen,
+  1.3% move rate), NHL game lines move (ML 74%, totals 30%) and the moves
+  are informative. FD sources 45.7% of coherent game openers (the venue is
+  NOT empty — NHL props were 5.4%). N2: exploitable-lag cell 10.9%,
+  mechanical CLV of hitting FD's stale price −1.83% — staleness alone
+  still pays −vig. Disposition: **re-screen when the 2026-27 archive
+  doubles n** (scraper armed, zero marginal cost); no modeling now.
+- **WNBA games — FAIL, and not for power.** Lines move constantly (70-76%)
+  but the close is no better than the open: pooled same-line dLL t_dt 0.0;
+  spread same-line dLL NEGATIVE (−0.0026, t −2.6); pooled directional
+  54.1% at p=0.0067 (needs <0.001). The WNBA props wedge does NOT extend
+  to its game lines — game closes know nothing the openers didn't. A
+  bottom-up game model would therefore have to beat the close outright,
+  the approach already 0-for-2 in this repo. Question closed.
+
 ## Decision log
 
 - **2026-07-28** Project started. Verified by live probes: BettingPros

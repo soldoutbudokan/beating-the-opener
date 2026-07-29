@@ -27,6 +27,25 @@ MLB detail: the model beat the opener (+0.00027 LL, clustered t=3.1,
 22% capture) but FanDuel quotes ~4% of MLB props — the tradeable cell
 produced **16 bets in 13 months**. A right model in an empty venue.
 
+## Game markets (Phase 1G, 2026-07-29)
+
+Follow-up question: was the NHL "no" props-only? Screened the archived
+*game* markets — NHL ML/puck-line/totals (1,394 games, scores validated
+100% vs official finals incl. all 119 shootouts) and WNBA ML/spread/totals
+(511 games) — same gates, n floors scaled (PLAN.md Phase 1G).
+
+- **NHL: FAIL, but flagged for a free re-screen.** Opposite texture to NHL
+  props (which never move): game lines move (ML 74%) and the close is
+  better sport-wide (+0.0030 LL, t 3.1; moves 56% directional, p=2e-6
+  pooled) — but no single market clears the per-cell gates with one
+  season. Puck line missed only the n floor (77.8% directional, n=90).
+  FD sources 46% of game openers, so the venue exists. The 2026-27
+  archive doubles n at zero cost; verdict then. Hitting FD's stale game
+  prices without a model still pays −vig (N2 CLV −1.8%).
+- **WNBA: FAIL, not for power.** Game lines move constantly but the close
+  is no better than the open (pooled t ≈ 0; spread same-line negative).
+  The WNBA props wedge does not extend to its game markets.
+
 ## NBA result (anchor-on-open move model, walk-forward)
 
 Architecture ported from wnba/: opener → implied mean (per-market

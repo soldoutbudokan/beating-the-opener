@@ -135,6 +135,7 @@ def parse_game_file(path, market_name, rows):
                     "selection": label, "participant": participant,
                     "book": b["id"], "line": ln.get("line"),
                     "cost": ln.get("cost"), "updated": ln.get("updated"),
+                    "is_off": bool(ln.get("is_off")),
                     "open_line": op.get("line"), "open_cost": op.get("cost"),
                     "open_book": op.get("book_id"), "open_created": op.get("created"),
                 })
