@@ -79,6 +79,21 @@ consistency only.
   **Phase 2 scope: train pooled (architecture), but gates/trading evaluated
   ONLY on hits + strikeouts.**
 
+- **2026-07-29 MLB Phase 2 (dev window, 87,826 props to 2026-06-01).**
+  Calibration PASS (overall |bias| 0.39pp; worst outs_recorded 1.33pp —
+  both inside gates). Leakage guard clean. Tripwire clean (model vs close
+  −0.00092, loses as it should). Model vs open **+0.00027, clustered t
+  3.11** (gate t≥3 met), capture **22%** (gate ≥25% — short). Move corr
+  0.299, sd(pred) 0.022 vs sd(move) 0.083. Per-market: hits +0.00037,
+  strikeouts −0.00022 (the biggest-wedge market resists the move model).
+  **FD tradeable cell: 2,009 props in cell → 16 bets at EV≥2% in 13
+  months.** CLV-cal +2.9% to +3.7% but pg-t ≈ 1.0 at n=16; Phase 3's
+  n≥400 is unreachable at this volume. Placebo takes 0 bets.
+  **Decision: MLB banked as "wedge real, model marginal, FanDuel venue
+  ~empty." The two permitted feature iterations are NOT spent here —
+  lifting capture cannot fix a 16-bet/season trade cell (H3 lesson).
+  Effort moves to NBA/NFL/NHL where FD sources the openers.**
+
 ## Decision log
 
 - **2026-07-28** Project started. Verified by live probes: BettingPros
