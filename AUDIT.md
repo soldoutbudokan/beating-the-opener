@@ -452,14 +452,21 @@ calibration + hardening), `c9406a2` (5/6, soccer), plus this one (6/6, docs).*
   full extra day (all five settled bets sat with blank CLV, backfill starved
   because no file existed); and a 6-8pm-ET tip shares its UTC date, so its
   offers were archived at the next 00:21Z run — event 2679 was snapshotted
-  **0.93h after tip, mid-game**, and stored as the "close". The blank was
-  visible; the mid-game close was silent, and it fed `clv`, `clv_cal` and the
-  modelset alike. Now gated on timestamps: `is_final()` requires
-  `now >= tip + FINAL_CUSHION_H` (5h). Audited the whole archive by
-  first-commit time vs tip: exactly one contaminated event (2679, 15 files)
-  and four missing (2680-2683). Both repaired via a new `--refetch` flag,
-  which never trades a good file for an empty response; CLV stamped on all
-  five bets (mean -4.14%, `clv_cal` -6.36%).
+  0.93h after tip, in principle mid-game. Now gated on timestamps:
+  `is_final()` requires `now >= tip + FINAL_CUSHION_H` (5h).
+  **Only the missing-close half of this bug ever bit.** Audited the whole
+  archive by first-commit time vs tip: four events missing (2680-2683) and
+  one snapshotted early (2679). Re-fetching 2679 changed nothing but the
+  response's own `utc`/`ts` metadata — all 52 main quotes byte-identical —
+  because BP freezes a prop's `updated` stamp at tip (measured: tip+7s to
+  tip+15s across 2679, tip+20s to tip+30s across 2680-2683). So an early
+  snapshot still captures the true close, and no CLV or modelset value was
+  ever wrong from it. The timestamp gate is kept as the correct invariant,
+  not as a repair: it costs nothing and stops depending on a freeze
+  behaviour BP never promised. Repair used a new `--refetch` flag that never
+  trades a good file for an empty response. Net effect: the four missing
+  closes arrived and CLV stamped on all five settled bets (mean -4.14%,
+  `clv_cal` -6.36%).
 - **H1** — BP event dates are converted UTC→ET at the source. Rebuilt:
   later-game joins 25.4% → **0.10%**, stored labels match the true game
   76.7% → **100%**.
