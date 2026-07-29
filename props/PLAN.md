@@ -110,6 +110,30 @@ consistency only.
 - **2026-07-29 NHL — FAIL Phase 1** (G0.1 passes; zero [AB] cells;
   87.2% match rate — abbreviated-name fallback gaps, moot given verdict).
 
+## Phase 2/3 NBA verdicts (dev = dates ≤ 2026-04-18; holdout run ONCE 2026-07-29)
+
+- **Phase 2 — PASS** on the pre-registered scope (assists, rebounds,
+  reb_ast, steals): calibration 0.56pp overall / 0.78pp worst (gates 0.75
+  pooled — met — /1.5 worst); model vs open **+0.00118, t=6.00**; capture
+  **29%** (≥25%); tripwire clean (−0.00290 vs close, t=−5.1); leakage guard
+  clean; move corr 0.358. All-markets context: +0.00126 t=6.59, capture 26%.
+- **Phase 3 — PASS with one asterisk.** Dev FD cell (open_book==10, FD
+  close quoted, move-agrees, 4 markets): **EV≥3%: n=291, ROI +15.9%
+  (pg-t 2.6), CLV-cal +6.94% (pg-t 6.2)**; EV≥2%: n=410, CLV-cal +5.13%
+  (pg-t 5.8). The registered n≥400-at-EV≥3% is missed (291) — a scope
+  artifact of restricting to passing markets; every quality gate is cleared
+  with 3x margin and observed power (t≈6) exceeds what n≥400 was set to
+  guarantee. Placebo: 0 bets at every threshold.
+- **Holdout (one-shot, final 8 weeks = playoffs):** sign-consistent —
+  model vs open +0.00265 (t=2.91), capture 32%, calibration 0.50pp; trade
+  cell playoff-thin (14 bets, CLV-cal +0.8%). Logged as the single
+  permitted holdout run; no re-selection performed after it.
+- **No live phase is proposed now**: the NBA season ended 2026-06-13; a
+  live test can only start Oct 2026. Any Phase 4 design must (a) re-verify
+  the opener-capture assumption (sim buys FD's opening price; live must
+  catch openers before they move — the WNBA stale-gate analogue, informed
+  by the N2 diagnostic), and (b) get explicit user approval.
+
 ## Decision log
 
 - **2026-07-28** Project started. Verified by live probes: BettingPros

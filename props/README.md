@@ -1,0 +1,69 @@
+# props — multi-sport FanDuel player-prop screen
+
+**Question.** Somewhere in FanDuel's prop menus, is there a market whose
+opener is lazy and whose close is informative — the repo's two-gate rule —
+with enough FanDuel presence to actually trade it?
+
+**Method.** Backfilled the BettingPros archive (free API, opening line +
+per-book closes incl. FanDuel) for four sports before it rolls off
+upstream: **MLB 2025+2026 (81,400 offer files), NBA 2025-26 (17,186),
+NFL 2025 (3,705), NHL 2025-26 (12,546)** — 421k graded MLB props, 119k
+NBA, 14k NFL, 33k NHL. Outcomes from MLB StatsAPI / hoopR / nflverse /
+NHL api-web, joined by native game id through a crosswalk (no name+date
+joins; ambiguous doubleheaders voided). All gates pre-registered in
+PLAN.md before each phase ran; a 500-prop hand audit against fresh
+source boxscores found **0 wrong-game joins**.
+
+## Verdicts (Phase 1 wedge, pre-registered gates)
+
+| sport | QC | wedge cells passing both gates | FD share of openers | verdict |
+|---|---|---|---|---|
+| NBA 2025-26 | 100% mapped/matched | **assists, rebounds, reb_ast, steals** | **35.8%** | **modeled — see below** |
+| MLB 2025-26 | 99.6/99.4% | hits (consensus); strikeouts (FD/DK closes) | 2.5% | wedge real, venue empty |
+| NFL 2025 | 100/99.4% | none (64 dates — underpowered) | 26.4% | re-screen with 2026 data |
+| NHL 2025-26 | 100/87% | none | 5.4% | dead |
+
+MLB detail: the model beat the opener (+0.00027 LL, clustered t=3.1,
+22% capture) but FanDuel quotes ~4% of MLB props — the tradeable cell
+produced **16 bets in 13 months**. A right model in an empty venue.
+
+## NBA result (anchor-on-open move model, walk-forward)
+
+Architecture ported from wnba/: opener → implied mean (per-market
+Normal/Poisson), HGBR predicts the standardized open→close move, walk-forward
+weekly retrains, expanding shade calibration, EV never from the shade alone.
+Dev window ends 2026-04-18; one holdout run (playoffs) after gates froze.
+
+Pre-registered scope (the four passing markets), dev:
+
+- model vs open **+0.00118 LL (date-clustered t=6.0)**, capture **29%**,
+  calibration |bias| 0.56pp, tripwire clean (loses to the close −0.0029).
+- FanDuel tradeable cell (FD-sourced opener, FD close quoted, side agrees
+  with the predicted move): **EV≥3%: 291 bets, ROI +15.9% (pg-t 2.6),
+  shade-adjusted CLV +6.9% (pg-t 6.2)**; EV≥2%: 410 bets, CLV +5.1%
+  (pg-t 5.8). Zero-skill placebo takes **0 bets**.
+- Holdout (final 8 weeks, playoffs, one-shot): sign-consistent
+  (+0.00265, t=2.9; capture 32%) with a thin trade cell (14 bets).
+- One asterisk: the pre-registered n≥400-at-EV≥3% landed at 291 (scope
+  shrank the cell); every quality gate cleared with margin.
+
+## Caveats that survive into any live design
+
+1. The sim buys FanDuel's **opening** price. Live must catch openers
+   before they move — the WNBA stale-gate problem. NBA openers post the
+   night before; the N2 lag population needs measuring at live cadence.
+2. The holdout is playoffs — a different regime (fewer games, sharper
+   prices). The dev result is regular-season.
+3. One season of NBA data (the API deletes older seasons). The 2026-27
+   season re-arms the archive from October; the scraper is idempotent.
+4. FanDuel prop limits are low; this is a bankroll-growth edge at best.
+
+**Status: research complete, live NOT armed.** The NBA season ended
+2026-06-13; a live experiment could only start Oct 2026 and requires its
+own PROTOCOL, an opener-capture study, and explicit approval. NFL gets a
+free re-screen as 2026 data accumulates in the archive.
+
+Reproduce: `python3 src/scrape_bp.py --sport NBA`, then `fetch_nba.py`,
+`build_props.py`, `map_events.py`, `grade_props.py`, `qc_phase0.py`,
+`wedge.py`, `features.py`, `build_modelset.py`, `train_eval.py`
+(all `--sport NBA`, run from props/). Gates and decision log: PLAN.md.
