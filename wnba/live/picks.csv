@@ -1,2 +1,2 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
-2688_assists_jackie young_under,2026-07-30,2026-07-31 02:00:00,2688,assists,Jackie Young,LVA,NYL@LVA,under,6.5,118,0.4726,0.0303,False,118,125,0.5,7.33,7.49,6.5,True,False
+2684_rebounds_jessica shepard_under,2026-07-29,2026-07-30 00:00:00,2684,rebounds,Jessica Shepard,DAL,ATL@DAL,under,11.5,-120,0.5624,0.0311,False,-120,-113,1.0,11.61,11.68,11.5,True,False
