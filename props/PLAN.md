@@ -60,6 +60,25 @@ n ≥ 400, shade-adjusted CLV ≥ +2% with player-game-clustered t ≥ 2, and
 ≥ 2pp above the zero-skill placebo run in the same cell. Holdout: sign
 consistency only.
 
+## Phase 1 verdicts
+
+- **2026-07-29 MLB — PASS (reduced scope).** G0.1/G0.2/G0.3 all passed
+  (coverage 99.9%, opens 97.7%, coherent 99.7%, crosswalk 99.56%, grading
+  99.4%/9.8% void, 421,061 unique props, 332 dates). Cells passing BOTH
+  pre-registered gates: **hits × consensus close** (dLL +0.00153 t_dt 4.2;
+  directional 72.8% p 2.6e-50, n_moved 1,039) and **strikeouts × FanDuel /
+  × DraftKings closes** (dLL +0.0047..+0.0051 t_dt 2.8-3.2; directional
+  59.9-63.7% p ≤ 2e-10). Strikeouts missed Gate A on consensus narrowly
+  (t 2.3, needs p<.01). Seven further markets pass only Gate B (directional
+  57-73% at astronomical p, but same-line juice diff under-powered/flat) —
+  NOT modeled, per pre-registration. Pooled FD-sourced-opener cell: dLL
+  +0.0080 t 3.0-3.5 vs every close source — FD openers are the soft spot.
+  N2: FD stale-vs-moved-consensus cell = 164 props/season (4.5%) — the
+  WNBA-style stale-FD gate would have almost no volume in MLB; a live
+  design would need the FD-quotes-anything cell (4% of props) first.
+  **Phase 2 scope: train pooled (architecture), but gates/trading evaluated
+  ONLY on hits + strikeouts.**
+
 ## Decision log
 
 - **2026-07-28** Project started. Verified by live probes: BettingPros
