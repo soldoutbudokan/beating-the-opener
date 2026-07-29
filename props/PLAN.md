@@ -134,6 +134,61 @@ consistency only.
   catch openers before they move — the WNBA stale-gate analogue, informed
   by the N2 diagnostic), and (b) get explicit user approval.
 
+## Phase 1G — game-market wedge: NHL + WNBA (gates pre-registered
+2026-07-29, BEFORE any game-market wedge code was written or run)
+
+Prompted by the user: was the NHL "no" props-only? Could a bottom-up game
+model work? This phase screens the *game* markets for the open→close wedge —
+the necessary precondition for any model in this repo's method. Inputs are
+already on disk: NHL moneyline/puck_line/total (mids 193/194/195, 1,394
+events, props/ archive) and WNBA moneyline/spread/total (mids 371/372/373,
+641 events, wnba/ archive — read-only cross-project input; the games table
+is built into props/data/games_wnba.pkl, nothing under wnba/ is modified).
+
+Unit of analysis: one row per event × market × book with a coherent two-way
+quote at BOTH ends (C1): same book both sides; total O/U lines equal;
+spread/puck-line home/away lines negations of each other; booksum ∈
+[1.00, 1.15] at open and close; close not is_off on either side. Canonical
+side: home (ML/spread/PL), over (totals) — one row per game, never both
+mirror sides. Outcomes: ML = home won (OT/SO included, no ties exist);
+totals = actual total vs line, pushes dropped; spread/PL = home margin in
+expected-margin space (em = −home_line), pushes dropped.
+
+Grading QC gate: BP event scores must agree with a native source on ≥ 99%
+of completed events (NHL: api-web official finals, which include the SO
+winner's +1 goal — the settlement convention; joined via the existing
+event_map. WNBA: wehoop schedule scores, joined via ET-date + learned
+abbr code map, bijection-checked). Disagreements are dropped, never
+hand-adjudicated. Coherent-open share < 20% of completed events → that
+market drops out (mirrors the Phase 0 kill).
+
+Gates — same effect sizes and p-values as Phase 1; n floors scaled because
+a game contributes ONE row where props contributed dozens:
+- Gate A (informative close): same-line devigged LL(open) − LL(close)
+  ≥ +0.0008, date-clustered p < 0.01, n_same ≥ 500. ML has no line, so
+  every coherent ML row is same-line by construction.
+- Gate B (lazy open): moved lines point at the result ≥ 54%, binomial
+  p < 0.001, n_moved ≥ 150. ML variant (no line to move): "moved" = this
+  book's devigged home probability changed ≥ 1pp open→close; direction =
+  its sign; correct = it points at the winner (symmetric-noise null is
+  still 50%).
+- Also measured, never gated: FanDuel/DraftKings close-source batteries,
+  the FD-sourced-opener preview cell (H3), and the N2 staleness diagnostic
+  (consensus moved while FD's close ≈ FD's open + mechanical CLV of the
+  consensus-favored side at FD's stale price).
+
+Power note, recorded honestly IN ADVANCE: with n ≈ 500–1,400 rows per cell
+these screens only reach t ≥ 2.6 if the game-market wedge is ~2–3× the
+prop-screen threshold. A null here means "no wedge detectable at daily
+open/close cadence with one season" — not "markets proven efficient".
+And a null on the wedge bounds only the open→close mechanism; beating the
+CLOSE outright is untested here and is the approach already 0-for-2 in
+this repo (wnba v1, nba control).
+
+Verdict rule: a sport passes only if ≥ 1 market cell passes BOTH gates on
+the consensus close. This phase is a screen — no model, no sim, no EV
+table; any modeling would get its own pre-registered phase first.
+
 ## Decision log
 
 - **2026-07-28** Project started. Verified by live probes: BettingPros
