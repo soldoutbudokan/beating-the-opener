@@ -467,6 +467,29 @@ calibration + hardening), `c9406a2` (5/6, soccer), plus this one (6/6, docs).*
   trades a good file for an empty response. Net effect: the four missing
   closes arrived and CLV stamped on all five settled bets (mean -4.14%,
   `clv_cal` -6.36%).
+- **C5** (found 2026-07-29, chasing "the CLV column looks wrong") — the CLV
+  column was *right*, but the machinery under it had an off-by-one on
+  whole-number lines. `dist_utils` documented "half-lines assumed" and the
+  Poisson branch took `k = ceil(line)`, so `over 2.0` was scored as
+  `P(X>=2)` when a whole-number line pushes at 2 and means `P(X>=3)` — a
+  **27pp** error (0.594 vs 0.323 at mu=2). Whole-number lines are not
+  hypothetical: **5.8%** of archived consensus closes and 2.45% of openers
+  sit on one, so the next bet whose close landed on an integer would have
+  been stamped with a badly wrong CLV. Blast radius already realised: 263
+  archived coherent closes carried a wrong `mu_close` (mean 0.99 counts),
+  and because the live model's training target is
+  `move = (mu_close - mu_open)/scale`, 10 of those were **corrupted training
+  labels, each off by ~0.74 sd of a target whose 1st-99th percentile span is
+  only +-0.35 sd** - pathological outliers, plus the per-player momentum EW
+  built from them. Fixed to `k = floor(line) + 1` in both `p_over` and
+  `implied_mu`. Verified **exact half-line parity** (bit-identical on every
+  half-line x mu tested), so the model, the picks and all five stamped CLVs
+  are untouched by the change itself; only whole-number lines move. Retrained
+  on the corrected labels the live sheet went from 3 marginal picks to 0.
+  Calibration evidence, 25,553 graded coherent closes re-expressed to a
+  shifted line: at +-1.0 (half-line to half-line) bias is +1.5/+2.3pp against
+  a +2.2pp over-shade baseline - i.e. the re-expression is sound, which is
+  why the two extrapolated rows (Leite 5.5->6.5, Engstler 0.5->1.5) stand.
 - **H1** — BP event dates are converted UTC→ET at the source. Rebuilt:
   later-game joins 25.4% → **0.10%**, stored labels match the true game
   76.7% → **100%**.

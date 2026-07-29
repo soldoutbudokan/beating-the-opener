@@ -1,4 +1,1 @@
-key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
-2684_rebounds_angel reese_under,2026-07-29,2026-07-30 00:00:00,2684,rebounds,Angel Reese,ATL,ATL@DAL,under,11.5,106,0.5097,0.05,False,103,108,1.0,12.15,12.53,11.5,True,False
-2684_threes_jordin canada_under,2026-07-29,2026-07-30 00:00:00,2684,threes,Jordin Canada,ATL,ATL@DAL,under,1.5,-240,0.7319,0.0368,False,-245,-223,2.0,1.05,1.15,1.5,True,False
-2688_assists_sabrina ionescu_under,2026-07-30,2026-07-31 02:00:00,2688,assists,Sabrina Ionescu,NYL,NYL@LVA,under,5.5,-112,0.5453,0.0321,False,-112,-105,1.0,5.81,6.0,5.5,True,False
+key,strong
