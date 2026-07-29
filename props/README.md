@@ -82,6 +82,8 @@ Pre-registered scope (the four passing markets), dev:
 own PROTOCOL, an opener-capture study, and explicit approval. NFL gets a
 free re-screen as 2026 data accumulates in the archive.
 
+Consolidated findings across all phases (incl. game markets): FINDINGS.md.
+
 Reproduce: `python3 src/scrape_bp.py --sport NBA`, then `fetch_nba.py`,
 `build_props.py`, `map_events.py`, `grade_props.py`, `qc_phase0.py`,
 `wedge.py`, `features.py`, `build_modelset.py`, `train_eval.py`
