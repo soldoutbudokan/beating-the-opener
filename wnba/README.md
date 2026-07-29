@@ -33,7 +33,8 @@ quarter-Kelly stakes, judged on CLV**. Running record:
 
 How it works — full details in **[live/PROTOCOL.md](live/PROTOCOL.md)**:
 
-1. An hourly cloud routine (`edge-watch`, Opus 5, shared with the soccer experiment) refreshes data, retrains,
+1. A cloud routine (`edge-watch`, Opus 5) runs 7x daily — clustered on the hours when FanDuel
+   actually posts openers, see [live/PROTOCOL.md](live/PROTOCOL.md#why-these-hours). It refreshes data, retrains,
    and scores today's props into [`live/picks.csv`](live/picks.csv) — but only
    props whose FanDuel price **is still sitting at the opening line** (the
    backtested edge is the stale opener; the model does not beat moved prices).

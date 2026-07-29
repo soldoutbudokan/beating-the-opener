@@ -30,6 +30,7 @@ Rules that apply everywhere:
   by the routines or by anything else. Each PROTOCOL has an "Injury check
   before you bet" section listing the conditions that void a pick; point the
   user at it when they're deciding on a fill.
-- One cloud routine, `edge-watch`, runs hourly at :21 UTC — WNBA only since
+- One cloud routine, `edge-watch`, runs 7x daily at :21 UTC
+  (`21 2,4,6,11,14,18,22 * * *`, cut from hourly 2026-07-29) — WNBA only since
   2026-07-28 (soccer was removed when its experiment was cancelled). Its
   config is documented in wnba/live/PROTOCOL.md.

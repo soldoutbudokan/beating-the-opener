@@ -6,7 +6,7 @@ Research conclusions + reproduce steps: README.md. Live experiment rules:
 - When the user reports a bet fill in conversation ("got X over 3.5 at +128
   for $2"), follow live/PROTOCOL.md: append to live/bets.csv copying key
   fields from live/picks.csv, commit, push. Never invent fills.
-- Any session that runs src/live_pipeline.py (the hourly routine included)
+- Any session that runs src/live_pipeline.py (the edge-watch routine included)
   opens its reply with a markdown table of every row in live/picks.csv,
   marginal rows included - see the "Pick table" section of live/PROTOCOL.md
   for the columns. The push notification's 3-strong-pick cap does not apply

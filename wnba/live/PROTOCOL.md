@@ -14,7 +14,7 @@ or the
 | name | `edge-watch` (WNBA-only since 2026-07-28 — the soccer live experiment was cancelled before launch, see soccer/live/PROTOCOL.md) |
 | id / manage | `trig_01Ko6Py4ar9tw8QoxPYx8tyw` - https://claude.ai/code/routines/trig_01Ko6Py4ar9tw8QoxPYx8tyw |
 | model | claude-opus-5 |
-| schedule | hourly at :21 UTC |
+| schedule | 7x daily at :21 UTC - `21 2,4,6,11,14,18,22 * * *` - see [Why these hours](#why-these-hours) |
 | runs | quick pre-check (no games + no open bets -> exit in seconds); else data refresh (`fetch_wehoop` -> `build_props` -> `grade_props` -> `features` -> `build_modelset`) -> `live_pipeline.py` -> **notify immediately** on strong picks -> housekeeping (`scrape_bettingpros` for CLV closes -> `settle_bets.py`, which also rebuilds `docs/index.html`) |
 | commits | pushes to main when picks changed or bets settled |
 | notifies | push notification ONLY for new strong picks (EV >= 6%) or settlements, and never for a pick already in `bets.csv` - see [No duplicate notifications](#no-duplicate-notifications) |
@@ -53,9 +53,14 @@ already filled.
 > If runs ever fail on a blocked host again, that's where to look.
 
 Notes:
-- Props post the **morning of game day** (ET); most picks appear then and
-  disappear as FanDuel moves the line. Hourly polling is the point: the edge
-  IS the stale opener.
+- Props post **overnight ET, not on game-day morning** - measured over the
+  4,136 FanDuel-sourced 2026 openers in the archive, 72% are created between
+  00:00 and 07:00 UTC (peak 03:00-06:00 UTC = 23:00-02:00 ET), with a
+  secondary batch at 16:00-18:00 UTC (noon-2pm ET) and a 6% tail at
+  22:00-23:00 UTC. Openers for a given game land a median **36h before tip**,
+  so the routine typically sees a prop a full day before it plays. The edge
+  IS the stale opener, so run placement tracks that creation curve - see
+  [Why these hours](#why-these-hours).
 - On a total outage the routine notifies once, drops a `live/outage.json`
   marker (committed) to stay silent on repeat failures, and clears it on the
   next healthy run.
@@ -80,6 +85,31 @@ Notes:
   move are where the CLV comes from; expect a drag from the never-movers.
 - During the All-Star break / offseason runs print `NO_UPCOMING` - expected.
 - The routine never edits `bets.csv`, never places bets, never touches `src/`.
+
+### Why these hours
+
+Changed 2026-07-29 from hourly (24 runs/day) to **7 runs/day** at :21 UTC:
+`21 2,4,6,11,14,18,22 * * *`. Three clusters, each doing a different job:
+
+| UTC | ET | why |
+|---|---|---|
+| 02, 04, 06 | 22:00, 00:00, 02:00 | **posting window** - 72% of FanDuel openers are created 00:00-07:00 UTC, peaking 03:00-06:00. This is where picks are born. |
+| 11, 14 | 07:00, 10:00 | **morning + settlement** - prior night's box scores have landed by ~11:00 UTC, so 11 is the settlement/CLV run; 14 is the ET-morning look and catches the noon-ET opener batch. |
+| 18, 22 | 14:00, 18:00 | **pre-tip** - last looks before 7-8pm ET tips; 22 also catches the 6% opener tail created 22:00-23:00 UTC. |
+
+Cost of the cut, measured against the 2026 opener-creation distribution: mean
+detection lag rises from 0.50h (hourly) to **1.43h**; 81% of openers are still
+seen within 2h of creation, 91% within 3h. That is cheap because prices hold
+at the opener for hours, not minutes - the one strong pick observed so far
+(Clark rebounds u3.5, 2026-07-28) sat at its opening price for **9+ hours**,
+from 14:42 to 23:24 UTC. Caveat: that is a single observation from three days
+of live history; if a later post-mortem shows picks dying inside an hour, add
+hours back to the 02-06 cluster first, since that is where the openers are.
+
+**The 18/22 runs are not news-trading.** They exist to catch late openers and
+to give the user a last actionable look, *not* to buy edges created by injury
+news - an opener still sitting at its open price *after* news broke is a
+**skip** under [Injury check](#injury-check-before-you-bet), not a buy.
 
 ## Playing a pick (user)
 
