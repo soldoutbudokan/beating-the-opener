@@ -1,1 +1,3 @@
-key,strong
+key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
+2689_points_paige bueckers_under,2026-07-31,2026-07-31 23:30:00,2689,points,Paige Bueckers,DAL,DAL@WAS,under,19.5,100,0.5195,0.039,False,-101,105,1.0,19.98,20.64,19.5,True,False
+2690_rebounds_angel reese_under,2026-07-31,2026-07-31 23:30:00,2690,rebounds,Angel Reese,ATL,SEA@ATL,under,11.5,102,0.5121,0.0344,False,102,108,1.0,12.13,12.44,11.5,True,False
