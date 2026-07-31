@@ -36,7 +36,7 @@ Easiest → hardest, tackled one at a time:
 | 2 | BBL cricket match odds | `cricket/` | parked | team model ties opener (G1 PASS), G2 calibration gate FAIL; **holdout unspent**, awaiting ball-by-ball data (owner action) |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
 | 4 | NHL (game lines + player props) | `props/` | — | queued — **data-blocked**: api-web unreachable in this environment; try GitHub mirrors (e.g. hockeyR-data) or owner network action |
-| 5 | NBA (player props; game lines only with a new idea) | `props/`, `nba/` | — | queued |
+| 5 | NBA player props | `props/` | B | **in progress** — A done (119k props), gates registered |
 
 ## Common protocol (all markets)
 
@@ -339,7 +339,32 @@ environment**, so historical outcomes are blocked too. Try GitHub mirrors
   captures of the official NBA injury report (a natural Sonnet-wave job:
   thousands of snapshot fetch/parse tasks, hand-audited sample as QC).
 
-**Gates**: *to be registered at Stage A.*
+**Stage A complete (2026-07-31 session 2).** Pipeline rebuilt end-to-end
+(hoopR fetch → build_props → map_events 100.0% → grade → panel 84,840
+player-games from 2023-24 → modelset 119,490 coherent-open props).
+Benchmark (`props/src/fp_benchmark.py`; conventions as WNBA; dev ends
+2026-02-28 per props/PLAN.md, holdout = 2026-03-01+ incl. playoffs):
+
+| split | n | LL(open) | LL(close, same line) | open−close (t) | over rate | implied |
+|---|---|---|---|---|---|---|
+| dev | 81,348 | 0.67761 | 0.67406 (n=62,736) | +0.00135 (t=5.9) | 0.4675 | 0.4793 |
+| holdout | 38,142 | 0.67736 | 0.66983 (n=25,444) | +0.00323 (t=7.1) | 0.4670 | 0.4783 |
+
+~1.2pp over-shade (smaller than WNBA's ~2pp).
+
+**Gates — registered 2026-07-31 (session 2), before any fp model code.**
+Model inputs: panel feature columns only; the line is scoring-threshold
+only; σ/NegBin params from `dist_params_nba.json` (already fit strictly
+pre-odds by build_modelset). Two model iterations allowed; frozen vs
+in-season-expanding calibration counts as one iteration choice.
+- **G1 (dev)**: LL(model) − LL(open) ≤ **+0.010** → Stage C.
+- **G2 (dev)**: |mean P(over) − realized| ≤ **2.5pp**.
+- **G3 tripwire (dev)**: beats same-line close by > 0.001 at t > 3 →
+  leakage investigation.
+- **Stage C (holdout, scored once)**: LL(model) − LL(open) clustered t
+  (≤ −2 = opener beaten); flat $1 ROI at consensus open EV > 2% / 5% with
+  clustered t + devigged-open placebo; regular-season vs playoffs reported
+  separately (secondary).
 
 ## Prior art (read before modelling)
 
