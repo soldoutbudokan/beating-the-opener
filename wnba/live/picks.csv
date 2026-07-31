@@ -1,2 +1,5 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
-2693_points_kahleah copper_under,2026-08-01,2026-08-01 19:00:00,2693,points,Kahleah Copper,PHO,NYL@PHO,under,21.5,-114,0.5515,0.0352,False,-115,-108,1.0,21.35,22.0,21.5,True,False
+2693_points_kahleah copper_under,2026-08-01,2026-08-01 19:00:00,2693,points,Kahleah Copper,PHO,NYL@PHO,under,21.5,-114,0.5643,0.0592,False,-121,-113,1.5,21.13,22.0,21.5,True,False
+2693_threes_kahleah copper_under,2026-08-01,2026-08-01 19:00:00,2693,threes,Kahleah Copper,PHO,NYL@PHO,under,1.5,148,0.4207,0.0433,False,145,152,0.5,2.02,2.16,1.5,False,False
+2691_rebounds_aliyah boston_under,2026-07-31,2026-08-01 02:00:00,2691,rebounds,Aliyah Boston,IND,IND@PDX,under,8.5,-122,0.5695,0.0362,False,-123,-116,1.0,8.61,8.81,8.5,True,False
+2693_assists_sabrina ionescu_under,2026-08-01,2026-08-01 19:00:00,2693,assists,Sabrina Ionescu,NYL,NYL@PHO,under,5.5,-106,0.5331,0.036,False,-107,-101,1.0,5.89,6.11,5.5,True,False
