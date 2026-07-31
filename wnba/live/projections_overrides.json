@@ -16,6 +16,19 @@
    "quote": "Sky's DiJonai Carrington plans to make season debut vs. Sun (7/30); tonight is the second night of a back-to-back after her first game back",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "Aneesah Morrow",
+   "added": "2026-07-31T19:30:00Z",
+   "game_date": "2026-07-31",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "ESPN news API",
+   "url": "https://www.espn.com/wnba/",
+   "quote": "Toronto Tempo acquired Connecticut Sun forward Aneesah Morrow in a trade for the rights to Maria 'Masha' Kliundikova and a 2028 second-round pick (traded 7/31); no Toronto debut date set, so treated as unavailable tonight for either team",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }
