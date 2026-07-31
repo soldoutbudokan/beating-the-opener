@@ -36,7 +36,7 @@ Easiest → hardest, tackled one at a time:
 | 2 | BBL cricket match odds | `cricket/` | parked | team model ties opener (G1 PASS), G2 calibration gate FAIL; **holdout unspent**, awaiting ball-by-ball data (owner action) |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
 | 4 | NHL (game lines + player props) | `props/` | — | queued — **data-blocked**: api-web unreachable in this environment; try GitHub mirrors (e.g. hockeyR-data) or owner network action |
-| 5 | NBA player props | `props/` | B | **in progress** — A done (119k props), gates registered |
+| 5 | NBA player props | `props/` | parked | **control** — G1 fail both iterations (+0.0247); calibration fine, discrimination gap; **holdout unspent** (awaits Stage D injury data) |
 
 ## Common protocol (all markets)
 
@@ -365,6 +365,23 @@ in-season-expanding calibration counts as one iteration choice.
   (≤ −2 = opener beaten); flat $1 ROI at consensus open EV > 2% / 5% with
   clustered t + devigged-open placebo; regular-season vs playoffs reported
   separately (secondary).
+
+**Stage B — complete (2026-07-31 session 2): G1 FAIL after both allowed
+iterations → control recorded, holdout unspent.** `props/src/fp_model.py`
+(WNBA port: per-game EW blends × pace/defense, pre-odds calibration,
+Normal+NegBin mixture):
+- Iteration 1 (frozen pre-odds calibration): model − open **+0.02469**
+  (t=11.5) vs gate ≤ +0.010; calibration fine (−0.78pp; ≤2.2pp per market).
+- Iteration 2 (weekly expanding calibration): **+0.02469** — identical.
+  The gap is discrimination, not bias: the NBA market prices minutes/roles/
+  matchups far better than per-game EWs can. ROI negative (−1.6 to −2.1%,
+  t≈−3), placebo 0 bets. Gate honoured → **NBA props from-scratch is a
+  control**; the 38k-prop holdout is UNSPENT, reserved for a model with
+  genuinely new inputs (Stage D injury reports being the identified one).
+- Cross-market pattern now complete and consistent with `nba/`'s thesis —
+  the from-scratch gap tracks market attention: WNBA late-season **parity
+  (+0.00006)** → BBL **tie (+0.002)** → soccer **+0.016** → NBA props
+  **+0.025**.
 
 ## Prior art (read before modelling)
 
