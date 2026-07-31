@@ -32,7 +32,7 @@ Easiest → hardest, tackled one at a time:
 
 | # | market | where | stage | status |
 |---|--------|-------|-------|--------|
-| 1 | WNBA player props | `wnba/` | A | **in progress** |
+| 1 | WNBA player props | `wnba/` | B | **in progress** — A done, gates registered |
 | 2 | BBL cricket match odds | `cricket/` | — | queued |
 | 3 | NHL (game lines + player props) | `props/` | — | queued |
 | 4 | Soccer 1X2 | `soccer/` | — | queued |
@@ -95,7 +95,40 @@ data already committed (`wnba/data/raw/bp/`), hundreds of prices per slate.
 - **D candidates**: historical availability/starting-lineup data (Wayback),
   play-by-play-derived on/off and matchup data via wehoop.
 
-**Gates**: *to be registered at Stage A, before Stage B runs.*
+**Stage A complete (2026-07-31).** Pipeline rebuilt from the committed BP
+archive + wehoop (31,099 graded props → modelset 29,595 rows). Benchmark
+(`src/fp_benchmark.py`; population = matched, non-void, coherent open, no
+push; over = actual > open_line):
+
+| split | n | LL(open) | LL(close, same line) | open−close (clustered t) | over rate | implied P(over) |
+|---|---|---|---|---|---|---|
+| 2025 (dev) | 13,367 | 0.68786 | 0.68773 (n=10,803) | +0.00113 (t=2.1) | 0.467 | 0.488 |
+| 2026 (held-out) | 12,339 | 0.68689 | 0.68679 (n=8,255) | +0.00282 (t=4.7) | 0.475 | 0.488 |
+
+The ~2pp over-shade reproduces on the rebuilt data.
+
+**Gates — registered 2026-07-31, before any fp model code was written.**
+Model inputs: panel feature columns only (strictly prior-game, shift-then-ewm).
+The quoted line enters only as the threshold the model's distribution is
+evaluated at (scoring), never as a feature. Distribution parameters fit on
+box-score history only.
+
+*Stage B, evaluated on dev (2025) only:*
+- **G1 (striking distance)**: LL(model) − LL(open) ≤ **+0.010** on the dev
+  eval population → proceed to Stage C. Fails after at most two feature
+  iterations → record WNBA-props-from-scratch as a control, move to Market 2.
+- **G2 (calibration)**: |mean P(over) − realized over rate| ≤ **2.5pp** on
+  dev, any calibration fitted from pre-2025 play data only.
+- **G3 (tripwire)**: model beats the same-line close by > 0.001 LL at
+  clustered t > 3 → halt and investigate leakage before proceeding.
+
+*Stage C, held-out (2026), scored once:*
+- **Primary**: LL(model) ≤ LL(open) with date-clustered t ≥ 2 → the opener
+  is beaten outright, from scratch.
+- **ROI**: flat $1 at consensus open prices, EV > 2% and > 5% tiers,
+  date-clustered t reported (positive at t ≥ 2 = tradeable signal; t < 1 =
+  noise, reported as such). Also scored vs the same-line close and vs the
+  shade-aware yardstick. No live-betting implication either way.
 
 ## Market 2 — BBL cricket (`cricket/`)
 
@@ -180,3 +213,7 @@ early/close prices in the same files — 9 test seasons.
 - **2026-07-31** — Programme opened. PROGRESS.md created (recreated from
   PLAN.md per owner direction); PLAN.md reduced to a pointer; README/CLAUDE
   references updated. Next: Market 1 Stage A.
+- **2026-07-31** — Market 1 Stage A complete: WNBA pipeline rebuilt from the
+  committed archive (25,706-prop eval population), benchmark table computed
+  (`wnba/src/fp_benchmark.py`), Stage B/C gates registered above **before any
+  model code**. Next: Stage B baseline (`wnba/src/fp_model.py`).
