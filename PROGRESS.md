@@ -34,7 +34,7 @@ Easiest → hardest, tackled one at a time:
 |---|--------|-------|-------|--------|
 | 1 | WNBA player props | `wnba/` | done | **held-out FAIL** — loses to opener +0.0176 (t=4.1); revisit = prospective holdout post-2026-07-31 |
 | 2 | BBL cricket match odds | `cricket/` | parked | team model ties opener (G1 PASS), G2 calibration gate FAIL; **holdout unspent**, awaiting ball-by-ball data (owner action) |
-| 3 | Soccer 1X2 | `soccer/` | — | queued (moved up: data on disk) |
+| 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
 | 4 | NHL (game lines + player props) | `props/` | — | queued — **data-blocked**: api-web unreachable in this environment; try GitHub mirrors (e.g. hockeyR-data) or owner network action |
 | 5 | NBA (player props; game lines only with a new idea) | `props/`, `nba/` | — | queued |
 
@@ -254,9 +254,21 @@ for H/D/A on dev) — the hardest benchmark so far.
 - Model tuning restricted to seasons ≤ 2018-19 (pre-benchmark era, ~60k
   matches with results), walk-forward within it.
 
-- **B**: time-decayed multiplicative attack/defence Poisson ratings per
-  league, walk-forward, training-fit draw correction; P(H/D/A) from the
-  score matrix.
+- **B — complete (2026-07-31): G1 FAIL after both allowed iterations →
+  control recorded, holdout unspent.** `src/fp_model.py`: walk-forward
+  multiplicative attack/defence Poisson per league, diagonal draw
+  inflation, tuned on ≤2018-19 only.
+  - Iteration 1: model − open **+0.01678** (t=15.4) vs gate ≤ +0.015;
+    calibration ≤ 0.1pp on all three outcomes.
+  - Iteration 2 (extended grid + team-keyed ratings surviving promotion/
+    relegation — the tuner rejected team-keying on train): **+0.01643**
+    (t=15.2). Gate honoured → **from-scratch soccer is a control**.
+  - Context: the market-blind Poisson still out-does v1's odds-fed GBM
+    (−0.022 vs the opener); the average opener is simply sharp. The
+    model's calibration is excellent — the gap is discrimination, not bias.
+  - Holdout (2022-23 – 2025-26) deliberately UNSPENT — available to a
+    future richer model under a NEW registration (shots/xG covariates are
+    already in the CSVs; FM priors are a Stage D candidate).
 - **D candidates**: Football Manager crowdsourced player/club attributes as a
   lower-division prior (a starting point, not a be-all-end-all), understat
   xG, Transfermarkt squad values; Sonnet waves to collect/normalize
@@ -341,3 +353,10 @@ environment**, so historical outcomes are blocked too. Try GitHub mirrors
   the pre-odds training era carries no home advantage to learn. Holdout
   deliberately UNSPENT; market parked pending ball-by-ball data (Stage D,
   owner action). Next: Market 3 (soccer, data on disk) Stage A.
+- **2026-07-31** — Market 3 Stage A complete (53,270-match benchmark, gates
+  registered and pushed before model code) and Stage B complete: Poisson
+  attack/defence model **fails G1 after both allowed iterations** (+0.01643
+  vs ≤ +0.015, t=15.2) with near-perfect calibration → soccer recorded as
+  a from-scratch control; holdout unspent. Session pauses here: NHL and
+  cricket ball-by-ball await owner data actions; NBA props is the next
+  runnable leg (hoopR mirrors are on raw.githubusercontent, like wehoop).
