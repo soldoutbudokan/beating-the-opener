@@ -29,6 +29,34 @@
 >   *scoring* research models. If the scrape fails, end with the failure
 >   noted on one line — do not retry into other steps.
 >
+> ## news-watch routine (v3 T3 — owner-directed, 2026-07-31)
+>
+> A SEPARATE routine from the archiver. Its whole job is maintaining
+> `live/projections_overrides.json` — the news-driven availability and
+> minutes log for the from-scratch programme (../../PROGRESS.md, Market 1
+> v3). It makes **no picks, no notifications, no bets** — the betting
+> pause above binds it fully. Each firing:
+>
+> 1. `python3 src/news_watch.py --fetch` from `wnba/`.
+>    - `SOURCES_UNREACHABLE` → end with that single line (the owner has
+>      not yet allowlisted espn.com domains — do not work around it).
+>    - `NO_NEW_ITEMS` → end with that single line, committing nothing.
+> 2. For each new item, judge: does it change a player's availability or
+>    expected minutes for an upcoming game (injury, return, rotation
+>    change, rest)? Ignore everything else (recaps, features, trades with
+>    no minutes implication tonight).
+> 3. For each real implication, APPEND an entry to
+>    `live/projections_overrides.json` per its schema — status,
+>    minutes_est or minutes_range (your judgement, stated conservatively),
+>    source, url, short quote, author `news-watch`. Never edit or delete
+>    old entries; supersede via `superseded_by`.
+> 4. If `src/fp_live.py` exists (T3b, not yet built), also run it to
+>    refresh the projections sheet. Until then skip this step.
+> 5. Commit ONLY the touched files (`news_seen.json`,
+>    `projections_overrides.json`, projections sheet if any) with message
+>    `news-watch: <n> override(s)` and push to main. End with one line
+>    summarizing what changed.
+>
 > **Reason.** The user's judgement, 2026-07-31: every model in this repo that
 > reached a live experiment anchors on the market price it is trying to beat,
 > and so never produces an independent opinion about what a player will do.

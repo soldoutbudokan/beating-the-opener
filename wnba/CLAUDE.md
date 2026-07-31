@@ -4,10 +4,13 @@
 retired.** Do not run src/live_pipeline.py, do not score picks, do not
 notify. The `edge-watch` routine runs in **data-only mode** (owner decision,
 2026-07-31): it archives lines via scrape_bettingpros.py and pushes — nothing
-else. The pause block at the top of live/PROTOCOL.md is authoritative and
-overrides the routine's own prompt. Direction for the replacement:
-../PROGRESS.md (Market 1 carries a registered prospective from-scratch test
-on props dated 2026-08-01+).
+else. A second routine, **news-watch**, maintains
+live/projections_overrides.json from free news sources (v3 T3; owner
+decision 2026-07-31 — this supersedes the old "no model reads injury news"
+rule for the v3 programme; no picks/notifications/bets, ever). The pause
+block at the top of live/PROTOCOL.md is authoritative and overrides both
+routines' prompts. Direction: ../PROGRESS.md (Market 1 v3 — pinned talent
+model under fp-prospective-2 on props dated 2026-08-01+).
 
 Why: the model anchors on the opening price (`mu_open` is inverted out of the
 opener; every prediction is `mu_open + predicted_move`), so it has no

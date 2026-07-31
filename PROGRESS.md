@@ -32,7 +32,7 @@ Easiest → hardest, tackled one at a time:
 
 | # | market | where | stage | status |
 |---|--------|-------|-------|--------|
-| 1 | WNBA player props | `wnba/` | **v3-T1** | **talent engine beats the opener on dev** (full season −0.0006; Aug–Oct −0.0077 t=−2.1, ROI +8.6% t=3.1); `fp-prospective-2` (talent) + `fp-prospective-1` (v1 baseline) both running on Aug-2026+ props; T2 minutes / T3 news in progress |
+| 1 | WNBA player props | `wnba/` | **v3** | **talent engine beats the opener on dev** (Aug–Oct −0.0077 t=−2.1, ROI +8.6% t=3.1); `fp-prospective-2` (pinned talent model) + `fp-prospective-1` (v1) running on Aug-2026+ props; T2 minutes not adopted (gate fail); T3 news-watch routine armed, awaiting espn.com allowlist; T3b fp_live next |
 | 2 | BBL cricket match odds | `cricket/` | done | **control #3 confirmed** — player model passed dev gates, holdout FAIL (+0.052, t=3.6, ROI −34%); benchmark n=297 is structurally too small; future cricket → IPL pending odds source |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
 | 4 | NHL player props | `props/` | parked | **control** — G1 fail both iterations (+0.0191); shots/blocked individually inside the gate; **holdout unspent** |
@@ -578,6 +578,26 @@ minutes curvature, grid integration) stays in the code behind
 T3's news-driven minutes overrides, and any override-driven variant gets
 its own registration before touching unseen data. No fp-prospective-3;
 the pinned T1 model remains the live arm.
+
+**T3 — infrastructure armed (2026-07-31 session 4).**
+- `wnba/live/projections_overrides.json` (append-only, schema in-file) —
+  the news layer's log AND its future scorecard.
+- `wnba/src/news_watch.py` — fetch/diff utility over free sources (ESPN
+  WNBA news API); prints new items for the routine to judge; graceful
+  `SOURCES_UNREACHABLE` path verified.
+- **news-watch routine** `trig_01GThXFjtLzfXEH1kqjMYXEF`, hourly at :31,
+  fresh session per firing, no notifications; scope pinned by the new
+  section in `wnba/live/PROTOCOL.md` (no picks/notifications/bets, ever).
+- **Owner action required**: allowlist `site.api.espn.com` and
+  `www.espn.com` — until then every firing ends with one quiet
+  `SOURCES_UNREACHABLE` line.
+- **T3b (next build)**: `wnba/src/fp_live.py` — tonight's-slate projection
+  sheet from the pinned talent model + overrides through the T2 minutes
+  machinery, logged and timestamped; the routine already knows to run it
+  once it exists. Any override-driven variant gets its own registration
+  before it may be scored. Spot-check backtest of the news layer: done
+  against its own first live weeks of logged overrides (honest version of
+  the owner's "spot-checks; adjust as the experiment is live").
 
 ## Prior art (read before modelling)
 
