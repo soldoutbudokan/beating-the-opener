@@ -32,8 +32,8 @@ Easiest → hardest, tackled one at a time:
 
 | # | market | where | stage | status |
 |---|--------|-------|-------|--------|
-| 1 | WNBA player props | `wnba/` | C | **in progress** — A done; B passed G1+G2 |
-| 2 | BBL cricket match odds | `cricket/` | — | queued |
+| 1 | WNBA player props | `wnba/` | done | **held-out FAIL** — loses to opener +0.0176 (t=4.1); revisit = prospective holdout post-2026-07-31 |
+| 2 | BBL cricket match odds | `cricket/` | A | **in progress** |
 | 3 | NHL (game lines + player props) | `props/` | — | queued |
 | 4 | Soccer 1X2 | `soccer/` | — | queued |
 | 5 | NBA (player props; game lines only with a new idea) | `props/`, `nba/` | — | queued |
@@ -95,9 +95,28 @@ data already committed (`wnba/data/raw/bp/`), hundreds of prices per slate.
   - **G3**: model − close = +0.00864 (loses to the close; no tripwire)
   - Per market: reb_ast already beats the opener outright (−0.021, n=1,163);
     worst are assists (+0.017, cal −5.6pp) and rebounds (+0.014, cal −3.9pp).
-- **C**: hierarchical shrinkage, positional defense, rest/home; ROI sim.
-  Report raw and shade-aware benchmarks (the market's ~2pp over-shade,
-  AUDIT N1, is free edge for a calibrated from-scratch model).
+- **C — complete (2026-07-31). Held-out verdict: FAIL.** Final model:
+  Stage B core + per-stat bias/home/shrinkage/σ all fit on pre-eval-season
+  play data only, and a 0.5/0.5 Normal+NegBin distribution (selected on
+  pre-2025 play data with synthetic lines, never on dev — the symmetric
+  Normal overstates P(over) on right-skewed counts).
+  - Dev 2025: model − open **+0.00469** (t=1.8), calibration **+0.41pp** —
+    within striking distance; reb_ast beat the opener (−0.024).
+  - **Held-out 2026 (scored once, as registered): model − open +0.01763
+    (clustered t=4.1), calibration −2.44pp → the from-scratch model does
+    NOT beat the opener.** The dev bright spot (reb_ast) did not replicate
+    (+0.007). ROI at consensus open: +11.1% (t=0.8) EV>2%, +13.8% (t=0.9)
+    EV>5% — **t < 1 = noise per the pre-registered rule**, and a model that
+    loses on LL while showing +14% ROI is the classic artefact pattern.
+    Placebo: 0 bets both seasons.
+  - Post-hoc reading (labelled as such, holdout already spent): the 2026
+    degradation is a calibration drift the season-level fit couldn't track
+    (params frozen at the end of the 2025 season; 2026 over rate rose to
+    0.475 and per-market cal swung to −5/−7pp on combos/turnovers).
+    Expanding *in-season* recalibration is a legitimate walk-forward fix,
+    but scoring it on 2026 again would be a second look. Honest revisit
+    path: pre-register a **prospective** holdout — games after 2026-07-31 —
+    and/or Stage D availability data. Parked; moving to Market 2.
 - **D candidates**: historical availability/starting-lineup data (Wayback),
   play-by-play-derived on/off and matchup data via wehoop.
 
@@ -228,3 +247,9 @@ early/close prices in the same files — 9 test seasons.
   −1.89pp, G2 PASS; loses to the close, no tripwire). Proceeding to Stage C
   (shrinkage, per-stat opponent adjustment, home/rest; then the one held-out
   run + ROI sim). The 2026 season remains unscored.
+- **2026-07-31** — Market 1 Stage C complete and **held-out FAILED**: dev
+  +0.00469 / cal +0.41pp, but 2026 (scored once) +0.01763 (t=4.1) with a
+  −2.44pp calibration drift the frozen season-level fit couldn't track.
+  ROI +11–14% at t<1 recorded as noise per the pre-registered rule.
+  Verdict stands; revisit only via a prospective post-2026-07-31 holdout
+  or Stage D data. Market 1 parked. Next: Market 2 (BBL cricket) Stage A.
