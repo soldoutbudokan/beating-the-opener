@@ -33,9 +33,9 @@ Easiest → hardest, tackled one at a time:
 | # | market | where | stage | status |
 |---|--------|-------|-------|--------|
 | 1 | WNBA player props | `wnba/` | done | **held-out FAIL** — loses to opener +0.0176 (t=4.1); revisit = prospective holdout post-2026-07-31 |
-| 2 | BBL cricket match odds | `cricket/` | A | **in progress** |
-| 3 | NHL (game lines + player props) | `props/` | — | queued |
-| 4 | Soccer 1X2 | `soccer/` | — | queued |
+| 2 | BBL cricket match odds | `cricket/` | B | **in progress** — A done, gates registered; ball-by-ball data-blocked (owner action) |
+| 3 | Soccer 1X2 | `soccer/` | — | queued (moved up: data on disk) |
+| 4 | NHL (game lines + player props) | `props/` | — | queued — **data-blocked**: api-web unreachable in this environment; try GitHub mirrors (e.g. hockeyR-data) or owner network action |
 | 5 | NBA (player props; game lines only with a new idea) | `props/`, `nba/` | — | queued |
 
 ## Common protocol (all markets)
@@ -162,16 +162,45 @@ xlsx provides the odds benchmark (297 matches with open+close 2018+, 478 with
 odds). Pipeline pattern from the owner's TheTilt template (Cricsheet download
 → parse deliveries → features → win-prob model).
 
-- **A**: ingest Cricsheet BBL; per-match panel; benchmark tables; gates sized
-  for the small n (power-limited — plausible control #3).
-- **B**: pre-match win prob from batting/bowling ratings + venue effects,
-  Elo floor.
-- **D candidates**: pool player ratings across all T20 leagues (Cricsheet has
-  them); grow the odds benchmark by scraping BBL odds history (OddsPortal
-  via Wayback) — benchmark n is the binding constraint here, so D may come
-  before deeper modelling.
+**Stage A complete (2026-07-31)** — with a **data blocker**: cricsheet.org
+and web.archive.org are outside this environment's network allowlist and no
+GitHub mirror carries BBL ball-by-ball, so the generative player-level model
+waits on Stage D (owner action: allow cricsheet.org in the environment's
+network policy, or commit `bbl_json.zip` from a local download to
+`cricket/data/raw/cricsheet/`). Stage B proceeds **team-level** from the
+committed xlsx (549 matches 2011–2023: results, scores, wickets, overs,
+venue). Constraint registered: **the opener predates the toss** — toss and
+batted-first are unknowable at open time and are banned as model inputs.
 
-**Gates**: *to be registered at Stage A.*
+Benchmark (`src/fp_benchmark.py`; population = H/A winner + full open/close,
+297 matches; forecast = devigged two-way P(home)):
+
+| split | n | LL(open) | LL(close) | home rate | implied P(home) |
+|---|---|---|---|---|---|
+| dev (2018–2020 seasons) | 177 | 0.70380 | 0.70696 | 0.565 | 0.510 |
+| holdout (2021–2022) | 120 | 0.64012 | 0.64888 | 0.600 | 0.508 |
+
+Coin-flip LL = 0.69315: **on dev the opener is worse than a coin flip.**
+The softest benchmark in the repo — but n is tiny, so gates are power-aware.
+
+**Gates — registered 2026-07-31, before any fp model code.**
+- **G1 (dev)**: LL(model) − LL(open) ≤ **+0.010** → Stage C; fail after at
+  most two feature iterations → control #3 confirmed for from-scratch too.
+- **G2 (dev)**: |mean P(home) − home rate| ≤ **5pp** (n=177; binomial noise
+  alone is ±3.7pp).
+- **G3 tripwire (dev)**: model beats the open by > 0.005 at t > 2 →
+  leakage/artefact investigation before proceeding (note: with an opener
+  this weak a legitimate win is possible; investigate, don't assume).
+- **Stage C (holdout, scored once)**: report LL(model) − LL(open) with
+  paired date-clustered t (n=120 — t ≤ −1 suggestive, t ≤ −2 significant);
+  flat-stake ROI at the multi-book-average open for EV > 2% / 5%, with the
+  devigged-open placebo column.
+
+- **B**: pre-match win prob from expanding-window team ratings (Elo on
+  results + score-margin ratings from the xlsx), venue/home effects.
+- **D candidates**: BBL ball-by-ball (blocked, above); pool player ratings
+  across T20 leagues once Cricsheet is reachable; grow the odds benchmark
+  (OddsPortal via Wayback — also currently blocked).
 
 ## Market 3 — NHL (`props/`)
 
@@ -253,3 +282,11 @@ early/close prices in the same files — 9 test seasons.
   ROI +11–14% at t<1 recorded as noise per the pre-registered rule.
   Verdict stands; revisit only via a prospective post-2026-07-31 holdout
   or Stage D data. Market 1 parked. Next: Market 2 (BBL cricket) Stage A.
+- **2026-07-31** — Market 2 Stage A complete: benchmark from the committed
+  xlsx (297 matches; **dev-season opener is worse than a coin flip**,
+  LL 0.70380 vs 0.69315), gates registered. Data blocker recorded:
+  cricsheet.org + web.archive.org outside the network allowlist, no GitHub
+  mirror → ball-by-ball waits on owner action; Stage B proceeds team-level.
+  Also found: NHL api-web unreachable from this environment → Market 3
+  (NHL) is data-blocked; soccer (data on disk) moves ahead of it, per the
+  flexibility flagged in the approved plan.
