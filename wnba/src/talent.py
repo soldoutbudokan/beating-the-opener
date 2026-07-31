@@ -36,6 +36,10 @@ ROOT = os.path.join(os.path.dirname(__file__), "..")
 RAW = {"poi": "points", "reb": "rebounds", "ass": "assists",
        "tpm": "three_point_field_goals_made", "ste": "steals",
        "blo": "blocks", "tur": "turnovers"}
+# game-model stats (Market 1b-v2): usage per minute, points per possession
+# used. eff's observation noise scales with possessions used, not minutes,
+# so each stat carries its own denominator column (den_<st>).
+EXTRA = ("usg", "eff")
 BUCKET = 20          # career-game bucket for trajectory curves
 MAX_BUCKET = 20      # curves flat beyond 400 career games
 POSMAP = {"G": "G", "F": "F", "C": "C"}
@@ -52,18 +56,26 @@ def load_played(panel):
     d["season_yr"] = pd.to_datetime(d.game_date).dt.year
     for st, col in RAW.items():
         d[f"y_{st}"] = d[col] / d.minutes
+        d[f"den_{st}"] = d.minutes
+    poss = (d.field_goals_attempted + 0.44 * d.free_throws_attempted
+            + d.turnovers)
+    d["y_usg"] = poss / d.minutes
+    d["den_usg"] = d.minutes
+    d["y_eff"] = np.where(poss > 0, d.points / poss.replace(0, np.nan),
+                          np.nan)
+    d["den_eff"] = poss
     return d
 
 
-def fit_curves(d, cutoff):
+def fit_curves(d, cutoff, stats):
     """Delta-method career curves per (pos, stat): rate level by career-game
     bucket, from within-player changes only. Fit rows strictly < cutoff."""
     f = d[d.game_date < cutoff].copy()
     f["bucket"] = np.minimum(f.gp // BUCKET, MAX_BUCKET)
     curves = {}
-    for st in RAW:
-        # per (player, bucket) minutes-weighted mean rate
-        g = (f.assign(w=f.minutes, wy=f.minutes * f[f"y_{st}"])
+    for st in stats:
+        # per (player, bucket) denominator-weighted mean rate
+        g = (f.assign(w=f[f"den_{st}"], wy=f[f"den_{st}"] * f[f"y_{st}"])
              .groupby(["athlete_id", "pos", "bucket"])[["w", "wy"]].sum())
         g = (g.wy / g.w).rename("rate").reset_index()
         g = g.sort_values(["athlete_id", "bucket"])
@@ -86,15 +98,18 @@ def curve_level(curves, pos, st, gp):
     return base + (inc[b - 1] if b > 0 else 0.0)
 
 
-def fit_rvar(d, cutoff):
-    """Per-stat observation noise: minutes-weighted variance of single-game
-    per-minute rates around the player's own mean (rows < cutoff)."""
+def fit_rvar(d, cutoff, stats):
+    """Per-stat observation noise: denominator-weighted variance of
+    single-game rates around the player's own mean (rows < cutoff)."""
     f = d[(d.game_date < cutoff) & (d.gp >= 10)]
     out = {}
-    for st in RAW:
-        pm = f.groupby("athlete_id")[f"y_{st}"].transform("mean")
-        out[st] = float((f.minutes * (f[f"y_{st}"] - pm) ** 2).sum()
-                        / f.minutes.sum() * f.minutes.mean())
+    for st in stats:
+        den = f[f"den_{st}"]
+        ok = f[f"y_{st}"].notna() & (den > 0)
+        fo, do = f[ok], den[ok]
+        pm = fo.groupby("athlete_id")[f"y_{st}"].transform("mean")
+        out[st] = float((do * (fo[f"y_{st}"] - pm) ** 2).sum()
+                        / do.sum() * do.mean())
     return out
 
 
@@ -108,7 +123,7 @@ def run_filter(d, curves, rvar, q, p0, st):
     pos = d.pos.to_numpy()
     gp = d.gp.to_numpy()
     yr = d.season_yr.to_numpy()
-    mins = d.minutes.to_numpy(float)
+    mins = d[f"den_{st}"].to_numpy(float)
     y = d[f"y_{st}"].to_numpy(float)
     R0, Q, P0 = rvar[st], q * rvar[st], p0 * rvar[st]
     for i in range(len(d)):
@@ -133,8 +148,9 @@ def run_filter(d, curves, rvar, q, p0, st):
 
 
 def one_step_mse(d, pred, st, lo, hi):
-    m = (d.game_date >= lo) & (d.game_date < hi) & (d.minutes >= 10)
-    w = d.minutes[m].to_numpy(float)
+    m = ((d.game_date >= lo) & (d.game_date < hi) & (d.minutes >= 10)
+         & d[f"y_{st}"].notna() & (d[f"den_{st}"] > 0))
+    w = d[f"den_{st}"][m].to_numpy(float)
     err = (d[f"y_{st}"][m].to_numpy(float) - pred[m.to_numpy()]) ** 2
     return float((w * err).sum() / w.sum())
 
@@ -149,11 +165,12 @@ def main():
     d = load_played(panel)
 
     cutoff = "2025-01-01" if args.build else "2015-01-01"
-    curves = fit_curves(d, cutoff)
-    rvar = fit_rvar(d, cutoff)
+    stats = list(RAW) + (list(EXTRA) if args.build else [])
+    curves = fit_curves(d, cutoff, stats)
+    rvar = fit_rvar(d, cutoff, stats)
 
     best = {}
-    for st in RAW:
+    for st in stats:
         best_mse, best_qp = np.inf, None
         for q in GRID_Q:
             for p0 in GRID_P0:
@@ -166,7 +183,7 @@ def main():
 
     if args.build:
         out = d[["athlete_id", "game_id"]].copy()
-        for st in RAW:
+        for st in stats:
             q, p0 = best[st]
             out[f"talent_{st}"] = run_filter(d, curves, rvar, q, p0, st)
         out.to_pickle(os.path.join(ROOT, "data", "talent.pkl"))
