@@ -32,7 +32,8 @@ Easiest → hardest, tackled one at a time:
 
 | # | market | where | stage | status |
 |---|--------|-------|-------|--------|
-| 1 | WNBA player props | `wnba/` | **v3** | **talent engine beats the opener on dev** (Aug–Oct −0.0077 t=−2.1, ROI +8.6% t=3.1); `fp-prospective-2` (pinned talent model) + `fp-prospective-1` (v1) running on Aug-2026+ props; T2 minutes not adopted (gate fail); T3 news-watch routine armed, awaiting espn.com allowlist; T3b fp_live next |
+| 1 | WNBA player props | `wnba/` | **LIVE** | talent engine beats opener on dev (Aug–Oct −0.0077, ROI +8.6%); **betting re-opened 2026-07-31** (FD EV>10%, protocol-pinned); news-watch live (news → overrides → picks → notify); fp-prospective-1/2 scoring firewalled |
+| 1b | WNBA game lines | `wnba/` | parked | **control** — GG1 fail both iterations (+0.040 vs ≤+0.010); game lines efficient even where props are soft (Phase 1G confirmed from modelling side) |
 | 2 | BBL cricket match odds | `cricket/` | done | **control #3 confirmed** — player model passed dev gates, holdout FAIL (+0.052, t=3.6, ROI −34%); benchmark n=297 is structurally too small; future cricket → IPL pending odds source |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
 | 4 | NHL player props | `props/` | parked | **control** — G1 fail both iterations (+0.0191); shots/blocked individually inside the gate; **holdout unspent** |
@@ -634,6 +635,17 @@ availability leak). home_adv and σ fit on ≤2024 games only, walk-forward.
 - If GG1+GG2 pass: prospective registration (`fp-games-prospective-1`) on
   games after the lock push; betting integration only after that test, as
   its own owner decision.
+
+**Verdict (2026-07-31 session 5): GG1 FAILED after both allowed
+iterations → game lines are a control.** Iteration 1 (previous-game
+rotation): +0.04790 (t=3.5). Iteration 2 (appearance-EW expected
+rotation): **+0.04043 (t=3.0)**, calibration +3.5pp — nowhere near the
++0.010 gate, and the market's close ≈ its open here (0.604 vs 0.609).
+Reading: WNBA **game** lines are efficient even though the **props** are
+soft — the prop edge is mostly distribution-level calibration (the
+over-shade) plus player-detail, which largely cancels when aggregated to
+a game outcome the market watches closely. Confirms props/ Phase 1G from
+the modelling side. Parked; the player model stays where its edge is.
 
 ## Live betting re-opened (owner decision, 2026-07-31 evening)
 
