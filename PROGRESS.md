@@ -566,6 +566,19 @@ P(over) integrated over a 5-point minutes grid.
 - If passed: registered as **`fp-prospective-3`** on props dated after its
   lock push (T1's prospective-2 keeps running for comparison).
 
+**T2 — complete (2026-07-31 session 4): GATE FAILED after both allowed
+iterations → not adopted.** Iteration 1 (conditional-σ calibration):
+−0.00027, cal −2.0pp. Iteration 2 (end-to-end grid calibration):
+−0.00030, cal −2.1pp. Neither improves on T1's −0.00059. Reading: a
+purely statistical minutes distribution adds variance without adding
+information — exactly the owner's point that minutes are the hard,
+*subjective* part. The T2 machinery (distributional minutes, rate-vs-
+minutes curvature, grid integration) stays in the code behind
+`--minutes`, unadopted by default: it becomes the delivery mechanism for
+T3's news-driven minutes overrides, and any override-driven variant gets
+its own registration before touching unseen data. No fp-prospective-3;
+the pinned T1 model remains the live arm.
+
 ## Prior art (read before modelling)
 
 - `nba/README.md` — the from-scratch control: the three upper bounds and the

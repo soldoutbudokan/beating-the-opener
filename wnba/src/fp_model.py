@@ -140,6 +140,134 @@ def mu_stats(df, datecol, cal=None):
     return out
 
 
+MIN_GRID_Z = np.array([-1.65, -0.7, 0.0, 0.7, 1.65])
+MIN_GRID_W = np.array([0.10, 0.25, 0.30, 0.25, 0.10])
+
+
+def _pace_def(df, datecol):
+    lg_pace = df.groupby(datecol).tm_pace_ew.transform("mean")
+    lg_allow = df.groupby(datecol).opp_pts_against_ew.transform("mean")
+    pace_f = ((df.tm_pace_ew + df.opp_pace_ew)
+              / (df.tm_pace_ew + lg_pace)).fillna(1.0)
+    def_f = ((df.opp_pts_against_ew / lg_allow) ** DEF_EXP).fillna(1.0)
+    return pace_f, def_f
+
+
+def _mu_rate(df, st, minutes, cal2, pace_f, def_f):
+    """Pure rate-x-minutes mean for one stat at the given minutes vector,
+    with rate-vs-minutes curvature around the player's usual level."""
+    usual = df.min_ews.fillna(df.min_ewf)
+    rate = (df[f"talent_{st}"].fillna(df[f"{st}_rate_ewf"])
+            + cal2["beta"][st] * (minutes - usual))
+    mu = rate.clip(lower=0.0) * minutes * pace_f
+    if st in SCORING:
+        mu = mu * def_f
+    return mu * cal2["c"][st] * cal2["home"][st] ** (df.home - 0.5)
+
+
+def fit_t2_cal(panel, cutoff):
+    """T2 calibration, all strictly pre-cutoff: rate-vs-minutes slopes,
+    minutes variance by (starter, level) bucket, per-stat bias/home on the
+    rate-x-minutes path, conditional sigma given ACTUAL minutes."""
+    d = panel[(panel.game_date >= FIT_FROM) & (panel.game_date < cutoff)
+              & (panel.gp >= 8) & panel.minutes.notna()
+              & (panel.minutes > 0)].copy()
+    d["home"] = d["home"].astype(float)
+    cal2 = {"beta": {}, "c": {}, "home": {}, "sigma": {}, "mvar": {},
+            "gamma": 0.0}
+    # rate-vs-minutes curvature, within player
+    for st in RAW:
+        y = d[RAW[st]] / d.minutes
+        dy = y - y.groupby(d.athlete_id).transform("mean")
+        dm = d.minutes - d.minutes.groupby(d.athlete_id).transform("mean")
+        ok = dy.notna() & dm.notna()
+        cal2["beta"][st] = float((dy[ok] * dm[ok]).sum()
+                                 / max((dm[ok] ** 2).sum(), 1e-9))
+    # minutes spread by (starter, predicted-level) bucket
+    mhat = (W_FAST * d.min_ewf + (1 - W_FAST) * d.min_ews).fillna(d.min_ewf)
+    starter = (d.started_ewf.fillna(0) > 0.5)
+    level = pd.cut(mhat, [0, 12, 20, 28, 45], labels=False)
+    resid2 = (d.minutes - mhat) ** 2
+    for s in (0, 1):
+        for lv in range(4):
+            m = (starter == bool(s)) & (level == lv)
+            cal2["mvar"][(s, lv)] = float(resid2[m].mean()) if m.sum() > 50 \
+                else float(resid2.mean())
+    if "presumed_share" in d.columns:
+        ok = mhat.gt(8) & d.presumed_share.notna()
+        x = d.presumed_share[ok].values
+        yy = (d.minutes[ok] / mhat[ok] - 1).clip(-1, 1).values
+        if (x > 0).sum() > 200:
+            cal2["gamma"] = float(np.clip((x * yy).sum() / (x * x).sum(),
+                                          0, 2))
+    # bias/home fit END-TO-END against the DEPLOYED estimator: the grid
+    # expectation at predicted minutes (iteration 2 — fitting at actual
+    # minutes left a -2pp skew because the rate-vs-minutes coupling shifts
+    # the grid mean below mu(E[minutes]))
+    pace_f, def_f = _pace_def(d, "game_date")
+    fit_starter = (d.started_ewf.fillna(0) > 0.5).astype(int)
+    fit_level = pd.cut(mhat, [0, 12, 20, 28, 45], labels=False).fillna(1)
+    fit_msd = np.sqrt([cal2["mvar"][(s, int(lv))]
+                       for s, lv in zip(fit_starter, fit_level)])
+    for st in RAW:
+        cal2["c"][st] = 1.0
+        cal2["home"][st] = 1.0
+        emu = sum(w * _mu_rate(d, st,
+                               (mhat + z * fit_msd).clip(lower=2.0,
+                                                         upper=42.0),
+                               cal2, pace_f, def_f)
+                  for z, w in zip(MIN_GRID_Z, MIN_GRID_W))
+        ok = emu.notna() & d[RAW[st]].notna()
+        cal2["c"][st] = d[RAW[st]][ok].mean() / emu[ok].mean()
+        h = ok & (d.home == 1)
+        a = ok & (d.home == 0)
+        cal2["home"][st] = ((d[RAW[st]][h].mean() / emu[h].mean())
+                            / (d[RAW[st]][a].mean() / emu[a].mean()))
+    for mkt, parts in PARTS.items():
+        if mkt in POISSON:
+            continue
+        mu = sum(_mu_rate(d, p, d.minutes, cal2, pace_f, def_f)
+                 for p in parts)
+        act = sum(d[RAW[p]] for p in parts)
+        ok = mu.notna() & act.notna()
+        b, a = np.polyfit(mu[ok], (act[ok] - mu[ok]) ** 2, 1)
+        cal2["sigma"][mkt] = (max(a, 0.1), max(b, 0.2))
+    return cal2
+
+
+def predict_t2(ms, cal2):
+    """P(over) integrated over the minutes distribution (5-point grid)."""
+    pace_f, def_f = _pace_def(ms, "date")
+    mhat = (W_FAST * ms.min_ewf + (1 - W_FAST) * ms.min_ews).fillna(ms.min_ewf)
+    if cal2["gamma"] and "presumed_share" in ms.columns:
+        mhat = mhat * (1 + cal2["gamma"] * ms.presumed_share.fillna(0.0))
+    starter = (ms.started_ewf.fillna(0) > 0.5).astype(int)
+    level = pd.cut(mhat, [0, 12, 20, 28, 45], labels=False).fillna(1)
+    msd = np.sqrt([cal2["mvar"][(s, int(lv))]
+                   for s, lv in zip(starter, level)])
+    p_out = np.full(len(ms), np.nan)
+    mu_out = np.full(len(ms), np.nan)
+    for k, (z, w) in enumerate(zip(MIN_GRID_Z, MIN_GRID_W)):
+        mins_k = (mhat + z * msd).clip(lower=2.0, upper=42.0)
+        mus = pd.DataFrame(
+            {st: _mu_rate(ms, st, mins_k, cal2, pace_f, def_f)
+             for st in RAW}, index=ms.index)
+        for mkt, parts in PARTS.items():
+            rows = (ms.market == mkt).to_numpy()
+            if not rows.any():
+                continue
+            mu_k = sum(mus.loc[rows, p] for p in parts).to_numpy(float)
+            lines = ms.open_line.to_numpy(float)[rows]
+            pk = np.array([p_over(mkt, m, li, cal2) if np.isfinite(m)
+                           else np.nan
+                           for m, li in zip(mu_k, lines)])
+            base_p = np.nan_to_num(p_out[rows], nan=0.0)
+            base_mu = np.nan_to_num(mu_out[rows], nan=0.0)
+            p_out[rows] = base_p + w * pk
+            mu_out[rows] = base_mu + w * mu_k
+    return mu_out, p_out
+
+
 def fit_play_cal(panel, cutoff):
     """Bias / home / shrinkage-ballast / sigma / availability-gamma from
     play data before cutoff."""
@@ -279,7 +407,12 @@ def main():
     ap.add_argument("--talent", action="store_true",
                     help="v3 T1: rates from the Kalman talent engine "
                          "(run src/talent.py --build first)")
+    ap.add_argument("--minutes", action="store_true",
+                    help="v3 T2: distributional minutes integration "
+                         "(implies --talent)")
     args = ap.parse_args()
+    if args.minutes:
+        args.talent = True
 
     panel = pd.read_pickle(os.path.join(ROOT, "data", "panel.pkl"))
     ms = pd.read_pickle(os.path.join(ROOT, "data", "modelset.pkl"))
@@ -298,6 +431,17 @@ def main():
         tmap = tmap.groupby(["nname", "dstr"])[tcols].max().reset_index()
         ms["dstr"] = pd.to_datetime(ms.date).dt.strftime("%Y-%m-%d")
         ms = ms.merge(tmap, on=["nname", "dstr"], how="left")
+
+    if args.minutes:
+        from build_modelset import norm
+        pa = presumed_absent(panel)
+        panel = panel.merge(pa, on=["athlete_id", "game_id"], how="left")
+        pmap = panel.assign(
+            nname=panel.athlete_display_name.map(norm),
+            dstr=pd.to_datetime(panel.game_date).dt.strftime("%Y-%m-%d"))
+        pmap = (pmap.groupby(["nname", "dstr"]).presumed_share.max()
+                .reset_index())
+        ms = ms.merge(pmap, on=["nname", "dstr"], how="left")
 
     if args.expanding:
         from build_modelset import norm
@@ -329,6 +473,12 @@ def main():
                 parts.append(gc)
             evx = pd.concat(parts)
             mode = "v2 expanding-weekly"
+        elif args.minutes:
+            cal2 = fit_t2_cal(panel, f"{season}-01-01")
+            mu_m, p_m = predict_t2(sub, cal2)
+            sub["mu_model"], sub["p_model"] = mu_m, p_m
+            evx = sub[sub.p_model.notna()].copy()
+            mode = "v3 T2 minutes-integrated"
         else:
             cal = fit_play_cal(panel, f"{season}-01-01")
             sub["mu_model"] = predict(sub, cal)
