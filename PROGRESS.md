@@ -35,7 +35,7 @@ Easiest → hardest, tackled one at a time:
 | 1 | WNBA player props | `wnba/` | revisit | first holdout FAIL was early-season/expansion composition; **`fp-prospective-1` registered** on Aug-2026+ props (late-season dev analogue: parity, +3.8% ROI at t=1.8); data-only archiver running |
 | 2 | BBL cricket match odds | `cricket/` | done | **control #3 confirmed** — player model passed dev gates, holdout FAIL (+0.052, t=3.6, ROI −34%); benchmark n=297 is structurally too small; future cricket → IPL pending odds source |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
-| 4 | NHL player props | `props/` | B | **in progress** — api-web opened; pipeline ported; A done (55k props), gates registered |
+| 4 | NHL player props | `props/` | parked | **control** — G1 fail both iterations (+0.0191); shots/blocked individually inside the gate; **holdout unspent** |
 | 5 | NBA player props | `props/` | parked | **control** — G1 fail both iterations (+0.0247); calibration fine, discrimination gap; **holdout unspent** (awaits Stage D injury data) |
 
 ## Common protocol (all markets)
@@ -408,6 +408,17 @@ fit strictly pre-odds, i.e. on the 2024-25 season):
   beaten); flat $1 ROI at consensus open EV > 2% / 5% + devigged-open
   placebo.
 
+**Stage B — complete (2026-07-31 session 3): G1 FAIL after both allowed
+iterations → control recorded, holdout unspent.** `fp_model_nhl.py`:
+frozen +0.01921 (t=10.5), weekly-expanding +0.01914 — identical story to
+NBA. Per market, the physics shows through: **shots +0.0084 and
+blocked +0.0068 are inside the gate on their own** (volume stats, EW-
+predictable), while goals (+0.032), saves (+0.032, cal −7pp) and assists
+(+0.024) carry the miss — rare events where the market's shooting-talent
+and goalie-matchup priors beat per-game EWs. ROI −7% (t=−9), placebo 0
+bets. The 17,818-prop holdout is UNSPENT — a future registration could
+legitimately target the shots/blocked cell, which was competitive on dev.
+
 ## Market 5 — NBA (`props/` + `nba/`)
 
 - Game lines: `nba/` already ran this experiment and produced a *bounded*
@@ -533,3 +544,15 @@ Normal+NegBin mixture):
   a pipeline template, not a data source. Programme state: WNBA prospective
   test accruing via data-only archiver; BBL/soccer/NBA holdouts all
   unspent, each waiting on genuinely new inputs.
+- **2026-07-31 (session 3)** — allowlist opened (cricsheet, api-web,
+  wayback; aussportsbetting still 403 but Wayback covers it). Cricket:
+  six-league Cricsheet ingest, player model registered → dev gates passed,
+  **reserved holdout FAILED (+0.052, t=3.6, ROI −34%) → control #3
+  confirmed**; benchmark n=297 recorded as structurally too small; IPL
+  odds queued as Stage-D scrape. NHL: pipeline ported (panel/modelset/
+  families), 55k-prop benchmark, **control (+0.0191 both iterations)** with
+  shots/blocked individually inside the gate; holdout unspent.
+  **Every runnable market has now been through the gauntlet.** Open
+  threads: WNBA `fp-prospective-1` (accruing, verdict ≈ season end), the
+  NHL shots/blocked cell and NBA injury-report Stage D (each would need a
+  fresh registration against its unspent holdout), IPL odds scrape.
