@@ -611,6 +611,21 @@ the pinned T1 model remains the live arm.
 - Research READMEs (`wnba/`, `soccer/`, `nba/`, `cricket/`) — what was
   measured stands; the 2026-07-31 direction change does not rewrite it.
 
+## Live betting re-opened (owner decision, 2026-07-31 evening)
+
+The owner explicitly re-opened live WNBA betting for the v3 programme
+("we should re-open live betting"). Pre-registered rules live at the top
+of `wnba/live/PROTOCOL.md`: FanDuel coherent quote, news-adjusted claimed
+EV > 10%, quarter-Kelly on half the claimed edge (dev claimed-vs-realized
+≈ 2×), $0.50 rounding, 5%-per-bet and 30%-per-sheet caps, one bet per
+player per game, owner-reported fills, CLV-primary scoreboard via the
+audited settle machinery. Dev-2025 EV-bucket table that motivated the
+10% trigger: 2–5% → −2.6%; 5–10% → +1.7%; 10–15% → +3.4%; 15–25% →
++9.3% (t=2.8); 25%+ → +15.3% (t=3.9) — claimed edge realizes ~half.
+`news-watch` (hourly) now refreshes picks and notifies on new qualifying
+rows; `edge-watch` stays data-only. The fp-prospective-1/2 LL
+registrations are firewalled from betting outcomes.
+
 ## Push log
 
 - **2026-07-31** — Programme opened. PROGRESS.md created (recreated from

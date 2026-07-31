@@ -192,11 +192,80 @@ def main():
     print(f"{len(sheet)} props projected "
           f"({sheet.date.min()} .. {sheet.date.max()}); appended -> "
           f"live/projections.csv")
-    print("\nRESEARCH SHEET — betting is paused; nothing here is a pick.\n")
     show = sheet[sheet.ev_best.notna()].head(20)
     cols = ["date", "player", "market", "line", "mu_news", "p_over_news",
             "override", "ev_cons", "side_cons", "ev_fd", "side_fd"]
     print(show[cols].to_string(index=False))
+    write_picks(props, sheet, cal)
+
+
+def write_picks(props, sheet, cal):
+    """live/picks.csv per the v3 protocol (re-opened 2026-07-31): FanDuel
+    coherent quote, news-adjusted claimed EV > 10%. Stake = quarter-Kelly
+    on HALF the claimed edge (dev: claimed EV realizes ~half), $0.50
+    rounding/minimum, cap 5% of bankroll, dedupe vs bets.csv."""
+    from live_pipeline import min_amer
+    bank = json.load(open(os.path.join(ROOT, "live", "bankroll.json")))
+    bankroll = float(bank["current"])
+    try:
+        logged = set(pd.read_csv(
+            os.path.join(ROOT, "live", "bets.csv")).key)
+    except Exception:
+        logged = set()
+    pmap = props.set_index(props.index)
+    rows = []
+    for r in sheet.itertuples():
+        if pd.isna(r.ev_fd) or r.ev_fd <= 0.10:
+            continue
+        src = pmap[pmap.player.eq(r.player) & pmap.market.eq(r.market)
+                   & pmap.date.eq(r.date)]
+        if not len(src):
+            continue
+        s = src.iloc[0]
+        side = r.side_fd
+        cost = s.fd_over_cost if side == "over" else s.fd_under_cost
+        line = s.fd_line_over
+        dec = float(fp.american_dec(cost))
+        p_side = (r.p_over_news if side == "over" else 1 - r.p_over_news)
+        # half the claimed edge -> implied shrunk probability -> 1/4 Kelly
+        e_half = r.ev_fd / 2.0
+        p_shrunk = (1 + e_half) / dec
+        f_k = max((dec * p_shrunk - 1) / (dec - 1), 0.0)
+        stake = min(0.25 * f_k * bankroll, 0.05 * bankroll)
+        stake = max(round(stake * 2) / 2, 0.5)
+        key = f"{s.event_id}_{s.market}_{norm(s.player)}_{side}"
+        rows.append({
+            "key": key, "date": r.date, "tip": s.tip,
+            "event_id": s.event_id, "market": s.market, "player": s.player,
+            "team": s.bp_team, "game": f"{s.visitor}@{s.home}",
+            "side": side, "fd_line": line, "fd_cost": cost,
+            "model_p": round(p_side, 4), "ev": round(r.ev_fd, 4),
+            "strong": True, "min_odds_3pct": min_amer(p_side, 0.03),
+            "min_odds_6pct": min_amer(p_side, 0.06),
+            "stake": stake, "mu_model": r.mu_news, "mu_open": "",
+            "open_line": s.open_line, "play": key not in logged,
+            "already_bet": key in logged,
+        })
+    picks = pd.DataFrame(rows)
+    if len(picks):
+        # one bet per player per game: keep the highest-EV market
+        picks = (picks.sort_values("ev", ascending=False)
+                 .drop_duplicates(["player", "date"]).reset_index(drop=True))
+        # total-exposure cap: playable stakes <= 30% of bankroll
+        play_stake = picks.loc[picks.play, "stake"].sum()
+        cap = 0.30 * bankroll
+        if play_stake > cap:
+            scale = cap / play_stake
+            picks.loc[picks.play, "stake"] = (
+                (picks.loc[picks.play, "stake"] * scale * 2)
+                .round() / 2).clip(lower=0.5)
+    picks.to_csv(os.path.join(ROOT, "live", "picks.csv"), index=False)
+    n_play = int(picks.play.sum()) if len(picks) else 0
+    print(f"\npicks.csv: {len(picks)} qualifying (EV>10% at FanDuel), "
+          f"{n_play} new playable")
+    if len(picks):
+        print(picks[["date", "player", "market", "side", "fd_line",
+                     "fd_cost", "ev", "stake", "play"]].to_string(index=False))
 
 
 if __name__ == "__main__":

@@ -1,16 +1,17 @@
 # wnba (subproject of beating-the-opener)
 
-**The live experiment is PAUSED (2026-07-31) and this model's architecture is
-retired.** Do not run src/live_pipeline.py, do not score picks, do not
-notify. The `edge-watch` routine runs in **data-only mode** (owner decision,
-2026-07-31): it archives lines via scrape_bettingpros.py and pushes — nothing
-else. A second routine, **news-watch**, maintains
-live/projections_overrides.json from free news sources (v3 T3; owner
-decision 2026-07-31 — this supersedes the old "no model reads injury news"
-rule for the v3 programme; no picks/notifications/bets, ever). The pause
-block at the top of live/PROTOCOL.md is authoritative and overrides both
-routines' prompts. Direction: ../PROGRESS.md (Market 1 v3 — pinned talent
-model under fp-prospective-2 on props dated 2026-08-01+).
+**Live betting RE-OPENED 2026-07-31 (owner decision) under the v3
+protocol** at the top of live/PROTOCOL.md — read it before touching
+anything here. The OLD anchored model stays retired: never run
+src/live_pipeline.py for picks. Picks come from **src/fp_live.py** (pinned
+talent model + news overrides), FanDuel EV>10% trigger, pre-registered
+staking. `edge-watch` = data-only close archiver. `news-watch` (hourly) =
+overrides + picks refresh + notification. Fills are owner-reported only:
+log to live/bets.csv copying picks.csv fields, commit, push. Settlement
+via src/settle_bets.py per protocol. The news layer supersedes the old
+"no injury news" rule for v3. Scoring registrations: ../PROGRESS.md
+(fp-prospective-1/-2 on props dated 2026-08-01+, base model, unaffected
+by betting).
 
 Why: the model anchors on the opening price (`mu_open` is inverted out of the
 opener; every prediction is `mu_open + predicted_move`), so it has no

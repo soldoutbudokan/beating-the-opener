@@ -1,69 +1,70 @@
 # Live experiment protocol - WNBA props
 
-> # 🛑 EXPERIMENT PAUSED — 2026-07-31
+> # ▶️ EXPERIMENT RE-OPENED — 2026-07-31 (v3, from-scratch talent model)
 >
-> **The live WNBA experiment is paused indefinitely by user decision.** No
-> picks, no notifications, no bets, no settlement-driven commits.
+> **Owner decision, 2026-07-31 evening: live betting is re-opened** for the
+> v3 programme. The morning's pause of the *anchored* model stands — that
+> model stays retired; what bets now is the from-scratch talent model
+> (`fp_live.py`: pinned fp-prospective-2 base + news-driven minutes
+> overrides). Rules pre-registered here, before the first v3 bet:
 >
-> **If you are the `edge-watch` routine: DATA-ONLY MODE (owner decision,
-> 2026-07-31).** This block overrides the routine prompt in full (the prompt
-> itself defers: *"where this prompt and the PROTOCOL disagree, the PROTOCOL
-> wins"*). On every firing until this block changes, do exactly this and
-> nothing else:
+> - **Bet trigger**: a FanDuel two-way quote (same line both sides,
+>   booksum 1.00–1.15) where the news-adjusted model's claimed EV > 10%.
+>   Consensus-only edges are context, never bets (untradeable — AUDIT H3).
+> - **Stakes**: quarter-Kelly computed on **half the claimed edge** (dev
+>   2025: claimed EV realizes ~half — the bucket table in PROGRESS.md),
+>   against `bankroll.json` (continues at $98.91), rounded to $0.50,
+>   minimum $0.50, **cap 5% of bankroll per bet**, one bet per player per
+>   game (highest-EV market only), dedupe against `bets.csv` by pick key,
+>   and **total playable stakes capped at 30% of bankroll per sheet**
+>   (proportional scale-down — the audit's open-exposure lesson).
+> - **Notifications**: the hourly `news-watch` routine sends ONE
+>   PushNotification per firing listing NEW qualifying picks
+>   (player/market/line/side/FD price/stake). Nothing crosses → no
+>   notification. Never re-notify the same pick key.
+> - **Availability check before you bet**: the cadence is hourly — late
+>   scratches can be missed. Confirm the player is in the lineup near tip;
+>   the overrides file is judgement, not gospel.
+> - **Fills**: report what you took; the session logs it to `bets.csv`
+>   (fields copied from `picks.csv`), commits, pushes. Never invent fills.
+> - **Settlement & scoreboard**: `settle_bets.py` next morning (the
+>   pre-pause machinery below, audit-hardened). Primary metric **CLV vs
+>   close** (raw + shade-adjusted), secondary P&L. `edge-watch` stays
+>   **data-only** (archives the closes CLV needs).
+> - **Scoring firewall**: `fp-prospective-2` (PROGRESS.md) keeps scoring
+>   the BASE model on log loss regardless of betting outcomes; this
+>   experiment measures the news-adjusted model's money outcome. Neither
+>   contaminates the other.
+> - Expectation-setting, pre-registered: dev-2025 analogue of this exact
+>   rule (FD, EV>10%) is ~+5-10% ROI; at this bankroll that is cents per
+>   day. The experiment is measurement, not income.
 >
-> 1. Run `python3 src/scrape_bettingpros.py` from `wnba/` to archive the
->    day's lines (the archive feeds the prospective from-scratch test
->    registered in [`../../PROGRESS.md`](../../PROGRESS.md) — Market 1).
-> 2. Commit the new archive files with message `archive: WNBA lines
->    (data-only mode)` and push to `main`. Nothing else may be committed.
-> 3. End the run with the single line:
->    `Data-only archive done — betting paused, see wnba/live/PROTOCOL.md.`
+> ## edge-watch routine — DATA-ONLY (unchanged)
 >
-> Everything else stays halted:
-> - Do **not** run `live_pipeline.py`, `settle_bets.py`, or any wehoop
->   refresh; do **not** score, list, or update picks.
-> - Do **not** send any PushNotification, for picks or settlements or
->   anything else.
-> - **No bets.** The live betting experiment remains paused indefinitely;
->   this mode exists purely so market prices keep being archived for
->   *scoring* research models. If the scrape fails, end with the failure
->   noted on one line — do not retry into other steps.
+> On every firing: run `python3 src/scrape_bettingpros.py` from `wnba/`,
+> commit the new archive files (`archive: WNBA lines (data-only mode)`),
+> push, end with one line. No picks, no notifications, no settlement —
+> those duties live with `news-watch` and the owner's sessions.
 >
-> ## news-watch routine (v3 T3 — owner-directed, 2026-07-31)
+> ## news-watch routine (v3, with picks + notify — owner re-open 2026-07-31)
 >
-> A SEPARATE routine from the archiver. Its whole job is maintaining
-> `live/projections_overrides.json` — the news-driven availability and
-> minutes log for the from-scratch programme (../../PROGRESS.md, Market 1
-> v3). It makes **no picks, no notifications, no bets** — the betting
-> pause above binds it fully. Each firing:
+> Each firing, in order:
 >
 > 1. `python3 src/news_watch.py --fetch` from `wnba/`.
->    - `SOURCES_UNREACHABLE` → end with that single line (the owner has
->      not yet allowlisted espn.com domains — do not work around it).
->    - `NO_NEW_ITEMS` → end with that single line, committing nothing.
-> 2. For each new item, judge: does it change a player's availability or
->    expected minutes for an upcoming game (injury, return, rotation
->    change, rest)? Ignore everything else (recaps, features, trades with
->    no minutes implication tonight).
-> 3. For each real implication, APPEND an entry to
->    `live/projections_overrides.json` per its schema — status,
->    minutes_est or minutes_range (your judgement, stated conservatively),
->    source, url, short quote, author `news-watch`. Never edit or delete
->    old entries; supersede via `superseded_by`.
-> 4. If `src/fp_live.py` exists (T3b, not yet built), also run it to
->    refresh the projections sheet. Until then skip this step.
-> 5. Commit ONLY the touched files (`news_seen.json`,
->    `projections_overrides.json`, projections sheet if any) with message
->    `news-watch: <n> override(s)` and push to main. End with one line
->    summarizing what changed.
->
-> **Reason.** The user's judgement, 2026-07-31: every model in this repo that
-> reached a live experiment anchors on the market price it is trying to beat,
-> and so never produces an independent opinion about what a player will do.
-> The experiment is on hold pending a rework toward first-principles pricing.
-> See [`../../PLAN.md`](../../PLAN.md) for the direction and
-> [`../../README.md`](../../README.md) for what the pause does and does not
-> invalidate.
+>    `SOURCES_UNREACHABLE` → end with that single line. New items → judge
+>    availability/minutes implications; append override entries to
+>    `live/projections_overrides.json` per its schema (conservative,
+>    sourced, author `news-watch`; supersede, never edit).
+> 2. **Always** run `python3 src/fp_live.py` (prices move without news):
+>    refreshes `live/projections.csv` and rewrites `live/picks.csv` with
+>    rows meeting the bet trigger above.
+> 3. If `picks.csv` contains picks with `play=True` whose keys were not in
+>    the previous `picks.csv` and are not in `bets.csv`: send ONE
+>    PushNotification listing them (player, market, line, side, FD price,
+>    stake). Otherwise send nothing.
+> 4. Commit touched files (`news-watch: <n> override(s), <m> pick(s)`),
+>    push to main. **No settlement, no bets.csv writes** — fills are
+>    owner-reported only.
 >
 > **Open positions:** none. At pause time `live/bets.csv` held 5 bets, all
 > `status=settled` (2W-3L, bankroll $98.91 of $100). Nothing needs unwinding.
