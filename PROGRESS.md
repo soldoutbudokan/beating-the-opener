@@ -33,7 +33,7 @@ Easiest → hardest, tackled one at a time:
 | # | market | where | stage | status |
 |---|--------|-------|-------|--------|
 | 1 | WNBA player props | `wnba/` | done | **held-out FAIL** — loses to opener +0.0176 (t=4.1); revisit = prospective holdout post-2026-07-31 |
-| 2 | BBL cricket match odds | `cricket/` | B | **in progress** — A done, gates registered; ball-by-ball data-blocked (owner action) |
+| 2 | BBL cricket match odds | `cricket/` | parked | team model ties opener (G1 PASS), G2 calibration gate FAIL; **holdout unspent**, awaiting ball-by-ball data (owner action) |
 | 3 | Soccer 1X2 | `soccer/` | — | queued (moved up: data on disk) |
 | 4 | NHL (game lines + player props) | `props/` | — | queued — **data-blocked**: api-web unreachable in this environment; try GitHub mirrors (e.g. hockeyR-data) or owner network action |
 | 5 | NBA (player props; game lines only with a new idea) | `props/`, `nba/` | — | queued |
@@ -196,8 +196,25 @@ The softest benchmark in the repo — but n is tiny, so gates are power-aware.
   flat-stake ROI at the multi-book-average open for EV > 2% / 5%, with the
   devigged-open placebo column.
 
-- **B**: pre-match win prob from expanding-window team ratings (Elo on
-  results + score-margin ratings from the xlsx), venue/home effects.
+- **B — complete (2026-07-31): gate-stopped, holdout preserved.**
+  `src/fp_model.py`: walk-forward Elo + net-run-rate ratings, blended, all
+  hyperparameters tuned on the pre-odds 2011–2017 era only. Dev results:
+  - **G1 PASS**: model − open **+0.00205** (t=0.3) — a from-scratch
+    team-level model built in an afternoon is statistically
+    indistinguishable from the BBL opener (consistent with Stage A's
+    finding that the dev-era opener is worse than a coin flip).
+  - **G2 FAIL after the two allowed iterations**: calibration −6.3pp vs
+    the 5pp gate. Root cause: the training era (2011–2017) shows ~no home
+    advantage, so no honest walk-forward fit can predict the dev era's
+    56.5% home rate — and the market itself is 5.5pp out on the same bar.
+    (Gate-design lesson recorded: a raw-pp gate at n=177 sits inside
+    binomial noise; a z-test gate would have been better. The gate as
+    registered is honoured regardless.)
+  - **Consequence**: Stage C not run — the 120-match holdout is UNSPENT,
+    preserved for the player-level ball-by-ball model once Stage D
+    unblocks. This market is parked, not killed: the benchmark is the
+    softest in the repo and the wedge test says the close adds nothing,
+    so a genuinely better pricer has room to show it.
 - **D candidates**: BBL ball-by-ball (blocked, above); pool player ratings
   across T20 leagues once Cricsheet is reachable; grow the odds benchmark
   (OddsPortal via Wayback — also currently blocked).
@@ -290,3 +307,9 @@ early/close prices in the same files — 9 test seasons.
   Also found: NHL api-web unreachable from this environment → Market 3
   (NHL) is data-blocked; soccer (data on disk) moves ahead of it, per the
   flexibility flagged in the approved plan.
+- **2026-07-31** — Market 2 Stage B complete, **gate-stopped**: Elo+NRR
+  blend ties the opener on dev (+0.00205, t=0.3, G1 PASS) but fails the
+  G2 calibration gate (−6.3pp vs 5pp) after the two allowed iterations —
+  the pre-odds training era carries no home advantage to learn. Holdout
+  deliberately UNSPENT; market parked pending ball-by-ball data (Stage D,
+  owner action). Next: Market 3 (soccer, data on disk) Stage A.
