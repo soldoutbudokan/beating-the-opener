@@ -4,7 +4,8 @@
 is paused indefinitely and the `edge-watch` routine is halted — see the block
 at the top of `wnba/live/PROTOCOL.md`. The anchored-on-the-opener programme
 that produced every model here is retired; the rework toward first-principles
-pricing is scoped in `PLAN.md`. Read `PLAN.md` before starting modelling work.
+pricing is tracked in `PROGRESS.md` (which supersedes `PLAN.md`). Read
+`PROGRESS.md` before starting modelling work, and update it with every push.
 
 Subprojects, all now research-only: `wnba/` (player props — the paused live
 experiment), `soccer/` (1X2 openers — live experiment cancelled 2026-07-28

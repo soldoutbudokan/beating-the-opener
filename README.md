@@ -25,7 +25,8 @@ Rebuilt automatically every time a bet settles.
 > result in the repo — including bounds saying the gap is not closeable with
 > public data. Read that one before rebuilding.
 >
-> Direction for the rebuild: [PLAN.md](PLAN.md).
+> Direction for the rebuild: [PROGRESS.md](PROGRESS.md) (the living tracker
+> for the from-scratch programme, updated with every push).
 
 One project, one thesis, tested market by market: **soft sportsbooks' opening
 lines are inefficient, and the inefficiency is capturable with public data.**
