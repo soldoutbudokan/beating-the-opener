@@ -288,6 +288,21 @@ recorded 2026-07-31):
   paired t (≤ −1 suggestive, ≤ −2 significant); flat $1 ROI at the
   multi-book-average open, EV > 2% / 5%, with devigged-open placebo.
 
+**IPL odds hunt (2026-07-31 session 3) — every reachable route is dry.**
+Attempted and dead, so nobody re-treads: (a) OddsPortal via Wayback —
+season and match pages ARE archived 2010+, but odds were script-loaded
+and the archived HTML contains empty odds containers (verified on 2011-
+and 2014-era page versions; the `fb.oddsportal.com` data feeds were never
+captured); (b) BetExplorer via Wayback — IPL pages not archived at all;
+(c) GitHub — no public IPL odds dataset findable; (d) Kaggle — outside
+the network allowlist; (e) aussportsbetting — publishes no IPL file
+(verified via CDX). **The good route is Betfair's historical exchange
+data (historicdata.betfair.com): free with a Betfair account, real traded
+IPL prices back to ~2016, timestamped (gives true open AND close). Owner
+action: download the cricket files and commit them under
+`cricket/data/raw/betfair/`; the Stage A benchmark + registration for IPL
+is then a rerun of the BBL machinery.**
+
 **Player-model verdict (2026-07-31 session 3): dev gates PASSED (G1
 +0.00635, G2 −6.6pp within ±7.5pp), holdout FAILED decisively** — scored
 once per the registration: model − open **+0.05162 (t=3.6)**, calibration
