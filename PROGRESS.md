@@ -33,7 +33,7 @@ Easiest → hardest, tackled one at a time:
 | # | market | where | stage | status |
 |---|--------|-------|-------|--------|
 | 1 | WNBA player props | `wnba/` | **LIVE** | talent engine beats opener on dev (Aug–Oct −0.0077, ROI +8.6%); **betting re-opened 2026-07-31** (FD EV>10%, protocol-pinned); news-watch live (news → overrides → picks → notify); fp-prospective-1/2 scoring firewalled |
-| 1b | WNBA game lines | `wnba/` | v2 running | v1 = **control** (GG1 fail both iterations, +0.040 vs ≤+0.010); v2 possession-based rebuild registered 2026-07-31 (Market 1b-v2 below) — usage conservation, per-possession defense, spread benchmark |
+| 1b | WNBA game lines | `wnba/` | prospective | v1 + v2 **ML head = control** (v2 GV2-1 +0.020 vs ≤+0.010 after the one-ball rework halved v1's gap); v2 **spread head passed dev gates** (+0.0072, cal −1.5pp) → `fp-games-prospective-1` accruing on games 2026-08-01+, scored at season end; no betting |
 | 2 | BBL cricket match odds | `cricket/` | done | **control #3 confirmed** — player model passed dev gates, holdout FAIL (+0.052, t=3.6, ROI −34%); benchmark n=297 is structurally too small; future cricket → IPL pending odds source |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
 | 4 | NHL player props | `props/` | parked | **control** — G1 fail both iterations (+0.0191); shots/blocked individually inside the gate; **holdout unspent** |
@@ -692,6 +692,44 @@ iterations; all scored together each time:
   only as a separate owner decision. Fail both → game lines confirmed
   as a control at the serious-effort level; park permanently.
 
+**Verdict (2026-07-31 session 6, both iterations spent).**
+`wnba/src/fp_games2.py`. Train-only fits: plays = 7.3 + 1.019·poss_hat;
+usage–efficiency β came out **wrong-signed** (+0.049 pts/play per unit
+over-usage, t=2.1 — efficiency *rising* under forced usage is the
+shot-selection artifact, not a causal tradeoff) → β := 0 per the
+registered noise rule, documented; defense exponent 1.0; margin σ≈12.3.
+- **Iteration 1** (margin head fit on all ≤2024): GV2-1 +0.02215
+  (t=1.9) FAIL; GV2-2 **+0.00994 PASS**; GV2-3 +3.48pp FAIL. Diagnosis
+  on train data only: WNBA home advantage collapsed ~3.3 pts
+  (pre-2015) → ~1.1–1.5 pts (2021–24); the all-history fit (2.80)
+  baked a stale home edge into every game.
+- **Iteration 2** (margin head fit on 2020–2024; sole change):
+  **GV2-1 +0.02008 (t=2.0) FAIL** → the moneyline head is a control,
+  consistent with v1 and props Phase 1G — WNBA ML is efficient.
+  **GV2-2 +0.00723 (t=0.6) PASS. GV2-3 −1.46pp PASS.** GV2-4: MAE
+  (margin vs close spread) 3.40 pts. No tripwires (loses to both
+  closes).
+- Reading, stated honestly: the one-ball rework halved v1's ML gap
+  (+0.040 → +0.020) and the **spread head sits within striking
+  distance of the opener while calibrated** — but "pass" here means
+  *close enough to keep alive*, not *beats the market*: the model is
+  still 0.007 behind the open on dev.
+
+**`fp-games-prospective-1` — registered 2026-07-31 (session 6), before
+any post-lock game data exists.** Population: WNBA games dated
+**2026-08-01 or later**, scored once at season end (expected n ≈
+150–250 incl. playoffs) from the archived book-0 consensus opens
+(the bp archive carries open_line/open_cost per event; no live capture
+needed). Metric: spread head only — LL(model cover prob at open line)
+− LL(devigged open spread price), date-clustered t, pushes dropped;
+predictions from `fp_games2.py` exactly as committed at this push
+(walk-forward states may absorb new box scores; no refits, no
+parameter changes). Claim thresholds: ≤ 0.000 = the from-scratch game
+model matches/beats the WNBA spread opener (first market-level claim
+for a game model in this repo); > +0.010 = kill the spread head too.
+In between = park as "striking distance, unproven". **No betting off
+this head under any outcome without a separate owner decision.**
+
 ## Live betting re-opened (owner decision, 2026-07-31 evening)
 
 The owner explicitly re-opened live WNBA betting for the v3 programme
@@ -787,3 +825,9 @@ registrations are firewalled from betting outcomes.
   game-model rebuild per the owner critique (one-ball usage conservation,
   usage–efficiency tradeoff, per-possession defense, spread benchmark
   first use). GV2 gates above pushed before any v2 code scores on dev.
+- **2026-07-31 (session 6b)** — Market 1b-v2 run: ML head fails both
+  iterations (control confirmed at the serious-effort level); spread
+  head passes dev gates → `fp-games-prospective-1` registered on games
+  2026-08-01+ (spread open, season-end scoring, no betting). Home-adv
+  collapse (3.3 → ~1.3 pts) identified and documented; β wrong-sign
+  artifact recorded.
