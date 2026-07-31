@@ -32,7 +32,7 @@ Easiest → hardest, tackled one at a time:
 
 | # | market | where | stage | status |
 |---|--------|-------|-------|--------|
-| 1 | WNBA player props | `wnba/` | B | **in progress** — A done, gates registered |
+| 1 | WNBA player props | `wnba/` | C | **in progress** — A done; B passed G1+G2 |
 | 2 | BBL cricket match odds | `cricket/` | — | queued |
 | 3 | NHL (game lines + player props) | `props/` | — | queued |
 | 4 | Soccer 1X2 | `soccer/` | — | queued |
@@ -85,10 +85,16 @@ data already committed (`wnba/data/raw/bp/`), hundreds of prices per slate.
   (existing `build_props.py` / `grade_props.py` / `features.py` /
   `build_modelset.py`); benchmark table of coherent consensus open/close;
   register gates below.
-- **B**: `wnba/src/fp_model.py` — minutes model (EW minutes, rotation
-  availability from prior games) × per-minute rates (EW, opponent
-  pace/defense-adjusted) → per-market distributions via `dist_utils.py` →
-  P(over) at the quoted line.
+- **B — complete (2026-07-31), G1 and G2 PASS.** `wnba/src/fp_model.py`:
+  blend(per-game EW, rate × minutes) with opponent pace/defense factors,
+  fixed constants, σ(μ) refit on the pre-2025 panel, absence features
+  excluded (they condition on tonight's box score — the nba/ leakage trap).
+  Dev season 2025, coverage 99.8%:
+  - **G1**: LL(model) − LL(open) = **+0.00804** (clustered t=2.6) ≤ +0.010 → PASS
+  - **G2**: calibration **−1.89pp** ≤ 2.5pp → PASS
+  - **G3**: model − close = +0.00864 (loses to the close; no tripwire)
+  - Per market: reb_ast already beats the opener outright (−0.021, n=1,163);
+    worst are assists (+0.017, cal −5.6pp) and rebounds (+0.014, cal −3.9pp).
 - **C**: hierarchical shrinkage, positional defense, rest/home; ROI sim.
   Report raw and shade-aware benchmarks (the market's ~2pp over-shade,
   AUDIT N1, is free edge for a calibrated from-scratch model).
@@ -217,3 +223,8 @@ early/close prices in the same files — 9 test seasons.
   committed archive (25,706-prop eval population), benchmark table computed
   (`wnba/src/fp_benchmark.py`), Stage B/C gates registered above **before any
   model code**. Next: Stage B baseline (`wnba/src/fp_model.py`).
+- **2026-07-31** — Market 1 Stage B complete: from-scratch baseline within
+  striking distance of the opener on dev (+0.00804, G1 PASS; calibration
+  −1.89pp, G2 PASS; loses to the close, no tripwire). Proceeding to Stage C
+  (shrinkage, per-stat opponent adjustment, home/rest; then the one held-out
+  run + ROI sim). The 2026 season remains unscored.
