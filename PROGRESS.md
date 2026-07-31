@@ -259,7 +259,34 @@ The softest benchmark in the repo — but n is tiny, so gates are power-aware.
   template (Cricsheet download → parse deliveries → features → win-prob
   ensemble) is the implementation guide — checked this session: it commits
   only small lookup JSONs, so it's a pipeline pattern, not a data source.
-  Reachability re-tested this session: still blocked.
+
+### Cricket data unblocked (2026-07-31 session 3)
+
+cricsheet.org opened: all six T20 archives fetched and parsed
+(`src/fp_ingest.py`, gitignored/regenerable) — BBL 662, IPL 1,243, PSL 357,
+CPL 407, T20 Blast 1,570, T20Is 5,591 = **9,830 matches, 2.25M deliveries,
+2005–2026**. aussportsbetting.com itself still 403s from this container,
+but Wayback (open) confirms: the Feb-2023 BBL file we hold is the newest
+real capture, and **aussportsbetting has no IPL file at all** — IPL odds
+need a proper Stage-D source (OddsPortal-via-Wayback scrape; queued). So
+BBL remains the scoreable cricket market; every league feeds the ratings.
+
+**Player-model registration — registered 2026-07-31 (session 3), before
+the model is evaluated on dev.** Model class: per-player batting/bowling
+ratings from cross-league ball-by-ball (time-decayed, walk-forward),
+aggregated over a strictly-prior **expected XI** (appearance-weighted from
+each team's previous matches — never tonight's XI or toss, which postdate
+the opener); venue/home effects; all tuning on pre-2018 data only. Fresh
+gates (the team-model's iterations are spent and its G2 was mis-sized —
+recorded 2026-07-31):
+- **G1 (dev 2018–2020)**: LL(model) − LL(open) ≤ **+0.010**; at most two
+  iterations.
+- **G2 (dev)**: |mean P(home) − realized home rate| ≤ **2× binomial σ**
+  (≈7.4pp at n=177) — sized to noise this time, openly.
+- **G3 tripwire (dev)**: beats the open by > 0.005 at t > 2 → investigate.
+- **Stage C (the reserved 120-match holdout, scored once)**: LL gap with
+  paired t (≤ −1 suggestive, ≤ −2 significant); flat $1 ROI at the
+  multi-book-average open, EV > 2% / 5%, with devigged-open placebo.
 
 ## Market 3 — Soccer 1X2 (`soccer/`) — moved up (data on disk; NHL blocked)
 
