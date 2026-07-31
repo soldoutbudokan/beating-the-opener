@@ -33,7 +33,7 @@ Easiest → hardest, tackled one at a time:
 | # | market | where | stage | status |
 |---|--------|-------|-------|--------|
 | 1 | WNBA player props | `wnba/` | revisit | first holdout FAIL was early-season/expansion composition; **`fp-prospective-1` registered** on Aug-2026+ props (late-season dev analogue: parity, +3.8% ROI at t=1.8); data-only archiver running |
-| 2 | BBL cricket match odds | `cricket/` | parked | team model ties opener (G1 PASS), G2 calibration gate FAIL; **holdout unspent**, awaiting ball-by-ball data (owner action) |
+| 2 | BBL cricket match odds | `cricket/` | done | **control #3 confirmed** — player model passed dev gates, holdout FAIL (+0.052, t=3.6, ROI −34%); benchmark n=297 is structurally too small; future cricket → IPL pending odds source |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
 | 4 | NHL (game lines + player props) | `props/` | — | queued — **data-blocked**: api-web unreachable in this environment; try GitHub mirrors (e.g. hockeyR-data) or owner network action |
 | 5 | NBA player props | `props/` | parked | **control** — G1 fail both iterations (+0.0247); calibration fine, discrimination gap; **holdout unspent** (awaits Stage D injury data) |
@@ -287,6 +287,19 @@ recorded 2026-07-31):
 - **Stage C (the reserved 120-match holdout, scored once)**: LL gap with
   paired t (≤ −1 suggestive, ≤ −2 significant); flat $1 ROI at the
   multi-book-average open, EV > 2% / 5%, with devigged-open placebo.
+
+**Player-model verdict (2026-07-31 session 3): dev gates PASSED (G1
++0.00635, G2 −6.6pp within ±7.5pp), holdout FAILED decisively** — scored
+once per the registration: model − open **+0.05162 (t=3.6)**, calibration
+−9.7pp, ROI at the average open **−34% (t≈−3)**, placebo 0 bets. The
+dev-era "opener worse than a coin flip" did not persist: the 2021-22
+opener was sharp (LL 0.640) while the model, honestly fit on a training
+era with no home advantage, sat near coin. **BBL from-scratch = control
+#3 confirmed**, now from the modelling side as well as the wedge side.
+Structural lesson recorded: with only 297 odds-matched matches, even a
+good model could not have proven itself here — future cricket work should
+target markets with larger odds samples (IPL, pending the Stage-D odds
+scrape). Both holdout and iterations are spent for BBL.
 
 ## Market 3 — Soccer 1X2 (`soccer/`) — moved up (data on disk; NHL blocked)
 
