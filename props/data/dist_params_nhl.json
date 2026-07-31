@@ -1,0 +1,16 @@
+{
+ "cutoff": "2025-10-07",
+ "sigma_ab": {
+  "saves": [
+   28.78,
+   1.31
+  ]
+ },
+ "nb_r": {
+  "goals": 5.8,
+  "assists": 8.0,
+  "points": 14.3,
+  "shots": 11.1,
+  "blocked_shots": 7.2
+ }
+}
