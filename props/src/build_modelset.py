@@ -35,6 +35,7 @@ MARKETS = {  # v1 model markets; order fixes mkt_i
             "earned_runs", "hits", "total_bases", "hrr"],
     "NBA": ["points", "rebounds", "assists", "threes", "steals", "blocks",
             "pra", "pts_ast", "pts_reb", "reb_ast"],
+    "NHL": ["shots", "points", "assists", "goals", "blocked_shots", "saves"],
 }
 
 PANEL_FEATS = {  # single source - train_eval imports it (wnba double-def lesson)
@@ -57,6 +58,16 @@ PANEL_FEATS = {  # single source - train_eval imports it (wnba double-def lesson
                    "home", "post", "started_ewf",
                    "tm_pace_ew", "tm_pts_for_ew", "tm_pts_against_ew",
                    "opp_pace_ew", "opp_pts_for_ew", "opp_pts_against_ew"],
+    },
+    "NHL": {
+        "skater": ["toi_min_ewf", "toi_min_ews", "g_ewf", "g_ews", "a_ewf",
+                   "a_ews", "p_ewf", "p_ews", "sog_ewf", "sog_ews",
+                   "blk_ewf", "blk_ews", "rest", "gp", "home", "post",
+                   "tm_gf_ew", "tm_ga_ew", "tm_sf_ew", "tm_sa_ew",
+                   "opp_gf_ew", "opp_ga_ew", "opp_sf_ew", "opp_sa_ew"],
+        "goalie": ["sv_ewf", "sv_ews", "sa_g_ewf", "sa_g_ews", "toi_min_ewf",
+                   "rest", "gp", "home", "post",
+                   "tm_ga_ew", "tm_sa_ew", "opp_gf_ew", "opp_sf_ew"],
     },
 }
 

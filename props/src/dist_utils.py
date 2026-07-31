@@ -36,6 +36,11 @@ FAMILY = {
         "pra": "norm", "pts_ast": "norm", "pts_reb": "norm", "reb_ast": "norm",
         "threes": "pois", "steals": "pois", "blocks": "pois",
     },
+    "NHL": {  # low counts -> NegBin with fitted r (Poisson fallback);
+        # saves ~25/game -> Normal
+        "goals": "nb", "assists": "nb", "points": "nb", "shots": "nb",
+        "blocked_shots": "nb", "saves": "norm",
+    },
 }
 
 # market -> panel EW cols summing to a fundamentals projection (gap_ew uses
@@ -54,6 +59,11 @@ EW_PROJ = {
         "pts_ast": ["pts_ewf", "ast_ewf"], "pts_reb": ["pts_ewf", "reb_ewf"],
         "reb_ast": ["reb_ewf", "ast_ewf"],
     },
+    "NHL": {
+        "goals": ["g_ewf"], "assists": ["a_ewf"], "points": ["p_ewf"],
+        "shots": ["sog_ewf"], "blocked_shots": ["blk_ewf"],
+        "saves": ["sv_ewf"],
+    },
 }
 ACTUALS = {
     "MLB": {
@@ -66,6 +76,10 @@ ACTUALS = {
         "threes": ["tpm"], "steals": ["stl"], "blocks": ["blk"],
         "pra": ["pts", "reb", "ast"], "pts_ast": ["pts", "ast"],
         "pts_reb": ["pts", "reb"], "reb_ast": ["reb", "ast"],
+    },
+    "NHL": {
+        "goals": ["g"], "assists": ["a"], "points": ["p"], "shots": ["sog"],
+        "blocked_shots": ["blk"], "saves": ["sv"],
     },
 }
 

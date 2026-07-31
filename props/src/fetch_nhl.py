@@ -29,7 +29,8 @@ PAUSE = 0.15
 WORKERS = 8
 # regular season + playoffs; gameType 1 = preseason (excluded)
 KEEP_TYPES = {2, 3}
-SEASON_SPAN = {2025: ("2025-10-01", "2026-06-30")}
+SEASON_SPAN = {2024: ("2024-10-01", "2025-06-30"),
+               2025: ("2025-10-01", "2026-06-30")}
 TEAMS = ["ANA", "BOS", "BUF", "CGY", "CAR", "CHI", "COL", "CBJ", "DAL", "DET",
          "EDM", "FLA", "LAK", "MIN", "MTL", "NSH", "NJD", "NYI", "NYR", "OTT",
          "PHI", "PIT", "SEA", "SJS", "STL", "TBL", "TOR", "UTA", "VAN", "VGK",

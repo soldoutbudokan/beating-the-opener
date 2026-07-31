@@ -52,6 +52,9 @@ SPORTS = {
             322: "saves", 362: "blocked_shots",
         },
         "game_markets": {193: "moneyline", 194: "total", 195: "puck_line"},
-        "seasons": {2025: ("2025-10-01", "2026-06-30")},
+        # 2024 has no archived odds - fetched only for panel warmup +
+        # play-data calibration of the fp model
+        "seasons": {2024: ("2024-10-01", "2025-06-30"),
+                    2025: ("2025-10-01", "2026-06-30")},
     },
 }

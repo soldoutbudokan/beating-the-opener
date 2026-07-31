@@ -209,6 +209,84 @@ def build_nba():
     return d
 
 
+NHL_ALPHAS = {"f": 0.15, "s": 0.05}
+NHL_TEAM_ALPHA = 0.05
+
+
+def _toi_min(s):
+    t = s.fillna("00:00").astype(str).str.split(":", expand=True)
+    return (pd.to_numeric(t[0], errors="coerce").fillna(0)
+            + pd.to_numeric(t[1], errors="coerce").fillna(0) / 60)
+
+
+def nhl_team_context(sk):
+    """Per (game_id, team) EW goals/shots for+against, strictly prior."""
+    tg = (sk.groupby(["game_id", "date", "team", "opp"])
+          .agg(gf=("g", "sum"), sf=("sog", "sum")).reset_index())
+    against = tg.rename(columns={"team": "opp", "opp": "team",
+                                 "gf": "ga", "sf": "sa"})
+    tg = tg.merge(against[["game_id", "team", "ga", "sa"]],
+                  on=["game_id", "team"], how="left")
+    tg = tg.sort_values(["team", "date", "game_id"]).reset_index(drop=True)
+    for c in ("gf", "ga", "sf", "sa"):
+        tg[f"tm_{c}_ew"] = shift_ew(tg[c], tg.team, NHL_TEAM_ALPHA)
+    return tg[["game_id", "team", "tm_gf_ew", "tm_ga_ew",
+               "tm_sf_ew", "tm_sa_ew"]]
+
+
+def _nhl_names():
+    players = _load_parquets("nhl", "players").drop_duplicates("pid")
+    full = (players["first"].astype(str) + " "
+            + players["last"].astype(str)).map(norm)
+    return dict(zip(players.pid, full))
+
+
+def build_nhl():
+    pid2name = _nhl_names()
+    sk = _load_parquets("nhl", "skater_box")
+    gl = _load_parquets("nhl", "goalie_box")
+    frames = []
+    for df, role, stats in ((sk, "skater",
+                             {"goals": "g", "assists": "a", "points": "p",
+                              "sog": "sog", "blocked": "blk"}),
+                            (gl, "goalie",
+                             {"saves": "sv", "shots_against": "sa_g"})):
+        df = df.copy()
+        df["date"] = pd.to_datetime(df.date)
+        for src, name in stats.items():
+            df[name] = pd.to_numeric(df[src], errors="coerce")
+        df["toi_min"] = _toi_min(df.toi)
+        df = df[df.toi_min > 0].copy()
+        df = df.sort_values(["pid", "date", "game_id"]).reset_index(drop=True)
+        for name in list(stats.values()) + ["toi_min"]:
+            for tag, a in NHL_ALPHAS.items():
+                df[f"{name}_ew{tag}"] = shift_ew(df[name], df.pid, a)
+        df["gp"] = df.groupby("pid", sort=False).cumcount()
+        df["rest"] = (df.date - df.groupby("pid", sort=False)["date"]
+                      .shift(1)).dt.days.clip(upper=30)
+        df["role"] = role
+        frames.append(df)
+
+    tf = nhl_team_context(frames[0])
+    out = []
+    for df in frames:
+        df = df.merge(tf, on=["game_id", "team"], how="left")
+        opp = tf.rename(columns={c: c.replace("tm_", "opp_")
+                                 for c in tf.columns if c.startswith("tm_")})
+        df = df.merge(opp.rename(columns={"team": "opp"}),
+                      on=["game_id", "opp"], how="left")
+        out.append(df)
+    d = pd.concat(out, ignore_index=True)
+    d["home"] = d.home.astype(int)
+    # game_id type digit: 02 = regular season, 03 = playoffs
+    d["post"] = ((d.game_id // 10_000) % 100 == 3).astype(int)
+    d["native_id"] = d.game_id.astype("int64")
+    d["nname"] = d.pid.map(pid2name).fillna(d.name_abbr.map(norm))
+    d["season"] = d.game_id // 1_000_000
+    d["season_type"] = np.where(d.post == 1, 3, 2)
+    return d
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sport", required=True, choices=sorted(SPORTS))
@@ -218,6 +296,8 @@ def main():
         panel = build_mlb()
     elif sport == "NBA":
         panel = build_nba()
+    elif sport == "NHL":
+        panel = build_nhl()
     else:
         raise NotImplementedError(
             f"{sport}: panel builder not ported - the fetch script exists but "

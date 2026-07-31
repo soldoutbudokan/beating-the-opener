@@ -35,7 +35,7 @@ Easiest → hardest, tackled one at a time:
 | 1 | WNBA player props | `wnba/` | revisit | first holdout FAIL was early-season/expansion composition; **`fp-prospective-1` registered** on Aug-2026+ props (late-season dev analogue: parity, +3.8% ROI at t=1.8); data-only archiver running |
 | 2 | BBL cricket match odds | `cricket/` | done | **control #3 confirmed** — player model passed dev gates, holdout FAIL (+0.052, t=3.6, ROI −34%); benchmark n=297 is structurally too small; future cricket → IPL pending odds source |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
-| 4 | NHL (game lines + player props) | `props/` | — | queued — **data-blocked**: api-web unreachable in this environment; try GitHub mirrors (e.g. hockeyR-data) or owner network action |
+| 4 | NHL player props | `props/` | B | **in progress** — api-web opened; pipeline ported; A done (55k props), gates registered |
 | 5 | NBA player props | `props/` | parked | **control** — G1 fail both iterations (+0.0247); calibration fine, discrimination gap; **holdout unspent** (awaits Stage D injury data) |
 
 ## Common protocol (all markets)
@@ -380,7 +380,33 @@ from the mirror now, but there is nothing to grade against until then).
   Wayback) — likely mandatory here, not a fallback; shift/TOI data for a
   real ice-time model.
 
-**Gates**: *to be registered at Stage A.*
+**Stage A complete (2026-07-31 session 3).** api-web opened; pipeline
+ported end-to-end (fetch 2024-25 + 2025-26 → panel 106,397 player-games →
+modelset **55,338 coherent-open props**: shots/points/assists/goals/
+blocked/saves). Benchmark (`fp_benchmark.py --sport NHL`; dev ends
+2026-02-28):
+
+| split | n | LL(open) | LL(close, same line) | open−close (t) |
+|---|---|---|---|---|
+| dev | 37,520 | 0.61667 | 0.61608 (n=37,023) | +0.00022 (t=1.3) |
+| holdout | 17,818 | 0.61230 | 0.61139 (n=17,519) | +0.00039 (t=1.4) |
+
+**The NHL close adds ~nothing over the open** (lines rarely move — the
+Phase 1 finding, reproduced). So here the from-scratch model competes with
+the market's *only* number, and there is no sharper close to warn of
+leakage — the tripwire is correspondingly weaker evidence either way.
+
+**Gates — registered 2026-07-31 (session 3), before any fp model code
+ran on dev.** Conventions as NBA (inputs = panel features only; σ/NegBin
+fit strictly pre-odds, i.e. on the 2024-25 season):
+- **G1 (dev)**: LL(model) − LL(open) ≤ **+0.010**; two iterations
+  (frozen vs weekly-expanding calibration is one choice).
+- **G2 (dev)**: |mean P(over) − realized| ≤ **2.5pp**.
+- **G3 tripwire (dev)**: beats same-line close by > 0.001 at t > 3 →
+  investigate (weak here, see above).
+- **Stage C (holdout, scored once)**: LL gap clustered t (≤ −2 = opener
+  beaten); flat $1 ROI at consensus open EV > 2% / 5% + devigged-open
+  placebo.
 
 ## Market 5 — NBA (`props/` + `nba/`)
 
