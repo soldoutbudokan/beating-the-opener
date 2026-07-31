@@ -6,7 +6,10 @@ anything here. The OLD anchored model stays retired: never run
 src/live_pipeline.py for picks. Picks come from **src/fp_live.py** (pinned
 talent model + news overrides), FanDuel EV>10% trigger, pre-registered
 staking. `edge-watch` = data-only close archiver. `news-watch` (hourly) =
-overrides + picks refresh + notification. Fills are owner-reported only:
+overrides + picks refresh + notification + **a full pick table in the
+session reply on every firing** (owner instruction 2026-07-31: report
+all picks in chat — new, carry-over, and already-bet — even when no
+notification goes out). Fills are owner-reported only:
 log to live/bets.csv copying picks.csv fields, commit, push. Settlement
 via src/settle_bets.py per protocol. The news layer supersedes the old
 "no injury news" rule for v3. Scoring registrations: ../PROGRESS.md

@@ -22,6 +22,11 @@
 >   PushNotification per firing listing NEW qualifying picks
 >   (player/market/line/side/FD price/stake). Nothing crosses → no
 >   notification. Never re-notify the same pick key.
+> - **Chat reporting (owner instruction, 2026-07-31)**: separately from
+>   the notification, **every** `news-watch` firing must report **all**
+>   picks in its session reply as a markdown table — new, carry-over, and
+>   already-bet alike. See step 3 of the routine below. A run that sends
+>   no notification still writes the table.
 > - **Availability check before you bet**: the cadence is hourly — late
 >   scratches can be missed. Confirm the player is in the lineup near tip;
 >   the overrides file is judgement, not gospel.
@@ -58,11 +63,24 @@
 > 2. **Always** run `python3 src/fp_live.py` (prices move without news):
 >    refreshes `live/projections.csv` and rewrites `live/picks.csv` with
 >    rows meeting the bet trigger above.
-> 3. If `picks.csv` contains picks with `play=True` whose keys were not in
+> 3. **Report every pick in the session reply — always, every firing**
+>    (owner instruction 2026-07-31). Open the reply with a markdown table
+>    of **all** rows in `live/picks.csv`, not just the new ones and not
+>    just the playable ones: mark which are NEW this run, which are
+>    already-playable carry-overs, and which are `play=False` because they
+>    are already in `bets.csv`. Columns: player (team), game, date,
+>    market, side, line, FD price, model p, EV, stake, play. Sort by EV
+>    descending. Also state the total playable stake against the 30% cap.
+>    This is separate from the PushNotification and is **not** suppressed
+>    when nothing is new — an empty `picks.csv` is reported as "no
+>    qualifying picks". The notification is the alert; the chat table is
+>    the record.
+> 4. If `picks.csv` contains picks with `play=True` whose keys were not in
 >    the previous `picks.csv` and are not in `bets.csv`: send ONE
 >    PushNotification listing them (player, market, line, side, FD price,
->    stake). Otherwise send nothing.
-> 4. Commit touched files (`news-watch: <n> override(s), <m> pick(s)`),
+>    stake). Otherwise send nothing. The table in step 3 still gets
+>    written either way.
+> 5. Commit touched files (`news-watch: <n> override(s), <m> pick(s)`),
 >    push to main. **No settlement, no bets.csv writes** — fills are
 >    owner-reported only.
 >
