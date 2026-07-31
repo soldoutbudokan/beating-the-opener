@@ -32,7 +32,7 @@ Easiest → hardest, tackled one at a time:
 
 | # | market | where | stage | status |
 |---|--------|-------|-------|--------|
-| 1 | WNBA player props | `wnba/` | revisit | first holdout FAIL was early-season/expansion composition; **`fp-prospective-1` registered** on Aug-2026+ props (late-season dev analogue: parity, +3.8% ROI at t=1.8); data-only archiver running |
+| 1 | WNBA player props | `wnba/` | **v3-T1** | **talent engine beats the opener on dev** (full season −0.0006; Aug–Oct −0.0077 t=−2.1, ROI +8.6% t=3.1); `fp-prospective-2` (talent) + `fp-prospective-1` (v1 baseline) both running on Aug-2026+ props; T2 minutes / T3 news in progress |
 | 2 | BBL cricket match odds | `cricket/` | done | **control #3 confirmed** — player model passed dev gates, holdout FAIL (+0.052, t=3.6, ROI −34%); benchmark n=297 is structurally too small; future cricket → IPL pending odds source |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
 | 4 | NHL player props | `props/` | parked | **control** — G1 fail both iterations (+0.0191); shots/blocked individually inside the gate; **holdout unspent** |
@@ -513,6 +513,46 @@ news layer feeds logged projections, never bets).
 - **T1-G2 (dev)**: swapped into the prop model, dev-2025
   LL(model) − LL(open) must improve on v1's **+0.00469**; at most two
   iterations. Standard tripwire vs close unchanged.
+
+**T1 — complete (2026-07-31 session 4). Both gates PASSED, decisively.**
+- **T1-G1**: the Kalman talent engine beats the EW blend on **7/7** stats
+  at walk-forward next-game rate prediction (2015–2024, by 5–10% each).
+  The mean-regression critique validated empirically. (Note: the tuner
+  chose the lowest process-noise in the grid on every stat — maximum
+  regression/stability. Grid-boundary note recorded.)
+- **T1-G2**: dev-2025 with `--talent`: LL(model) − LL(open) =
+  **−0.00059** — the model beats the opener over the FULL dev season
+  (v1: +0.00469). Edges the close (−0.00070, t=−0.3; tripwire NOT
+  tripped — threshold is <−0.001 at |t|>3). Calibration −0.46pp.
+  ROI at consensus open: **+4.5% (t=2.9)** EV>2%, **+6.5% (t=3.9)**
+  EV>5% (n=5,708); placebo 0 bets.
+- By phase (dev): May–mid-Jun +0.0184 (still behind early — the news gap
+  T2/T3 target), mid-Jun–Jul −0.0014, **Aug–Oct −0.00767 (t=−2.1), ROI
+  +8.6% (t=3.1)** — the model beats the opener outright in exactly the
+  window the prospective test runs on.
+- Discipline reminder: these are dev numbers. The claim that counts is
+  prospective (below).
+
+**`fp-prospective-2` — registered 2026-07-31 (session 4), before any
+qualifying data exists.** Deviation from the phase plan, reasoned openly:
+the season is running now and every archived day is prospective sample,
+so the strongest *tested* model is locked immediately rather than after
+T2/T3 (which become separately-registered upgrades if they beat this on
+dev):
+- Population: standard eval convention, **props dated ≥ 2026-08-01**
+  (same window as fp-prospective-1, which continues as the v1 baseline
+  arm).
+- Model: `fp_model.py --talent` at this commit — talent.pkl built by
+  `talent.py --build` with curves/params fit pre-2025, v1 frozen
+  calibration path otherwise. Pinned; no further changes count.
+- **Primary**: LL(model) ≤ LL(open) with clustered t ≤ −2 (superiority —
+  the dev Aug–Oct analogue earned aiming higher than parity this time).
+- **ROI**: flat $1 at consensus open, EV>5%: ROI > 0 with clustered t
+  reported (t ≥ 2 = signal); placebo mandatory. Tripwire vs close as
+  always.
+- Evaluate **once**, when n ≥ 3,000 or the 2026 season ends. Dev
+  analogue for context: Aug–Oct 2025 gap −0.00767 (t=−2.1), ROI EV>5%
+  +8.56% (t=3.1).
 
 ## Prior art (read before modelling)
 

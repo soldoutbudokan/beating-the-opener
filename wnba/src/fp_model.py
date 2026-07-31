@@ -116,10 +116,15 @@ def mu_stats(df, datecol, cal=None):
         if f"{st}_ews" in df.columns:
             per_game = (W_FAST * df[f"{st}_ewf"]
                         + (1 - W_FAST) * df[f"{st}_ews"]).fillna(df[f"{st}_ewf"])
-        rate = df[f"{st}_rate_ewf"]
-        if cal is not None:  # shrink unstable early-career rates
-            rate = ((df.gp * rate + SHRINK_K * cal["lg_rate"][st])
-                    / (df.gp + SHRINK_K))
+        if f"talent_{st}" in df.columns:
+            # v3 T1: Kalman talent state (already regressed to an informed
+            # prior; no extra shrinkage)
+            rate = df[f"talent_{st}"].fillna(df[f"{st}_rate_ewf"])
+        else:
+            rate = df[f"{st}_rate_ewf"]
+            if cal is not None:  # shrink unstable early-career rates
+                rate = ((df.gp * rate + SHRINK_K * cal["lg_rate"][st])
+                        / (df.gp + SHRINK_K))
         rate_mu = rate * minutes
         mu = (W_RATE * per_game.fillna(rate_mu)
               + (1 - W_RATE) * rate_mu.fillna(per_game))
@@ -271,6 +276,9 @@ def main():
     ap.add_argument("--expanding", action="store_true",
                     help="fp-v2: weekly in-season expanding recalibration + "
                          "presumed-absent availability + threes defense")
+    ap.add_argument("--talent", action="store_true",
+                    help="v3 T1: rates from the Kalman talent engine "
+                         "(run src/talent.py --build first)")
     args = ap.parse_args()
 
     panel = pd.read_pickle(os.path.join(ROOT, "data", "panel.pkl"))
@@ -278,6 +286,18 @@ def main():
     ms = ms[ms.matched & ~ms.void & ms.open_coherent
             & (ms.actual != ms.open_line)].copy()
     ms["over"] = (ms.actual > ms.open_line).astype(int)
+
+    if args.talent:
+        from build_modelset import norm
+        tal = pd.read_pickle(os.path.join(ROOT, "data", "talent.pkl"))
+        panel = panel.merge(tal, on=["athlete_id", "game_id"], how="left")
+        tmap = panel.assign(
+            nname=panel.athlete_display_name.map(norm),
+            dstr=pd.to_datetime(panel.game_date).dt.strftime("%Y-%m-%d"))
+        tcols = [c for c in tal.columns if c.startswith("talent_")]
+        tmap = tmap.groupby(["nname", "dstr"])[tcols].max().reset_index()
+        ms["dstr"] = pd.to_datetime(ms.date).dt.strftime("%Y-%m-%d")
+        ms = ms.merge(tmap, on=["nname", "dstr"], how="left")
 
     if args.expanding:
         from build_modelset import norm
