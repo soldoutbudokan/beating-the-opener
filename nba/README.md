@@ -1,5 +1,18 @@
 # NBA Win Prob
 
+> **📌 Required reading for the 2026-07-31 rework.** The repo is moving to
+> first-principles pricing ([`../PLAN.md`](../PLAN.md)) — models that build
+> their own probability instead of correcting the market's. **This project
+> already is that model**, and it is the only one here that never touches the
+> line except to score against it. It lost, and the sections below bound *why*
+> rather than merely reporting the failure: ~82% of the market's private
+> information is orthogonal to all 95 observables, and a look-ahead oracle
+> still falls short. Read "Why it is not achievable" before rebuilding.
+>
+> Also read "The leakage finding" — a from-scratch model touches raw play data
+> everywhere and has far more surface area for exactly that bug, which here
+> manufactured a +12.3% simulated ROI out of nothing.
+
 The first control in [beating-the-opener](../README.md): the market where the
 methodology says **no**. Developed as its own repository
 (`soldoutbudokan/nba-win-prob`) and folded in here with its history.

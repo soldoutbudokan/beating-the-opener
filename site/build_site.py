@@ -58,9 +58,13 @@ SOCCER = {
 WNBA = {
     "id": "wnba", "dir": "wnba", "label": "WNBA props",
     "tab": "WNBA props", "sport": "player props · FanDuel",
+    "paused": "Paused 2026-07-31 — the model anchors on the opening price "
+              "and predicts a correction to it, so it never forms its own "
+              "view of what a player will do. Reworking toward "
+              "first-principles pricing; no open positions.",
     "what": "Points, rebounds, assists, threes and combos — bet only while "
-            "the price still sits at the opening line.",
-    "idle": "No props on the sheet right now",
+            "the price still sits at the opening line. Paused 2026-07-31.",
+    "idle": "Experiment paused — no props are being priced",
     # honest cell (FD openers, coherent quotes, ET dates) at the live rule,
     # vs the RAW close - negative is EXPECTED for an under-heavy sheet
     # against an over-shaded close; clv_cal is the fair yardstick (AUDIT N1)
@@ -69,9 +73,9 @@ WNBA = {
     "protocol": "wnba/live/PROTOCOL.md", "readme": "wnba/README.md",
     "picks_note": "Bet the highest-EV row per player per game; if FanDuel has "
                   "moved off the opener, skip — don't chase.",
-    "runs": [("Routine", "hourly, :21 UTC"),
-             ("Stake", "quarter-Kelly — one bet per player per game"),
-             ("Playable when", "the price is still sitting at the opener")],
+    "runs": [("Routine", "halted 2026-07-31"),
+             ("Status", "paused — architecture retired, see PLAN.md"),
+             ("Record", "5 bets settled, no open positions")],
 }
 MARKETS = [SOCCER, WNBA]
 
@@ -543,13 +547,23 @@ def clv_cell(v):
 def picks_block(m):
     cfg, picks = m["cfg"], m["picks"]
     if not picks:
-        note = cfg["idle"] if cfg.get("cancelled") \
+        note = cfg["idle"] if (cfg.get("cancelled") or cfg.get("paused")) \
             else (m["meta"].get("note") or cfg["idle"])
         return empty("No picks on the sheet", esc(note))
     strong = [p for p in picks
               if str(p.get("strong", "")).lower() in ("true", "1")]
-    head = (f'<p class="note">{len(picks)} priced, '
-            f'<strong>{len(strong)} strong</strong>. {cfg["picks_note"]}</p>')
+    if cfg.get("paused"):
+        # Kept as the record of what the paused model last produced. Not a
+        # sheet anyone should bet: nothing is refreshing these prices.
+        head = (f'<p class="note"><strong>Not actionable — the experiment is '
+                f'paused.</strong> These {len(picks)} rows are the last thing '
+                f'the model priced before it was stopped, left up as the '
+                f'record. Nothing is refreshing them and no stake should be '
+                f'taken from them.</p>')
+    else:
+        head = (f'<p class="note">{len(picks)} priced, '
+                f'<strong>{len(strong)} strong</strong>. '
+                f'{cfg["picks_note"]}</p>')
     if cfg["id"] == "soccer":
         cols = ["date", "match", "pick", "model p", "best price",
                 "min 5% EV", "stake"]
@@ -595,6 +609,8 @@ def picks_block(m):
 def status_pill(m):
     if m["cfg"].get("cancelled"):
         return pill("cancelled", "idle")
+    if m["cfg"].get("paused"):
+        return pill("paused", "idle")
     if m["open"]:
         return pill(f"{len(m['open'])} live", "live")
     if m["picks"]:
@@ -683,6 +699,7 @@ def market_panel(m):
     <div>
       <h2>{esc(cfg['label'])} <span class="head-pill">{status_pill(m)}</span></h2>
       <p class="lede">{esc(cfg['what'])}</p>
+      {f'<p class="note">{esc(cfg["paused"])}</p>' if cfg.get("paused") else ''}
       <dl class="meta">{runs}</dl>
     </div>
     <div class="hero">
@@ -744,11 +761,12 @@ def live_panel(markets):
   <div class="panel-head">
     <div>
       <h2>The live experiment</h2>
-      <p class="lede">Real money on FanDuel, quarter-Kelly stakes. WNBA props
-        is live — an hourly cloud routine refreshes data, retrains, prices the
-        board and settles bets. The soccer experiment was cancelled before its
-        first bet when the post-Pinnacle replay showed no edge; its card stays
-        as the record.</p>
+      <p class="lede">Real money on FanDuel, quarter-Kelly stakes.
+        <strong>Nothing is running.</strong> WNBA props was paused 2026-07-31
+        with no open positions — the model anchored on the opening price
+        rather than pricing games itself, and that approach is being reworked.
+        The soccer experiment was cancelled before its first bet when the
+        post-Pinnacle replay showed no edge. Both cards stay as the record.</p>
     </div>
     <div class="hero">
       <div class="hero-label">Combined bankroll</div>
@@ -1236,8 +1254,9 @@ def render(markets, fragment=False):
     <div class="brand">
       <h1>Beating the opener</h1>
       <p>Soft sportsbooks' opening lines are inefficient. Four markets tested,
-        two beaten in research, one live on FanDuel with real money — and one
-        experiment cancelled when its regime died.</p>
+        two beaten in research — and both live experiments now stopped: soccer
+        cancelled when its regime died, WNBA paused 2026-07-31 to rework the
+        models onto first principles.</p>
     </div>
     <div class="stamp">
       <a class="repo-link" href="{REPO}">Source on GitHub ↗</a>
@@ -1264,11 +1283,12 @@ def render(markets, fragment=False):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Beating the opener — live scoreboard</title>
-<meta name="description" content="Live CLV, bankroll and bet log for two
- opening-line betting experiments, plus the out-of-sample evidence behind them.">
-<meta property="og:title" content="Beating the opener — live scoreboard">
-<meta property="og:description" content="Two live betting experiments scored on
- closing-line value, and the research that says the openers are beatable.">
+<meta name="description" content="CLV, bankroll and bet log for two
+ opening-line betting experiments — both now stopped — plus the out-of-sample
+ evidence behind them.">
+<meta property="og:title" content="Beating the opener — scoreboard">
+<meta property="og:description" content="Two opening-line betting experiments
+ scored on closing-line value, both now stopped, and the research behind them.">
 <!-- Generated by site/build_site.py - do not edit by hand. -->
 <style>{CSS}</style>
 </head>

@@ -1,5 +1,16 @@
 # cricket — plan & progress
 
+> **Note, 2026-07-31.** This project closed before any model was built, so the
+> repo-wide move to first-principles pricing ([`../PLAN.md`](../PLAN.md))
+> leaves its verdict intact: the finding here is about the *market* (BBL
+> closes are no better than BBL openers; moves track toss noise), not about
+> any model architecture. It is therefore the one subproject where a
+> from-scratch attempt is genuinely untested — ball-by-ball data (Cricsheet,
+> free and complete) suits a generative simulation. Cuts both ways, though:
+> no informative close also means no evidence the closing price is
+> particularly sharp, so there may be less here to beat *and* less to learn
+> from beating it. Listed as a rework candidate in `../PLAN.md`.
+
 Goal: replicate the beating-the-opener methodology for a cricket market —
 prove (or honestly disprove) that some cricket opener is inefficient vs the
 close, using only free public data. Working notes live here; check boxes as

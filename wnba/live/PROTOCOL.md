@@ -1,5 +1,50 @@
 # Live experiment protocol - WNBA props
 
+> # 🛑 EXPERIMENT PAUSED — 2026-07-31
+>
+> **The live WNBA experiment is paused indefinitely by user decision.** No
+> picks, no notifications, no bets, no settlement-driven commits.
+>
+> **If you are the `edge-watch` routine, halt now.** This block overrides the
+> routine prompt in full (the prompt itself defers: *"where this prompt and
+> the PROTOCOL disagree, the PROTOCOL wins"*). Concretely, on every firing
+> until this block is removed:
+>
+> - Do **not** run any step of the routine — no data refresh, no
+>   `live_pipeline.py`, no `scrape_bettingpros.py`, no `settle_bets.py`.
+> - Do **not** send any PushNotification, for picks or settlements.
+> - Do **not** commit or push anything.
+> - End the run with the single line: `Paused — see wnba/live/PROTOCOL.md.`
+>
+> **Reason.** The user's judgement, 2026-07-31: every model in this repo that
+> reached a live experiment anchors on the market price it is trying to beat,
+> and so never produces an independent opinion about what a player will do.
+> The experiment is on hold pending a rework toward first-principles pricing.
+> See [`../../PLAN.md`](../../PLAN.md) for the direction and
+> [`../../README.md`](../../README.md) for what the pause does and does not
+> invalidate.
+>
+> **Open positions:** none. At pause time `live/bets.csv` held 5 bets, all
+> `status=settled` (2W-3L, bankroll $98.91 of $100). Nothing needs unwinding.
+> If that is ever untrue at pause time, settle open bets manually before
+> halting.
+>
+> `live/picks.csv` still holds the 4 marginal picks (0 strong) from the last
+> run before the halt reached `main`. They are **not actionable** — nothing is
+> refreshing those prices, and the stale-opener gate they were scored under
+> assumes a live refresh loop. Left in place as the record; the scoreboard
+> labels them as such. Do not bet them.
+>
+> **The routine's schedule is still enabled** at the time of writing — the
+> pause is enforced by this block alone. It cannot be disabled through the
+> agent API (it was created via `http_api`; agents may only update routines
+> they created). Toggle it off at
+> https://claude.ai/code/routines/trig_01Ko6Py4ar9tw8QoxPYx8tyw for a hard
+> stop. **This block only takes effect once it is on `main`,** which is what
+> the routine checks out.
+>
+> Everything below is the pre-pause protocol, kept as the record of what ran.
+
 One-season (2026, through ~October) FanDuel test. **$100 starting bankroll
 (separate from the soccer experiment), quarter-Kelly sizing.** Primary
 scoreboard is **CLV**, secondary is P&L. Results: [RESULTS.md](../RESULTS.md)

@@ -1,5 +1,19 @@
 # Beating the Opener
 
+> **⏸ Architecture retired 2026-07-31.** Both learners below (`stack`,
+> `gbmmove`) take the opener's own logits as their base and model a
+> correction to it, so neither prices a match independently. The user retired
+> that approach on 2026-07-31 in favour of first-principles pricing — for
+> soccer that would mean a goals model (Dixon-Coles / bivariate Poisson on
+> team attack-defence ratings) that never sees the odds. See
+> [`../PLAN.md`](../PLAN.md). The live experiment here was already cancelled
+> before its first bet (2026-07-28), for unrelated reasons — no edge in the
+> post-Pinnacle regime.
+>
+> The measurements below stand as measured. Note for the rework: v1 fed the
+> odds to a GBM as plain features and lost to the opener by 0.022, which is
+> part of why the anchored design was adopted.
+
 **Result: a model provably more efficient than the soccer 1X2 opening line, out-of-sample,
 across 9 seasons and ~20 leagues — beating it in 9/9 seasons (sign test p = 0.0039,
 per-match paired p = 3.8e-07). The closing line remains unbeaten, as expected — but the

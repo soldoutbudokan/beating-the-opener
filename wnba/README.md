@@ -1,5 +1,20 @@
 # WNBA Props
 
+> **⏸ Live experiment paused 2026-07-31; this architecture is retired.**
+> The model below anchors on the opening price — it inverts `mu_open` out of
+> the opener and predicts a correction to it — so it never forms an
+> independent view of what a player will do, only of where the price will
+> move. The user retired that approach on 2026-07-31 in favour of
+> first-principles pricing; see [`../PLAN.md`](../PLAN.md) and the pause block
+> in [`live/PROTOCOL.md`](live/PROTOCOL.md). Final live record: $98.91 of
+> $100 over 5 settled bets, no open positions.
+>
+> The measurements below stand as measured — they are not withdrawn. What
+> changed is the judgement that beating the opener *by correcting it* is the
+> wrong target. Note for the rework: v1
+> ([`src/train_eval.py`](src/train_eval.py)) is the closest thing here to a
+> fundamentals-driven model, and it lost to the close by 0.028.
+
 **Result: WNBA player-prop opening lines are provably inefficient — the
 open→close move points at the actual result 59% of the time (p = 1e-50), and
 a model anchored on the opener captures ~55% of the open→close wedge
