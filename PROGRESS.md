@@ -554,6 +554,18 @@ dev):
   analogue for context: Aug–Oct 2025 gap −0.00767 (t=−2.1), ROI EV>5%
   +8.56% (t=3.1).
 
+**T2 gates — registered 2026-07-31 (session 4), before the minutes
+engine runs on dev.** Design: distributional minutes (EW mean + variance
+fit per starter-status/level bucket on pre-2025 data, presumed-absent
+boost), within-player rate-vs-minutes curvature (per-stat slope, fit
+pre-2025), conditional σ (residuals given actual minutes, pre-2025), and
+P(over) integrated over a 5-point minutes grid.
+- **T2-G1 (dev)**: LL(model) − LL(open) must improve on T1's **−0.00059**;
+  at most two iterations.
+- **T2-G2 (dev)**: |calibration| ≤ 2.5pp. Tripwire vs close unchanged.
+- If passed: registered as **`fp-prospective-3`** on props dated after its
+  lock push (T1's prospective-2 keeps running for comparison).
+
 ## Prior art (read before modelling)
 
 - `nba/README.md` — the from-scratch control: the three upper bounds and the
