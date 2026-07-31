@@ -33,7 +33,7 @@ Easiest → hardest, tackled one at a time:
 | # | market | where | stage | status |
 |---|--------|-------|-------|--------|
 | 1 | WNBA player props | `wnba/` | **LIVE** | talent engine beats opener on dev (Aug–Oct −0.0077, ROI +8.6%); **betting re-opened 2026-07-31** (FD EV>10%, protocol-pinned); news-watch live (news → overrides → picks → notify); fp-prospective-1/2 scoring firewalled |
-| 1b | WNBA game lines | `wnba/` | parked | **control** — GG1 fail both iterations (+0.040 vs ≤+0.010); game lines efficient even where props are soft (Phase 1G confirmed from modelling side) |
+| 1b | WNBA game lines | `wnba/` | v2 running | v1 = **control** (GG1 fail both iterations, +0.040 vs ≤+0.010); v2 possession-based rebuild registered 2026-07-31 (Market 1b-v2 below) — usage conservation, per-possession defense, spread benchmark |
 | 2 | BBL cricket match odds | `cricket/` | done | **control #3 confirmed** — player model passed dev gates, holdout FAIL (+0.052, t=3.6, ROI −34%); benchmark n=297 is structurally too small; future cricket → IPL pending odds source |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
 | 4 | NHL player props | `props/` | parked | **control** — G1 fail both iterations (+0.0191); shots/blocked individually inside the gate; **holdout unspent** |
@@ -647,6 +647,51 @@ over-shade) plus player-detail, which largely cancels when aggregated to
 a game outcome the market watches closely. Confirms props/ Phase 1G from
 the modelling side. Parked; the player model stays where its edge is.
 
+## Market 1b-v2 — possession-based game model (owner-directed rebuild)
+
+The owner's diagnosis of the v1 failure (2026-07-31 evening): summing
+per-minute scoring talents ignores that **there is one ball** — usage is
+conserved, a team gets a fixed number of possessions and players share
+them; redistributed usage is absorbed at *lower* efficiency; defense
+should be a real per-possession quantity, not raw points allowed; and a
+margin model's native market is the **spread**, not the moneyline —
+"maybe this won't lead to a market beat, but if we ARE to beat it, it
+will take much more serious attention to detail." GG1's two iterations
+are spent; this is a NEW experiment with fresh gates. The v1 verdict
+stands.
+
+**Architecture.** Team points = possessions × points-per-possession.
+Possessions from both teams' EW pace (form chosen on ≤2024 fit). Talent
+engine extended with two new Kalman states per player (tuned like the
+existing ones, params fit <2025-01-01): `usg` = (FGA + 0.44·FTA + TOV)
+per minute, `eff` = points per possession used. Rotation = v1
+iteration-2 machinery (appearance-EW top 10, 200 min, strictly prior).
+One-ball constraint: player possession demands (minutes × usg) are
+renormalized to the game's possession count; the usage–efficiency
+tradeoff γ (efficiency lost per unit of forced extra usage) is fit on
+≤2024 player-games, set to 0 if statistically noise. Defense applied
+exactly once at game level as opponent points-allowed-per-possession vs
+league (exponent fit ≤2024; circularity guard unchanged: talent states
+carry no team/opponent context). Margin head: scale/home-adv/σ fit
+≤2024; margin distribution Normal vs Student-t chosen on ≤2024
+likelihood. Two market heads from the same margin: P(margin>0) vs
+devigged consensus open ML; P(margin>−open spread) vs devigged open
+spread price (book-0 spread rows — 15,518 archived, first use). No odds
+inputs anywhere.
+
+**Gates — registered 2026-07-31 (session 6), before any v2 code is
+scored on dev.** Dev = played 2025–26 games (dev-grade only). Max two
+iterations; all scored together each time:
+- **GV2-1 (ML)**: LL(model) − LL(open ML) ≤ **+0.010**.
+- **GV2-2 (spread)**: LL(model cover) − LL(open spread) ≤ **+0.010**.
+- **GV2-3 (calibration)**: |mean P(home) − home win rate| ≤ **2pp**.
+- **GV2-4 (report only)**: MAE(predicted margin, closing spread).
+- **Tripwire**: beating either close by > 0.005 at t > 2 → investigate.
+- Pass GV2-1 or GV2-2 → prospective registration
+  (`fp-games-prospective-1`) on post-lock games; betting integration
+  only as a separate owner decision. Fail both → game lines confirmed
+  as a control at the serious-effort level; park permanently.
+
 ## Live betting re-opened (owner decision, 2026-07-31 evening)
 
 The owner explicitly re-opened live WNBA betting for the v3 programme
@@ -738,3 +783,7 @@ registrations are firewalled from betting outcomes.
   threads: WNBA `fp-prospective-1` (accruing, verdict ≈ season end), the
   NHL shots/blocked cell and NBA injury-report Stage D (each would need a
   fresh registration against its unspent holdout), IPL odds scrape.
+- **2026-07-31 (session 6)** — Market 1b-v2 registered: possession-based
+  game-model rebuild per the owner critique (one-ball usage conservation,
+  usage–efficiency tradeoff, per-possession defense, spread benchmark
+  first use). GV2 gates above pushed before any v2 code scores on dev.
