@@ -4,11 +4,36 @@
 bankrolls, CLV, open positions and the evidence behind them, at a glance.
 Rebuilt automatically every time a bet settles.
 
+> ## ⏸ All live betting paused — 2026-07-31
+>
+> The WNBA live experiment is **paused indefinitely** and the `edge-watch`
+> routine is halted ([wnba/live/PROTOCOL.md](wnba/live/PROTOCOL.md)). No open
+> positions; final bankroll $98.91 of $100 over 5 settled bets.
+>
+> **Why.** Every model here that reached a live experiment takes the
+> sportsbook's own number as its starting point and predicts a *correction* to
+> it. Such a model has no independent opinion about how many rebounds a player
+> will get — it only has an opinion about where the market will move next. The
+> user's decision, 2026-07-31: that is the wrong thing to have been building.
+> The next attempt prices events **from first principles** and uses market
+> odds only to settle up at the end.
+>
+> **What this does and does not invalidate** — the honest version is in
+> [Anchoring: what it cost](#anchoring-what-it-cost) below. Short form: the
+> critique lands squarely on `soccer/`, `wnba/` and `props/`. It does not land
+> on `nba/`, which *is* a from-scratch model and is the most complete negative
+> result in the repo — including bounds saying the gap is not closeable with
+> public data. Read that one before rebuilding.
+>
+> Direction for the rebuild: [PLAN.md](PLAN.md).
+
 One project, one thesis, tested market by market: **soft sportsbooks' opening
 lines are inefficient, and the inefficiency is capturable with public data.**
-The method is the same everywhere — anchor on the market's own price, model
+The method was the same everywhere — anchor on the market's own price, model
 only the open→close correction (never the raw outcome), prove it out-of-sample
 against the close, then bet stale openers in a live experiment scored by CLV.
+**That method is retired as of 2026-07-31** (see the banner above); what
+follows is the record of what it produced.
 
 | market | opener beaten? | wedge captured | live test |
 |---|---|---|---|
@@ -30,16 +55,59 @@ capture). NBA fails the first — attention floods the market. BBL cricket
 fails the second — the lines move plenty, but toward toss noise, not
 winners. Lower-league soccer and WNBA prop menus satisfy both.
 
+## Anchoring: what it cost
+
+The 2026-07-31 critique, stated precisely, and audited against what each
+subproject actually did:
+
+| project | starts from the market's number? | what it would have to be reworked into |
+|---|---|---|
+| [`nba/`](nba/) | **no** — Elo, RAPM, efficiency ratings, availability, referee crews, travel; the line is only the benchmark | nothing. This already is the from-scratch experiment. |
+| [`soccer/`](soccer/) | **yes** — `stack` and `gbmmove` both take Pinnacle's opener logits as their base | a goals model (e.g. bivariate Poisson / Dixon-Coles on team attack-defence) priced independently |
+| [`wnba/`](wnba/) | **yes** — `mu_open` is inverted out of the opening price and every prediction is `mu_open + predicted_move` | a minutes × usage × efficiency player model producing a full stat distribution |
+| [`props/`](props/) | **yes** — explicitly a port of the WNBA anchored architecture to MLB/NBA/NFL/NHL | same, per sport |
+| [`cricket/`](cricket/) | n/a — screening only; the wedge test found no wedge and **no model was ever built** | a from-scratch BBL model is untested territory |
+
+So the critique is right about three of the four modelling projects, and
+right about the one that went live. Two things it is not right about, both
+of which matter before the weekend:
+
+**1. `nba/` already ran this experiment and it lost.** It builds a win
+probability from scratch and benchmarks it against the closing line. Result:
+the line wins by 0.0135 log loss, an encompassing regression finds the model
+contributes nothing the line lacks (coef −0.08, p=0.43), and a subset search
+across 14 regimes finds **0** where the model wins. It is also bounded, not
+merely failed — perfect exploitation of all 95 observables reaches 0.5932 and
+a look-ahead oracle refitting RAPM *on the held-out seasons* reaches 0.5915,
+both short of the line's 0.5818.
+
+**2. The anchored architecture was adopted because the from-scratch one lost
+first, twice.** `soccer/` v1 fed the odds to a GBM as plain features and lost
+to the opener by 0.022. `wnba/` v1 ([`src/train_eval.py`](wnba/src/train_eval.py))
+regressed the outcome residual and lost to the close by 0.028. The repo's own
+[`props/PLAN.md`](props/PLAN.md) records the tally as *"the approach already
+0-for-2 in this repo."* Anchoring was a retreat from those losses, not a
+shortcut taken before trying.
+
+None of this makes the critique wrong. An anchored model genuinely cannot
+tell you what a player will do, only where a price will drift — and a
+research programme that can only ever measure the market's own second
+thoughts is a narrow thing to own. But the from-scratch direction is a
+**harder** problem that this repo has already lost three times, and `nba/`
+argues the loss is structural: the market's private information (injury
+detail, lineup intent, money flow) is ~82% orthogonal to everything public
+data measures. The rebuild should start by saying why it beats that bound.
+
 ## Live experiment
 
-WNBA props runs on FanDuel with a **$100 bankroll, quarter-Kelly stakes, CLV
-as the primary scoreboard** (one season of ROI is noise; one season of CLV is
-decisive — the board shows raw and shade-adjusted CLV, see wnba/README.md).
-An hourly cloud routine refreshes data, retrains, scores, and notifies on
-strong picks; fills are reported conversationally and settlement is
-automatic.
+**Paused 2026-07-31.** No open positions. WNBA props ran on FanDuel with a
+$100 bankroll and quarter-Kelly stakes, judged on CLV; it finished at $98.91
+over 5 settled bets (2W-3L) — a sample far too small to mean anything either
+way, which was expected (one season could not have separated the effect from
+zero either; AUDIT.md H7). The `edge-watch` routine is halted by the block at
+the top of [wnba/live/PROTOCOL.md](wnba/live/PROTOCOL.md).
 
-- WNBA: [scoreboard](https://soldoutbudokan.github.io/beating-the-opener/#wnba)
+- WNBA (paused): [scoreboard](https://soldoutbudokan.github.io/beating-the-opener/#wnba)
   · [record](wnba/RESULTS.md) · [protocol](wnba/live/PROTOCOL.md)
 - Soccer (cancelled before launch, 2026-07-28 — no edge in the post-Pinnacle
   regime): [record](soccer/RESULTS.md) · [protocol](soccer/live/PROTOCOL.md)

@@ -1,5 +1,27 @@
 # props — multi-sport FanDuel prop screen (pre-registration + decision log)
 
+> **⏸ HALTED 2026-07-31 — architecture superseded.** This plan's Phase 2/3
+> explicitly port the WNBA anchor-on-open architecture, which the user retired
+> on 2026-07-31: models must build their own probability from first
+> principles rather than correcting the market's number. See
+> [`../PLAN.md`](../PLAN.md). No further phases run here as written.
+>
+> **What survives the change**, and is worth keeping when the rework picks a
+> market:
+> - The Phase 0/1 **QC and grading work** (crosswalks, hand audits, void
+>   handling) is architecture-independent — a from-scratch model needs
+>   correctly-joined outcomes just as much.
+> - The **archive** under `data/raw/bp/` is irreplaceable and still needed:
+>   from-scratch models are still scored and settled against market prices.
+> - The **pre-registration discipline** — gates written before the run,
+>   honoured even when they kill a cell (MLB was killed on a 16-bet trade cell
+>   despite passing its quality gates). `../PLAN.md` inherits this.
+> - **Phase 1G's WNBA game-market verdict** stands and is architecture-neutral:
+>   WNBA game closes are no better than their openers. That is a fact about
+>   the market, not about the model.
+>
+> Everything below is the pre-halt record.
+
 Goal: find a sport × market cell where the BettingPros opener is lazy and the
 close is informative (the repo's two-gate rule), then port the WNBA
 anchor-on-open / predict-the-move architecture to it. FanDuel (book 10) is the
