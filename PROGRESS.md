@@ -491,6 +491,29 @@ Normal+NegBin mixture):
   (+0.00006)** → BBL **tie (+0.002)** → soccer **+0.016** → NBA props
   **+0.025**.
 
+## Market 1 v3 programme (owner-directed, 2026-07-31 session 4)
+
+Owner's diagnosis: recent-form averages are structurally too shallow —
+mean regression cripples them, and props are ultimately a minutes
+question. Build order: **T1** DARKO-style talent/trajectory engine for
+per-minute rates; **T2** distributional minutes engine with non-linear
+per-minute extrapolation; **T3** news-driven override layer + hourly
+news-watch routine (free sources first: ESPN endpoints + league injury
+page); **T4** `fp-prospective-2` registered at v3 lock, alongside the
+running v1 arm. The old "no model reads injury news" rule is superseded
+for this programme by owner direction (live betting stays paused; the
+news layer feeds logged projections, never bets).
+
+**T1 gates — registered 2026-07-31 (session 4), before the engine runs:**
+- **T1-G1 (market-free)**: walk-forward next-game per-minute rate
+  prediction, minutes-weighted squared error on 2015–2024 panel rows
+  (min ≥ 10), hyperparameters tuned on pre-2015 only: the talent engine
+  must beat the fast/slow EW blend on ≥ 4 of the 6 core stats
+  (poi/reb/ass/tpm/ste/tur), else fix before it touches props.
+- **T1-G2 (dev)**: swapped into the prop model, dev-2025
+  LL(model) − LL(open) must improve on v1's **+0.00469**; at most two
+  iterations. Standard tripwire vs close unchanged.
+
 ## Prior art (read before modelling)
 
 - `nba/README.md` — the from-scratch control: the three upper bounds and the
