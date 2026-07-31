@@ -58,24 +58,27 @@ SOCCER = {
 WNBA = {
     "id": "wnba", "dir": "wnba", "label": "WNBA props",
     "tab": "WNBA props", "sport": "player props · FanDuel",
-    "paused": "Paused 2026-07-31 — the model anchors on the opening price "
-              "and predicts a correction to it, so it never forms its own "
-              "view of what a player will do. Reworking toward "
-              "first-principles pricing; no open positions.",
-    "what": "Points, rebounds, assists, threes and combos — bet only while "
-            "the price still sits at the opening line. Paused 2026-07-31.",
-    "idle": "Experiment paused — no props are being priced",
-    # honest cell (FD openers, coherent quotes, ET dates) at the live rule,
-    # vs the RAW close - negative is EXPECTED for an under-heavy sheet
-    # against an over-shaded close; clv_cal is the fair yardstick (AUDIT N1)
-    "clv_band": (-0.029, -0.008), "clv_band_note": "backtest, raw close",
-    "capture": 0.55, "odds_style": "american",
+    "what": "Points, rebounds, assists, threes and combos, priced from "
+            "scratch by the v3 talent model (Kalman player states + news "
+            "minutes overrides — no market inputs). Re-opened 2026-07-31; "
+            "bet only FanDuel coherent quotes at claimed EV > 10%.",
+    "idle": "No props currently clear the EV>10% FanDuel trigger",
+    # v3 dev (2025) at the live rule (EV>10%): realized ROI ~+10%, CLV vs
+    # the RAW close -4.6% - negative is EXPECTED for an under-heavy sheet
+    # fading an over-shaded close; clv_cal is the fair yardstick (AUDIT N1)
+    "clv_band": (-0.065, -0.030), "clv_band_note": "v3 dev, raw close",
+    "capture": None, "odds_style": "american",
     "protocol": "wnba/live/PROTOCOL.md", "readme": "wnba/README.md",
-    "picks_note": "Bet the highest-EV row per player per game; if FanDuel has "
-                  "moved off the opener, skip — don't chase.",
-    "runs": [("Routine", "halted 2026-07-31"),
-             ("Status", "paused — architecture retired, see PLAN.md"),
-             ("Record", "5 bets settled, no open positions")],
+    "picks_note": "One bet per player per game (highest EV). Confirm the "
+                  "player is in the lineup near tip — the sheet refreshes "
+                  "hourly and can miss late scratches.",
+    "runs": [("Routines", "news-watch hourly (overrides+picks+notify); "
+                          "edge-watch 7x daily (close archiver)"),
+             ("Status", "LIVE — v3 from-scratch talent model, re-opened "
+                        "2026-07-31 (PROGRESS.md)"),
+             ("Scoring", "CLV primary (raw + shade-adjusted), P&L "
+                         "secondary; fp-prospective-1/2 LL tests "
+                         "firewalled from betting")],
 }
 MARKETS = [SOCCER, WNBA]
 

@@ -662,6 +662,14 @@ audited settle machinery. Dev-2025 EV-bucket table that motivated the
 rows; `edge-watch` stays data-only. The fp-prospective-1/2 LL
 registrations are firewalled from betting outcomes.
 
+- **2026-07-31 (session 5)** — First v3 fills: owner took 8 of 17 picks,
+  flat $1 each ($8; deliberate deviation from sheet Kelly stakes, noted
+  per row in bets.csv). Scoreboard un-paused: site rebuilt with v3 live
+  copy and an honest CLV band (v3 dev EV>10% cell: realized ROI +10.0%,
+  CLV vs raw close **−4.6%** — negative by construction for an
+  under-heavy sheet fading the over-shade; clv_cal is the fair
+  yardstick). Settlement of the 8 opens runs after tonight's games.
+
 ## Push log
 
 - **2026-07-31** — Programme opened. PROGRESS.md created (recreated from

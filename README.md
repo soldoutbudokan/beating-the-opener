@@ -4,29 +4,23 @@
 bankrolls, CLV, open positions and the evidence behind them, at a glance.
 Rebuilt automatically every time a bet settles.
 
-> ## ⏸ All live betting paused — 2026-07-31
+> ## ▶️ WNBA live betting RE-OPENED — 2026-07-31 (v3, from-scratch)
 >
-> The WNBA live experiment is **paused indefinitely** and the `edge-watch`
-> routine is halted ([wnba/live/PROTOCOL.md](wnba/live/PROTOCOL.md)). No open
-> positions; final bankroll $98.91 of $100 over 5 settled bets.
+> The anchored architecture was retired on the morning of 2026-07-31 (its
+> record: $98.91 of $100 over 5 bets). The same day, its from-scratch
+> replacement — a Kalman **talent model** with news-driven minutes overrides,
+> no market inputs — beat the opener on the 2025 dev season and went live
+> under a pre-registered protocol ([wnba/live/PROTOCOL.md](wnba/live/PROTOCOL.md)):
+> FanDuel coherent quotes, claimed EV > 10%, capped Kelly staking, CLV-primary
+> scoring. Two routines run it: `news-watch` (hourly: news → minutes
+> overrides → picks → notification) and `edge-watch` (close archiver).
 >
-> **Why.** Every model here that reached a live experiment takes the
-> sportsbook's own number as its starting point and predicts a *correction* to
-> it. Such a model has no independent opinion about how many rebounds a player
-> will get — it only has an opinion about where the market will move next. The
-> user's decision, 2026-07-31: that is the wrong thing to have been building.
-> The next attempt prices events **from first principles** and uses market
-> odds only to settle up at the end.
->
-> **What this does and does not invalidate** — the honest version is in
-> [Anchoring: what it cost](#anchoring-what-it-cost) below. Short form: the
-> critique lands squarely on `soccer/`, `wnba/` and `props/`. It does not land
-> on `nba/`, which *is* a from-scratch model and is the most complete negative
-> result in the repo — including bounds saying the gap is not closeable with
-> public data. Read that one before rebuilding.
->
-> Direction for the rebuild: [PROGRESS.md](PROGRESS.md) (the living tracker
-> for the from-scratch programme, updated with every push).
+> The model's *forecasting* claim is judged separately from the betting:
+> `fp-prospective-1/2` in [PROGRESS.md](PROGRESS.md) score it on log loss
+> against the opener over props dated 2026-08-01+, registered before that
+> data existed. The anchored-era research record and what its retirement
+> does and does not invalidate: [Anchoring: what it cost](#anchoring-what-it-cost).
+> `nba/` remains the bounded negative control worth reading first.
 
 One project, one thesis, tested market by market: **soft sportsbooks' opening
 lines are inefficient, and the inefficiency is capturable with public data.**
