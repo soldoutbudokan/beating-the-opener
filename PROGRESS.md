@@ -611,6 +611,30 @@ the pinned T1 model remains the live arm.
 - Research READMEs (`wnba/`, `soccer/`, `nba/`, `cricket/`) — what was
   measured stands; the 2026-07-31 direction change does not rewrite it.
 
+## Market 1b — WNBA game lines from the player model (owner-directed)
+
+Sum the talent engine's player projections over strictly-prior expected
+rotations → team points → margin → P(home). Circularity guard (owner's
+concern, resolved by construction): talent states carry NO team/opponent
+adjustments — pace/defense factors are applied exactly once, at the game
+level. No odds inputs anywhere. Benchmark: consensus (book-0) moneyline
+open/close from the archived `games.pkl` (15,771 ML rows). Context:
+props/ Phase 1G found the WNBA game close adds nothing over its open —
+here that means beating the opener = beating the market's only number.
+
+**Gates — registered 2026-07-31 (session 5), before any game-model code
+runs on dev.** Rotation = previous game's lineup with prior EW minutes,
+normalized to 200 team-minutes (never tonight's roster — the nba/
+availability leak). home_adv and σ fit on ≤2024 games only, walk-forward.
+- **GG1 (dev = played 2025 + 2026 games)**: LL(model) − LL(open ML) ≤
+  **+0.010**; at most two iterations. (Played-2026 is dev-grade only —
+  the props Stage C spent that season.)
+- **GG2 (dev)**: |mean P(home) − home win rate| ≤ **2pp**.
+- **Tripwire**: beating the close by > 0.005 at t > 2 → investigate.
+- If GG1+GG2 pass: prospective registration (`fp-games-prospective-1`) on
+  games after the lock push; betting integration only after that test, as
+  its own owner decision.
+
 ## Live betting re-opened (owner decision, 2026-07-31 evening)
 
 The owner explicitly re-opened live WNBA betting for the v3 programme
