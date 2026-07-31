@@ -62,6 +62,12 @@
 >    the previous `picks.csv` and are not in `bets.csv`: send ONE
 >    PushNotification listing them (player, market, line, side, FD price,
 >    stake). Otherwise send nothing.
+>    **Also always post the new picks in the chat reply** as a markdown
+>    table (player / market / line / side / FD price / stake / EV / tip),
+>    plus a second table of the other `play=True` rows still on the sheet
+>    for context (owner instruction, 2026-07-31). The push notification is
+>    not a substitute — the chat post happens every firing that has new
+>    picks, even if the notification tool is unavailable.
 > 4. Commit touched files (`news-watch: <n> override(s), <m> pick(s)`),
 >    push to main. **No settlement, no bets.csv writes** — fills are
 >    owner-reported only.
