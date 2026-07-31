@@ -1,8 +1,10 @@
 # beating-the-opener (monorepo)
 
 **No live betting runs in this repo as of 2026-07-31.** The WNBA experiment
-is paused indefinitely and the `edge-watch` routine is halted — see the block
-at the top of `wnba/live/PROTOCOL.md`. The anchored-on-the-opener programme
+is paused indefinitely; the `edge-watch` routine runs in **data-only mode**
+(archives lines via `scrape_bettingpros.py` and pushes — no picks, no
+notifications, no bets) — see the block at the top of
+`wnba/live/PROTOCOL.md`. The anchored-on-the-opener programme
 that produced every model here is retired; the rework toward first-principles
 pricing is tracked in `PROGRESS.md` (which supersedes `PLAN.md`). Read
 `PROGRESS.md` before starting modelling work, and update it with every push.

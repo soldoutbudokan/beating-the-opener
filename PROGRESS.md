@@ -32,7 +32,7 @@ Easiest → hardest, tackled one at a time:
 
 | # | market | where | stage | status |
 |---|--------|-------|-------|--------|
-| 1 | WNBA player props | `wnba/` | done | **held-out FAIL** — loses to opener +0.0176 (t=4.1); revisit = prospective holdout post-2026-07-31 |
+| 1 | WNBA player props | `wnba/` | revisit | first holdout FAIL was early-season/expansion composition; **`fp-prospective-1` registered** on Aug-2026+ props (late-season dev analogue: parity, +3.8% ROI at t=1.8); data-only archiver running |
 | 2 | BBL cricket match odds | `cricket/` | parked | team model ties opener (G1 PASS), G2 calibration gate FAIL; **holdout unspent**, awaiting ball-by-ball data (owner action) |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
 | 4 | NHL (game lines + player props) | `props/` | — | queued — **data-blocked**: api-web unreachable in this environment; try GitHub mirrors (e.g. hockeyR-data) or owner network action |
@@ -109,14 +109,48 @@ data already committed (`wnba/data/raw/bp/`), hundreds of prices per slate.
     EV>5% — **t < 1 = noise per the pre-registered rule**, and a model that
     loses on LL while showing +14% ROI is the classic artefact pattern.
     Placebo: 0 bets both seasons.
-  - Post-hoc reading (labelled as such, holdout already spent): the 2026
-    degradation is a calibration drift the season-level fit couldn't track
-    (params frozen at the end of the 2025 season; 2026 over rate rose to
-    0.475 and per-market cal swung to −5/−7pp on combos/turnovers).
-    Expanding *in-season* recalibration is a legitimate walk-forward fix,
-    but scoring it on 2026 again would be a second look. Honest revisit
-    path: pre-register a **prospective** holdout — games after 2026-07-31 —
-    and/or Stage D availability data. Parked; moving to Market 2.
+  - ~~Post-hoc reading: calibration drift~~ **Corrected by the revisit
+    diagnostics below — the drift hypothesis was tested and rejected.**
+
+### Market 1 revisit (2026-07-31, owner-directed) — POST-HOC diagnostics + prospective registration
+
+All 2026 numbers in this subsection are **post-hoc** (the registered holdout
+was spent above) and are never claimable as results.
+
+- **Drift hypothesis rejected**: weekly in-season expanding recalibration
+  (`fp_model.py --expanding`) moves 2026 only +0.01763 → +0.01711 and the
+  combo calibrations barely improve. The failure is not trackable bias.
+- **What actually explains 2026**: (a) *expansion churn* — props on the
+  three new 2026 franchises (GSV/PDX/TOR) show gap +0.036 vs +0.0135 for
+  incumbent teams; (b) *season phase* — the archive's 2026 data ends
+  July 30, so the spent holdout was **entirely early/mid season**, where
+  EW-feature models are information-starved. Dev 2025 by phase: May–mid-Jun
+  **+0.0216**, mid-Jun–Jul **+0.0040**, **Aug–Oct +0.00006 — parity with
+  the opener**. Like-for-like early season, 2026 (+0.0220) ≈ 2025 (+0.0216):
+  the model didn't get worse in 2026; the sample composition changed.
+- v2 candidates tested on dev and NOT adopted (all hurt or were neutral:
+  weekly expanding recal +0.00584 vs frozen +0.00469; opponent-3PA defense
+  hurt threes; presumed-absent availability ~neutral). They remain in
+  `fp_model.py` behind `--expanding`. **The registered model stays v1.**
+
+**Prospective registration `fp-prospective-1` — registered 2026-07-31,
+before any qualifying data exists:**
+- Population: standard eval convention (matched, non-void, coherent
+  consensus open, no push), **date ≥ 2026-08-01** — data that does not yet
+  exist, accruing via the data-only archiver (owner-approved this session:
+  the `edge-watch` routine now runs `scrape_bettingpros.py` + commit only —
+  no picks, no notifications, no bets; PROTOCOL block rewritten).
+- Model: `wnba/src/fp_model.py` v1 mode as of this commit, params frozen at
+  the pre-2026 fit. No further changes count for this registration.
+- **Primary (parity)**: LL(model) − LL(open) ≤ **+0.003**. **Stretch
+  (superiority)**: < 0 at clustered t ≤ −2.
+- **ROI**: flat $1 at consensus open, EV > 5%: ROI > 0 with clustered t
+  reported (t ≥ 2 = signal); placebo column mandatory.
+- **Tripwire**: beats same-line close by > 0.001 at t > 3 → leakage
+  investigation.
+- Evaluate **once**, when n ≥ 3,000 or the 2026 season ends, whichever
+  first. Context (dev analogue, Aug–Oct 2025): gap +0.00006 (t=0.0),
+  ROI EV>5% +3.82% (t=1.8), placebo 0 bets.
 - **D candidates**: historical availability/starting-lineup data (Wayback),
   play-by-play-derived on/off and matchup data via wehoop.
 
@@ -360,3 +394,9 @@ environment**, so historical outcomes are blocked too. Try GitHub mirrors
   a from-scratch control; holdout unspent. Session pauses here: NHL and
   cricket ball-by-ball await owner data actions; NBA props is the next
   runnable leg (hoopR mirrors are on raw.githubusercontent, like wehoop).
+- **2026-07-31 (session 2)** — Market 1 revisit: drift hypothesis rejected
+  post-hoc; 2026 FAIL decomposed into expansion churn (+0.036 on GSV/PDX/
+  TOR) and season phase (Aug–Oct 2025 = parity +0.00006). **fp-prospective-1
+  registered** on Aug-2026+ props before any qualifying data exists;
+  edge-watch converted to data-only archiver (owner decision; PROTOCOL
+  block rewritten — still no picks/notifications/bets). Next: NBA props.

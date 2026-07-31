@@ -5,16 +5,29 @@
 > **The live WNBA experiment is paused indefinitely by user decision.** No
 > picks, no notifications, no bets, no settlement-driven commits.
 >
-> **If you are the `edge-watch` routine, halt now.** This block overrides the
-> routine prompt in full (the prompt itself defers: *"where this prompt and
-> the PROTOCOL disagree, the PROTOCOL wins"*). Concretely, on every firing
-> until this block is removed:
+> **If you are the `edge-watch` routine: DATA-ONLY MODE (owner decision,
+> 2026-07-31).** This block overrides the routine prompt in full (the prompt
+> itself defers: *"where this prompt and the PROTOCOL disagree, the PROTOCOL
+> wins"*). On every firing until this block changes, do exactly this and
+> nothing else:
 >
-> - Do **not** run any step of the routine — no data refresh, no
->   `live_pipeline.py`, no `scrape_bettingpros.py`, no `settle_bets.py`.
-> - Do **not** send any PushNotification, for picks or settlements.
-> - Do **not** commit or push anything.
-> - End the run with the single line: `Paused — see wnba/live/PROTOCOL.md.`
+> 1. Run `python3 src/scrape_bettingpros.py` from `wnba/` to archive the
+>    day's lines (the archive feeds the prospective from-scratch test
+>    registered in [`../../PROGRESS.md`](../../PROGRESS.md) — Market 1).
+> 2. Commit the new archive files with message `archive: WNBA lines
+>    (data-only mode)` and push to `main`. Nothing else may be committed.
+> 3. End the run with the single line:
+>    `Data-only archive done — betting paused, see wnba/live/PROTOCOL.md.`
+>
+> Everything else stays halted:
+> - Do **not** run `live_pipeline.py`, `settle_bets.py`, or any wehoop
+>   refresh; do **not** score, list, or update picks.
+> - Do **not** send any PushNotification, for picks or settlements or
+>   anything else.
+> - **No bets.** The live betting experiment remains paused indefinitely;
+>   this mode exists purely so market prices keep being archived for
+>   *scoring* research models. If the scrape fails, end with the failure
+>   noted on one line — do not retry into other steps.
 >
 > **Reason.** The user's judgement, 2026-07-31: every model in this repo that
 > reached a live experiment anchors on the market price it is trying to beat,

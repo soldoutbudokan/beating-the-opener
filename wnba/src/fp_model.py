@@ -17,8 +17,20 @@ numbers in PROGRESS.md):
   all fit on the pre-eval-season panel ONLY (play data, no props):
   season S is scored with parameters fit on games before Jan 1 of S.
 
-Usage: python3 src/fp_model.py            # dev season (2025) vs gates
-       python3 src/fp_model.py --holdout  # score 2026 once (Stage C) + ROI
+fp-v2 (2026-07-31 revisit, PROGRESS.md "Market 1 revisit"): adds
+- --expanding: in-season WEEKLY expanding recalibration — for each eval
+  week, c/home/sigma/lg_rate refit on all panel games before that week
+  (strictly walk-forward; addresses the 2026 calibration drift)
+- presumed-absent availability: teammates who missed the team's previous
+  game (computable from prior games only — unlike absent_ew_min, which
+  reads tonight's box score) boost the remaining players' minutes via a
+  factor fit on the pre-eval panel
+- threes get an opponent-3PA-allowed defense factor
+
+Usage: python3 src/fp_model.py                 # v1, dev season vs gates
+       python3 src/fp_model.py --expanding     # v2, dev season
+       python3 src/fp_model.py --holdout       # + 2026 (Stage C was spent
+           2026-07-31: any 2026 rerun is POST-HOC diagnostic, and prints so)
 """
 import argparse
 import os
@@ -53,6 +65,35 @@ SHRINK_K = 3.0               # games of league-rate ballast on the rate path
 FIT_FROM = "2010-01-01"      # calibration fit window start
 
 
+def presumed_absent(panel):
+    """Strictly-prior availability: for each played panel row, the EW
+    minutes of teammates who played the team's game before last but missed
+    the most recent one (>= 10 EW min), excluding the row's own player.
+    Uses prior games only — never tonight's box score."""
+    d = panel[panel.minutes.notna()][
+        ["team_id", "game_id", "game_date", "athlete_id", "min_ewf"]].copy()
+    tg = (d[["team_id", "game_id", "game_date"]].drop_duplicates()
+          .sort_values(["team_id", "game_date"]))
+    played = d.groupby(["team_id", "game_id"]).athlete_id.agg(set).to_dict()
+    minew = d.set_index(["athlete_id", "game_id"]).min_ewf.to_dict()
+    team_tot, own = {}, {}
+    for team, games in tg.groupby("team_id"):
+        gids = games.game_id.tolist()
+        for i in range(2, len(gids)):
+            outs = (played.get((team, gids[i - 2]), set())
+                    - played.get((team, gids[i - 1]), set()))
+            contrib = {p: minew.get((p, gids[i - 2]), 0.0) or 0.0
+                       for p in outs}
+            contrib = {p: w for p, w in contrib.items() if w >= 10}
+            team_tot[(team, gids[i])] = sum(contrib.values())
+            for p, w in contrib.items():
+                own[(p, gids[i])] = w
+    tt = d.apply(lambda r: team_tot.get((r.team_id, r.game_id), 0.0), axis=1)
+    ow = d.apply(lambda r: own.get((r.athlete_id, r.game_id), 0.0), axis=1)
+    d["presumed_share"] = np.clip((tt - ow), 0, None) / 160.0
+    return d[["athlete_id", "game_id", "presumed_share"]]
+
+
 def mu_stats(df, datecol, cal=None):
     """Per-stat adjusted means, one column per RAW key. Market-blind."""
     lg_pace = df.groupby(datecol).tm_pace_ew.transform("mean")
@@ -60,6 +101,12 @@ def mu_stats(df, datecol, cal=None):
     pace_f = ((df.tm_pace_ew + df.opp_pace_ew)
               / (df.tm_pace_ew + lg_pace)).fillna(1.0)
     def_f = ((df.opp_pts_against_ew / lg_allow) ** DEF_EXP).fillna(1.0)
+    if (cal is not None and cal.get("use_def3")
+            and "opp_tpa_for_ew" in df.columns):
+        lg_tpa = df.groupby(datecol).opp_tpa_for_ew.transform("mean")
+        def3_f = ((df.opp_tpa_for_ew / lg_tpa) ** DEF_EXP).fillna(1.0)
+    else:
+        def3_f = pd.Series(1.0, index=df.index)
     minutes = (W_FAST * df.min_ewf
                + (1 - W_FAST) * df.min_ews).fillna(df.min_ewf)
 
@@ -76,19 +123,32 @@ def mu_stats(df, datecol, cal=None):
         rate_mu = rate * minutes
         mu = (W_RATE * per_game.fillna(rate_mu)
               + (1 - W_RATE) * rate_mu.fillna(per_game))
-        mu = mu * pace_f * (def_f if st in SCORING else 1.0)
+        dfac = def_f if st in SCORING else 1.0
+        if st == "tpm" and cal is not None and cal.get("use_def3"):
+            dfac = def3_f
+        mu = mu * pace_f * dfac
         if cal is not None:
             mu = mu * cal["c"][st] * cal["home"][st] ** (df.home - 0.5)
+            if cal.get("gamma") and "presumed_share" in df.columns:
+                mu = mu * (1 + cal["gamma"] * df.presumed_share.fillna(0.0))
         out[st] = mu
     return out
 
 
 def fit_play_cal(panel, cutoff):
-    """Bias / home / shrinkage-ballast / sigma from play data before cutoff."""
+    """Bias / home / shrinkage-ballast / sigma / availability-gamma from
+    play data before cutoff."""
     d = panel[(panel.game_date >= FIT_FROM) & (panel.game_date < cutoff)
               & (panel.gp >= 4) & panel.minutes.notna()].copy()
     d["home"] = d["home"].astype(float)
-    cal = {"c": {}, "home": {}, "lg_rate": {}, "sigma": {}}
+    cal = {"c": {}, "home": {}, "lg_rate": {}, "sigma": {}, "gamma": 0.0}
+    if "presumed_share" in d.columns:
+        mhat = (W_FAST * d.min_ewf + (1 - W_FAST) * d.min_ews).fillna(d.min_ewf)
+        ok = mhat.gt(8) & d.minutes.notna() & d.presumed_share.notna()
+        x = d.presumed_share[ok].values
+        y = (d.minutes[ok] / mhat[ok] - 1).clip(-1, 1).values
+        if (x > 0).sum() > 200:
+            cal["gamma"] = float(np.clip((x * y).sum() / (x * x).sum(), 0, 2))
     for st, col in RAW.items():
         cal["lg_rate"][st] = d[col].sum() / d.minutes.sum()
     mus = mu_stats(d, "game_date", None)
@@ -206,7 +266,11 @@ def evaluate(ev, label):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--holdout", action="store_true",
-                    help="score the 2026 held-out season (Stage C, once)")
+                    help="also score 2026 (POST-HOC: registered holdout was "
+                         "spent 2026-07-31; printed results are diagnostic)")
+    ap.add_argument("--expanding", action="store_true",
+                    help="fp-v2: weekly in-season expanding recalibration + "
+                         "presumed-absent availability + threes defense")
     args = ap.parse_args()
 
     panel = pd.read_pickle(os.path.join(ROOT, "data", "panel.pkl"))
@@ -215,22 +279,50 @@ def main():
             & (ms.actual != ms.open_line)].copy()
     ms["over"] = (ms.actual > ms.open_line).astype(int)
 
+    if args.expanding:
+        from build_modelset import norm
+        pa = presumed_absent(panel)
+        panel = panel.merge(pa, on=["athlete_id", "game_id"], how="left")
+        pmap = panel.assign(
+            nname=panel.athlete_display_name.map(norm),
+            dstr=pd.to_datetime(panel.game_date).dt.strftime("%Y-%m-%d"))
+        pmap = (pmap.groupby(["nname", "dstr"]).presumed_share.max()
+                .reset_index())
+        ms["dstr"] = pd.to_datetime(ms.date).dt.strftime("%Y-%m-%d")
+        ms = ms.merge(pmap, on=["nname", "dstr"], how="left")
+
     seasons = [2025] + ([2026] if args.holdout else [])
     for season in seasons:
-        cal = fit_play_cal(panel, f"{season}-01-01")
         sub = ms[ms.season == season].copy()
-        sub["mu_model"] = predict(sub, cal)
-        cover = sub.mu_model.notna()
-        print(f"\nseason {season}: params fit on pre-{season} play data; "
-              f"coverage {cover.mean()*100:.1f}% "
-              f"({(~cover).sum()} of {len(sub)} dropped)")
-        evx = sub[cover].copy()
-        evx["p_model"] = [p_over(m, mu, li, cal) for m, mu, li in
-                          zip(evx.market, evx.mu_model, evx.open_line)]
+        if args.expanding:
+            sub["week"] = (pd.to_datetime(sub.date)
+                           .dt.to_period("W").dt.start_time)
+            parts = []
+            for wk, grp in sub.groupby("week"):
+                cal = fit_play_cal(panel, wk.strftime("%Y-%m-%d"))
+                cal["use_def3"] = True
+                g = grp.copy()
+                g["mu_model"] = predict(g, cal)
+                gc = g[g.mu_model.notna()].copy()
+                gc["p_model"] = [p_over(m, mu, li, cal) for m, mu, li in
+                                 zip(gc.market, gc.mu_model, gc.open_line)]
+                parts.append(gc)
+            evx = pd.concat(parts)
+            mode = "v2 expanding-weekly"
+        else:
+            cal = fit_play_cal(panel, f"{season}-01-01")
+            sub["mu_model"] = predict(sub, cal)
+            evx = sub[sub.mu_model.notna()].copy()
+            evx["p_model"] = [p_over(m, mu, li, cal) for m, mu, li in
+                              zip(evx.market, evx.mu_model, evx.open_line)]
+            mode = "v1 frozen"
+        print(f"\nseason {season} [{mode}]: coverage "
+              f"{len(evx)/len(sub)*100:.1f}% ({len(sub)-len(evx)} dropped)")
         evx["ll_model"] = ll(evx.p_model, evx.over)
         evx["ll_open"] = ll(evx.p_open, evx.over)
-        tag = ("dev season 2025" if season == 2025
-               else "HELD-OUT season 2026 (scored once)")
+        tag = ("dev season 2025" if season == 2025 else
+               "2026 POST-HOC DIAGNOSTIC (registered holdout spent "
+               "2026-07-31; not a result)")
         evaluate(evx, tag)
         roi_sim(evx, tag)
         # zero-skill placebo: the opener's own devigged probability
