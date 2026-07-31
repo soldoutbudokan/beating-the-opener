@@ -252,6 +252,14 @@ The softest benchmark in the repo — but n is tiny, so gates are power-aware.
 - **D candidates**: BBL ball-by-ball (blocked, above); pool player ratings
   across T20 leagues once Cricsheet is reachable; grow the odds benchmark
   (OddsPortal via Wayback — also currently blocked).
+- **Beyond-BBL scope (owner direction, 2026-07-31 session 2)**: once
+  cricsheet.org + aussportsbetting.com are allowlisted (owner approved),
+  expand to (a) all-T20 pooled player ratings feeding the BBL model, and
+  (b) IPL match odds as their own Stage A/B market. The owner's TheTilt
+  template (Cricsheet download → parse deliveries → features → win-prob
+  ensemble) is the implementation guide — checked this session: it commits
+  only small lookup JSONs, so it's a pipeline pattern, not a data source.
+  Reachability re-tested this session: still blocked.
 
 ## Market 3 — Soccer 1X2 (`soccer/`) — moved up (data on disk; NHL blocked)
 
@@ -312,8 +320,16 @@ for H/D/A on dev) — the hardest benchmark so far.
 
 Known problem: betting data exists only for the archived 2025-26 season
 (12.5k prop files + game lines); **and NHL api-web is unreachable from this
-environment**, so historical outcomes are blocked too. Try GitHub mirrors
-(e.g. hockeyR-data parquet) or owner network action.
+environment**, so historical outcomes are blocked too.
+
+**Mirror probe (2026-07-31 session 2):** training-era data IS reachable —
+`sportsdataverse/fastRhockey-data` has NHL player_box/team_box/pbp/schedules
+parquet for 2011–2024 (verified via raw.githubusercontent), and
+`danmorse314/hockeyR-data` has pbp 2010-11–2023-24. **Neither carries the
+2025-26 eval season**, so grading the archived odds still needs
+api-web.nhle.com — owner approved adding it to the allowlist this session;
+Stage A starts the moment it's reachable (training fetch can even start
+from the mirror now, but there is nothing to grade against until then).
 
 - **A**: multi-season historical game/player data (api-web when reachable,
   or a GitHub mirror); benchmark from the BP archive; gates.
@@ -442,3 +458,12 @@ Normal+NegBin mixture):
   registered** on Aug-2026+ props before any qualifying data exists;
   edge-watch converted to data-only archiver (owner decision; PROTOCOL
   block rewritten — still no picks/notifications/bets). Next: NBA props.
+- **2026-07-31 (session 2)** — Market 5 A+B complete: NBA props from-scratch
+  is a **control** (both iterations +0.02469 vs ≤ +0.010; calibration clean;
+  holdout unspent). Data probes: NHL training mirrors confirmed
+  (fastRhockey-data 2011–2024) but no mirror has the 2025-26 eval season —
+  api-web allowlist still required; cricsheet/aussportsbetting still
+  blocked (owner has approved allowlisting; not yet in effect); TheTilt is
+  a pipeline template, not a data source. Programme state: WNBA prospective
+  test accruing via data-only archiver; BBL/soccer/NBA holdouts all
+  unspent, each waiting on genuinely new inputs.
