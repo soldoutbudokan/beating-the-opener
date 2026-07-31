@@ -219,36 +219,64 @@ The softest benchmark in the repo — but n is tiny, so gates are power-aware.
   across T20 leagues once Cricsheet is reachable; grow the odds benchmark
   (OddsPortal via Wayback — also currently blocked).
 
-## Market 3 — NHL (`props/`)
+## Market 3 — Soccer 1X2 (`soccer/`) — moved up (data on disk; NHL blocked)
+
+Classical from-scratch target. Goals for ~22 leagues (incl. lower divisions)
+already on disk (`soccer/data/raw/`, 396 CSVs) with avg-book early/close
+prices in the same files.
+
+**Stage A complete (2026-07-31).** Benchmark (`src/fp_benchmark.py`):
+population = FTR + full 3-way early-average (EAvg, opener proxy) and
+closing-average odds, proportional devig, multiclass LL. Closing-average
+coverage starts 2019, so dev is effectively 2019-20 .. 2021-22.
+
+| split | n | LL(open) | LL(close) | open−close (clustered t) |
+|---|---|---|---|---|
+| dev (…–2021-22) | 22,358 | 1.00769 | 1.00392 | +0.00377 (t=7.9) |
+| holdout (2022-23 – 2025-26) | 30,912 | 0.99885 | 0.99552 | +0.00333 (t=8.0) |
+
+The average market is superbly calibrated (implied within 1pp of realized
+for H/D/A on dev) — the hardest benchmark so far.
+
+**Gates — registered 2026-07-31, before any fp model code.**
+- **G1 (dev)**: LL(model) − LL(open) ≤ **+0.015** → Stage C; fail after at
+  most two feature iterations → record as control, move on. (Context: v1's
+  odds-fed GBM lost to the opener by 0.022; Dixon-Coles-class models
+  typically land within ~0.01–0.02 of market prices.)
+- **G2 (dev)**: per-outcome calibration |mean P − rate| ≤ **2pp** for each
+  of H, D, A (independent-Poisson draw underestimation must be corrected
+  from training data, not by eyeballing dev).
+- **G3 tripwire (dev)**: beating the close by > 0.001 at clustered t > 3 →
+  leakage investigation.
+- **Stage C (holdout, scored once)**: LL(model) − LL(open) with clustered
+  t (≤ −2 = the opener is beaten); flat-stake ROI at EAvg prices for
+  EV > 2% / 5% with devigged-open placebo.
+- Model tuning restricted to seasons ≤ 2018-19 (pre-benchmark era, ~60k
+  matches with results), walk-forward within it.
+
+- **B**: time-decayed multiplicative attack/defence Poisson ratings per
+  league, walk-forward, training-fit draw correction; P(H/D/A) from the
+  score matrix.
+- **D candidates**: Football Manager crowdsourced player/club attributes as a
+  lower-division prior (a starting point, not a be-all-end-all), understat
+  xG, Transfermarkt squad values; Sonnet waves to collect/normalize
+  lower-division sources football-data doesn't carry.
+
+## Market 4 — NHL (`props/`) — demoted while data-blocked
 
 Known problem: betting data exists only for the archived 2025-26 season
-(12.5k prop files + game lines). So: train on past seasons' public data, test
-against the archived season.
+(12.5k prop files + game lines); **and NHL api-web is unreachable from this
+environment**, so historical outcomes are blocked too. Try GitHub mirrors
+(e.g. hockeyR-data parquet) or owner network action.
 
-- **A**: fetch multi-season historical game/player data via NHL api-web
-  (extend `fetch_nhl.py` / `fetch_nhl_finals.py`); benchmark from the BP
-  archive; gates.
+- **A**: multi-season historical game/player data (api-web when reachable,
+  or a GitHub mirror); benchmark from the BP archive; gates.
 - **B/C**: (a) game model — Poisson goals, team strength, goalie effects
   (the puck line was Phase 1G's near-miss); (b) player props (SOG / points /
   assists) via the Market-1 architecture through `props/src/dist_utils.py`.
 - **D candidates**: historical NHL odds beyond 2025-26 (public odds archives,
   Wayback) — likely mandatory here, not a fallback; shift/TOI data for a
   real ice-time model.
-
-**Gates**: *to be registered at Stage A.*
-
-## Market 4 — Soccer 1X2 (`soccer/`)
-
-Classical from-scratch target. Goals + shots for ~20 leagues (incl. lower
-divisions) are already on disk (`soccer/data/raw/`, 396 CSVs) with avg-book
-early/close prices in the same files — 9 test seasons.
-
-- **A/B**: Dixon-Coles / bivariate Poisson attack–defence model, never seeing
-  odds; Elo/EW machinery from `features.py` as covariates.
-- **D candidates**: Football Manager crowdsourced player/club attributes as a
-  lower-division prior (a starting point, not a be-all-end-all), understat
-  xG, Transfermarkt squad values; Sonnet waves to collect/normalize
-  lower-division sources football-data doesn't carry.
 
 **Gates**: *to be registered at Stage A.*
 
