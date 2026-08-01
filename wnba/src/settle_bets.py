@@ -36,8 +36,9 @@ RESULTS_MD = os.path.join(ROOT, "RESULTS.md")
 ET = "America/New_York"
 
 COLS = ["key", "placed_at", "match_date", "event_id", "market", "player",
-        "side", "line", "odds_taken", "stake", "model_p", "status", "result",
-        "actual", "clv", "clv_cal", "clv_source", "pnl", "notes"]
+        "side", "line", "odds_taken", "stake", "model_p", "ev_claimed",
+        "status", "result", "actual", "clv", "clv_cal", "clv_source", "pnl",
+        "notes"]
 MARKET_IDS = {"points": 393, "rebounds": 397, "assists": 391, "threes": 390,
               "pra": 396, "pts_ast": 394, "pts_reb": 395, "reb_ast": 398}
 BOOKSUM_LO, BOOKSUM_HI = 1.00, 1.15  # sane two-way vig band
@@ -175,9 +176,20 @@ def main():
     bets = bets[COLS]
     for c in ["result", "clv_source", "notes", "status"]:
         bets[c] = bets[c].astype("object")
-    for c in ["line", "odds_taken", "stake", "model_p", "actual", "clv",
-              "clv_cal", "pnl"]:
+    for c in ["line", "odds_taken", "stake", "model_p", "ev_claimed",
+              "actual", "clv", "clv_cal", "pnl"]:
         bets[c] = pd.to_numeric(bets[c], errors="coerce")
+    # ev_claimed: what the model said the bet was worth AT THE PRICE TAKEN.
+    # Every row must carry it - a routine that logs a fill without it gets it
+    # filled here from model_p and odds_taken, so the column can never go
+    # stale or half-populated (see live/PROTOCOL.md "Reporting fills").
+    need_ev = bets.ev_claimed.isna() & bets.model_p.notna() \
+        & bets.odds_taken.notna()
+    if need_ev.any():
+        bets.loc[need_ev, "ev_claimed"] = [
+            round(float(mp) * float(amer_to_dec(oc)) - 1, 4)
+            for mp, oc in zip(bets.loc[need_ev, "model_p"],
+                              bets.loc[need_ev, "odds_taken"])]
     if not os.path.exists(BANKROLL):
         json.dump({"start": 100.0, "current": 100.0}, open(BANKROLL, "w"))
 
@@ -259,7 +271,17 @@ def main():
              "`CLV*` re-expresses the close with the measured market "
              "over-shade removed (WNBA prop prices overstate P(over) by ~2pp "
              "on average, so raw CLV mechanically penalises unders - see "
-             "AUDIT.md N1). Both converge far faster than ROI.\n"]
+             "AUDIT.md N1). Both converge far faster than ROI.\n",
+             "`EV said` is the model's own claim for that bet at the price "
+             "actually taken (`model_p x decimal_odds - 1`). Read it against "
+             "`CLV`: the model's claim vs the market's verdict on the same "
+             "bet. A large positive `EV said` next to a negative `CLV` means "
+             "the market never came to us - the claimed edge was not visible "
+             "to anyone else. Note CLV's break-even is not zero: paying a "
+             "two-way price and seeing no line movement scores about "
+             "`1/booksum - 1`, i.e. roughly -5% to -7% at typical prop "
+             "prices, so `CLV` near -6% means the line simply did not "
+             "move.\n"]
     sett = bets[bets.status == "settled"]
     no = int((bets.status == "open").sum())
     if len(sett):
@@ -276,6 +298,9 @@ def main():
             f"{int((bets.status == 'void').sum())} void, {no} open |",
             f"| staked | ${staked:.2f} |",
             f"| P&L | ${pnl:+.2f} ({pnl / staked:+.1%} ROI) |",
+            f"| mean EV said (model) | {sett.ev_claimed.mean():+.2%} "
+            f"(n={int(sett.ev_claimed.notna().sum())}) |"
+            if sett.ev_claimed.notna().any() else "| mean EV said (model) | - |",
             f"| mean CLV (vs close) | {clv.mean():+.2%} (n={len(clv)}) |",
             f"| mean CLV* (shade-adj) | "
             f"{clv_cal.mean():+.2%} (n={len(clv_cal)}) |"
@@ -295,14 +320,15 @@ def main():
     show = bets.sort_values("match_date", ascending=False).head(200)
     if len(show):
         lines += ["| date | player | market | side | line | odds | stake "
-                  "| actual | result | P&L | CLV | CLV* |",
-                  "|---|---|---|---|---|---|---|---|---|---|---|---|"]
+                  "| EV said | actual | result | P&L | CLV | CLV* |",
+                  "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
         for _, b in show.iterrows():
             f2 = lambda v, fmt: fmt.format(v) if pd.notna(v) else ""
             lines.append(
                 f"| {b['match_date']} | {b['player']} | {b['market']} "
                 f"| {b['side']} | {b['line']} | {int(b['odds_taken'])} "
-                f"| {b['stake']} | {f2(b['actual'], '{:g}')} "
+                f"| {b['stake']} | {f2(b['ev_claimed'], '{:+.1%}')} "
+                f"| {f2(b['actual'], '{:g}')} "
                 f"| {b['result'] if pd.notna(b['result']) else ''} "
                 f"| {f2(b['pnl'], '{:+.2f}')} | {f2(b['clv'], '{:+.1%}')} "
                 f"| {f2(b['clv_cal'], '{:+.1%}')} |")

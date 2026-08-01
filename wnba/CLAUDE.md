@@ -8,7 +8,9 @@ talent model + news overrides), FanDuel EV>10% trigger, pre-registered
 staking. `edge-watch` = data-only close archiver. `news-watch` (hourly) =
 overrides + picks refresh + notification + **always post new picks as a
 table in the chat reply** (owner instruction — see PROTOCOL step 3). Fills are owner-reported only:
-log to live/bets.csv copying picks.csv fields, commit, push. Settlement
+log to live/bets.csv copying picks.csv fields — **including `ev_claimed`,
+the model's claim at the price actually taken (`model_p x decimal_odds -
+1`), required on every row** — commit, push. Settlement
 via src/settle_bets.py per protocol. The news layer supersedes the old
 "no injury news" rule for v3. Scoring registrations: ../PROGRESS.md
 (fp-prospective-1/-2 on props dated 2026-08-01+, base model, unaffected

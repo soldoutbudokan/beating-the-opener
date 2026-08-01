@@ -27,6 +27,9 @@
 >   the overrides file is judgement, not gospel.
 > - **Fills**: report what you took; the session logs it to `bets.csv`
 >   (fields copied from `picks.csv`), commits, pushes. Never invent fills.
+>   Every logged row carries **`ev_claimed`** — the model's claim at the
+>   price actually taken — so the scoreboard can show claim vs market
+>   verdict side by side. See "Reporting fills" below.
 > - **Settlement & scoreboard**: `settle_bets.py` next morning (the
 >   pre-pause machinery below, audit-hardened). Primary metric **CLV vs
 >   close** (raw + shade-adjusted), secondary P&L. `edge-watch` stays
@@ -259,6 +262,17 @@ rest"*. Claude then appends one row per fill to `live/bets.csv` with
 `model_p` from `live/picks.csv` (`match_date` = the pick's `date`, which is
 the **ET game date**; `odds_taken`/`stake` as reported; `placed_at` = today),
 commits and pushes: `live: log N bets <date>`.
+
+**`ev_claimed` is required on every row** (owner instruction, 2026-08-01).
+It is the model's own claim for the bet **at the price actually taken** -
+`model_p x decimal_odds - 1`, *not* the sheet's `ev`, which is quoted at the
+sheet price and drifts once the fill comes in at something else. Any routine
+or session that logs a fill fills it in. If a row is ever written without it,
+`settle_bets.py` back-computes it from `model_p` and `odds_taken` on the next
+run, so the column must never be left blank in RESULTS.md - a blank there
+means `model_p` or `odds_taken` is missing, which is a logging bug to fix,
+not a gap to tolerate. It exists so the scoreboard shows the model's claim
+next to the market's verdict (`CLV`) on the same bet.
 
 Rules for Claude sessions:
 - Never invent or assume a fill; log only what the user explicitly reports.
