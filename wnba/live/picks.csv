@@ -1,7 +1,7 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
 2693_threes_kahleah copper_under,2026-08-01,2026-08-01 19:00:00,2693,threes,Kahleah Copper,PHO,NYL@PHO,under,1.5,146.0,0.564,0.3873,True,-121,-113,3.5,1.48,,1.5,False,True
 2692_assists_aja wilson_under,2026-08-01,2026-08-01 17:00:00,2692,assists,A'ja Wilson,LVA,LVA@CHI,under,3.5,102.0,0.638,0.2892,True,-162,-151,3.5,2.94,,3.5,False,True
-2692_assists_jackie young_under,2026-08-01,2026-08-01 17:00:00,2692,assists,Jackie Young,LVA,LVA@CHI,under,7.5,-146.0,0.601,0.2335,True,-140,-130,4.0,5.93,,7.5,False,True
+2692_assists_jackie young_under,2026-08-01,2026-08-01 17:00:00,2692,assists,Jackie Young,LVA,LVA@CHI,under,7.5,-146.0,0.732,0.2335,True,-245,-223,4.0,5.93,,7.5,False,True
 2693_assists_jonquel jones_over,2026-08-01,2026-08-01 19:00:00,2693,assists,Jonquel Jones,NYL,NYL@PHO,over,2.5,110.0,0.584,0.2263,True,-130,-122,2.5,3.03,,2.5,False,True
 2693_assists_sabrina ionescu_under,2026-08-01,2026-08-01 19:00:00,2693,assists,Sabrina Ionescu,NYL,NYL@PHO,under,5.5,-108.0,0.632,0.2164,True,-158,-147,3.0,4.8,,5.5,False,True
 2693_threes_dewanna bonner_under,2026-08-01,2026-08-01 19:00:00,2693,threes,DeWanna Bonner,PHO,NYL@PHO,under,1.5,-158.0,0.692,0.1295,True,-204,-188,2.5,1.12,,1.5,True,False
