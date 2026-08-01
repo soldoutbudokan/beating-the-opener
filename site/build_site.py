@@ -1,4 +1,4 @@
-"""Build docs/index.html - the at-a-glance scoreboard for both live experiments.
+"""Build docs/index.html - the at-a-glance scoreboard for the live experiments.
 
 Reads each market's live/ files (bankroll, bets, picks) plus soccer's backtest
 P&L curve and renders one self-contained page: live bankrolls and CLV, open
@@ -779,11 +779,13 @@ def live_panel(markets):
     <div>
       <h2>The live experiment</h2>
       <p class="lede">Real money on FanDuel, quarter-Kelly stakes.
-        <strong>Nothing is running.</strong> WNBA props was paused 2026-07-31
-        with no open positions — the model anchored on the opening price
-        rather than pricing games itself, and that approach is being reworked.
-        The soccer experiment was cancelled before its first bet when the
-        post-Pinnacle replay showed no edge. Both cards stay as the record.</p>
+        <strong>WNBA props is running.</strong> The opener-anchored model was
+        retired on 2026-07-31 — it inverted its opinion out of the price
+        rather than pricing games itself — and live betting re-opened the same
+        evening on a from-scratch talent model, at a claimed-EV &gt; 10%
+        trigger. The soccer experiment was cancelled before its first bet when
+        the post-Pinnacle replay showed no edge; its card stays as the
+        record.</p>
     </div>
     <div class="hero">
       <div class="hero-label">Combined bankroll</div>
@@ -1271,9 +1273,10 @@ def render(markets, fragment=False):
     <div class="brand">
       <h1>Beating the opener</h1>
       <p>Soft sportsbooks' opening lines are inefficient. Four markets tested,
-        two beaten in research — and both live experiments now stopped: soccer
-        cancelled when its regime died, WNBA paused 2026-07-31 to rework the
-        models onto first principles.</p>
+        two beaten in research. Soccer's live experiment was cancelled when
+        its regime died. WNBA props is betting again since 2026-07-31: the
+        model that anchored on the opening price is retired, and a
+        from-scratch talent model prices the games instead.</p>
     </div>
     <div class="stamp">
       <a class="repo-link" href="{REPO}">Source on GitHub ↗</a>
