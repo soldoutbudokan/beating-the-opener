@@ -16,6 +16,7 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 | mean EV said (model) | +16.90% (n=13) |
 | mean CLV (vs close) | -5.52% (n=13) |
 | mean CLV* (shade-adj) | -6.38% (n=13) |
+| Model-expected P&L | $+2.20 |
 | CLV-expected P&L | $-0.72 |
 
 CLV t-stat: -4.22 (iid); -4.69 clustered by match date (2 dates)

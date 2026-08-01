@@ -175,11 +175,13 @@ def load_market(cfg):
         b["_stake"] = num(b, "stake") or 0.0
         b["_pnl"] = num(b, "pnl")
         b["_clv"] = num(b, "clv")
+        b["_ev"] = num(b, "ev_claimed")  # model's claim at the price taken
         b["_status"] = txt(b, "status") or "open"
     settled = [b for b in bets if b["_status"] == "settled"]
     graded = [b for b in bets if b["_status"] in ("settled", "push", "void")]
     open_bets = [b for b in bets if b["_status"] == "open"]
     clvs = [b["_clv"] for b in graded if b["_clv"] is not None]
+    evs = [b["_ev"] for b in graded if b["_ev"] is not None]
 
     staked = sum(b["_stake"] for b in settled)
     pnl = sum(b["_pnl"] or 0.0 for b in settled)
@@ -207,6 +209,13 @@ def load_market(cfg):
         "mean_clv": mean_clv, "n_clv": len(clvs), "t_stat": t_stat,
         "exp_pnl": sum(b["_stake"] * b["_clv"] for b in graded
                        if b["_clv"] is not None),
+        # What the model itself claimed the same graded bets were worth, at
+        # the prices actually taken. Same population as exp_pnl so the two
+        # tiles are read side by side: model's claim vs market's verdict.
+        "model_exp_pnl": sum(b["_stake"] * b["_ev"] for b in graded
+                             if b["_ev"] is not None),
+        "mean_ev": sum(evs) / len(evs) if evs else None,
+        "n_ev": len(evs),
         "curve": curve,
     }
 
@@ -665,6 +674,11 @@ def market_panel(m):
         f'{signed_pct(m["roi"])} ROI on {money(m["staked"])} staked'
         if m["roi"] is not None else "nothing staked yet",
         "good" if m["pnl"] > 0 else ("bad" if m["pnl"] < 0 else "")))
+    if m["n_ev"]:
+        tiles.append(tile(
+            "Model-expected P&L", signed_money(m["model_exp_pnl"]),
+            f'what the model claimed these bets were worth '
+            f'({signed_pct(m["mean_ev"])} per bet)'))
     tiles.append(tile(
         "CLV-expected P&L",
         signed_money(m["exp_pnl"]) if m["n_clv"] else "—",

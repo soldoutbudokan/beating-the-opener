@@ -305,6 +305,8 @@ def main():
             f"| mean CLV* (shade-adj) | "
             f"{clv_cal.mean():+.2%} (n={len(clv_cal)}) |"
             if len(clv_cal) else "| mean CLV* (shade-adj) | - |",
+            f"| Model-expected P&L | "
+            f"${(done.stake * done.ev_claimed).sum():+.2f} |",
             f"| CLV-expected P&L | ${(done.stake * done.clv).sum():+.2f} |", ""]
         if len(clv) >= 2:
             se = clv.std() / np.sqrt(len(clv))
