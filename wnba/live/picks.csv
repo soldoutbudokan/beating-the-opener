@@ -1,8 +1,8 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
 2700_assists_kelsey plum_over,2026-08-03,2026-08-04 01:00:00,2700,assists,Kelsey Plum,PHO,PHO@CHI,over,4.5,134.0,0.547,0.279,True,-113,-106,2.5,4.9,,5.5,True,False
-2701_rebounds_maria conde_over,2026-08-04,2026-08-05 02:00:00,2701,rebounds,Maria Conde,TOR,TOR@GSV,over,4.5,108.0,0.592,0.2304,True,-135,-126,2.5,5.3,,4.5,True,False
-2699_threes_chelsea gray_over,2026-08-03,2026-08-03 23:00:00,2699,threes,Chelsea Gray,LVA,LVA@ATL,over,1.5,110.0,0.574,0.2059,True,-125,-118,2.5,1.93,,1.5,False,True
-2700_threes_sydney taylor_under,2026-08-03,2026-08-04 01:00:00,2700,threes,Sydney Taylor,CHI,PHO@CHI,under,2.5,106.0,0.584,0.2027,True,-130,-122,2.5,2.35,,2.5,True,False
+2701_rebounds_maria conde_over,2026-08-04,2026-08-05 02:00:00,2701,rebounds,Maria Conde,TOR,TOR@GSV,over,4.5,108.0,0.592,0.2304,True,-135,-126,2.5,5.3,,4.5,False,True
+2699_threes_chelsea gray_over,2026-08-03,2026-08-03 23:00:00,2699,threes,Chelsea Gray,LVA,LVA@ATL,over,1.5,110.0,0.574,0.2059,True,-125,-118,2.0,1.93,,1.5,False,True
+2700_threes_sydney taylor_under,2026-08-03,2026-08-04 01:00:00,2700,threes,Sydney Taylor,CHI,PHO@CHI,under,2.5,106.0,0.584,0.2027,True,-130,-122,2.5,2.35,,2.5,False,True
 2698_assists_sabrina ionescu_under,2026-08-03,2026-08-03 23:00:00,2698,assists,Sabrina Ionescu,NYL,SEA@NYL,under,5.5,100.0,0.599,0.1982,True,-138,-129,2.5,5.0,,5.5,False,True
 2698_assists_natisha hiedeman_under,2026-08-03,2026-08-03 23:00:00,2698,assists,Natisha Hiedeman,SEA,SEA@NYL,under,5.5,-130.0,0.665,0.1769,True,-182,-168,3.0,4.6,,4.5,False,True
 2700_assists_alyssa thomas_over,2026-08-03,2026-08-04 01:00:00,2700,assists,Alyssa Thomas,PHO,PHO@CHI,over,8.5,114.0,0.522,0.1171,True,-102,104,1.0,8.79,,8.5,True,False
