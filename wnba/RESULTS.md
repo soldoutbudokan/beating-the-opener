@@ -10,7 +10,7 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 18 (8W-10L), 0 push, 0 void, 7 open |
+| settled | 18 (8W-10L), 0 push, 0 void, 13 open |
 | staked | $18.00 |
 | P&L | $-3.27 (-18.2% ROI) |
 | mean EV said (model) | +19.73% (n=18) |
@@ -23,6 +23,12 @@ CLV t-stat: -3.38 (iid); -1.80 clustered by match date (3 dates)
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-08-03 | Kahleah Copper | points | under | 21.5 | -106 | 1.0 | +24.4% |  |  |  |  |  |
+| 2026-08-03 | Chelsea Gray | threes | over | 1.5 | 110 | 1.0 | +20.5% |  |  |  |  |  |
+| 2026-08-03 | Rhyne Howard | points | under | 16.5 | -110 | 1.0 | +21.4% |  |  |  |  |  |
+| 2026-08-03 | Angel Reese | rebounds | under | 11.5 | -102 | 1.0 | +20.0% |  |  |  |  |  |
+| 2026-08-03 | Natisha Hiedeman | assists | under | 5.5 | -130 | 1.0 | +17.8% |  |  |  |  |  |
+| 2026-08-03 | Sabrina Ionescu | assists | under | 5.5 | -106 | 1.0 | +16.4% |  |  |  |  |  |
 | 2026-08-02 | Aliyah Boston | rebounds | under | 8.5 | -118 | 1.0 | +33.4% |  |  |  |  |  |
 | 2026-08-02 | Olivia Miles | rebounds | over | 4.5 | 118 | 1.0 | +34.1% |  |  |  |  |  |
 | 2026-08-02 | Kelsey Plum | assists | over | 4.5 | -114 | 1.0 | +29.0% |  |  |  |  |  |
