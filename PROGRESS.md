@@ -752,6 +752,38 @@ registrations are firewalled from betting outcomes.
   CLV vs raw close **−4.6%** — negative by construction for an
   under-heavy sheet fading the over-shade; clv_cal is the fair
   yardstick). Settlement of the 8 opens runs after tonight's games.
+- **2026-08-02 (settlement session)** — 2026-08-01 slate settled (5 bets,
+  2W-3L, −$1.22): **the first day whose CLV came in positive — raw
+  +0.16%, shade-adjusted +2.38%**, against −4.14% (07-28) and −6.39%
+  (07-31). Cumulative: 18 settled (8W-10L), −$3.27 on $18 staked
+  (−18.2% ROI), bankroll $96.73, mean CLV −3.95% / CLV* −3.94%,
+  mean claimed EV **+19.73%**. The claim-vs-verdict gap is the whole
+  story so far: the model says +19.7% a bet, the closing line says
+  −4.0%, and at n=18 the clustered t on CLV is −1.80 (3 dates) — far
+  too little to separate either number from noise (AUDIT H7 power note
+  applies exactly as written). The 7 bets on the 2026-08-02 slate stay
+  open: wehoop's mirror had no 08-02 box scores at settlement time and
+  the closes for events 2696/2697 were still inside the scraper's
+  tip+5h archiving cushion.
+- **Live-sheet bug found 2026-08-02 — stale players are not gated.**
+  `fp_live.py:latest_states()` keys each player's state off
+  `panel.groupby("nname").tail(1)` — the last game they ever played,
+  with **no recency check**. BettingPros' offers payload for event 2695
+  (LAS@PDX) carried a `Kelsey Plum` record tagged team `PHO`; Plum's
+  last box score is **2026-06-21** (42 days stale) and ESPN lists her
+  Out on Phoenix, so she was on neither roster in that game. The sheet
+  still projected 5.88 assists off her June form and emitted
+  `2695_assists_kelsey plum_over` at **+29.0% claimed EV**, which was
+  filled. `build_fixture` compounded it: `my_team` (Phoenix) matches
+  neither side, so the row was built as an away player against
+  Portland. The bet will void on the no-box-row-after-3-days path
+  (stake returned), so the cost here is a wasted slot, not a loss —
+  but the same hole would happily price any long-absent player the
+  feed still lists. Every other player on the current sheet is ≤ 8 days
+  stale, so a days-since-last-game gate (~10–14 days) in
+  `latest_states()` isolates exactly this case. **Not applied this
+  session** — it changes what gets bet, which is an owner decision, not
+  a scoreboard update.
 
 ## Push log
 
@@ -831,3 +863,12 @@ registrations are firewalled from betting outcomes.
   2026-08-01+ (spread open, season-end scoring, no betting). Home-adv
   collapse (3.3 → ~1.3 pts) identified and documented; β wrong-sign
   artifact recorded.
+- **2026-08-02 (settlement session)** — Data refresh (wehoop + BP
+  archive, 60 new offer files for events 2692-2695), settled the 5
+  2026-08-01 bets with CLV stamped, regenerated RESULTS.md +
+  docs/index.html. First positive-CLV day (raw +0.16%, shade-adj
+  +2.38%). Recorded the `fp_live.py` stale-player hole surfaced by the
+  Kelsey Plum fill (details in the live-betting section above); the fix
+  is left for an owner decision because it changes what gets bet. Still
+  open: the 7 bets on the 2026-08-02 slate, which need the next
+  wehoop refresh and the 2696/2697 closes.
