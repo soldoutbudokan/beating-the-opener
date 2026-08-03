@@ -1,10 +1,10 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
-2700_points_kahleah copper_under,2026-08-03,2026-08-04 01:00:00,2700,points,Kahleah Copper,PHO,PHO@CHI,under,21.5,-106.0,0.64,0.243,True,-164,-152,3.0,19.23,,22.5,False,True
-2699_threes_chelsea gray_over,2026-08-03,2026-08-03 23:00:00,2699,threes,Chelsea Gray,LVA,LVA@ATL,over,1.5,112.0,0.575,0.2179,True,-126,-118,2.5,1.93,,1.5,False,True
+2700_points_kahleah copper_under,2026-08-03,2026-08-04 01:00:00,2700,points,Kahleah Copper,PHO,PHO@CHI,under,21.5,-106.0,0.64,0.2431,True,-164,-152,3.0,19.22,,22.5,False,True
+2699_points_rhyne howard_under,2026-08-03,2026-08-03 23:00:00,2699,points,Rhyne Howard,ATL,LVA@ATL,under,16.5,-110.0,0.636,0.214,True,-161,-149,3.0,14.6,,16.5,False,True
+2699_threes_chelsea gray_over,2026-08-03,2026-08-03 23:00:00,2699,threes,Chelsea Gray,LVA,LVA@ATL,over,1.5,110.0,0.574,0.2064,True,-125,-118,2.5,1.93,,1.5,False,True
 2699_rebounds_angel reese_under,2026-08-03,2026-08-03 23:00:00,2699,rebounds,Angel Reese,ATL,LVA@ATL,under,11.5,-102.0,0.606,0.2007,True,-142,-133,2.5,10.6,,11.5,False,True
-2699_points_rhyne howard_under,2026-08-03,2026-08-03 23:00:00,2699,points,Rhyne Howard,ATL,LVA@ATL,under,16.5,-113.0,0.636,0.1986,True,-161,-149,2.5,14.6,,16.5,False,True
+2700_assists_kelsey plum_over,2026-08-03,2026-08-04 01:00:00,2700,assists,Kelsey Plum,PHO,PHO@CHI,over,4.5,120.0,0.546,0.2007,True,-112,-106,2.0,4.9,,5.5,True,False
 2698_assists_natisha hiedeman_under,2026-08-03,2026-08-03 23:00:00,2698,assists,Natisha Hiedeman,SEA,SEA@NYL,under,5.5,-130.0,0.666,0.1785,True,-182,-169,3.0,4.59,,4.5,False,True
 2698_assists_sabrina ionescu_under,2026-08-03,2026-08-03 23:00:00,2698,assists,Sabrina Ionescu,NYL,SEA@NYL,under,5.5,-106.0,0.599,0.1643,True,-138,-129,2.0,5.0,,5.5,False,True
-2699_points_jackie young_under,2026-08-03,2026-08-03 23:00:00,2699,points,Jackie Young,LVA,LVA@ATL,under,19.5,-114.0,0.607,0.1398,True,-143,-133,2.0,17.93,,19.5,True,False
-2700_threes_sydney taylor_under,2026-08-03,2026-08-04 01:00:00,2700,threes,Sydney Taylor,CHI,PHO@CHI,under,2.5,-106.0,0.584,0.1343,True,-130,-122,1.5,2.35,,2.5,True,False
-2699_assists_aja wilson_under,2026-08-03,2026-08-03 23:00:00,2699,assists,A'ja Wilson,LVA,LVA@ATL,under,3.5,-106.0,0.582,0.131,True,-129,-121,1.5,3.21,,3.5,True,False
+2700_threes_sydney taylor_under,2026-08-03,2026-08-04 01:00:00,2700,threes,Sydney Taylor,CHI,PHO@CHI,under,2.5,-104.0,0.584,0.145,True,-130,-122,2.0,2.35,,2.5,True,False
+2699_points_jackie young_under,2026-08-03,2026-08-03 23:00:00,2699,points,Jackie Young,LVA,LVA@ATL,under,19.5,-115.0,0.607,0.1353,True,-143,-133,2.0,17.93,,19.5,True,False
