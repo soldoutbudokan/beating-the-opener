@@ -32,14 +32,32 @@ SHORT = {"three_point_field_goals_made": "tpm",
          "three_point_field_goals_attempted": "tpa",
          "field_goals_attempted": "fga", "free_throws_attempted": "fta"}
 ALPHAS = {"f": 0.18, "s": 0.05}  # fast / slow EW
-ALLSTAR = {"CLA", "COL", "TMW", "TMS", "USA", "WNBA", "LIB", "WIL"}
+# Exhibition team codes change every year the All-Star captains change, so an
+# enumerated blocklist alone goes stale: the 2026 codes (SPO/COOP) slipped
+# through and polluted two weeks of post-break EWs (found 2026-08-03). The
+# schedule's ALLSTAR flag is the durable filter; the codes stay as a fallback
+# for any year whose schedule file lacks the flag.
+ALLSTAR = {"CLA", "COL", "TMW", "TMS", "USA", "WNBA", "LIB", "WIL",
+           "SPO", "COOP"}
+
+
+def allstar_game_ids():
+    ids = set()
+    for p in glob.glob(os.path.join(ROOT, "data", "wehoop",
+                                    "wnba_schedule_*.parquet")):
+        sch = pd.read_parquet(p)
+        if "type_abbreviation" in sch.columns:
+            ids |= set(sch.loc[sch.type_abbreviation.astype(str)
+                               .eq("ALLSTAR"), "game_id"])
+    return ids
 
 
 def load_player_box():
     parts = [pd.read_parquet(p) for p in sorted(
         glob.glob(os.path.join(ROOT, "data", "wehoop", "player_box_*.parquet")))]
     box = pd.concat(parts, ignore_index=True)
-    box = box[~box.team_abbreviation.isin(ALLSTAR)
+    box = box[~box.game_id.isin(allstar_game_ids())
+              & ~box.team_abbreviation.isin(ALLSTAR)
               & ~box.opponent_team_abbreviation.isin(ALLSTAR)]
     box["game_date"] = pd.to_datetime(box["game_date"])
     for c in STATS:
@@ -52,7 +70,8 @@ def load_team_box():
     parts = [pd.read_parquet(p) for p in sorted(
         glob.glob(os.path.join(ROOT, "data", "wehoop", "team_box_*.parquet")))]
     tb = pd.concat(parts, ignore_index=True)
-    tb = tb[~tb.team_abbreviation.isin(ALLSTAR)
+    tb = tb[~tb.game_id.isin(allstar_game_ids())
+            & ~tb.team_abbreviation.isin(ALLSTAR)
             & ~tb.opponent_team_abbreviation.isin(ALLSTAR)]
     tb["game_date"] = pd.to_datetime(tb["game_date"])
     for c in ["field_goals_attempted", "free_throws_attempted", "total_turnovers",

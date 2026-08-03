@@ -211,7 +211,9 @@ def load_market(cfg):
     settled = [b for b in bets if b["_status"] == "settled"]
     graded = [b for b in bets if b["_status"] in ("settled", "push", "void")]
     open_bets = [b for b in bets if b["_status"] == "open"]
-    clvs = [b["_clv"] for b in graded if b["_clv"] is not None]
+    # every stamped row counts - settlement stamps CLV as soon as the game
+    # is over, so open bets awaiting box scores still carry a verdict
+    clvs = [b["_clv"] for b in bets if b["_clv"] is not None]
     evs = [b["_ev"] for b in graded if b["_ev"] is not None]
 
     staked = sum(b["_stake"] for b in settled)
@@ -228,12 +230,17 @@ def load_market(cfg):
         running += b["_pnl"] or 0.0
         curve.append((txt(b, "match_date"), round(running, 2)))
 
+    bet_keys = {txt(b, "key") for b in bets}
+    live_picks = [p for p in picks_all if not pick_expired(p, as_of)]
     return {
         "cfg": cfg, "bank": bank, "meta": meta, "bets": bets,
         "settled": settled, "graded": graded, "open": open_bets,
-        # Split the sheet: rows whose game has already tipped are the record
-        # of what the model priced, not something anyone can still bet.
-        "picks": [p for p in picks_all if not pick_expired(p, as_of)],
+        # Split the sheet three ways: rows whose game has already tipped are
+        # the record of what the model priced, and rows already in the bet
+        # log belong there, not on the sheet - what remains is what the
+        # owner can still act on (owner request 2026-08-03).
+        "picks": [p for p in live_picks if txt(p, "key") not in bet_keys],
+        "picks_logged": [p for p in live_picks if txt(p, "key") in bet_keys],
         "picks_expired": [p for p in picks_all if pick_expired(p, as_of)],
         "as_of": as_of,
         "wins": sum(1 for b in settled if txt(b, "result") == "won"),
@@ -242,7 +249,7 @@ def load_market(cfg):
         "staked": staked, "pnl": pnl,
         "roi": pnl / staked if staked else None,
         "mean_clv": mean_clv, "n_clv": len(clvs), "t_stat": t_stat,
-        "exp_pnl": sum(b["_stake"] * b["_clv"] for b in graded
+        "exp_pnl": sum(b["_stake"] * b["_clv"] for b in bets
                        if b["_clv"] is not None),
         # What the model itself claimed the same graded bets were worth, at
         # the prices actually taken. Same population as exp_pnl so the two
@@ -594,7 +601,13 @@ def clv_cell(v):
 def picks_block(m):
     cfg, picks = m["cfg"], m["picks"]
     stale = m.get("picks_expired") or []
+    logged = m.get("picks_logged") or []
     if not picks:
+        if logged and not (cfg.get("cancelled") or cfg.get("paused")):
+            return empty(
+                "Nothing left to act on",
+                f'All {len(logged)} sheet row(s) for upcoming games are '
+                f'already in the bet log below.')
         if stale and not (cfg.get("cancelled") or cfg.get("paused")):
             # Every row is for a game that has tipped. Saying "no picks" would
             # be true but unhelpful; showing them as live would be a lie.
@@ -623,6 +636,8 @@ def picks_block(m):
         head = (f'<p class="note">{len(picks)} priced, '
                 f'<strong>{len(strong)} strong</strong>. '
                 f'{cfg["picks_note"]}'
+                + (f' {len(logged)} row(s) already in the bet log are shown '
+                   f'there, not here.' if logged else "")
                 + (f' {len(stale)} further row(s) on the sheet are for games '
                    f'already played and are not shown.' if stale else "")
                 + '</p>')

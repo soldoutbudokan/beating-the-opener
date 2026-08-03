@@ -53,6 +53,16 @@
 >
 > Each firing, in order:
 >
+> 0. **Settlement sweep (owner instruction, 2026-08-03):** if `live/bets.csv`
+>    holds any `open` bet for a game before today (ET), run
+>    `python3 src/fetch_wehoop.py`, then `python3 src/scrape_bettingpros.py`,
+>    then `python3 src/settle_bets.py`, and commit as
+>    `live: settle the <date> slate`. `settle_bets.py` stamps CLV as soon as
+>    the game is over (the close exists even when box scores lag) and fills
+>    results when wehoop publishes — retry every firing until no stale open
+>    rows remain, so the first firing after ~05:00 ET normally completes the
+>    previous night's slate. This sweep is the only settlement writer; fills
+>    themselves remain owner-reported only.
 > 1. `python3 src/news_watch.py --fetch` from `wnba/`.
 >    `SOURCES_UNREACHABLE` → end with that single line. New items → judge
 >    availability/minutes implications; append override entries to
@@ -72,8 +82,13 @@
 >    not a substitute — the chat post happens every firing that has new
 >    picks, even if the notification tool is unavailable.
 > 4. Commit touched files (`news-watch: <n> override(s), <m> pick(s)`),
->    push to main. **No settlement, no bets.csv writes** — fills are
->    owner-reported only.
+>    push to main. **No manual bets.csv writes** — fills are owner-reported
+>    only; the only settlement is step 0's sweep.
+>
+> **Scoreboard display rule (owner instruction, 2026-08-03):** a pick whose
+> key is already in `bets.csv` belongs to the bet log, not to "On the sheet
+> now" — the sheet shows only rows the owner can still act on, so what was
+> skipped stays legible. `site/build_site.py` enforces this.
 >
 > **Open positions:** none. At pause time `live/bets.csv` held 5 bets, all
 > `status=settled` (2W-3L, bankroll $98.91 of $100). Nothing needs unwinding.

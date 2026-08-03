@@ -555,6 +555,24 @@ dev):
   analogue for context: Aug–Oct 2025 gap −0.00767 (t=−2.1), ROI EV>5%
   +8.56% (t=3.1).
 
+**Data-integrity fix (ASG leak) — registered 2026-08-03, before taking
+effect.** `features.py`'s All-Star filter was an enumerated blocklist of
+team codes; the 2026 captains' codes (SPO/COOP) were missing, so the
+2026-07-25 All-Star Game box rows entered the panel and deflated minutes
+and per-game stat EWs for every participant for the two post-break
+weeks. Found post-morteming the v3 bets: bet players averaged +3.4
+minutes over the model's estimate (league-wide bias −0.5), 13 of the
+first 27 v3 fills were ASG participants, and first-order clean
+re-pricing put 4 of them below the 10% trigger. Fix: drop game_ids the
+schedule flags `ALLSTAR` (all years) plus SPO/COOP in the code fallback.
+No model parameters change. Registration hygiene for
+fp-prospective-1/2, which were pinned on the polluted pipeline: archived
+predictions (props dated 2026-08-01..03) stand as produced; from
+**2026-08-04** the same pinned models score on the clean panel, and the
+season-end evaluation reports the two windows separately. Live sheets
+repriced post-fix the same day (see bets.csv notes for affected open
+fills).
+
 **T2 gates — registered 2026-07-31 (session 4), before the minutes
 engine runs on dev.** Design: distributional minutes (EW mean + variance
 fit per starter-status/level bucket on pre-2025 data, presumed-absent

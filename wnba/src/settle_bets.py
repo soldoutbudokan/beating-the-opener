@@ -233,10 +233,16 @@ def main():
 
     # CLV: fresh settlements AND any earlier row whose close snapshot was
     # missing when it settled (backfill - AUDIT C3). Voids carry no CLV.
+    # Open bets whose game has finished are stamped too: the close exists
+    # once the game tips, and a box-score lag upstream must not hide the
+    # market's verdict from the scoreboard (owner request 2026-08-03).
     shades = market_shades()
     n_clv = 0
     for i, b in bets.iterrows():
-        if b["status"] not in ("settled", "push") \
+        game_done = (b["status"] == "open"
+                     and emeta.get(int(b["event_id"]),
+                                   (str(b["match_date"]), None))[0] < today_et)
+        if (b["status"] not in ("settled", "push") and not game_done) \
                 or (pd.notna(b["clv"]) and pd.notna(b["clv_cal"])):
             continue
         po, src = close_prob(int(b["event_id"]), b["market"], b["player"],
@@ -288,8 +294,11 @@ def main():
         staked = sett.stake.sum()
         pnl = sett.pnl.sum()
         wins = int((sett.result == "won").sum())
-        clv = done.clv.dropna()
-        clv_cal = done.clv_cal.dropna()
+        # CLV aggregates cover every stamped row, including finished-but-
+        # unsettled bets - the market's verdict does not wait for box scores
+        stamped = bets.dropna(subset=["clv"])
+        clv = stamped.clv
+        clv_cal = bets.clv_cal.dropna()
         lines += [
             f"**Bankroll: ${current:.2f}** (start $100)\n",
             "| metric | value |", "|---|---|",
@@ -307,12 +316,12 @@ def main():
             if len(clv_cal) else "| mean CLV* (shade-adj) | - |",
             f"| Model-expected P&L | "
             f"${(done.stake * done.ev_claimed).sum():+.2f} |",
-            f"| CLV-expected P&L | ${(done.stake * done.clv).sum():+.2f} |", ""]
+            f"| CLV-expected P&L | "
+            f"${(stamped.stake * stamped.clv).sum():+.2f} |", ""]
         if len(clv) >= 2:
             se = clv.std() / np.sqrt(len(clv))
             tline = f"CLV t-stat: {clv.mean() / se:.2f} (iid)"
-            byd = (done.dropna(subset=["clv"])
-                   .groupby("match_date")["clv"].mean())
+            byd = stamped.groupby("match_date")["clv"].mean()
             if len(byd) >= 2 and byd.std() > 0:
                 tc = byd.mean() / (byd.std() / np.sqrt(len(byd)))
                 tline += f"; {tc:.2f} clustered by match date ({len(byd)} dates)"
