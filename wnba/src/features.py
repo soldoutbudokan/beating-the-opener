@@ -59,6 +59,10 @@ def load_player_box():
     box = box[~box.game_id.isin(allstar_game_ids())
               & ~box.team_abbreviation.isin(ALLSTAR)
               & ~box.opponent_team_abbreviation.isin(ALLSTAR)]
+    # settlement-only backfill rows (e.g. ESPN box scores appended while the
+    # wehoop release lags) carry no athlete_id: they exist so bets can grade,
+    # and must never enter the feature panel
+    box = box[box.athlete_id.notna()]
     box["game_date"] = pd.to_datetime(box["game_date"])
     for c in STATS:
         box[c] = pd.to_numeric(box[c], errors="coerce")

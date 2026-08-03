@@ -61,8 +61,12 @@
 >    the game is over (the close exists even when box scores lag) and fills
 >    results when wehoop publishes — retry every firing until no stale open
 >    rows remain, so the first firing after ~05:00 ET normally completes the
->    previous night's slate. This sweep is the only settlement writer; fills
->    themselves remain owner-reported only.
+>    previous night's slate. When the fetch brought new box scores, finish
+>    the sweep with `python3 src/features.py && python3 src/talent.py
+>    --build && python3 src/build_modelset.py` so the panel `fp_live.py`
+>    projects from tracks the latest completed games (added 2026-08-03 —
+>    nothing else in v3 refreshes the model state). This sweep is the only
+>    settlement writer; fills themselves remain owner-reported only.
 > 1. `python3 src/news_watch.py --fetch` from `wnba/`.
 >    `SOURCES_UNREACHABLE` → end with that single line. New items → judge
 >    availability/minutes implications; append override entries to

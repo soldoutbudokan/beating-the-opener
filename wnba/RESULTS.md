@@ -10,16 +10,16 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 23 (10W-13L), 0 push, 1 void, 10 open |
+| settled | 23 (10W-13L), 0 push, 2 void, 9 open |
 | staked | $23.00 |
 | P&L | $-4.32 (-18.8% ROI) |
 | mean EV said (model) | +21.64% (n=23) |
-| mean CLV (vs close) | -4.61% (n=24) |
-| mean CLV* (shade-adj) | -4.61% (n=24) |
-| Model-expected P&L | $+5.14 |
-| CLV-expected P&L | $-1.11 |
+| mean CLV (vs close) | -4.49% (n=23) |
+| mean CLV* (shade-adj) | -4.32% (n=23) |
+| Model-expected P&L | $+5.43 |
+| CLV-expected P&L | $-1.03 |
 
-CLV t-stat: -4.82 (iid); -2.70 clustered by match date (4 dates)
+CLV t-stat: -4.53 (iid); -2.71 clustered by match date (4 dates)
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -37,7 +37,7 @@ CLV t-stat: -4.82 (iid); -2.70 clustered by match date (4 dates)
 | 2026-08-02 | Leila Lacan | assists | under | 4.5 | 110 | 1.0 | +18.4% | 2 | won | +1.10 | -2.6% | +1.8% |
 | 2026-08-02 | Kayla McBride | points | over | 17.5 | -110 | 1.0 | +28.3% | 10 | lost | -1.00 | -11.1% | -14.9% |
 | 2026-08-02 | Janelle Salaun | assists | under | 1.5 | -114 | 1.0 | +28.6% | 2 | lost | -1.00 | -6.1% | -2.1% |
-| 2026-08-02 | Kelsey Plum | assists | over | 4.5 | -114 | 1.0 | +29.0% |  |  |  | -7.4% | -11.4% |
+| 2026-08-02 | Kelsey Plum | assists | over | 4.5 | -114 | 1.0 | +29.0% |  | void (DNP) | +0.00 |  |  |
 | 2026-08-02 | Olivia Miles | rebounds | over | 4.5 | 118 | 1.0 | +34.1% | 4 | lost | -1.00 | -3.2% | -8.8% |
 | 2026-08-01 | Sabrina Ionescu | assists | under | 5.5 | -108 | 1.0 | +21.7% | 10 | lost | -1.00 | -0.5% | +2.9% |
 | 2026-08-01 | Jackie Young | assists | under | 7.5 | -146 | 1.0 | +23.3% | 5 | won | +0.68 | +3.9% | +6.7% |
