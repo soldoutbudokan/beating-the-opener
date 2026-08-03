@@ -212,8 +212,10 @@ def load_market(cfg):
     graded = [b for b in bets if b["_status"] in ("settled", "push", "void")]
     open_bets = [b for b in bets if b["_status"] == "open"]
     # every stamped row counts - settlement stamps CLV as soon as the game
-    # is over, so open bets awaiting box scores still carry a verdict
-    clvs = [b["_clv"] for b in bets if b["_clv"] is not None]
+    # is over, so open bets awaiting box scores still carry a verdict.
+    # Voids are excluded: their close was priced off the same absence.
+    clvs = [b["_clv"] for b in bets
+            if b["_clv"] is not None and b["_status"] != "void"]
     evs = [b["_ev"] for b in graded if b["_ev"] is not None]
 
     staked = sum(b["_stake"] for b in settled)
@@ -250,7 +252,7 @@ def load_market(cfg):
         "roi": pnl / staked if staked else None,
         "mean_clv": mean_clv, "n_clv": len(clvs), "t_stat": t_stat,
         "exp_pnl": sum(b["_stake"] * b["_clv"] for b in bets
-                       if b["_clv"] is not None),
+                       if b["_clv"] is not None and b["_status"] != "void"),
         # What the model itself claimed the same graded bets were worth, at
         # the prices actually taken. Same population as exp_pnl so the two
         # tiles are read side by side: model's claim vs market's verdict.
@@ -556,9 +558,12 @@ def bet_rows(m):
                 pnl_cell(b["_pnl"]), clv_cell(b["_clv"])])
         return cols, out, aligns
 
-    cols = ["date", "player", "market", "pick", "odds", "stake", "actual",
-            "result", "P&L", "CLV"]
-    aligns = ["l", "l", "l", "l", "r", "r", "r", "l", "r", "r"]
+    # "model EV" = ev_claimed: the model's expected ROI for the bet at the
+    # moment it was taken, at the price actually taken (owner request
+    # 2026-08-03). Read against CLV: the claim vs the market's verdict.
+    cols = ["date", "player", "market", "pick", "odds", "stake", "model EV",
+            "actual", "result", "P&L", "CLV"]
+    aligns = ["l", "l", "l", "l", "r", "r", "r", "r", "l", "r", "r"]
     out = []
     for b in rows[:200]:
         actual = num(b, "actual")
@@ -571,6 +576,8 @@ def bet_rows(m):
             else f'<span class="chip">{esc(txt(b, "side"))}</span>',
             f'<span class="mono">{odds(num(b, "odds_taken"), style)}</span>',
             money(b["_stake"]),
+            f'<span class="muted mono">{signed_pct(b["_ev"])}</span>'
+            if b["_ev"] is not None else "—",
             f"{actual:g}" if actual is not None else "—",
             result_chip(b), pnl_cell(b["_pnl"]), clv_cell(b["_clv"])])
     return cols, out, aligns

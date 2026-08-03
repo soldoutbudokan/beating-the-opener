@@ -217,6 +217,11 @@ def main():
                     "void", "void (no box score)", 0.0
                 bets.loc[i, "notes"] = "no box row after 3d - inactive or postponed"
                 n_settled += 1
+            if bets.loc[i, "status"] == "void":
+                # a CLV stamped while the bet was still open is meaningless
+                # once it voids - the close was priced off the same absence
+                bets.loc[i, ["clv", "clv_cal"]] = np.nan
+                bets.loc[i, "clv_source"] = ""
             continue
         actual = float(sum(getattr(r, c) for c in STAT_COLS[b["market"]]))
         bets.loc[i, "actual"] = actual
@@ -230,6 +235,13 @@ def main():
             bets.loc[i, "pnl"] = round(b["stake"] * (dec - 1) if won
                                        else -b["stake"], 2)
         n_settled += 1
+
+    # a void that carries a CLV stamped while it was still open (early
+    # stamping preceded the void) is scrubbed - voids carry no CLV
+    stale_void = bets.status.eq("void") & bets.clv.notna()
+    if stale_void.any():
+        bets.loc[stale_void, ["clv", "clv_cal"]] = np.nan
+        bets.loc[stale_void, "clv_source"] = ""
 
     # CLV: fresh settlements AND any earlier row whose close snapshot was
     # missing when it settled (backfill - AUDIT C3). Voids carry no CLV.
@@ -295,10 +307,11 @@ def main():
         pnl = sett.pnl.sum()
         wins = int((sett.result == "won").sum())
         # CLV aggregates cover every stamped row, including finished-but-
-        # unsettled bets - the market's verdict does not wait for box scores
-        stamped = bets.dropna(subset=["clv"])
+        # unsettled bets - the market's verdict does not wait for box scores.
+        # Voids are excluded: their close was priced off the same absence.
+        stamped = bets[bets.status != "void"].dropna(subset=["clv"])
         clv = stamped.clv
-        clv_cal = bets.clv_cal.dropna()
+        clv_cal = stamped.clv_cal.dropna()
         lines += [
             f"**Bankroll: ${current:.2f}** (start $100)\n",
             "| metric | value |", "|---|---|",
