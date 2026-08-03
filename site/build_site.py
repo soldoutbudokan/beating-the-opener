@@ -159,6 +159,35 @@ def txt(row, key):
     return "" if v in ("nan", "None") else v
 
 
+def sheet_asof(bank, meta, bets):
+    """Newest timestamp in this market's own data - never the wall clock.
+
+    Settlement stamps bankroll.json and the routines stamp picks_meta.json,
+    both UTC, as does every placed_at: together they are the last moment the
+    data knows about. Used to tell a live pick from one whose game has been
+    played, without reading the clock (which would rewrite the page hourly).
+    """
+    seen = [str(v) for v in (bank.get("updated"), meta.get("updated")) if v]
+    seen += [txt(b, "placed_at") for b in bets if txt(b, "placed_at")]
+    return max(seen) if seen else ""
+
+
+def pick_expired(p, as_of):
+    """True when the pick's game has already tipped, per the data's own clock.
+
+    `tip` is UTC, as is `as_of`, so the comparison never straddles the ET/UTC
+    boundary that bit settlement (AUDIT C2). Rows without a tip fall back to
+    the ET game date, which can only err towards keeping a pick on the sheet.
+    """
+    if not as_of:
+        return False
+    tip = txt(p, "tip")
+    if tip:
+        return tip < as_of
+    d = txt(p, "date")[:10]
+    return bool(d) and d < as_of[:10]
+
+
 def load_market(cfg):
     live = os.path.join(ROOT, cfg["dir"], "live")
     bank = {"start": 100.0, "current": 100.0, "updated": ""}
@@ -171,6 +200,8 @@ def load_market(cfg):
         meta = json.load(open(mpath))
 
     bets = read_rows(os.path.join(live, "bets.csv"))
+    picks_all = read_rows(os.path.join(live, "picks.csv"))
+    as_of = sheet_asof(bank, meta, bets)
     for b in bets:
         b["_stake"] = num(b, "stake") or 0.0
         b["_pnl"] = num(b, "pnl")
@@ -200,7 +231,11 @@ def load_market(cfg):
     return {
         "cfg": cfg, "bank": bank, "meta": meta, "bets": bets,
         "settled": settled, "graded": graded, "open": open_bets,
-        "picks": read_rows(os.path.join(live, "picks.csv")),
+        # Split the sheet: rows whose game has already tipped are the record
+        # of what the model priced, not something anyone can still bet.
+        "picks": [p for p in picks_all if not pick_expired(p, as_of)],
+        "picks_expired": [p for p in picks_all if pick_expired(p, as_of)],
+        "as_of": as_of,
         "wins": sum(1 for b in settled if txt(b, "result") == "won"),
         "pushes": sum(1 for b in bets if b["_status"] == "push"),
         "voids": sum(1 for b in bets if b["_status"] == "void"),
@@ -558,7 +593,19 @@ def clv_cell(v):
 
 def picks_block(m):
     cfg, picks = m["cfg"], m["picks"]
+    stale = m.get("picks_expired") or []
     if not picks:
+        if stale and not (cfg.get("cancelled") or cfg.get("paused")):
+            # Every row is for a game that has tipped. Saying "no picks" would
+            # be true but unhelpful; showing them as live would be a lie.
+            last = max(txt(p, "date") for p in stale)
+            return empty(
+                "Nothing on the sheet for an upcoming game",
+                f'The sheet\'s {len(stale)} rows are all for games on or '
+                f'before {esc(date_short(last))}, already played. They stay '
+                f'in <span class="mono">picks.csv</span> as the record of '
+                f'what the model priced and are not actionable; the next '
+                f'refresh replaces them.')
         note = cfg["idle"] if (cfg.get("cancelled") or cfg.get("paused")) \
             else (m["meta"].get("note") or cfg["idle"])
         return empty("No picks on the sheet", esc(note))
@@ -575,7 +622,10 @@ def picks_block(m):
     else:
         head = (f'<p class="note">{len(picks)} priced, '
                 f'<strong>{len(strong)} strong</strong>. '
-                f'{cfg["picks_note"]}</p>')
+                f'{cfg["picks_note"]}'
+                + (f' {len(stale)} further row(s) on the sheet are for games '
+                   f'already played and are not shown.' if stale else "")
+                + '</p>')
     if cfg["id"] == "soccer":
         cols = ["date", "match", "pick", "model p", "best price",
                 "min 5% EV", "stake"]
