@@ -16,6 +16,22 @@
    "quote": "Sky's DiJonai Carrington plans to make season debut vs. Sun (7/30); tonight is the second night of a back-to-back after her first game back",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "Kelsey Plum",
+   "added": "2026-08-03T13:32:00Z",
+   "game_date": "2026-08-03",
+   "status": "questionable",
+   "minutes_est": 28,
+   "minutes_range": [
+    16,
+    30
+   ],
+   "source": "ESPN WNBA injuries API + ESPN news API",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "Plum (leg, physical results) is questionable for Monday's matchup with the Sky. Traded LAS->PHO on 2026-08-02; her last game played was 2026-06-21 (panel confirms zero appearances since), so tonight would be a debut off a six-week absence. True belief if she plays is the 16-30 range (ramp); minutes_est deliberately set at the TOP of that range because it is the assumption least favourable to a news-driven bet - the base model's 34-min state produced assists-over EV +19.7%, and a 20-24 min estimate would flip the same market to a >10% under. The situation is too uncertain to bet either way, so the override removes the stale-role over without manufacturing an under.",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }
