@@ -97,6 +97,13 @@
 >    for context (owner instruction, 2026-07-31). The push notification is
 >    not a substitute — the chat post happens every firing that has new
 >    picks, even if the notification tool is unavailable.
+>    **Availability annotation (owner-approved 2026-08-04):** any pick
+>    whose player appears in the latest `data/raw/avail/` snapshot as
+>    `Out` or `Day-To-Day` gets a loud ⚠ marker + status in its table
+>    row and in the notification text. Display-only: it does not filter
+>    `picks.csv` (changing what gets bet is a separate owner decision) —
+>    it exists so a stale-fed player (the Kelsey Plum case, 2026-08-02)
+>    is visible before a fill, not after.
 > 4. Commit touched files (`news-watch: <n> override(s), <m> pick(s)`),
 >    push to main. **No manual bets.csv writes** — fills are owner-reported
 >    only; the only settlement is step 0's sweep.
