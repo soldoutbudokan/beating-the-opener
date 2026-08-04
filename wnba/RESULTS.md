@@ -14,24 +14,24 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 | staked | $23.00 |
 | P&L | $-4.32 (-18.8% ROI) |
 | mean EV said (model) | +21.64% (n=23) |
-| mean CLV (vs close) | -4.99% (n=29) |
-| mean CLV* (shade-adj) | -4.86% (n=29) |
+| mean CLV (vs close) | -4.70% (n=31) |
+| mean CLV* (shade-adj) | -4.57% (n=31) |
 | Model-expected P&L | $+5.43 |
-| CLV-expected P&L | $-1.45 |
+| CLV-expected P&L | $-1.46 |
 
-CLV t-stat: -6.07 (iid); -3.60 clustered by match date (5 dates)
+CLV t-stat: -5.91 (iid); -3.62 clustered by match date (5 dates)
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 2026-08-04 | Maria Conde | rebounds | over | 4.5 | 108 | 1.0 | +23.0% |  |  |  |  |  |
-| 2026-08-03 | Kahleah Copper | points | under | 21.5 | -106 | 1.0 | +24.4% |  |  |  |  |  |
+| 2026-08-03 | Kahleah Copper | points | under | 21.5 | -106 | 1.0 | +24.4% |  |  |  | -0.7% | -0.7% |
 | 2026-08-03 | Chelsea Gray | threes | over | 1.5 | 110 | 1.0 | +20.5% |  |  |  | -5.4% | -5.4% |
 | 2026-08-03 | Rhyne Howard | points | under | 16.5 | -110 | 1.0 | +21.4% |  |  |  | -6.2% | -6.2% |
 | 2026-08-03 | Angel Reese | rebounds | under | 11.5 | -102 | 1.0 | +20.0% |  |  |  | -5.3% | -5.3% |
 | 2026-08-03 | Natisha Hiedeman | assists | under | 5.5 | -130 | 1.0 | +17.8% |  |  |  | -7.0% | -7.0% |
 | 2026-08-03 | Sabrina Ionescu | assists | under | 5.5 | -106 | 1.0 | +16.4% |  |  |  | -11.2% | -11.2% |
 | 2026-08-03 | Jackie Young | rebounds | under | 4.5 | -152 | 1.0 | +24.7% |  |  |  | -6.4% | -6.4% |
-| 2026-08-03 | Sydney Taylor | threes | under | 2.5 | 106 | 1.0 | +20.3% |  |  |  |  |  |
+| 2026-08-03 | Sydney Taylor | threes | under | 2.5 | 106 | 1.0 | +20.3% |  |  |  | -0.2% | -0.2% |
 | 2026-08-02 | Aliyah Boston | rebounds | under | 8.5 | -118 | 1.0 | +33.4% | 8 | won | +0.85 | -9.3% | -4.4% |
 | 2026-08-02 | Olivia Miles | rebounds | over | 4.5 | 118 | 1.0 | +34.1% | 4 | lost | -1.00 | -3.2% | -8.8% |
 | 2026-08-02 | Kelsey Plum | assists | over | 4.5 | -114 | 1.0 | +29.0% |  | void (DNP) | +0.00 |  |  |
