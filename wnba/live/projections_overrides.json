@@ -1,5 +1,5 @@
 {
- "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+ "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
  "entries": [
   {
    "player": "DiJonai Carrington",
@@ -88,6 +88,45 @@
    "source": "avail:2026-08-04/2135Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED: Morrow (not injury related, Day-To-Day, return_date 2026-08-04) dropped from both the league and TOR@GSV per-event reports between 16:34Z and 21:35Z, same pattern as Mabrey and with the Out rows persisting. No minutes injected - she has played 21/26/31 min in her last three (7/22, 7/28, 7/30) after an earlier DNP run, so the panel state is current. No Morrow prop is on the sheet; recorded for the archive.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Sydney Taylor",
+   "added": "2026-08-04T22:39:00Z",
+   "game_date": "2026-08-05",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-04/2236Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "UPDATED: Taylor (CHI, groin) upgraded Out -> Day-To-Day between the 21:35Z and 22:36Z snapshots, return_date 2026-08-05 (Chicago's next game). A genuine upgrade, not a feed dropout - she stayed on the report with a changed status while eight other rows left it. No minutes injected deliberately: the panel carries her full role (26/31/30 min on 7/22, 7/30, 8/1) and any haircut for a groin return would be a guess, and a guess in the direction that manufactures unders - the Plum lesson from entry 3. She has no prop on the current sheet, so the entry is archival plus the Day-To-Day flag the picks table now shows. Sensitivity if a Taylor prop posts before tip: at the panel's ~30 min her lines price near fair; a real return-limited 18-22 min would cheapen unders, so any Taylor edge that appears is an artifact of the minutes assumption and is not bettable without a lineup confirmation.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Azura Stevens",
+   "added": "2026-08-04T22:39:00Z",
+   "game_date": "2026-08-05",
+   "status": "out",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-04/2236Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "DOWNGRADE the status diff does not show: Stevens (CHI, Personal) stayed Out across 21:35Z -> 22:36Z, but her return_date moved 2026-08-05 -> 2026-08-08, i.e. she is now ruled out of Chicago's 8/5 game rather than a candidate to return for it. Recorded because the printed diff only reports status transitions and would miss this. Inert on price by design: she has already missed 7/30 and 8/1 (nan minutes in the panel) after a 28-33 min starter role through 7/22, so the panel's recent CHI state is already Stevens-less - her continued absence is the status quo, and no minutes are injected into Cardoso or Reese, whose 8/5 props are on the sheet. No Stevens prop is quoted.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Maddy Westbeld",
+   "added": "2026-08-04T22:39:00Z",
+   "game_date": "2026-08-05",
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-04/2236Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED, and this entry stands for the whole batch of eight that cleared at 22:36Z: Westbeld (CHI), Alissa Pili, Tonie Morgan, Monique Akoa Makani (LAS), Anneli Maley (NYL), Kara Dunn, Shay Ciezki (PHO), Darianna Littlepage-Buggs (WAS). Every one of them carried return_date 2026-08-05 and every one dropped in the same refresh, while rows with later return dates persisted and two of them (Stevens, Mair) were pushed 08-05 -> 08-08 - the signature of ESPN rolling the report forward to the 8/5 slate, so read it as 'expected available 8/5', not as eight simultaneous medical clearances. No minutes injected for any of the eight and none has a prop on the sheet: all are deep-bench or DNP-heavy (Westbeld 8-11 min in her three appearances since 6/20; Pili 2-12 min; Maley 11-14 min in two July games), so the panel's small roles for them need no correction and there is nothing here to score. Grouped rather than filed eight times because the content, and the nil price effect, is identical; named in full so the archive keeps each one.",
    "author": "news-watch",
    "superseded_by": null
   }
