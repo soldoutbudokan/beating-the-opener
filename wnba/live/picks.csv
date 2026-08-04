@@ -1,10 +1,5 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
-2700_assists_kelsey plum_over,2026-08-03,2026-08-04 01:00:00,2700,assists,Kelsey Plum,PHO,PHO@CHI,over,3.5,-128.0,0.707,0.2593,True,-218,-200,4.0,4.9,,5.5,True,False
 2701_rebounds_maria conde_over,2026-08-04,2026-08-05 02:00:00,2701,rebounds,Maria Conde,TOR,TOR@GSV,over,4.5,108.0,0.592,0.2304,True,-135,-126,2.5,5.3,,4.5,False,True
-2698_assists_sabrina ionescu_under,2026-08-03,2026-08-03 23:00:00,2698,assists,Sabrina Ionescu,NYL,SEA@NYL,under,5.5,102.0,0.599,0.2099,True,-138,-129,2.5,5.0,,5.5,False,True
-2699_threes_chelsea gray_over,2026-08-03,2026-08-03 23:00:00,2699,threes,Chelsea Gray,LVA,LVA@ATL,over,1.5,108.0,0.574,0.1946,True,-125,-118,2.0,1.93,,1.5,False,True
-2698_assists_natisha hiedeman_under,2026-08-03,2026-08-03 23:00:00,2698,assists,Natisha Hiedeman,SEA,SEA@NYL,under,5.5,-128.0,0.665,0.1846,True,-182,-168,3.0,4.6,,4.5,False,True
-2700_threes_sydney taylor_under,2026-08-03,2026-08-04 01:00:00,2700,threes,Sydney Taylor,CHI,PHO@CHI,under,2.5,102.0,0.584,0.1793,True,-130,-122,2.0,2.35,,2.5,False,True
-2698_threes_awa fam_over,2026-08-03,2026-08-03 23:00:00,2698,threes,Awa Fam,SEA,SEA@NYL,over,1.5,148.0,0.473,0.1732,True,118,125,1.5,1.59,,1.5,True,False
-2699_points_rhyne howard_under,2026-08-03,2026-08-03 23:00:00,2699,points,Rhyne Howard,ATL,LVA@ATL,under,16.5,-106.0,0.59,0.1475,True,-134,-125,2.0,15.36,,16.5,False,True
-2698_threes_jonquel jones_under,2026-08-03,2026-08-03 23:00:00,2698,threes,Jonquel Jones,NYL,SEA@NYL,under,1.5,104.0,0.547,0.1163,True,-113,-106,1.5,1.53,,1.5,True,False
+2704_points_arike ogunbowale_over,2026-08-05,2026-08-05 23:30:00,2704,points,Arike Ogunbowale,DAL,DAL@WAS,over,14.5,-106.0,0.588,0.1421,True,-133,-124,2.0,16.37,,14.5,True,False
+2704_rebounds_jessica shepard_over,2026-08-05,2026-08-05 23:30:00,2704,rebounds,Jessica Shepard,DAL,DAL@WAS,over,11.5,102.0,0.552,0.1155,True,-115,-108,1.5,12.19,,11.5,True,False
+2704_assists_shakira austin_under,2026-08-05,2026-08-05 23:30:00,2704,assists,Shakira Austin,WAS,DAL@WAS,under,2.5,-104.0,0.568,0.1142,True,-122,-115,1.5,2.33,,2.5,True,False
