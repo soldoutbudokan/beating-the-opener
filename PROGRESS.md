@@ -618,6 +618,45 @@ the pinned T1 model remains the live arm.
   against its own first live weeks of logged overrides (honest version of
   the owner's "spot-checks; adjust as the experiment is live").
 
+**Minutes decomposition diagnostic (2026-08-04) — POST-HOC, never
+claimable; motivates a T2-retry aimed at the minutes MEAN.** Question
+(owner): is projecting playtime the fundamental way to win this market?
+`wnba/src/fp_minutes_diag.py` reprices dev 2025 with the pinned
+fp-prospective-2 configuration, swapping in oracle inputs (leakage by
+construction — build-prioritisation numbers only):
+- As-is reproduces the registered dev gap (−0.00068 vs −0.00059; drift
+  from the refreshed archive + ASG fix).
+- **Oracle minutes** (actual minutes through the existing fp_live
+  override mechanism): gap **−0.068** (t=−15) — ~9× the Aug–Oct edge,
+  ~100× the full-season edge, calibration +0.1pp.
+- Oracle per-minute rates: −0.368 — but that is ≈ knowing the outcome
+  (realized shooting variance has no pre-game information to capture),
+  so it bounds variance, not addressable edge. Minutes info DOES exist
+  pre-game (availability, starters, rotations) — minutes are the
+  dominant *addressable* term.
+- Walk-forward minutes blend on dev prop rows: **MAE 4.18 min** (sd
+  5.4). LL gap by |minutes error|: 0–2 min → **−0.0136** (model beats
+  opener clearly); 2–4 → −0.0064; 4–7 → −0.0027; **7+ (17% of props) →
+  +0.0338** — the model's whole loss vs the opener is concentrated in
+  the big-minutes-miss tail. When minutes are right, the talent rates
+  already win.
+- Reading: T2 failed because it improved the minutes *variance* model,
+  not the minutes *mean/information*. The winnable piece is the
+  pre-game-knowable component of minutes error. Proposed next build
+  (NOT registered — gates to be pushed before any code runs, per
+  protocol): (a) a minutes engine modelling *share of available team
+  minutes* (compositional, 200-min conservation — the one-ball insight
+  applied to playtime) with Kalman dynamics like the talent engine
+  (minutes still use the EW blend the talent engine beat 7/7 on rates)
+  plus structural covariates EWs can't see (starter-status transitions,
+  rest/b2b, returnee ramp, expected-blowout garbage time from the
+  fp_games2 margin); gate M-G1 market-free (beat MAE 4.18 walk-forward),
+  gate M-G2 dev LL improve on −0.00059, two iterations, adoption →
+  fp-prospective-3; (b) systematic point-in-time starting-lineup +
+  availability capture in news-watch (turns overrides into trainable
+  data); (c) the already-flagged live staleness gate (owner decision —
+  changes what gets bet).
+
 ## Prior art (read before modelling)
 
 - `nba/README.md` — the from-scratch control: the three upper bounds and the
@@ -881,6 +920,12 @@ registrations are firewalled from betting outcomes.
   2026-08-01+ (spread open, season-end scoring, no betting). Home-adv
   collapse (3.3 → ~1.3 pts) identified and documented; β wrong-sign
   artifact recorded.
+- **2026-08-04** — Minutes decomposition diagnostic (post-hoc, above):
+  oracle minutes → dev gap −0.068; model-vs-open loss concentrated in
+  the |minutes error| > 7 tail; minutes blend MAE 4.18. Minutes engine
+  programme proposed (share-of-team-minutes Kalman + structural
+  covariates + lineup capture); gates NOT yet registered — awaiting
+  owner go, then gates push before any engine code runs.
 - **2026-08-02 (settlement session)** — Data refresh (wehoop + BP
   archive, 60 new offer files for events 2692-2695), settled the 5
   2026-08-01 bets with CLV stamped, regenerated RESULTS.md +
