@@ -1,5 +1,5 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
-2701_rebounds_maria conde_over,2026-08-04,2026-08-05 02:00:00,2701,rebounds,Maria Conde,TOR,TOR@GSV,over,4.5,108.0,0.586,0.2194,True,-131,-123,2.5,5.26,,4.5,False,True
+2701_rebounds_maria conde_over,2026-08-04,2026-08-05 02:00:00,2701,rebounds,Maria Conde,TOR,TOR@GSV,over,3.5,-132.0,0.725,0.2751,True,-237,-216,4.5,5.26,,4.5,False,True
 2703_threes_jonquel jones_under,2026-08-05,2026-08-05 23:00:00,2703,threes,Jonquel Jones,NYL,SEA@NYL,under,1.5,124.0,0.543,0.2154,True,-111,-105,2.0,1.55,,1.5,True,False
 2703_assists_sabrina ionescu_under,2026-08-05,2026-08-05 23:00:00,2703,assists,Sabrina Ionescu,NYL,SEA@NYL,under,5.5,-102.0,0.597,0.1813,True,-137,-128,2.0,5.01,,5.5,True,False
 2703_assists_natisha hiedeman_under,2026-08-05,2026-08-05 23:00:00,2703,assists,Natisha Hiedeman,SEA,SEA@NYL,under,5.5,-130.0,0.663,0.1726,True,-180,-167,2.5,4.61,,5.5,True,False
