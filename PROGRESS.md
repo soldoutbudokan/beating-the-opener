@@ -657,6 +657,37 @@ construction — build-prioritisation numbers only):
   data); (c) the already-flagged live staleness gate (owner decision —
   changes what gets bet).
 
+**Minutes-engine gates (M) — registered 2026-08-04, before any engine
+code exists (owner go: "Let's try it then").** Design class: walk-forward
+Kalman filter on each player's **share of team minutes**, renormalized at
+prediction time over the presumed-available set (players who appeared in
+the team's previous game — strictly prior participation, never tonight's
+box score); season-boundary state inflation; structural factors (returnee
+ramp by games-since-return, rest/b2b) fit on ≤2014 residuals only. All
+hyperparameters tuned on pre-2015 data only (the T1 convention).
+- **M-G1 (market-free)**: walk-forward next-game minutes MAE on played
+  panel rows 2015–2024 where the incumbent blend is defined (min_ewf
+  notna): the engine must beat the W_FAST fast/slow EW blend on the same
+  rows. Context: blend MAE = 4.18 min on dev-2025 prop rows. No
+  iteration cap (T1-G1 convention: fix before it touches props), but
+  every variant tunes on pre-2015 only.
+- **M-G2 (dev 2025)**: engine minutes delivered through the existing
+  override mechanism (per-game EWs scaled by the minutes ratio, minutes
+  estimate replaced — the fp_live.py path, i.e. exactly what the oracle
+  measured): LL(model) − LL(open) must **improve on the same-data as-is
+  baseline** (−0.00068 on the current rebuild; registered T1 value
+  −0.00059), |calibration| ≤ 2.5pp. **At most two iterations** (frozen
+  cal vs engine-aware recalibration counts as the iteration choice).
+  Tripwire unchanged: beats same-line close by > 0.001 at |t| > 3 →
+  leakage investigation.
+- If both pass: **`fp-prospective-3`** registered at the lock push, on
+  props dated after it (scoring-only; fp-prospective-1/2 continue as
+  comparison arms). The live betting sheet stays on the pinned
+  prospective-2 model — switching what gets *bet* is a separate owner
+  decision, not part of this registration.
+- 2026 remains post-hoc for any diagnostic rerun; nothing here may claim
+  it.
+
 ## Prior art (read before modelling)
 
 - `nba/README.md` — the from-scratch control: the three upper bounds and the
