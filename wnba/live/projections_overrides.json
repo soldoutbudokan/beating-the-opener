@@ -47,6 +47,22 @@
    "url": "https://www.espn.com/wnba/",
    "quote": "'Kelsey Plum set for return, Mercury debut after crazy 48 hours' (published 2026-08-04T00:38Z) - introduced as a Mercury player Monday evening in Chicago after the LAS->PHO trade. Supersedes the 2026-08-03 questionable entry: she is returning, but the panel's last Plum game is 2026-06-21, so her base state is a stale ~34-min LA role. Until PHO games with her in them enter the panel, hold a ramp estimate at the TOP of the 16-30 range - the assumption least favourable to a news-driven bet, so this removes a stale-role over without manufacturing an under. No PHO props are on the 8/4-8/5 sheet, so this is currently inert; game_date null so it applies whenever her props first post. Re-judge once she has PHO appearances in the panel.",
    "author": "news-watch",
+   "superseded_by": 3
+  },
+  {
+   "player": "Kelsey Plum",
+   "added": "2026-08-04T05:45:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": 28,
+   "minutes_range": [
+    24,
+    32
+   ],
+   "source": "ESPN news API",
+   "url": "https://www.espn.com/wnba/",
+   "quote": "'Kelsey Plum nets 20 points in winning Phoenix Mercury debut' (published 2026-08-04T04:52Z) - she played Monday at Chicago and scored 20 in the 106-101 win, so the ramp question is settled on the availability side: she is in, and not on a token leash. Minutes are not in the headline and wehoop has not published the 8/3 box score yet, so the central estimate stays at 28 (unchanged) and only the range floor is lifted 16 -> 24 to reflect a real role. Re-judge from actual minutes once the box score lands. Note for the 8/5 sheet: PHO props ARE now live (Alyssa Thomas assists over 8.5), and Plum is a usage shock the panel cannot see - the schema has no usage-shift field and inventing one for Thomas would be fabrication, so this is flagged for the pre-bet check rather than encoded.",
+   "author": "news-watch",
    "superseded_by": null
   }
  ]
