@@ -1,5 +1,10 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
 2701_rebounds_maria conde_over,2026-08-04,2026-08-05 02:00:00,2701,rebounds,Maria Conde,TOR,TOR@GSV,over,4.5,108.0,0.586,0.2194,True,-131,-123,2.5,5.26,,4.5,False,True
-2704_points_arike ogunbowale_over,2026-08-05,2026-08-05 23:30:00,2704,points,Arike Ogunbowale,DAL,DAL@WAS,over,14.5,-106.0,0.588,0.1421,True,-133,-124,2.0,16.37,,14.5,True,False
-2704_rebounds_jessica shepard_over,2026-08-05,2026-08-05 23:30:00,2704,rebounds,Jessica Shepard,DAL,DAL@WAS,over,11.5,102.0,0.552,0.1155,True,-115,-108,1.5,12.19,,11.5,True,False
-2704_assists_shakira austin_under,2026-08-05,2026-08-05 23:30:00,2704,assists,Shakira Austin,WAS,DAL@WAS,under,2.5,-104.0,0.568,0.1142,True,-122,-115,1.5,2.33,,2.5,True,False
+2703_threes_jonquel jones_under,2026-08-05,2026-08-05 23:00:00,2703,threes,Jonquel Jones,NYL,SEA@NYL,under,1.5,124.0,0.543,0.2154,True,-111,-105,2.0,1.55,,1.5,True,False
+2703_assists_sabrina ionescu_under,2026-08-05,2026-08-05 23:00:00,2703,assists,Sabrina Ionescu,NYL,SEA@NYL,under,5.5,-102.0,0.597,0.1813,True,-137,-128,2.0,5.01,,5.5,True,False
+2703_assists_natisha hiedeman_under,2026-08-05,2026-08-05 23:00:00,2703,assists,Natisha Hiedeman,SEA,SEA@NYL,under,5.5,-130.0,0.663,0.1726,True,-180,-167,2.5,4.61,,5.5,True,False
+2704_threes_georgia amoore_over,2026-08-05,2026-08-05 23:30:00,2704,threes,Georgia Amoore,WAS,DAL@WAS,over,1.5,194.0,0.387,0.1384,True,167,174,1.0,1.34,,1.5,True,False
+2704_assists_shakira austin_under,2026-08-05,2026-08-05 23:30:00,2704,assists,Shakira Austin,WAS,DAL@WAS,under,2.5,-102.0,0.57,0.1285,True,-123,-116,1.5,2.33,,2.5,True,False
+2703_points_breanna stewart_over,2026-08-05,2026-08-05 23:00:00,2703,points,Breanna Stewart,NYL,SEA@NYL,over,22.5,100.0,0.554,0.1082,True,-116,-109,1.5,23.95,,22.5,True,False
+2704_rebounds_jessica shepard_over,2026-08-05,2026-08-05 23:30:00,2704,rebounds,Jessica Shepard,DAL,DAL@WAS,over,11.5,102.0,0.549,0.108,True,-114,-107,1.5,12.15,,11.5,True,False
+2703_threes_flaujae johnson_under,2026-08-05,2026-08-05 23:00:00,2703,threes,Flau'jae Johnson,SEA,SEA@NYL,under,1.5,-146.0,0.654,0.1027,True,-173,-161,2.0,1.22,,1.5,True,False
