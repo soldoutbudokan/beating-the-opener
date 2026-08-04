@@ -410,8 +410,15 @@ def main():
     ap.add_argument("--minutes", action="store_true",
                     help="v3 T2: distributional minutes integration "
                          "(implies --talent)")
+    ap.add_argument("--mineng", action="store_true",
+                    help="v3 M: minutes from the walk-forward share "
+                         "engine (src/minutes_engine.py --build first), "
+                         "delivered via the override path (implies "
+                         "--talent)")
     args = ap.parse_args()
     if args.minutes:
+        args.talent = True
+    if args.mineng:
         args.talent = True
 
     panel = pd.read_pickle(os.path.join(ROOT, "data", "panel.pkl"))
@@ -431,6 +438,41 @@ def main():
         tmap = tmap.groupby(["nname", "dstr"])[tcols].max().reset_index()
         ms["dstr"] = pd.to_datetime(ms.date).dt.strftime("%Y-%m-%d")
         ms = ms.merge(tmap, on=["nname", "dstr"], how="left")
+
+    if args.mineng:
+        from build_modelset import norm
+
+        def apply_mineng(df):
+            # override delivery path (fp_live.py mechanism): per-game
+            # EWs scaled by the minutes ratio, minutes estimate replaced
+            ok = df.min_pred.notna() & (df.min_pred > 0)
+            usual = (W_FAST * df.min_ewf
+                     + (1 - W_FAST) * df.min_ews).fillna(df.min_ewf)
+            ratio = (df.min_pred / usual.clip(lower=1.0)).where(ok, 1.0)
+            for st in RAW:
+                for tag in ("_ewf", "_ews"):
+                    c = f"{st}{tag}"
+                    if c in df.columns:
+                        df[c] = df[c] * ratio
+            df.loc[ok, "min_ewf"] = df.min_pred[ok]
+            df.loc[ok, "min_ews"] = df.min_pred[ok]
+            return df
+
+        me = pd.read_pickle(os.path.join(ROOT, "data", "minutes_eng.pkl"))
+        pmap = (panel.merge(me, on=["athlete_id", "game_id"], how="left")
+                .assign(nname=lambda d: d.athlete_display_name.map(norm),
+                        dstr=lambda d: pd.to_datetime(d.game_date)
+                        .dt.strftime("%Y-%m-%d"))
+                .groupby(["nname", "dstr"]).min_pred.max().reset_index())
+        ms = ms.merge(pmap, on=["nname", "dstr"], how="left")
+        ms = apply_mineng(ms)
+        # engine-aware recalibration (M-G2 iteration 2): the play-data
+        # calibration sees the SAME transformation, so c/home/sigma are
+        # fit against engine minutes (walk-forward predictions — strictly
+        # prior, no leakage into the pre-season fit window)
+        panel = panel.merge(me[["athlete_id", "game_id", "min_pred"]],
+                            on=["athlete_id", "game_id"], how="left")
+        panel = apply_mineng(panel)
 
     if args.minutes:
         from build_modelset import norm
@@ -485,7 +527,7 @@ def main():
             evx = sub[sub.mu_model.notna()].copy()
             evx["p_model"] = [p_over(m, mu, li, cal) for m, mu, li in
                               zip(evx.market, evx.mu_model, evx.open_line)]
-            mode = "v1 frozen"
+            mode = ("v3 M minutes-engine" if args.mineng else "v1 frozen")
         print(f"\nseason {season} [{mode}]: coverage "
               f"{len(evx)/len(sub)*100:.1f}% ({len(sub)-len(evx)} dropped)")
         evx["ll_model"] = ll(evx.p_model, evx.over)

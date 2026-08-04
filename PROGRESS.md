@@ -688,6 +688,50 @@ hyperparameters tuned on pre-2015 data only (the T1 convention).
 - 2026 remains post-hoc for any diagnostic rerun; nothing here may claim
   it.
 
+**M verdict (2026-08-04): M-G1 PASSED, M-G2 FAILED after both allowed
+iterations → engine NOT adopted; no fp-prospective-3; both live arms
+and the betting sheet unchanged.** `wnba/src/minutes_engine.py` +
+`fp_model.py --mineng`.
+- Engine as built: share-of-team-minutes Kalman (q=2e-4, r=2e-3,
+  season-boundary inflation 5e-3, p0=0.04 — all tuned pre-2015,
+  interior optima confirmed), walk-forward league team-total tracker
+  (totals drifted 195.4 pre-2015 → ~201 modern; a frozen constant is a
+  systematic low bias), ≤2014-fit returnee-ramp/b2b factors, and a
+  per-level combination with the EW blend tuned pre-2015 (engine weight
+  0.8–1.0 for ≤28-min players, 0.3 for 28+ starters). Dev-honesty note:
+  the first M-G1 run iterated team-by-team, which leaks a traded
+  player's later-team games into earlier-team predictions — caught,
+  fixed to global date order, and re-tuned before anything touched dev.
+- **M-G1 PASS**: 2015–2024 walk-forward MAE **4.818 vs blend 5.096**
+  (−0.28 min); dev-2025 4.771 vs 5.013; on dev *prop* rows 4.166 vs
+  4.176 with bias +0.07 vs +0.32. The engine is a genuinely better
+  market-free minutes predictor.
+- **M-G2 FAIL**: iteration 1 (frozen cal) +0.01257 — the pre-2015 t_hat
+  level bias shifted every mu low (cal −2.27pp). Iteration 2
+  (engine-aware recalibration, level bias gone, cal +0.54pp):
+  **+0.00009 vs the required improvement on −0.00068**. Gate honoured.
+- Post-hoc phase diagnostic (dev): the engine helps exactly where
+  information is scarce — May–mid-Jun +0.0177 → +0.0148 — and *hurts*
+  Aug–Oct (−0.0078 → −0.0054), the window the prospective arms score
+  on. Adoption would have traded away the live edge for an early-season
+  improvement that still loses to the opener.
+- **Lesson, extending T2's**: T2 showed a better minutes *variance*
+  model doesn't price props better; M shows even a better minutes
+  *mean* (M-G1-verified) doesn't either. The opener already embeds the
+  information that moves minutes — who is out, who starts, why — so
+  statistical reshuffling of participation history cannot out-price it
+  in-window; the oracle prize (−0.068) is an *information* prize, not
+  an estimator prize. The winnable path stays T3: point-in-time
+  availability/lineup capture (news-watch already logs overrides;
+  systematic pre-tip starter/availability snapshots are the missing
+  dataset), plus the Wayback historical-lineup Stage-D candidate to
+  make such inputs trainable. Unspent candidates recorded, each needing
+  a fresh registration: rate-path-only delivery (the ratio-scaled
+  per-game path is where the engine's residual noise leaks in);
+  engine-based rotations for the fp_games2 spread head; engine as the
+  base the fp_live news overrides modify (betting change = owner
+  decision).
+
 ## Prior art (read before modelling)
 
 - `nba/README.md` — the from-scratch control: the three upper bounds and the
@@ -951,6 +995,14 @@ registrations are firewalled from betting outcomes.
   2026-08-01+ (spread open, season-end scoring, no betting). Home-adv
   collapse (3.3 → ~1.3 pts) identified and documented; β wrong-sign
   artifact recorded.
+- **2026-08-04 (session 2)** — Minutes engine built and gated:
+  **M-G1 PASS** (walk-forward MAE 4.818 vs blend 5.096, tuned pre-2015;
+  team-iteration leakage caught and fixed before dev), **M-G2 FAIL both
+  iterations** (+0.01257 frozen cal; +0.00009 engine-aware recal vs
+  required < −0.00068) → not adopted, no fp-prospective-3, live arms
+  untouched. Phase diagnostic: helps May–mid-Jun, hurts Aug–Oct.
+  Lesson recorded: the minutes prize is an information prize (T3
+  lineups/news), not an estimator prize.
 - **2026-08-04** — Minutes decomposition diagnostic (post-hoc, above):
   oracle minutes → dev gap −0.068; model-vs-open loss concentrated in
   the |minutes error| > 7 tail; minutes blend MAE 4.18. Minutes engine
