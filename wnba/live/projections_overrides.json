@@ -1,69 +1,98 @@
 {
- "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
- "entries": [
-  {
-   "player": "DiJonai Carrington",
-   "added": "2026-07-31T18:05:00Z",
-   "game_date": "2026-07-31",
-   "status": "questionable",
-   "minutes_est": 14,
-   "minutes_range": [
-    8,
-    20
-   ],
-   "source": "ESPN news API",
-   "url": "https://www.espn.com/wnba/",
-   "quote": "Sky's DiJonai Carrington plans to make season debut vs. Sun (7/30); tonight is the second night of a back-to-back after her first game back",
-   "author": "news-watch",
-   "superseded_by": null
-  },
-  {
-   "player": "Kelsey Plum",
-   "added": "2026-08-03T13:32:00Z",
-   "game_date": "2026-08-03",
-   "status": "questionable",
-   "minutes_est": 28,
-   "minutes_range": [
-    16,
-    30
-   ],
-   "source": "ESPN WNBA injuries API + ESPN news API",
-   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
-   "quote": "Plum (leg, physical results) is questionable for Monday's matchup with the Sky. Traded LAS->PHO on 2026-08-02; her last game played was 2026-06-21 (panel confirms zero appearances since), so tonight would be a debut off a six-week absence. True belief if she plays is the 16-30 range (ramp); minutes_est deliberately set at the TOP of that range because it is the assumption least favourable to a news-driven bet - the base model's 34-min state produced assists-over EV +19.7%, and a 20-24 min estimate would flip the same market to a >10% under. The situation is too uncertain to bet either way, so the override removes the stale-role over without manufacturing an under.",
-   "author": "news-watch",
-   "superseded_by": 2
-  },
-  {
-   "player": "Kelsey Plum",
-   "added": "2026-08-04T01:35:00Z",
-   "game_date": null,
-   "status": "in",
-   "minutes_est": 28,
-   "minutes_range": [
-    16,
-    30
-   ],
-   "source": "ESPN news API",
-   "url": "https://www.espn.com/wnba/",
-   "quote": "'Kelsey Plum set for return, Mercury debut after crazy 48 hours' (published 2026-08-04T00:38Z) - introduced as a Mercury player Monday evening in Chicago after the LAS->PHO trade. Supersedes the 2026-08-03 questionable entry: she is returning, but the panel's last Plum game is 2026-06-21, so her base state is a stale ~34-min LA role. Until PHO games with her in them enter the panel, hold a ramp estimate at the TOP of the 16-30 range - the assumption least favourable to a news-driven bet, so this removes a stale-role over without manufacturing an under. No PHO props are on the 8/4-8/5 sheet, so this is currently inert; game_date null so it applies whenever her props first post. Re-judge once she has PHO appearances in the panel.",
-   "author": "news-watch",
-   "superseded_by": 3
-  },
-  {
-   "player": "Kelsey Plum",
-   "added": "2026-08-04T06:45:00Z",
-   "game_date": null,
-   "status": "in",
-   "minutes_est": 25,
-   "minutes_range": [
-    21,
-    30
-   ],
-   "source": "ESPN box score (PHO@CHI 2026-08-03) + ESPN news API + ESPN WNBA injuries API",
-   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/summary?event=401857113",
-   "quote": "Plum's Mercury debut (2026-08-03, W 106-101 at Chicago): 21 MIN, 20 PTS (6-10 FG, 3-5 3PT), 4 AST, +12. Supersedes entry 2's 28, which was a guess made before she played. Estimate 25 for game two of the stint: a genuine central estimate of the ramp between the 21 measured minutes and her pre-absence norm (~30+), not a number picked to reach a bet. Sensitivity, recorded because it is the whole story here: at <=23 min the model prices a threes-UNDER 1.5 and a points-UNDER 16.5; at >=28 it prices a points-OVER 16.5. Every Plum edge on this sheet is an artifact of the minutes assumption, so no Plum bet is taken this firing. The under branch is the worse of the two: wehoop has not published the 08-03 box scores, so the panel still carries her pre-trade LAS per-minute form and is blind to the debut's 5 three-point attempts in 21 minutes - fresh evidence that cuts directly against a threes-under.",
-   "author": "news-watch",
-   "superseded_by": null
-  }
- ]
+  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+  "entries": [
+    {
+      "player": "DiJonai Carrington",
+      "added": "2026-07-31T18:05:00Z",
+      "game_date": "2026-07-31",
+      "status": "questionable",
+      "minutes_est": 14,
+      "minutes_range": [
+        8,
+        20
+      ],
+      "source": "ESPN news API",
+      "url": "https://www.espn.com/wnba/",
+      "quote": "Sky's DiJonai Carrington plans to make season debut vs. Sun (7/30); tonight is the second night of a back-to-back after her first game back",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kelsey Plum",
+      "added": "2026-08-03T13:32:00Z",
+      "game_date": "2026-08-03",
+      "status": "questionable",
+      "minutes_est": 28,
+      "minutes_range": [
+        16,
+        30
+      ],
+      "source": "ESPN WNBA injuries API + ESPN news API",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Plum (leg, physical results) is questionable for Monday's matchup with the Sky. Traded LAS->PHO on 2026-08-02; her last game played was 2026-06-21 (panel confirms zero appearances since), so tonight would be a debut off a six-week absence. True belief if she plays is the 16-30 range (ramp); minutes_est deliberately set at the TOP of that range because it is the assumption least favourable to a news-driven bet - the base model's 34-min state produced assists-over EV +19.7%, and a 20-24 min estimate would flip the same market to a >10% under. The situation is too uncertain to bet either way, so the override removes the stale-role over without manufacturing an under.",
+      "author": "news-watch",
+      "superseded_by": 2
+    },
+    {
+      "player": "Kelsey Plum",
+      "added": "2026-08-04T01:35:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": 28,
+      "minutes_range": [
+        16,
+        30
+      ],
+      "source": "ESPN news API",
+      "url": "https://www.espn.com/wnba/",
+      "quote": "'Kelsey Plum set for return, Mercury debut after crazy 48 hours' (published 2026-08-04T00:38Z) - introduced as a Mercury player Monday evening in Chicago after the LAS->PHO trade. Supersedes the 2026-08-03 questionable entry: she is returning, but the panel's last Plum game is 2026-06-21, so her base state is a stale ~34-min LA role. Until PHO games with her in them enter the panel, hold a ramp estimate at the TOP of the 16-30 range - the assumption least favourable to a news-driven bet, so this removes a stale-role over without manufacturing an under. No PHO props are on the 8/4-8/5 sheet, so this is currently inert; game_date null so it applies whenever her props first post. Re-judge once she has PHO appearances in the panel.",
+      "author": "news-watch",
+      "superseded_by": 3
+    },
+    {
+      "player": "Kelsey Plum",
+      "added": "2026-08-04T06:45:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": 25,
+      "minutes_range": [
+        21,
+        30
+      ],
+      "source": "ESPN box score (PHO@CHI 2026-08-03) + ESPN news API + ESPN WNBA injuries API",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/summary?event=401857113",
+      "quote": "Plum's Mercury debut (2026-08-03, W 106-101 at Chicago): 21 MIN, 20 PTS (6-10 FG, 3-5 3PT), 4 AST, +12. Supersedes entry 2's 28, which was a guess made before she played. Estimate 25 for game two of the stint: a genuine central estimate of the ramp between the 21 measured minutes and her pre-absence norm (~30+), not a number picked to reach a bet. Sensitivity, recorded because it is the whole story here: at <=23 min the model prices a threes-UNDER 1.5 and a points-UNDER 16.5; at >=28 it prices a points-OVER 16.5. Every Plum edge on this sheet is an artifact of the minutes assumption, so no Plum bet is taken this firing. The under branch is the worse of the two: wehoop has not published the 08-03 box scores, so the panel still carries her pre-trade LAS per-minute form and is blind to the debut's 5 three-point attempts in 21 minutes - fresh evidence that cuts directly against a threes-under.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Marina Mabrey",
+      "added": "2026-08-04T20:45:00Z",
+      "game_date": "2026-08-04",
+      "status": "in",
+      "minutes_est": 28,
+      "minutes_range": [
+        24,
+        31
+      ],
+      "source": "avail:2026-08-04/2035Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED off the ESPN injury report between the 16:34Z and 20:35Z snapshots (was Day-To-Day, neck: 'Mabrey (neck) is listed as questionable for Tuesday's game versus Golden State'); she is absent from the TOR@GS per-event report, which lists only Sykes (foot, Out). So she plays. But she missed 8/1 and 8/2 and the base state is her healthy 30.9-min role (last game 7/30, 28 min), while FanDuel walked her points line 19.5 -> 18.5 -> 17.5 -> 16.5 across today with the model's mu parked at ~18.9 - i.e. the whole +14.9% over came from the market moving away, not from the model learning anything. Conservative first-game-back estimate 28 min, the TOP of a 24-31 return range: enough to remove a stale-full-role over, deliberately not low enough to manufacture an under (26 min or less would). No sourced minutes restriction exists - this is a returning-player haircut, not a reported limit.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Aneesah Morrow",
+      "added": "2026-08-04T20:45:00Z",
+      "game_date": "2026-08-04",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-04/2035Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED off the ESPN injury report between the 16:34Z and 20:35Z snapshots (was Day-To-Day, 'Not Injury Related', listed under Toronto Tempo - the trade that sent Kliundikova's rights + a 2nd to Connecticut for Morrow). She is available for TOR@GS tonight. Recorded WITHOUT a minutes number on purpose: her panel state is a Connecticut role (last game 7/30, 31 min, rising 21/26/31 over her last three) and her Toronto role is unknown, but no source describes it, and the only Morrow market on the board (pts_reb 19.5/17.5, mu 16.45) has no two-way FanDuel quote. Inventing a haircut here would push an already-under model further under and could manufacture an under bet out of a trade with zero role information. Status recorded, projection untouched; supersede this entry if a role/minutes quote appears.",
+      "author": "news-watch",
+      "superseded_by": null
+    }
+  ]
 }
