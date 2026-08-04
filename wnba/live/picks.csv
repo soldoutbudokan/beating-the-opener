@@ -4,12 +4,12 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2705_points_rae burrell_under,2026-08-05,2026-08-06 01:00:00,2705,points,Rae Burrell,LAS,LAS@CHI,under,15.5,-108.0,0.624,0.2022,True,-153,-143,2.5,13.86,,15.5,False,True
 2705_assists_erica wheeler_under,2026-08-05,2026-08-06 01:00:00,2705,assists,Erica Wheeler,LAS,LAS@CHI,under,6.5,-158.0,0.728,0.1893,True,-241,-219,3.5,5.08,,6.5,False,True
 2703_assists_sabrina ionescu_under,2026-08-05,2026-08-05 23:00:00,2703,assists,Sabrina Ionescu,NYL,SEA@NYL,under,5.5,-102.0,0.6,0.1875,True,-139,-130,2.5,4.99,,5.5,False,True
-2702_rebounds_rhyne howard_over,2026-08-05,2026-08-05 23:00:00,2702,rebounds,Rhyne Howard,ATL,PHO@ATL,over,3.5,106.0,0.574,0.1822,True,-125,-118,2.0,4.12,,3.5,True,False
+2702_rebounds_rhyne howard_over,2026-08-05,2026-08-05 23:00:00,2702,rebounds,Rhyne Howard,ATL,PHO@ATL,over,3.5,106.0,0.574,0.1822,True,-125,-118,2.0,4.12,,3.5,False,True
+2701_assists_maria conde_over,2026-08-04,2026-08-05 02:00:00,2701,assists,Maria Conde,TOR,TOR@GSV,over,2.5,114.0,0.549,0.1742,True,-114,-107,2.0,2.85,,2.5,True,False
 2703_assists_natisha hiedeman_under,2026-08-05,2026-08-05 23:00:00,2703,assists,Natisha Hiedeman,SEA,SEA@NYL,under,5.5,-132.0,0.666,0.17,True,-182,-169,2.5,4.59,,5.5,False,True
-2701_assists_maria conde_over,2026-08-04,2026-08-05 02:00:00,2701,assists,Maria Conde,TOR,TOR@GSV,over,2.5,110.0,0.549,0.1522,True,-114,-107,1.5,2.85,,2.5,True,False
 2702_assists_alyssa thomas_over,2026-08-05,2026-08-05 23:00:00,2702,assists,Alyssa Thomas,PHO,PHO@ATL,over,8.5,122.0,0.515,0.1443,True,100,106,1.5,8.74,,8.5,True,False
 2701_assists_kaitlyn chen_under,2026-08-04,2026-08-05 02:00:00,2701,assists,Kaitlyn Chen,GSV,TOR@GSV,under,2.5,-114.0,0.606,0.1383,True,-142,-133,2.0,2.18,,2.5,True,False
 2704_assists_shakira austin_under,2026-08-05,2026-08-05 23:30:00,2704,assists,Shakira Austin,WAS,DAL@WAS,under,2.5,-102.0,0.572,0.1328,True,-124,-117,1.5,2.32,,2.5,True,False
 2704_threes_georgia amoore_over,2026-08-05,2026-08-05 23:30:00,2704,threes,Georgia Amoore,WAS,DAL@WAS,over,1.5,194.0,0.385,0.1323,True,168,176,1.0,1.33,,1.5,True,False
-2701_points_marina mabrey_over,2026-08-04,2026-08-05 02:00:00,2701,points,Marina Mabrey,TOR,TOR@GSV,over,16.5,-122.0,0.56,0.1201,True,-119,-112,2.0,18.97,,19.5,True,False
 2703_threes_flaujae johnson_under,2026-08-05,2026-08-05 23:00:00,2703,threes,Flau'jae Johnson,SEA,SEA@NYL,under,1.5,-144.0,0.656,0.1121,True,-175,-162,2.0,1.22,,1.5,True,False
+2701_points_marina mabrey_over,2026-08-04,2026-08-05 02:00:00,2701,points,Marina Mabrey,TOR,TOR@GSV,over,16.5,-125.0,0.616,0.108,True,-148,-138,1.5,18.97,,19.5,True,False
