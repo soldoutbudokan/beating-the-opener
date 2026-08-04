@@ -31,6 +31,22 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "Plum (leg, physical results) is questionable for Monday's matchup with the Sky. Traded LAS->PHO on 2026-08-02; her last game played was 2026-06-21 (panel confirms zero appearances since), so tonight would be a debut off a six-week absence. True belief if she plays is the 16-30 range (ramp); minutes_est deliberately set at the TOP of that range because it is the assumption least favourable to a news-driven bet - the base model's 34-min state produced assists-over EV +19.7%, and a 20-24 min estimate would flip the same market to a >10% under. The situation is too uncertain to bet either way, so the override removes the stale-role over without manufacturing an under.",
    "author": "news-watch",
+   "superseded_by": 2
+  },
+  {
+   "player": "Kelsey Plum",
+   "added": "2026-08-04T01:35:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": 28,
+   "minutes_range": [
+    16,
+    30
+   ],
+   "source": "ESPN news API",
+   "url": "https://www.espn.com/wnba/",
+   "quote": "'Kelsey Plum set for return, Mercury debut after crazy 48 hours' (published 2026-08-04T00:38Z) - introduced as a Mercury player Monday evening in Chicago after the LAS->PHO trade. Supersedes the 2026-08-03 questionable entry: she is returning, but the panel's last Plum game is 2026-06-21, so her base state is a stale ~34-min LA role. Until PHO games with her in them enter the panel, hold a ramp estimate at the TOP of the 16-30 range - the assumption least favourable to a news-driven bet, so this removes a stale-role over without manufacturing an under. No PHO props are on the 8/4-8/5 sheet, so this is currently inert; game_date null so it applies whenever her props first post. Re-judge once she has PHO appearances in the panel.",
+   "author": "news-watch",
    "superseded_by": null
   }
  ]

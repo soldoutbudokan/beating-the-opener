@@ -1,5 +1,5 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
-2701_rebounds_maria conde_over,2026-08-04,2026-08-05 02:00:00,2701,rebounds,Maria Conde,TOR,TOR@GSV,over,4.5,108.0,0.592,0.2304,True,-135,-126,2.5,5.3,,4.5,False,True
+2701_rebounds_maria conde_over,2026-08-04,2026-08-05 02:00:00,2701,rebounds,Maria Conde,TOR,TOR@GSV,over,4.5,108.0,0.586,0.2194,True,-131,-123,2.5,5.26,,4.5,False,True
 2704_points_arike ogunbowale_over,2026-08-05,2026-08-05 23:30:00,2704,points,Arike Ogunbowale,DAL,DAL@WAS,over,14.5,-106.0,0.588,0.1421,True,-133,-124,2.0,16.37,,14.5,True,False
 2704_rebounds_jessica shepard_over,2026-08-05,2026-08-05 23:30:00,2704,rebounds,Jessica Shepard,DAL,DAL@WAS,over,11.5,102.0,0.552,0.1155,True,-115,-108,1.5,12.19,,11.5,True,False
 2704_assists_shakira austin_under,2026-08-05,2026-08-05 23:30:00,2704,assists,Shakira Austin,WAS,DAL@WAS,under,2.5,-104.0,0.568,0.1142,True,-122,-115,1.5,2.33,,2.5,True,False
