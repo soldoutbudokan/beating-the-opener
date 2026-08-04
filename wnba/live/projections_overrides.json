@@ -47,6 +47,22 @@
    "url": "https://www.espn.com/wnba/",
    "quote": "'Kelsey Plum set for return, Mercury debut after crazy 48 hours' (published 2026-08-04T00:38Z) - introduced as a Mercury player Monday evening in Chicago after the LAS->PHO trade. Supersedes the 2026-08-03 questionable entry: she is returning, but the panel's last Plum game is 2026-06-21, so her base state is a stale ~34-min LA role. Until PHO games with her in them enter the panel, hold a ramp estimate at the TOP of the 16-30 range - the assumption least favourable to a news-driven bet, so this removes a stale-role over without manufacturing an under. No PHO props are on the 8/4-8/5 sheet, so this is currently inert; game_date null so it applies whenever her props first post. Re-judge once she has PHO appearances in the panel.",
    "author": "news-watch",
+   "superseded_by": 3
+  },
+  {
+   "player": "Kelsey Plum",
+   "added": "2026-08-04T06:45:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": 25,
+   "minutes_range": [
+    21,
+    30
+   ],
+   "source": "ESPN box score (PHO@CHI 2026-08-03) + ESPN news API + ESPN WNBA injuries API",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/summary?event=401857113",
+   "quote": "Plum's Mercury debut (2026-08-03, W 106-101 at Chicago): 21 MIN, 20 PTS (6-10 FG, 3-5 3PT), 4 AST, +12. Supersedes entry 2's 28, which was a guess made before she played. Estimate 25 for game two of the stint: a genuine central estimate of the ramp between the 21 measured minutes and her pre-absence norm (~30+), not a number picked to reach a bet. Sensitivity, recorded because it is the whole story here: at <=23 min the model prices a threes-UNDER 1.5 and a points-UNDER 16.5; at >=28 it prices a points-OVER 16.5. Every Plum edge on this sheet is an artifact of the minutes assumption, so no Plum bet is taken this firing. The under branch is the worse of the two: wehoop has not published the 08-03 box scores, so the panel still carries her pre-trade LAS per-minute form and is blind to the debut's 5 three-point attempts in 21 minutes - fresh evidence that cuts directly against a threes-under.",
+   "author": "news-watch",
    "superseded_by": null
   }
  ]
