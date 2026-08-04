@@ -29,7 +29,12 @@ NEWS_URL = ("https://site.api.espn.com/apis/site/v2/sports/basketball/"
 
 
 def fetch_json(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    # ESPN's edge 403s a bare "Mozilla/5.0" UA without an Accept header
+    # (found 2026-08-04 — every routine firing had been getting
+    # SOURCES_UNREACHABLE from this); an honest UA + Accept passes.
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "beating-the-opener/1.0 (research archive)",
+        "Accept": "*/*"})
     with urllib.request.urlopen(req, timeout=20) as r:
         return json.load(r)
 

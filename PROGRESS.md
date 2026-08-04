@@ -598,6 +598,25 @@ T3's news-driven minutes overrides, and any override-driven variant gets
 its own registration before touching unseen data. No fp-prospective-3;
 the pinned T1 model remains the live arm.
 
+**T3 systematized (2026-08-04, owner-approved: "what you call T3 makes
+sense").** `wnba/src/avail_watch.py`: point-in-time availability
+capture — league injury report (status/type/return-date, incl.
+"Coach's Decision"), per-event injury reports, and lineups/DNP-reasons
+once ESPN populates them — archived to committed `data/raw/avail/`
+(change-deduped snapshots; the feed is ephemeral, the archive is the
+future training set). The script prints a structured NEW/UPDATED/
+CLEARED diff each firing, which the news-watch routine now judges into
+overrides (PROTOCOL step 1 rewritten; headlines demoted to step 1b).
+**No model may train on this archive without a pre-registered QC gate.**
+Also fixed en route: ESPN's edge 403s the old `news_watch.py` header
+combination (bare Mozilla UA, no Accept) — every routine firing since
+the allowlist opened had been silently `SOURCES_UNREACHABLE`; both
+scripts now send an honest UA + `Accept: */*` and the feed works from
+this container. Effects reach the routine when this lands on main.
+First snapshot committed: 2026-08-04 15:09Z, 35 players (12 Coach's
+Decision entries — the pure minutes signal the M experiment proved the
+market knows and our history can't see).
+
 **T3 — infrastructure armed (2026-07-31 session 4).**
 - `wnba/live/projections_overrides.json` (append-only, schema in-file) —
   the news layer's log AND its future scorecard.
@@ -995,6 +1014,12 @@ registrations are firewalled from betting outcomes.
   2026-08-01+ (spread open, season-end scoring, no betting). Home-adv
   collapse (3.3 → ~1.3 pts) identified and documented; β wrong-sign
   artifact recorded.
+- **2026-08-04 (session 2b)** — T3 systematized per owner approval:
+  `avail_watch.py` point-in-time availability/lineup capture into
+  committed `data/raw/avail/` with structured diffs; PROTOCOL
+  news-watch step 1 rewritten around it; ESPN 403 header bug fixed in
+  `news_watch.py` (the routine had been silently source-blind). First
+  snapshot committed. QC-gate-before-training rule recorded.
 - **2026-08-04 (session 2)** — Minutes engine built and gated:
   **M-G1 PASS** (walk-forward MAE 4.818 vs blend 5.096, tuned pre-2015;
   team-iteration leakage caught and fixed before dev), **M-G2 FAIL both

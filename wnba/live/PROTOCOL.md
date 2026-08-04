@@ -67,11 +67,23 @@
 >    projects from tracks the latest completed games (added 2026-08-03 —
 >    nothing else in v3 refreshes the model state). This sweep is the only
 >    settlement writer; fills themselves remain owner-reported only.
-> 1. `python3 src/news_watch.py --fetch` from `wnba/`.
->    `SOURCES_UNREACHABLE` → end with that single line. New items → judge
->    availability/minutes implications; append override entries to
+> 1. `python3 src/avail_watch.py --fetch` from `wnba/` (v3 T3 capture,
+>    owner-approved 2026-08-04): snapshots the ESPN league injury
+>    report, today's per-event injury reports, and lineups/DNPs once
+>    ESPN populates them, into `data/raw/avail/` (committed — the feed
+>    is ephemeral, the archive is the future training set; no model may
+>    train on it without a pre-registered QC gate). It prints a
+>    structured diff (NEW / UPDATED / CLEARED player statuses) — judge
+>    THAT, not headlines alone: statuses `Out` (incl. "Coach's
+>    Decision") and cleared/returning players become override entries in
 >    `live/projections_overrides.json` per its schema (conservative,
->    sourced, author `news-watch`; supersede, never edit).
+>    sourced `avail:<date>/<hhmm>Z`, author `news-watch`; supersede,
+>    never edit). `NO_CHANGE` → no overrides from this step.
+> 1b. `python3 src/news_watch.py --fetch` for narrative news the injury
+>    feed lags (trades, rest plans, minutes-limit quotes). New items →
+>    judge availability/minutes implications; append override entries as
+>    above. Both scripts printing `SOURCES_UNREACHABLE` → end with that
+>    single line.
 > 2. **Always** run `python3 src/fp_live.py` (prices move without news):
 >    refreshes `live/projections.csv` and rewrites `live/picks.csv` with
 >    rows meeting the bet trigger above.

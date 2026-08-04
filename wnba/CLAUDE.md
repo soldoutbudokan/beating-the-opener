@@ -6,8 +6,10 @@ anything here. The OLD anchored model stays retired: never run
 src/live_pipeline.py for picks. Picks come from **src/fp_live.py** (pinned
 talent model + news overrides), FanDuel EV>10% trigger, pre-registered
 staking. `edge-watch` = data-only close archiver. `news-watch` (hourly) =
-overrides + picks refresh + notification + **always post new picks as a
-table in the chat reply** (owner instruction — see PROTOCOL step 3). Fills are owner-reported only:
+availability snapshot (`src/avail_watch.py` → committed
+`data/raw/avail/`, v3 T3) + overrides + picks refresh + notification +
+**always post new picks as a table in the chat reply** (owner
+instruction — see PROTOCOL step 3). Fills are owner-reported only:
 log to live/bets.csv copying picks.csv fields — **including `ev_claimed`,
 the model's claim at the price actually taken (`model_p x decimal_odds -
 1`), required on every row** — commit, push. Settlement
