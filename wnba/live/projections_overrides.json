@@ -236,6 +236,58 @@
    "quote": "NEW on the ESPN injury report, Day-To-Day (back): 'Clark (back) is probable for Thursday's game against the Aces.' Same treatment as Boston - probable, no minutes change, and the open position is assists UNDER 8.5, so a haircut would be self-serving. Flag only; confirm she is in the lineup near tip per the protocol's availability check.",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "Chloe Bibby",
+   "added": "2026-08-05T22:34:00Z",
+   "game_date": "2026-08-06",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-05/2234Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "League injury report (NEW this snapshot): 'Bibby (personal reasons) is listed as out for Thursday's game versus the Sparks.' Minnesota Lynx, type Personal, return_date 2026-08-08. Thursday is 2026-08-06, so the override targets that date. No BP prop board carries her, so this entry is archival - it changes no projection.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Kara Dunn",
+   "added": "2026-08-05T22:34:00Z",
+   "game_date": "2026-08-05",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-05/2234Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "Per-event injury report for PHX @ ATL (event 401857115, tip 2026-08-05T23:00Z): Out, type Coach's Decision, return_date 2026-08-07. Deep-bench Mercury rookie; no prop on the board, so archival only.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Shay Ciezki",
+   "added": "2026-08-05T22:34:00Z",
+   "game_date": "2026-08-05",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-05/2234Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "Per-event injury report for PHX @ ATL (event 401857115, tip 2026-08-05T23:00Z): Out, type Coach's Decision, return_date 2026-08-07. Deep-bench Mercury rookie; no prop on the board, so archival only.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Liatu King",
+   "added": "2026-08-05T22:34:00Z",
+   "game_date": "2026-08-06",
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-05/2234Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league injury report this snapshot (was Out, Coach's Decision - 'ruled out for Sunday's game against the Fever', return_date 2026-08-06). Available for Minnesota's next game (2026-08-06); minutes_est left null deliberately - coming off the report restores availability, not a role, and she is a deep-bench rookie. No prop on the board.",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }
