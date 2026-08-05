@@ -129,6 +129,22 @@
    "quote": "CLEARED, and this entry stands for the whole batch of eight that cleared at 22:36Z: Westbeld (CHI), Alissa Pili, Tonie Morgan, Monique Akoa Makani (LAS), Anneli Maley (NYL), Kara Dunn, Shay Ciezki (PHO), Darianna Littlepage-Buggs (WAS). Every one of them carried return_date 2026-08-05 and every one dropped in the same refresh, while rows with later return dates persisted and two of them (Stevens, Mair) were pushed 08-05 -> 08-08 - the signature of ESPN rolling the report forward to the 8/5 slate, so read it as 'expected available 8/5', not as eight simultaneous medical clearances. No minutes injected for any of the eight and none has a prop on the sheet: all are deep-bench or DNP-heavy (Westbeld 8-11 min in her three appearances since 6/20; Pili 2-12 min; Maley 11-14 min in two July games), so the panel's small roles for them need no correction and there is nothing here to score. Grouped rather than filed eight times because the content, and the nil price effect, is identical; named in full so the archive keeps each one.",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "Ornella Bankole",
+   "added": "2026-08-05T02:35:00Z",
+   "game_date": "2026-08-04",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": [
+    0,
+    0
+   ],
+   "source": "avail:2026-08-05/0235Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report: \"Bankole (coach's decision) is listed as out for Tuesday's game versus the Valkyries\" (Toronto Tempo, return_date 2026-08-06). NEW in the 0235Z diff. Inert in practice: TOR@GS (event 401857114) tipped at 02:00Z and is STATUS_IN_PROGRESS, and Bankole has no props on the sheet (zero rows in projections.csv), so nothing is priced off this. Logged because the protocol treats any new Out - Coach's Decision included - as an override entry, and because the archive is the future training set.",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }
