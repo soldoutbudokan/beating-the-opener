@@ -145,6 +145,19 @@
    "quote": "ESPN league injury report: \"Bankole (coach's decision) is listed as out for Tuesday's game versus the Valkyries\" (Toronto Tempo, return_date 2026-08-06). NEW in the 0235Z diff. Inert in practice: TOR@GS (event 401857114) tipped at 02:00Z and is STATUS_IN_PROGRESS, and Bankole has no props on the sheet (zero rows in projections.csv), so nothing is priced off this. Logged because the protocol treats any new Out - Coach's Decision included - as an override entry, and because the archive is the future training set.",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "Ugonne Onyiah",
+   "added": "2026-08-05T15:36:00Z",
+   "game_date": "2026-08-05",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-05/1536Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report, 2026-08-05 15:36Z: Onyiah (Indiana Fever) moved Day-To-Day -> Out, type 'Not Injury Related', comment 'out', return date 2026-08-06. Conservative zero-minutes entry for the record; IND is not on today's ET slate (PHX@ATL, SEA@NY, DAL@WSH, LA@CHI) and Onyiah carries no projections rows, so this override is inert. Targets 2026-08-05 only because the feed lists her back for 2026-08-06.",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }
