@@ -157,7 +157,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report, 2026-08-05 15:36Z: Onyiah (Indiana Fever) moved Day-To-Day -> Out, type 'Not Injury Related', comment 'out', return date 2026-08-06. Conservative zero-minutes entry for the record; IND is not on today's ET slate (PHX@ATL, SEA@NY, DAL@WSH, LA@CHI) and Onyiah carries no projections rows, so this override is inert. Targets 2026-08-05 only because the feed lists her back for 2026-08-06.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 13
   },
   {
    "player": "Alysha Clark",
@@ -169,6 +169,71 @@
    "source": "avail:2026-08-05/1635Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report, 2026-08-05 16:35Z: NEW entry - \"Clark (back) is questionable for Wednesday against the Wizards\" (Dallas Wings, status Day-To-Day, type Back, return date 2026-08-05). A healthy -> questionable downgrade for tonight's DAL@WAS (event 2704). No minutes estimate is attached: Clark has zero rows in projections.csv, so nothing is priced off her and inventing a number would be guessing without a bet to discipline it. Recorded because the protocol treats status downgrades as override entries and the archive is the future training set. Note for the reader, not modelled: the sheet's DAL pick is Jessica Shepard rebounds over 11.5 - a Clark absence would if anything help that side, and the override layer adjusts only the named player's minutes, so no adjustment is made in either direction.",
+   "author": "news-watch",
+   "superseded_by": 12
+  },
+  {
+   "player": "Alysha Clark",
+   "added": "2026-08-05T21:34:00Z",
+   "game_date": "2026-08-05",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-05/2134Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN injury report UPDATED Day-To-Day -> Out (back): 'Clark (back) is out for Wednesday's game against the Mystics.' Confirmed by the per-event report for DAL@WAS (event:401857117). Supersedes the 21:35Z questionable entry from the 1635Z snapshot. Inert on today's sheet - Alysha Clark has no FanDuel prop in the current projection set - but recorded so a late-listed prop cannot be priced off a stale 'she plays' state.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Ugonne Onyiah",
+   "added": "2026-08-05T21:34:00Z",
+   "game_date": "2026-08-06",
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-05/2134Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the ESPN injury report (was Out, 'Not Injury Related', return date 2026-08-06). Supersedes the 1536Z out/0-minute entry so the zero-minute assumption cannot leak into the Fever's 8/06 game vs LVA. No minutes estimate attached: she is a deep-bench Fever player with no props on the sheet, and inventing a minutes number for a returnee would manufacture edge rather than remove it.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Bree Hall",
+   "added": "2026-08-05T21:34:00Z",
+   "game_date": "2026-08-06",
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-05/2134Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the ESPN injury report (was Out - Coach's Decision, 'ruled out for Sunday's game against Minnesota'). Availability restored ahead of IND's 8/06 game vs LVA. No prior override existed and no minutes estimate is attached - a coach's-decision DNP tells you nothing about the minutes she gets when she is back, and she has no props on the sheet.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Aliyah Boston",
+   "added": "2026-08-05T21:34:00Z",
+   "game_date": "2026-08-06",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-05/2134Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW on the ESPN injury report, Day-To-Day (lower leg): 'Boston (lower leg) is probable for Thursday's game against the Aces.' Probable, so no minutes change is applied - and deliberately so: the open bet on her is rebounds UNDER 8.5, and any minutes haircut here would strengthen a position we already hold. Recorded as a display flag (the pick carries a loud availability marker) rather than a model input.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Caitlin Clark",
+   "added": "2026-08-05T21:34:00Z",
+   "game_date": "2026-08-06",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-05/2134Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW on the ESPN injury report, Day-To-Day (back): 'Clark (back) is probable for Thursday's game against the Aces.' Same treatment as Boston - probable, no minutes change, and the open position is assists UNDER 8.5, so a haircut would be self-serving. Flag only; confirm she is in the lineup near tip per the protocol's availability check.",
    "author": "news-watch",
    "superseded_by": null
   }
