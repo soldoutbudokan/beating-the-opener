@@ -10,7 +10,7 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 23 (10W-13L), 0 push, 2 void, 21 open |
+| settled | 23 (10W-13L), 0 push, 2 void, 22 open |
 | staked | $23.00 |
 | P&L | $-4.32 (-18.8% ROI) |
 | mean EV said (model) | +21.64% (n=23) |
@@ -35,6 +35,7 @@ CLV t-stat: -5.91 (iid); -3.62 clustered by match date (5 dates)
 | 2026-08-05 | Angel Reese | assists | over | 2.5 | 148 | 1.0 | +16.3% |  |  |  |  |  |
 | 2026-08-05 | Rhyne Howard | assists | over | 3.5 | 136 | 1.0 | +25.3% |  |  |  |  |  |
 | 2026-08-05 | Rhyne Howard | rebounds | over | 3.5 | 106 | 1.0 | +18.2% |  |  |  |  |  |
+| 2026-08-05 | Shakira Austin | assists | under | 2.5 | 106 | 1.0 | +17.9% |  |  |  |  |  |
 | 2026-08-04 | Maria Conde | rebounds | over | 4.5 | 108 | 1.0 | +23.0% |  |  |  |  |  |
 | 2026-08-03 | Kahleah Copper | points | under | 21.5 | -106 | 1.0 | +24.4% |  |  |  | -0.7% | -0.7% |
 | 2026-08-03 | Chelsea Gray | threes | over | 1.5 | 110 | 1.0 | +20.5% |  |  |  | -5.4% | -5.4% |
