@@ -158,6 +158,19 @@
    "quote": "ESPN league injury report, 2026-08-05 15:36Z: Onyiah (Indiana Fever) moved Day-To-Day -> Out, type 'Not Injury Related', comment 'out', return date 2026-08-06. Conservative zero-minutes entry for the record; IND is not on today's ET slate (PHX@ATL, SEA@NY, DAL@WSH, LA@CHI) and Onyiah carries no projections rows, so this override is inert. Targets 2026-08-05 only because the feed lists her back for 2026-08-06.",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "Alysha Clark",
+   "added": "2026-08-05T16:35:00Z",
+   "game_date": "2026-08-05",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-05/1635Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report, 2026-08-05 16:35Z: NEW entry - \"Clark (back) is questionable for Wednesday against the Wizards\" (Dallas Wings, status Day-To-Day, type Back, return date 2026-08-05). A healthy -> questionable downgrade for tonight's DAL@WAS (event 2704). No minutes estimate is attached: Clark has zero rows in projections.csv, so nothing is priced off her and inventing a number would be guessing without a bet to discipline it. Recorded because the protocol treats status downgrades as override entries and the archive is the future training set. Note for the reader, not modelled: the sheet's DAL pick is Jessica Shepard rebounds over 11.5 - a Clark absence would if anything help that side, and the override layer adjusts only the named player's minutes, so no adjustment is made in either direction.",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }
