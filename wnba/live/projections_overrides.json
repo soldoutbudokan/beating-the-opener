@@ -469,7 +469,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "New Day-To-Day entry in the 2026-08-06/0334Z ESPN snapshot: Atkins (LA Sparks, Undisclosed) 'did not return to Wednesday's 95-88 loss to Chicago... eight points across 21 minutes'; return_date 2026-08-06. Recorded as questionable with no minutes estimate - an in-game exit of unknown severity is not grounds for a numeric minutes claim, and the entry is inert for fp_live. LA is not in either game on the current sheet.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 44
     },
     {
       "player": "Darianna Littlepage-Buggs",
@@ -508,7 +508,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Status upgrade in the 2026-08-06/0334Z ESPN snapshot: Tonie Morgan (LA Sparks, Coach's Decision) Out -> Day-To-Day, return_date 2026-08-06. The 2026-08-05 slate is FINAL, so the earlier out entry for that game stays as the record of what was believed then (not superseded); this entry carries the new status forward to the game ESPN's return_date points at. Day-To-Day recorded as questionable with no minutes estimate - the conservative reading, and inert for fp_live (only 'out' status and explicit minutes move a projection). Player's team is not in either game on the current sheet (LVA@IND, TOR@PDX).",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 45
     },
     {
       "player": "Sydney Taylor",
@@ -585,6 +585,32 @@
       "source": "avail:2026-08-06/1436Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Injury feed downgraded Day-To-Day -> Out (Groin), return_date 2026-08-08. CHI's next game is 2026-08-08 vs IND, the feed's return date; the Out listing covers Wednesday's game, already played. No CHI prop in the window - recorded, no minutes change.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ariel Atkins",
+      "added": "2026-08-06T15:43:00Z",
+      "game_date": "2026-08-06",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-06/1543Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report + event 401857120 report: Atkins (ribs) upgraded from Day-To-Day to Out for tonight's Sparks game, return_date 2026-08-06. Downgrade of entry 34 (questionable, 03:34Z).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Tonie Morgan",
+      "added": "2026-08-06T15:43:00Z",
+      "game_date": "2026-08-06",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-06/1543Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report + event 401857120 report: Morgan (Coach's Decision) moved from Day-To-Day to Out for tonight's Sparks game, return_date 2026-08-06. Downgrade of entry 37 (questionable, 03:34Z).",
       "author": "news-watch",
       "superseded_by": null
     }
