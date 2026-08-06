@@ -300,7 +300,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "'Taylor (groin) is listed as out for Wednesday's game against Los Angeles.' Diff UPDATED Day-To-Day -> Out. Supersedes entry 6 (questionable, same game date). Captured 01:35Z with LA@CHI already in progress, so this is a record of the resolved status, not a pre-tip judgement - exclude from any later scoring of the news layer's predictive value.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 38
   },
   {
    "player": "Maddy Westbeld",
@@ -507,6 +507,19 @@
    "source": "avail:2026-08-06/0334Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "Status upgrade in the 2026-08-06/0334Z ESPN snapshot: Tonie Morgan (LA Sparks, Coach's Decision) Out -> Day-To-Day, return_date 2026-08-06. The 2026-08-05 slate is FINAL, so the earlier out entry for that game stays as the record of what was believed then (not superseded); this entry carries the new status forward to the game ESPN's return_date points at. Day-To-Day recorded as questionable with no minutes estimate - the conservative reading, and inert for fp_live (only 'out' status and explicit minutes move a projection). Player's team is not in either game on the current sheet (LVA@IND, TOR@PDX).",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Sydney Taylor",
+   "added": "2026-08-06T04:36:00Z",
+   "game_date": "2026-08-08",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0436Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "League injury report upgrade: Out -> Day-To-Day (groin), comment \"day-to-day\", return date 2026-08-08 = Chicago's next game (IND@CHI). Conservative: questionable, no minutes estimate until a lineup confirms.",
    "author": "news-watch",
    "superseded_by": null
   }
