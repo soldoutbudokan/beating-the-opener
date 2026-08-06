@@ -102,7 +102,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "UPDATED: Taylor (CHI, groin) upgraded Out -> Day-To-Day between the 21:35Z and 22:36Z snapshots, return_date 2026-08-05 (Chicago's next game). A genuine upgrade, not a feed dropout - she stayed on the report with a changed status while eight other rows left it. No minutes injected deliberately: the panel carries her full role (26/31/30 min on 7/22, 7/30, 8/1) and any haircut for a groin return would be a guess, and a guess in the direction that manufactures unders - the Plum lesson from entry 3. She has no prop on the current sheet, so the entry is archival plus the Day-To-Day flag the picks table now shows. Sensitivity if a Taylor prop posts before tip: at the panel's ~30 min her lines price near fair; a real return-limited 18-22 min would cheapen unders, so any Taylor edge that appears is an artifact of the minutes assumption and is not bettable without a lineup confirmation.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 24
   },
   {
    "player": "Azura Stevens",
@@ -128,7 +128,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED, and this entry stands for the whole batch of eight that cleared at 22:36Z: Westbeld (CHI), Alissa Pili, Tonie Morgan, Monique Akoa Makani (LAS), Anneli Maley (NYL), Kara Dunn, Shay Ciezki (PHO), Darianna Littlepage-Buggs (WAS). Every one of them carried return_date 2026-08-05 and every one dropped in the same refresh, while rows with later return dates persisted and two of them (Stevens, Mair) were pushed 08-05 -> 08-08 - the signature of ESPN rolling the report forward to the 8/5 slate, so read it as 'expected available 8/5', not as eight simultaneous medical clearances. No minutes injected for any of the eight and none has a prop on the sheet: all are deep-bench or DNP-heavy (Westbeld 8-11 min in her three appearances since 6/20; Pili 2-12 min; Maley 11-14 min in two July games), so the panel's small roles for them need no correction and there is nothing here to score. Grouped rather than filed eight times because the content, and the nil price effect, is identical; named in full so the archive keeps each one.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 23
   },
   {
    "player": "Ornella Bankole",
@@ -286,6 +286,123 @@
    "source": "avail:2026-08-05/2234Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league injury report this snapshot (was Out, Coach's Decision - 'ruled out for Sunday's game against the Fever', return_date 2026-08-06). Available for Minnesota's next game (2026-08-06); minutes_est left null deliberately - coming off the report restores availability, not a role, and she is a deep-bench rookie. No prop on the board.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Alissa Pili",
+   "added": "2026-08-06T00:40:00Z",
+   "game_date": "2026-08-05",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0035Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW on the league report and on the LA@CHI event report: \"Pili (coach's decision) is listed as out for Wednesday's game against Chicago.\" Coach's Decision counts as Out per PROTOCOL step 1.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Tonie Morgan",
+   "added": "2026-08-06T00:40:00Z",
+   "game_date": "2026-08-05",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0035Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW on the league report and on the LA@CHI event report: \"Morgan (coach's decision) has been ruled out for Wednesday's game against Chicago.\"",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Maddy Westbeld",
+   "added": "2026-08-06T00:40:00Z",
+   "game_date": "2026-08-05",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0035Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW on the LA@CHI event report: Westbeld Out (Coach's Decision), return 2026-08-08. Supersedes the 2026-08-04/2236Z entry that had her available for this game - the event report is the later and more specific source.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Sydney Taylor",
+   "added": "2026-08-06T00:40:00Z",
+   "game_date": "2026-08-05",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0035Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "UPDATED Day-To-Day -> Out: \"Taylor (groin) is listed as out for Wednesday's game against Los Angeles\" (league + LA@CHI event report), return 2026-08-08. Supersedes the questionable entry from 2026-08-04/2236Z.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Teja Oblak",
+   "added": "2026-08-06T00:40:00Z",
+   "game_date": "2026-08-06",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0035Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Day-To-Day (Knee): \"Oblak (knee) is listed as doubtful for Thursday's game against Toronto.\" Logged as questionable rather than out - the feed's own status is Day-To-Day, and a bench guard's absence is not worth manufacturing a projection change from.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Bridget Carleton",
+   "added": "2026-08-06T00:40:00Z",
+   "game_date": "2026-08-06",
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0035Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Day-To-Day (Foot) but \"Carleton (foot) is probable for Thursday's game against Toronto.\" Probable -> logged as in with no minutes claim; the flag exists so the pick table can annotate her Day-To-Day status.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Marina Mabrey",
+   "added": "2026-08-06T00:40:00Z",
+   "game_date": "2026-08-06",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0035Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Day-To-Day (Neck): \"Mabrey (neck) is questionable for Thursday's game against Portland.\" No minutes estimate - questionable only, so nothing is manufactured either way.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Jordan Harrison",
+   "added": "2026-08-06T00:40:00Z",
+   "game_date": "2026-08-06",
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0035Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED: her Out (Coach's Decision) row for Sunday's game dropped off the league report. Weak evidence - a stale per-game CD listing expiring is not a report that she will play - so logged as in with no minutes claim.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Ornella Bankole",
+   "added": "2026-08-06T00:40:00Z",
+   "game_date": "2026-08-06",
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0035Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED: her Out (Coach's Decision) row for Tuesday's game dropped off the league report. Same weak-evidence caveat as Harrison: no minutes claim, flag only.",
    "author": "news-watch",
    "superseded_by": null
   }
