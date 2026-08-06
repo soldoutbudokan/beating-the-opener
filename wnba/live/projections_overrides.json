@@ -703,7 +703,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 2232Z diff, league report + event 401857119 report: 'Onyiah (coach's decision) has been ruled out for Thursday's game against the Aces.' Supersedes the 2026-08-05 'in' entry (13). Deep-bench CD player, no prop on the sheet.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 60
     },
     {
       "player": "Aliyah Boston",
@@ -793,6 +793,19 @@
       "source": "ESPN news API",
       "url": "https://www.espn.com/wnba/",
       "quote": "'Longtime Liberty player Betnijah Laney-Hamilton waived' (ESPN, published 2026-08-06T21:52Z): 'Betnijah Laney-Hamilton, a stalwart of the Liberty since 2021 ... was waived Thursday.' A waiver is a roster removal, not an injury, so this is an until-cleared out (game_date null) rather than a one-game entry - she cannot play for New York again, and any future team would need a new signing to supersede this. No NY prop on the current sheet; NY is not on tonight's slate.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Michelle Onyiah",
+      "added": "2026-08-06T23:32:00Z",
+      "game_date": "2026-08-06",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-06/2332Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "\"Onyiah (coach's decision) has been ruled out for Thursday's game against the Aces.\" Upstream RENAME, not a new absence: the 2332Z snapshot replaced the Indiana Fever row 'Ugonne Onyiah' with 'Michelle Onyiah' - identical comment, team, return date (2026-08-08) and event (401857119). The avail_watch diff therefore reads NEW Michelle Onyiah / CLEARED Ugonne Onyiah; both are the same player. Supersedes #52 under the name the feed now publishes, so a name match still finds the override.",
       "author": "news-watch",
       "superseded_by": null
     }
