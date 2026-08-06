@@ -1,5 +1,5 @@
 {
- "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+ "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
  "entries": [
   {
    "player": "DiJonai Carrington",
@@ -442,6 +442,71 @@
    "source": "ESPN WNBA injuries API (league + per-event) via avail_watch [avail:2026-08-06/0135Z]",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "Diff CLEARED: Bankole drops off the injury report (was Out - coach's decision - for Tuesday's game vs the Valkyries, return date 2026-08-06). Toronto plays at Portland on 2026-08-06, so she is available. Entry 9 (out, 0 min) is left standing rather than superseded: it was the correct judgement for its own game date, 2026-08-04. No minutes number - 3 appearances, 8/2/DNP minutes, no props on the sheet.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Alysha Clark",
+   "added": "2026-08-06T03:34:00Z",
+   "game_date": "2026-08-07",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0334Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "Status upgrade in the 2026-08-06/0334Z ESPN snapshot: Alysha Clark (Dallas, Back) Out -> Day-To-Day, return_date 2026-08-07. The 2026-08-05 slate is FINAL, so the earlier out entry for that game stays as the record of what was believed then (not superseded); this entry carries the new status forward to the game ESPN's return_date points at. Day-To-Day recorded as questionable with no minutes estimate - the conservative reading, and inert for fp_live (only 'out' status and explicit minutes move a projection). Player's team is not in either game on the current sheet (LVA@IND, TOR@PDX).",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Ariel Atkins",
+   "added": "2026-08-06T03:34:00Z",
+   "game_date": "2026-08-06",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0334Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "New Day-To-Day entry in the 2026-08-06/0334Z ESPN snapshot: Atkins (LA Sparks, Undisclosed) 'did not return to Wednesday's 95-88 loss to Chicago... eight points across 21 minutes'; return_date 2026-08-06. Recorded as questionable with no minutes estimate - an in-game exit of unknown severity is not grounds for a numeric minutes claim, and the entry is inert for fp_live. LA is not in either game on the current sheet.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Darianna Littlepage-Buggs",
+   "added": "2026-08-06T03:34:00Z",
+   "game_date": "2026-08-07",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0334Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "Status upgrade in the 2026-08-06/0334Z ESPN snapshot: Darianna Littlepage-Buggs (Washington, Coach's Decision) Out -> Day-To-Day, return_date 2026-08-07. The 2026-08-05 slate is FINAL, so the earlier out entry for that game stays as the record of what was believed then (not superseded); this entry carries the new status forward to the game ESPN's return_date points at. Day-To-Day recorded as questionable with no minutes estimate - the conservative reading, and inert for fp_live (only 'out' status and explicit minutes move a projection). Player's team is not in either game on the current sheet (LVA@IND, TOR@PDX).",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Kara Dunn",
+   "added": "2026-08-06T03:34:00Z",
+   "game_date": "2026-08-07",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0334Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "Status upgrade in the 2026-08-06/0334Z ESPN snapshot: Kara Dunn (Phoenix, Coach's Decision) Out -> Day-To-Day, return_date 2026-08-07. The 2026-08-05 slate is FINAL, so the earlier out entry for that game stays as the record of what was believed then (not superseded); this entry carries the new status forward to the game ESPN's return_date points at. Day-To-Day recorded as questionable with no minutes estimate - the conservative reading, and inert for fp_live (only 'out' status and explicit minutes move a projection). Player's team is not in either game on the current sheet (LVA@IND, TOR@PDX).",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Tonie Morgan",
+   "added": "2026-08-06T03:34:00Z",
+   "game_date": "2026-08-06",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-06/0334Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "Status upgrade in the 2026-08-06/0334Z ESPN snapshot: Tonie Morgan (LA Sparks, Coach's Decision) Out -> Day-To-Day, return_date 2026-08-06. The 2026-08-05 slate is FINAL, so the earlier out entry for that game stays as the record of what was believed then (not superseded); this entry carries the new status forward to the game ESPN's return_date points at. Day-To-Day recorded as questionable with no minutes estimate - the conservative reading, and inert for fp_live (only 'out' status and explicit minutes move a projection). Player's team is not in either game on the current sheet (LVA@IND, TOR@PDX).",
    "author": "news-watch",
    "superseded_by": null
   }
