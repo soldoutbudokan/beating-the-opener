@@ -196,7 +196,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the ESPN injury report (was Out, 'Not Injury Related', return date 2026-08-06). Supersedes the 1536Z out/0-minute entry so the zero-minute assumption cannot leak into the Fever's 8/06 game vs LVA. No minutes estimate attached: she is a deep-bench Fever player with no props on the sheet, and inventing a minutes number for a returnee would manufacture edge rather than remove it.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 52
     },
     {
       "player": "Bree Hall",
@@ -209,7 +209,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the ESPN injury report (was Out - Coach's Decision, 'ruled out for Sunday's game against Minnesota'). Availability restored ahead of IND's 8/06 game vs LVA. No prior override existed and no minutes estimate is attached - a coach's-decision DNP tells you nothing about the minutes she gets when she is back, and she has no props on the sheet.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 51
     },
     {
       "player": "Aliyah Boston",
@@ -222,7 +222,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW on the ESPN injury report, Day-To-Day (lower leg): 'Boston (lower leg) is probable for Thursday's game against the Aces.' Probable, so no minutes change is applied - and deliberately so: the open bet on her is rebounds UNDER 8.5, and any minutes haircut here would strengthen a position we already hold. Recorded as a display flag (the pick carries a loud availability marker) rather than a model input.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 53
     },
     {
       "player": "Caitlin Clark",
@@ -235,7 +235,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW on the ESPN injury report, Day-To-Day (back): 'Clark (back) is probable for Thursday's game against the Aces.' Same treatment as Boston - probable, no minutes change, and the open position is assists UNDER 8.5, so a haircut would be self-serving. Flag only; confirm she is in the lineup near tip per the protocol's availability check.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 54
     },
     {
       "player": "Chloe Bibby",
@@ -391,7 +391,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "'Mabrey (neck) is questionable for Thursday's game against Portland.' She is on tonight's sheet with a threes OVER 2.5 at +110 (play=True), so the direction of this news matters. Deliberately NO minutes cut: props void on a DNP, so the right conditioning is minutes GIVEN she plays, and a neck questionable who suits up normally plays close to her 29-min norm (last 8: 21-35, mean ~29) - hence range [24,29] with the estimate left at the top, the assumption least favourable to a news-driven change. Sensitivity, recorded because it is the whole story: at roughly <=24 min the threes over falls under the 10% trigger and at lower still the model would start printing an UNDER, so picking a 'central' cut here would manufacture the opposite bet out of a questionable tag. The honest state is uncertainty - the pick keeps the base model's number and carries the loud availability flag instead. [mechanical note: minutes_range is left null on purpose. fp_live.active_overrides averages a range when minutes_est is null, so writing [24, 29] here would have silently applied a 26-minute cut - the exact adjustment this entry argues against. The range is stated in this text instead so the judgement is on the record without moving the model.]",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 56
     },
     {
       "player": "Bridget Carleton",
@@ -534,7 +534,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Injury feed downgraded Day-To-Day -> Out (Back), return_date 2026-08-07. DAL's next game IS 2026-08-07 (GS@DAL), so the Out listing covers games already played; her status for the game in the window is genuinely uncertain. Kept questionable with no minutes cut (she has no FanDuel prop in the current window); if props post and she is still listed Out near tip, a minutes haircut supersedes this.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 50
     },
     {
       "player": "Darianna Littlepage-Buggs",
@@ -625,7 +625,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 1834Z diff: Evans (LV) listed Day-To-Day, Illness - 'Evans is questionable for Thursday's game against Indiana with an illness.' Record-only: no minutes estimate, because an illness-questionable guard can play a normal load or sit entirely and inventing either number would manufacture a bet. Feeds the display warning; supersede if she is ruled out or cleared.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 55
     },
     {
       "player": "Ariel Atkins",
@@ -663,6 +663,136 @@
       "source": "avail:2026-08-06/2133Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2133Z diff: Morgan (Coach's Decision, Out) has dropped off the ESPN league report, and she is absent from the event 401857120 (LA at MIN) report in both the 2032Z and 2133Z snapshots. Supersedes entry 45 (out, minutes_est 0, 1543Z), whose zero is no longer supported ~3.5h before tip. Recorded as questionable with no minutes estimate, the same neutral treatment given to Ariel Atkins at 1933Z: a cleared coach's-decision tag is not evidence she plays a normal load, and inventing either a zero or a full load would manufacture a bet. No Morgan prop is on the current sheet, so this is record-only.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Alysha Clark",
+      "added": "2026-08-06T22:32:00Z",
+      "game_date": "2026-08-07",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-06/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPDATED in the 2232Z diff: Clark (back) upgraded Out -> Day-To-Day, 'questionable for Friday's game against the Valkyries' (return_date 2026-08-07 = GS@DAL). Supersedes entry 39, whose Out listing covered games already played; the judgement is unchanged (questionable, no minutes estimate until a lineup confirms her) but the feed now says questionable rather than out, so the log should say so too.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Bree Hall",
+      "added": "2026-08-06T22:32:00Z",
+      "game_date": "2026-08-06",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-06/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2232Z diff, on both the league report and the event 401857119 (LV@IND) report: 'Hall (coach's decision) has been ruled out for Thursday's game against the Aces.' Supersedes the 2026-08-05 'in' entry (14) for tonight's game. Deep-bench CD player with no prop on the sheet - recorded for the archive.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ugonne Onyiah",
+      "added": "2026-08-06T22:32:00Z",
+      "game_date": "2026-08-06",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-06/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2232Z diff, league report + event 401857119 report: 'Onyiah (coach's decision) has been ruled out for Thursday's game against the Aces.' Supersedes the 2026-08-05 'in' entry (13). Deep-bench CD player, no prop on the sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Aliyah Boston",
+      "added": "2026-08-06T22:32:00Z",
+      "game_date": "2026-08-06",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-06/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2232Z diff: Boston (lower leg) has dropped off BOTH the league injury report and the event 401857119 report, having been 'probable' at 2133Z. Reads as resolved-available for tonight's LV@IND. Supersedes entry 15 (questionable). No minutes estimate: 'in' restores the base model's own state rather than manufacturing one.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Caitlin Clark",
+      "added": "2026-08-06T22:32:00Z",
+      "game_date": "2026-08-06",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-06/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2232Z diff: Clark (back) off both the league report and the event 401857119 report after being 'probable' at 2133Z - resolved-available for tonight's LV@IND. Supersedes entry 16 (questionable). No minutes estimate.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Dana Evans",
+      "added": "2026-08-06T22:32:00Z",
+      "game_date": "2026-08-06",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-06/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2232Z diff: Evans (illness) off both the league report and the event 401857119 report, four hours after being listed questionable. Supersedes entry 46. Illness questionables that clear this close to tip normally play; no minutes estimate either way.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Marina Mabrey",
+      "added": "2026-08-06T22:32:00Z",
+      "game_date": "2026-08-06",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-06/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2232Z diff: Mabrey (neck) off both the league report and the event 401857121 (TOR@POR) report after being questionable at 2133Z. Supersedes entry 28. No minutes estimate.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ashten Prechtel",
+      "added": "2026-08-06T22:32:00Z",
+      "game_date": "2026-08-07",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-06/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2232Z diff: Prechtel's Golden State coach's-decision Out (for Tuesday vs the Tempo, a game already played) has dropped off the league report. Record-only - no prior override to supersede, no GS prop on the sheet; GS's next game is 2026-08-07 @DAL.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Miela Sowah",
+      "added": "2026-08-06T22:32:00Z",
+      "game_date": "2026-08-07",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-06/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2232Z diff: Sowah's Golden State coach's-decision Out (Tuesday vs the Tempo, already played) has dropped off the league report. Record-only - no prior override, no GS prop on the sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Betnijah Laney-Hamilton",
+      "added": "2026-08-06T22:32:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "ESPN news API",
+      "url": "https://www.espn.com/wnba/",
+      "quote": "'Longtime Liberty player Betnijah Laney-Hamilton waived' (ESPN, published 2026-08-06T21:52Z): 'Betnijah Laney-Hamilton, a stalwart of the Liberty since 2021 ... was waived Thursday.' A waiver is a roster removal, not an injury, so this is an until-cleared out (game_date null) rather than a one-game entry - she cannot play for New York again, and any future team would need a new signing to supersede this. No NY prop on the current sheet; NY is not on tonight's slate.",
       "author": "news-watch",
       "superseded_by": null
     }
