@@ -10,7 +10,7 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 23 (10W-13L), 0 push, 2 void, 23 open |
+| settled | 23 (10W-13L), 0 push, 2 void, 39 open |
 | staked | $23.00 |
 | P&L | $-4.32 (-18.8% ROI) |
 | mean EV said (model) | +21.64% (n=23) |
@@ -23,9 +23,25 @@ CLV t-stat: -2.76 (iid); -3.24 clustered by match date (6 dates)
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-08-07 | Angel Reese | threes | under | 0.5 | 118 | 1.0 | +93.4% |  |  |  |  |  |
+| 2026-08-07 | Diamond Miller | points | under | 11.5 | -114 | 1.0 | +28.9% |  |  |  |  |  |
+| 2026-08-07 | Paige Bueckers | assists | over | 5.5 | 110 | 1.0 | +22.9% |  |  |  |  |  |
+| 2026-08-07 | Leila Lacan | assists | under | 4.5 | 122 | 1.0 | +20.0% |  |  |  |  |  |
+| 2026-08-07 | Rhyne Howard | points | under | 17.5 | -130 | 1.0 | +17.7% |  |  |  |  |  |
+| 2026-08-07 | Jessica Shepard | rebounds | over | 11.5 | 114 | 1.0 | +16.0% |  |  |  |  |  |
 | 2026-08-06 | Caitlin Clark | assists | under | 8.5 | 100 | 1.0 | +16.9% |  |  |  |  |  |
 | 2026-08-06 | Jackie Young | rebounds | under | 4.5 | -125 | 1.0 | +15.6% |  |  |  |  |  |
 | 2026-08-06 | Aliyah Boston | rebounds | under | 8.5 | -122 | 1.0 | +14.7% |  |  |  |  |  |
+| 2026-08-06 | Nyara Sabally | points | under | 13.5 | -108 | 1.0 | +45.0% |  |  |  |  |  |
+| 2026-08-06 | Natasha Howard | rebounds | over | 6.5 | 124 | 1.0 | +42.5% |  |  |  |  |  |
+| 2026-08-06 | Carla Leite | assists | under | 8.5 | -158 | 1.0 | +37.9% |  |  |  |  |  |
+| 2026-08-06 | Kayla McBride | points | over | 17.5 | -113 | 1.0 | +29.2% |  |  |  |  |  |
+| 2026-08-06 | Courtney Williams | rebounds | over | 4.5 | 122 | 1.0 | +26.0% |  |  |  |  |  |
+| 2026-08-06 | Maria Conde | rebounds | over | 4.5 | 108 | 1.0 | +25.0% |  |  |  |  |  |
+| 2026-08-06 | Chelsea Gray | threes | over | 1.5 | 110 | 1.0 | +22.2% |  |  |  |  |  |
+| 2026-08-06 | Olivia Miles | threes | over | 1.5 | 138 | 1.0 | +21.9% |  |  |  |  |  |
+| 2026-08-06 | Rae Burrell | threes | under | 1.5 | 104 | 1.0 | +18.4% |  |  |  |  |  |
+| 2026-08-06 | NaLyssa Smith | points | under | 11.5 | -110 | 1.0 | +16.2% |  |  |  |  |  |
 | 2026-08-05 | Kamilla Cardoso | assists | over | 2.5 | 154 | 1.0 | +29.0% |  |  |  | +32.5% | +32.5% |
 | 2026-08-05 | Jonquel Jones | threes | under | 1.5 | 124 | 1.0 | +22.1% |  |  |  | -6.5% | -6.5% |
 | 2026-08-05 | Rae Burrell | points | under | 15.5 | -108 | 1.0 | +20.4% |  |  |  |  |  |
