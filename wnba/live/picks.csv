@@ -1,8 +1,8 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,play,already_bet
 2709_threes_angel reese_under,2026-08-07,2026-08-07 23:30:00,2709,threes,Angel Reese,ATL,ATL@WAS,under,0.5,118.0,0.887,0.9338,True,-620,-512,2.0,0.12,,0.5,True,False
 2708_points_nyara sabally_under,2026-08-06,2026-08-07 02:00:00,2708,points,Nyara Sabally,TOR,TOR@PDX,under,13.5,-108.0,0.753,0.4495,True,-271,-245,2.0,9.98,,13.5,True,False
-2707_rebounds_natasha howard_over,2026-08-06,2026-08-07 01:00:00,2707,rebounds,Natasha Howard,MIN,LAS@MIN,over,6.5,124.0,0.747,0.4247,True,-263,-238,1.5,7.8,,6.5,True,False
-2708_assists_carla leite_under,2026-08-06,2026-08-07 02:00:00,2708,assists,Carla Leite,PDX,TOR@PDX,under,8.5,-158.0,0.845,0.379,True,-456,-393,2.0,5.84,,7.5,True,False
+2707_rebounds_natasha howard_over,2026-08-06,2026-08-07 01:00:00,2707,rebounds,Natasha Howard,MIN,LAS@MIN,over,6.5,124.0,0.636,0.4247,True,-161,-149,1.5,7.8,,6.5,True,False
+2708_assists_carla leite_under,2026-08-06,2026-08-07 02:00:00,2708,assists,Carla Leite,PDX,TOR@PDX,under,8.5,-158.0,0.744,0.379,True,-260,-235,2.0,5.84,,7.5,True,False
 2707_points_kayla mcbride_over,2026-08-06,2026-08-07 01:00:00,2707,points,Kayla McBride,MIN,LAS@MIN,over,17.5,-113.0,0.685,0.292,True,-198,-182,1.5,21.47,,17.5,True,False
 2710_points_diamond miller_under,2026-08-07,2026-08-07 23:30:00,2710,points,Diamond Miller,CON,PHO@CON,under,11.5,-114.0,0.686,0.2886,True,-199,-183,1.5,9.24,,11.5,True,False
 2708_points_bridget carleton_under,2026-08-06,2026-08-07 02:00:00,2708,points,Bridget Carleton,PDX,TOR@PDX,under,15.5,-115.0,0.676,0.2634,True,-190,-176,1.5,13.02,,15.5,True,False
