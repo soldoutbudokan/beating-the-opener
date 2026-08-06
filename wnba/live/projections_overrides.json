@@ -612,7 +612,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report + event 401857120 report: Morgan (Coach's Decision) moved from Day-To-Day to Out for tonight's Sparks game, return_date 2026-08-06. Downgrade of entry 37 (questionable, 03:34Z).",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 49
     },
     {
       "player": "Dana Evans",
@@ -637,6 +637,32 @@
       "source": "avail:2026-08-06/1933Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED in the 1933Z diff: Atkins back from Out to Day-To-Day on both the league report and the event 401857120 report - 'Atkins (ribs) is probable for Thursday's game against Minnesota.' Supersedes entry 44 (out, minutes_est 0, 1543Z), whose zero would now be wrong. Recorded as questionable with no minutes estimate: probable-with-ribs can be a normal load or a trimmed one, and inventing a number would manufacture a bet. No LAS prop is on the current sheet, so this is display/record only.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Raegan Beers",
+      "added": "2026-08-06T21:33:00Z",
+      "game_date": "2026-08-07",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-06/2133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2133Z diff: 'Beers is out for Friday's game against Phoenix with a concussion' (ESPN league injury report, Connecticut Sun, status Out, type Concussion). Connecticut is not on tonight's ESPN slate, so the override targets the Friday 2026-08-07 CON-PHO game. No Beers prop is on the current sheet, so this is record-only for now; if a CON prop appears for 8/7 the zero applies.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Tonie Morgan",
+      "added": "2026-08-06T21:33:00Z",
+      "game_date": "2026-08-06",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-06/2133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2133Z diff: Morgan (Coach's Decision, Out) has dropped off the ESPN league report, and she is absent from the event 401857120 (LA at MIN) report in both the 2032Z and 2133Z snapshots. Supersedes entry 45 (out, minutes_est 0, 1543Z), whose zero is no longer supported ~3.5h before tip. Recorded as questionable with no minutes estimate, the same neutral treatment given to Ariel Atkins at 1933Z: a cleared coach's-decision tag is not evidence she plays a normal load, and inventing either a zero or a full load would manufacture a bet. No Morgan prop is on the current sheet, so this is record-only.",
       "author": "news-watch",
       "superseded_by": null
     }
