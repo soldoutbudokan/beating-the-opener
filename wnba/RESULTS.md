@@ -6,17 +6,17 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $95.68** (start $100)
+**Bankroll: $97.00** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 23 (10W-13L), 0 push, 2 void, 39 open |
-| staked | $23.00 |
-| P&L | $-4.32 (-18.8% ROI) |
-| mean EV said (model) | +21.64% (n=23) |
+| settled | 43 (20W-23L), 0 push, 2 void, 19 open |
+| staked | $43.00 |
+| P&L | $-3.00 (-7.0% ROI) |
+| mean EV said (model) | +21.20% (n=43) |
 | mean CLV (vs close) | -3.73% (n=41) |
 | mean CLV* (shade-adj) | -3.63% (n=41) |
-| Model-expected P&L | $+5.43 |
+| Model-expected P&L | $+9.56 |
 | CLV-expected P&L | $-1.53 |
 
 CLV t-stat: -2.76 (iid); -3.24 clustered by match date (6 dates)
@@ -42,26 +42,26 @@ CLV t-stat: -2.76 (iid); -3.24 clustered by match date (6 dates)
 | 2026-08-06 | Olivia Miles | threes | over | 1.5 | 138 | 1.0 | +21.9% |  |  |  |  |  |
 | 2026-08-06 | Rae Burrell | threes | under | 1.5 | 104 | 1.0 | +18.4% |  |  |  |  |  |
 | 2026-08-06 | NaLyssa Smith | points | under | 11.5 | -110 | 1.0 | +16.2% |  |  |  |  |  |
-| 2026-08-05 | Kamilla Cardoso | assists | over | 2.5 | 154 | 1.0 | +29.0% |  |  |  | +32.5% | +32.5% |
-| 2026-08-05 | Jonquel Jones | threes | under | 1.5 | 124 | 1.0 | +22.1% |  |  |  | -6.5% | -6.5% |
-| 2026-08-05 | Rae Burrell | points | under | 15.5 | -108 | 1.0 | +20.4% |  |  |  |  |  |
-| 2026-08-05 | Erica Wheeler | assists | under | 6.5 | -158 | 1.0 | +18.9% |  |  |  | -5.3% | -5.3% |
-| 2026-08-05 | Sabrina Ionescu | assists | under | 5.5 | -102 | 1.0 | +18.8% |  |  |  | -9.5% | -9.5% |
-| 2026-08-05 | Natisha Hiedeman | assists | under | 5.5 | -132 | 1.0 | +17.1% |  |  |  | -1.1% | -1.1% |
-| 2026-08-05 | Angel Reese | assists | over | 2.5 | 148 | 1.0 | +16.3% |  |  |  | +6.7% | +6.7% |
-| 2026-08-05 | Rhyne Howard | assists | over | 3.5 | 136 | 1.0 | +25.3% |  |  |  | +18.0% | +18.0% |
-| 2026-08-05 | Rhyne Howard | rebounds | over | 3.5 | 106 | 1.0 | +18.2% |  |  |  | -6.6% | -6.6% |
-| 2026-08-05 | Shakira Austin | assists | under | 2.5 | 106 | 1.0 | +17.9% |  |  |  | -14.1% | -14.1% |
-| 2026-08-05 | Natasha Cloud | points | under | 12.5 | -114 | 1.0 | +21.1% |  |  |  | -21.2% | -21.2% |
-| 2026-08-04 | Maria Conde | rebounds | over | 4.5 | 108 | 1.0 | +23.0% |  |  |  |  |  |
-| 2026-08-03 | Kahleah Copper | points | under | 21.5 | -106 | 1.0 | +24.4% |  |  |  | -0.7% | -0.7% |
-| 2026-08-03 | Chelsea Gray | threes | over | 1.5 | 110 | 1.0 | +20.5% |  |  |  | -5.4% | -5.4% |
-| 2026-08-03 | Rhyne Howard | points | under | 16.5 | -110 | 1.0 | +21.4% |  |  |  | -6.2% | -6.2% |
-| 2026-08-03 | Angel Reese | rebounds | under | 11.5 | -102 | 1.0 | +20.0% |  |  |  | -5.3% | -5.3% |
-| 2026-08-03 | Natisha Hiedeman | assists | under | 5.5 | -130 | 1.0 | +17.8% |  |  |  | -7.0% | -7.0% |
-| 2026-08-03 | Sabrina Ionescu | assists | under | 5.5 | -106 | 1.0 | +16.4% |  |  |  | -11.2% | -11.2% |
-| 2026-08-03 | Jackie Young | rebounds | under | 4.5 | -152 | 1.0 | +24.7% |  |  |  | -6.4% | -6.4% |
-| 2026-08-03 | Sydney Taylor | threes | under | 2.5 | 106 | 1.0 | +20.3% |  |  |  | -0.2% | -0.2% |
+| 2026-08-05 | Kamilla Cardoso | assists | over | 2.5 | 154 | 1.0 | +29.0% | 3 | won | +1.54 | +32.5% | +32.5% |
+| 2026-08-05 | Jonquel Jones | threes | under | 1.5 | 124 | 1.0 | +22.1% | 1 | won | +1.24 | -6.5% | -6.5% |
+| 2026-08-05 | Rae Burrell | points | under | 15.5 | -108 | 1.0 | +20.4% | 13 | won | +0.93 |  |  |
+| 2026-08-05 | Erica Wheeler | assists | under | 6.5 | -158 | 1.0 | +18.9% | 5 | won | +0.63 | -5.3% | -5.3% |
+| 2026-08-05 | Sabrina Ionescu | assists | under | 5.5 | -102 | 1.0 | +18.8% | 6 | lost | -1.00 | -9.5% | -9.5% |
+| 2026-08-05 | Natisha Hiedeman | assists | under | 5.5 | -132 | 1.0 | +17.1% | 6 | lost | -1.00 | -1.1% | -1.1% |
+| 2026-08-05 | Angel Reese | assists | over | 2.5 | 148 | 1.0 | +16.3% | 4 | won | +1.48 | +6.7% | +6.7% |
+| 2026-08-05 | Rhyne Howard | assists | over | 3.5 | 136 | 1.0 | +25.3% | 8 | won | +1.36 | +18.0% | +18.0% |
+| 2026-08-05 | Rhyne Howard | rebounds | over | 3.5 | 106 | 1.0 | +18.2% | 6 | won | +1.06 | -6.6% | -6.6% |
+| 2026-08-05 | Shakira Austin | assists | under | 2.5 | 106 | 1.0 | +17.9% | 2 | won | +1.06 | -14.1% | -14.1% |
+| 2026-08-05 | Natasha Cloud | points | under | 12.5 | -114 | 1.0 | +21.1% | 15 | lost | -1.00 | -21.2% | -21.2% |
+| 2026-08-04 | Maria Conde | rebounds | over | 4.5 | 108 | 1.0 | +23.0% | 6 | won | +1.08 |  |  |
+| 2026-08-03 | Kahleah Copper | points | under | 21.5 | -106 | 1.0 | +24.4% | 31 | lost | -1.00 | -0.7% | -0.7% |
+| 2026-08-03 | Chelsea Gray | threes | over | 1.5 | 110 | 1.0 | +20.5% | 1 | lost | -1.00 | -5.4% | -5.4% |
+| 2026-08-03 | Rhyne Howard | points | under | 16.5 | -110 | 1.0 | +21.4% | 19 | lost | -1.00 | -6.2% | -6.2% |
+| 2026-08-03 | Angel Reese | rebounds | under | 11.5 | -102 | 1.0 | +20.0% | 16 | lost | -1.00 | -5.3% | -5.3% |
+| 2026-08-03 | Natisha Hiedeman | assists | under | 5.5 | -130 | 1.0 | +17.8% | 7 | lost | -1.00 | -7.0% | -7.0% |
+| 2026-08-03 | Sabrina Ionescu | assists | under | 5.5 | -106 | 1.0 | +16.4% | 5 | won | +0.94 | -11.2% | -11.2% |
+| 2026-08-03 | Jackie Young | rebounds | under | 4.5 | -152 | 1.0 | +24.7% | 11 | lost | -1.00 | -6.4% | -6.4% |
+| 2026-08-03 | Sydney Taylor | threes | under | 2.5 | 106 | 1.0 | +20.3% | 3 | lost | -1.00 | -0.2% | -0.2% |
 | 2026-08-02 | Aliyah Boston | rebounds | under | 8.5 | -118 | 1.0 | +33.4% | 8 | won | +0.85 | -9.3% | -4.4% |
 | 2026-08-02 | Olivia Miles | rebounds | over | 4.5 | 118 | 1.0 | +34.1% | 4 | lost | -1.00 | -3.2% | -8.8% |
 | 2026-08-02 | Kelsey Plum | assists | over | 4.5 | -114 | 1.0 | +29.0% |  | void (DNP) | +0.00 |  |  |

@@ -55,7 +55,9 @@
 >
 > 0. **Settlement sweep (owner instruction, 2026-08-03):** if `live/bets.csv`
 >    holds any `open` bet for a game before today (ET), run
->    `python3 src/fetch_wehoop.py`, then `python3 src/scrape_bettingpros.py`,
+>    `python3 src/fetch_wehoop.py`, then `python3 src/fetch_espn_box.py`
+>    (box-score fallback, owner-approved 2026-08-06 — see below), then
+>    `python3 src/scrape_bettingpros.py`,
 >    then `python3 src/settle_bets.py`, and commit as
 >    `live: settle the <date> slate`. `settle_bets.py` stamps CLV as soon as
 >    the game is over (the close exists even when box scores lag) and fills
@@ -67,6 +69,27 @@
 >    projects from tracks the latest completed games (added 2026-08-03 —
 >    nothing else in v3 refreshes the model state). This sweep is the only
 >    settlement writer; fills themselves remain owner-reported only.
+>
+>    **Box-score fallback (owner-approved 2026-08-06).** wehoop publishes in
+>    bulk and stalls — it froze at 2026-08-01 for five days while games were
+>    played, stranding 20 finished bets as `open`. `src/fetch_espn_box.py`
+>    archives ESPN's own finals (the source wehoop scrapes) for the ET dates
+>    wehoop is missing, into committed `data/raw/espn_box/<date>.json`, and
+>    `settle_bets.py` merges them **only** for uncovered dates — wehoop stays
+>    the source of record and reclaims a date the moment it publishes it.
+>    Validated before first use: the 2026-08-01 overlap reproduced wehoop
+>    exactly (48/48 rows, all settled stats, team abbrs and DNP flags), and
+>    reconstructed player points reconcile to the official final score in all
+>    24 team-games of 8/2–8/5. Scope is settlement only: `features.py`,
+>    `talent.py` and `grade_props.py` still read wehoop alone, so the model
+>    panel and the `fp-prospective-2` scoring firewall are untouched — the
+>    panel simply stays frozen until wehoop catches up.
+>    Related hardening in the same change: the "no box row after 3 days →
+>    `void (no box score)`" rule now fires only when a box feed actually
+>    covers that game (date + one of the two teams). A missing feed is a data
+>    outage, not a DNP; uncovered rows stay `open` and print
+>    `BOX_FEED_BEHIND <n>`. Without this, the 8/3 bets would have been voided
+>    at $0 P&L on the next firing purely because upstream was late.
 > 1. `python3 src/avail_watch.py --fetch` from `wnba/` (v3 T3 capture,
 >    owner-approved 2026-08-04): snapshots the ESPN league injury
 >    report, today's per-event injury reports, and lineups/DNPs once

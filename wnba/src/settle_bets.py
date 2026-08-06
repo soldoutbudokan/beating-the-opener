@@ -27,6 +27,7 @@ from odds_utils import (amer_to_prob, amer_to_dec, devig_power, fit_shade,
                         apply_shade)
 from dist_utils import implied_mu, p_over
 from grade_props import STAT_COLS, norm, BP2WH
+from fetch_espn_box import load_espn_box
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 LIVE = os.path.join(ROOT, "live")
@@ -95,13 +96,29 @@ def event_meta():
 
 
 def load_box_index():
+    """(player, ET date) -> box row, from wehoop plus the ESPN fallback.
+
+    wehoop publishes in bulk and stalls (five days in August 2026), which
+    strands finished bets as `open`. `fetch_espn_box.py` archives ESPN's
+    own finals for the dates wehoop is missing; they are merged here with
+    `setdefault`, so wehoop remains the source of record for every date it
+    covers and reclaims a date the moment it publishes it. Validated on the
+    2026-08-01 overlap: 48/48 rows identical across all settled stats.
+    """
     parts = [pd.read_parquet(p) for p in sorted(glob.glob(
         os.path.join(ROOT, "data", "wehoop", "player_box_*.parquet")))
         if int(p[-12:-8]) >= 2025]
     box = pd.concat(parts, ignore_index=True)
     box["nname"] = box["athlete_display_name"].map(norm)
     box["date"] = box["game_date"].astype(str).str[:10]
-    return {(r.nname, r.date): r for r in box.itertuples()}
+    idx = {(r.nname, r.date): r for r in box.itertuples()}
+    supp = load_espn_box(covered=set(box["date"]))
+    if supp is not None and len(supp):
+        for r in supp.itertuples():
+            idx.setdefault((r.nname, r.date), r)
+        print(f"box fallback: {len(supp)} ESPN rows for "
+              f"{supp['date'].nunique()} date(s) wehoop has not published")
+    return idx
 
 
 def find_box(idx, nname, date, teams=None):
@@ -194,9 +211,21 @@ def main():
         json.dump({"start": 100.0, "current": 100.0}, open(BANKROLL, "w"))
 
     idx = load_box_index()
+    # (ET date, team) pairs the box feeds actually cover. Used to tell "the
+    # player was absent" from "the feed is absent" - see the void branch.
+    box_games = {(r.date, getattr(r, "team_abbreviation", None))
+                 for r in idx.values()}
+    box_dates = {d for d, _ in box_games}
+
+    def game_covered(date, teams):
+        if teams:
+            return any((date, t) in box_games for t in teams)
+        return date in box_dates
+
     emeta = event_meta()
     today_et = str(pd.Timestamp.now(tz=ET).date())
     n_settled = 0
+    n_stranded = 0
     for i, b in bets.iterrows():
         if b["status"] != "open":
             continue
@@ -212,11 +241,17 @@ def main():
             if r is not None:  # box row exists but the player did not play
                 bets.loc[i, ["status", "result", "pnl"]] = "void", "void (DNP)", 0.0
                 n_settled += 1
-            elif days > 3:
+            elif days > 3 and game_covered(et_date, teams):
                 bets.loc[i, ["status", "result", "pnl"]] = \
                     "void", "void (no box score)", 0.0
                 bets.loc[i, "notes"] = "no box row after 3d - inactive or postponed"
                 n_settled += 1
+            elif days > 3:
+                # No box row AND no box coverage of that date at all: the
+                # feed is missing, not the player. Voiding here would book a
+                # data outage as a DNP (wehoop stalled five days in August
+                # 2026). Leave it open - a later run settles it.
+                n_stranded += 1
             if bets.loc[i, "status"] == "void":
                 # a CLV stamped while the bet was still open is meaningless
                 # once it voids - the close was priced off the same absence
@@ -362,6 +397,9 @@ def main():
     print(f"bankroll ${current:.2f}; {no} open bets")
     if n_clv:
         print(f"CLV_STAMPED {n_clv}")
+    if n_stranded:
+        print(f"BOX_FEED_BEHIND {n_stranded} finished bet(s) held open - no "
+              "box coverage of their date from wehoop or ESPN")
     print(f"SETTLED {n_settled}" if n_settled else "NOTHING_TO_SETTLE")
 
 

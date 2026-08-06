@@ -1014,6 +1014,24 @@ registrations are firewalled from betting outcomes.
   2026-08-01+ (spread open, season-end scoring, no betting). Home-adv
   collapse (3.3 → ~1.3 pts) identified and documented; β wrong-sign
   artifact recorded.
+- **2026-08-06 (news-watch session)** — Settlement unblocked: wehoop had
+  published nothing since games of 2026-08-01, leaving 20 finished bets
+  (8/3–8/5) stuck `open` and 3 days from being wrongly voided as
+  "no box score". Added `wnba/src/fetch_espn_box.py` — ESPN finals for ET
+  dates wehoop lacks, archived to committed `data/raw/espn_box/`, merged by
+  `settle_bets.py` for uncovered dates only (wehoop reclaims a date when it
+  publishes it). Validated before use: 2026-08-01 overlap reproduced wehoop
+  exactly (48/48 rows, zero stat/abbr/DNP diffs); reconstructed points
+  reconcile to official finals in all 24 team-games of 8/2–8/5; ET date
+  assignment matches wehoop's schedule on all 12 games incl. UTC rollovers.
+  All 20 bets settled (+$1.32, bankroll $97.00). Also hardened: the 3-day
+  auto-void now requires the game to be covered by a box feed, so a data
+  outage can never book itself as a DNP. **Settlement-only** — `features.py`,
+  `talent.py`, `grade_props.py` stay wehoop-only, so `fp-prospective-2`
+  scoring is untouched. Open issue: the model panel `fp_live.py` projects
+  from is still frozen at 2026-08-01 for the same upstream reason; extending
+  the fallback to the panel would mean reconstructing ~100 feature columns
+  from a second source and is NOT done — an owner decision, not a routine one.
 - **2026-08-04 (session 2b)** — T3 systematized per owner approval:
   `avail_watch.py` point-in-time availability/lineup capture into
   committed `data/raw/avail/` with structured diffs; PROTOCOL
