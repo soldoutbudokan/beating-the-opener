@@ -14,29 +14,29 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 | staked | $23.00 |
 | P&L | $-4.32 (-18.8% ROI) |
 | mean EV said (model) | +21.64% (n=23) |
-| mean CLV (vs close) | -4.18% (n=38) |
-| mean CLV* (shade-adj) | -4.07% (n=38) |
+| mean CLV (vs close) | -3.73% (n=41) |
+| mean CLV* (shade-adj) | -3.63% (n=41) |
 | Model-expected P&L | $+5.43 |
-| CLV-expected P&L | $-1.59 |
+| CLV-expected P&L | $-1.53 |
 
-CLV t-stat: -4.26 (iid); -3.69 clustered by match date (6 dates)
+CLV t-stat: -2.76 (iid); -3.24 clustered by match date (6 dates)
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 2026-08-06 | Caitlin Clark | assists | under | 8.5 | 100 | 1.0 | +16.9% |  |  |  |  |  |
 | 2026-08-06 | Jackie Young | rebounds | under | 4.5 | -125 | 1.0 | +15.6% |  |  |  |  |  |
 | 2026-08-06 | Aliyah Boston | rebounds | under | 8.5 | -122 | 1.0 | +14.7% |  |  |  |  |  |
-| 2026-08-05 | Kamilla Cardoso | assists | over | 2.5 | 154 | 1.0 | +29.0% |  |  |  |  |  |
+| 2026-08-05 | Kamilla Cardoso | assists | over | 2.5 | 154 | 1.0 | +29.0% |  |  |  | +32.5% | +32.5% |
 | 2026-08-05 | Jonquel Jones | threes | under | 1.5 | 124 | 1.0 | +22.1% |  |  |  | -6.5% | -6.5% |
 | 2026-08-05 | Rae Burrell | points | under | 15.5 | -108 | 1.0 | +20.4% |  |  |  |  |  |
-| 2026-08-05 | Erica Wheeler | assists | under | 6.5 | -158 | 1.0 | +18.9% |  |  |  |  |  |
+| 2026-08-05 | Erica Wheeler | assists | under | 6.5 | -158 | 1.0 | +18.9% |  |  |  | -5.3% | -5.3% |
 | 2026-08-05 | Sabrina Ionescu | assists | under | 5.5 | -102 | 1.0 | +18.8% |  |  |  | -9.5% | -9.5% |
 | 2026-08-05 | Natisha Hiedeman | assists | under | 5.5 | -132 | 1.0 | +17.1% |  |  |  | -1.1% | -1.1% |
 | 2026-08-05 | Angel Reese | assists | over | 2.5 | 148 | 1.0 | +16.3% |  |  |  | +6.7% | +6.7% |
 | 2026-08-05 | Rhyne Howard | assists | over | 3.5 | 136 | 1.0 | +25.3% |  |  |  | +18.0% | +18.0% |
 | 2026-08-05 | Rhyne Howard | rebounds | over | 3.5 | 106 | 1.0 | +18.2% |  |  |  | -6.6% | -6.6% |
 | 2026-08-05 | Shakira Austin | assists | under | 2.5 | 106 | 1.0 | +17.9% |  |  |  | -14.1% | -14.1% |
-| 2026-08-05 | Natasha Cloud | points | under | 12.5 | -114 | 1.0 | +21.1% |  |  |  |  |  |
+| 2026-08-05 | Natasha Cloud | points | under | 12.5 | -114 | 1.0 | +21.1% |  |  |  | -21.2% | -21.2% |
 | 2026-08-04 | Maria Conde | rebounds | over | 4.5 | 108 | 1.0 | +23.0% |  |  |  |  |  |
 | 2026-08-03 | Kahleah Copper | points | under | 21.5 | -106 | 1.0 | +24.4% |  |  |  | -0.7% | -0.7% |
 | 2026-08-03 | Chelsea Gray | threes | over | 1.5 | 110 | 1.0 | +20.5% |  |  |  | -5.4% | -5.4% |
