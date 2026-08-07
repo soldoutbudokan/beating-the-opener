@@ -110,18 +110,26 @@ def active_overrides(dates):
 
 
 def ev_cols(p, line_o, cost_o, line_u, cost_u, market, mu, cal):
-    """EV for a source's current two-way quote (same-line, sane vig)."""
+    """EV for a source's current two-way quote (same-line, sane vig).
+
+    Third return value is the model probability of the chosen side **at
+    this source's line**, which is not always the consensus line the
+    sheet's `p_over_news` is quoted at (Caitlin Clark assists 2026-08-07:
+    consensus 9.5, FanDuel 8.5). Callers that report a probability
+    alongside this EV must use it, not `p_over_news`.
+    """
     if any(pd.isna(x) for x in (line_o, cost_o, line_u, cost_u)):
-        return np.nan, ""
+        return np.nan, "", np.nan
     if line_o != line_u:
-        return np.nan, ""
+        return np.nan, "", np.nan
     bs = (fp.american_dec(cost_o) ** -1 + fp.american_dec(cost_u) ** -1)
     if not (1.00 <= bs <= 1.15):
-        return np.nan, ""
+        return np.nan, "", np.nan
     p_here = fp.p_over(market, mu, line_o, cal)
     ev_o = p_here * fp.american_dec(cost_o) - 1
     ev_u = (1 - p_here) * fp.american_dec(cost_u) - 1
-    return (ev_o, "over") if ev_o >= ev_u else (ev_u, "under")
+    return ((ev_o, "over", p_here) if ev_o >= ev_u
+            else (ev_u, "under", 1 - p_here))
 
 
 def main():
@@ -159,16 +167,16 @@ def main():
             continue
         p = fp.p_over(r.market, mu, line, cal)
         p_n = fp.p_over(r.market, mu_n, line, cal)
-        ev_c, side_c = ev_cols(p_n, getattr(r, "cons_line_over", np.nan),
-                               getattr(r, "cons_over_cost", np.nan),
-                               getattr(r, "cons_line_under", np.nan),
-                               getattr(r, "cons_under_cost", np.nan),
-                               r.market, mu_n, cal)
-        ev_f, side_f = ev_cols(p_n, getattr(r, "fd_line_over", np.nan),
-                               getattr(r, "fd_over_cost", np.nan),
-                               getattr(r, "fd_line_under", np.nan),
-                               getattr(r, "fd_under_cost", np.nan),
-                               r.market, mu_n, cal)
+        ev_c, side_c, _ = ev_cols(p_n, getattr(r, "cons_line_over", np.nan),
+                                  getattr(r, "cons_over_cost", np.nan),
+                                  getattr(r, "cons_line_under", np.nan),
+                                  getattr(r, "cons_under_cost", np.nan),
+                                  r.market, mu_n, cal)
+        ev_f, side_f, p_f = ev_cols(p_n, getattr(r, "fd_line_over", np.nan),
+                                    getattr(r, "fd_over_cost", np.nan),
+                                    getattr(r, "fd_line_under", np.nan),
+                                    getattr(r, "fd_under_cost", np.nan),
+                                    r.market, mu_n, cal)
         out.append({
             "date": r.date, "player": r.player, "market": r.market,
             "line": line, "mu_base": round(mu, 2), "mu_news": round(mu_n, 2),
@@ -180,6 +188,10 @@ def main():
             "side_cons": side_c,
             "ev_fd": round(ev_f, 4) if pd.notna(ev_f) else np.nan,
             "side_fd": side_f,
+            # P(side_fd) at the FANDUEL line - carried in memory for
+            # write_picks, dropped before the append below so the
+            # projections.csv archive keeps its fixed column set
+            "p_side_fd": round(p_f, 4) if pd.notna(p_f) else np.nan,
         })
     sheet = pd.DataFrame(out)
     sheet["ev_best"] = sheet[["ev_cons", "ev_fd"]].max(axis=1)
@@ -188,7 +200,8 @@ def main():
                  datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M"))
     path = os.path.join(ROOT, "live", "projections.csv")
     header = not os.path.exists(path)
-    sheet.to_csv(path, mode="a", header=header, index=False)
+    sheet.drop(columns=["p_side_fd"]).to_csv(path, mode="a", header=header,
+                                             index=False)
     print(f"{len(sheet)} props projected "
           f"({sheet.date.min()} .. {sheet.date.max()}); appended -> "
           f"live/projections.csv")
@@ -226,7 +239,10 @@ def write_picks(props, sheet, cal):
         cost = s.fd_over_cost if side == "over" else s.fd_under_cost
         line = s.fd_line_over
         dec = float(fp.american_dec(cost))
-        p_side = (r.p_over_news if side == "over" else 1 - r.p_over_news)
+        # at the FanDuel line, the line this bet is actually struck at -
+        # p_over_news is quoted at the consensus line and disagrees with
+        # ev_fd whenever the two books hang different numbers
+        p_side = r.p_side_fd
         # half the claimed edge -> implied shrunk probability -> 1/4 Kelly
         e_half = r.ev_fd / 2.0
         p_shrunk = (1 + e_half) / dec
