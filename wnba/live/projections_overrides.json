@@ -287,7 +287,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the league injury report this snapshot (was Out, Coach's Decision - 'ruled out for Sunday's game against the Fever', return_date 2026-08-06). Available for Minnesota's next game (2026-08-06); minutes_est left null deliberately - coming off the report restores availability, not a role, and she is a deep-bench rookie. No prop on the board.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 63
     },
     {
       "player": "Sydney Taylor",
@@ -404,7 +404,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "'Carleton (foot) is probable for Thursday's game against Toronto.' New Day-To-Day, but probable = expected to play; she is on tonight's sheet with a points UNDER 15.5 (play=True). No minutes adjustment - a probable tag is not evidence of a cut, and cutting it would push the existing under further, which is exactly the direction this entry must not manufacture. Flagged in the pick table as Day-To-Day.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 66
     },
     {
       "player": "Teja Oblak",
@@ -417,7 +417,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "'Oblak (knee) is listed as doubtful for Thursday's game against Toronto.' Schema has no doubtful tier; mapped to questionable rather than out because calling a doubtful player a scratch would invent one. Range [6,12] reflects her bench role (last 8 games: 7-17 min, mean ~12) conditional on playing; no point estimate attached, so the model is unchanged. No Oblak props on the 2026-08-06 sheet - inert, recorded for the archive. [mechanical note: minutes_range is left null on purpose. fp_live.active_overrides averages a range when minutes_est is null, so writing [6, 12] here would have silently applied a 9-minute cut - the exact adjustment this entry argues against. The range is stated in this text instead so the judgement is on the record without moving the model.]",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 64
     },
     {
       "player": "Jordan Harrison",
@@ -638,7 +638,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED in the 1933Z diff: Atkins back from Out to Day-To-Day on both the league report and the event 401857120 report - 'Atkins (ribs) is probable for Thursday's game against Minnesota.' Supersedes entry 44 (out, minutes_est 0, 1543Z), whose zero would now be wrong. Recorded as questionable with no minutes estimate: probable-with-ribs can be a normal load or a trimmed one, and inventing a number would manufacture a bet. No LAS prop is on the current sheet, so this is display/record only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 65
     },
     {
       "player": "Raegan Beers",
@@ -664,7 +664,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2133Z diff: Morgan (Coach's Decision, Out) has dropped off the ESPN league report, and she is absent from the event 401857120 (LA at MIN) report in both the 2032Z and 2133Z snapshots. Supersedes entry 45 (out, minutes_est 0, 1543Z), whose zero is no longer supported ~3.5h before tip. Recorded as questionable with no minutes estimate, the same neutral treatment given to Ariel Atkins at 1933Z: a cleared coach's-decision tag is not evidence she plays a normal load, and inventing either a zero or a full load would manufacture a bet. No Morgan prop is on the current sheet, so this is record-only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 62
     },
     {
       "player": "Alysha Clark",
@@ -806,6 +806,84 @@
       "source": "avail:2026-08-06/2332Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "\"Onyiah (coach's decision) has been ruled out for Thursday's game against the Aces.\" Upstream RENAME, not a new absence: the 2332Z snapshot replaced the Indiana Fever row 'Ugonne Onyiah' with 'Michelle Onyiah' - identical comment, team, return date (2026-08-08) and event (401857119). The avail_watch diff therefore reads NEW Michelle Onyiah / CLEARED Ugonne Onyiah; both are the same player. Supersedes #52 under the name the feed now publishes, so a name match still finds the override.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Alissa Pili",
+      "added": "2026-08-07T00:32:00Z",
+      "game_date": "2026-08-06",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/0032Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0032Z diff: 'Pili (coach's decision) has been ruled out for Thursday's game in Minnesota.' Out on both the league report and the event 401857120 (LAS@MIN) report, return_date 2026-08-09. Entry 23 was the same coach's-decision Out for the 2026-08-05 game and has expired, so this is a fresh entry rather than a supersede. No Pili prop on the current sheet - record/display only.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Tonie Morgan",
+      "added": "2026-08-07T00:32:00Z",
+      "game_date": "2026-08-06",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/0032Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0032Z diff: Morgan is back on the league report as Out (Coach's Decision, comment 'out', return_date 2026-08-09) and also appears Out on the event 401857120 (LAS@MIN) report. Supersedes entry 49 (questionable, 2133Z), which recorded her dropping OFF the report ~3.5h before tip; the feed has now restored the ruling roughly 30 minutes before tip, so the scratch is the current, better-sourced read. No Morgan prop on the current sheet - record only.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Liatu King",
+      "added": "2026-08-07T00:32:00Z",
+      "game_date": "2026-08-06",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/0032Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0032Z diff: 'King (coach's decision) has been ruled out for Thursday's game against the Sparks.' Out on the league report and the event 401857120 (LAS@MIN) report, return_date 2026-08-08. Supersedes entry 20 (in, 2026-08-06), which had her available after clearing the report on 08-05. Deep-bench rookie, no King prop on the sheet - the entry matters for the archive, not for tonight's prices.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Teja Oblak",
+      "added": "2026-08-07T00:32:00Z",
+      "game_date": "2026-08-06",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/0032Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPDATED in the 0032Z diff, Day-To-Day -> Out: 'Oblak (knee) won't play Thursday versus the Tempo.' Out on the league report and the event 401857121 (TOR@PDX) report. Supersedes entry 30, which mapped her doubtful tag to questionable with no minutes cut precisely because doubtful is not a scratch; the feed has now resolved it to a scratch, so minutes_est 0 is sourced rather than inferred. No Oblak prop on the current sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ariel Atkins",
+      "added": "2026-08-07T00:32:00Z",
+      "game_date": "2026-08-06",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/0032Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 0032Z diff: Atkins (ribs, 'probable for Thursday's game against Minnesota') has dropped off both the league report and the event 401857120 report ~30 minutes before tip. Supersedes entry 47 (questionable, 1933Z). Status 'in', minutes_est deliberately null: coming off the report restores availability, not a known load, and a rib issue that just cleared is no basis for inventing a number. No LAS prop on the current sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Bridget Carleton",
+      "added": "2026-08-07T00:32:00Z",
+      "game_date": "2026-08-06",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/0032Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 0032Z diff: Carleton (foot, 'probable for Thursday's game against Toronto') has dropped off both the league report and the event 401857121 report. Supersedes entry 29, which already carried status 'in' with no minutes adjustment - the clear confirms that read rather than changing it, so this is record-only and the model is unchanged. She no longer warrants a Day-To-Day flag in the pick table.",
       "author": "news-watch",
       "superseded_by": null
     }
