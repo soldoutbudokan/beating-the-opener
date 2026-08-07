@@ -10,19 +10,30 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 58 (27W-31L), 0 push, 2 void, 6 open |
+| settled | 58 (27W-31L), 0 push, 2 void, 17 open |
 | staked | $58.00 |
 | P&L | $-3.40 (-5.9% ROI) |
 | mean EV said (model) | +22.23% (n=58) |
-| mean CLV (vs close) | -4.45% (n=45) |
-| mean CLV* (shade-adj) | -4.37% (n=45) |
+| mean CLV (vs close) | -5.46% (n=58) |
+| mean CLV* (shade-adj) | -5.39% (n=58) |
 | Model-expected P&L | $+13.34 |
-| CLV-expected P&L | $-2.00 |
+| CLV-expected P&L | $-3.17 |
 
-CLV t-stat: -3.42 (iid); -3.26 clustered by match date (7 dates)
+CLV t-stat: -4.94 (iid); -2.53 clustered by match date (8 dates)
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-08-08 | Carla Leite | assists | under | 7.5 | 104 | 1.0 | +51.1% |  |  |  |  |  |
+| 2026-08-08 | Bridget Carleton | points | under | 15.5 | 104 | 1.0 | +40.0% |  |  |  |  |  |
+| 2026-08-08 | Aliyah Boston | rebounds | under | 8.5 | 112 | 1.0 | +31.6% |  |  |  |  |  |
+| 2026-08-08 | Courtney Vandersloot | rebounds | under | 3.5 | -128 | 1.0 | +31.2% |  |  |  |  |  |
+| 2026-08-08 | Natasha Cloud | assists | under | 6.5 | -125 | 1.0 | +28.2% |  |  |  |  |  |
+| 2026-08-08 | Megan DiLeo | points | under | 15.5 | -102 | 1.0 | +26.9% |  |  |  |  |  |
+| 2026-08-08 | Caitlin Clark | assists | under | 8.5 | 110 | 1.0 | +24.5% |  |  |  |  |  |
+| 2026-08-08 | NaLyssa Smith | points | under | 12.5 | -130 | 1.0 | +23.0% |  |  |  |  |  |
+| 2026-08-08 | A'ja Wilson | assists | under | 3.5 | 114 | 1.0 | +20.4% |  |  |  |  |  |
+| 2026-08-08 | Olivia Miles | threes | over | 1.5 | 140 | 1.0 | +16.0% |  |  |  |  |  |
+| 2026-08-08 | Jackie Young | rebounds | under | 4.5 | 112 | 1.0 | +38.7% |  |  |  |  |  |
 | 2026-08-07 | Angel Reese | threes | under | 0.5 | 118 | 1.0 | +93.4% |  |  |  |  |  |
 | 2026-08-07 | Diamond Miller | points | under | 11.5 | -114 | 1.0 | +28.9% |  |  |  |  |  |
 | 2026-08-07 | Paige Bueckers | assists | over | 5.5 | 110 | 1.0 | +22.9% |  |  |  |  |  |
@@ -32,21 +43,21 @@ CLV t-stat: -3.42 (iid); -3.26 clustered by match date (7 dates)
 | 2026-08-06 | Caitlin Clark | assists | under | 8.5 | 100 | 1.0 | +16.9% | 8 | won | +1.00 | -4.9% | -4.9% |
 | 2026-08-06 | Jackie Young | rebounds | under | 4.5 | -125 | 1.0 | +15.6% | 4 | won | +0.80 | -16.4% | -16.4% |
 | 2026-08-06 | Aliyah Boston | rebounds | under | 8.5 | -122 | 1.0 | +14.7% | 12 | lost | -1.00 | -18.6% | -18.6% |
-| 2026-08-06 | Nyara Sabally | points | under | 13.5 | -108 | 1.0 | +45.0% | 17 | lost | -1.00 |  |  |
-| 2026-08-06 | Natasha Howard | rebounds | over | 6.5 | 124 | 1.0 | +42.5% | 6 | lost | -1.00 |  |  |
-| 2026-08-06 | Carla Leite | assists | under | 8.5 | -158 | 1.0 | +37.9% | 11 | lost | -1.00 |  |  |
-| 2026-08-06 | Kayla McBride | points | over | 17.5 | -113 | 1.0 | +29.2% | 15 | lost | -1.00 |  |  |
-| 2026-08-06 | Courtney Williams | rebounds | over | 4.5 | 122 | 1.0 | +26.0% | 8 | won | +1.22 |  |  |
-| 2026-08-06 | Maria Conde | rebounds | over | 4.5 | 108 | 1.0 | +25.0% | 6 | won | +1.08 |  |  |
+| 2026-08-06 | Nyara Sabally | points | under | 13.5 | -108 | 1.0 | +45.0% | 17 | lost | -1.00 | -6.0% | -6.0% |
+| 2026-08-06 | Natasha Howard | rebounds | over | 6.5 | 124 | 1.0 | +42.5% | 6 | lost | -1.00 | -7.6% | -7.6% |
+| 2026-08-06 | Carla Leite | assists | under | 8.5 | -158 | 1.0 | +37.9% | 11 | lost | -1.00 | -7.6% | -7.6% |
+| 2026-08-06 | Kayla McBride | points | over | 17.5 | -113 | 1.0 | +29.2% | 15 | lost | -1.00 | -5.8% | -5.8% |
+| 2026-08-06 | Courtney Williams | rebounds | over | 4.5 | 122 | 1.0 | +26.0% | 8 | won | +1.22 | -0.4% | -0.4% |
+| 2026-08-06 | Maria Conde | rebounds | over | 4.5 | 108 | 1.0 | +25.0% | 6 | won | +1.08 | -6.7% | -6.7% |
 | 2026-08-06 | Chelsea Gray | threes | over | 1.5 | 110 | 1.0 | +22.2% | 3 | won | +1.10 | -7.8% | -7.8% |
-| 2026-08-06 | Olivia Miles | threes | over | 1.5 | 138 | 1.0 | +21.9% | 3 | won | +1.38 |  |  |
-| 2026-08-06 | Rae Burrell | threes | under | 1.5 | 104 | 1.0 | +18.4% | 3 | lost | -1.00 |  |  |
-| 2026-08-06 | NaLyssa Smith | points | under | 11.5 | -110 | 1.0 | +16.2% | 14 | lost | -1.00 |  |  |
-| 2026-08-06 | Julie Allemand | assists | under | 6.5 | 100 | 1.0 | +23.8% | 12 | lost | -1.00 |  |  |
-| 2026-08-06 | Megan DiLeo | rebounds | under | 4.5 | 102 | 1.0 | +22.4% | 3 | won | +1.02 |  |  |
+| 2026-08-06 | Olivia Miles | threes | over | 1.5 | 138 | 1.0 | +21.9% | 3 | won | +1.38 | -7.7% | -7.7% |
+| 2026-08-06 | Rae Burrell | threes | under | 1.5 | 104 | 1.0 | +18.4% | 3 | lost | -1.00 | -4.8% | -4.8% |
+| 2026-08-06 | NaLyssa Smith | points | under | 11.5 | -110 | 1.0 | +16.2% | 14 | lost | -1.00 | -14.8% | -14.8% |
+| 2026-08-06 | Julie Allemand | assists | under | 6.5 | 100 | 1.0 | +23.8% | 12 | lost | -1.00 | -12.9% | -12.9% |
+| 2026-08-06 | Megan DiLeo | rebounds | under | 4.5 | 102 | 1.0 | +22.4% | 3 | won | +1.02 | -5.8% | -5.8% |
 | 2026-08-05 | Kamilla Cardoso | assists | over | 2.5 | 154 | 1.0 | +29.0% | 3 | won | +1.54 | +32.5% | +32.5% |
 | 2026-08-05 | Jonquel Jones | threes | under | 1.5 | 124 | 1.0 | +22.1% | 1 | won | +1.24 | -6.5% | -6.5% |
-| 2026-08-05 | Rae Burrell | points | under | 15.5 | -108 | 1.0 | +20.4% | 13 | won | +0.93 |  |  |
+| 2026-08-05 | Rae Burrell | points | under | 15.5 | -108 | 1.0 | +20.4% | 13 | won | +0.93 | -9.8% | -9.8% |
 | 2026-08-05 | Erica Wheeler | assists | under | 6.5 | -158 | 1.0 | +18.9% | 5 | won | +0.63 | -5.3% | -5.3% |
 | 2026-08-05 | Sabrina Ionescu | assists | under | 5.5 | -102 | 1.0 | +18.8% | 6 | lost | -1.00 | -9.5% | -9.5% |
 | 2026-08-05 | Natisha Hiedeman | assists | under | 5.5 | -132 | 1.0 | +17.1% | 6 | lost | -1.00 | -1.1% | -1.1% |
@@ -55,7 +66,7 @@ CLV t-stat: -3.42 (iid); -3.26 clustered by match date (7 dates)
 | 2026-08-05 | Rhyne Howard | rebounds | over | 3.5 | 106 | 1.0 | +18.2% | 6 | won | +1.06 | -6.6% | -6.6% |
 | 2026-08-05 | Shakira Austin | assists | under | 2.5 | 106 | 1.0 | +17.9% | 2 | won | +1.06 | -14.1% | -14.1% |
 | 2026-08-05 | Natasha Cloud | points | under | 12.5 | -114 | 1.0 | +21.1% | 15 | lost | -1.00 | -21.2% | -21.2% |
-| 2026-08-04 | Maria Conde | rebounds | over | 4.5 | 108 | 1.0 | +23.0% | 6 | won | +1.08 |  |  |
+| 2026-08-04 | Maria Conde | rebounds | over | 4.5 | 108 | 1.0 | +23.0% | 6 | won | +1.08 | -26.4% | -26.4% |
 | 2026-08-03 | Kahleah Copper | points | under | 21.5 | -106 | 1.0 | +24.4% | 31 | lost | -1.00 | -0.7% | -0.7% |
 | 2026-08-03 | Chelsea Gray | threes | over | 1.5 | 110 | 1.0 | +20.5% | 1 | lost | -1.00 | -5.4% | -5.4% |
 | 2026-08-03 | Rhyne Howard | points | under | 16.5 | -110 | 1.0 | +21.4% | 19 | lost | -1.00 | -6.2% | -6.2% |

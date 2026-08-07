@@ -9,9 +9,11 @@ Saves:
 
 Usage: python3 src/scrape_bettingpros.py [--season 2025]
        python3 src/scrape_bettingpros.py --refetch 2679,2680   # re-archive events
+       python3 src/scrape_bettingpros.py --fill-pages          # repair truncation
 Idempotent: skips files that already exist. Offers are only fetched once the
 event has actually finished (tip + FINAL_CUSHION_H), so the first snapshot is
-already the close.
+already the close. `offers` is paginated at 10/page upstream and every page is
+followed - see fetch_offers() for what keeping page 1 alone used to cost.
 """
 import argparse
 import datetime as dt
@@ -89,6 +91,106 @@ def load_gz(path):
         return json.load(f)
 
 
+def fetch_offers(eid, mid):
+    """Every page of an event x market offers payload, or None on failure.
+
+    The API paginates `offers` at 10 per page. The first version of this
+    scraper kept page 1 only, so any event x market with more than 10 players
+    was silently truncated - 476 of 8145 archived files, 914 offers lost,
+    concentrated in points (the market with the most quoted players). The cost
+    is invisible until settlement: `close_prob` cannot find the player in the
+    snapshot, so the bet's CLV stays blank forever (NaLyssa Smith 8/6, Nyara
+    Sabally 8/6, Rae Burrell 8/5, Maria Conde 8/4).
+
+    A partial fetch is worse than none - it would archive a payload that looks
+    complete - so any page failing aborts the whole payload and leaves the
+    existing file untouched for the next run to retry.
+    """
+    d = get(f"{API}/offers?sport=WNBA&market_id={mid}&event_id={eid}&location=ALL")
+    if d is None:
+        return None
+    offers = list(d.get("offers") or [])
+    pages = int((d.get("_pagination") or {}).get("total_pages") or 1)
+    for page in range(2, pages + 1):
+        p = get(f"{API}/offers?sport=WNBA&market_id={mid}&event_id={eid}"
+                f"&location=ALL&page={page}")
+        if p is None:
+            print(f"FAIL offers event {eid} market {mid} page {page}", flush=True)
+            return None
+        offers.extend(p.get("offers") or [])
+        time.sleep(PAUSE)
+    d["offers"] = offers
+    d["_pages_fetched"] = pages
+    return d
+
+
+def offer_ids(payload):
+    """Stable per-offer identity, for merges that must not drop anything."""
+    out = []
+    for o in payload.get("offers") or []:
+        oid = o.get("id")
+        if oid is None:
+            pl = (o.get("participants") or [{}])[0].get("player") or {}
+            oid = (pl.get("first_name", ""), pl.get("last_name", ""))
+        out.append(oid)
+    return out
+
+
+def fill_pages(only=None):
+    """Backfill pages 2..N into archived files truncated by the page-1 bug.
+
+    Non-destructive by construction: the original payload (and its `utc`, the
+    time the close was actually captured) is kept as-is and only unseen offers
+    are appended, so a re-fetch that comes back short of what upstream served
+    at close time can never shrink the archive.
+    """
+    paths = sorted(glob.glob(os.path.join(RAW, "offers", "*.json.gz")))
+    fixed = grew = failed = 0
+    for path in paths:
+        eid, mid = os.path.basename(path).split(".")[0].split("_")
+        if only and int(eid) not in only:
+            continue
+        d = load_gz(path)
+        pag = d.get("_pagination") or {}
+        pages = int(pag.get("total_pages") or 1)
+        have = len(d.get("offers") or [])
+        if pages <= 1 or have >= int(pag.get("total_items") or have):
+            continue
+        seen = set(map(str, offer_ids(d)))
+        added = []
+        ok = True
+        for page in range(2, pages + 1):
+            p = get(f"{API}/offers?sport=WNBA&market_id={mid}&event_id={eid}"
+                    f"&location=ALL&page={page}")
+            if p is None:
+                ok = False
+                break
+            for o in p.get("offers") or []:
+                one = {"offers": [o]}
+                if str(offer_ids(one)[0]) not in seen:
+                    seen.add(str(offer_ids(one)[0]))
+                    added.append(o)
+            time.sleep(PAUSE)
+        if not ok:
+            print(f"FAIL fill {eid}_{mid}: page fetch failed, file untouched",
+                  flush=True)
+            failed += 1
+            continue
+        fixed += 1
+        if not added:
+            continue
+        d["offers"] = list(d.get("offers") or []) + added
+        d["_pages_fetched"] = pages
+        d["_pages_backfilled_utc"] = dt.datetime.now(
+            dt.timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+        save_gz(path, d)
+        grew += 1
+        if grew % 50 == 0:
+            print(f"  filled {grew} files", flush=True)
+    print(f"fill-pages: {fixed} checked, {grew} grew, {failed} failed",
+          flush=True)
+
+
 def fetch_events(season):
     """Fetch season events and MERGE into the committed archive file.
 
@@ -135,6 +237,10 @@ def main():
     ap.add_argument("--refetch", default="",
                     help="comma-separated event ids to re-archive, overwriting "
                          "existing files (repairs snapshots taken mid-game)")
+    ap.add_argument("--fill-pages", default=None, const="all", nargs="?",
+                    help="backfill pages 2..N into files truncated by the "
+                         "page-1 bug: 'all' or comma-separated event ids. "
+                         "Appends only; never rewrites page 1 or its `utc`.")
     args = ap.parse_args()
     seasons = [args.season] if args.season else sorted(SEASONS)
     refetch = {int(x) for x in args.refetch.split(",") if x.strip()}
@@ -146,6 +252,13 @@ def main():
         raise SystemExit(1)
 
     os.makedirs(os.path.join(RAW, "offers"), exist_ok=True)
+
+    if args.fill_pages:
+        only = (None if args.fill_pages == "all"
+                else {int(x) for x in args.fill_pages.split(",") if x.strip()})
+        fill_pages(only)
+        print("SCRAPE_COMPLETE", flush=True)
+        return
 
     for season in seasons:
         events = fetch_events(season)
@@ -171,16 +284,20 @@ def main():
 
         def fetch_one(job):
             eid, mid, path, sched = job
-            d = get(f"{API}/offers?sport=WNBA&market_id={mid}&event_id={eid}&location=ALL")
+            d = fetch_offers(eid, mid)
             if d is None:
                 print(f"FAIL offers event {eid} market {mid}", flush=True)
                 return
-            # the archive is irreplaceable: never trade a good file for an
-            # empty response (rolled-off event, market never offered)
-            if os.path.exists(path) and not d.get("offers"):
-                print(f"KEEP existing {eid}_{mid}: refetch returned 0 offers",
-                      flush=True)
-                return
+            # the archive is irreplaceable: never trade a good file for a
+            # thinner one (rolled-off event, market never offered, or a
+            # refetch that came back short of what upstream served at close)
+            if os.path.exists(path):
+                old = len(load_gz(path).get("offers") or [])
+                if len(d.get("offers") or []) < max(old, 1):
+                    print(f"KEEP existing {eid}_{mid}: refetch returned "
+                          f"{len(d.get('offers') or [])} offers vs {old}",
+                          flush=True)
+                    return
             existed = os.path.exists(path)
             save_gz(path, d)
             done[0] += 1
