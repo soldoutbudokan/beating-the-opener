@@ -115,7 +115,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "DOWNGRADE the status diff does not show: Stevens (CHI, Personal) stayed Out across 21:35Z -> 22:36Z, but her return_date moved 2026-08-05 -> 2026-08-08, i.e. she is now ruled out of Chicago's 8/5 game rather than a candidate to return for it. Recorded because the printed diff only reports status transitions and would miss this. Inert on price by design: she has already missed 7/30 and 8/1 (nan minutes in the panel) after a 28-33 min starter role through 7/22, so the panel's recent CHI state is already Stevens-less - her continued absence is the status quo, and no minutes are injected into Cardoso or Reese, whose 8/5 props are on the sheet. No Stevens prop is quoted.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 72
     },
     {
       "player": "Maddy Westbeld",
@@ -313,7 +313,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "'Westbeld (coach's decision) has been ruled out for Wednesday's game against the Sparks.' Supersedes entry 8, which had her in for this game date on the previous snapshot. Captured with LA@CHI already in progress - resolved status, not a pre-tip judgement.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 75
     },
     {
       "player": "Alissa Pili",
@@ -690,7 +690,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 2232Z diff, on both the league report and the event 401857119 (LV@IND) report: 'Hall (coach's decision) has been ruled out for Thursday's game against the Aces.' Supersedes the 2026-08-05 'in' entry (14) for tonight's game. Deep-bench CD player with no prop on the sheet - recorded for the archive.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 73
     },
     {
       "player": "Ugonne Onyiah",
@@ -716,7 +716,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2232Z diff: Boston (lower leg) has dropped off BOTH the league injury report and the event 401857119 report, having been 'probable' at 2133Z. Reads as resolved-available for tonight's LV@IND. Supersedes entry 15 (questionable). No minutes estimate: 'in' restores the base model's own state rather than manufacturing one.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 68
     },
     {
       "player": "Caitlin Clark",
@@ -729,7 +729,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2232Z diff: Clark (back) off both the league report and the event 401857119 report after being 'probable' at 2133Z - resolved-available for tonight's LV@IND. Supersedes entry 16 (questionable). No minutes estimate.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 69
     },
     {
       "player": "Dana Evans",
@@ -807,7 +807,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "\"Onyiah (coach's decision) has been ruled out for Thursday's game against the Aces.\" Upstream RENAME, not a new absence: the 2332Z snapshot replaced the Indiana Fever row 'Ugonne Onyiah' with 'Michelle Onyiah' - identical comment, team, return date (2026-08-08) and event (401857119). The avail_watch diff therefore reads NEW Michelle Onyiah / CLEARED Ugonne Onyiah; both are the same player. Supersedes #52 under the name the feed now publishes, so a name match still finds the override.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 76
     },
     {
       "player": "Alissa Pili",
@@ -846,7 +846,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0032Z diff: 'King (coach's decision) has been ruled out for Thursday's game against the Sparks.' Out on the league report and the event 401857120 (LAS@MIN) report, return_date 2026-08-08. Supersedes entry 20 (in, 2026-08-06), which had her available after clearing the report on 08-05. Deep-bench rookie, no King prop on the sheet - the entry matters for the archive, not for tonight's prices.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 74
     },
     {
       "player": "Teja Oblak",
@@ -900,6 +900,123 @@
       "source": "avail:2026-08-07/0233Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0233Z diff: \"Bankole (coach's decision) has been ruled out for Thursday's game against Portland\" (Toronto Tempo, return_date 2026-08-10). Supersedes entry 32, which read her 08-06 clearing off the report as available - the feed has now re-ruled her out for that same game, so the scratch is the current and better-sourced read. Inert for pricing: TOR@POR (02:00Z) is already STATUS_IN_PROGRESS and Bankole has zero rows in projections.csv. Logged because the protocol treats any new Out - Coach's Decision included - as an override entry, and because the archive is the future training set.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Aliyah Boston",
+      "added": "2026-08-07T22:32:00Z",
+      "game_date": "2026-08-08",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2232Z diff: Boston is back on the ESPN league report as Day-To-Day (Lower Leg), but the comment reads 'Boston (lower leg) is listed as probable for Saturday's game against the Sky' (return_date 2026-08-08 = IND@CHI). Probable = expected to play, so this is 'in' with no minutes cut - the conservative read, since an open owner fill on the 8/8 sheet is Boston rebounds UNDER 8.5 and a minutes haircut would be a self-serving nudge toward a position already taken. Supersedes entry 53 (cleared/in for 8/6). Day-To-Day status still earns the display-only availability annotation on any 8/8 pick.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Caitlin Clark",
+      "added": "2026-08-07T22:32:00Z",
+      "game_date": "2026-08-08",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2232Z diff: Clark is back on the ESPN league report as Day-To-Day (Back), comment 'Clark (back) is probable for Saturday's game against the Sky' (return_date 2026-08-08 = IND@CHI). Probable = expected to play: 'in', no minutes estimate. Same restraint as Boston - an open owner fill on the 8/8 sheet is Clark assists UNDER 8.5, so cutting her minutes off a 'probable' tag would manufacture support for a position already held. Supersedes entry 54 (cleared/in for 8/6). Day-To-Day earns the display-only annotation.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Indya Nivar",
+      "added": "2026-08-07T22:32:00Z",
+      "game_date": "2026-08-07",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2232Z diff on BOTH the league report and the event 401857123 (ATL@WSH) report: Nivar (Coach's Decision) status Out, comment 'out', return_date 2026-08-10. ATL@WSH tips 23:30Z tonight, so this is a pre-tip coach's-decision scratch. Deep-bench player with no prop on the sheet - record-only, minutes 0.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Justine Pissott",
+      "added": "2026-08-07T22:32:00Z",
+      "game_date": "2026-08-08",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2232Z diff: 'Pissott (leg) has been ruled out for Saturday's game against the Lynx' (Las Vegas Aces, status Out, type Leg, return_date 2026-08-09). LV plays MIN on 2026-08-08, so the Out covers a game on the next sheet. Bench player with no prop currently listed - record-only, minutes 0.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Azura Stevens",
+      "added": "2026-08-07T22:32:00Z",
+      "game_date": "2026-08-08",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2232Z diff: Stevens (Chicago Sky, Out - Personal) has dropped off the league report; at 1933Z the comment read 'Stevens (personal) is on track to be available for Saturday's game against the Sparks' with return_date 2026-08-08. Reads as resolved-available for Chicago's 8/8 game. Recorded 'in' with NO teammate adjustments: a returning Sky big would, if anything, trim teammate minutes, and every Sky-side open fill on the 8/8 sheet is an UNDER - propagating that inference would be a self-serving nudge, so the entry records her availability only. Supersedes entry 7.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Bree Hall",
+      "added": "2026-08-07T22:32:00Z",
+      "game_date": "2026-08-08",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2232Z diff: Hall's Indiana coach's-decision Out has dropped off the league report. The CD covered Thursday's game vs the Aces, already played; return_date was 2026-08-08. Record-only 'in' for Indiana's next game, no minutes estimate - a cleared CD says nothing about rotation size. Supersedes entry 51.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Liatu King",
+      "added": "2026-08-07T22:32:00Z",
+      "game_date": "2026-08-08",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2232Z diff: King's Minnesota coach's-decision Out (for Thursday vs the Sparks, already played; return_date 2026-08-08) has dropped off the league report. Record-only 'in' for the Lynx's 8/8 game, no minutes estimate. Supersedes entry 63.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Maddy Westbeld",
+      "added": "2026-08-07T22:32:00Z",
+      "game_date": "2026-08-08",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2232Z diff: Westbeld's Chicago coach's-decision Out (for Wednesday vs the Sparks, already played; return_date 2026-08-08) has dropped off the league report. Record-only 'in' for the Sky's 8/8 game, no minutes estimate. Supersedes entry 22.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Michelle Onyiah",
+      "added": "2026-08-07T22:32:00Z",
+      "game_date": "2026-08-08",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-07/2232Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2232Z diff: Onyiah's Indiana coach's-decision Out (for Thursday vs the Aces, already played; return_date 2026-08-08) has dropped off the league report. Record-only 'in', no minutes estimate. This is the same upstream row that was renamed from 'Ugonne Onyiah' on 2026-08-06 (entry 60). Supersedes entry 60.",
       "author": "news-watch",
       "superseded_by": null
     }
