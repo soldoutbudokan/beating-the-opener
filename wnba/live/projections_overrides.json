@@ -443,7 +443,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Diff CLEARED: Bankole drops off the injury report (was Out - coach's decision - for Tuesday's game vs the Valkyries, return date 2026-08-06). Toronto plays at Portland on 2026-08-06, so she is available. Entry 9 (out, 0 min) is left standing rather than superseded: it was the correct judgement for its own game date, 2026-08-04. No minutes number - 3 appearances, 8/2/DNP minutes, no props on the sheet.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 67
     },
     {
       "player": "Alysha Clark",
@@ -884,6 +884,22 @@
       "source": "avail:2026-08-07/0032Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 0032Z diff: Carleton (foot, 'probable for Thursday's game against Toronto') has dropped off both the league report and the event 401857121 report. Supersedes entry 29, which already carried status 'in' with no minutes adjustment - the clear confirms that read rather than changing it, so this is record-only and the model is unchanged. She no longer warrants a Day-To-Day flag in the pick table.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ornella Bankole",
+      "added": "2026-08-07T02:33:00Z",
+      "game_date": "2026-08-06",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": [
+        0,
+        0
+      ],
+      "source": "avail:2026-08-07/0233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0233Z diff: \"Bankole (coach's decision) has been ruled out for Thursday's game against Portland\" (Toronto Tempo, return_date 2026-08-10). Supersedes entry 32, which read her 08-06 clearing off the report as available - the feed has now re-ruled her out for that same game, so the scratch is the current and better-sourced read. Inert for pricing: TOR@POR (02:00Z) is already STATUS_IN_PROGRESS and Bankole has zero rows in projections.csv. Logged because the protocol treats any new Out - Coach's Decision included - as an override entry, and because the archive is the future training set.",
       "author": "news-watch",
       "superseded_by": null
     }
