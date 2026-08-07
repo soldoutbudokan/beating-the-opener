@@ -1,0 +1,1006 @@
+{
+"captured_utc": "2026-08-07 03:33",
+"events": [
+{
+"date": "2026-08-06T23:00Z",
+"event_id": "401857119",
+"name": "LV @ IND",
+"status": "STATUS_FINAL"
+},
+{
+"date": "2026-08-07T01:00Z",
+"event_id": "401857120",
+"name": "LA @ MIN",
+"status": "STATUS_FINAL"
+},
+{
+"date": "2026-08-07T02:00Z",
+"event_id": "401857121",
+"name": "TOR @ POR",
+"status": "STATUS_IN_PROGRESS"
+}
+],
+"injuries": [
+{
+"comment": "Paopao (leg) will be re-evaluated in \"the coming weeks,\" WNBA reporter Kareem Copeland reports.",
+"player": "Te-Hina Paopao",
+"return_date": "2026-08-10",
+"source": "league",
+"status": "Out",
+"team": "Atlanta Dream",
+"type": "Leg"
+},
+{
+"comment": "out",
+"player": "Sydney Taylor",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Out",
+"team": "Chicago Sky",
+"type": "Groin"
+},
+{
+"comment": "Westbeld (coach's decision) has been ruled out for Wednesday's game against the Sparks.",
+"player": "Maddy Westbeld",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Out",
+"team": "Chicago Sky",
+"type": "Coach's Decision"
+},
+{
+"comment": "Stevens (personal) is listed as out for Wednesday's game versus the Sparks.",
+"player": "Azura Stevens",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Out",
+"team": "Chicago Sky",
+"type": "Personal"
+},
+{
+"comment": "Diggins (knee) has been ruled out for Monday's game against the Mercury.",
+"player": "Skylar Diggins",
+"return_date": "2026-08-10",
+"source": "league",
+"status": "Out",
+"team": "Chicago Sky",
+"type": "Knee"
+},
+{
+"comment": "The Sky announced Tuesday that Jackson will miss the remainder of the season after suffering a torn ACL in her left knee during Sunday's 86-79 win over the Lynx.",
+"player": "Rickea Jackson",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Chicago Sky",
+"type": "Knee"
+},
+{
+"comment": "Beers is out for Friday's game against Phoenix with a concussion.",
+"player": "Raegan Beers",
+"return_date": "2026-08-13",
+"source": "league",
+"status": "Out",
+"team": "Connecticut Sun",
+"type": "Concussion"
+},
+{
+"comment": "Griner (knee) is questionable for Thursday's game against the Mercury.",
+"player": "Brittney Griner",
+"return_date": "2026-08-07",
+"source": "league",
+"status": "Out",
+"team": "Connecticut Sun",
+"type": "Knee"
+},
+{
+"comment": "The Tempo traded Kliundikova's (not injury related) rights along with a second-round pick to the Sun in exchange for Aneesah Morrow, Myles Ehrlich of Winsidr.com reports.",
+"player": "Maria Kliundikova",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Connecticut Sun",
+"type": "Not Injury Related"
+},
+{
+"comment": "Clark (back) is questionable for Friday's game against the Valkyries.",
+"player": "Alysha Clark",
+"return_date": "2026-08-07",
+"source": "league",
+"status": "Day-To-Day",
+"team": "Dallas Wings",
+"type": "Back"
+},
+{
+"comment": "Rupert is pregnant, and the Valkyries have filed for a replacement contract ahead of the 2026 season, Alexa Philippou of ESPN.com reports Thursday.",
+"player": "Iliana Rupert",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Golden State Valkyries",
+"type": "Not Injury Related"
+},
+{
+"comment": "Hall (coach's decision) has been ruled out for Thursday's game against the Aces.",
+"player": "Bree Hall",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Out",
+"team": "Indiana Fever",
+"type": "Coach's Decision"
+},
+{
+"comment": "Onyiah (coach's decision) has been ruled out for Thursday's game against the Aces.",
+"player": "Michelle Onyiah",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Out",
+"team": "Indiana Fever",
+"type": "Coach's Decision"
+},
+{
+"comment": "Dantas underwent left knee surgery Tuesday and will miss the remainder of the 2026 season, the Fever announced.",
+"player": "Damiris Dantas",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Indiana Fever",
+"type": "Knee"
+},
+{
+"comment": "Parker-Tyus (concussion) is out for Thursday's game against Indiana.",
+"player": "Cheyenne Parker-Tyus",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Out",
+"team": "Las Vegas Aces",
+"type": "Concussion"
+},
+{
+"comment": "Pili (coach's decision) has been ruled out for Thursday's game in Minnesota.",
+"player": "Alissa Pili",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "Los Angeles Sparks",
+"type": "Coach's Decision"
+},
+{
+"comment": "out",
+"player": "Tonie Morgan",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "Los Angeles Sparks",
+"type": "Coach's Decision"
+},
+{
+"comment": "King (coach's decision) has been ruled out for Thursday's game against the Sparks.",
+"player": "Liatu King",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Out",
+"team": "Minnesota Lynx",
+"type": "Coach's Decision"
+},
+{
+"comment": "Bibby (personal reasons) is listed as out for Thursday's game versus the Sparks.",
+"player": "Chloe Bibby",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Out",
+"team": "Minnesota Lynx",
+"type": "Personal"
+},
+{
+"comment": "out",
+"player": "Satou Sabally",
+"return_date": "2026-08-18",
+"source": "league",
+"status": "Out",
+"team": "New York Liberty",
+"type": "Concussion"
+},
+{
+"comment": "Maley (coach's decision) is listed as out for Wednesday's game against Seattle.",
+"player": "Anneli Maley",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "New York Liberty",
+"type": "Coach's Decision"
+},
+{
+"comment": "Fiebich (foot) is out for Wednesday's game against the Storm, Myles Ehrlich of Winsidr.com reports.",
+"player": "Leonie Fiebich",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "New York Liberty",
+"type": "Foot"
+},
+{
+"comment": "Nogic (not injury related) intends to play professionally in Russia and won't return to Phoenix this season, Aya Abdeen of TheIXSports.com reports.",
+"player": "Jovana Nogic",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Phoenix Mercury",
+"type": "Not Injury Related"
+},
+{
+"comment": "Oblak (knee) won't play Thursday versus the Tempo.",
+"player": "Teja Oblak",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Out",
+"team": "Portland Fire",
+"type": "Knee"
+},
+{
+"comment": "The Fire announced Friday that Barker will undergo surgery to repair a torn ACL and will miss the remainder of the 2026 campaign.",
+"player": "Sarah Ashlee Barker",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Portland Fire",
+"type": "Knee"
+},
+{
+"comment": "Feagin (knee) was diagnosed with a torn left ACL on Thursday and will miss the rest of the 2026 campaign, WNBA reporter Kareem Copeland reports.",
+"player": "Sania Feagin",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Portland Fire",
+"type": "Knee"
+},
+{
+"comment": "out",
+"player": "Katie Lou Samuelson",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Out",
+"team": "Seattle Storm",
+"type": "Knee"
+},
+{
+"comment": "Mair (coach's decision) is listed as out for Wednesday's game against the Liberty.",
+"player": "Taina Mair",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Out",
+"team": "Seattle Storm",
+"type": "Coach's Decision"
+},
+{
+"comment": "Bankole (coach's decision) has been ruled out for Thursday's game against Portland.",
+"player": "Ornella Bankole",
+"return_date": "2026-08-10",
+"source": "league",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Coach's Decision"
+},
+{
+"comment": "Tempo head coach Sandy Brondello indicated Sunday that Sykes (foot) isn't close to returning to game action, Ian Finlayson of Sportsnet reports.",
+"player": "Brittney Sykes",
+"return_date": "2026-08-10",
+"source": "league",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Foot"
+},
+{
+"comment": "",
+"player": "Bree Hall",
+"return_date": "2026-08-08",
+"source": "event:401857119",
+"status": "Out",
+"team": "Indiana Fever",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Michelle Onyiah",
+"return_date": "2026-08-08",
+"source": "event:401857119",
+"status": "Out",
+"team": "Indiana Fever",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Damiris Dantas",
+"return_date": "2027-05-01",
+"source": "event:401857119",
+"status": "Out",
+"team": "Indiana Fever",
+"type": "Knee"
+},
+{
+"comment": "",
+"player": "Cheyenne Parker-Tyus",
+"return_date": "2026-08-08",
+"source": "event:401857119",
+"status": "Out",
+"team": "Las Vegas Aces",
+"type": "Concussion"
+},
+{
+"comment": "",
+"player": "Liatu King",
+"return_date": "2026-08-08",
+"source": "event:401857120",
+"status": "Out",
+"team": "Minnesota Lynx",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Chloe Bibby",
+"return_date": "2026-08-08",
+"source": "event:401857120",
+"status": "Out",
+"team": "Minnesota Lynx",
+"type": "Personal"
+},
+{
+"comment": "",
+"player": "Alissa Pili",
+"return_date": "2026-08-09",
+"source": "event:401857120",
+"status": "Out",
+"team": "Los Angeles Sparks",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Tonie Morgan",
+"return_date": "2026-08-09",
+"source": "event:401857120",
+"status": "Out",
+"team": "Los Angeles Sparks",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Teja Oblak",
+"return_date": "2026-08-08",
+"source": "event:401857121",
+"status": "Out",
+"team": "Portland Fire",
+"type": "Knee"
+},
+{
+"comment": "",
+"player": "Sarah Ashlee Barker",
+"return_date": "2027-05-01",
+"source": "event:401857121",
+"status": "Out",
+"team": "Portland Fire",
+"type": "Knee"
+},
+{
+"comment": "",
+"player": "Sania Feagin",
+"return_date": "2027-05-01",
+"source": "event:401857121",
+"status": "Out",
+"team": "Portland Fire",
+"type": "Knee"
+},
+{
+"comment": "",
+"player": "Ornella Bankole",
+"return_date": "2026-08-10",
+"source": "event:401857121",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Brittney Sykes",
+"return_date": "2026-08-10",
+"source": "event:401857121",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Foot"
+}
+],
+"lineups": [
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Stephanie Talbot",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "NaLyssa Smith",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "A'ja Wilson",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Chelsea Gray",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Jackie Young",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Brianna Turner",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Kierstan Bell",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Jewell Loyd",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Dana Evans",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": true,
+"event_id": "401857119",
+"player": "Cheyenne Parker-Tyus",
+"reason": "CONCUSSION PROTOCOL",
+"starter": false,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": true,
+"event_id": "401857119",
+"player": "Ta'Niya Latson",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": true,
+"event_id": "401857119",
+"player": "Justine Pissott",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": true,
+"event_id": "401857119",
+"player": "Mai Yamamoto",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Monique Billings",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Indiana Fever"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Aliyah Boston",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Indiana Fever"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Kelsey Mitchell",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Indiana Fever"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Lexie Hull",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Indiana Fever"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Caitlin Clark",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Indiana Fever"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Makayla Timpson",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Indiana Fever"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Sophie Cunningham",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Indiana Fever"
+},
+{
+"dnp": false,
+"event_id": "401857119",
+"player": "Tyasha Harris",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Indiana Fever"
+},
+{
+"dnp": true,
+"event_id": "401857119",
+"player": "Myisha Hines-Allen",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Indiana Fever"
+},
+{
+"dnp": true,
+"event_id": "401857119",
+"player": "Grace VanSlooten",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Indiana Fever"
+},
+{
+"dnp": true,
+"event_id": "401857119",
+"player": "Damiris Dantas",
+"reason": "LEFT KNEE",
+"starter": false,
+"team": "Indiana Fever"
+},
+{
+"dnp": true,
+"event_id": "401857119",
+"player": "Raven Johnson",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Indiana Fever"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Nneka Ogwumike",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Dearica Hamby",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Erica Wheeler",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Ariel Atkins",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Rae Burrell",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Cameron Brink",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Jihyun Park",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Chance Gray",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Monique Akoa Makani",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": true,
+"event_id": "401857120",
+"player": "Emma Cannon",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": true,
+"event_id": "401857120",
+"player": "Kiana Williams",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": true,
+"event_id": "401857120",
+"player": "Kate Martin",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Natasha Howard",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Napheesa Collier",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Kayla McBride",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Courtney Williams",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Olivia Miles",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Nia Coffey",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Dorka Juhasz",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Antonia Delaere",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Maya Caldwell",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857120",
+"player": "Eliska Joklova",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": true,
+"event_id": "401857120",
+"player": "Chloe Bibby",
+"reason": "PERSONAL",
+"starter": false,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": true,
+"event_id": "401857120",
+"player": "Anastasiia Olairi Kosu",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Maria Conde",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Toronto Tempo"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Nyara Sabally",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Toronto Tempo"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Laura Juskaite",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Toronto Tempo"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Marina Mabrey",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Toronto Tempo"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Julie Allemand",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Toronto Tempo"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Isabelle Harrison",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Toronto Tempo"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Aneesah Morrow",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Toronto Tempo"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Temi Fagbenle",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Toronto Tempo"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Kia Nurse",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Toronto Tempo"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Kiki Rice",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Toronto Tempo"
+},
+{
+"dnp": true,
+"event_id": "401857121",
+"player": "Teonni Key",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Toronto Tempo"
+},
+{
+"dnp": true,
+"event_id": "401857121",
+"player": "Brittney Sykes",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Toronto Tempo"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Bridget Carleton",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Portland Fire"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Emily Engstler",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Portland Fire"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Nyadiew Puoch",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Portland Fire"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Megan DiLeo",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Portland Fire"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Carla Leite",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Portland Fire"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Frieda Buhner",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Portland Fire"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Serah Williams",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Portland Fire"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Karlie Samuelson",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Portland Fire"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Holly Winterburn",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Portland Fire"
+},
+{
+"dnp": false,
+"event_id": "401857121",
+"player": "Jordan Harrison",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Portland Fire"
+},
+{
+"dnp": true,
+"event_id": "401857121",
+"player": "Luisa Geiselsoder",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Portland Fire"
+},
+{
+"dnp": true,
+"event_id": "401857121",
+"player": "Sarah Ashlee Barker",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Portland Fire"
+},
+{
+"dnp": true,
+"event_id": "401857121",
+"player": "Teja Oblak",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Portland Fire"
+}
+]
+}
