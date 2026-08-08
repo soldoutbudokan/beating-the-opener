@@ -1,0 +1,1067 @@
+{
+"captured_utc": "2026-08-08 05:34",
+"events": [
+{
+"date": "2026-08-07T23:30Z",
+"event_id": "401857122",
+"name": "PHX @ CON",
+"status": "STATUS_FINAL"
+},
+{
+"date": "2026-08-07T23:30Z",
+"event_id": "401857123",
+"name": "ATL @ WSH",
+"status": "STATUS_FINAL"
+},
+{
+"date": "2026-08-08T01:30Z",
+"event_id": "401857124",
+"name": "GS @ DAL",
+"status": "STATUS_FINAL"
+}
+],
+"injuries": [
+{
+"comment": "Nivar (coach's decision) has been ruled out for Friday's game against Washington.",
+"player": "Indya Nivar",
+"return_date": "2026-08-10",
+"source": "league",
+"status": "Out",
+"team": "Atlanta Dream",
+"type": "Coach's Decision"
+},
+{
+"comment": "Paopao (leg) will be re-evaluated in \"the coming weeks,\" WNBA reporter Kareem Copeland reports.",
+"player": "Te-Hina Paopao",
+"return_date": "2026-08-10",
+"source": "league",
+"status": "Out",
+"team": "Atlanta Dream",
+"type": "Leg"
+},
+{
+"comment": "Taylor (groin) has been ruled out for Saturday's game against the Fever, Chicago State of Mind Sports reports.",
+"player": "Sydney Taylor",
+"return_date": "2026-08-10",
+"source": "league",
+"status": "Out",
+"team": "Chicago Sky",
+"type": "Groin"
+},
+{
+"comment": "Diggins (knee) has been ruled out for Monday's game against the Mercury.",
+"player": "Skylar Diggins",
+"return_date": "2026-08-10",
+"source": "league",
+"status": "Out",
+"team": "Chicago Sky",
+"type": "Knee"
+},
+{
+"comment": "The Sky announced Tuesday that Jackson will miss the remainder of the season after suffering a torn ACL in her left knee during Sunday's 86-79 win over the Lynx.",
+"player": "Rickea Jackson",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Chicago Sky",
+"type": "Knee"
+},
+{
+"comment": "Jackson (coach's decision) has been ruled out for Friday's game against the Mercury.",
+"player": "Ashlon Jackson",
+"return_date": "2026-08-13",
+"source": "league",
+"status": "Out",
+"team": "Connecticut Sun",
+"type": "Coach's Decision"
+},
+{
+"comment": "Beers is out for Friday's game against Phoenix with a concussion.",
+"player": "Raegan Beers",
+"return_date": "2026-08-13",
+"source": "league",
+"status": "Out",
+"team": "Connecticut Sun",
+"type": "Concussion"
+},
+{
+"comment": "The Tempo traded Kliundikova's (not injury related) rights along with a second-round pick to the Sun in exchange for Aneesah Morrow, Myles Ehrlich of Winsidr.com reports.",
+"player": "Maria Kliundikova",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Connecticut Sun",
+"type": "Not Injury Related"
+},
+{
+"comment": "Fudd (knee) is listed as out for Friday's game versus Golden State.",
+"player": "Azzi Fudd",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Knee"
+},
+{
+"comment": "Clark (back) is listed as out for Friday's game versus the Valkyries.",
+"player": "Alysha Clark",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Back"
+},
+{
+"comment": "Sowah (coach's decision) is listed as out for Friday's game against the Wings.",
+"player": "Miela Sowah",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "Golden State Valkyries",
+"type": "Coach's Decision"
+},
+{
+"comment": "Prechtel (coach's decision) has been ruled out for Friday's game against the Wings.",
+"player": "Ashten Prechtel",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "Golden State Valkyries",
+"type": "Coach's Decision"
+},
+{
+"comment": "Rupert is pregnant, and the Valkyries have filed for a replacement contract ahead of the 2026 season, Alexa Philippou of ESPN.com reports Thursday.",
+"player": "Iliana Rupert",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Golden State Valkyries",
+"type": "Not Injury Related"
+},
+{
+"comment": "Boston (lower leg) is listed as probable for Saturday's game against the Sky.",
+"player": "Aliyah Boston",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Day-To-Day",
+"team": "Indiana Fever",
+"type": "Lower Leg"
+},
+{
+"comment": "Clark (back) is probable for Saturday's game against the Sky.",
+"player": "Caitlin Clark",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Day-To-Day",
+"team": "Indiana Fever",
+"type": "Back"
+},
+{
+"comment": "Dantas underwent left knee surgery Tuesday and will miss the remainder of the 2026 season, the Fever announced.",
+"player": "Damiris Dantas",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Indiana Fever",
+"type": "Knee"
+},
+{
+"comment": "Pissott (leg) has been ruled out for Saturday's game against the Lynx.",
+"player": "Justine Pissott",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "Las Vegas Aces",
+"type": "Leg"
+},
+{
+"comment": "Parker-Tyus (concussion/not with team) has been ruled out for Saturday's game against the Lynx.",
+"player": "Cheyenne Parker-Tyus",
+"return_date": "2026-08-11",
+"source": "league",
+"status": "Out",
+"team": "Las Vegas Aces",
+"type": "Concussion"
+},
+{
+"comment": "Pili (coach's decision) has been ruled out for Thursday's game in Minnesota.",
+"player": "Alissa Pili",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "Los Angeles Sparks",
+"type": "Coach's Decision"
+},
+{
+"comment": "out",
+"player": "Tonie Morgan",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "Los Angeles Sparks",
+"type": "Coach's Decision"
+},
+{
+"comment": "Bibby (personal) is out for Saturday's game against the Aces.",
+"player": "Chloe Bibby",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "Minnesota Lynx",
+"type": "Personal"
+},
+{
+"comment": "out",
+"player": "Satou Sabally",
+"return_date": "2026-08-18",
+"source": "league",
+"status": "Out",
+"team": "New York Liberty",
+"type": "Concussion"
+},
+{
+"comment": "Maley (coach's decision) is listed as out for Wednesday's game against Seattle.",
+"player": "Anneli Maley",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "New York Liberty",
+"type": "Coach's Decision"
+},
+{
+"comment": "Fiebich (foot) is out for Wednesday's game against the Storm, Myles Ehrlich of Winsidr.com reports.",
+"player": "Leonie Fiebich",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "New York Liberty",
+"type": "Foot"
+},
+{
+"comment": "Ciezki (coach's decision) is listed as out for Friday's game versus Connecticut.",
+"player": "Shay Ciezki",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "Phoenix Mercury",
+"type": "Coach's Decision"
+},
+{
+"comment": "Dunn (coach's decision) has been ruled out for Friday's game against the Sun.",
+"player": "Kara Dunn",
+"return_date": "2026-08-09",
+"source": "league",
+"status": "Out",
+"team": "Phoenix Mercury",
+"type": "Coach's Decision"
+},
+{
+"comment": "Nogic (not injury related) intends to play professionally in Russia and won't return to Phoenix this season, Aya Abdeen of TheIXSports.com reports.",
+"player": "Jovana Nogic",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Phoenix Mercury",
+"type": "Not Injury Related"
+},
+{
+"comment": "Carleton (foot) is listed as probable for Saturday's game versus Seattle.",
+"player": "Bridget Carleton",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Day-To-Day",
+"team": "Portland Fire",
+"type": "Foot"
+},
+{
+"comment": "Oblak (knee) is listed as probable for Saturday's game against the Storm.",
+"player": "Teja Oblak",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Day-To-Day",
+"team": "Portland Fire",
+"type": "Knee"
+},
+{
+"comment": "The Fire announced Friday that Barker will undergo surgery to repair a torn ACL and will miss the remainder of the 2026 campaign.",
+"player": "Sarah Ashlee Barker",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Portland Fire",
+"type": "Knee"
+},
+{
+"comment": "Feagin (knee) was diagnosed with a torn left ACL on Thursday and will miss the rest of the 2026 campaign, WNBA reporter Kareem Copeland reports.",
+"player": "Sania Feagin",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Portland Fire",
+"type": "Knee"
+},
+{
+"comment": "Samuelson (knee) is listed as questionable for Saturday's game against Portland.",
+"player": "Katie Lou Samuelson",
+"return_date": "2026-08-08",
+"source": "league",
+"status": "Day-To-Day",
+"team": "Seattle Storm",
+"type": "Knee"
+},
+{
+"comment": "Mair (coach's decision) has been ruled out for Saturday's game in Portland.",
+"player": "Taina Mair",
+"return_date": "2026-08-10",
+"source": "league",
+"status": "Out",
+"team": "Seattle Storm",
+"type": "Coach's Decision"
+},
+{
+"comment": "Bankole (coach's decision) has been ruled out for Thursday's game against Portland.",
+"player": "Ornella Bankole",
+"return_date": "2026-08-10",
+"source": "league",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Coach's Decision"
+},
+{
+"comment": "Tempo head coach Sandy Brondello indicated Sunday that Sykes (foot) isn't close to returning to game action, Ian Finlayson of Sportsnet reports.",
+"player": "Brittney Sykes",
+"return_date": "2026-08-10",
+"source": "league",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Foot"
+},
+{
+"comment": "",
+"player": "Ashlon Jackson",
+"return_date": "2026-08-13",
+"source": "event:401857122",
+"status": "Out",
+"team": "Connecticut Sun",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Raegan Beers",
+"return_date": "2026-08-13",
+"source": "event:401857122",
+"status": "Out",
+"team": "Connecticut Sun",
+"type": "Concussion"
+},
+{
+"comment": "",
+"player": "Maria Kliundikova",
+"return_date": "2027-05-01",
+"source": "event:401857122",
+"status": "Out",
+"team": "Connecticut Sun",
+"type": "Not Injury Related"
+},
+{
+"comment": "",
+"player": "Shay Ciezki",
+"return_date": "2026-08-09",
+"source": "event:401857122",
+"status": "Out",
+"team": "Phoenix Mercury",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Kara Dunn",
+"return_date": "2026-08-09",
+"source": "event:401857122",
+"status": "Out",
+"team": "Phoenix Mercury",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Jovana Nogic",
+"return_date": "2027-05-01",
+"source": "event:401857122",
+"status": "Out",
+"team": "Phoenix Mercury",
+"type": "Not Injury Related"
+},
+{
+"comment": "",
+"player": "Indya Nivar",
+"return_date": "2026-08-10",
+"source": "event:401857123",
+"status": "Out",
+"team": "Atlanta Dream",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Te-Hina Paopao",
+"return_date": "2026-08-10",
+"source": "event:401857123",
+"status": "Out",
+"team": "Atlanta Dream",
+"type": "Leg"
+},
+{
+"comment": "",
+"player": "Azzi Fudd",
+"return_date": "2026-08-09",
+"source": "event:401857124",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Knee"
+},
+{
+"comment": "",
+"player": "Alysha Clark",
+"return_date": "2026-08-09",
+"source": "event:401857124",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Back"
+},
+{
+"comment": "",
+"player": "Miela Sowah",
+"return_date": "2026-08-09",
+"source": "event:401857124",
+"status": "Out",
+"team": "Golden State Valkyries",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Ashten Prechtel",
+"return_date": "2026-08-09",
+"source": "event:401857124",
+"status": "Out",
+"team": "Golden State Valkyries",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Iliana Rupert",
+"return_date": "2027-05-01",
+"source": "event:401857124",
+"status": "Out",
+"team": "Golden State Valkyries",
+"type": "Not Injury Related"
+}
+],
+"lineups": [
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "DeWanna Bonner",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Alyssa Thomas",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Noemie Brochant",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Kahleah Copper",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Kelsey Plum",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Valeriane Ayayi",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Natasha Mack",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Kyara Linskens",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Sami Whitcomb",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": true,
+"event_id": "401857122",
+"player": "Marta Suarez",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": true,
+"event_id": "401857122",
+"player": "Lexi Held",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": true,
+"event_id": "401857122",
+"player": "Shay Ciezki",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": true,
+"event_id": "401857122",
+"player": "Kara Dunn",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Diamond Miller",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Connecticut Sun"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Brittney Griner",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Connecticut Sun"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Olivia Nelson-Ododa",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Connecticut Sun"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Charlisse Leger-Walker",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Connecticut Sun"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Leila Lacan",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Connecticut Sun"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Aaliyah Edwards",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Connecticut Sun"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Nell Angloma",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Connecticut Sun"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Kennedy Burke",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Connecticut Sun"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Hailey Van Lith",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Connecticut Sun"
+},
+{
+"dnp": false,
+"event_id": "401857122",
+"player": "Saniya Rivers",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Connecticut Sun"
+},
+{
+"dnp": true,
+"event_id": "401857122",
+"player": "Raegan Beers",
+"reason": "CONCUSSION PROTOCOL",
+"starter": false,
+"team": "Connecticut Sun"
+},
+{
+"dnp": true,
+"event_id": "401857122",
+"player": "Rayah Marshall",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Connecticut Sun"
+},
+{
+"dnp": true,
+"event_id": "401857122",
+"player": "Gianna Kneepkens",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Connecticut Sun"
+},
+{
+"dnp": true,
+"event_id": "401857122",
+"player": "Ashlon Jackson",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Connecticut Sun"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Naz Hillmon",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Atlanta Dream"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Angel Reese",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Atlanta Dream"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Allisha Gray",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Atlanta Dream"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Jordin Canada",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Atlanta Dream"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Rhyne Howard",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Atlanta Dream"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Brionna Jones",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Atlanta Dream"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Madina Okot",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Atlanta Dream"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Shatori Walker-Kimbrough",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Atlanta Dream"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Jaylyn Sherrod",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Atlanta Dream"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Isobel Borlase",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Atlanta Dream"
+},
+{
+"dnp": true,
+"event_id": "401857123",
+"player": "Sika Kone",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Atlanta Dream"
+},
+{
+"dnp": true,
+"event_id": "401857123",
+"player": "Te-Hina Paopao",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Atlanta Dream"
+},
+{
+"dnp": true,
+"event_id": "401857123",
+"player": "Aaliyah Nye",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Atlanta Dream"
+},
+{
+"dnp": true,
+"event_id": "401857123",
+"player": "Indya Nivar",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Atlanta Dream"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Michaela Onyenwere",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Kiki Iriafen",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Shakira Austin",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Sonia Citron",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Georgia Amoore",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Lauren Betts",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Cotie McMahon",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Cassandre Prosper",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857123",
+"player": "Alicia Florez",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": true,
+"event_id": "401857123",
+"player": "Angela Dugalic",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": true,
+"event_id": "401857123",
+"player": "Rori Harmon",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": true,
+"event_id": "401857123",
+"player": "Lucy Olsen",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": true,
+"event_id": "401857123",
+"player": "Darianna Littlepage-Buggs",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Kayla Thornton",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Gabby Williams",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Cecilia Zandalasini",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Kiah Stokes",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Veronica Burton",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Laeticia Amihere",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Janelle Salaun",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Tiffany Hayes",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Kaila Charles",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Kaitlyn Chen",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": true,
+"event_id": "401857124",
+"player": "Nadia Fingall",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": true,
+"event_id": "401857124",
+"player": "Juste Jocyte",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Jessica Shepard",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Alanna Smith",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Arike Ogunbowale",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Paige Bueckers",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Aziaha James",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Maddy Siegrist",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Awak Kuier",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Li Yueru",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Odyssey Sims",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857124",
+"player": "Sug Sutton",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Dallas Wings"
+}
+]
+}
