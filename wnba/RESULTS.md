@@ -6,20 +6,20 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $96.60** (start $100)
+**Bankroll: $96.88** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 58 (27W-31L), 0 push, 2 void, 17 open |
-| staked | $58.00 |
-| P&L | $-3.40 (-5.9% ROI) |
-| mean EV said (model) | +22.23% (n=58) |
-| mean CLV (vs close) | -5.46% (n=58) |
-| mean CLV* (shade-adj) | -5.39% (n=58) |
-| Model-expected P&L | $+13.34 |
-| CLV-expected P&L | $-3.17 |
+| settled | 64 (30W-34L), 0 push, 2 void, 11 open |
+| staked | $64.00 |
+| P&L | $-3.12 (-4.9% ROI) |
+| mean EV said (model) | +23.25% (n=64) |
+| mean CLV (vs close) | -4.67% (n=62) |
+| mean CLV* (shade-adj) | -4.61% (n=62) |
+| Model-expected P&L | $+15.33 |
+| CLV-expected P&L | $-2.90 |
 
-CLV t-stat: -4.94 (iid); -2.53 clustered by match date (8 dates)
+CLV t-stat: -4.08 (iid); -1.92 clustered by match date (9 dates)
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -34,12 +34,12 @@ CLV t-stat: -4.94 (iid); -2.53 clustered by match date (8 dates)
 | 2026-08-08 | A'ja Wilson | assists | under | 3.5 | 114 | 1.0 | +20.4% |  |  |  |  |  |
 | 2026-08-08 | Olivia Miles | threes | over | 1.5 | 140 | 1.0 | +16.0% |  |  |  |  |  |
 | 2026-08-08 | Jackie Young | rebounds | under | 4.5 | 112 | 1.0 | +38.7% |  |  |  |  |  |
-| 2026-08-07 | Angel Reese | threes | under | 0.5 | 118 | 1.0 | +93.4% |  |  |  |  |  |
-| 2026-08-07 | Diamond Miller | points | under | 11.5 | -114 | 1.0 | +28.9% |  |  |  |  |  |
-| 2026-08-07 | Paige Bueckers | assists | over | 5.5 | 110 | 1.0 | +22.9% |  |  |  |  |  |
-| 2026-08-07 | Leila Lacan | assists | under | 4.5 | 122 | 1.0 | +20.0% |  |  |  |  |  |
-| 2026-08-07 | Rhyne Howard | points | under | 17.5 | -130 | 1.0 | +17.7% |  |  |  |  |  |
-| 2026-08-07 | Jessica Shepard | rebounds | over | 11.5 | 114 | 1.0 | +16.0% |  |  |  |  |  |
+| 2026-08-07 | Angel Reese | threes | under | 0.5 | 118 | 1.0 | +93.4% | 0 | won | +1.18 | +9.0% | +9.0% |
+| 2026-08-07 | Diamond Miller | points | under | 11.5 | -114 | 1.0 | +28.9% | 9 | won | +0.88 | +7.3% | +7.3% |
+| 2026-08-07 | Paige Bueckers | assists | over | 5.5 | 110 | 1.0 | +22.9% | 1 | lost | -1.00 |  |  |
+| 2026-08-07 | Leila Lacan | assists | under | 4.5 | 122 | 1.0 | +20.0% | 4 | won | +1.22 | +18.4% | +18.4% |
+| 2026-08-07 | Rhyne Howard | points | under | 17.5 | -130 | 1.0 | +17.7% | 19 | lost | -1.00 | -7.8% | -7.8% |
+| 2026-08-07 | Jessica Shepard | rebounds | over | 11.5 | 114 | 1.0 | +16.0% | 11 | lost | -1.00 |  |  |
 | 2026-08-06 | Caitlin Clark | assists | under | 8.5 | 100 | 1.0 | +16.9% | 8 | won | +1.00 | -4.9% | -4.9% |
 | 2026-08-06 | Jackie Young | rebounds | under | 4.5 | -125 | 1.0 | +15.6% | 4 | won | +0.80 | -16.4% | -16.4% |
 | 2026-08-06 | Aliyah Boston | rebounds | under | 8.5 | -122 | 1.0 | +14.7% | 12 | lost | -1.00 | -18.6% | -18.6% |
