@@ -17,8 +17,6 @@ import glob
 import gzip
 import json
 import os
-import subprocess
-import sys
 
 import numpy as np
 import pandas as pd
@@ -28,6 +26,7 @@ from odds_utils import (amer_to_prob, amer_to_dec, devig_power, fit_shade,
 from dist_utils import implied_mu, p_over
 from grade_props import STAT_COLS, norm, BP2WH
 from fetch_espn_box import load_espn_box
+from live_utils import COLS, refresh_site
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 LIVE = os.path.join(ROOT, "live")
@@ -36,24 +35,9 @@ BANKROLL = os.path.join(LIVE, "bankroll.json")
 RESULTS_MD = os.path.join(ROOT, "RESULTS.md")
 ET = "America/New_York"
 
-COLS = ["key", "placed_at", "match_date", "event_id", "market", "player",
-        "side", "line", "odds_taken", "stake", "model_p", "ev_claimed",
-        "status", "result", "actual", "clv", "clv_cal", "clv_source", "pnl",
-        "notes"]
 MARKET_IDS = {"points": 393, "rebounds": 397, "assists": 391, "threes": 390,
               "pra": 396, "pts_ast": 394, "pts_reb": 395, "reb_ast": 398}
 BOOKSUM_LO, BOOKSUM_HI = 1.00, 1.15  # sane two-way vig band
-
-
-def refresh_site():
-    """Rebuild docs/index.html from both markets' live files - never fatal."""
-    try:
-        r = subprocess.run([sys.executable,
-                            os.path.join(ROOT, "..", "site", "build_site.py")],
-                           capture_output=True, text=True, timeout=120)
-        print((r.stdout or r.stderr).strip().splitlines()[-1])
-    except Exception as e:  # a broken page must never block settlement
-        print(f"site build skipped: {e}")
 
 
 def market_shades():

@@ -318,11 +318,39 @@ the `bets.csv` row so the post-mortem is easy.
 ## Reporting fills (user -> any Claude session)
 
 Plain words: *"got Citron assists over 3.5 at +128 for $2"*, *"skipped the
-rest"*. Claude then appends one row per fill to `live/bets.csv` with
-`status=open`, copying `key`, `event_id`, `market`, `player`, `side`, `line`,
-`model_p` from `live/picks.csv` (`match_date` = the pick's `date`, which is
-the **ET game date**; `odds_taken`/`stake` as reported; `placed_at` = today),
-commits and pushes: `live: log N bets <date>`.
+rest"*. Claude then runs **`python3 src/log_fill.py`** from `wnba/`, which is
+the only supported way to write a fill, and commits + pushes what it touched:
+`live: log N bets <date>`.
+
+```
+python3 src/log_fill.py --stake 1 Zandalasini Cloud "Kahleah Copper"
+python3 src/log_fill.py --stake 2 --price 128 "2712_assists_courtney williams_over"
+python3 src/log_fill.py --stake 1 --dry-run Malonga       # preview, writes nothing
+```
+
+Each argument is a pick key or any substring matching exactly one `play=True`
+row (ambiguous -> it stops and lists candidates; no match -> it stops). It
+copies `key`, `event_id`, `market`, `player`, `side`, `line`, `model_p` from
+`live/picks.csv` (`match_date` = the pick's `date`, the **ET game date**;
+`placed_at` = now, ET), defaults price and stake to the sheet's and takes
+`--price`/`--stake` when the fill differs, and **rebuilds `docs/index.html`**
+(see below). It refuses a key already on `bets.csv`, so a fill can never be
+double-counted, and it writes nothing that was not named in an argument -
+fills are still never invented.
+
+It also writes the standing notes by itself: flat-stake deviations from the
+sheet's Kelly number, a fill price that differs from the sheet quote, and the
+**one-bet-per-player-per-game** warning when the player already has an open
+bet in that event. A price below `min_odds_3pct` prints a WARNING and is
+logged anyway (user's call).
+
+**The scoreboard rebuild is part of logging** (owner instruction,
+2026-08-08). `docs/index.html` is generated, and it used to be regenerated
+only by `settle_bets.py` - so a fill logged between settlements sat in
+`bets.csv` while the published page still showed the previous night's build.
+`refresh_site()` now lives in `src/live_utils.py` and **every writer of
+`bets.csv` calls it**. Never hand-edit the page; if it looks stale, re-run
+the writer or `python3 site/build_site.py` from the repo root.
 
 **`ev_claimed` is required on every row** (owner instruction, 2026-08-01).
 It is the model's own claim for the bet **at the price actually taken** -
@@ -339,6 +367,8 @@ Rules for Claude sessions:
 - Never invent or assume a fill; log only what the user explicitly reports.
 - Do not edit settled rows; corrections get a `notes` entry.
 - Price below `min_odds_3pct` -> log it (user's call) but flag the EV.
+- Use `log_fill.py`; hand-appending to `bets.csv` skips the duplicate guard,
+  the `ev_claimed` stamp and the scoreboard rebuild.
 
 ## Settlement (automatic)
 
