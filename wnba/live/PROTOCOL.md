@@ -1,5 +1,26 @@
 # Live experiment protocol - WNBA props
 
+> # ⏸️ ROUTINES PAUSED — 2026-08-08 (owner decision, first-week audit)
+>
+> The hourly `news-watch` routine was **disabled at the trigger level**
+> on 2026-08-08 (`trig_01GThXFjtLzfXEH1kqjMYXEF`, via the agent API);
+> `edge-watch` has been off since 2026-07-31. Nothing runs on a schedule:
+> no picks, no notifications, no automatic settlement or close archiving.
+> The 17 bets open at pause time still need closes captured near tip and
+> a settlement pass after their games - manual (owner session) until the
+> routine is re-enabled.
+>
+> The pause followed a full audit of the first live week, which found the
+> harness was not running the experiment that was backtested: the model
+> panel froze for a week during a wehoop stall while picks kept flowing
+> (claimed EV inflating mechanically as the market moved), the v1
+> "opener-only, don't chase" rule had been dropped, players 40+ days
+> stale were being priced (Kelsey Plum), and the shade-adjusted CLV
+> column had been silently stamped with zero shade since 08-03. The
+> **Amendments (2026-08-08)** section below is the owner-approved fix
+> set; it is in force for any pick generated after this commit, manual
+> or scheduled.
+
 > # ▶️ EXPERIMENT RE-OPENED — 2026-07-31 (v3, from-scratch talent model)
 >
 > **Owner decision, 2026-07-31 evening: live betting is re-opened** for the
@@ -42,6 +63,58 @@
 >   rule (FD, EV>10%) is ~+5-10% ROI; at this bankroll that is cents per
 >   day. The experiment is measurement, not income.
 >
+> ## Amendments — 2026-08-08 (owner-directed, post-audit; in force now)
+>
+> The bet trigger above is amended. A row is **playable** only if ALL of
+> these hold (each failure is a named flag in `picks.csv`; flagged rows
+> stay on the sheet with `play=False` and stake 0 so what was skipped
+> stays legible):
+>
+> 1. **Fresh panel** (`PANEL_STALE`): no completed slate is missing from
+>    the model panel (checked against events.pkl). The August stall
+>    showed the market pricing a week of games the model hadn't seen -
+>    claimed "EV" was mostly that information gap. The step-0 sweep now
+>    keeps the panel current through the ESPN fallback (below), so this
+>    gate binding means BOTH box sources failed.
+> 2. **Fresh player** (`STALE_PLAYER`): the player's last panel game is
+>    ≤ 14 days before the prop's game. (The Kelsey Plum rule: her 42-day
+>    -stale LA state priced a Phoenix prop at +29% claimed EV.)
+> 3. **Right team** (`TEAM_MISMATCH` / `TEAM_CHANGED`): the feed team
+>    must be one of the event's two teams AND match the player's panel
+>    team. A traded player is unpriceable until her first game with the
+>    new team enters the panel.
+> 4. **Still at the FanDuel opener** (`MOVED_OFF_OPEN` / `NON_FD_OPEN` /
+>    `OPEN_INCOHERENT`): the v1 discipline, reinstated. Current FD line
+>    equal to a coherent FANDUEL opening pair, juice within 15¢ on the
+>    bet side. The backtest prices edges at the open; once the line
+>    moves, the remaining "edge" is the model disagreeing with fresh
+>    information. Don't chase - and don't fade moves either.
+> 5. **Sane claim** (`SUSPECT_EV`): claimed EV ≤ 25%. Every audited claim
+>    above that (Engstler +32%, Plum +29%, Leite +51%) was a mechanical
+>    defect, not an edge. A huge claim quarantines the row for manual
+>    review instead of betting it.
+>
+> Advisory flags (`ROLE_MIN?`, `ROLE_START?`) mark players whose last
+> game deviates hard from their EW state (minutes jump ≥ 8, starter
+> flip). They do NOT block play; they exist because the talent engine
+> regresses hard by design and is structurally slow on role changes -
+> **owner direction 2026-08-08: model changes go through the owner and a
+> strong Claude session, so the routine's job is to flag, not to fix.**
+> A future news-watch firing that sees these flags surfaces them loudly
+> in its chat table; any model-side response (process-noise floor,
+> role-change state inflation) needs fresh gates and a new registration.
+>
+> Scoreboard fixes in the same change: `clv_cal` is never again stamped
+> at silent zero shade - the shade fit persists to the committed
+> `live/shade_table.json`, a fresh container without a modelset uses the
+> stale table (noted), and with neither the column stays BLANK for
+> backfill. The rows stamped 08-01..08-08 under the zero-shade bug were
+> re-stamped from the archived closes with a real shade. RESULTS.md and
+> the site now also show the **no-move share** (closing line unchanged →
+> CLV ≈ vig, ~80% of the sample) and the **model-calibration z**
+> (expected wins under `model_p` vs observed - the test that caught the
+> under-side failure at n=59, z=-2.5, unders z=-3.0).
+>
 > ## edge-watch routine — DATA-ONLY (unchanged)
 >
 > On every firing: run `python3 src/scrape_bettingpros.py` from `wnba/`,
@@ -63,12 +136,14 @@
 >    the game is over (the close exists even when box scores lag) and fills
 >    results when wehoop publishes — retry every firing until no stale open
 >    rows remain, so the first firing after ~05:00 ET normally completes the
->    previous night's slate. When the fetch brought new box scores, finish
->    the sweep with `python3 src/features.py && python3 src/talent.py
->    --build && python3 src/build_modelset.py` so the panel `fp_live.py`
->    projects from tracks the latest completed games (added 2026-08-03 —
->    nothing else in v3 refreshes the model state). This sweep is the only
->    settlement writer; fills themselves remain owner-reported only.
+>    previous night's slate. When EITHER fetch brought new box scores
+>    (wehoop or the ESPN fallback), finish the sweep with `python3
+>    src/features.py && python3 src/talent.py --build && python3
+>    src/build_modelset.py` so the panel `fp_live.py` projects from tracks
+>    the latest completed games (added 2026-08-03; ESPN rows feed the
+>    panel since 2026-08-08 — nothing else in v3 refreshes the model
+>    state). This sweep is the only settlement writer; fills themselves
+>    remain owner-reported only.
 >
 >    **Box-score fallback (owner-approved 2026-08-06).** wehoop publishes in
 >    bulk and stalls — it froze at 2026-08-01 for five days while games were
@@ -80,10 +155,20 @@
 >    Validated before first use: the 2026-08-01 overlap reproduced wehoop
 >    exactly (48/48 rows, all settled stats, team abbrs and DNP flags), and
 >    reconstructed player points reconcile to the official final score in all
->    24 team-games of 8/2–8/5. Scope is settlement only: `features.py`,
->    `talent.py` and `grade_props.py` still read wehoop alone, so the model
->    panel and the `fp-prospective-2` scoring firewall are untouched — the
->    panel simply stays frozen until wehoop catches up.
+>    24 team-games of 8/2–8/5. ~~Scope is settlement only~~ **Scope extended
+>    2026-08-08 (owner decision, audit finding #1):** schema-2 archives now
+>    carry full stat lines + ESPN ids (which ARE wehoop's ids), and
+>    `features.py` appends them to the panel for dates wehoop lacks — so the
+>    panel can no longer freeze for a week while picks flow. wehoop remains
+>    the source of record and reclaims every date it publishes, so the panel
+>    converges back to pure-wehoop after each stall. Re-validated at panel
+>    grade on the 7/30–8/01 overlap: 197/197 player rows matched on
+>    (game_id, athlete_id); 2 stat cells of ~3,700 differ (one late official
+>    scoring change to one player's FGA/3PA, mirrored in that game's team
+>    totals). `grade_props.py` stays wehoop-only, and `fp-prospective-1/2`
+>    are untouched: their season-end evaluation rebuilds predictions from
+>    wehoop-complete data, so the fallback changes only what the LIVE sheet
+>    sees mid-stall.
 >    Related hardening in the same change: the "no box row after 3 days →
 >    `void (no box score)`" rule now fires only when a box feed actually
 >    covers that game (date + one of the two teams). A missing feed is a data

@@ -1,19 +1,27 @@
 # wnba (subproject of beating-the-opener)
 
-**Live betting RE-OPENED 2026-07-31 (owner decision) under the v3
-protocol** at the top of live/PROTOCOL.md — read it before touching
-anything here. The OLD anchored model stays retired: never run
-src/live_pipeline.py for picks. Picks come from **src/fp_live.py** (pinned
-talent model + news overrides), FanDuel EV>10% trigger, pre-registered
-staking. `edge-watch` = data-only close archiver. `news-watch` (hourly) =
-availability snapshot (`src/avail_watch.py` → committed
-`data/raw/avail/`, v3 T3) + overrides + picks refresh + notification +
-**always post new picks as a table in the chat reply** (owner
-instruction — see PROTOCOL step 3). Fills are owner-reported only:
+**Routines PAUSED 2026-08-08 (owner decision, first-week audit)** —
+`news-watch` and `edge-watch` are both disabled at the trigger level;
+picks, close archiving and settlement are manual until the owner
+re-enables a routine. The v3 protocol (re-opened 2026-07-31) **plus the
+2026-08-08 amendments** live at the top of live/PROTOCOL.md — read both
+before touching anything here. The OLD anchored model stays retired:
+never run src/live_pipeline.py for picks. Picks come from
+**src/fp_live.py** (pinned talent model + news overrides), FanDuel
+EV>10% trigger, pre-registered staking, and since 2026-08-08 the pick
+gates: fresh panel (ESPN fallback keeps it current through
+`src/fetch_espn_box.py` schema-2 + `features.py`), player ≤14d stale,
+team consistent, FD quote still at the FanDuel opener, claimed EV ≤25%
+(bigger = quarantined as a suspected defect). Gated rows stay on the
+sheet with play=False + `flags`; `ROLE_*?` flags are advisory
+owner-review markers (model changes go through the owner — the routine
+flags, never fixes). Fills are owner-reported only:
 log to live/bets.csv copying picks.csv fields — **including `ev_claimed`,
 the model's claim at the price actually taken (`model_p x decimal_odds -
 1`), required on every row** — commit, push. Settlement
-via src/settle_bets.py per protocol. The news layer supersedes the old
+via src/settle_bets.py per protocol (clv_cal is never silently zero:
+shade table at live/shade_table.json, blank-and-backfill otherwise).
+The news layer supersedes the old
 "no injury news" rule for v3. Scoring registrations: ../PROGRESS.md
 (fp-prospective-1/-2 on props dated 2026-08-01+, base model, unaffected
 by betting).
@@ -38,7 +46,10 @@ Research conclusions + reproduce steps: README.md.
 - data/raw/bp/ is the committed line archive; the upstream API deletes old
   seasons, so never delete or gitignore it. data/raw/espn_box/ is the same
   kind of archive for box scores: ESPN finals for ET dates wehoop has not
-  published (wehoop stalls for days at a time), read by settle_bets.py only
-  for uncovered dates and only for settlement — the model panel stays
-  wehoop-only. Never delete or gitignore it either.
+  published (wehoop stalls for days at a time). Since 2026-08-08 (schema 2)
+  it feeds BOTH settlement and the model panel for uncovered dates —
+  wehoop stays the source of record and reclaims every date it publishes,
+  so the panel converges back to pure-wehoop after each stall
+  (validation + registration-hygiene note in ../PROGRESS.md). Never
+  delete or gitignore it either.
 - Push directly to main (solo project).

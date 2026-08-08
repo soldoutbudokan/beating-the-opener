@@ -52,16 +52,44 @@ def allstar_game_ids():
     return ids
 
 
+def _espn_fallback(kind, covered_dates):
+    """Panel-grade ESPN rows for ET dates wehoop has not published.
+
+    wehoop stalls in bulk (a full week in August 2026, during which the
+    live sheet kept pricing off a frozen panel - the audit's finding #1).
+    fetch_espn_box.py archives schema-2 rows carrying everything the panel
+    consumes, in wehoop's own id space; wehoop reclaims a date the moment
+    it publishes it, so the panel converges back to pure-wehoop after
+    every stall. Owner-approved 2026-08-08. Never fatal: a missing or
+    v1-only archive just means no fallback rows.
+    """
+    try:
+        from fetch_espn_box import load_espn_panel
+        pbox, tbox = load_espn_panel(covered=covered_dates)
+    except Exception as e:
+        print(f"PANEL_FALLBACK unavailable: {e}")
+        return None
+    df = pbox if kind == "player" else tbox
+    if df is None or not len(df):
+        return None
+    dates = sorted(df.game_date.astype(str).str[:10].unique())
+    print(f"PANEL_FALLBACK {kind}: +{len(df)} ESPN rows for "
+          f"{len(dates)} date(s) wehoop lacks ({dates[0]} .. {dates[-1]})")
+    return df
+
+
 def load_player_box():
     parts = [pd.read_parquet(p) for p in sorted(
         glob.glob(os.path.join(ROOT, "data", "wehoop", "player_box_*.parquet")))]
     box = pd.concat(parts, ignore_index=True)
+    supp = _espn_fallback("player", set(box.game_date.astype(str).str[:10]))
+    if supp is not None:
+        box = pd.concat([box, supp], ignore_index=True)
     box = box[~box.game_id.isin(allstar_game_ids())
               & ~box.team_abbreviation.isin(ALLSTAR)
               & ~box.opponent_team_abbreviation.isin(ALLSTAR)]
-    # settlement-only backfill rows (e.g. ESPN box scores appended while the
-    # wehoop release lags) carry no athlete_id: they exist so bets can grade,
-    # and must never enter the feature panel
+    # rows without an athlete_id (pre-schema-2 settlement backfills) can
+    # grade bets but must never enter the feature panel
     box = box[box.athlete_id.notna()]
     box["game_date"] = pd.to_datetime(box["game_date"])
     for c in STATS:
@@ -74,6 +102,9 @@ def load_team_box():
     parts = [pd.read_parquet(p) for p in sorted(
         glob.glob(os.path.join(ROOT, "data", "wehoop", "team_box_*.parquet")))]
     tb = pd.concat(parts, ignore_index=True)
+    supp = _espn_fallback("team", set(tb.game_date.astype(str).str[:10]))
+    if supp is not None:
+        tb = pd.concat([tb, supp], ignore_index=True)
     tb = tb[~tb.game_id.isin(allstar_game_ids())
             & ~tb.team_abbreviation.isin(ALLSTAR)
             & ~tb.opponent_team_abbreviation.isin(ALLSTAR)]
