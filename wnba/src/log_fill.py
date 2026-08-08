@@ -140,6 +140,23 @@ def main():
             print(f"WARNING {row['key']}: {price:+d} is worse than the "
                   f"EV>=3% floor of {int(float(floor)):+d} - logged anyway "
                   f"(user's call), but the claimed edge is thin.")
+        # gated picks (2026-08-08 protocol amendments) carry their blocking
+        # reasons in `flags` and stake 0. Filling one is the owner's call,
+        # but never silently: it needs an explicit --stake, and the flags go
+        # on the record.
+        flags = (pick.get("flags") or "").strip()
+        blocking = [f for f in flags.split(";") if f and not f.endswith("?")]
+        if blocking:
+            if a.stake is None:
+                raise SystemExit(
+                    f"{row['key']} is GATED ({';'.join(blocking)}) - the "
+                    f"sheet carries no stake for it. Pass --stake explicitly "
+                    f"to overrule the gate. Nothing was written.")
+            print(f"WARNING {row['key']}: gated ({';'.join(blocking)}) - "
+                  f"logged at owner's explicit stake; gate reasons recorded "
+                  f"in notes.")
+            row["notes"] = (row["notes"] + "; " if row["notes"] else "") + \
+                f"filled past gate: {';'.join(blocking)} (owner's call)"
 
     for r in rows:
         print(f"  {r['player']:<22} {r['market']:<9} {r['side']:<5} "

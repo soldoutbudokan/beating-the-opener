@@ -1,11 +1,15 @@
 # beating-the-opener (monorepo)
 
-**Live betting RE-OPENED for WNBA on 2026-07-31 (owner decision)** under the
-v3 from-scratch protocol at the top of `wnba/live/PROTOCOL.md` — the
-anchored model stays retired; what bets is the talent model + news
-overrides (`wnba/src/fp_live.py`), FanDuel EV>10% trigger, pre-registered
-staking. `edge-watch` stays **data-only** (archives closes); `news-watch`
-(hourly) maintains overrides, refreshes picks, and notifies. The anchored-on-the-opener programme
+**WNBA `news-watch` RESTARTED 2026-08-08 with amended instructions**
+(owner decision after the first-week audit; it was trigger-disabled for
+part of that day). The v3 live-betting protocol (re-opened 2026-07-31)
+plus the 2026-08-08 amendments — pick gates (panel/player staleness,
+team consistency, FD-opener-only, EV>25% quarantine), shade-table
+scoreboard fix, ESPN panel fallback, archive-every-firing — live at the
+top of `wnba/live/PROTOCOL.md`. `edge-watch` is retired (its data-only
+archiving now runs inside every news-watch firing). What prices
+is the talent model + news overrides (`wnba/src/fp_live.py`), FanDuel
+EV>10% trigger, pre-registered staking. The anchored-on-the-opener programme
 that produced every model here is retired; the rework toward first-principles
 pricing is tracked in `PROGRESS.md` (which supersedes `PLAN.md`). Read
 `PROGRESS.md` before starting modelling work, and update it with every push.
@@ -53,9 +57,11 @@ Rules that apply everywhere:
 - **No model here reads injury/team news** — the paused picks were never
   injury-checked. Each PROTOCOL has an "Injury check before you bet" section;
   point the user at it if they ask about a historical pick.
-- The `edge-watch` routine (`trig_01Ko6Py4ar9tw8QoxPYx8tyw`) still exists on a
-  7x-daily schedule and cannot be disabled through the agent API — it was
-  created via `http_api`, and agents can only update routines they created.
-  It is halted by the PROTOCOL block instead, which only works once that block
-  is on `main`. A hard stop needs the user to toggle it off at
-  https://claude.ai/code/routines/trig_01Ko6Py4ar9tw8QoxPYx8tyw
+- Routine state (verified 2026-08-08 via the agent API): `edge-watch`
+  (`trig_01Ko6Py4ar9tw8QoxPYx8tyw`) has been DISABLED since 2026-07-31
+  and is retired — news-watch's step 0 does its archiving now. `news-watch`
+  (`trig_01GThXFjtLzfXEH1kqjMYXEF`, hourly at :31) was disabled during
+  the 2026-08-08 audit and RE-ENABLED the same day by owner decision,
+  with its prompt rewritten around the PROTOCOL amendments. Do not
+  enable/disable either without the owner explicitly asking. Manage at
+  https://claude.ai/code/routines/

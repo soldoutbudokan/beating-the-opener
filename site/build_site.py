@@ -227,6 +227,35 @@ def load_market(cfg):
         se = math.sqrt(var / len(clvs))
         t_stat = mean_clv / se if se else None
 
+    # model calibration: expected wins under the model's own model_p vs
+    # observed - the highest-power live diagnostic at small n (2026-08-08
+    # audit), and the check that first caught the under-side failure
+    cal = [(num(b, "model_p"), txt(b, "result")) for b in settled
+           if num(b, "model_p") is not None]
+    calib = None
+    if len(cal) >= 10:
+        exp_w = sum(p for p, _ in cal)
+        var_w = sum(p * (1 - p) for p, _ in cal)
+        obs_w = sum(1 for _, res in cal if res == "won")
+        if var_w > 0:
+            calib = {"n": len(cal), "exp": exp_w, "obs": obs_w,
+                     "z": (obs_w - exp_w) / math.sqrt(var_w)}
+    # closing-line movement: at an ~80% no-move rate, raw CLV mostly
+    # measures vig - the page must say how much of the sample can speak
+    n_stamped = n_moved = 0
+    for b in bets:
+        if b["_clv"] is None or b["_status"] == "void":
+            continue
+        src, ln = txt(b, "clv_source"), num(b, "line")
+        if "@" not in src or ln is None:
+            continue
+        n_stamped += 1
+        try:
+            if float(src.split("@", 1)[1]) != ln:
+                n_moved += 1
+        except ValueError:
+            n_stamped -= 1
+
     curve, running = [], bank["start"]
     for b in sorted(graded, key=lambda r: (txt(r, "match_date"), txt(r, "key"))):
         running += b["_pnl"] or 0.0
@@ -251,6 +280,7 @@ def load_market(cfg):
         "staked": staked, "pnl": pnl,
         "roi": pnl / staked if staked else None,
         "mean_clv": mean_clv, "n_clv": len(clvs), "t_stat": t_stat,
+        "calib": calib, "n_moved": n_moved, "n_stamped": n_stamped,
         "exp_pnl": sum(b["_stake"] * b["_clv"] for b in bets
                        if b["_clv"] is not None and b["_status"] != "void"),
         # What the model itself claimed the same graded bets were worth, at
@@ -674,6 +704,12 @@ def picks_block(m):
     rows = []
     for p in picks[:25]:
         ev = num(p, "ev")
+        # gates (2026-08-08): blocked rows carry their reasons in `flags`
+        # and stake 0 - shown struck through so what was skipped, and why,
+        # stays legible on the published page
+        flags = txt(p, "flags")
+        blocked = any(f and not f.endswith("?")
+                      for f in flags.split(";")) if flags else False
         rows.append([
             f'<span class="muted mono">{esc(txt(p, "game"))}</span> '
             f'{date_short(txt(p, "date"))}',
@@ -681,12 +717,16 @@ def picks_block(m):
             f'<span class="chip">{esc(txt(p, "market"))} {esc(txt(p, "side"))} '
             f'{num(p, "fd_line"):g}</span>'
             + (' <span class="chip chip-strong">strong</span>'
-               if str(p.get("strong", "")).lower() in ("true", "1") else ""),
+               if str(p.get("strong", "")).lower() in ("true", "1")
+               and not blocked else "")
+            + (f' <span class="chip">⛔ {esc(flags)}</span>' if blocked
+               else (f' <span class="chip">⚠ {esc(flags)}</span>'
+                     if flags else "")),
             f'<span class="mono">{odds(num(p, "fd_cost"), "american")}</span>',
             f'{(num(p, "model_p") or 0) * 100:.1f}%',
             f'<span class="val-good mono">{signed_pct(ev)}</span>'
             if ev is not None else "—",
-            money(num(p, "stake") or 0)])
+            "—" if blocked else money(num(p, "stake") or 0)])
     return head + table(cols, rows, "tbl", aligns)
 
 
@@ -755,6 +795,19 @@ def market_panel(m):
         "CLV-expected P&L",
         signed_money(m["exp_pnl"]) if m["n_clv"] else "—",
         "what the closing line says you should have won"))
+    if m["n_stamped"]:
+        tiles.append(tile(
+            "Line moved after bet",
+            f'{m["n_moved"]} of {m["n_stamped"]}',
+            "rest closed at the bet line, where CLV can only measure vig"))
+    if m["calib"]:
+        c = m["calib"]
+        tiles.append(tile(
+            "Model calibration",
+            f'{c["obs"]}W vs {c["exp"]:.1f} expected',
+            f'binomial z = {c["z"]:+.2f} on the model\'s own win claims '
+            f'(n = {c["n"]})',
+            "bad" if c["z"] <= -2 else ("good" if abs(c["z"]) < 1 else "")))
     if m["pushes"] or m["voids"]:
         tiles.append(tile("Push / void", f'{m["pushes"]} / {m["voids"]}',
                           "stake returned"))

@@ -934,7 +934,49 @@ registrations are firewalled from betting outcomes.
   stale, so a days-since-last-game gate (~10–14 days) in
   `latest_states()` isolates exactly this case. **Not applied this
   session** — it changes what gets bet, which is an owner decision, not
-  a scoreboard update.
+  a scoreboard update. **Applied 2026-08-08** (owner decision, below).
+- **2026-08-08 — first-week audit → routines paused + harness fixes
+  (owner-directed).** The audit's decisive number: on the 59 settled v3
+  bets the model's own `model_p` predicted 37.1 wins, 28 happened
+  (binomial z = −2.48; unders alone z = −3.03, overs z = 0.0), while
+  the market's vig-inclusive implied probabilities predicted 29.9
+  (z = −0.49) — the model's under claims fail their own calibration
+  test while the market passes. Mechanistic findings: (1) the panel
+  froze at 08-01 for a week (wehoop stall) while picks kept flowing —
+  claimed EV per slate rose 20%→30% mechanically as the market priced
+  games the model hadn't seen (Carla Leite μ pinned at ~5.85 while FD
+  walked her assists line 5.5→8.5 and the "EV" hit +51%); (2) the v1
+  opener-only/don't-chase rule had been dropped in v3 — fills happened
+  at lines 1–2 pts off the open, and no committed code reproduces the
+  "FD EV>10% ≈ +5–10%" dev analogue (roi_sim prices consensus opens
+  only); (3) the stale-player hole (Plum) was still open; (4)
+  `market_shades()` returned `{}` in fresh containers, so `clv_cal`
+  was silently stamped equal to raw `clv` from 08-03 on — the one
+  pre-registered +3–6% falsifier wasn't being computed; (5) 46 of 57
+  stamped bets closed at the bet line (CLV ≈ vig by construction,
+  AUDIT N2); (6) 40 of 78 bets were re-entries of 18 frozen
+  disagreements. Owner rulings: fix 1, 2, 4, 5 of the audit's list;
+  re-bet repetition stays allowed (real-edge hypothesis); model
+  changes (Kalman process-noise floor etc.) only via owner + strong
+  session after the routine FLAGS role changes — no silent model
+  edits. **Fixes landed this push:** pick gates in `fp_live.py`
+  (PANEL_STALE via events.pkl, STALE_PLAYER >14d, TEAM_MISMATCH/
+  TEAM_CHANGED, MOVED_OFF_OPEN with FD-open coherence + 15¢ juice
+  tolerance, SUSPECT_EV >25% quarantine; advisory ROLE_MIN?/ROLE_START?
+  owner-review flags; blocked rows stay listed, play=False, stake 0);
+  shade fix in `settle_bets.py` (committed `live/shade_table.json`,
+  stale-table fallback, blank-not-zero `clv_cal`, broken-era rows
+  re-stamped); scoreboard adds no-move share + model-calibration z
+  (RESULTS.md and site); ESPN fallback extended to the panel
+  (schema-2 archives with full stat lines/ids, `features.py` appends
+  wehoop-missing dates; validated 197/197 rows, 2/~3,700 cells diff —
+  one late official scoring change; wehoop reclaims dates on publish).
+  Registration hygiene: `fp-prospective-1/2` untouched — season-end
+  evaluation rebuilds from wehoop-complete data, pinned models
+  unchanged; the gates change what gets BET, never what gets SCORED.
+  `news-watch` disabled at the trigger level (owner, 2026-08-08);
+  `edge-watch` found already off since 07-31. Open at pause: 17 bets
+  (8/8–8/9 games) needing closes + settlement, currently manual.
 
 ## Push log
 
@@ -1061,3 +1103,24 @@ registrations are firewalled from betting outcomes.
   is left for an owner decision because it changes what gets bet. Still
   open: the 7 bets on the 2026-08-02 slate, which need the next
   wehoop refresh and the 2696/2697 closes.
+- **2026-08-08 (audit session)** — First-week audit delivered (findings
+  in the live-betting section above); owner paused `news-watch` at the
+  trigger level and directed the fix set: pick gates + reinstated
+  opener-only rule (`fp_live.py`), shade-table fix + no-move share +
+  calibration z on the scoreboard (`settle_bets.py`,
+  `site/build_site.py`), ESPN fallback extended from settlement into
+  the model panel (`fetch_espn_box.py` schema 2 + `features.py`;
+  validated 197/197 player rows on the 7/30–8/1 wehoop overlap, 2 stat
+  cells of ~3,700 differ from one late official scoring change), and
+  role-change advisory flags in picks (model changes remain owner+
+  strong-session territory — the routine flags, never fixes). Re-bet
+  repetition deliberately NOT gated (owner: repeated disagreement may
+  be a real edge). fp-prospective-1/2 registrations untouched.
+- **2026-08-08 (audit session, later)** — Owner: measure the open
+  slates, restart the routine with updated instructions, push to main.
+  `news-watch` prompt rewritten around the amendments (archive every
+  firing — edge-watch's duty folded in; panel refresh from either box
+  source; gates respected in notifications; gated rows listed
+  separately; ROLE_*? flags surfaced for owner review, never acted on)
+  and RE-ENABLED. Audit branch merged to main. The 17 open bets (8/8–
+  8/9 slates) settle via the restarted routine's sweep.

@@ -40,31 +40,56 @@ MARKET_IDS = {"points": 393, "rebounds": 397, "assists": 391, "threes": 390,
 BOOKSUM_LO, BOOKSUM_HI = 1.00, 1.15  # sane two-way vig band
 
 
+SHADE_TABLE = os.path.join(LIVE, "shade_table.json")
+
+
 def market_shades():
-    """Per-market over-shade from the graded archive (expanding window).
+    """(per-market over-shade dict or None, source note).
 
     WNBA prop prices overstate P(over) by ~2pp on average at BOTH open and
     close (AUDIT N1), so raw-close CLV mechanically penalises unders. The
     scoreboard records CLV against the raw close (`clv`, the standard
     yardstick) AND against the shade-corrected close (`clv_cal`).
+
+    Fixed 2026-08-08 (audit finding #4): this used to return {} whenever
+    data/modelset.pkl was absent - which it IS in every fresh container
+    until a wehoop refresh rebuilds it - so clv_cal was silently stamped
+    equal to raw clv for a week and nobody noticed. Now: a successful fit
+    persists to the COMMITTED live/shade_table.json; without a modelset
+    the stale table is used (with a note); with neither, the caller must
+    leave clv_cal BLANK (backfilled by a later run) rather than fabricate
+    a zero-shade number.
     """
     path = os.path.join(ROOT, "data", "modelset.pkl")
-    if not os.path.exists(path):
-        return {}
-    ms = pd.read_pickle(path)
-    if "open_coherent" not in ms.columns:
-        return {}
-    d = ms[ms.actual.notna() & ~ms.void & ms.open_coherent.fillna(False)
-           & (ms.actual != ms.open_line)]
-    if len(d) < 400:
-        return {}
-    y = (d.actual > d.open_line).astype(float)
-    pooled = fit_shade(d.p_open, y)
-    out = {}
-    for mkt in d.market.unique():
-        m = d.market == mkt
-        out[mkt] = fit_shade(d.p_open[m], y[m]) if m.sum() >= 200 else pooled
-    return out
+    if os.path.exists(path):
+        ms = pd.read_pickle(path)
+        if "open_coherent" in ms.columns:
+            d = ms[ms.actual.notna() & ~ms.void
+                   & ms.open_coherent.fillna(False)
+                   & (ms.actual != ms.open_line)]
+            if len(d) >= 400:
+                y = (d.actual > d.open_line).astype(float)
+                pooled = fit_shade(d.p_open, y)
+                out = {}
+                for mkt in d.market.unique():
+                    m = d.market == mkt
+                    out[mkt] = fit_shade(d.p_open[m], y[m]) \
+                        if m.sum() >= 200 else pooled
+                json.dump({"fitted_utc": str(pd.Timestamp.now(tz="UTC")),
+                           "n": int(len(d)),
+                           "shades": {k: round(float(v), 6)
+                                      for k, v in out.items()}},
+                          open(SHADE_TABLE, "w"), indent=1)
+                return out, f"fit on {len(d)} graded props"
+    if os.path.exists(SHADE_TABLE):
+        try:
+            t = json.load(open(SHADE_TABLE))
+            return ({k: float(v) for k, v in t["shades"].items()},
+                    f"committed table, fitted {t.get('fitted_utc', '?')[:16]}"
+                    f" on n={t.get('n', '?')}")
+        except Exception:
+            pass
+    return None, "unavailable"
 
 
 def event_meta():
@@ -267,8 +292,23 @@ def main():
     # Open bets whose game has finished are stamped too: the close exists
     # once the game tips, and a box-score lag upstream must not hide the
     # market's verdict from the scoreboard (owner request 2026-08-03).
-    shades = market_shades()
+    shades, shade_src = market_shades()
+    print(f"shade source: {shade_src}")
+    if shades is not None:
+        # re-stamp rows stamped while the shade was silently zero (the
+        # 2026-08-01..08 bug): clv == clv_cal exactly is that bug's
+        # signature - blanking clv_cal here lets this run recompute it
+        # from the archived close with a real shade. Deterministic
+        # recomputation of a derived column, not an edit of a fill fact.
+        broken = (bets.clv.notna() & bets.clv_cal.notna()
+                  & (bets.clv == bets.clv_cal)
+                  & bets.status.isin(["settled", "push", "open"]))
+        if broken.any():
+            print(f"re-shading {int(broken.sum())} row(s) stamped while the "
+                  "shade table was unavailable")
+            bets.loc[broken, "clv_cal"] = np.nan
     n_clv = 0
+    n_noshade = 0
     for i, b in bets.iterrows():
         game_done = (b["status"] == "open"
                      and emeta.get(int(b["event_id"]),
@@ -280,13 +320,22 @@ def main():
                              b["side"], float(b["line"]))
         if not np.isnan(po):
             dec = float(amer_to_dec(b["odds_taken"]))
-            po_cal = float(apply_shade(po, shades.get(b["market"], 0.0)))
             over = b["side"] == "over"
             bets.loc[i, "clv"] = round((po if over else 1 - po) * dec - 1, 4)
-            bets.loc[i, "clv_cal"] = round(
-                (po_cal if over else 1 - po_cal) * dec - 1, 4)
+            if shades is not None:
+                po_cal = float(apply_shade(po, shades.get(b["market"], 0.0)))
+                bets.loc[i, "clv_cal"] = round(
+                    (po_cal if over else 1 - po_cal) * dec - 1, 4)
+            else:
+                # no shade information at all: leave clv_cal BLANK for a
+                # later run's backfill - a silent zero-shade stamp is how
+                # the scoreboard lied for a week (audit finding #4)
+                n_noshade += 1
             bets.loc[i, "clv_source"] = src
             n_clv += 1
+    if n_noshade:
+        print(f"SHADE_UNAVAILABLE: clv_cal left blank on {n_noshade} row(s) "
+              "- backfilled once a shade table exists")
 
     bets.to_csv(BETS, index=False)
     done = bets[bets.status.isin(["settled", "push", "void"])]
@@ -308,7 +357,10 @@ def main():
              "`CLV*` re-expresses the close with the measured market "
              "over-shade removed (WNBA prop prices overstate P(over) by ~2pp "
              "on average, so raw CLV mechanically penalises unders - see "
-             "AUDIT.md N1). Both converge far faster than ROI.\n",
+             "AUDIT.md N1). Both converge far faster than ROI. A blank "
+             "`CLV*` means no shade table existed at stamp time; it is "
+             "backfilled by a later run, never silently stamped at zero "
+             "shade.\n",
              "`EV said` is the model's own claim for that bet at the price "
              "actually taken (`model_p x decimal_odds - 1`). Read it against "
              "`CLV`: the model's claim vs the market's verdict on the same "
@@ -331,6 +383,25 @@ def main():
         stamped = bets[bets.status != "void"].dropna(subset=["clv"])
         clv = stamped.clv
         clv_cal = stamped.clv_cal.dropna()
+        # how often the closing LINE moved off the bet line: at an ~80%
+        # no-move rate (audit finding), raw CLV mostly measures vig, so the
+        # scoreboard must say how much of the sample carries information
+        close_line = stamped.clv_source.astype(str).str.extract(
+            r"@([\d.]+)")[0].astype(float)
+        n_moved = int((close_line != stamped.line).sum())
+        # the model's own claim, tested: expected wins under model_p vs
+        # observed (binomial z) - the highest-power live diagnostic at
+        # small n, and the one that first caught the under-side failure
+        cal_rows = sett[sett.model_p.notna()]
+        cal_line = "-"
+        if len(cal_rows) >= 10:
+            pv = cal_rows.model_p.astype(float)
+            exp_w = float(pv.sum())
+            obs_w = int((cal_rows.result == "won").sum())
+            var_w = float((pv * (1 - pv)).sum())
+            z_w = (obs_w - exp_w) / np.sqrt(var_w) if var_w > 0 else np.nan
+            cal_line = (f"expected {exp_w:.1f}W vs observed {obs_w}W "
+                        f"(z={z_w:+.2f})")
         lines += [
             f"**Bankroll: ${current:.2f}** (start $100)\n",
             "| metric | value |", "|---|---|",
@@ -346,6 +417,9 @@ def main():
             f"| mean CLV* (shade-adj) | "
             f"{clv_cal.mean():+.2%} (n={len(clv_cal)}) |"
             if len(clv_cal) else "| mean CLV* (shade-adj) | - |",
+            f"| closing line moved | {n_moved} of {len(stamped)} stamped "
+            f"(the rest closed at the bet line: CLV ≈ vig there) |",
+            f"| model calibration | {cal_line} |",
             f"| Model-expected P&L | "
             f"${(done.stake * done.ev_claimed).sum():+.2f} |",
             f"| CLV-expected P&L | "
@@ -358,6 +432,12 @@ def main():
                 tc = byd.mean() / (byd.std() / np.sqrt(len(byd)))
                 tline += f"; {tc:.2f} clustered by match date ({len(byd)} dates)"
             lines.append(tline + "\n")
+            lines.append(
+                "Calibration reads the model's own claims against results: "
+                "expected wins = sum of `model_p` over settled bets. A "
+                "negative z means the claimed probabilities are running "
+                "hot (the audit's under-side finding); it converges much "
+                "faster than ROI.\n")
     else:
         lines.append(f"No settled bets yet ({no} open).\n")
     show = bets.sort_values("match_date", ascending=False).head(200)
