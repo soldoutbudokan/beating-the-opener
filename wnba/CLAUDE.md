@@ -1,11 +1,10 @@
 # wnba (subproject of beating-the-opener)
 
-**Routines PAUSED 2026-08-08 (owner decision, first-week audit)** —
-`news-watch` and `edge-watch` are both disabled at the trigger level;
-picks, close archiving and settlement are manual until the owner
-re-enables a routine. The v3 protocol (re-opened 2026-07-31) **plus the
-2026-08-08 amendments** live at the top of live/PROTOCOL.md — read both
-before touching anything here. The OLD anchored model stays retired:
+**`news-watch` RESTARTED 2026-08-08 with amended instructions** (owner
+decision after the first-week audit; `edge-watch` stays retired — its
+archiving runs inside every news-watch firing now). The v3 protocol
+(re-opened 2026-07-31) **plus the 2026-08-08 amendments** live at the
+top of live/PROTOCOL.md — read both before touching anything here. The OLD anchored model stays retired:
 never run src/live_pipeline.py for picks. Picks come from
 **src/fp_live.py** (pinned talent model + news overrides), FanDuel
 EV>10% trigger, pre-registered staking, and since 2026-08-08 the pick

@@ -1,13 +1,13 @@
 # beating-the-opener (monorepo)
 
-**WNBA routines PAUSED 2026-08-08 (owner decision, first-week audit)** —
-`news-watch` disabled at the trigger level, `edge-watch` off since
-2026-07-31: nothing runs on a schedule, so picks/closes/settlement are
-manual (owner sessions) until the owner re-enables a routine. The v3
-live-betting protocol (re-opened 2026-07-31) plus the 2026-08-08
-amendments — pick gates (panel/player staleness, team consistency,
-FD-opener-only, EV>25% quarantine), shade-table scoreboard fix, ESPN
-panel fallback — live at the top of `wnba/live/PROTOCOL.md`. What prices
+**WNBA `news-watch` RESTARTED 2026-08-08 with amended instructions**
+(owner decision after the first-week audit; it was trigger-disabled for
+part of that day). The v3 live-betting protocol (re-opened 2026-07-31)
+plus the 2026-08-08 amendments — pick gates (panel/player staleness,
+team consistency, FD-opener-only, EV>25% quarantine), shade-table
+scoreboard fix, ESPN panel fallback, archive-every-firing — live at the
+top of `wnba/live/PROTOCOL.md`. `edge-watch` is retired (its data-only
+archiving now runs inside every news-watch firing). What prices
 is the talent model + news overrides (`wnba/src/fp_live.py`), FanDuel
 EV>10% trigger, pre-registered staking. The anchored-on-the-opener programme
 that produced every model here is retired; the rework toward first-principles
@@ -59,8 +59,9 @@ Rules that apply everywhere:
   point the user at it if they ask about a historical pick.
 - Routine state (verified 2026-08-08 via the agent API): `edge-watch`
   (`trig_01Ko6Py4ar9tw8QoxPYx8tyw`) has been DISABLED since 2026-07-31
-  (the old "cannot be disabled / still enabled" note here was stale), and
-  `news-watch` (`trig_01GThXFjtLzfXEH1kqjMYXEF`) was DISABLED on
-  2026-08-08 by owner decision after the first-week audit. Do not
-  re-enable either without the owner explicitly asking. Manage at
+  and is retired — news-watch's step 0 does its archiving now. `news-watch`
+  (`trig_01GThXFjtLzfXEH1kqjMYXEF`, hourly at :31) was disabled during
+  the 2026-08-08 audit and RE-ENABLED the same day by owner decision,
+  with its prompt rewritten around the PROTOCOL amendments. Do not
+  enable/disable either without the owner explicitly asking. Manage at
   https://claude.ai/code/routines/

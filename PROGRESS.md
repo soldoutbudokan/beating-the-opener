@@ -1116,3 +1116,11 @@ registrations are firewalled from betting outcomes.
   strong-session territory — the routine flags, never fixes). Re-bet
   repetition deliberately NOT gated (owner: repeated disagreement may
   be a real edge). fp-prospective-1/2 registrations untouched.
+- **2026-08-08 (audit session, later)** — Owner: measure the open
+  slates, restart the routine with updated instructions, push to main.
+  `news-watch` prompt rewritten around the amendments (archive every
+  firing — edge-watch's duty folded in; panel refresh from either box
+  source; gates respected in notifications; gated rows listed
+  separately; ROLE_*? flags surfaced for owner review, never acted on)
+  and RE-ENABLED. Audit branch merged to main. The 17 open bets (8/8–
+  8/9 slates) settle via the restarted routine's sweep.

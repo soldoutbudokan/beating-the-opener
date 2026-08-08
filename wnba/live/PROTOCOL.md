@@ -1,25 +1,32 @@
 # Live experiment protocol - WNBA props
 
-> # ⏸️ ROUTINES PAUSED — 2026-08-08 (owner decision, first-week audit)
+> # 🔁 ROUTINE RESTARTED — 2026-08-08 (amended instructions, post-audit)
 >
-> The hourly `news-watch` routine was **disabled at the trigger level**
-> on 2026-08-08 (`trig_01GThXFjtLzfXEH1kqjMYXEF`, via the agent API);
-> `edge-watch` has been off since 2026-07-31. Nothing runs on a schedule:
-> no picks, no notifications, no automatic settlement or close archiving.
-> The 17 bets open at pause time still need closes captured near tip and
-> a settlement pass after their games - manual (owner session) until the
-> routine is re-enabled.
+> `news-watch` (`trig_01GThXFjtLzfXEH1kqjMYXEF`, hourly at :31) was
+> disabled at the trigger level during the 2026-08-08 first-week audit
+> and **re-enabled the same day with its prompt rewritten around the
+> Amendments below** (owner decision: restart, but with the updated
+> instructions). Two operational changes vs the first week:
 >
-> The pause followed a full audit of the first live week, which found the
-> harness was not running the experiment that was backtested: the model
-> panel froze for a week during a wehoop stall while picks kept flowing
-> (claimed EV inflating mechanically as the market moved), the v1
-> "opener-only, don't chase" rule had been dropped, players 40+ days
-> stale were being priced (Kelsey Plum), and the shade-adjusted CLV
+> - **Archive every firing**: `scrape_bettingpros.py` now runs on every
+>   firing, open bets or not. `edge-watch` stays retired — this was its
+>   data-only duty, and CLV plus the fp-prospective registrations score
+>   from that archive, so it must never again depend on there happening
+>   to be stale open bets.
+> - **Panel refresh every firing that lands box scores**, from EITHER
+>   source (wehoop or the ESPN fallback, which feeds the panel since
+>   2026-08-08). A `PANEL_STALE` flag on the sheet now means both box
+>   sources failed - the routine reports it loudly instead of pricing
+>   through it.
+>
+> The audit that forced this (record: PROGRESS.md, 2026-08-08 entries):
+> the harness was not running the experiment that was backtested - the
+> panel froze for a week during a wehoop stall while picks kept flowing,
+> the v1 "opener-only, don't chase" rule had been dropped, 40-day-stale
+> players were being priced (Kelsey Plum), and the shade-adjusted CLV
 > column had been silently stamped with zero shade since 08-03. The
 > **Amendments (2026-08-08)** section below is the owner-approved fix
-> set; it is in force for any pick generated after this commit, manual
-> or scheduled.
+> set; it is in force for every pick, manual or scheduled.
 
 > # ▶️ EXPERIMENT RE-OPENED — 2026-07-31 (v3, from-scratch talent model)
 >
