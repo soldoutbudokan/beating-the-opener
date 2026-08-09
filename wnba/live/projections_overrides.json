@@ -183,7 +183,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN injury report UPDATED Day-To-Day -> Out (back): 'Clark (back) is out for Wednesday's game against the Mystics.' Confirmed by the per-event report for DAL@WAS (event:401857117). Supersedes the 21:35Z questionable entry from the 1635Z snapshot. Inert on today's sheet - Alysha Clark has no FanDuel prop in the current projection set - but recorded so a late-listed prop cannot be priced off a stale 'she plays' state.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 82
     },
     {
       "player": "Ugonne Onyiah",
@@ -261,7 +261,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Per-event injury report for PHX @ ATL (event 401857115, tip 2026-08-05T23:00Z): Out, type Coach's Decision, return_date 2026-08-07. Deep-bench Mercury rookie; no prop on the board, so archival only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 100
     },
     {
       "player": "Shay Ciezki",
@@ -274,7 +274,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Per-event injury report for PHX @ ATL (event 401857115, tip 2026-08-05T23:00Z): Out, type Coach's Decision, return_date 2026-08-07. Deep-bench Mercury rookie; no prop on the board, so archival only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 101
     },
     {
       "player": "Liatu King",
@@ -352,7 +352,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "'Maley (coach's decision) is listed as out for Wednesday's game against Seattle.' New Out (Coach's Decision). SEA@NY was already FINAL at capture - record only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 98
     },
     {
       "player": "Darianna Littlepage-Buggs",
@@ -560,7 +560,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Injury feed downgraded Day-To-Day -> Out (Coach's Decision), return_date 2026-08-07. CD covers Wednesday vs ATL; PHX's next game is 2026-08-07 @CON. Bench CD player, no prop in the window - recorded, no minutes change.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 100
     },
     {
       "player": "Katie Lou Samuelson",
@@ -677,7 +677,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED in the 2232Z diff: Clark (back) upgraded Out -> Day-To-Day, 'questionable for Friday's game against the Valkyries' (return_date 2026-08-07 = GS@DAL). Supersedes entry 39, whose Out listing covered games already played; the judgement is unchanged (questionable, no minutes estimate until a lineup confirms her) but the feed now says questionable rather than out, so the log should say so too.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 82
     },
     {
       "player": "Bree Hall",
@@ -794,7 +794,7 @@
       "url": "https://www.espn.com/wnba/",
       "quote": "'Longtime Liberty player Betnijah Laney-Hamilton waived' (ESPN, published 2026-08-06T21:52Z): 'Betnijah Laney-Hamilton, a stalwart of the Liberty since 2021 ... was waived Thursday.' A waiver is a roster removal, not an injury, so this is an until-cleared out (game_date null) rather than a one-game entry - she cannot play for New York again, and any future team would need a new signing to supersede this. No NY prop on the current sheet; NY is not on tonight's slate.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 102
     },
     {
       "player": "Michelle Onyiah",
@@ -927,7 +927,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report 0336Z (NEW in the diff): \"Pissott (leg) has been ruled out for Saturday's game against the Lynx.\" Event 2712 (LVA@MIN). No FanDuel prop rows for her, and build_fixture applies minutes overrides per player only - no teammate redistribution - so this is inert for pricing and logged for the archive.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 90
     },
     {
       "player": "Cheyenne Parker-Tyus",
@@ -940,7 +940,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report 0336Z: \"Parker-Tyus (concussion/not with team) has been ruled out for Saturday's game against the Lynx.\" Not new on the feed, but it names the 8/8 game explicitly and no override covered that date. No prop rows; inert for pricing, logged for the archive.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 99
     },
     {
       "player": "Chloe Bibby",
@@ -979,7 +979,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report 0336Z (NEW): \"Boston (lower leg) is listed as probable for Saturday's game against the Sky.\" Minutes deliberately left UNCHANGED (minutes_est null, so this entry is inert for pricing): the standing owner fill on Boston is rebounds UNDER 8.5, and a nagging-leg minutes cut is exactly the assumption that would inflate that under's EV. Full-role is the assumption least favourable to a news-driven bet, which is the conservative side here. The entry exists so the Day-To-Day flag is on the record and drives the picks-table availability annotation.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 95
     },
     {
       "player": "Caitlin Clark",
@@ -992,7 +992,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report 0336Z (NEW): \"Clark (back) is probable for Saturday's game against the Sky.\" Minutes left UNCHANGED for the same reason as the Boston entry - the standing fill is assists UNDER 8.5, so cutting her minutes would manufacture edge on a bet already taken. Inert for pricing; recorded for the annotation and the archive.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 97
     },
     {
       "player": "Bridget Carleton",
@@ -1005,7 +1005,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report 0336Z (NEW): \"Carleton (foot) is listed as probable for Saturday's game versus Seattle.\" Supersedes the 2026-08-06 'in' entry. Minutes left UNCHANGED - the standing fill is points UNDER 15.5, so a foot-related minutes cut would inflate an under already bet. Inert for pricing; recorded for the annotation.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 96
     },
     {
       "player": "Teja Oblak",
@@ -1082,6 +1082,279 @@
       "source": "avail:2026-08-08/0336Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED off the ESPN injury report at 0336Z (was Out - Coach's Decision). Minnesota, event 2712. No prop rows; recorded for the archive.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Alysha Clark",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Clark (back) will remain on the sidelines for Sunday's game in Minnesota. Ruled out on the ESPN league report; DAL@MIN is on the 8/9 sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Leonie Fiebich",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Fiebich (foot) is out for Sunday's game against the Aces. LVA@NYL is on the 8/9 sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Satou Sabally",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Sabally (concussion) listed Out on the ESPN league report, return date 2026-08-18. LVA@NYL is on the 8/9 sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Costanza Verona",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Verona's contract was temporarily suspended by the Wings Saturday (ESPN report lists Out/Personal, return 2026-09-17). Until-cleared: she cannot be projected while suspended.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Luisa Geiselsoder",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Geiselsoder (personal) won't return this season, per Sean Highkin of RoseGardenReport.com. Until-cleared.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "A'ja Wilson",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": "2026-08-09",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Wilson is listed as questionable for Sunday's game against the Liberty due to rest. Listed Day-To-Day on the ESPN league report for Sunday's game. Recorded without a minutes estimate on purpose: a rest/DTD tag is not information about minutes played, and guessing one would manufacture a news-driven under. Display-only warning.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Chelsea Gray",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": "2026-08-09",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Gray (rest) is listed as questionable for Sunday's game against the Liberty. Listed Day-To-Day on the ESPN league report for Sunday's game. Recorded without a minutes estimate on purpose: a rest/DTD tag is not information about minutes played, and guessing one would manufacture a news-driven under. Display-only warning.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Jackie Young",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": "2026-08-09",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Young (rest) is listed Day-To-Day; LV listed three rest DTDs together after Saturday's loss in Minnesota, ahead of Sunday at New York. Listed Day-To-Day on the ESPN league report for Sunday's game. Recorded without a minutes estimate on purpose: a rest/DTD tag is not information about minutes played, and guessing one would manufacture a news-driven under. Display-only warning.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Justine Pissott",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": "2026-08-09",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Pissott (leg) is listed as questionable for Sunday's game against the Liberty - upgraded from Out. Listed Day-To-Day on the ESPN league report for Sunday's game. Recorded without a minutes estimate on purpose: a rest/DTD tag is not information about minutes played, and guessing one would manufacture a news-driven under. Display-only warning.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Monique Akoa Makani",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": "2026-08-09",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Akoa Makani is questionable for Sunday's game against Golden State due to a right ankle injury. GSV@LAS is on the 8/9 sheet. Listed Day-To-Day on the ESPN league report for Sunday's game. Recorded without a minutes estimate on purpose: a rest/DTD tag is not information about minutes played, and guessing one would manufacture a news-driven under. Display-only warning.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Cecilia Zandalasini",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": "2026-08-09",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Zandalasini (quadriceps) newly listed Day-To-Day. GSV@LAS is on the 8/9 sheet and she carries a points prop on it. Listed Day-To-Day on the ESPN league report for Sunday's game. Recorded without a minutes estimate on purpose: a rest/DTD tag is not information about minutes played, and guessing one would manufacture a news-driven under. Display-only warning.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Azzi Fudd",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": "2026-08-09",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Fudd (knee) upgraded from Out to Day-To-Day ahead of Sunday at Minnesota. She carries a threes prop on the 8/9 sheet. Listed Day-To-Day on the ESPN league report for Sunday's game. Recorded without a minutes estimate on purpose: a rest/DTD tag is not information about minutes played, and guessing one would manufacture a news-driven under. Display-only warning.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Rae Burrell",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": "2026-08-09",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Burrell is probable for Sunday's game against Golden State due to a right leg injury.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Aliyah Boston",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared from the ESPN league injury report in the 2026-08-09/0034Z snapshot (was on it in the previous snapshot). Recorded as available; no minutes change.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Bridget Carleton",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared from the ESPN league injury report in the 2026-08-09/0034Z snapshot (was on it in the previous snapshot). Recorded as available; no minutes change. MIN hosts DAL on 8/9.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Caitlin Clark",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared from the ESPN league injury report in the 2026-08-09/0034Z snapshot (was on it in the previous snapshot). Recorded as available; no minutes change. Separately, the WNBA rescinded Clark's eighth technical foul on 8/8, so she is NOT suspended.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Anneli Maley",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared from the ESPN league injury report in the 2026-08-09/0034Z snapshot (was on it in the previous snapshot). Recorded as available; no minutes change.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Cheyenne Parker-Tyus",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared from the ESPN league injury report in the 2026-08-09/0034Z snapshot (was on it in the previous snapshot). Recorded as available; no minutes change.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kara Dunn",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared from the ESPN league injury report in the 2026-08-09/0034Z snapshot (was on it in the previous snapshot). Recorded as available; no minutes change.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Shay Ciezki",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared from the ESPN league injury report in the 2026-08-09/0034Z snapshot (was on it in the previous snapshot). Recorded as available; no minutes change.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Betnijah Laney-Hamilton",
+      "added": "2026-08-09T00:34:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "ESPN news API + avail:2026-08-09/0034Z",
+      "url": "https://www.espn.com/wnba/",
+      "quote": "'Mystics awarded ex-Liberty forward Betnijah Laney-Hamilton off waivers' (ESPN, 2026-08-08T22:26Z). Supersedes the 8/6 out entry with the same effect and the updated reason: the panel holds only her Liberty state, so she is unpriceable on WAS until a Mystics game with her in it enters the panel.",
       "author": "news-watch",
       "superseded_by": null
     }
