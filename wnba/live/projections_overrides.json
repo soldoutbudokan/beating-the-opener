@@ -1503,6 +1503,19 @@
       "quote": "CLEARED from the ESPN injury report at this snapshot (was Day-To-Day, entry 85). No listing = available; no sourced minutes claim, so minutes_est stays null and the base talent state prices her. Supersedes 85.",
       "author": "news-watch",
       "superseded_by": null
+    },
+    {
+      "player": "DeWanna Bonner",
+      "added": "2026-08-09T16:38:00Z",
+      "game_date": "2026-08-09",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/1638Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 1638Z diff: Bonner (Phoenix, Illness) newly listed Day-To-Day - league feed comment 'Bonner (illness) is listed as probable for Sunday's game against the Mystics.' Probable, so no minutes haircut is asserted: minutes_est left null, which makes this entry a record of the downgrade rather than a projection change. Conservative by design - manufacturing an under off a probable tag is exactly the news-driven bet the protocol warns about.",
+      "author": "news-watch",
+      "superseded_by": null
     }
   ]
 }
