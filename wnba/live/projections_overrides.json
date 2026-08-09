@@ -1,5 +1,5 @@
 {
-  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
   "entries": [
     {
       "player": "DiJonai Carrington",
@@ -1397,6 +1397,58 @@
       "source": "avail:2026-08-09/0233Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW on the league report as Day-To-Day (Knee), return_date 2026-08-12: \"Leite won't return to Saturday's game against the Storm due to a left knee sprain\" (Sean Highkin, RoseGardenReport.com). In-game exit, so the 08-08 panel row will understate nothing but her own minutes; a return_date three days out means Portland's next game(s) before 08-12 are at real risk. Conservative haircut rather than out, since ESPN says Day-To-Day not Out. game_date null (until-cleared) - Portland's next fixture is not in tonight's event feed.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Alissa Pili",
+      "added": "2026-08-09T03:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Pili's coach's-decision Out (for Thursday at Minnesota) dropped off the ESPN league injury report at 0333Z; return_date on the prior entry was 2026-08-09 and the game it referred to has been played. Cleared = available, but a coach's-decision clearance carries no minutes information, so status in with minutes_est null (no numeric change to the panel state). Recorded because the protocol requires cleared players to be logged.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ashten Prechtel",
+      "added": "2026-08-09T03:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Prechtel's coach's-decision Out (Friday vs the Wings) dropped off the ESPN league injury report at 0333Z, prior return_date 2026-08-09. Cleared = available; a coach's-decision clearance carries no minutes information, so status in with minutes_est null.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Miela Sowah",
+      "added": "2026-08-09T03:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Sowah's coach's-decision Out (Friday vs the Wings) dropped off the ESPN league injury report at 0333Z, prior return_date 2026-08-09. Cleared = available; a coach's-decision clearance carries no minutes information, so status in with minutes_est null.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Tonie Morgan",
+      "added": "2026-08-09T03:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/0333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Morgan's coach's-decision Out dropped off the ESPN league injury report at 0333Z, prior return_date 2026-08-09. Cleared = available; a coach's-decision clearance carries no minutes information, so status in with minutes_est null.",
       "author": "news-watch",
       "superseded_by": null
     }
