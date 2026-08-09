@@ -14,14 +14,14 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 | staked | $64.00 |
 | P&L | $-3.12 (-4.9% ROI) |
 | mean EV said (model) | +23.25% (n=64) |
-| mean CLV (vs close) | -4.67% (n=62) |
-| mean CLV* (shade-adj) | -3.69% (n=62) |
-| closing line moved | 13 of 62 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| mean CLV (vs close) | -4.10% (n=64) |
+| mean CLV* (shade-adj) | -3.30% (n=64) |
+| closing line moved | 13 of 64 stamped (the rest closed at the bet line: CLV ≈ vig there) |
 | model calibration | expected 39.6W vs observed 30W (z=-2.51) |
 | Model-expected P&L | $+15.33 |
-| CLV-expected P&L | $-2.90 |
+| CLV-expected P&L | $-2.62 |
 
-CLV t-stat: -4.08 (iid); -1.92 clustered by match date (9 dates)
+CLV t-stat: -3.46 (iid); -1.75 clustered by match date (9 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
@@ -46,10 +46,10 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-08 | Dominique Malonga | points | under | 18.5 | -125 | 1.0 | +23.7% |  |  |  |  |  |
 | 2026-08-07 | Angel Reese | threes | under | 0.5 | 118 | 1.0 | +93.4% | 0 | won | +1.18 | +9.0% | +13.8% |
 | 2026-08-07 | Diamond Miller | points | under | 11.5 | -114 | 1.0 | +28.9% | 9 | won | +0.88 | +7.3% | +10.4% |
-| 2026-08-07 | Paige Bueckers | assists | over | 5.5 | 110 | 1.0 | +22.9% | 1 | lost | -1.00 |  |  |
+| 2026-08-07 | Paige Bueckers | assists | over | 5.5 | 110 | 1.0 | +22.9% | 1 | lost | -1.00 | +9.9% | +6.3% |
 | 2026-08-07 | Leila Lacan | assists | under | 4.5 | 122 | 1.0 | +20.0% | 4 | won | +1.22 | +18.4% | +22.2% |
 | 2026-08-07 | Rhyne Howard | points | under | 17.5 | -130 | 1.0 | +17.7% | 19 | lost | -1.00 | -7.8% | -4.8% |
-| 2026-08-07 | Jessica Shepard | rebounds | over | 11.5 | 114 | 1.0 | +16.0% | 11 | lost | -1.00 |  |  |
+| 2026-08-07 | Jessica Shepard | rebounds | over | 11.5 | 114 | 1.0 | +16.0% | 11 | lost | -1.00 | +17.6% | +11.4% |
 | 2026-08-06 | Caitlin Clark | assists | under | 8.5 | 100 | 1.0 | +16.9% | 8 | won | +1.00 | -4.9% | -1.5% |
 | 2026-08-06 | Jackie Young | rebounds | under | 4.5 | -125 | 1.0 | +15.6% | 4 | won | +0.80 | -16.4% | -11.2% |
 | 2026-08-06 | Aliyah Boston | rebounds | under | 8.5 | -122 | 1.0 | +14.7% | 12 | lost | -1.00 | -18.6% | -13.3% |
