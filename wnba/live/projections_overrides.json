@@ -1383,6 +1383,22 @@
       "quote": "CLEARED off the league report (was Out). Stale entry from the 08-05 sweep; game_date null; inert.",
       "author": "news-watch",
       "superseded_by": null
+    },
+    {
+      "player": "Carla Leite",
+      "added": "2026-08-09T02:33:00Z",
+      "game_date": null,
+      "status": "questionable",
+      "minutes_est": 12,
+      "minutes_range": [
+        0,
+        20
+      ],
+      "source": "avail:2026-08-09/0233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW on the league report as Day-To-Day (Knee), return_date 2026-08-12: \"Leite won't return to Saturday's game against the Storm due to a left knee sprain\" (Sean Highkin, RoseGardenReport.com). In-game exit, so the 08-08 panel row will understate nothing but her own minutes; a return_date three days out means Portland's next game(s) before 08-12 are at real risk. Conservative haircut rather than out, since ESPN says Day-To-Day not Out. game_date null (until-cleared) - Portland's next fixture is not in tonight's event feed.",
+      "author": "news-watch",
+      "superseded_by": null
     }
   ]
 }
