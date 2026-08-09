@@ -1,5 +1,5 @@
 {
-  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
   "entries": [
     {
       "player": "DiJonai Carrington",
@@ -547,7 +547,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Injury feed downgraded Day-To-Day -> Out (Coach's Decision), return_date 2026-08-07. The CD applies to Wednesday's game; WSH's next game is 2026-08-07 vs ATL. Deep-bench CD player with no prop in the window - recorded, no minutes change.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 117
     },
     {
       "player": "Kara Dunn",
@@ -1187,7 +1187,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPGRADE Out -> Day-To-Day (Knee), return_date 2026-08-09; Dallas host the Lynx Sunday 19:30 ET. Conservative and inert: she was Out, so the panel has no fresh state to correct, and a status upgrade is not evidence of a minutes level. If she returns, her role is a guess until a game with her in it enters the panel.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 115
     },
     {
       "player": "Costanza Verona",
@@ -1252,7 +1252,7 @@
       "url": "https://www.espn.com/wnba/",
       "quote": "Waiver claim, not a return: \"Mystics awarded ex-Liberty forward Betnijah Laney-Hamilton off waivers\" (2026-08-08T22:26Z). Washington play at Phoenix Sunday 19:00 ET, so this supersedes the 08-06 Liberty -era entry with the same conservative call: still out. A player claimed off waivers on Saturday afternoon is not a safe bet to dress on Sunday, and her panel state is a New York role, so any WAS projection would be unpriceable anyway (the TEAM_CHANGED gate would block it independently). Re-judge once she appears in a Mystics box score.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 116
     },
     {
       "player": "Maddy Westbeld",
@@ -1304,7 +1304,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "\"King (coach's decision) is listed as out for Saturday's game versus Las Vegas\" (league + event:401857125, return_date 2026-08-09). Supersedes the 08-08 in entry. Scoped to 08-08 only: a coach's decision is game-specific and Minnesota play again Sunday at Dallas, so it must not be carried forward as an absence.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 121
     },
     {
       "player": "Aliyah Boston",
@@ -1369,7 +1369,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED off the league report (was Out on this feed; last override had her questionable for 08-07). game_date null; inert.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 118
     },
     {
       "player": "Shay Ciezki",
@@ -1382,7 +1382,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED off the league report (was Out). Stale entry from the 08-05 sweep; game_date null; inert.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 119
     },
     {
       "player": "Carla Leite",
@@ -1514,6 +1514,97 @@
       "source": "avail:2026-08-09/1638Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 1638Z diff: Bonner (Phoenix, Illness) newly listed Day-To-Day - league feed comment 'Bonner (illness) is listed as probable for Sunday's game against the Mystics.' Probable, so no minutes haircut is asserted: minutes_est left null, which makes this entry a record of the downgrade rather than a projection change. Conservative by design - manufacturing an under off a probable tag is exactly the news-driven bet the protocol warns about.",
+      "author": "news-watch",
+      "superseded_by": 120
+    },
+    {
+      "player": "Azzi Fudd",
+      "added": "2026-08-09T18:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/1833Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + per-event (401857130) injury report, 1833Z: Fudd (Knee) UPGRADED to Out for DAL@MIN tonight (was Day-To-Day at 0133Z). Return date 2026-08-12. Supersedes the questionable entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Betnijah Laney-Hamilton",
+      "added": "2026-08-09T18:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/1833Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + per-event (401857129) injury report, 1833Z: 'Laney-Hamilton (personal) is not available for Sunday's game against the Mercury.' Confirms on the official report what the 0133Z news-API entry already had as out; re-stamped against today's game with the stronger source.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Darianna Littlepage-Buggs",
+      "added": "2026-08-09T18:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/1833Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + per-event (401857129) injury report, 1833Z: NEW Out (Coach's Decision) for WSH vs PHX tonight. Supersedes the stale 2026-08-07 questionable entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kara Dunn",
+      "added": "2026-08-09T18:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/1833Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report, 1833Z: 'Dunn (coach's decision) has been ruled out for Sunday's game against Washington.' Supersedes the 0133Z cleared/in entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Shay Ciezki",
+      "added": "2026-08-09T18:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/1833Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report, 1833Z: 'Ciezki (coach's decision) has been ruled out for Sunday's game against the Mystics.' Supersedes the 0133Z cleared/in entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "DeWanna Bonner",
+      "added": "2026-08-09T18:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/1833Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN injury report, 1833Z: CLEARED - Bonner (illness, PHX) no longer appears on the league or per-event report after being listed Day-To-Day/probable at 1638Z for tonight's game at Washington. Availability only; no minutes assumption imposed.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Liatu King",
+      "added": "2026-08-09T18:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/1833Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN injury report, 1833Z: CLEARED - King (MIN) no longer appears on the report; her Out (Coach's Decision) covered Saturday's game vs Las Vegas, and MIN hosts DAL tonight. Availability only; the talent model's own minutes state stands (a coach's-decision DNP one night is not evidence of a role change).",
       "author": "news-watch",
       "superseded_by": null
     }
