@@ -63,7 +63,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/summary?event=401857113",
       "quote": "Plum's Mercury debut (2026-08-03, W 106-101 at Chicago): 21 MIN, 20 PTS (6-10 FG, 3-5 3PT), 4 AST, +12. Supersedes entry 2's 28, which was a guess made before she played. Estimate 25 for game two of the stint: a genuine central estimate of the ramp between the 21 measured minutes and her pre-absence norm (~30+), not a number picked to reach a bet. Sensitivity, recorded because it is the whole story here: at <=23 min the model prices a threes-UNDER 1.5 and a points-UNDER 16.5; at >=28 it prices a points-OVER 16.5. Every Plum edge on this sheet is an artifact of the minutes assumption, so no Plum bet is taken this firing. The under branch is the worse of the two: wehoop has not published the 08-03 box scores, so the panel still carries her pre-trade LAS per-minute form and is blind to the debut's 5 three-point attempts in 21 minutes - fresh evidence that cuts directly against a threes-under.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 123
     },
     {
       "player": "Marina Mabrey",
@@ -1605,6 +1605,32 @@
       "source": "avail:2026-08-09/1833Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN injury report, 1833Z: CLEARED - King (MIN) no longer appears on the report; her Out (Coach's Decision) covered Saturday's game vs Las Vegas, and MIN hosts DAL tonight. Availability only; the talent model's own minutes state stands (a coach's-decision DNP one night is not evidence of a role change).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Jessica Shepard",
+      "added": "2026-08-09T20:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN injury report: Jessica Shepard listed Out (Ankle). NEW in the 2033Z diff; MIN game (DAL @ MIN) already under way.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kelsey Plum",
+      "added": "2026-08-09T20:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN injury report: Kelsey Plum listed Out (Calf). NEW in the 2033Z diff; supersedes the 2026-08-04 'in, 25 min' entry. PHX game (PHX @ WSH) already under way.",
       "author": "news-watch",
       "superseded_by": null
     }
