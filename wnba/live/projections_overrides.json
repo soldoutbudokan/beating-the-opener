@@ -755,7 +755,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2232Z diff: Mabrey (neck) off both the league report and the event 401857121 (TOR@POR) report after being questionable at 2133Z. Supersedes entry 28. No minutes estimate.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 124
     },
     {
       "player": "Ashten Prechtel",
@@ -901,7 +901,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0233Z diff: \"Bankole (coach's decision) has been ruled out for Thursday's game against Portland\" (Toronto Tempo, return_date 2026-08-10). Supersedes entry 32, which read her 08-06 clearing off the report as available - the feed has now re-ruled her out for that same game, so the scratch is the current and better-sourced read. Inert for pricing: TOR@POR (02:00Z) is already STATUS_IN_PROGRESS and Bankole has zero rows in projections.csv. Logged because the protocol treats any new Out - Coach's Decision included - as an override entry, and because the archive is the future training set.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 125
     },
     {
       "player": "Sydney Taylor",
@@ -1631,6 +1631,45 @@
       "source": "avail:2026-08-09/2033Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN injury report: Kelsey Plum listed Out (Calf). NEW in the 2033Z diff; supersedes the 2026-08-04 'in, 25 min' entry. PHX game (PHX @ WSH) already under way.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Marina Mabrey",
+      "added": "2026-08-09T21:33:00Z",
+      "game_date": "2026-08-10",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/2133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report, 2133Z: NEW - 'Mabrey (neck) is listed as probable for Monday's game against the Dream.' (TOR, Day-To-Day, return 2026-08-10). TOR does not play tonight. Probable, so no minutes haircut is imposed - recorded as questionable for the 8/10 game so a fresh neck issue is visible before any fill. Supersedes the 2026-08-06 'in' entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ornella Bankole",
+      "added": "2026-08-09T21:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/2133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN injury report, 2133Z: CLEARED - Bankole (TOR) no longer appears on the report; her Out (Coach's Decision) covered Thursday's game vs Portland. Availability only; no minutes assumption imposed, and a coach's-decision DNP is not evidence of a role change. Supersedes the 2026-08-06 out entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Indya Nivar",
+      "added": "2026-08-09T21:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/2133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN injury report, 2133Z: CLEARED - Nivar (ATL) no longer appears on the report; her Out (Coach's Decision) covered Friday's game against Washington. ATL does not play tonight. Availability only; no minutes assumption imposed.",
       "author": "news-watch",
       "superseded_by": null
     }
