@@ -1,5 +1,5 @@
 {
-  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
   "entries": [
     {
       "player": "DiJonai Carrington",
@@ -755,7 +755,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2232Z diff: Mabrey (neck) off both the league report and the event 401857121 (TOR@POR) report after being questionable at 2133Z. Supersedes entry 28. No minutes estimate.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 134
     },
     {
       "player": "Ashten Prechtel",
@@ -901,7 +901,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0233Z diff: \"Bankole (coach's decision) has been ruled out for Thursday's game against Portland\" (Toronto Tempo, return_date 2026-08-10). Supersedes entry 32, which read her 08-06 clearing off the report as available - the feed has now re-ruled her out for that same game, so the scratch is the current and better-sourced read. Inert for pricing: TOR@POR (02:00Z) is already STATUS_IN_PROGRESS and Bankole has zero rows in projections.csv. Logged because the protocol treats any new Out - Coach's Decision included - as an override entry, and because the archive is the future training set.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 140
     },
     {
       "player": "Sydney Taylor",
@@ -1161,7 +1161,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW: \"Akoa Makani is questionable for Sunday's game against Golden State due to a right ankle injury\" (Day-To-Day, return_date 2026-08-09). No minutes injected - availability flag only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 128
     },
     {
       "player": "Rae Burrell",
@@ -1174,7 +1174,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW on the report but the comment is an upgrade, not a doubt: \"Burrell is probable for Sunday's game against Golden State due to a right leg injury\" (feed status Day-To-Day, return_date 2026-08-09). Recorded as in rather than questionable because the sourced text says probable; no minutes injected either way, so this is inert to pricing and exists only to keep the availability record honest. The ESPN snapshot still carries her as Day-To-Day, so the pick sheet will still mark her.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 136
     },
     {
       "player": "Azzi Fudd",
@@ -1411,7 +1411,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Pili's coach's-decision Out (for Thursday at Minnesota) dropped off the ESPN league injury report at 0333Z; return_date on the prior entry was 2026-08-09 and the game it referred to has been played. Cleared = available, but a coach's-decision clearance carries no minutes information, so status in with minutes_est null (no numeric change to the panel state). Recorded because the protocol requires cleared players to be logged.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 124
     },
     {
       "player": "Ashten Prechtel",
@@ -1424,7 +1424,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Prechtel's coach's-decision Out (Friday vs the Wings) dropped off the ESPN league injury report at 0333Z, prior return_date 2026-08-09. Cleared = available; a coach's-decision clearance carries no minutes information, so status in with minutes_est null.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 130
     },
     {
       "player": "Miela Sowah",
@@ -1437,7 +1437,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Sowah's coach's-decision Out (Friday vs the Wings) dropped off the ESPN league injury report at 0333Z, prior return_date 2026-08-09. Cleared = available; a coach's-decision clearance carries no minutes information, so status in with minutes_est null.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 132
     },
     {
       "player": "Tonie Morgan",
@@ -1450,7 +1450,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Morgan's coach's-decision Out dropped off the ESPN league injury report at 0333Z, prior return_date 2026-08-09. Cleared = available; a coach's-decision clearance carries no minutes information, so status in with minutes_est null.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 126
     },
     {
       "player": "A'ja Wilson",
@@ -1631,6 +1631,123 @@
       "source": "avail:2026-08-09/2033Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN injury report: Kelsey Plum listed Out (Calf). NEW in the 2033Z diff; supersedes the 2026-08-04 'in, 25 min' entry. PHX game (PHX @ WSH) already under way.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Alissa Pili",
+      "added": "2026-08-09T22:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + per-event (401857131) injury report, 2233Z: NEW Out (Coach's Decision) - \"Pili (coach's decision) is out for Sunday's game against the Valkyries.\" Return date 2026-08-11. Targets tonight's GS @ LA (7:00 PM ET, not yet tipped). Supersedes the 0333Z cleared/in entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Tonie Morgan",
+      "added": "2026-08-09T22:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + per-event (401857131) injury report, 2233Z: NEW Out (Coach's Decision) for LA vs Golden State tonight. Return date 2026-08-11. Supersedes the 0333Z cleared/in entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Monique Akoa Makani",
+      "added": "2026-08-09T22:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + per-event (401857131) injury report, 2233Z: UPGRADED to Out (Ankle), was Day-To-Day at 0133Z - \"Akoa Makani (ankle) won't play Sunday against the Valkyries.\" Return date 2026-08-11. Supersedes the questionable entry for the same game.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ashten Prechtel",
+      "added": "2026-08-09T22:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report, 2233Z: NEW Out (Coach's Decision) - \"Prechtel (coach's decision) won't play Sunday against the Sparks.\" Return date 2026-08-12. Targets tonight's GS @ LA. Supersedes the 0333Z cleared/in entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Miela Sowah",
+      "added": "2026-08-09T22:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report, 2233Z: NEW Out (Coach's Decision) - \"Sowah (coach's decision) will miss Sunday's game in Los Angeles.\" Return date 2026-08-12. Supersedes the 0333Z cleared/in entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Marina Mabrey",
+      "added": "2026-08-09T22:33:00Z",
+      "game_date": "2026-08-10",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report, 2233Z: NEW Day-To-Day (Neck) - \"Mabrey (neck) is listed as probable for Monday's game against the Dream.\" Probable, so no minutes haircut is asserted: minutes_est left null, making this a record of the downgrade rather than a projection change. Targets Toronto's 2026-08-10 game.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Rae Burrell",
+      "added": "2026-08-09T22:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN injury report, 2233Z: CLEARED - Burrell (LA, right leg) no longer appears on the league or per-event report after being listed Day-To-Day/probable at 2033Z for tonight's game vs Golden State. Availability only; no minutes assumption imposed.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Indya Nivar",
+      "added": "2026-08-09T22:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN injury report, 2233Z: CLEARED - Nivar (ATL) no longer appears on the report; her Out (Coach's Decision) covered Friday's game against Washington. Atlanta does not play tonight. Availability only; the talent model's own minutes state stands.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ornella Bankole",
+      "added": "2026-08-09T22:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN injury report, 2233Z: CLEARED - Bankole (TOR) no longer appears on the report; her Out (Coach's Decision) covered Thursday's game against Portland. Toronto does not play tonight. Availability only; a coach's-decision DNP is not evidence of a role change.",
       "author": "news-watch",
       "superseded_by": null
     }
