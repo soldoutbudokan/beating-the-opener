@@ -1096,7 +1096,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Three Aces starters appeared on the league report between the 1533Z and 0133Z snapshots as Day-To-Day for Sunday's 12:30 ET game at the Liberty - the second leg of a back-to-back after Saturday's 13:00 ET loss at Minnesota, in which all three started and played (snapshot lineups, dnp=false). Feed comment: \"Wilson is listed as questionable for Sunday's game against the Liberty due to rest\" (type Rest, return_date 2026-08-09), on both the league report and the per-event report for 401857125. No minutes injected: 'questionable/rest' one slate ahead is an availability flag, not a measured role change, and estimating a reduced load for a full Aces starting core would manufacture unders across the whole LV board - the exact failure the Plum entries record. Inert by design (fp_live prices only from minutes_est / status=out): it exists so the pick sheet carries a loud availability marker before any fill.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 110
     },
     {
       "player": "Chelsea Gray",
@@ -1109,7 +1109,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Three Aces starters appeared on the league report between the 1533Z and 0133Z snapshots as Day-To-Day for Sunday's 12:30 ET game at the Liberty - the second leg of a back-to-back after Saturday's 13:00 ET loss at Minnesota, in which all three started and played (snapshot lineups, dnp=false). Feed comment: \"Gray (rest) is listed as questionable for Sunday's game against the Liberty\" (return_date 2026-08-09), league + event:401857125. No minutes injected: 'questionable/rest' one slate ahead is an availability flag, not a measured role change, and estimating a reduced load for a full Aces starting core would manufacture unders across the whole LV board - the exact failure the Plum entries record. Inert by design (fp_live prices only from minutes_est / status=out): it exists so the pick sheet carries a loud availability marker before any fill.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 111
     },
     {
       "player": "Jackie Young",
@@ -1122,7 +1122,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Three Aces starters appeared on the league report between the 1533Z and 0133Z snapshots as Day-To-Day for Sunday's 12:30 ET game at the Liberty - the second leg of a back-to-back after Saturday's 13:00 ET loss at Minnesota, in which all three started and played (snapshot lineups, dnp=false). Listed Day-To-Day, type Rest, return_date 2026-08-09, league + event:401857125 (no comment text). No minutes injected: 'questionable/rest' one slate ahead is an availability flag, not a measured role change, and estimating a reduced load for a full Aces starting core would manufacture unders across the whole LV board - the exact failure the Plum entries record. Inert by design (fp_live prices only from minutes_est / status=out): it exists so the pick sheet carries a loud availability marker before any fill.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 112
     },
     {
       "player": "Justine Pissott",
@@ -1135,7 +1135,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPGRADE Out -> Day-To-Day: \"Pissott (leg) is listed as questionable for Sunday's game against the Liberty\" (return_date 2026-08-09), league + event:401857125. Supersedes the 08-08 Out entry, which was scoped to a game now final. No minutes injected - she has no recent panel role to correct and a questionable flag is not evidence of one.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 113
     },
     {
       "player": "Cecilia Zandalasini",
@@ -1449,6 +1449,58 @@
       "source": "avail:2026-08-09/0333Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Morgan's coach's-decision Out dropped off the ESPN league injury report at 0333Z, prior return_date 2026-08-09. Cleared = available; a coach's-decision clearance carries no minutes information, so status in with minutes_est null.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "A'ja Wilson",
+      "added": "2026-08-09T14:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/1433Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report + LVA per-event report: \"Wilson (rest) has been ruled out for Sunday's game against the Liberty.\" Status Out/Rest (was Day-To-Day at the 08-09 01:33Z snapshot, entry 82). LVA plays at NYL today (BP event 2715, 16:30 ET); return_date 2026-08-11. Supersedes 82.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Chelsea Gray",
+      "added": "2026-08-09T14:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/1433Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report + LVA per-event report: \"Gray (rest) has been ruled out for Sunday's game against the Liberty.\" Status Out/Rest (was Day-To-Day, entry 83). LVA at NYL today (BP event 2715); return_date 2026-08-11. Supersedes 83.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Jackie Young",
+      "added": "2026-08-09T14:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/1433Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report + LVA per-event report: \"Young (rest) has been ruled out for Sunday's game against the Liberty.\" Status Out/Rest (was Day-To-Day, entry 84). LVA at NYL today (BP event 2715); return_date 2026-08-11. Supersedes 84. Third Aces starter rested in the same notice (with Wilson and Gray) - a whole-team load-management day, so surviving LVA players' roles are unusually uncertain today; no minutes bumps are invented for them here because nothing sourced supports a specific number.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Justine Pissott",
+      "added": "2026-08-09T14:33:00Z",
+      "game_date": "2026-08-09",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-09/1433Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED from the ESPN injury report at this snapshot (was Day-To-Day, entry 85). No listing = available; no sourced minutes claim, so minutes_est stays null and the base talent state prices her. Supersedes 85.",
       "author": "news-watch",
       "superseded_by": null
     }
