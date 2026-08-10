@@ -1,5 +1,5 @@
 {
-  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
   "entries": [
     {
       "player": "DiJonai Carrington",
@@ -1710,7 +1710,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report, 2233Z: NEW Day-To-Day (Neck) - \"Mabrey (neck) is listed as probable for Monday's game against the Dream.\" Probable, so no minutes haircut is asserted: minutes_est left null, making this a record of the downgrade rather than a projection change. Targets Toronto's 2026-08-10 game.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 151
     },
     {
       "player": "Rae Burrell",
@@ -1982,6 +1982,19 @@
       "source": "avail:2026-08-10/0133Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW: ESPN league injury report, 0133Z. 'Jackson (coach's decision) has been ruled out for Friday's game against the Mercury'; return_date 2026-08-13. Connecticut's next game is 2026-08-13 ET, so until-cleared. Coach's-decision absence: availability only, not evidence of a role change.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Marina Mabrey",
+      "added": "2026-08-10T19:33:00Z",
+      "game_date": "2026-08-10",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-10/1933Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 1933Z diff: Mabrey (neck, Day-To-Day/probable for Toronto's 2026-08-10 game vs Atlanta) is off the ESPN report entirely, having been on it at 1535Z. Checked for a feed dropout rather than a clearance: she is the ONLY row that left between the two snapshots (55 -> 53 rows = her league + per-event pair), and every other Out row on both reports persisted, so the feed is alive and this is a real clearance. Supersedes entry 129. No minutes injected: she was probable rather than questionable, so entry 129 asserted no haircut for this to undo, and the panel already carries her role (starter in all ten games since 7/8, 22-35 min, last game 8/6). Her 8/6 line was 22 min - the low of that run and the game the neck tag came out of - but one game is not a role change and inflating or cutting minutes off it would be the routine adjusting the model, which is the owner's call. Inert by design: it removes the Day-To-Day availability flag from any Toronto pick tonight without moving the price.",
       "author": "news-watch",
       "superseded_by": null
     }
