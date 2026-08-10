@@ -1,0 +1,960 @@
+{
+"captured_utc": "2026-08-10 00:34",
+"events": [
+{
+"date": "2026-08-09T16:30Z",
+"event_id": "401857128",
+"name": "LV @ NY",
+"status": "STATUS_FINAL"
+},
+{
+"date": "2026-08-09T19:00Z",
+"event_id": "401857129",
+"name": "PHX @ WSH",
+"status": "STATUS_FINAL"
+},
+{
+"date": "2026-08-09T19:30Z",
+"event_id": "401857130",
+"name": "DAL @ MIN",
+"status": "STATUS_FINAL"
+},
+{
+"date": "2026-08-09T23:00Z",
+"event_id": "401857131",
+"name": "GS @ LA",
+"status": "STATUS_IN_PROGRESS"
+}
+],
+"injuries": [
+{
+"comment": "",
+"player": "Satou Sabally",
+"return_date": "2026-08-18",
+"source": "event:401857128",
+"status": "Out",
+"team": "New York Liberty",
+"type": "Concussion"
+},
+{
+"comment": "",
+"player": "Leonie Fiebich",
+"return_date": "2026-08-18",
+"source": "event:401857128",
+"status": "Out",
+"team": "New York Liberty",
+"type": "Foot"
+},
+{
+"comment": "",
+"player": "Chelsea Gray",
+"return_date": "2026-08-11",
+"source": "event:401857128",
+"status": "Out",
+"team": "Las Vegas Aces",
+"type": "Rest"
+},
+{
+"comment": "",
+"player": "Jackie Young",
+"return_date": "2026-08-11",
+"source": "event:401857128",
+"status": "Out",
+"team": "Las Vegas Aces",
+"type": "Rest"
+},
+{
+"comment": "",
+"player": "A'ja Wilson",
+"return_date": "2026-08-11",
+"source": "event:401857128",
+"status": "Out",
+"team": "Las Vegas Aces",
+"type": "Rest"
+},
+{
+"comment": "",
+"player": "Cheyenne Parker-Tyus",
+"return_date": "2026-08-11",
+"source": "event:401857128",
+"status": "Out",
+"team": "Las Vegas Aces",
+"type": "Concussion"
+},
+{
+"comment": "",
+"player": "Darianna Littlepage-Buggs",
+"return_date": "2026-08-11",
+"source": "event:401857129",
+"status": "Out",
+"team": "Washington Mystics",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Betnijah Laney-Hamilton",
+"return_date": "2026-08-11",
+"source": "event:401857129",
+"status": "Out",
+"team": "Washington Mystics",
+"type": "Personal"
+},
+{
+"comment": "",
+"player": "Kelsey Plum",
+"return_date": "2026-08-11",
+"source": "event:401857129",
+"status": "Out",
+"team": "Phoenix Mercury",
+"type": "Calf"
+},
+{
+"comment": "",
+"player": "Kara Dunn",
+"return_date": "2026-08-11",
+"source": "event:401857129",
+"status": "Out",
+"team": "Phoenix Mercury",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Shay Ciezki",
+"return_date": "2026-08-11",
+"source": "event:401857129",
+"status": "Out",
+"team": "Phoenix Mercury",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Jovana Nogic",
+"return_date": "2027-05-01",
+"source": "event:401857129",
+"status": "Out",
+"team": "Phoenix Mercury",
+"type": "Not Injury Related"
+},
+{
+"comment": "",
+"player": "Chloe Bibby",
+"return_date": "2026-08-12",
+"source": "event:401857130",
+"status": "Out",
+"team": "Minnesota Lynx",
+"type": "Personal"
+},
+{
+"comment": "",
+"player": "Jessica Shepard",
+"return_date": "2026-08-12",
+"source": "event:401857130",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Ankle"
+},
+{
+"comment": "",
+"player": "Azzi Fudd",
+"return_date": "2026-08-12",
+"source": "event:401857130",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Knee"
+},
+{
+"comment": "",
+"player": "Alysha Clark",
+"return_date": "2026-08-12",
+"source": "event:401857130",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Back"
+},
+{
+"comment": "",
+"player": "Costanza Verona",
+"return_date": "2026-09-17",
+"source": "event:401857130",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Personal"
+},
+{
+"comment": "",
+"player": "Tonie Morgan",
+"return_date": "2026-08-11",
+"source": "event:401857131",
+"status": "Out",
+"team": "Los Angeles Sparks",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Alissa Pili",
+"return_date": "2026-08-11",
+"source": "event:401857131",
+"status": "Out",
+"team": "Los Angeles Sparks",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Monique Akoa Makani",
+"return_date": "2026-08-11",
+"source": "event:401857131",
+"status": "Out",
+"team": "Los Angeles Sparks",
+"type": "Ankle"
+},
+{
+"comment": "",
+"player": "Miela Sowah",
+"return_date": "2026-08-12",
+"source": "event:401857131",
+"status": "Out",
+"team": "Golden State Valkyries",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Ashten Prechtel",
+"return_date": "2026-08-12",
+"source": "event:401857131",
+"status": "Out",
+"team": "Golden State Valkyries",
+"type": "Coach's Decision"
+},
+{
+"comment": "",
+"player": "Iliana Rupert",
+"return_date": "2027-05-01",
+"source": "event:401857131",
+"status": "Out",
+"team": "Golden State Valkyries",
+"type": "Not Injury Related"
+}
+],
+"lineups": [
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Stephanie Talbot",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Brianna Turner",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "NaLyssa Smith",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Jewell Loyd",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Dana Evans",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Kierstan Bell",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Ta'Niya Latson",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Justine Pissott",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Mai Yamamoto",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Las Vegas Aces"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Breanna Stewart",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "New York Liberty"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Jonquel Jones",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "New York Liberty"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Rebecca Allen",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "New York Liberty"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Sabrina Ionescu",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "New York Liberty"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Pauline Astier",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "New York Liberty"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Raquel Carrera",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "New York Liberty"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Han Xu",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "New York Liberty"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Rebekah Gardner",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "New York Liberty"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Marine Johannes",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "New York Liberty"
+},
+{
+"dnp": false,
+"event_id": "401857128",
+"player": "Marine Fauthoux",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "New York Liberty"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "DeWanna Bonner",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Alyssa Thomas",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Natasha Mack",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Kahleah Copper",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Kelsey Plum",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Valeriane Ayayi",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Marta Suarez",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Noemie Brochant",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Kyara Linskens",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Sami Whitcomb",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Lexi Held",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Phoenix Mercury"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Michaela Onyenwere",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Kiki Iriafen",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Shakira Austin",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Sonia Citron",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Georgia Amoore",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Angela Dugalic",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Lauren Betts",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Lucy Olsen",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Cotie McMahon",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Cassandre Prosper",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857129",
+"player": "Alicia Florez",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": true,
+"event_id": "401857129",
+"player": "Darianna Littlepage-Buggs",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Washington Mystics"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Jessica Shepard",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Alanna Smith",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Odyssey Sims",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Arike Ogunbowale",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Paige Bueckers",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Maddy Siegrist",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Awak Kuier",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Li Yueru",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Sug Sutton",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Aziaha James",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Haley Jones",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Dallas Wings"
+},
+{
+"dnp": true,
+"event_id": "401857130",
+"player": "Alysha Clark",
+"reason": "BACK",
+"starter": false,
+"team": "Dallas Wings"
+},
+{
+"dnp": true,
+"event_id": "401857130",
+"player": "Azzi Fudd",
+"reason": "RIGHT KNEE",
+"starter": false,
+"team": "Dallas Wings"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Natasha Howard",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Napheesa Collier",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Kayla McBride",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Courtney Williams",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Olivia Miles",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Nia Coffey",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Dorka Juhasz",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Antonia Delaere",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Maya Caldwell",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857130",
+"player": "Eliska Joklova",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": true,
+"event_id": "401857130",
+"player": "Chloe Bibby",
+"reason": "PERSONAL",
+"starter": false,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": true,
+"event_id": "401857130",
+"player": "Anastasiia Olairi Kosu",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Minnesota Lynx"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Kayla Thornton",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Gabby Williams",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Cecilia Zandalasini",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Kiah Stokes",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Veronica Burton",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Laeticia Amihere",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Janelle Salaun",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Tiffany Hayes",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Kaila Charles",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Kaitlyn Chen",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": true,
+"event_id": "401857131",
+"player": "Nadia Fingall",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": true,
+"event_id": "401857131",
+"player": "Juste Jocyte",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Golden State Valkyries"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Nneka Ogwumike",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Dearica Hamby",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Erica Wheeler",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Ariel Atkins",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Rae Burrell",
+"reason": "COACH'S DECISION",
+"starter": true,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Cameron Brink",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Jihyun Park",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Kiana Williams",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": false,
+"event_id": "401857131",
+"player": "Chance Gray",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": true,
+"event_id": "401857131",
+"player": "Emma Cannon",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Los Angeles Sparks"
+},
+{
+"dnp": true,
+"event_id": "401857131",
+"player": "Kate Martin",
+"reason": "COACH'S DECISION",
+"starter": false,
+"team": "Los Angeles Sparks"
+}
+]
+}
