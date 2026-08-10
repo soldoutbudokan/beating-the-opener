@@ -1,5 +1,5 @@
 {
-  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
   "entries": [
     {
       "player": "DiJonai Carrington",
@@ -1736,7 +1736,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN injury report, 2233Z: CLEARED - Nivar (ATL) no longer appears on the report; her Out (Coach's Decision) covered Friday's game against Washington. Atlanta does not play tonight. Availability only; the talent model's own minutes state stands.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 156
     },
     {
       "player": "Ornella Bankole",
@@ -1749,7 +1749,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN injury report, 2233Z: CLEARED - Bankole (TOR) no longer appears on the report; her Out (Coach's Decision) covered Thursday's game against Portland. Toronto does not play tonight. Availability only; a coach's-decision DNP is not evidence of a role change.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 157
     },
     {
       "player": "Cecilia Zandalasini",
@@ -2047,6 +2047,38 @@
       "source": "avail:2026-08-10/2233Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW on the ESPN league injury report at 2233Z, Day-To-Day (illness): 'VanSlooten is questionable for Tuesday's game against the Liberty due to an illness.' return_date 2026-08-11, Indiana. No prior override. Illness questionable is genuinely uncertain, but a bench player's minutes are not estimable from this feed, so status only - no minutes override. Flagged for display on any 08-11 IND prop.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Indya Nivar",
+      "added": "2026-08-10T23:33:00Z",
+      "game_date": "2026-08-10",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": [
+        0,
+        0
+      ],
+      "source": "avail:2026-08-10/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2333Z diff: \"Nivar (coach's decision) is listed as out for Monday's game versus Toronto\" (Atlanta Dream, return_date 2026-08-13). Out is Out - a coach's decision keeps her off the floor exactly as an injury does, per the amended instruction to judge the diff and not the headline. Supersedes entry 131, which recorded her CLEARED state after Friday's DNP expired; coach's-decision DNPs are decided game by game, so that clearance carried no positive signal and this re-lists her for tonight's ATL-TOR game. minutes_est 0 for this game only.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ornella Bankole",
+      "added": "2026-08-10T23:33:00Z",
+      "game_date": "2026-08-10",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": [
+        0,
+        0
+      ],
+      "source": "avail:2026-08-10/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2333Z diff: \"Bankole (coach's decision) is listed as out for Monday's game against Atlanta\" (Toronto Tempo, return_date 2026-08-12). Third coach's-decision DNP for her in a week (entries 9, 67), each expiring and re-listing game by game. Supersedes entry 132 (the CLEARED rollover after Thursday's DNP). minutes_est 0 for tonight's TOR-ATL game only.",
       "author": "news-watch",
       "superseded_by": null
     }
