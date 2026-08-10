@@ -317,7 +317,9 @@ def write_picks(props, sheet, cal, missed_slates=()):
     EV in (10%, 25%], fresh panel, fresh player state, feed team matching
     the panel team. Stake = quarter-Kelly on HALF the claimed edge (dev:
     claimed EV realizes ~half), $0.50 rounding/minimum, cap 5% of
-    bankroll, dedupe vs bets.csv. Gated rows stay on the sheet with
+    bankroll, dedupe vs bets.csv by pick key AND by player-game (a player
+    already carrying an open bet in the event cannot resurface under a
+    second market - added 2026-08-10). Gated rows stay on the sheet with
     play=False and their reasons in `flags`; `ROLE_*?` flags are advisory
     (owner review - the talent engine is slow on role changes by design)
     and never block on their own."""
@@ -325,10 +327,30 @@ def write_picks(props, sheet, cal, missed_slates=()):
     bank = json.load(open(os.path.join(ROOT, "live", "bankroll.json")))
     bankroll = float(bank["current"])
     try:
-        logged = set(pd.read_csv(
-            os.path.join(ROOT, "live", "bets.csv")).key)
+        bets = pd.read_csv(os.path.join(ROOT, "live", "bets.csv"))
     except Exception:
-        logged = set()
+        bets = pd.DataFrame(columns=["key", "event_id", "player", "status",
+                                     "market", "side", "line"])
+    logged = set(bets.key)
+    # One bet per player per game, enforced ACROSS SHEETS (2026-08-10).
+    # `logged` matches on the exact pick key, so it only ever caught the same
+    # market twice. The drop_duplicates below caps a player at one row per
+    # game WITHIN a sheet, but it prefers a playable row - so once the market
+    # the owner actually bet became already_bet=True, a DIFFERENT market on
+    # the same player-game sorted above it and was offered as playable by the
+    # next firing. (Dearica Hamby, 2026-08-11 PHO@LAS: points over 13.5
+    # filled, rebounds over 6.5 offered and filled the same evening - two
+    # correlated positions on one player's minutes, which the pre-registered
+    # cap exists to prevent.) Maps (event_id, normalised player) -> the open
+    # bets already on the log, so a later sheet can block against them.
+    open_pg = {}
+    for b in bets[bets.status.eq("open")].itertuples():
+        try:
+            ln = f"{float(b.line):g}"
+        except (TypeError, ValueError):
+            ln = str(b.line)
+        open_pg.setdefault((str(b.event_id), norm(b.player)), []).append(
+            (b.key, f"{b.market} {b.side} {ln}"))
     pmap = props.set_index(props.index)
     rows = []
     for r in sheet.itertuples():
@@ -340,6 +362,7 @@ def write_picks(props, sheet, cal, missed_slates=()):
             continue
         s = src.iloc[0]
         side = r.side_fd
+        key = f"{s.event_id}_{s.market}_{norm(s.player)}_{side}"
 
         blocking, advisory = [], []
         if missed_slates:
@@ -355,6 +378,10 @@ def write_picks(props, sheet, cal, missed_slates=()):
             blocking.append(why)
         if r.ev_fd > MAX_SANE_EV:
             blocking.append(f"SUSPECT_EV({r.ev_fd:.0%})")
+        prior = [d for k, d in open_pg.get((str(s.event_id), norm(s.player)),
+                                           []) if k != key]
+        if prior:
+            blocking.append(f"PLAYER_ALREADY_BET({'; '.join(prior)})")
         if r.role_min:
             advisory.append("ROLE_MIN?")
         if r.role_start:
@@ -373,7 +400,6 @@ def write_picks(props, sheet, cal, missed_slates=()):
         f_k = max((dec * p_shrunk - 1) / (dec - 1), 0.0)
         stake = min(0.25 * f_k * bankroll, 0.05 * bankroll)
         stake = max(round(stake * 2) / 2, 0.5)
-        key = f"{s.event_id}_{s.market}_{norm(s.player)}_{side}"
         rows.append({
             "key": key, "date": r.date, "tip": s.tip,
             "event_id": s.event_id, "market": s.market, "player": s.player,

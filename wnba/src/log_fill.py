@@ -127,9 +127,20 @@ def main():
                              f"to double-log. Nothing was written.")
         price = a.price if a.price is not None else int(float(pick["fd_cost"]))
         stake = a.stake if a.stake is not None else float(pick["stake"])
-        row = build_row(pick, price, stake, placed_at, today,
-                        open_by_pg.get((pick["event_id"], pick["player"]), []),
-                        a.note)
+        prior = open_by_pg.get((pick["event_id"], pick["player"]), [])
+        if prior:
+            # fp_live gates this case now (PLAYER_ALREADY_BET), so reaching
+            # here means the owner is overruling the cap on a row that was
+            # already blocked, or filling something off the sheet. Either way
+            # it must not pass silently - it used to land only in `notes`.
+            other = "; ".join(f"{o['market']} {o['side']} {o['line']}"
+                              for o in prior)
+            print(f"WARNING {pick['key']}: {pick['player']} already has an "
+                  f"open bet in event {pick['event_id']} ({other}). PROTOCOL "
+                  f"caps this at one bet per player per game, and legs on one "
+                  f"player's minutes are correlated - logged anyway (user's "
+                  f"call), reason recorded in notes.")
+        row = build_row(pick, price, stake, placed_at, today, prior, a.note)
         rows.append(row)
         logged.add(row["key"])
         # a second fill on the same player-game must warn the same way

@@ -1124,3 +1124,31 @@ registrations are firewalled from betting outcomes.
   separately; ROLE_*? flags surfaced for owner review, never acted on)
   and RE-ENABLED. Audit branch merged to main. The 17 open bets (8/8–
   8/9 slates) settle via the restarted routine's sweep.
+- **2026-08-10 (news-watch firing + owner follow-up)** — Routine firing
+  rebuilt the entire model state from scratch (fresh container: deps and
+  every `data/*.pkl` absent), wehoop still stalled at 2026-08-01 with the
+  ESPN fallback carrying the panel to 08-09, no `PANEL_STALE`. Then the
+  owner filled Hamby rebounds over 6.5 @ -136 on a player-game that
+  already carried an open points bet, and asked that it not repeat.
+  **Gate 6 `PLAYER_ALREADY_BET` added to `fp_live.py`** (PROTOCOL
+  Amendments): the one-bet-per-player-per-game cap has been in the
+  2026-07-31 registration all along, but was only enforced *within* a
+  sheet — `already_bet` matched the exact pick key, and the
+  `drop_duplicates(["player","date"])` sort puts playable rows first, so
+  once the bet market went `already_bet=True` a different market on the
+  same player-game outranked it and was offered as playable next firing.
+  Now blocked against any *open* bet in the same event under another key.
+  `log_fill.py` had already detected the case and written it to `notes`
+  but printed nothing; it now prints a `WARNING`, and the blocking flag
+  means such a fill needs an explicit `--stake`. Verified by reproducing
+  the exact pre-fill state (rebounds row correctly withheld) and by a
+  synthetic second bet on A'ja Wilson (her clean $1.50 playable row
+  flipped to play=False with the reason on the sheet); `bets.csv`
+  restored byte-identical from the committed log afterwards.
+  **This is a defect fix, not a model change** — no projection, price or
+  EV moved, only which rows are presented as playable, so no fresh
+  registration is implied. **Distinct from the 2026-08-08 decision to
+  leave re-bet repetition ungated**: that concerns betting the same
+  player/market/side again, which stays allowed; this concerns a *second,
+  correlated* market on one player-game. Both Hamby bets stand (owner's
+  call, recorded in the row's notes).

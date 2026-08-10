@@ -103,6 +103,35 @@
 >    above that (Engstler +32%, Plum +29%, Leite +51%) was a mechanical
 >    defect, not an edge. A huge claim quarantines the row for manual
 >    review instead of betting it.
+> 6. **One bet per player per game, across sheets** (`PLAYER_ALREADY_BET`),
+>    added 2026-08-10 on owner instruction. The cap itself is not new - it
+>    is in the 2026-07-31 registration above ("one bet per player per game
+>    (highest-EV market only)") - but `fp_live.py` only enforced it WITHIN
+>    a sheet. `already_bet` matched on the exact pick key, and the
+>    `drop_duplicates(["player","date"])` that caps a player at one row
+>    sorts playable rows first: so the moment the market the owner actually
+>    bet became `already_bet=True`, a DIFFERENT market on the same
+>    player-game outranked it and was offered as playable by the next
+>    firing. Now a row is blocked when that player already carries an
+>    **open** bet in the same event under any other key, and the flag names
+>    the market already held.
+>
+>    **What it cost, the case that forced it (2026-08-10, PHO@LAS):**
+>    Dearica Hamby points over 13.5 @ -113 was filled from one firing;
+>    rebounds over 6.5 @ -136 was offered as playable by a later one and
+>    filled the same evening. Two positions, $1 each, both riding the same
+>    player's minutes - correlated exposure the cap exists to prevent, and
+>    the sheet never said so. `log_fill.py` had detected it and written it
+>    into the row's `notes`, but printed nothing, so it passed silently at
+>    fill time. Both bets stand (owner's call, recorded in the notes of
+>    `2722_rebounds_dearica hamby_over`); the gate stops the next one.
+>    `log_fill.py` now also prints a loud `WARNING` for a second fill on a
+>    player-game instead of only noting it - and because the row now
+>    carries a blocking flag, filling one needs an explicit `--stake`.
+>
+>    This is a defect fix, not a model change: it alters no projection, no
+>    price and no EV, only which rows are presented as playable. Nothing
+>    about the talent model or the pricing path moved.
 >
 > Advisory flags (`ROLE_MIN?`, `ROLE_START?`) mark players whose last
 > game deviates hard from their EW state (minutes jump ≥ 8, starter
