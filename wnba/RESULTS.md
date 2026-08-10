@@ -6,36 +6,36 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $96.65** (start $100)
+**Bankroll: $97.27** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 78 (37W-41L), 0 push, 2 void, 3 open |
-| staked | $78.00 |
-| P&L | $-3.35 (-4.3% ROI) |
-| mean EV said (model) | +24.44% (n=78) |
-| mean CLV (vs close) | -4.05% (n=74) |
-| mean CLV* (shade-adj) | -2.94% (n=74) |
-| closing line moved | 14 of 74 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 48.9W vs observed 37W (z=-2.82) |
-| Model-expected P&L | $+19.51 |
-| CLV-expected P&L | $-3.00 |
+| settled | 81 (39W-42L), 0 push, 2 void, 0 open |
+| staked | $81.00 |
+| P&L | $-2.73 (-3.4% ROI) |
+| mean EV said (model) | +24.39% (n=81) |
+| mean CLV (vs close) | -4.04% (n=81) |
+| mean CLV* (shade-adj) | -2.80% (n=81) |
+| closing line moved | 14 of 81 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| model calibration | expected 50.8W vs observed 39W (z=-2.75) |
+| Model-expected P&L | $+20.21 |
+| CLV-expected P&L | $-3.27 |
 
-CLV t-stat: -3.85 (iid); -1.89 clustered by match date (10 dates)
+CLV t-stat: -4.15 (iid); -2.05 clustered by match date (11 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-08-09 | Cecilia Zandalasini | assists | under | 2.5 | -162 | 1.0 | +33.2% |  |  |  |  |  |
-| 2026-08-09 | Nneka Ogwumike | points | over | 14.5 | 100 | 1.0 | +19.4% |  |  |  |  |  |
-| 2026-08-09 | Kahleah Copper | threes | under | 1.5 | 146 | 1.0 | +16.6% |  |  |  |  |  |
-| 2026-08-08 | Carla Leite | assists | under | 7.5 | 104 | 1.0 | +51.1% | 2 | won | +1.04 |  |  |
-| 2026-08-08 | Bridget Carleton | points | under | 15.5 | 104 | 1.0 | +40.0% | 24 | lost | -1.00 |  |  |
+| 2026-08-09 | Cecilia Zandalasini | assists | under | 2.5 | -162 | 1.0 | +33.2% | 2 | won | +0.62 | -8.7% | -6.0% |
+| 2026-08-09 | Nneka Ogwumike | points | over | 14.5 | 100 | 1.0 | +19.4% | 16 | won | +1.00 | -4.5% | -7.8% |
+| 2026-08-09 | Kahleah Copper | threes | under | 1.5 | 146 | 1.0 | +16.6% | 2 | lost | -1.00 | +0.6% | +5.9% |
+| 2026-08-08 | Carla Leite | assists | under | 7.5 | 104 | 1.0 | +51.1% | 2 | won | +1.04 | -8.1% | -4.6% |
+| 2026-08-08 | Bridget Carleton | points | under | 15.5 | 104 | 1.0 | +40.0% | 24 | lost | -1.00 | +3.1% | +6.6% |
 | 2026-08-08 | Aliyah Boston | rebounds | under | 8.5 | 112 | 1.0 | +31.6% | 11 | lost | -1.00 | -9.2% | -3.1% |
 | 2026-08-08 | Courtney Vandersloot | rebounds | under | 3.5 | -128 | 1.0 | +31.2% | 3 | won | +0.78 | -4.2% | +0.9% |
 | 2026-08-08 | Natasha Cloud | assists | under | 6.5 | -125 | 1.0 | +28.2% | 4 | won | +0.80 | +3.8% | +6.8% |
-| 2026-08-08 | Megan DiLeo | points | under | 15.5 | -102 | 1.0 | +26.9% | 11 | won | +0.98 |  |  |
+| 2026-08-08 | Megan DiLeo | points | under | 15.5 | -102 | 1.0 | +26.9% | 11 | won | +0.98 | +0.1% | +3.5% |
 | 2026-08-08 | Caitlin Clark | assists | under | 8.5 | 110 | 1.0 | +24.5% | 11 | lost | -1.00 | -3.7% | -0.1% |
 | 2026-08-08 | NaLyssa Smith | points | under | 12.5 | -130 | 1.0 | +23.0% | 14 | lost | -1.00 | -8.0% | -5.0% |
 | 2026-08-08 | A'ja Wilson | assists | under | 3.5 | 114 | 1.0 | +20.4% | 1 | won | +1.14 | +8.4% | +12.1% |
@@ -43,7 +43,7 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-08 | Jackie Young | rebounds | under | 4.5 | 112 | 1.0 | +38.7% | 5 | lost | -1.00 | -8.0% | -1.9% |
 | 2026-08-08 | Courtney Vandersloot | assists | under | 6.5 | -158 | 1.0 | +30.7% | 6 | won | +0.63 | -11.5% | -8.7% |
 | 2026-08-08 | Natasha Cloud | points | under | 12.5 | 100 | 1.0 | +32.4% | 17 | lost | -1.00 | -5.5% | -2.1% |
-| 2026-08-08 | Dominique Malonga | points | under | 18.5 | -125 | 1.0 | +23.7% | 21 | lost | -1.00 |  |  |
+| 2026-08-08 | Dominique Malonga | points | under | 18.5 | -125 | 1.0 | +23.7% | 21 | lost | -1.00 | -10.0% | -7.0% |
 | 2026-08-07 | Angel Reese | threes | under | 0.5 | 118 | 1.0 | +93.4% | 0 | won | +1.18 | +9.0% | +13.8% |
 | 2026-08-07 | Diamond Miller | points | under | 11.5 | -114 | 1.0 | +28.9% | 9 | won | +0.88 | +7.3% | +10.4% |
 | 2026-08-07 | Paige Bueckers | assists | over | 5.5 | 110 | 1.0 | +22.9% | 1 | lost | -1.00 | +9.9% | +6.3% |
