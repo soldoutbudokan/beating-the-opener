@@ -1278,7 +1278,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "\"Onyiah (coach's decision) has been ruled out for Saturday's game against the Sky\" (league + event:401857126, return_date 2026-08-11). Supersedes the 08-08 in entry; game now final, IND not on the 08-09 slate.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 155
     },
     {
       "player": "Bree Hall",
@@ -1291,7 +1291,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "\"Hall (coach's decision) has been ruled out for Saturday's game against Chicago\" (league + event:401857126, return_date 2026-08-11). Supersedes the 08-08 in entry; game final.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 154
     },
     {
       "player": "Liatu King",
@@ -1330,7 +1330,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED off both reports on the same snapshot as Boston, with the IND@CHI Out entries persisting. Corroborated by the box result (26 PTS, 11 AST in the 90-86 win) and by \"Fever's Clark has eighth tech rescinded, won't be suspended\" (2026-08-09T00:26Z), which removes the near-term suspension risk. No minutes injected.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 152
     },
     {
       "player": "Bridget Carleton",
@@ -1995,6 +1995,58 @@
       "source": "avail:2026-08-10/1933Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 1933Z diff: Mabrey (neck, Day-To-Day/probable for Toronto's 2026-08-10 game vs Atlanta) is off the ESPN report entirely, having been on it at 1535Z. Checked for a feed dropout rather than a clearance: she is the ONLY row that left between the two snapshots (55 -> 53 rows = her league + per-event pair), and every other Out row on both reports persisted, so the feed is alive and this is a real clearance. Supersedes entry 129. No minutes injected: she was probable rather than questionable, so entry 129 asserted no haircut for this to undo, and the panel already carries her role (starter in all ten games since 7/8, 22-35 min, last game 8/6). Her 8/6 line was 22 min - the low of that run and the game the neck tag came out of - but one game is not a role change and inflating or cutting minutes off it would be the routine adjusting the model, which is the owner's call. Inert by design: it removes the Day-To-Day availability flag from any Toronto pick tonight without moving the price.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Caitlin Clark",
+      "added": "2026-08-10T21:33:00Z",
+      "game_date": "2026-08-11",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-10/2133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW on the league injury report: Clark (back) is Day-To-Day, listed probable for Tuesday's game against the Liberty. IND does not play tonight (slate is TOR@ATL, CHI@SEA), so this is inert for the current sheet; recorded against 8/11. 'Probable' is the mildest designation the feed carries and no minutes guidance was given, so no minutes estimate is asserted - the entry exists to flag the new back designation, not to move a projection.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Grace VanSlooten",
+      "added": "2026-08-10T21:33:00Z",
+      "game_date": "2026-08-11",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-10/2133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW on the league injury report: 'VanSlooten is questionable for Tuesday's game against the Liberty due to an illness.' First override entry for this player. IND is not on tonight's slate, so inert now; recorded against 8/11.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Bree Hall",
+      "added": "2026-08-10T21:33:00Z",
+      "game_date": "2026-08-11",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-10/2133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED from the league injury report (was Out). The dropped entry was a coach's decision for Saturday's game against Chicago, so the clearance is the stale game-specific DNP falling off rather than a return from injury. Supersedes the 2026-08-09 out entry; no minutes asserted - she is a deep-bench coach's-decision player and IND does not play tonight.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Michelle Onyiah",
+      "added": "2026-08-10T21:33:00Z",
+      "game_date": "2026-08-11",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-10/2133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED from the league injury report (was Out, coach's decision for Saturday's game against the Sky). Same reading as the Bree Hall entry: a game-specific DNP expiring, not an injury return. Supersedes the 2026-08-09 out entry; no minutes asserted.",
       "author": "news-watch",
       "superseded_by": null
     }
