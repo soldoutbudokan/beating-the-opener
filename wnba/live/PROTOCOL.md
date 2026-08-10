@@ -18,6 +18,9 @@
 >   2026-08-08). A `PANEL_STALE` flag on the sheet now means both box
 >   sources failed - the routine reports it loudly instead of pricing
 >   through it.
+> - **Every chat table names the game** (owner instruction, 2026-08-10):
+>   the `game` column of `picks.csv` is required in every table the
+>   routine pastes into chat and in the notification text. See step 3.
 >
 > The audit that forced this (record: PROGRESS.md, 2026-08-08 entries):
 > the harness was not running the experiment that was backtested - the
@@ -207,11 +210,18 @@
 >    PushNotification listing them (player, market, line, side, FD price,
 >    stake). Otherwise send nothing.
 >    **Also always post the new picks in the chat reply** as a markdown
->    table (player / market / line / side / FD price / stake / EV / tip),
->    plus a second table of the other `play=True` rows still on the sheet
->    for context (owner instruction, 2026-07-31). The push notification is
->    not a substitute — the chat post happens every firing that has new
->    picks, even if the notification tool is unavailable.
+>    table (game / player / market / line / side / FD price / stake / EV /
+>    tip), plus a second table of the other `play=True` rows still on the
+>    sheet for context (owner instruction, 2026-07-31). The push
+>    notification is not a substitute — the chat post happens every firing
+>    that has new picks, even if the notification tool is unavailable.
+>    **Every table pasted in chat carries the game (owner instruction,
+>    2026-08-10):** the `game` column of `picks.csv` (`PHO@LAS` form) is a
+>    required column in EVERY chat table the routine posts — new picks, the
+>    on-the-sheet table, and the gated table alike — so a row can be tied to
+>    a matchup without cross-referencing the sheet. A player name and a date
+>    are not enough to navigate a multi-game slate. Same for the
+>    PushNotification text: lead each pick with its game.
 >    **Availability annotation (owner-approved 2026-08-04):** any pick
 >    whose player appears in the latest `data/raw/avail/` snapshot as
 >    `Out` or `Day-To-Day` gets a loud ⚠ marker + status in its table
