@@ -1,12 +1,12 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2723_assists_chelsea gray_over,2026-08-11,2026-08-12 02:00:00,2723,assists,Chelsea Gray,LVA,WAS@LVA,over,6.5,122.0,0.559,0.2411,True,-118,-111,2.5,7.04,,6.5,,True,False
+2723_assists_chelsea gray_over,2026-08-11,2026-08-12 02:00:00,2723,assists,Chelsea Gray,LVA,WAS@LVA,over,6.5,122.0,0.5591,0.2412,True,-118,-111,2.5,7.04,,6.5,,True,False
 2723_assists_jackie young_over,2026-08-11,2026-08-12 02:00:00,2723,assists,Jackie Young,LVA,WAS@LVA,over,5.5,-130.0,0.699,0.2367,True,-211,-193,0.0,7.1,,5.5,MOVED_OFF_OPEN,False,False
 2723_threes_michaela onyenwere_under,2026-08-11,2026-08-12 02:00:00,2723,threes,Michaela Onyenwere,WAS,WAS@LVA,under,1.5,-114.0,0.6473,0.2151,True,-169,-156,3.0,1.24,,1.5,,False,True
 2722_points_dearica hamby_over,2026-08-11,2026-08-12 02:00:00,2722,points,Dearica Hamby,LAS,PHO@LAS,over,13.5,-114.0,0.6446,0.2101,True,-167,-155,0.0,16.35,,13.5,PLAYER_ALREADY_BET(rebounds over 6.5),False,True
 2723_threes_sonia citron_under,2026-08-11,2026-08-12 02:00:00,2723,threes,Sonia Citron,WAS,WAS@LVA,under,1.5,-136.0,0.6674,0.1581,True,-184,-169,2.5,1.19,,1.5,,False,True
-2722_assists_erica wheeler_over,2026-08-11,2026-08-12 02:00:00,2722,assists,Erica Wheeler,LAS,PHO@LAS,over,5.5,118.0,0.5281,0.1512,True,-105,101,0.0,5.8,,4.5,MOVED_OFF_OPEN,False,False
+2722_assists_erica wheeler_over,2026-08-11,2026-08-12 02:00:00,2722,assists,Erica Wheeler,LAS,PHO@LAS,over,5.5,118.0,0.5281,0.1513,True,-105,101,0.0,5.8,,4.5,MOVED_OFF_OPEN,False,False
 2721_points_kelsey mitchell_over,2026-08-11,2026-08-11 23:30:00,2721,points,Kelsey Mitchell,IND,NYL@IND,over,24.5,-108.0,0.5911,0.1385,True,-134,-126,0.0,26.79,,24.5,NON_FD_OPEN,False,False
-2723_rebounds_aja wilson_over,2026-08-11,2026-08-12 02:00:00,2723,rebounds,A'ja Wilson,LVA,WAS@LVA,over,9.5,110.0,0.5396,0.1331,True,-110,-103,1.5,10.03,,9.5,,False,True
+2723_rebounds_aja wilson_over,2026-08-11,2026-08-12 02:00:00,2723,rebounds,A'ja Wilson,LVA,WAS@LVA,over,9.5,110.0,0.5396,0.1332,True,-110,-103,1.5,10.03,,9.5,,False,True
 2722_threes_kahleah copper_under,2026-08-11,2026-08-12 02:00:00,2722,threes,Kahleah Copper,PHO,PHO@LAS,under,2.5,-162.0,0.7,0.1321,True,-212,-194,0.0,1.91,,2.5,MOVED_OFF_OPEN,False,False
-2721_assists_sabrina ionescu_under,2026-08-11,2026-08-11 23:30:00,2721,assists,Sabrina Ionescu,NYL,NYL@IND,under,5.5,104.0,0.5433,0.1083,True,-111,-105,1.5,5.34,,5.5,ROLE_MIN?,True,False
-2721_rebounds_aliyah boston_under,2026-08-11,2026-08-11 23:30:00,2721,rebounds,Aliyah Boston,IND,NYL@IND,under,8.5,114.0,0.5142,0.1004,True,101,107,1.0,8.53,,8.5,,False,True
+2721_assists_sabrina ionescu_under,2026-08-11,2026-08-11 23:30:00,2721,assists,Sabrina Ionescu,NYL,NYL@IND,under,5.5,104.0,0.5432,0.1082,True,-111,-105,1.5,5.34,,5.5,ROLE_MIN?,True,False
+2721_rebounds_aliyah boston_under,2026-08-11,2026-08-11 23:30:00,2721,rebounds,Aliyah Boston,IND,NYL@IND,under,8.5,114.0,0.5142,0.1003,True,101,107,1.0,8.53,,8.5,,False,True
