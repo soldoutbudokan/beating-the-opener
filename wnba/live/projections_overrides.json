@@ -1840,7 +1840,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW: ESPN league injury report, 0133Z. 'Magbegor is questionable for Monday's game against the Sky due to a facial injury'; return_date 2026-08-10. Day-To-Day, so questionable rather than out - conservative, no minutes claim.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 160
     },
     {
       "player": "Flau'jae Johnson",
@@ -1853,7 +1853,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW: ESPN league injury report, 0133Z. 'Johnson is questionable for Monday's game against the Sky due to a left ankle injury'; return_date 2026-08-10. Day-To-Day, status only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 158
     },
     {
       "player": "Katie Lou Samuelson",
@@ -1866,7 +1866,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPGRADE: ESPN league injury report, 0133Z lists Samuelson (knee) as questionable for Monday's game against the Sky, return_date 2026-08-10. Supersedes the until-cleared Out entry from avail:2026-08-09/0133Z - she is now Day-To-Day, not ruled out. Status only; the upgrade lifts the block rather than asserting she plays.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 159
     },
     {
       "player": "Te-Hina Paopao",
@@ -2079,6 +2079,123 @@
       "source": "avail:2026-08-10/2333Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 2333Z diff: \"Bankole (coach's decision) is listed as out for Monday's game against Atlanta\" (Toronto Tempo, return_date 2026-08-12). Third coach's-decision DNP for her in a week (entries 9, 67), each expiring and re-listing game by game. Supersedes entry 132 (the CLEARED rollover after Thursday's DNP). minutes_est 0 for tonight's TOR-ATL game only.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Flau'jae Johnson",
+      "added": "2026-08-11T00:37:00Z",
+      "game_date": "2026-08-10",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0037Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report downgrade at 0037Z: Seattle's Flau'jae Johnson goes Day-To-Day (Ankle) -> OUT (Ankle) ahead of CHI@SEA (2026-08-10 ET, 22:00 tip). Supersedes the 2026-08-10 questionable entry. minutes_est 0 is the conservative reading of an Out designation posted inside the pre-game window.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Katie Lou Samuelson",
+      "added": "2026-08-11T00:37:00Z",
+      "game_date": "2026-08-10",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0037Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report downgrade at 0037Z: Seattle's Katie Lou Samuelson goes Day-To-Day (Knee) -> OUT (Knee) ahead of CHI@SEA (2026-08-10 ET). Supersedes the 2026-08-10 questionable entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ezi Magbegor",
+      "added": "2026-08-11T00:37:00Z",
+      "game_date": "2026-08-10",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0037Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report at 0037Z no longer lists Seattle's Ezi Magbegor (was Day-To-Day, Face) with CHI@SEA still SCHEDULED (pre-tip), so this is a genuine pre-game clear rather than a post-game rolloff. Supersedes the 2026-08-10 questionable entry. No minutes estimate: an upgrade to available is not evidence of a minutes change, and this entry must not inflate her projection.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "A'ja Wilson",
+      "added": "2026-08-11T00:37:00Z",
+      "game_date": "2026-08-11",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0037Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report at 0037Z drops A'ja Wilson from Las Vegas's block (was Out - Rest, carried since 2026-08-09 for LV@NY). The Aces' block survives in the feed (Cheyenne Parker-Tyus still listed Out - Concussion), so this is a real rolloff of the 8/9 rest designation, not a dropped team. Records her as available for WAS@LVA (2026-08-11 ET); no minutes estimate, so the entry cannot inflate a projection. NOTE for the owner: A'ja Wilson rebounds over is a play=True row on this sheet and the rest designation was 8/9-only, so this changes no price - confirm the lineup near tip per PROTOCOL.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Chelsea Gray",
+      "added": "2026-08-11T00:37:00Z",
+      "game_date": "2026-08-11",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0037Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report at 0037Z drops Chelsea Gray from Las Vegas's block (was Out - Rest, carried since 2026-08-09 for LV@NY). The Aces' block survives in the feed (Cheyenne Parker-Tyus still listed Out - Concussion), so this is a real rolloff of the 8/9 rest designation, not a dropped team. Records her as available for WAS@LVA (2026-08-11 ET); no minutes estimate, so the entry cannot inflate a projection. NOTE for the owner: A'ja Wilson rebounds over is a play=True row on this sheet and the rest designation was 8/9-only, so this changes no price - confirm the lineup near tip per PROTOCOL.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Jackie Young",
+      "added": "2026-08-11T00:37:00Z",
+      "game_date": "2026-08-11",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0037Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report at 0037Z drops Jackie Young from Las Vegas's block (was Out - Rest, carried since 2026-08-09 for LV@NY). The Aces' block survives in the feed (Cheyenne Parker-Tyus still listed Out - Concussion), so this is a real rolloff of the 8/9 rest designation, not a dropped team. Records her as available for WAS@LVA (2026-08-11 ET); no minutes estimate, so the entry cannot inflate a projection. NOTE for the owner: A'ja Wilson rebounds over is a play=True row on this sheet and the rest designation was 8/9-only, so this changes no price - confirm the lineup near tip per PROTOCOL.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Betnijah Laney-Hamilton",
+      "added": "2026-08-11T00:37:00Z",
+      "game_date": "2026-08-11",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0037Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NOT a clear: the 0037Z snapshot lost the entire Washington Mystics block (48 injury rows across 14 teams vs 57 across 15 at 2333Z), so avail_watch's CLEARED line for Betnijah Laney-Hamilton is a feed artifact, not a return. This entry carries her last known status (Out - Personal, 2026-08-10 2333Z) forward to WAS@LVA (2026-08-11 ET) - the conservative direction. Supersede it if a later snapshot restores the Washington block showing her active.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Darianna Littlepage-Buggs",
+      "added": "2026-08-11T00:37:00Z",
+      "game_date": "2026-08-11",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0037Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NOT a clear: the 0037Z snapshot lost the entire Washington Mystics block (48 injury rows across 14 teams vs 57 across 15 at 2333Z), so avail_watch's CLEARED line for Darianna Littlepage-Buggs is a feed artifact, not a return. This entry carries her last known status (Out - Coach's Decision, 2026-08-10 2333Z) forward to WAS@LVA (2026-08-11 ET) - the conservative direction. Supersede it if a later snapshot restores the Washington block showing her active.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Tonie Morgan",
+      "added": "2026-08-11T00:37:00Z",
+      "game_date": "2026-08-11",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0037Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report at 0037Z still lists Los Angeles's Tonie Morgan as Out (the injury type field dropped to null, which is what avail_watch flagged as UPDATED - the status itself did not change). LAS's next game is PHO@LAS (2026-08-11 ET); carrying the Out forward is the conservative reading. She carries no props on the current sheet.",
       "author": "news-watch",
       "superseded_by": null
     }
