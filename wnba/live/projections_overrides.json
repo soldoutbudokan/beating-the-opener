@@ -1398,7 +1398,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW on the league report as Day-To-Day (Knee), return_date 2026-08-12: \"Leite won't return to Saturday's game against the Storm due to a left knee sprain\" (Sean Highkin, RoseGardenReport.com). In-game exit, so the 08-08 panel row will understate nothing but her own minutes; a return_date three days out means Portland's next game(s) before 08-12 are at real risk. Conservative haircut rather than out, since ESPN says Day-To-Day not Out. game_date null (until-cleared) - Portland's next fixture is not in tonight's event feed.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 173
     },
     {
       "player": "Alissa Pili",
@@ -2274,6 +2274,19 @@
       "source": "avail:2026-08-11/0138Z",
       "url": "https://www.espn.com/wnba/",
       "quote": "ESPN news item published 2026-08-11T00:48:58Z: \"Mercury rule Kelsey Plum out vs. Sparks with leg injury - Mercury guard Kelsey Plum will miss Tuesday's game against her former team the Los Angeles Sparks due to a lower left leg injury.\" Corroborated by the league injury report in this snapshot (Phoenix, Out - Calf, return_date 2026-08-16). Targets PHO@LAS (2026-08-11 ET, event 2722) and supersedes the 2026-08-09 entry, whose game_date has expired. minutes_est 0. This matters for the sheet: Plum played 28 min on 8/7 and 14 min on 8/9, so her panel state is live, and Phoenix rows on this sheet (Kahleah Copper, Erica Wheeler) are priced without any re-allocation of the minutes she vacates - the model does not redistribute usage. Both are already blocked MOVED_OFF_OPEN; flagging so no Phoenix row is taken on a stale-usage read.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Carla Leite",
+      "added": "2026-08-11T15:33:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/1533Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 1533Z downgrades Leite (Portland Fire) Day-To-Day -> Out, type Knee, comment 'out', return_date 2026-08-12. Supersedes the 2026-08-09 questionable/12-min entry. game_date left null (until cleared) rather than pinned to today: Portland is not on the 2026-08-11 slate (NY@IND, WSH@LV, PHX@LA), and the stated return_date is tomorrow, so the override should lapse on the next snapshot that clears or upgrades her rather than expire tonight.",
       "author": "news-watch",
       "superseded_by": null
     }
