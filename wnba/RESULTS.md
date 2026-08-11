@@ -14,14 +14,14 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 | staked | $83.00 |
 | P&L | $-0.93 (-1.1% ROI) |
 | mean EV said (model) | +24.14% (n=83) |
-| mean CLV (vs close) | -4.07% (n=82) |
-| mean CLV* (shade-adj) | -2.89% (n=82) |
-| closing line moved | 14 of 82 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| mean CLV (vs close) | -4.26% (n=83) |
+| mean CLV* (shade-adj) | -3.05% (n=83) |
+| closing line moved | 15 of 83 stamped (the rest closed at the bet line: CLV ≈ vig there) |
 | model calibration | expected 52.0W vs observed 41W (z=-2.53) |
 | Model-expected P&L | $+20.49 |
-| CLV-expected P&L | $-3.34 |
+| CLV-expected P&L | $-3.53 |
 
-CLV t-stat: -4.23 (iid); -2.29 clustered by match date (12 dates)
+CLV t-stat: -4.39 (iid); -2.43 clustered by match date (12 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
@@ -34,7 +34,7 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-11 | Aliyah Boston | rebounds | under | 8.5 | 114 | 1.0 | +10.2% |  |  |  |  |  |
 | 2026-08-11 | Michaela Onyenwere | threes | under | 1.5 | -114 | 1.0 | +21.6% |  |  |  |  |  |
 | 2026-08-11 | A'ja Wilson | rebounds | over | 9.5 | 110 | 1.0 | +13.0% |  |  |  |  |  |
-| 2026-08-10 | Jade Melbourne | points | under | 9.5 | -110 | 1.0 | +16.8% | 9 | won | +0.91 |  |  |
+| 2026-08-10 | Jade Melbourne | points | under | 9.5 | -110 | 1.0 | +16.8% | 9 | won | +0.91 | -19.2% | -16.1% |
 | 2026-08-10 | Rhyne Howard | assists | over | 3.5 | -112 | 1.0 | +11.2% | 7 | won | +0.89 | -6.6% | -9.9% |
 | 2026-08-09 | Cecilia Zandalasini | assists | under | 2.5 | -162 | 1.0 | +33.2% | 2 | won | +0.62 | -8.7% | -6.0% |
 | 2026-08-09 | Nneka Ogwumike | points | over | 14.5 | 100 | 1.0 | +19.4% | 16 | won | +1.00 | -4.5% | -7.8% |
