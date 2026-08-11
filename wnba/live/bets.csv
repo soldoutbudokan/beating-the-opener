@@ -100,3 +100,6 @@ key,placed_at,match_date,event_id,market,player,side,line,odds_taken,stake,model
 2724_rebounds_marina mabrey_over,2026-08-11 09:35:57,2026-08-12,2724,rebounds,Marina Mabrey,over,3.5,142,1.0,0.4709,0.1396,open,,,,,,,owner fill 2026-08-11
 2725_rebounds_gabby williams_over,2026-08-11 09:35:57,2026-08-12,2725,rebounds,Gabby Williams,over,2.5,-102,1.0,0.5737,0.1362,open,,,,,,,owner fill 2026-08-11; deliberate flat $1 staking (sheet Kelly stake was $1.50)
 2724_threes_arike ogunbowale_under,2026-08-11 09:35:57,2026-08-12,2724,threes,Arike Ogunbowale,under,1.5,148,1.0,0.4487,0.1128,open,,,,,,,owner fill 2026-08-11
+2724_assists_paige bueckers_under,2026-08-11 12:47:38,2026-08-12,2724,assists,Paige Bueckers,under,5.5,116,1.0,0.5626,0.2152,open,,,,,,,owner fill 2026-08-11; deliberate flat $1 staking (sheet Kelly stake was $2.50)
+2726_points_olivia miles_over,2026-08-11 12:47:38,2026-08-12,2726,points,Olivia Miles,over,19.5,-102,1.0,0.6109,0.2098,open,,,,,,,owner fill 2026-08-11; deliberate flat $1 staking (sheet Kelly stake was $2.50)
+2726_points_courtney williams_over,2026-08-11 12:47:38,2026-08-12,2726,points,Courtney Williams,over,12.5,-118,1.0,0.6112,0.1292,open,,,,,,,owner fill 2026-08-11; deliberate flat $1 staking (sheet Kelly stake was $2.00)
