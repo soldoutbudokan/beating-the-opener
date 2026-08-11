@@ -10,7 +10,7 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 83 (41W-42L), 0 push, 2 void, 7 open |
+| settled | 83 (41W-42L), 0 push, 2 void, 16 open |
 | staked | $83.00 |
 | P&L | $-0.93 (-1.1% ROI) |
 | mean EV said (model) | +24.14% (n=83) |
@@ -27,6 +27,15 @@ Calibration reads the model's own claims against results: expected wins = sum of
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-08-12 | Courtney Vandersloot | points | under | 9.5 | -120 | 1.0 | +22.7% |  |  |  |  |  |
+| 2026-08-12 | Kayla McBride | points | over | 15.5 | -114 | 1.0 | +21.6% |  |  |  |  |  |
+| 2026-08-12 | Nyara Sabally | points | under | 13.5 | -114 | 1.0 | +20.6% |  |  |  |  |  |
+| 2026-08-12 | Megan DiLeo | threes | under | 1.5 | -114 | 1.0 | +19.4% |  |  |  |  |  |
+| 2026-08-12 | Natasha Howard | rebounds | over | 6.5 | 108 | 1.0 | +18.8% |  |  |  |  |  |
+| 2026-08-12 | Napheesa Collier | threes | over | 1.5 | -106 | 1.0 | +15.7% |  |  |  |  |  |
+| 2026-08-12 | Marina Mabrey | rebounds | over | 3.5 | 142 | 1.0 | +14.0% |  |  |  |  |  |
+| 2026-08-12 | Gabby Williams | rebounds | over | 2.5 | -102 | 1.0 | +13.6% |  |  |  |  |  |
+| 2026-08-12 | Arike Ogunbowale | threes | under | 1.5 | 148 | 1.0 | +11.3% |  |  |  |  |  |
 | 2026-08-11 | Dearica Hamby | points | over | 13.5 | -113 | 1.0 | +21.8% |  |  |  |  |  |
 | 2026-08-11 | Sonia Citron | threes | under | 1.5 | -136 | 1.0 | +15.7% |  |  |  |  |  |
 | 2026-08-11 | Nneka Ogwumike | points | over | 15.5 | -114 | 1.0 | +10.3% |  |  |  |  |  |
