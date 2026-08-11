@@ -1,7 +1,6 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
 2726_points_carla leite_under,2026-08-12,2026-08-13 02:00:00,2726,points,Carla Leite,PDX,MIN@PDX,under,16.5,-114.0,0.9568,0.7961,True,-1307,-927,0.0,7.37,,16.5,SUSPECT_EV(80%);ROLE_MIN?,False,False
-2723_assists_chelsea gray_over,2026-08-11,2026-08-12 02:00:00,2723,assists,Chelsea Gray,LVA,WAS@LVA,over,6.5,124.0,0.5592,0.2527,True,-118,-111,0.0,7.04,,6.5,SUSPECT_EV(25%),False,False
-2723_assists_jackie young_over,2026-08-11,2026-08-12 02:00:00,2723,assists,Jackie Young,LVA,WAS@LVA,over,5.5,-128.0,0.6991,0.2453,True,-211,-193,0.0,7.1,,5.5,MOVED_OFF_OPEN,False,False
+2723_assists_jackie young_over,2026-08-11,2026-08-12 02:00:00,2723,assists,Jackie Young,LVA,WAS@LVA,over,5.5,-130.0,0.6991,0.2369,True,-211,-193,0.0,7.1,,5.5,MOVED_OFF_OPEN,False,False
 2725_points_courtney vandersloot_under,2026-08-12,2026-08-13 02:00:00,2725,points,Courtney Vandersloot,CHI,CHI@GSV,under,9.5,-120.0,0.6694,0.2272,True,-185,-171,3.0,7.69,,9.5,,True,False
 2726_points_kayla mcbride_over,2026-08-12,2026-08-13 02:00:00,2726,points,Kayla McBride,MIN,MIN@PDX,over,15.5,-114.0,0.648,0.2164,True,-169,-157,2.5,18.54,,15.5,,True,False
 2723_threes_michaela onyenwere_under,2026-08-11,2026-08-12 02:00:00,2723,threes,Michaela Onyenwere,WAS,WAS@LVA,under,1.5,-114.0,0.6471,0.2147,True,-168,-156,3.0,1.24,,1.5,,False,True
@@ -11,12 +10,11 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2726_threes_megan dileo_under,2026-08-12,2026-08-13 02:00:00,2726,threes,Megan DiLeo,PDX,MIN@PDX,under,1.5,-114.0,0.6359,0.1937,True,-161,-149,2.5,1.27,,1.5,,True,False
 2726_rebounds_natasha howard_over,2026-08-12,2026-08-13 02:00:00,2726,rebounds,Natasha Howard,MIN,MIN@PDX,over,6.5,108.0,0.5712,0.1882,True,-124,-116,2.0,7.23,,6.5,,True,False
 2726_points_olivia miles_over,2026-08-12,2026-08-13 02:00:00,2726,points,Olivia Miles,MIN,MIN@PDX,over,19.5,-106.0,0.6109,0.1873,True,-145,-136,2.5,22.02,,19.5,,True,False
-2723_threes_sonia citron_under,2026-08-11,2026-08-12 02:00:00,2723,threes,Sonia Citron,WAS,WAS@LVA,under,1.5,-136.0,0.6671,0.1577,True,-183,-169,2.5,1.19,,1.5,,False,True
+2723_threes_sonia citron_under,2026-08-11,2026-08-12 02:00:00,2723,threes,Sonia Citron,WAS,WAS@LVA,under,1.5,-132.0,0.6671,0.1725,True,-183,-169,3.0,1.19,,1.5,,False,True
 2726_threes_napheesa collier_over,2026-08-12,2026-08-13 02:00:00,2726,threes,Napheesa Collier,MIN,MIN@PDX,over,1.5,-106.0,0.5953,0.1569,True,-136,-128,2.0,2.0,,1.5,,True,False
-2722_assists_erica wheeler_over,2026-08-11,2026-08-12 02:00:00,2722,assists,Erica Wheeler,LAS,PHO@LAS,over,5.5,118.0,0.5283,0.1516,True,-105,101,0.0,5.8,,4.5,MOVED_OFF_OPEN,False,False
 2726_points_courtney williams_over,2026-08-12,2026-08-13 02:00:00,2726,points,Courtney Williams,MIN,MIN@PDX,over,12.5,-115.0,0.6112,0.1427,True,-145,-136,2.0,14.7,,12.5,,True,False
+2723_assists_chelsea gray_over,2026-08-11,2026-08-12 02:00:00,2723,assists,Chelsea Gray,LVA,WAS@LVA,over,6.5,104.0,0.5592,0.1408,True,-118,-111,0.0,7.04,,6.5,MOVED_OFF_OPEN,False,False
 2724_rebounds_marina mabrey_over,2026-08-12,2026-08-13 00:00:00,2724,rebounds,Marina Mabrey,TOR,TOR@DAL,over,3.5,142.0,0.4709,0.1396,True,119,126,1.0,3.5,,3.5,,True,False
-2724_assists_paige bueckers_under,2026-08-12,2026-08-13 00:00:00,2724,assists,Paige Bueckers,DAL,TOR@DAL,under,5.5,102.0,0.5626,0.1365,True,-120,-113,1.5,5.22,,5.5,,True,False
 2725_rebounds_gabby williams_over,2026-08-12,2026-08-13 02:00:00,2725,rebounds,Gabby Williams,GSV,CHI@GSV,over,2.5,-102.0,0.5737,0.1361,True,-125,-117,1.5,3.07,,2.5,,True,False
 2721_assists_caitlin clark_under,2026-08-11,2026-08-11 23:30:00,2721,assists,Caitlin Clark,IND,NYL@IND,under,9.5,-120.0,0.6192,0.1352,True,-150,-140,0.0,8.64,,8.5,MOVED_OFF_OPEN,False,False
 2724_threes_alanna smith_under,2026-08-12,2026-08-13 00:00:00,2724,threes,Alanna Smith,DAL,TOR@DAL,under,1.5,-220.0,0.7797,0.1341,True,-311,-278,3.0,0.88,,1.5,ROLE_MIN?;ROLE_START?,True,False
@@ -24,4 +22,5 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2722_threes_kahleah copper_under,2026-08-11,2026-08-12 02:00:00,2722,threes,Kahleah Copper,PHO,PHO@LAS,under,2.5,-162.0,0.6997,0.1317,True,-211,-194,0.0,1.91,,2.5,MOVED_OFF_OPEN,False,False
 2723_threes_aja wilson_under,2026-08-11,2026-08-12 02:00:00,2723,threes,A'ja Wilson,LVA,WAS@LVA,under,0.5,164.0,0.4229,0.1165,True,144,151,0.0,0.86,,0.5,PLAYER_ALREADY_BET(rebounds over 9.5),False,False
 2724_threes_arike ogunbowale_under,2026-08-12,2026-08-13 00:00:00,2724,threes,Arike Ogunbowale,DAL,TOR@DAL,under,1.5,148.0,0.4487,0.1127,True,130,137,1.0,1.85,,1.5,,True,False
-2721_points_kelsey mitchell_over,2026-08-11,2026-08-11 23:30:00,2721,points,Kelsey Mitchell,IND,NYL@IND,over,24.5,-114.0,0.5917,0.1108,True,-134,-126,0.0,26.8,,24.5,NON_FD_OPEN,False,False
+2724_points_paige bueckers_under,2026-08-12,2026-08-13 00:00:00,2724,points,Paige Bueckers,DAL,TOR@DAL,under,21.5,-106.0,0.5697,0.1071,True,-123,-116,1.5,20.55,,21.5,,True,False
+2721_points_kelsey mitchell_over,2026-08-11,2026-08-11 23:30:00,2721,points,Kelsey Mitchell,IND,NYL@IND,over,24.5,-115.0,0.5917,0.1063,True,-134,-126,0.0,26.8,,24.5,NON_FD_OPEN,False,False
