@@ -1356,7 +1356,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED off the league report (was Out). Stale entry from the 08-05 sweep; game_date null. Inert - recorded so the availability chain closes.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 178
     },
     {
       "player": "Kara Dunn",
@@ -2009,7 +2009,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2233Z diff (was Out - Coach's Decision). This is a ROLLOVER, not new information: Indiana's report advanced from the final 08-08 game vs Chicago to Tuesday's 08-11 game vs New York, and the stale \"ruled out for Saturday's game against Chicago\" row dropped with it. Not a feed dropout - Indiana is still on the report at 2233Z with two fresh 08-11 rows (Clark, VanSlooten). Coach's-decision DNPs are decided game by game, so this records the expiry of entry 97 rather than a positive return signal. Status only; no minutes change.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 179
     },
     {
       "player": "Michelle Onyiah",
@@ -2022,7 +2022,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2233Z diff (was Out - Coach's Decision), same Indiana report rollover as Bree Hall: the \"ruled out for Saturday's game against the Sky\" row expired when the report moved to the 08-11 game vs New York, and Indiana still carries fresh 08-11 rows at 2233Z. Supersedes entry 96 as expiry, not as evidence she is in the rotation. Status only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 180
     },
     {
       "player": "Caitlin Clark",
@@ -2035,7 +2035,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW on the ESPN league injury report at 2233Z, Day-To-Day (back): 'Clark (back) is probable for Tuesday's game against the Liberty.' return_date 2026-08-11, Indiana. Same conservative treatment as her 08-05, 08-08 probable entries - status only, minutes left UNCHANGED, because 'probable' has resolved to a full-load start every previous time this season (08-08: 26 PTS / 11 AST). Supersedes entry 100.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 175
     },
     {
       "player": "Grace VanSlooten",
@@ -2048,7 +2048,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW on the ESPN league injury report at 2233Z, Day-To-Day (illness): 'VanSlooten is questionable for Tuesday's game against the Liberty due to an illness.' return_date 2026-08-11, Indiana. No prior override. Illness questionable is genuinely uncertain, but a bench player's minutes are not estimable from this feed, so status only - no minutes override. Flagged for display on any 08-11 IND prop.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 176
     },
     {
       "player": "Indya Nivar",
@@ -2080,7 +2080,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 2333Z diff: \"Bankole (coach's decision) is listed as out for Monday's game against Atlanta\" (Toronto Tempo, return_date 2026-08-12). Third coach's-decision DNP for her in a week (entries 9, 67), each expiring and re-listing game by game. Supersedes entry 132 (the CLEARED rollover after Thursday's DNP). minutes_est 0 for tonight's TOR-ATL game only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 177
     },
     {
       "player": "Flau'jae Johnson",
@@ -2300,6 +2300,110 @@
       "source": "avail:2026-08-11/2034Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 2034Z adds Bell (Las Vegas) Out - Personal, comment 'Bell is out for Tuesday's game against the Mystics due to personal reasons', return_date 2026-08-13. NEW row (no prior entry to supersede). Targets WAS@LVA (2026-08-11 ET, event 2723). minutes_est 0. She carries no row on the current sheet and none in live/projections.csv, so this changes no price; the LVA rows on tonight's sheet (Jackie Young, A'ja Wilson, Chelsea Gray) are priced without any re-allocation of the minutes she vacates - the model does not redistribute usage - and Bell is a low-minute reserve, so the vacated share is small. Recorded for the archive and so no LVA row is taken on a stale-usage read.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Caitlin Clark",
+      "added": "2026-08-11T22:33:00Z",
+      "game_date": "2026-08-11",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 2233Z CLEARS Clark (Indiana) - she was Day-To-Day/Back and listed 'probable for Tuesday's game against the Liberty' at 2034Z, and is absent from the 2233Z report and from the NY@IND per-event report (event 401857134). Supersedes the 2026-08-10/2233Z questionable entry for the same game_date. Upgrade to in, minutes_est left null: the panel's own EW minutes are the right prior for a player who was never ruled out, and this routine does not hand-set minutes on a clearing. Her one row on tonight's sheet (assists under 9.5, NYL@IND) is blocked MOVED_OFF_OPEN and stays blocked - this changes no price.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Grace VanSlooten",
+      "added": "2026-08-11T22:33:00Z",
+      "game_date": "2026-08-11",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 2233Z CLEARS VanSlooten (Indiana) - Day-To-Day/Illness at 2034Z ('questionable for Tuesday's game against the Liberty due to an illness'), absent from the 2233Z league and per-event (401857134) reports. Supersedes the 2026-08-10/2233Z questionable entry. minutes_est null. She carries no row on the current sheet, so this changes no price; recorded for the archive.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ornella Bankole",
+      "added": "2026-08-11T22:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 2233Z CLEARS Bankole (Toronto) - Out/Coach's Decision at 2034Z for Monday's game against Atlanta, absent at 2233Z. Supersedes the 2026-08-10/2333Z out entry (its game_date 2026-08-10 had already expired, so nothing was being priced off it). game_date null (until cleared) rather than pinned: Toronto's next game is TOR@DAL on 2026-08-12, and a coach's-decision DNP tells you nothing durable about the next one. She carries no row on the current sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Anneli Maley",
+      "added": "2026-08-11T22:33:00Z",
+      "game_date": "2026-08-11",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 2233Z adds Maley (New York) Out - Coach's Decision, comment 'out', return_date 2026-08-13, corroborated by the NY@IND per-event report (401857134). Supersedes the 2026-08-09/0133Z in entry. Targets NYL@IND (2026-08-11 ET, event 2721). minutes_est 0. She carries no row on the current sheet; the NYL rows on tonight's sheet are priced without any re-allocation of the minutes she vacates - the model does not redistribute usage - and she is a low-minute reserve, so the vacated share is small.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Bree Hall",
+      "added": "2026-08-11T22:33:00Z",
+      "game_date": "2026-08-11",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 2233Z adds Hall (Indiana) Out - Coach's Decision, comment \"Hall (coach's) decision) is out for Tuesday's game against the Liberty\", return_date 2026-08-14, corroborated by the per-event report (401857134). Supersedes the 2026-08-10/2233Z in entry for the same game_date. Targets NYL@IND (2026-08-11 ET, event 2721). minutes_est 0. She carries no row on the current sheet; the IND rows (Caitlin Clark, Kelsey Mitchell, Aliyah Boston) are priced without re-allocating her minutes, and she is a low-minute reserve. Note the pattern: this is the third coach's-decision flip on Hall in six days (out 08-06, in 08-08, out 08-08, in 08-10, out now) - her role is unsettled, which is exactly the situation the talent model is slow on.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Michelle Onyiah",
+      "added": "2026-08-11T22:33:00Z",
+      "game_date": "2026-08-11",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 2233Z adds Onyiah (Indiana) Out - Coach's Decision, comment \"Onyiah (coach's decision) has been ruled out for Tuesday's game against the Liberty\", return_date 2026-08-14, corroborated by the per-event report (401857134). Supersedes the 2026-08-10/2233Z in entry for the same game_date. Targets NYL@IND (2026-08-11 ET, event 2721). minutes_est 0. No row on the current sheet; low-minute reserve, no usage re-allocation is made.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Julie Allemand",
+      "added": "2026-08-11T22:33:00Z",
+      "game_date": "2026-08-12",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 2233Z adds Allemand (Toronto) Day-To-Day - Thigh, comment 'Allemand (thigh) is listed as questionable for Wednesday's game against the Wings', return_date 2026-08-12. NEW row (no prior entry to supersede). Targets TOR@DAL (2026-08-12 ET, event 2724). Status questionable with minutes_est null - conservative: questionable is not out, and this routine does not hand-cut minutes on a day-to-day tag. She carries no row on the current sheet. Flagged because TOR@DAL is the event four picks on the 08-12 sheet sit on (Sabally, Bueckers, Mabrey, Ogunbowale) and a starting-guard absence would move Toronto's usage - re-check near tip.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Maria Conde",
+      "added": "2026-08-11T22:33:00Z",
+      "game_date": "2026-08-12",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 2233Z adds Conde (Toronto) Day-To-Day - Calf, comment 'Conde (calf) is questionable for Wednesday's game against the Wings', return_date 2026-08-12. NEW row (no prior entry to supersede). Targets TOR@DAL (2026-08-12 ET, event 2724). Status questionable, minutes_est null - same conservatism as the Allemand entry. No row on the current sheet.",
       "author": "news-watch",
       "superseded_by": null
     }
