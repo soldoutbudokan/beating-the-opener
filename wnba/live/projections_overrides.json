@@ -2289,6 +2289,19 @@
       "quote": "League injury report at 1533Z downgrades Leite (Portland Fire) Day-To-Day -> Out, type Knee, comment 'out', return_date 2026-08-12. Supersedes the 2026-08-09 questionable/12-min entry. game_date left null (until cleared) rather than pinned to today: Portland is not on the 2026-08-11 slate (NY@IND, WSH@LV, PHX@LA), and the stated return_date is tomorrow, so the override should lapse on the next snapshot that clears or upgrades her rather than expire tonight.",
       "author": "news-watch",
       "superseded_by": null
+    },
+    {
+      "player": "Kierstan Bell",
+      "added": "2026-08-11T20:34:00Z",
+      "game_date": "2026-08-11",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/2034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 2034Z adds Bell (Las Vegas) Out - Personal, comment 'Bell is out for Tuesday's game against the Mystics due to personal reasons', return_date 2026-08-13. NEW row (no prior entry to supersede). Targets WAS@LVA (2026-08-11 ET, event 2723). minutes_est 0. She carries no row on the current sheet and none in live/projections.csv, so this changes no price; the LVA rows on tonight's sheet (Jackie Young, A'ja Wilson, Chelsea Gray) are priced without any re-allocation of the minutes she vacates - the model does not redistribute usage - and Bell is a low-minute reserve, so the vacated share is small. Recorded for the archive and so no LVA row is taken on a stale-usage read.",
+      "author": "news-watch",
+      "superseded_by": null
     }
   ]
 }
