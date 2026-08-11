@@ -6,19 +6,19 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $97.27** (start $100)
+**Bankroll: $99.07** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 81 (39W-42L), 0 push, 2 void, 0 open |
-| staked | $81.00 |
-| P&L | $-2.73 (-3.4% ROI) |
-| mean EV said (model) | +24.39% (n=81) |
+| settled | 83 (41W-42L), 0 push, 2 void, 7 open |
+| staked | $83.00 |
+| P&L | $-0.93 (-1.1% ROI) |
+| mean EV said (model) | +24.14% (n=83) |
 | mean CLV (vs close) | -4.04% (n=81) |
 | mean CLV* (shade-adj) | -2.80% (n=81) |
 | closing line moved | 14 of 81 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 50.8W vs observed 39W (z=-2.75) |
-| Model-expected P&L | $+20.21 |
+| model calibration | expected 52.0W vs observed 41W (z=-2.53) |
+| Model-expected P&L | $+20.49 |
 | CLV-expected P&L | $-3.27 |
 
 CLV t-stat: -4.15 (iid); -2.05 clustered by match date (11 dates)
@@ -27,6 +27,15 @@ Calibration reads the model's own claims against results: expected wins = sum of
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-08-11 | Dearica Hamby | points | over | 13.5 | -113 | 1.0 | +21.8% |  |  |  |  |  |
+| 2026-08-11 | Sonia Citron | threes | under | 1.5 | -136 | 1.0 | +15.7% |  |  |  |  |  |
+| 2026-08-11 | Nneka Ogwumike | points | over | 15.5 | -114 | 1.0 | +10.3% |  |  |  |  |  |
+| 2026-08-11 | Dearica Hamby | rebounds | over | 6.5 | -136 | 1.0 | +11.5% |  |  |  |  |  |
+| 2026-08-11 | Aliyah Boston | rebounds | under | 8.5 | 114 | 1.0 | +10.2% |  |  |  |  |  |
+| 2026-08-11 | Michaela Onyenwere | threes | under | 1.5 | -114 | 1.0 | +21.6% |  |  |  |  |  |
+| 2026-08-11 | A'ja Wilson | rebounds | over | 9.5 | 110 | 1.0 | +13.0% |  |  |  |  |  |
+| 2026-08-10 | Jade Melbourne | points | under | 9.5 | -110 | 1.0 | +16.8% | 9 | won | +0.91 |  |  |
+| 2026-08-10 | Rhyne Howard | assists | over | 3.5 | -112 | 1.0 | +11.2% | 7 | won | +0.89 |  |  |
 | 2026-08-09 | Cecilia Zandalasini | assists | under | 2.5 | -162 | 1.0 | +33.2% | 2 | won | +0.62 | -8.7% | -6.0% |
 | 2026-08-09 | Nneka Ogwumike | points | over | 14.5 | 100 | 1.0 | +19.4% | 16 | won | +1.00 | -4.5% | -7.8% |
 | 2026-08-09 | Kahleah Copper | threes | under | 1.5 | 146 | 1.0 | +16.6% | 2 | lost | -1.00 | +0.6% | +5.9% |
