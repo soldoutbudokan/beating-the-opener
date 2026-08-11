@@ -742,7 +742,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2232Z diff: Evans (illness) off both the league report and the event 401857119 report, four hours after being listed questionable. Supersedes entry 46. Illness questionables that clear this close to tip normally play; no minutes estimate either way.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 167
     },
     {
       "player": "Marina Mabrey",
@@ -1632,7 +1632,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN injury report: Kelsey Plum listed Out (Calf). NEW in the 2033Z diff; supersedes the 2026-08-04 'in, 25 min' entry. PHX game (PHX @ WSH) already under way.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 172
     },
     {
       "player": "Alissa Pili",
@@ -1645,7 +1645,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league + per-event (401857131) injury report, 2233Z: NEW Out (Coach's Decision) - \"Pili (coach's decision) is out for Sunday's game against the Valkyries.\" Return date 2026-08-11. Targets tonight's GS @ LA (7:00 PM ET, not yet tipped). Supersedes the 0333Z cleared/in entry.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 170
     },
     {
       "player": "Tonie Morgan",
@@ -1671,7 +1671,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league + per-event (401857131) injury report, 2233Z: UPGRADED to Out (Ankle), was Day-To-Day at 0133Z - \"Akoa Makani (ankle) won't play Sunday against the Valkyries.\" Return date 2026-08-11. Supersedes the questionable entry for the same game.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 169
     },
     {
       "player": "Ashten Prechtel",
@@ -1775,7 +1775,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED: dropped off the league injury report, where the 2233Z snapshot had her Out (Coach's Decision) for Saturday's game vs the Fever with return_date 2026-08-10. The Sky's next game is 2026-08-10 at Seattle (event 2720), so the clearance targets that date. Coach's-decision absences can recur without warning and no lineup feed exists yet for tomorrow, so this is status-only with no minutes claim - it lifts the 0-minute block rather than asserting a role.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 168
     },
     {
       "player": "Skylar Diggins",
@@ -2196,6 +2196,84 @@
       "source": "avail:2026-08-11/0037Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report at 0037Z still lists Los Angeles's Tonie Morgan as Out (the injury type field dropped to null, which is what avail_watch flagged as UPDATED - the status itself did not change). LAS's next game is PHO@LAS (2026-08-11 ET); carrying the Out forward is the conservative reading. She carries no props on the current sheet.",
+      "author": "news-watch",
+      "superseded_by": 171
+    },
+    {
+      "player": "Dana Evans",
+      "added": "2026-08-11T01:38:00Z",
+      "game_date": "2026-08-11",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW on the ESPN league injury report at 0138Z, Las Vegas: \"Evans (leg) has been ruled out for Tuesday's game against the Mystics\" (Out - Leg, return_date 2026-08-13). Targets WAS@LVA (2026-08-11 ET, event 2723). Supersedes the 2026-08-06 'in' entry. minutes_est 0 is the plain reading of a ruled-out designation. Her panel state is current (20 min on 8/8, 14 min on 8/9), so this removes real minutes rather than stale ones. NOTE for the owner: A'ja Wilson rebounds over is an open bet in this event and Michaela Onyenwere threes under sits on the same sheet - Evans out nudges Las Vegas usage toward the players still available, which the model does not re-allocate; confirm the lineup near tip per PROTOCOL.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Maddy Westbeld",
+      "added": "2026-08-11T01:38:00Z",
+      "game_date": "2026-08-10",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW on the ESPN league injury report at 0138Z, Chicago: \"Westbeld (coach's decision) has been ruled out ahead of Monday's game versus the Storm\" (Out - Coach's Decision, return_date 2026-08-12); the per-event report for CHI@SEA (ESPN 401857133) carries the same row, so it is confirmed twice. Targets CHI@SEA (2026-08-10 ET, 22:00 tip, event 2720). Supersedes the 2026-08-09 'in' entry, which was written before the coach's decision posted. A Coach's Decision counts as Out under the amended instructions. Her panel state is thin anyway (last game 2026-07-12, 8 min), so no live Chicago prop depends on it.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Monique Akoa Makani",
+      "added": "2026-08-11T01:38:00Z",
+      "game_date": "2026-08-11",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPGRADE on the ESPN league injury report at 0138Z, Los Angeles: Out (Ankle) -> Day-To-Day (Ankle), \"Akoa Makani (ankle) is listed as questionable for Tuesday's game against Phoenix\", return_date 2026-08-11. Targets PHO@LAS (2026-08-11 ET, event 2722) and supersedes the 2026-08-09 out/0-minute entry, which would otherwise zero a player the feed now expects to play. Status only, minutes left UNCHANGED: her base state is already a modest bench role (16 min 8/5, 19 min 8/6), and a haircut on top of an improving designation would manufacture an under rather than remove a stale over. She carries no prop on tonight's sheet, so this is currently inert.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Alissa Pili",
+      "added": "2026-08-11T01:38:00Z",
+      "game_date": "2026-08-11",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED at 0138Z: drops off the Los Angeles block, where she was Out - Coach's Decision with return_date 2026-08-11. Judged a real rolloff, not a dropped-team artifact - the Sparks block survives in this snapshot and one of its rows CHANGED (Akoa Makani upgraded Out -> Day-To-Day), which a dropped block cannot do, and the return_date matches the date she came off. (Contrast the Washington block, absent from both the 0037Z and 0138Z snapshots, which is being carried forward as unknown rather than cleared.) Records availability for PHO@LAS (2026-08-11 ET); minutes_est null so the entry cannot inflate a projection. Unbettable regardless: her last panel game is 2026-07-13, 29 days stale, so the STALE_PLAYER gate blocks any Pili row.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Tonie Morgan",
+      "added": "2026-08-11T01:38:00Z",
+      "game_date": "2026-08-11",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED at 0138Z: drops off the Los Angeles block, where she was a bare Out row (no injury type, no return date). Same judgement as the Pili clear in this snapshot - the Sparks block survives and mutated, so the drop is a rolloff rather than a feed artifact. Supersedes the out entry written one hour earlier at 0037Z. Records availability for PHO@LAS (2026-08-11 ET); minutes_est null so nothing is inflated. Unpriceable in any case: she has no rows in the model panel at all.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kelsey Plum",
+      "added": "2026-08-11T01:38:00Z",
+      "game_date": "2026-08-11",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-11/0138Z",
+      "url": "https://www.espn.com/wnba/",
+      "quote": "ESPN news item published 2026-08-11T00:48:58Z: \"Mercury rule Kelsey Plum out vs. Sparks with leg injury - Mercury guard Kelsey Plum will miss Tuesday's game against her former team the Los Angeles Sparks due to a lower left leg injury.\" Corroborated by the league injury report in this snapshot (Phoenix, Out - Calf, return_date 2026-08-16). Targets PHO@LAS (2026-08-11 ET, event 2722) and supersedes the 2026-08-09 entry, whose game_date has expired. minutes_est 0. This matters for the sheet: Plum played 28 min on 8/7 and 14 min on 8/9, so her panel state is live, and Phoenix rows on this sheet (Kahleah Copper, Erica Wheeler) are priced without any re-allocation of the minutes she vacates - the model does not redistribute usage. Both are already blocked MOVED_OFF_OPEN; flagging so no Phoenix row is taken on a stale-usage read.",
       "author": "news-watch",
       "superseded_by": null
     }
