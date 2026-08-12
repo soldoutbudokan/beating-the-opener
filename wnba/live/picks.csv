@@ -3,7 +3,7 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2724_assists_paige bueckers_under,2026-08-12,2026-08-13 00:00:00,2724,assists,Paige Bueckers,DAL,TOR@DAL,under,7.5,-154.0,0.8229,0.3572,True,-397,-347,0.0,5.21,,5.5,MOVED_OFF_OPEN;SUSPECT_EV(36%),False,True
 2726_points_olivia miles_over,2026-08-12,2026-08-13 02:00:00,2726,points,Olivia Miles,MIN,MIN@PDX,over,17.5,-110.0,0.7075,0.3507,True,-219,-200,0.0,21.97,,19.5,MOVED_OFF_OPEN;SUSPECT_EV(35%),False,True
 2724_rebounds_nyara sabally_under,2026-08-12,2026-08-13 00:00:00,2724,rebounds,Nyara Sabally,TOR,TOR@DAL,under,5.5,108.0,0.6382,0.3275,True,-162,-151,0.0,4.71,,5.5,SUSPECT_EV(33%);PLAYER_ALREADY_BET(points under 13.5),False,False
-2725_points_courtney vandersloot_under,2026-08-12,2026-08-13 02:00:00,2725,points,Courtney Vandersloot,CHI,CHI@GSV,under,9.5,-118.0,0.6707,0.2391,True,-186,-172,3.5,7.68,,9.5,,False,True
+2725_points_courtney vandersloot_under,2026-08-12,2026-08-13 02:00:00,2725,points,Courtney Vandersloot,CHI,CHI@GSV,under,9.5,-120.0,0.6707,0.2296,True,-186,-172,3.5,7.68,,9.5,,False,True
 2726_points_kayla mcbride_over,2026-08-12,2026-08-13 02:00:00,2726,points,Kayla McBride,MIN,MIN@PDX,over,15.5,-114.0,0.6459,0.2124,True,-168,-155,3.0,18.5,,15.5,,False,True
 2726_threes_megan dileo_under,2026-08-12,2026-08-13 02:00:00,2726,threes,Megan DiLeo,PDX,MIN@PDX,under,1.5,-114.0,0.6369,0.1956,True,-162,-150,3.0,1.27,,1.5,,False,True
 2729_assists_chelsea gray_over,2026-08-13,2026-08-14 02:00:00,2729,assists,Chelsea Gray,LVA,WAS@LVA,over,6.5,118.0,0.5484,0.1955,True,-113,-107,2.0,6.96,,6.5,,True,False
