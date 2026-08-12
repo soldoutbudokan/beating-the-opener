@@ -1502,7 +1502,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the ESPN injury report at this snapshot (was Day-To-Day, entry 85). No listing = available; no sourced minutes claim, so minutes_est stays null and the base talent state prices her. Supersedes 85.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 190
     },
     {
       "player": "DeWanna Bonner",
@@ -1567,7 +1567,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report, 1833Z: 'Dunn (coach's decision) has been ruled out for Sunday's game against Washington.' Supersedes the 0133Z cleared/in entry.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 191
     },
     {
       "player": "Shay Ciezki",
@@ -2236,7 +2236,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPGRADE on the ESPN league injury report at 0138Z, Los Angeles: Out (Ankle) -> Day-To-Day (Ankle), \"Akoa Makani (ankle) is listed as questionable for Tuesday's game against Phoenix\", return_date 2026-08-11. Targets PHO@LAS (2026-08-11 ET, event 2722) and supersedes the 2026-08-09 out/0-minute entry, which would otherwise zero a player the feed now expects to play. Status only, minutes left UNCHANGED: her base state is already a modest bench role (16 min 8/5, 19 min 8/6), and a haircut on top of an improving designation would manufacture an under rather than remove a stale over. She carries no prop on tonight's sheet, so this is currently inert.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 192
     },
     {
       "player": "Alissa Pili",
@@ -2249,7 +2249,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED at 0138Z: drops off the Los Angeles block, where she was Out - Coach's Decision with return_date 2026-08-11. Judged a real rolloff, not a dropped-team artifact - the Sparks block survives in this snapshot and one of its rows CHANGED (Akoa Makani upgraded Out -> Day-To-Day), which a dropped block cannot do, and the return_date matches the date she came off. (Contrast the Washington block, absent from both the 0037Z and 0138Z snapshots, which is being carried forward as unknown rather than cleared.) Records availability for PHO@LAS (2026-08-11 ET); minutes_est null so the entry cannot inflate a projection. Unbettable regardless: her last panel game is 2026-07-13, 29 days stale, so the STALE_PLAYER gate blocks any Pili row.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 189
     },
     {
       "player": "Tonie Morgan",
@@ -2482,6 +2482,58 @@
       "source": "avail:2026-08-12/0033Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 0033Z CLEARS Westbeld (Chicago) - she was Out/Coach's Decision at 2233Z (\"Westbeld (coach's decision) has been ruled out ahead of Monday's game versus the Storm\") and is absent from the 0033Z report. Supersedes the 2026-08-11/0138Z out entry, whose game_date 2026-08-10 had already expired. game_date null (until cleared): Chicago's next game is CHI@GSV on 2026-08-12 and a coach's decision does not carry forward. minutes_est null. She carries no row on the current sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Alissa Pili",
+      "added": "2026-08-12T01:38:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/0138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 0138Z adds Pili (Los Angeles Sparks) Out - Coach's Decision: \"Pili (coach's decision) has been ruled out for Tuesday's game against Phoenix.\" return_date 2026-08-13. game_date 2026-08-12 (LAS@PHO); minutes_est 0.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Justine Pissott",
+      "added": "2026-08-12T01:38:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/0138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 0138Z adds Pissott (Las Vegas) Out - Leg: \"Pissott (leg) has been ruled out for Tuesday's game against the Mystics.\" return_date 2026-08-13. game_date 2026-08-12; minutes_est 0.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kara Dunn",
+      "added": "2026-08-12T01:38:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/0138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 0138Z adds Dunn (Phoenix) Out - Coach's Decision: \"Dunn (coach's decision) has been ruled out for Tuesday's game against the Sparks.\" return_date 2026-08-16. game_date 2026-08-12 (LAS@PHO); minutes_est 0.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Monique Akoa Makani",
+      "added": "2026-08-12T01:38:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/0138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 0138Z DOWNGRADES Akoa Makani (Los Angeles Sparks) Day-To-Day -> Out (Ankle): \"Akoa Makani (ankle) has been ruled out for Tuesday's game against Phoenix.\" return_date 2026-08-13. game_date 2026-08-12; minutes_est 0.",
       "author": "news-watch",
       "superseded_by": null
     }
