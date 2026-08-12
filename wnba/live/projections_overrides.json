@@ -677,7 +677,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED in the 2232Z diff: Clark (back) upgraded Out -> Day-To-Day, 'questionable for Friday's game against the Valkyries' (return_date 2026-08-07 = GS@DAL). Supersedes entry 39, whose Out listing covered games already played; the judgement is unchanged (questionable, no minutes estimate until a lineup confirms her) but the feed now says questionable rather than out, so the log should say so too.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 199
     },
     {
       "player": "Bree Hall",
@@ -1970,7 +1970,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW: ESPN league injury report, 0133Z. 'Beers is out for Friday's game against Phoenix with a concussion'; return_date 2026-08-13. Supersedes nothing live - the earlier entry targeted 2026-08-07 and has expired. Concussion protocol is open-ended, so until-cleared. Status only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 202
     },
     {
       "player": "Ashlon Jackson",
@@ -1983,7 +1983,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW: ESPN league injury report, 0133Z. 'Jackson (coach's decision) has been ruled out for Friday's game against the Mercury'; return_date 2026-08-13. Connecticut's next game is 2026-08-13 ET, so until-cleared. Coach's-decision absence: availability only, not evidence of a role change.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 201
     },
     {
       "player": "Marina Mabrey",
@@ -2353,7 +2353,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 2233Z adds Maley (New York) Out - Coach's Decision, comment 'out', return_date 2026-08-13, corroborated by the NY@IND per-event report (401857134). Supersedes the 2026-08-09/0133Z in entry. Targets NYL@IND (2026-08-11 ET, event 2721). minutes_est 0. She carries no row on the current sheet; the NYL rows on tonight's sheet are priced without any re-allocation of the minutes she vacates - the model does not redistribute usage - and she is a low-minute reserve, so the vacated share is small.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 200
     },
     {
       "player": "Bree Hall",
@@ -2392,7 +2392,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 2233Z adds Allemand (Toronto) Day-To-Day - Thigh, comment 'Allemand (thigh) is listed as questionable for Wednesday's game against the Wings', return_date 2026-08-12. NEW row (no prior entry to supersede). Targets TOR@DAL (2026-08-12 ET, event 2724). Status questionable with minutes_est null - conservative: questionable is not out, and this routine does not hand-cut minutes on a day-to-day tag. She carries no row on the current sheet. Flagged because TOR@DAL is the event four picks on the 08-12 sheet sit on (Sabally, Bueckers, Mabrey, Ogunbowale) and a starting-guard absence would move Toronto's usage - re-check near tip.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 196
     },
     {
       "player": "Maria Conde",
@@ -2405,7 +2405,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 2233Z adds Conde (Toronto) Day-To-Day - Calf, comment 'Conde (calf) is questionable for Wednesday's game against the Wings', return_date 2026-08-12. NEW row (no prior entry to supersede). Targets TOR@DAL (2026-08-12 ET, event 2724). Status questionable, minutes_est null - same conservatism as the Allemand entry. No row on the current sheet.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 197
     },
     {
       "player": "Carla Leite",
@@ -2496,7 +2496,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 0138Z adds Pili (Los Angeles Sparks) Out - Coach's Decision: \"Pili (coach's decision) has been ruled out for Tuesday's game against Phoenix.\" return_date 2026-08-13. game_date 2026-08-12 (LAS@PHO); minutes_est 0.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 198
     },
     {
       "player": "Justine Pissott",
@@ -2534,6 +2534,136 @@
       "source": "avail:2026-08-12/0138Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 0138Z DOWNGRADES Akoa Makani (Los Angeles Sparks) Day-To-Day -> Out (Ankle): \"Akoa Makani (ankle) has been ruled out for Tuesday's game against Phoenix.\" return_date 2026-08-13. game_date 2026-08-12; minutes_est 0.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Amy Okonkwo",
+      "added": "2026-08-12T23:37:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report (Rest, return 2026-08-14): 'Okonkwo (rest) has been ruled out for Wednesday's game against the Lynx.' Confirmed on the per-event report for MIN@PDX (401857139).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Haley Jones",
+      "added": "2026-08-12T23:37:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + per-event (TOR@DAL, 401857137) injury report: Out, type Coach's Decision, return 2026-08-14. A Coach's Decision Out counts as Out under the v3 T3 rule.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Brittney Griner",
+      "added": "2026-08-12T23:37:00Z",
+      "game_date": "2026-08-13",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report (Knee, return 2026-08-13): 'Griner (knee) is questionable for Thursday's game against Atlanta.' Thursday = 2026-08-13 ATL@CON. Status-only: no minutes estimate, so this changes no projection - it records the doubt without manufacturing an edge either way.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Julie Allemand",
+      "added": "2026-08-12T23:37:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + per-event (TOR@DAL) injury report, downgrade from Day-To-Day: 'Allemand (thigh) is out for Wednesday's game against Dallas, per Zulfi Sheikh of Sportsnet.' Return date 2026-08-18. Supersedes the 2026-08-11 questionable entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Maria Conde",
+      "added": "2026-08-12T23:37:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + per-event (TOR@DAL) injury report, downgrade from Day-To-Day: 'Conde (calf) is out for Wednesday's game against, per Zulfi Sheikh of Sportsnet.' Return date 2026-08-18. Supersedes the 2026-08-11 questionable entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Alissa Pili",
+      "added": "2026-08-12T23:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Dropped off the ESPN league injury report between the 2026-08-12 05:41Z and 23:33Z snapshots (CLEARED in the avail_watch diff), i.e. no longer listed with any designation. Status-only, no minutes estimate: it lifts a stale out rather than asserting a role. Supersedes the 2026-08-12 out entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Alysha Clark",
+      "added": "2026-08-12T23:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Dropped off the ESPN league injury report between the 2026-08-12 05:41Z and 23:33Z snapshots (CLEARED in the avail_watch diff), i.e. no longer listed with any designation. Status-only, no minutes estimate: it lifts a stale out rather than asserting a role. Supersedes the stale 2026-08-07 questionable entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Anneli Maley",
+      "added": "2026-08-12T23:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Dropped off the ESPN league injury report between the 2026-08-12 05:41Z and 23:33Z snapshots (CLEARED in the avail_watch diff), i.e. no longer listed with any designation. Status-only, no minutes estimate: it lifts a stale out rather than asserting a role. Supersedes the 2026-08-11 out entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ashlon Jackson",
+      "added": "2026-08-12T23:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Dropped off the ESPN league injury report between the 2026-08-12 05:41Z and 23:33Z snapshots (CLEARED in the avail_watch diff), i.e. no longer listed with any designation. Status-only, no minutes estimate: it lifts a stale out rather than asserting a role. Supersedes the until-cleared out entry of 2026-08-10 - that one had game_date null and was still active, so clearing it matters.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Raegan Beers",
+      "added": "2026-08-12T23:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Dropped off the ESPN league injury report between the 2026-08-12 05:41Z and 23:33Z snapshots (CLEARED in the avail_watch diff), i.e. no longer listed with any designation. Status-only, no minutes estimate: it lifts a stale out rather than asserting a role. Supersedes the until-cleared out entry of 2026-08-10 - that one had game_date null and was still active, so clearing it matters.",
       "author": "news-watch",
       "superseded_by": null
     }
