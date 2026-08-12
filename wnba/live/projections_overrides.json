@@ -1684,7 +1684,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report, 2233Z: NEW Out (Coach's Decision) - \"Prechtel (coach's decision) won't play Sunday against the Sparks.\" Return date 2026-08-12. Targets tonight's GS @ LA. Supersedes the 0333Z cleared/in entry.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 186
     },
     {
       "player": "Miela Sowah",
@@ -1697,7 +1697,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report, 2233Z: NEW Out (Coach's Decision) - \"Sowah (coach's decision) will miss Sunday's game in Los Angeles.\" Return date 2026-08-12. Supersedes the 0333Z cleared/in entry.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 187
     },
     {
       "player": "Marina Mabrey",
@@ -1905,7 +1905,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW: ESPN league injury report, 0133Z. 'Stokes will not return to Sunday's game against the Sparks due to a neck contusion' - Day-To-Day, return_date 2026-08-12. Golden State's next game is 2026-08-12 ET (event 2725), so until-cleared rather than date-targeted. Status only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 185
     },
     {
       "player": "Damiris Dantas",
@@ -2223,7 +2223,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW on the ESPN league injury report at 0138Z, Chicago: \"Westbeld (coach's decision) has been ruled out ahead of Monday's game versus the Storm\" (Out - Coach's Decision, return_date 2026-08-12); the per-event report for CHI@SEA (ESPN 401857133) carries the same row, so it is confirmed twice. Targets CHI@SEA (2026-08-10 ET, 22:00 tip, event 2720). Supersedes the 2026-08-09 'in' entry, which was written before the coach's decision posted. A Coach's Decision counts as Out under the amended instructions. Her panel state is thin anyway (last game 2026-07-12, 8 min), so no live Chicago prop depends on it.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 188
     },
     {
       "player": "Monique Akoa Makani",
@@ -2288,7 +2288,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 1533Z downgrades Leite (Portland Fire) Day-To-Day -> Out, type Knee, comment 'out', return_date 2026-08-12. Supersedes the 2026-08-09 questionable/12-min entry. game_date left null (until cleared) rather than pinned to today: Portland is not on the 2026-08-11 slate (NY@IND, WSH@LV, PHX@LA), and the stated return_date is tomorrow, so the override should lapse on the next snapshot that clears or upgrades her rather than expire tonight.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 183
     },
     {
       "player": "Kierstan Bell",
@@ -2404,6 +2404,84 @@
       "source": "avail:2026-08-11/2233Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 2233Z adds Conde (Toronto) Day-To-Day - Calf, comment 'Conde (calf) is questionable for Wednesday's game against the Wings', return_date 2026-08-12. NEW row (no prior entry to supersede). Targets TOR@DAL (2026-08-12 ET, event 2724). Status questionable, minutes_est null - same conservatism as the Allemand entry. No row on the current sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Carla Leite",
+      "added": "2026-08-12T00:33:00Z",
+      "game_date": "2026-08-12",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/0033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 0033Z UPGRADES Leite (Portland Fire) Out -> Day-To-Day, type Knee, comment \"Leite (knee) is listed as questionable for Wednesday's game against the Lynx\", return_date 2026-08-12. Supersedes the 2026-08-11/1533Z out/0-minute entry. Targets MIN@PDX (2026-08-12 ET, event 2726). She has missed no game since the injury: Portland's last game was 2026-08-08 (PDX-SEA, event 2714), the one she left after 4 minutes, and 08-12 is Portland's next. minutes_est left null - the 0-minute clamp from the out entry is no longer sourced now that the feed calls her questionable, and the panel's own EW minutes (already dragged down by that 4-minute game) are the right prior; this routine does not hand-set minutes on a day-to-day tag. MATERIAL: her row on the sheet (points under 16.5, MIN@PDX) was carrying a claimed EV of 88% purely because the 0-minute clamp projected her at nothing - lifting it should collapse that claim. Note the direction: restoring minutes makes an UNDER less attractive, so this supersession cannot manufacture the bet it removes. Her row also carries ROLE_MIN? and she is questionable - re-check near tip.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Janelle Salaun",
+      "added": "2026-08-12T00:33:00Z",
+      "game_date": "2026-08-12",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/0033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 0033Z adds Salaun (Golden State) Day-To-Day - Knee, comment \"Salaun (knee) is questionable for Wednesday's game against the Sky\", return_date 2026-08-12. NEW row (no prior entry to supersede). Targets CHI@GSV (2026-08-12 ET, event 2725). Status questionable, minutes_est null - conservative: questionable is not out and this routine does not hand-cut minutes on a day-to-day tag. She carries no row on the current sheet. Flagged because CHI@GSV is the event three picks sit on (Carrington, Vandersloot, Gabby Williams) and Salaun is a rotation forward whose absence would move Golden State's usage - re-check near tip.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kiah Stokes",
+      "added": "2026-08-12T00:33:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/0033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 0033Z DOWNGRADES Stokes (Golden State) Day-To-Day/Neck -> Out, type Concussion, comment \"Stokes (concussion) has been ruled out for Wednesday's game against the Sky\", return_date 2026-08-17. Supersedes the 2026-08-10/0133Z questionable/status-only entry. game_date left null (until cleared) rather than pinned to 2026-08-12: a concussion with a 2026-08-17 return date spans more than the next game, and the entry is superseded the moment she reappears on the report. minutes_est 0. She carries no row on the current sheet; the GSV rows are priced without re-allocating the minutes she vacates - the model does not redistribute usage.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ashten Prechtel",
+      "added": "2026-08-12T00:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/0033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 0033Z CLEARS Prechtel (Golden State) - she was Out/Coach's Decision at 2233Z (\"Prechtel (coach's decision) won't play Sunday against the Sparks\") and is absent from the 0033Z report. Supersedes the 2026-08-09/2233Z out entry, whose game_date 2026-08-09 had already expired, so nothing was being priced off it. game_date null (until cleared) rather than pinned: Golden State's next game is CHI@GSV on 2026-08-12 and a coach's-decision DNP says nothing durable about the next one. minutes_est null. She carries no row on the current sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Miela Sowah",
+      "added": "2026-08-12T00:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/0033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 0033Z CLEARS Sowah (Golden State) - she was Out/Coach's Decision at 2233Z (\"Sowah (coach's decision) will miss Sunday's game in Los Angeles\") and is absent from the 0033Z report. Supersedes the 2026-08-09/2233Z out entry, whose game_date 2026-08-09 had already expired, so nothing was being priced off it. game_date null, minutes_est null, same reasoning as the Prechtel entry. No row on the current sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Maddy Westbeld",
+      "added": "2026-08-12T00:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-12/0033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 0033Z CLEARS Westbeld (Chicago) - she was Out/Coach's Decision at 2233Z (\"Westbeld (coach's decision) has been ruled out ahead of Monday's game versus the Storm\") and is absent from the 0033Z report. Supersedes the 2026-08-11/0138Z out entry, whose game_date 2026-08-10 had already expired. game_date null (until cleared): Chicago's next game is CHI@GSV on 2026-08-12 and a coach's decision does not carry forward. minutes_est null. She carries no row on the current sheet.",
       "author": "news-watch",
       "superseded_by": null
     }
