@@ -1,20 +1,25 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
 2724_rebounds_alanna smith_under,2026-08-12,2026-08-13 00:00:00,2724,rebounds,Alanna Smith,DAL,TOR@DAL,under,7.5,-114.0,0.9035,0.696,True,-714,-577,0.0,4.19,,6.5,MOVED_OFF_OPEN;SUSPECT_EV(70%);ROLE_MIN?;ROLE_START?,False,False
-2724_assists_paige bueckers_under,2026-08-12,2026-08-13 00:00:00,2724,assists,Paige Bueckers,DAL,TOR@DAL,under,6.5,-102.0,0.7084,0.4029,True,-220,-201,0.0,5.21,,5.5,MOVED_OFF_OPEN;SUSPECT_EV(40%),False,True
+2724_assists_paige bueckers_under,2026-08-12,2026-08-13 00:00:00,2724,assists,Paige Bueckers,DAL,TOR@DAL,under,7.5,-154.0,0.8228,0.3571,True,-397,-346,0.0,5.21,,5.5,MOVED_OFF_OPEN;SUSPECT_EV(36%),False,True
 2724_rebounds_nyara sabally_under,2026-08-12,2026-08-13 00:00:00,2724,rebounds,Nyara Sabally,TOR,TOR@DAL,under,5.5,108.0,0.6382,0.3274,True,-162,-151,0.0,4.72,,5.5,SUSPECT_EV(33%);PLAYER_ALREADY_BET(points under 13.5),False,False
-2726_assists_olivia miles_under,2026-08-12,2026-08-13 02:00:00,2726,assists,Olivia Miles,MIN,MIN@PDX,under,7.5,-148.0,0.7423,0.2439,True,-258,-233,0.0,5.85,,6.5,MOVED_OFF_OPEN;PLAYER_ALREADY_BET(points over 19.5),False,False
+2726_points_olivia miles_over,2026-08-12,2026-08-13 02:00:00,2726,points,Olivia Miles,MIN,MIN@PDX,over,18.5,-102.0,0.6588,0.3048,True,-177,-164,0.0,21.97,,19.5,MOVED_OFF_OPEN;SUSPECT_EV(30%),False,True
 2725_points_courtney vandersloot_under,2026-08-12,2026-08-13 02:00:00,2725,points,Courtney Vandersloot,CHI,CHI@GSV,under,9.5,-122.0,0.6708,0.2206,True,-186,-172,3.5,7.68,,9.5,,False,True
-2727_assists_brittney griner_over,2026-08-13,2026-08-13 23:00:00,2727,assists,Brittney Griner,CON,ATL@CON,over,1.5,-114.0,0.6474,0.2153,True,-169,-156,3.0,2.25,,1.5,,True,False
+2727_assists_brittney griner_over,2026-08-13,2026-08-13 23:00:00,2727,assists,Brittney Griner,CON,ATL@CON,over,1.5,-114.0,0.65,0.2202,True,-171,-158,3.5,2.26,,1.5,,True,False
 2726_points_kayla mcbride_over,2026-08-12,2026-08-13 02:00:00,2726,points,Kayla McBride,MIN,MIN@PDX,over,15.5,-114.0,0.6457,0.2121,True,-168,-155,3.0,18.5,,15.5,,False,True
-2727_points_rhyne howard_under,2026-08-13,2026-08-13 23:00:00,2727,points,Rhyne Howard,ATL,ATL@CON,under,17.5,-102.0,0.6076,0.2032,True,-143,-134,0.0,16.03,,17.5,MOVED_OFF_OPEN,False,False
+2729_assists_chelsea gray_over,2026-08-13,2026-08-14 02:00:00,2729,assists,Chelsea Gray,LVA,WAS@LVA,over,6.5,120.0,0.5468,0.203,True,-113,-106,2.0,6.95,,6.5,,True,False
+2727_points_rhyne howard_under,2026-08-13,2026-08-13 23:00:00,2727,points,Rhyne Howard,ATL,ATL@CON,under,17.5,-102.0,0.6073,0.2027,True,-143,-134,0.0,16.03,,17.5,MOVED_OFF_OPEN,False,False
+2728_points_rae burrell_under,2026-08-13,2026-08-14 00:00:00,2728,points,Rae Burrell,LAS,LAS@NYL,under,15.5,-114.0,0.6392,0.2,True,-163,-151,3.0,13.62,,15.5,,True,False
 2726_threes_megan dileo_under,2026-08-12,2026-08-13 02:00:00,2726,threes,Megan DiLeo,PDX,MIN@PDX,under,1.5,-114.0,0.637,0.1958,True,-162,-150,3.0,1.27,,1.5,,False,True
 2726_rebounds_natasha howard_over,2026-08-12,2026-08-13 02:00:00,2726,rebounds,Natasha Howard,MIN,MIN@PDX,over,6.5,108.0,0.5701,0.1858,True,-123,-116,2.0,7.22,,6.5,,False,True
+2729_rebounds_jackie young_over,2026-08-13,2026-08-14 02:00:00,2729,rebounds,Jackie Young,LVA,WAS@LVA,over,4.5,122.0,0.5318,0.1807,True,-106,-100,2.0,4.88,,4.5,,True,False
+2728_points_pauline astier_over,2026-08-13,2026-08-14 00:00:00,2728,points,Pauline Astier,NYL,LAS@NYL,over,7.5,-113.0,0.624,0.1763,True,-153,-143,2.5,9.61,,7.5,,True,False
+2729_threes_aja wilson_under,2026-08-13,2026-08-14 02:00:00,2729,threes,A'ja Wilson,LVA,WAS@LVA,under,0.5,178.0,0.4209,0.1702,True,145,152,1.0,0.87,,0.5,,True,False
 2724_assists_marina mabrey_under,2026-08-12,2026-08-13 00:00:00,2724,assists,Marina Mabrey,TOR,TOR@DAL,under,4.5,-130.0,0.6539,0.157,True,-173,-161,0.0,3.76,,3.5,MOVED_OFF_OPEN;PLAYER_ALREADY_BET(rebounds over 3.5),False,False
-2726_threes_napheesa collier_over,2026-08-12,2026-08-13 02:00:00,2726,threes,Napheesa Collier,MIN,MIN@PDX,over,1.5,-106.0,0.594,0.1544,True,-136,-127,2.0,2.0,,1.5,,False,True
 2725_threes_dijonai carrington_under,2026-08-12,2026-08-13 02:00:00,2725,threes,DiJonai Carrington,CHI,CHI@GSV,under,1.5,-270.0,0.8421,0.154,True,-448,-386,5.0,0.71,,1.5,ROLE_MIN?,True,False
-2727_points_angel reese_under,2026-08-13,2026-08-13 23:00:00,2727,points,Angel Reese,ATL,ATL@CON,under,17.5,-122.0,0.6273,0.1414,True,-155,-144,2.0,15.69,,17.5,,True,False
-2727_assists_jordin canada_under,2026-08-13,2026-08-13 23:00:00,2727,assists,Jordin Canada,ATL,ATL@CON,under,8.5,-136.0,0.6573,0.1407,True,-176,-163,2.5,7.4,,8.5,,True,False
-2725_rebounds_gabby williams_over,2026-08-12,2026-08-13 02:00:00,2725,rebounds,Gabby Williams,GSV,CHI@GSV,over,2.5,-102.0,0.5729,0.1346,True,-125,-117,1.5,3.07,,2.5,,False,True
+2726_threes_napheesa collier_over,2026-08-12,2026-08-13 02:00:00,2726,threes,Napheesa Collier,MIN,MIN@PDX,over,1.5,-108.0,0.594,0.144,True,-136,-127,2.0,2.0,,1.5,,False,True
+2727_points_angel reese_under,2026-08-13,2026-08-13 23:00:00,2727,points,Angel Reese,ATL,ATL@CON,under,17.5,-122.0,0.627,0.1409,True,-155,-144,2.0,15.69,,17.5,,True,False
+2726_points_courtney williams_over,2026-08-12,2026-08-13 02:00:00,2726,points,Courtney Williams,MIN,MIN@PDX,over,12.5,-115.0,0.6092,0.1389,True,-144,-135,2.0,14.66,,12.5,,False,True
+2725_rebounds_gabby williams_over,2026-08-12,2026-08-13 02:00:00,2725,rebounds,Gabby Williams,GSV,CHI@GSV,over,2.5,-102.0,0.5729,0.1346,True,-125,-117,2.0,3.07,,2.5,,False,True
 2724_threes_julie allemand_over,2026-08-12,2026-08-13 00:00:00,2724,threes,Julie Allemand,TOR,TOR@DAL,over,0.5,-210.0,0.7666,0.1317,True,-291,-261,3.5,1.46,,0.5,,True,False
-2726_points_courtney williams_over,2026-08-12,2026-08-13 02:00:00,2726,points,Courtney Williams,MIN,MIN@PDX,over,12.5,-118.0,0.6092,0.1254,True,-144,-135,2.0,14.66,,12.5,,False,True
-2727_threes_diamond miller_over,2026-08-13,2026-08-13 23:00:00,2727,threes,Diamond Miller,CON,ATL@CON,over,1.5,162.0,0.4236,0.1098,True,144,151,1.0,1.44,,1.5,,True,False
+2727_assists_jordin canada_under,2026-08-13,2026-08-13 23:00:00,2727,assists,Jordin Canada,ATL,ATL@CON,under,8.5,-136.0,0.652,0.1314,True,-172,-159,2.5,7.44,,8.5,,True,False
+2727_threes_diamond miller_over,2026-08-13,2026-08-13 23:00:00,2727,threes,Diamond Miller,CON,ATL@CON,over,1.5,162.0,0.4238,0.1102,True,144,151,1.0,1.45,,1.5,,True,False
