@@ -1226,7 +1226,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "DOWNGRADE Day-To-Day -> Out (Knee), return_date 2026-08-12: \"Oblak (knee) is out for Saturday's game against Seattle\" (league + event:401857127). game_date null because the absence runs past tonight; supersede when the feed clears her.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 208
     },
     {
       "player": "Katie Lou Samuelson",
@@ -2418,7 +2418,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 0033Z UPGRADES Leite (Portland Fire) Out -> Day-To-Day, type Knee, comment \"Leite (knee) is listed as questionable for Wednesday's game against the Lynx\", return_date 2026-08-12. Supersedes the 2026-08-11/1533Z out/0-minute entry. Targets MIN@PDX (2026-08-12 ET, event 2726). She has missed no game since the injury: Portland's last game was 2026-08-08 (PDX-SEA, event 2714), the one she left after 4 minutes, and 08-12 is Portland's next. minutes_est left null - the 0-minute clamp from the out entry is no longer sourced now that the feed calls her questionable, and the panel's own EW minutes (already dragged down by that 4-minute game) are the right prior; this routine does not hand-set minutes on a day-to-day tag. MATERIAL: her row on the sheet (points under 16.5, MIN@PDX) was carrying a claimed EV of 88% purely because the 0-minute clamp projected her at nothing - lifting it should collapse that claim. Note the direction: restoring minutes makes an UNDER less attractive, so this supersession cannot manufacture the bet it removes. Her row also carries ROLE_MIN? and she is questionable - re-check near tip.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 214
     },
     {
       "player": "Janelle Salaun",
@@ -2431,7 +2431,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 0033Z adds Salaun (Golden State) Day-To-Day - Knee, comment \"Salaun (knee) is questionable for Wednesday's game against the Sky\", return_date 2026-08-12. NEW row (no prior entry to supersede). Targets CHI@GSV (2026-08-12 ET, event 2725). Status questionable, minutes_est null - conservative: questionable is not out and this routine does not hand-cut minutes on a day-to-day tag. She carries no row on the current sheet. Flagged because CHI@GSV is the event three picks sit on (Carrington, Vandersloot, Gabby Williams) and Salaun is a rotation forward whose absence would move Golden State's usage - re-check near tip.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 213
     },
     {
       "player": "Kiah Stokes",
@@ -2729,6 +2729,97 @@
       "source": "avail:2026-08-13/0133Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN per-event injury report for CHI@GS (401857138) at 0133Z adds Sowah (Golden State Valkyries) Out - Coach's Decision, return_date 2026-08-17. Wednesday = 2026-08-12 ET; minutes_est 0. Dated to this game only - the 2026-08-12/0033Z until-cleared 'in' entry is status-only and carries no minutes.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Teja Oblak",
+      "added": "2026-08-13T02:45:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/0237Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 0237Z avail_watch diff: Oblak (Portland Fire) has dropped off the ESPN league injury report entirely, having been listed Out since the 2026-08-09/0133Z snapshot. This supersedes entry 92, an UNTIL-CLEARED out with minutes_est 0 that was still active and would otherwise have clamped her to 0 minutes indefinitely. Status-only, no minutes estimate: it lifts a stale out rather than asserting a role. Her last panel game is 2026-08-02 (13 min, 12 pts); Portland's next game is 2026-08-14 at Seattle (event 2731), where she would be 12 days stale - inside the 14-day gate, so the freshness rule will not catch her.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Nyara Sabally",
+      "added": "2026-08-13T02:45:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/0237Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + per-event report (401857137, TOR@DAL) at 0237Z: Sabally (Toronto Tempo) Out - Calf. \"Sabally (calf) won't return to Wednesday's game against Dallas, Zulfi Sheikh of Sportsnet reports. She finished with six points (3-7 FG, 0-1 3Pt), seven rebounds and one assist across 17 minutes.\" return_date 2026-08-18. Wednesday = 2026-08-12 ET; that game is already FINAL, so this is an in-game exit recorded for the archive, minutes_est 0 is not applied to any priced slate. Dated to 2026-08-12 rather than until-cleared: her return_date is 2026-08-18 and Toronto's next game IS 2026-08-18 (event 2739), so a forward 0-minute clamp is not sourced. Flagged for later firings to re-check before that game.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Aziaha James",
+      "added": "2026-08-13T02:45:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/0237Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + per-event report (401857137, TOR@DAL) at 0237Z: James (Dallas Wings) Out - Lower Leg. \"James (leg) won't return to Wednesday's game against Toronto. She will finish with two points (1-5 FG, 0-2 3Pt), three rebounds, one assist and one block across 12 minutes.\" return_date 2026-08-14. Wednesday = 2026-08-12 ET, game already FINAL - an in-game exit recorded for the archive. Not carried forward: the feed's own return_date 2026-08-14 is Dallas's next game (event 2730 at Indiana), so clamping her there would assert more than the source does. Later firings should re-check.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Zaay Green",
+      "added": "2026-08-13T02:45:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/0237Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + per-event report (401857137, TOR@DAL) at 0237Z adds Green (Toronto Tempo) Out - Coach's Decision: \"Green (coach's decision) is listed as out for Wednesday's game against Dallas.\" return_date 2026-08-18. A Coach's Decision Out counts as Out under the v3 T3 rule. Wednesday = 2026-08-12 ET, game FINAL; minutes_est 0, dated to that game only. Toronto's next game is 2026-08-18 (event 2739), which is also the return_date, so nothing is carried forward.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kiki Rice",
+      "added": "2026-08-13T02:45:00Z",
+      "game_date": null,
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/0237Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW on the ESPN league + per-event report (401857137) at 0237Z: Rice (Toronto Tempo) Day-To-Day - Ankle. \"Rice (ankle) was injured in Wednesday's game against Dallas and required assistance off the court, Zulfi Sheikh of Sportsnet reports.\" return_date 2026-08-12. Recorded until-cleared because the injury happened tonight and Toronto's next game is not until 2026-08-18 (event 2739) - dating it to a game already played would lose the doubt. Status-only, minutes_est null: 'required assistance off the court' supports doubt, not a minutes number, so this changes no projection and only marks her for the next firings to re-check.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Janelle Salaun",
+      "added": "2026-08-13T02:45:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/0237Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "DOWNGRADE in the 0237Z diff: Salaun (Golden State Valkyries) Day-To-Day -> Out, type Knee. \"Salaun (knee) won't play in Wednesday's game versus Chicago.\" Confirmed on the per-event report for CHI@GS (401857138). return_date 2026-08-17. Wednesday = 2026-08-12 ET (10:00 PM ET tip, game in progress); minutes_est 0 for that game. Supersedes the 2026-08-12/0033Z questionable entry, which the feed has now resolved. Not carried forward: Golden State's next game is 2026-08-17 (event 2738), which is the return_date.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Carla Leite",
+      "added": "2026-08-13T02:45:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/0237Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "DOWNGRADE in the 0237Z diff: Leite (Portland Fire) Day-To-Day -> Out, type Knee. \"Leite (knee) is listed as out for Wednesday's game versus the Lynx.\" Confirmed on the per-event report for MIN@POR (401857139). return_date 2026-08-12. Wednesday = 2026-08-12 ET (10:00 PM ET tip, game in progress); minutes_est 0 for that game. Supersedes the 2026-08-12/0033Z questionable entry. Not carried forward - the return_date is today and Portland's next game is 2026-08-14 (event 2731) - but she has now been listed Out or Day-To-Day continuously since 2026-08-09, so later firings should re-check before pricing her.",
       "author": "news-watch",
       "superseded_by": null
     }
