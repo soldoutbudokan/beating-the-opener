@@ -1,9 +1,18 @@
 # site/ — the published scoreboard
 
-`build_site.py` renders both markets' live files into **`docs/index.html`**, a
-self-contained page (no assets, no build step, stdlib only): live bankrolls,
-CLV against the backtest expectation, open positions, the bet log, current
-picks, and the four-market evidence ledger.
+`build_site.py` renders the live WNBA files (plus the archived soccer record)
+into **`docs/index.html`**, a self-contained page (no assets, no build step,
+stdlib only). Three tabs:
+
+- **Live** — the WNBA props dashboard: bankroll, tiles, cumulative P&L vs
+  CLV-expected P&L over time, running mean CLV (raw + shade-adjusted CLV*),
+  the before/since split around the 2026-08-08 pick gates, the CLV band vs
+  the backtest, the current sheet, and a client-side **filterable bet log**
+  (market / side / result / era / player search, with a live summary line).
+- **Evidence** — the four-market research ledger and the WNBA betting sim.
+- **Archive** — the cancelled soccer 1X2 experiment (backtest curve + sim)
+  and the retired opener-anchored WNBA era. Old `#soccer` / `#wnba` hash
+  links are aliased to the new tabs by the page's JS.
 
 ```
 python3 site/build_site.py                 # -> docs/index.html
@@ -13,9 +22,14 @@ open docs/index.html                       # preview locally
 
 Inputs, all read straight off disk: `<market>/live/bankroll.json`,
 `live/bets.csv`, `live/picks.csv`, `live/picks_meta.json`, plus
-`soccer/results/cum_pnl.csv` for the backtest curve. Published research
-numbers (the ledger and the two simulation tables) are constants at the top of
-the script — sources are each subproject's README.
+`soccer/results/cum_pnl.csv` for the archived backtest curve. Published
+research numbers (the ledger and the two simulation tables) are constants at
+the top of the script — sources are each subproject's README.
+
+Process-change markers on the time charts come from the `EVENTS` constant
+(`V3_LIVE` 2026-07-31, `GATES` 2026-08-08); `GATES` also drives the era
+filter and the before/since comparison cards. Add future protocol changes to
+`EVENTS` rather than annotating charts by hand.
 
 `EXTRA_PAGES` republishes standalone write-ups that live with their subproject
 — currently `nba/reports/report.html` → `docs/nba-report.html`, linked from the
@@ -34,7 +48,13 @@ Notes for future edits:
   commit churn.
 - Colours match the matplotlib charts in `*/src/make_chart.py` (blue = model,
   orange = market); both light and dark themes are defined as CSS custom
-  properties at the top of `CSS`.
+  properties at the top of `CSS`. The two chart series colours are the first
+  two slots of that palette — series identity is carried by the legend and
+  endpoint dots, never by colour alone.
+- CLV appears twice everywhere on purpose: raw (vs the close as quoted) and
+  CLV* (vs the shade-adjusted close, AUDIT.md N1). Raw is structurally
+  negative for an under-heavy sheet; CLV* is the fair yardstick. Don't
+  "simplify" one of them away.
 
 ## Publishing
 

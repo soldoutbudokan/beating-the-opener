@@ -1,8 +1,9 @@
-"""Build docs/index.html - the at-a-glance scoreboard for the live experiments.
+"""Build docs/index.html - the at-a-glance scoreboard for the live experiment.
 
-Reads each market's live/ files (bankroll, bets, picks) plus soccer's backtest
-P&L curve and renders one self-contained page: live bankrolls and CLV, open
-positions, the bet log, and the research evidence behind the wedge.
+Reads the WNBA market's live/ files (bankroll, bets, picks) plus the archived
+soccer experiment's records and renders one self-contained page: bankroll,
+CLV and P&L over time (with process-change markers), open positions, a
+filterable bet log, and the research evidence behind the wedge.
 
 Auto-generated - the last step of each market's settle_bets.py run regenerates
 it, so never hand-edit docs/index.html. Stdlib only, no build step.
@@ -34,9 +35,16 @@ EXTRA_PAGES = [(os.path.join("nba", "reports", "report.html"),
 # Research numbers are the published results of each subproject - sources in
 # soccer/README.md, wnba/README.md, cricket/README.md, nba/README.md.
 
+# Process changes, drawn as vertical rules on the time charts. The gates date
+# also splits the bet log's "era" filter and the before/after comparison.
+V3_LIVE = "2026-07-31"
+GATES = "2026-08-08"
+EVENTS = [(V3_LIVE, "v3 model live", False),
+          (GATES, "pick gates", True)]
+
 SOCCER = {
     "id": "soccer", "dir": "soccer", "label": "Soccer 1X2",
-    "tab": "Soccer 1X2", "sport": "football-data leagues · FanDuel",
+    "sport": "football-data leagues · FanDuel",
     "cancelled": "Cancelled 2026-07-28 before the first bet — the "
                  "post-Pinnacle replay (avg-book anchor, the regime live "
                  "would have run in) shows no edge over its own anchor.",
@@ -49,19 +57,18 @@ SOCCER = {
     "clv_band": (0.011, 0.020), "clv_band_note": "post-Pinnacle replay",
     "capture": 0.18, "odds_style": "decimal",
     "protocol": "soccer/live/PROTOCOL.md", "readme": "soccer/README.md",
-    "picks_note": "A pick is playable when FanDuel's price is at or above "
-                  "<code>min 5% EV</code>.",
     "runs": [("Status", "cancelled 2026-07-28, before the first bet"),
              ("Why", "post-Pinnacle replay: no edge over its own anchor"),
              ("Record", "research result below; no live bets were placed")],
 }
 WNBA = {
-    "id": "wnba", "dir": "wnba", "label": "WNBA props",
-    "tab": "WNBA props", "sport": "player props · FanDuel",
-    "what": "Points, rebounds, assists, threes and combos, priced from "
-            "scratch by the v3 talent model (Kalman player states + news "
-            "minutes overrides — no market inputs). Re-opened 2026-07-31; "
-            "bet only FanDuel coherent quotes at claimed EV > 10%.",
+    "id": "wnba", "dir": "wnba", "label": "WNBA player props",
+    "sport": "player props · FanDuel",
+    "what": "Points, rebounds, assists and threes, priced from scratch by "
+            "the v3 talent model (Kalman player states + news minutes "
+            "overrides — the market's number is never an input). Betting "
+            "FanDuel coherent quotes at claimed EV > 10% since 2026-07-31, "
+            "through the 2026-08-08 pick gates.",
     "idle": "No props currently clear the EV>10% FanDuel trigger",
     # v3 dev (2025) at the live rule (EV>10%): realized ROI ~+10%, CLV vs
     # the RAW close -4.6% - negative is EXPECTED for an under-heavy sheet
@@ -72,10 +79,10 @@ WNBA = {
     "picks_note": "One bet per player per game (highest EV). Confirm the "
                   "player is in the lineup near tip — the sheet refreshes "
                   "hourly and can miss late scratches.",
-    "runs": [("Routines", "news-watch hourly (overrides+picks+notify); "
-                          "edge-watch 7x daily (close archiver)"),
-             ("Status", "LIVE — v3 from-scratch talent model, re-opened "
-                        "2026-07-31 (PROGRESS.md)"),
+    "runs": [("Routine", "news-watch hourly at :31 — archive, panel "
+                         "refresh, overrides, picks, notify"),
+             ("Status", "LIVE — v3 from-scratch talent model since "
+                        "2026-07-31; pick gates since 2026-08-08"),
              ("Scoring", "CLV primary (raw + shade-adjusted), P&L "
                          "secondary; fp-prospective-1/2 LL tests "
                          "firewalled from betting")],
@@ -188,6 +195,28 @@ def pick_expired(p, as_of):
     return bool(d) and d < as_of[:10]
 
 
+def era_stats(bets, era):
+    """Aggregate record for the bets before ("pre") / since ("post") GATES."""
+    sel = [b for b in bets if txt(b, "match_date")
+           and ((txt(b, "match_date") < GATES) == (era == "pre"))]
+    settled = [b for b in sel if b["_status"] == "settled"]
+    wins = sum(1 for b in settled if txt(b, "result") == "won")
+    staked = sum(b["_stake"] for b in settled)
+    pnl = sum(b["_pnl"] or 0.0 for b in settled)
+    clvs = [b["_clv"] for b in sel
+            if b["_clv"] is not None and b["_status"] != "void"]
+    cals = [b["_cal"] for b in sel
+            if b["_cal"] is not None and b["_status"] != "void"]
+    dates = sorted(txt(b, "match_date") for b in sel)
+    return {"n": len(sel), "n_settled": len(settled), "wins": wins,
+            "losses": len(settled) - wins, "staked": staked, "pnl": pnl,
+            "roi": pnl / staked if staked else None,
+            "clv": sum(clvs) / len(clvs) if clvs else None,
+            "n_clv": len(clvs),
+            "cal": sum(cals) / len(cals) if cals else None,
+            "first": dates[0] if dates else "", "last": dates[-1] if dates else ""}
+
+
 def load_market(cfg):
     live = os.path.join(ROOT, cfg["dir"], "live")
     bank = {"start": 100.0, "current": 100.0, "updated": ""}
@@ -206,6 +235,7 @@ def load_market(cfg):
         b["_stake"] = num(b, "stake") or 0.0
         b["_pnl"] = num(b, "pnl")
         b["_clv"] = num(b, "clv")
+        b["_cal"] = num(b, "clv_cal")  # vs the shade-adjusted close (AUDIT N1)
         b["_ev"] = num(b, "ev_claimed")  # model's claim at the price taken
         b["_status"] = txt(b, "status") or "open"
     settled = [b for b in bets if b["_status"] == "settled"]
@@ -216,11 +246,14 @@ def load_market(cfg):
     # Voids are excluded: their close was priced off the same absence.
     clvs = [b["_clv"] for b in bets
             if b["_clv"] is not None and b["_status"] != "void"]
+    cals = [b["_cal"] for b in bets
+            if b["_cal"] is not None and b["_status"] != "void"]
     evs = [b["_ev"] for b in graded if b["_ev"] is not None]
 
     staked = sum(b["_stake"] for b in settled)
     pnl = sum(b["_pnl"] or 0.0 for b in settled)
     mean_clv = sum(clvs) / len(clvs) if clvs else None
+    mean_cal = sum(cals) / len(cals) if cals else None
     t_stat = None
     if len(clvs) >= 2:
         var = sum((c - mean_clv) ** 2 for c in clvs) / (len(clvs) - 1)
@@ -256,10 +289,45 @@ def load_market(cfg):
         except ValueError:
             n_stamped -= 1
 
-    curve, running = [], bank["start"]
-    for b in sorted(graded, key=lambda r: (txt(r, "match_date"), txt(r, "key"))):
-        running += b["_pnl"] or 0.0
-        curve.append((txt(b, "match_date"), round(running, 2)))
+    # Daily time series for the record charts, keyed by ET match date. Days
+    # with nothing settled and nothing CLV-stamped (open bets only) are
+    # skipped, so the curves end at the last day the data can speak about.
+    by_day = {}
+    for b in bets:
+        d = txt(b, "match_date")[:10]
+        if not d:
+            continue
+        rec = by_day.setdefault(d, {"pnl": 0.0, "exp": 0.0, "n_graded": 0,
+                                    "clv": [], "cal": []})
+        if b["_status"] in ("settled", "push", "void"):
+            rec["n_graded"] += 1
+            rec["pnl"] += b["_pnl"] or 0.0
+        if b["_clv"] is not None and b["_status"] != "void":
+            rec["exp"] += b["_stake"] * b["_clv"]
+            rec["clv"].append(b["_clv"])
+            if b["_cal"] is not None:
+                rec["cal"].append(b["_cal"])
+    pnl_pts, exp_pts, clvm_pts, calm_pts = [], [], [], []
+    cum_pnl = cum_exp = 0.0
+    seen_clv, seen_cal = [], []
+    for d in sorted(by_day):
+        rec = by_day[d]
+        if not rec["n_graded"] and not rec["clv"]:
+            continue
+        try:
+            day = dt.date.fromisoformat(d)
+        except ValueError:
+            continue
+        cum_pnl += rec["pnl"]
+        cum_exp += rec["exp"]
+        seen_clv += rec["clv"]
+        seen_cal += rec["cal"]
+        pnl_pts.append((day, round(cum_pnl, 2)))
+        exp_pts.append((day, round(cum_exp, 2)))
+        if seen_clv:
+            clvm_pts.append((day, round(sum(seen_clv) / len(seen_clv) * 100, 2)))
+        if seen_cal:
+            calm_pts.append((day, round(sum(seen_cal) / len(seen_cal) * 100, 2)))
 
     bet_keys = {txt(b, "key") for b in bets}
     live_picks = [p for p in picks_all if not pick_expired(p, as_of)]
@@ -280,6 +348,7 @@ def load_market(cfg):
         "staked": staked, "pnl": pnl,
         "roi": pnl / staked if staked else None,
         "mean_clv": mean_clv, "n_clv": len(clvs), "t_stat": t_stat,
+        "mean_cal": mean_cal, "n_cal": len(cals),
         "calib": calib, "n_moved": n_moved, "n_stamped": n_stamped,
         "exp_pnl": sum(b["_stake"] * b["_clv"] for b in bets
                        if b["_clv"] is not None and b["_status"] != "void"),
@@ -290,7 +359,9 @@ def load_market(cfg):
                              if b["_ev"] is not None),
         "mean_ev": sum(evs) / len(evs) if evs else None,
         "n_ev": len(evs),
-        "curve": curve,
+        "pnl_pts": pnl_pts, "exp_pts": exp_pts,
+        "clvm_pts": clvm_pts, "calm_pts": calm_pts,
+        "era_pre": era_stats(bets, "pre"), "era_post": era_stats(bets, "post"),
     }
 
 
@@ -399,28 +470,86 @@ def empty(title, note=""):
     return f'<div class="empty"><strong>{title}</strong>{note}</div>'
 
 
-def table(cols, rows, cls="", aligns=None):
+def table(cols, rows, cls="", aligns=None, wrap_attrs="", extra_row=""):
+    """rows entries are either a list of cells or (cells, tr-attr-string)."""
     aligns = aligns or ["l"] * len(cols)
     head = "".join(f'<th class="a-{a}">{c}</th>' for c, a in zip(cols, aligns))
     body = []
     for r in rows:
+        attrs = ""
+        if isinstance(r, tuple):
+            r, attrs = r
         cells = "".join(f'<td class="a-{a}">{c}</td>' for c, a in zip(r, aligns))
-        body.append(f"<tr>{cells}</tr>")
-    return (f'<div class="scroll"><table class="{cls}"><thead><tr>{head}</tr>'
-            f'</thead><tbody>{"".join(body)}</tbody></table></div>')
+        body.append(f"<tr{attrs}>{cells}</tr>")
+    return (f'<div class="scroll"{wrap_attrs}><table class="{cls}">'
+            f'<thead><tr>{head}</tr>'
+            f'</thead><tbody>{"".join(body)}{extra_row}</tbody></table></div>')
 
 
 # --------------------------------------------------------------- charts ----
 
 
-def area_chart(pts, cid, ylabel, w=760, h=260, mark_dd=False):
-    """Single-series area+line over dates. pts = [(date, value)]."""
-    if len(pts) < 2:
+def nice_step(span):
+    """A pleasant tick step giving ~4-6 gridlines over `span`."""
+    raw = span / 5 or 1.0
+    mag = 10 ** math.floor(math.log10(raw))
+    for mlt in (1, 2, 2.5, 5, 10):
+        if raw <= mlt * mag * (1 + 1e-9):
+            return mlt * mag
+    return 10 * mag
+
+
+def x_ticks(x0, x1):
+    """[(ordinal, label)] — day, month or year ticks depending on the span."""
+    d0, d1 = dt.date.fromordinal(x0), dt.date.fromordinal(x1)
+    span = x1 - x0
+    out = []
+    if span <= 92:
+        step = 14 if span > 60 else 7 if span > 42 else 3 if span > 12 else 1
+        o = x0
+        while o <= x1:
+            out.append((o, date_short(dt.date.fromordinal(o).isoformat())))
+            o += step
+    elif span <= 760:
+        d = dt.date(d0.year, d0.month, 1)
+        while d.toordinal() <= x1:
+            if d.toordinal() >= x0:
+                lab = d.strftime("%b")
+                if d.month == 1 or not out:
+                    lab += f" ’{d.year % 100:02d}"
+                out.append((d.toordinal(), lab))
+            d = dt.date(d.year + (d.month == 12), d.month % 12 + 1, 1)
+    else:
+        for y in range(d0.year, d1.year + 1):
+            o = dt.date(y, 1, 1).toordinal()
+            if x0 <= o <= x1:
+                out.append((o, str(y)))
+    return out
+
+
+def end_fmt(v, unit):
+    sign = "+" if v >= 0 else MINUS
+    if unit == "money":
+        return f"{sign}${abs(v):,.2f}"
+    if unit == "pct":
+        return f"{sign}{abs(v):.1f}%"
+    return f"{sign}{abs(v):,.0f}u"
+
+
+def line_chart(series, cid, unit, events=(), area=False, mark_dd=False,
+               w=860, h=300, aria=""):
+    """1..n same-unit series over dates, with optional process-change rules.
+
+    series: [{"label": str, "pts": [(date, value)]}]; unit: money|pct|units.
+    Values are plotted as given (pct series pass percentage points).
+    """
+    series = [s for s in series if len(s["pts"]) >= 2]
+    if not series:
         return ""
-    pad_l, pad_r, pad_t, pad_b = 46, 58, 18, 26
-    xs = [p[0].toordinal() for p in pts]
-    ys = [p[1] for p in pts]
-    x0, x1 = min(xs), max(xs)
+    pad_l, pad_r, pad_t, pad_b = 52, 78, 34, 30
+    xs = sorted({p[0].toordinal() for s in series for p in s["pts"]})
+    x0, x1 = xs[0], xs[-1]
+    ys = [p[1] for s in series for p in s["pts"]]
     lo, hi = min(ys + [0.0]), max(ys + [0.0])
     span = (hi - lo) or 1.0
     lo -= span * 0.08
@@ -432,88 +561,128 @@ def area_chart(pts, cid, ylabel, w=760, h=260, mark_dd=False):
     def py(y):
         return pad_t + (hi - y) / (hi - lo) * (h - pad_t - pad_b)
 
-    step = 10 ** math.floor(math.log10(max(abs(hi), abs(lo), 1)))
-    ticks, t = [], math.ceil(lo / step) * step
-    while t <= hi and len(ticks) < 8:
-        ticks.append(t)
+    def tick_label(v):
+        if abs(v) < 1e-9:
+            return {"money": "$0", "pct": "0%"}.get(unit, "0")
+        sign = "+" if v > 0 else MINUS
+        if unit == "money":
+            return f"{sign}${abs(v):,.0f}"
+        if unit == "pct":
+            return f"{sign}{abs(v):g}%"
+        return f"{sign}{abs(v):,.0f}"
+
+    step = nice_step(hi - lo)
+    ticks, t = [], math.ceil(lo / step - 1e-9) * step
+    while t <= hi + 1e-9 and len(ticks) < 9:
+        ticks.append(round(t, 6))
         t += step
     grid = "".join(
         f'<line class="grid" x1="{pad_l}" x2="{w - pad_r}" '
         f'y1="{py(v):.1f}" y2="{py(v):.1f}"/>'
         f'<text class="tick a-r" x="{pad_l - 8}" y="{py(v) + 4:.1f}">'
-        f'{v:,.0f}</text>' for v in ticks)
+        f'{tick_label(v)}</text>' for v in ticks)
     if lo < 0 < hi:
         grid += (f'<line class="zero" x1="{pad_l}" x2="{w - pad_r}" '
                  f'y1="{py(0):.1f}" y2="{py(0):.1f}"/>')
-
-    years = sorted({p[0].year for p in pts})
     xlab = "".join(
-        f'<text class="tick a-m" x="{px(dt.date(y, 1, 1).toordinal()):.1f}" '
-        f'y="{h - 6}">{y}</text>'
-        for y in years if x0 <= dt.date(y, 1, 1).toordinal() <= x1)
+        f'<text class="tick a-m" x="{px(o):.1f}" y="{h - 8}">{esc(lab)}</text>'
+        for o, lab in x_ticks(x0, x1))
 
-    line = " ".join(f"{'M' if i == 0 else 'L'}{px(x):.1f},{py(y):.1f}"
-                    for i, (x, y) in enumerate(zip(xs, ys)))
-    base = py(max(lo, min(hi, 0.0)))
-    area = f"{line} L{px(xs[-1]):.1f},{base:.1f} L{px(xs[0]):.1f},{base:.1f} Z"
+    # process-change rules — the vertical breaks in the record
+    ev_svg = ""
+    for edate, elabel, major in events:
+        try:
+            o = dt.date.fromisoformat(edate).toordinal()
+        except ValueError:
+            continue
+        if not (x0 <= o <= x1):
+            continue
+        ex = px(o)
+        anchor = "middle"
+        if ex > w - pad_r - 46:
+            anchor = "end"
+        elif ex < pad_l + 46:
+            anchor = "start"
+        ev_svg += (
+            f'<line class="evt{" evt-major" if major else ""}" '
+            f'x1="{ex:.1f}" x2="{ex:.1f}" y1="{pad_t}" y2="{h - pad_b}"/>'
+            f'<text class="evt-label{" major" if major else ""}" '
+            f'x="{ex:.1f}" y="{pad_t - 10}" text-anchor="{anchor}">'
+            f'{esc(elabel)}</text>')
+
+    body = ""
+    for k, s in enumerate(series):
+        pts = s["pts"]
+        line = " ".join(
+            f"{'M' if i == 0 else 'L'}{px(p[0].toordinal()):.1f},{py(p[1]):.1f}"
+            for i, p in enumerate(pts))
+        if k == 0 and area:
+            base = py(max(lo, min(hi, 0.0)))
+            body += (f'<path class="area" d="{line} '
+                     f'L{px(pts[-1][0].toordinal()):.1f},{base:.1f} '
+                     f'L{px(pts[0][0].toordinal()):.1f},{base:.1f} Z"/>')
+        body += f'<path class="line s{k + 1}" d="{line}"/>'
 
     ann = ""
     if mark_dd:
+        pts = series[0]["pts"]
         _, i, depth = max_drawdown(pts)
-        ann = (f'<circle class="dot-dd" cx="{px(xs[i]):.1f}" '
-               f'cy="{py(ys[i]):.1f}" r="4"/>'
-               f'<text class="ann" x="{px(xs[i]):.1f}" '
-               f'y="{py(ys[i]) + 22:.1f}" text-anchor="middle">'
+        ann = (f'<circle class="dot-dd" cx="{px(pts[i][0].toordinal()):.1f}" '
+               f'cy="{py(pts[i][1]):.1f}" r="4"/>'
+               f'<text class="ann" x="{px(pts[i][0].toordinal()):.1f}" '
+               f'y="{py(pts[i][1]) + 22:.1f}" text-anchor="middle">'
                f'deepest drawdown {MINUS}{abs(depth):,.0f}u</text>')
 
-    end = (f'<circle class="dot-end" cx="{px(xs[-1]):.1f}" '
-           f'cy="{py(ys[-1]):.1f}" r="4.5"/>'
-           f'<text class="end-label" x="{px(xs[-1]) + 10:.1f}" '
-           f'y="{py(ys[-1]) + 4:.1f}">{ys[-1]:+,.0f}u</text>')
+    # endpoint dot + value per series, labels nudged apart when they collide
+    ends = [(k, px(s["pts"][-1][0].toordinal()), py(s["pts"][-1][1]),
+             s["pts"][-1][1]) for k, s in enumerate(series)]
+    lab_y = {k: ey for k, _, ey, _ in ends}
+    if len(ends) == 2 and abs(ends[0][2] - ends[1][2]) < 16:
+        top, bot = sorted(ends, key=lambda e: e[2])
+        mid = (top[2] + bot[2]) / 2
+        lab_y[top[0]], lab_y[bot[0]] = mid - 8, mid + 8
+    for k, ex, ey, ev_ in ends:
+        body += (f'<circle class="dot-end s{k + 1}" cx="{ex:.1f}" '
+                 f'cy="{ey:.1f}" r="4.5"/>'
+                 f'<text class="end-label" x="{ex + 9:.1f}" '
+                 f'y="{lab_y[k] + 4:.1f}">{end_fmt(ev_, unit)}</text>')
 
-    payload = json.dumps({"x": [px(x) for x in xs], "y": [py(v) for v in ys],
-                          "d": [p[0].isoformat() for p in pts],
-                          "v": ys, "unit": ylabel,
-                          "top": pad_t, "bot": h - pad_b})
+    # hover payload: every series is sampled onto the union date grid
+    pay_series = []
+    for s in series:
+        mp = {p[0].toordinal(): p[1] for p in s["pts"]}
+        last, vals = s["pts"][0][1], []
+        for o in xs:
+            last = mp.get(o, last)
+            vals.append(last)
+        pay_series.append({"label": s["label"],
+                           "y": [round(py(v), 1) for v in vals],
+                           "v": vals})
+    payload = json.dumps({
+        "x": [round(px(o), 1) for o in xs],
+        "d": [dt.date.fromordinal(o).isoformat() for o in xs],
+        "unit": unit, "series": pay_series})
+
+    legend = ""
+    if len(series) > 1:
+        legend = '<div class="legend">' + "".join(
+            f'<span class="lg"><i class="sw sw-{k + 1}"></i>'
+            f'{esc(s["label"])}</span>' for k, s in enumerate(series)) + "</div>"
+
+    cross = (f'<g class="cross" hidden><line class="cross-l" y1="{pad_t}" '
+             f'y2="{h - pad_b}"/>'
+             + "".join(f'<circle class="cross-d s{k + 1}" r="4.5"/>'
+                       for k in range(len(series))) + "</g>")
+
     return (
-        f'<figure class="chart" data-chart="{cid}">'
+        f'<figure class="chart" data-chart="{cid}">{legend}'
         f'<svg viewBox="0 0 {w} {h}" role="img" preserveAspectRatio="none" '
-        f'aria-label="{esc(ylabel)} over time, ending {ys[-1]:+,.0f}">'
-        f'{grid}{xlab}<path class="area" d="{area}"/>'
-        f'<path class="line" d="{line}"/>{ann}{end}'
-        f'<g class="cross" hidden><line class="cross-l" y1="{pad_t}" '
-        f'y2="{h - pad_b}"/><circle class="cross-d" r="4.5"/></g>'
+        f'aria-label="{esc(aria)}">'
+        f'{grid}{xlab}{ev_svg}{body}{ann}{cross}'
         f'<rect class="hit" x="{pad_l}" y="{pad_t}" width="{w - pad_l - pad_r}" '
         f'height="{h - pad_t - pad_b}"/></svg>'
         f'<div class="tip" hidden></div>'
         f'<script type="application/json">{payload}</script></figure>')
-
-
-def spark(pts, start, w=280, h=56):
-    """Tiny bankroll trace for a market card."""
-    if len(pts) < 2:
-        return ""
-    ys = [p[1] for p in pts] + [start]
-    lo, hi = min(ys), max(ys)
-    span = (hi - lo) or 1.0
-    lo, hi = lo - span * 0.15, hi + span * 0.15
-    n = len(pts)
-
-    def px(i):
-        return 2 + i / (n - 1) * (w - 4)
-
-    def py(v):
-        return 4 + (hi - v) / (hi - lo) * (h - 8)
-
-    line = " ".join(f"{'M' if i == 0 else 'L'}{px(i):.1f},{py(v):.1f}"
-                    for i, (_, v) in enumerate(pts))
-    return (f'<svg class="spark" viewBox="0 0 {w} {h}" preserveAspectRatio="none" '
-            f'aria-hidden="true"><line class="grid" x1="0" x2="{w}" '
-            f'y1="{py(start):.1f}" y2="{py(start):.1f}"/>'
-            f'<path class="area" d="{line} L{px(n - 1):.1f},{h} L2,{h} Z"/>'
-            f'<path class="line" d="{line}"/>'
-            f'<circle class="dot-end" cx="{px(n - 1):.1f}" '
-            f'cy="{py(pts[-1][1]):.1f}" r="4"/></svg>')
 
 
 def meter(frac, label, tone="model"):
@@ -566,53 +735,6 @@ def clv_band(cfg, live_clv, n):
 # ---------------------------------------------------------------- panels ----
 
 
-def bet_rows(m):
-    """(columns, rows, aligns) for a market's bet log - schemas differ."""
-    cfg = m["cfg"]
-    rows = sorted(m["bets"], key=lambda b: txt(b, "match_date"), reverse=True)
-    style = cfg["odds_style"]
-    if cfg["id"] == "soccer":
-        cols = ["date", "match", "pick", "odds", "stake", "result", "P&L", "CLV"]
-        aligns = ["l", "l", "l", "r", "r", "l", "r", "r"]
-        out = []
-        for b in rows[:200]:
-            side = {"H": "home", "D": "draw", "A": "away"}.get(txt(b, "side"),
-                                                               txt(b, "side"))
-            out.append([
-                date_short(txt(b, "match_date")),
-                f'<span class="muted mono">{esc(txt(b, "div"))}</span> '
-                f'{esc(txt(b, "home"))} v {esc(txt(b, "away"))}',
-                f'<span class="chip">{side}</span>',
-                f'<span class="mono">{odds(num(b, "odds_taken"), style)}</span>',
-                money(b["_stake"]), result_chip(b),
-                pnl_cell(b["_pnl"]), clv_cell(b["_clv"])])
-        return cols, out, aligns
-
-    # "model EV" = ev_claimed: the model's expected ROI for the bet at the
-    # moment it was taken, at the price actually taken (owner request
-    # 2026-08-03). Read against CLV: the claim vs the market's verdict.
-    cols = ["date", "player", "market", "pick", "odds", "stake", "model EV",
-            "actual", "result", "P&L", "CLV"]
-    aligns = ["l", "l", "l", "l", "r", "r", "r", "r", "l", "r", "r"]
-    out = []
-    for b in rows[:200]:
-        actual = num(b, "actual")
-        out.append([
-            date_short(txt(b, "match_date")),
-            esc(txt(b, "player")),
-            f'<span class="muted">{esc(txt(b, "market"))}</span>',
-            f'<span class="chip">{esc(txt(b, "side"))} '
-            f'{num(b, "line"):g}</span>' if num(b, "line") is not None
-            else f'<span class="chip">{esc(txt(b, "side"))}</span>',
-            f'<span class="mono">{odds(num(b, "odds_taken"), style)}</span>',
-            money(b["_stake"]),
-            f'<span class="muted mono">{signed_pct(b["_ev"])}</span>'
-            if b["_ev"] is not None else "—",
-            f"{actual:g}" if actual is not None else "—",
-            result_chip(b), pnl_cell(b["_pnl"]), clv_cell(b["_clv"])])
-    return cols, out, aligns
-
-
 def result_chip(b):
     r = txt(b, "result")
     if not r:
@@ -633,6 +755,104 @@ def clv_cell(v):
         return '<span class="muted">—</span>'
     tone = "good" if v > 0 else ("bad" if v < 0 else "flat")
     return f'<span class="val-{tone} mono">{signed_pct(v)}</span>'
+
+
+def bet_rows(m):
+    """(columns, [(cells, tr-attrs)], aligns) for the WNBA bet log.
+
+    Every row carries data-* attributes so the client-side filter bar can
+    slice the log and recompute the summary without a rebuild.
+    """
+    cfg = m["cfg"]
+    rows = sorted(m["bets"], key=lambda b: (txt(b, "match_date"),
+                                            txt(b, "key")), reverse=True)
+    style = cfg["odds_style"]
+    # "model EV" = ev_claimed: the model's expected ROI for the bet at the
+    # moment it was taken, at the price actually taken (owner request
+    # 2026-08-03). Read against CLV: the claim vs the market's verdict.
+    cols = ["date", "player", "market", "pick", "odds", "stake", "model EV",
+            "actual", "result", "P&L", "CLV", "CLV*"]
+    aligns = ["l", "l", "l", "l", "r", "r", "r", "r", "l", "r", "r", "r"]
+    out = []
+    def g(v):
+        return "" if v is None else f"{v:g}"
+
+    for b in rows[:500]:
+        actual = num(b, "actual")
+        mdate = txt(b, "match_date")[:10]
+        res = txt(b, "result") or b["_status"]
+        attrs = (
+            f' data-status="{esc(b["_status"])}"'
+            f' data-result="{esc(res)}"'
+            f' data-market="{esc(txt(b, "market"))}"'
+            f' data-side="{esc(txt(b, "side"))}"'
+            f' data-era="{"post" if mdate >= GATES else "pre"}"'
+            f' data-player="{esc(txt(b, "player").lower())}"'
+            f' data-stake="{b["_stake"]:g}"'
+            f' data-pnl="{g(b["_pnl"])}"'
+            f' data-clv="{g(b["_clv"])}"'
+            f' data-cal="{g(b["_cal"])}"')
+        cells = [
+            date_short(mdate),
+            esc(txt(b, "player")),
+            f'<span class="muted">{esc(txt(b, "market"))}</span>',
+            f'<span class="chip">{esc(txt(b, "side"))} '
+            f'{num(b, "line"):g}</span>' if num(b, "line") is not None
+            else f'<span class="chip">{esc(txt(b, "side"))}</span>',
+            f'<span class="mono">{odds(num(b, "odds_taken"), style)}</span>',
+            money(b["_stake"]),
+            f'<span class="muted mono">{signed_pct(b["_ev"])}</span>'
+            if b["_ev"] is not None else "—",
+            f"{actual:g}" if actual is not None else "—",
+            result_chip(b), pnl_cell(b["_pnl"]), clv_cell(b["_clv"]),
+            clv_cell(b["_cal"])]
+        out.append((cells, attrs))
+    return cols, out, aligns
+
+
+def filter_block(m):
+    """The filter row + live summary that scope the bet log below them."""
+    cfg = m["cfg"]
+    markets = sorted({txt(b, "market") for b in m["bets"] if txt(b, "market")})
+    sides = sorted({txt(b, "side") for b in m["bets"] if txt(b, "side")})
+    results = [r for r in ("won", "lost", "open", "push", "void")
+               if any((txt(b, "result") or b["_status"]) == r
+                      for b in m["bets"])]
+
+    def sel(name, blank, vals, labels=None):
+        labels = labels or {v: v for v in vals}
+        opts = "".join(f'<option value="{esc(v)}">{esc(labels[v])}</option>'
+                       for v in vals)
+        return (f'<select data-f="{name}" aria-label="{esc(name)}">'
+                f'<option value="">{esc(blank)}</option>{opts}</select>')
+
+    gates_lab = date_short(GATES)
+    era = (f'<select data-f="era" aria-label="period">'
+           f'<option value="">whole run</option>'
+           f'<option value="post">since the gates ({esc(gates_lab)})</option>'
+           f'<option value="pre">before the gates</option></select>')
+    # server-side prerender of the all-bets summary line (no-JS fallback)
+    parts = [f'{len(m["bets"])} of {len(m["bets"])} bets']
+    if m["settled"]:
+        parts.append(f'{m["wins"]}W{MINUS}{len(m["settled"]) - m["wins"]}L')
+        parts.append(f'P&L {signed_money(m["pnl"])}'
+                     + (f' ({signed_pct(m["roi"])} ROI)'
+                        if m["roi"] is not None else ""))
+    if m["mean_clv"] is not None:
+        parts.append(f'mean CLV {signed_pct(m["mean_clv"])}')
+    if m["mean_cal"] is not None:
+        parts.append(f'CLV* {signed_pct(m["mean_cal"])}')
+    return (
+        f'<div class="filterbar" role="group" aria-label="Filter the bet log" '
+        f'data-scope="log-{cfg["id"]}" data-summary="fsum-{cfg["id"]}">'
+        + sel("market", "all markets", markets)
+        + sel("side", "over + under", sides)
+        + sel("result", "any result", results)
+        + era
+        + f'<input data-f="q" type="search" placeholder="player…" '
+          f'aria-label="filter by player">'
+        + '</div>'
+        + f'<p class="fsummary" id="fsum-{cfg["id"]}">{" · ".join(parts)}</p>')
 
 
 def picks_block(m):
@@ -661,44 +881,14 @@ def picks_block(m):
         return empty("No picks on the sheet", esc(note))
     strong = [p for p in picks
               if str(p.get("strong", "")).lower() in ("true", "1")]
-    if cfg.get("paused"):
-        # Kept as the record of what the paused model last produced. Not a
-        # sheet anyone should bet: nothing is refreshing these prices.
-        head = (f'<p class="note"><strong>Not actionable — the experiment is '
-                f'paused.</strong> These {len(picks)} rows are the last thing '
-                f'the model priced before it was stopped, left up as the '
-                f'record. Nothing is refreshing them and no stake should be '
-                f'taken from them.</p>')
-    else:
-        head = (f'<p class="note">{len(picks)} priced, '
-                f'<strong>{len(strong)} strong</strong>. '
-                f'{cfg["picks_note"]}'
-                + (f' {len(logged)} row(s) already in the bet log are shown '
-                   f'there, not here.' if logged else "")
-                + (f' {len(stale)} further row(s) on the sheet are for games '
-                   f'already played and are not shown.' if stale else "")
-                + '</p>')
-    if cfg["id"] == "soccer":
-        cols = ["date", "match", "pick", "model p", "best price",
-                "min 5% EV", "stake"]
-        aligns = ["l", "l", "l", "r", "r", "r", "r"]
-        rows = []
-        for p in picks[:25]:
-            side = {"H": "home", "D": "draw", "A": "away"}.get(
-                txt(p, "side"), txt(p, "side"))
-            rows.append([
-                date_short(txt(p, "date")),
-                f'<span class="muted mono">{esc(txt(p, "div"))}</span> '
-                f'{esc(txt(p, "home"))} v {esc(txt(p, "away"))}',
-                f'<span class="chip">{side}</span>'
-                + (' <span class="chip chip-strong">strong</span>'
-                   if str(p.get("strong", "")).lower() in ("true", "1") else ""),
-                f'{(num(p, "model_p") or 0) * 100:.1f}%',
-                f'<span class="mono">{odds(num(p, "max_odds"), "decimal")}</span>',
-                f'<span class="mono">{odds(num(p, "min_odds_5pct"), "decimal")}</span>',
-                money(num(p, "stake_at_min5") or 0)])
-        return head + table(cols, rows, "tbl", aligns)
-
+    head = (f'<p class="note">{len(picks)} priced, '
+            f'<strong>{len(strong)} strong</strong>. '
+            f'{cfg["picks_note"]}'
+            + (f' {len(logged)} row(s) already in the bet log are shown '
+               f'there, not here.' if logged else "")
+            + (f' {len(stale)} further row(s) on the sheet are for games '
+               f'already played and are not shown.' if stale else "")
+            + '</p>')
     cols = ["game", "player", "pick", "price", "model p", "EV", "stake"]
     aligns = ["l", "l", "l", "r", "r", "r", "r"]
     rows = []
@@ -742,27 +932,61 @@ def status_pill(m):
     return pill("dormant", "idle")
 
 
-def market_card(m):
-    cfg, bank = m["cfg"], m["bank"]
-    delta = bank["current"] - bank["start"]
-    body = spark(m["curve"], bank["start"]) if len(m["curve"]) >= 2 else (
-        f'<div class="card-empty">{esc(cfg["idle"]) if not m["open"] else "First settlement pending"}</div>')
-    clv = (signed_pct(m["mean_clv"]) if m["mean_clv"] is not None
-           else "—")
-    rec = (f'{len(m["settled"])} settled · {m["wins"]}W'
-           f'{MINUS}{len(m["settled"]) - m["wins"]}L' if m["settled"]
-           else f'{len(m["open"])} open · 0 settled')
-    dtone = "good" if delta > 0 else ("bad" if delta < 0 else "flat")
-    return (
-        f'<a class="mcard" href="#{cfg["id"]}" data-goto="{cfg["id"]}">'
-        f'<div class="mcard-top"><h3>{esc(cfg["label"])}</h3>{status_pill(m)}</div>'
-        f'<div class="mcard-figure">{money(bank["current"])}'
-        f'<span class="mcard-delta val-{dtone}">{signed_money(delta)}</span></div>'
-        f'<div class="mcard-meta">{rec} · mean CLV {clv}</div>'
-        f'{body}<div class="mcard-go">Full record →</div></a>')
+def era_block(m):
+    """Before/since the 2026-08-08 pick gates — the process-change split."""
+    pre, post = m["era_pre"], m["era_post"]
+    if not pre["n"] or not post["n"]:
+        return ""
+
+    def stat(label, value, tone=""):
+        tone = f" val-{tone}" if tone else ""
+        return (f'<div class="es"><div class="es-label">{label}</div>'
+                f'<div class="es-val{tone}">{value}</div></div>')
+
+    def card(title, dates, st, now=False):
+        ptone = ("good" if st["pnl"] > 0 else "bad" if st["pnl"] < 0 else "")
+        ctone = ("good" if (st["cal"] or 0) > 0 else
+                 "bad" if st["cal"] is not None and st["cal"] < 0 else "")
+        stats = [
+            stat("Record", f'{st["wins"]}W{MINUS}{st["losses"]}L'
+                 + (f' <span class="muted">of {st["n"]}</span>'
+                    if st["n"] != st["n_settled"] else "")),
+            stat("P&L", signed_money(st["pnl"]), ptone),
+            stat("ROI", signed_pct(st["roi"]) if st["roi"] is not None
+                 else "—", ptone),
+            stat("Mean CLV", signed_pct(st["clv"]) if st["clv"] is not None
+                 else "—"),
+            stat("CLV*", signed_pct(st["cal"]) if st["cal"] is not None
+                 else "—", ctone),
+        ]
+        chip = (' <span class="chip chip-strong">current process</span>'
+                if now else "")
+        return (f'<article class="era-card{" era-now" if now else ""}">'
+                f'<h4>{title}{chip}</h4>'
+                f'<div class="era-dates">{dates}</div>'
+                f'<div class="era-stats">{"".join(stats)}</div></article>')
+
+    return f"""
+  <div class="block">
+    <h3>Before and since the {date_short(GATES)} pick gates</h3>
+    <p class="note">The first-week audit found the harness wasn't running the
+      experiment that was backtested, so the protocol was amended on
+      {date_short(GATES)}: panel/player staleness gates, team consistency,
+      FanDuel-opener-only, and an EV&gt;25% quarantine. The dashed rule on the
+      charts above is this split.</p>
+    <div class="era">
+      {card("Before the gates",
+            f'{date_short(pre["first"])} – {date_short(pre["last"])}', pre)}
+      {card("Since the gates",
+            f'{date_short(post["first"])} onward', post, now=True)}
+    </div>
+    <p class="band-note">{post["n_settled"]} settled bets since the gates is
+      an early read, not a verdict — the split is shown so the process change
+      stays visible in the record, win or lose.</p>
+  </div>"""
 
 
-def market_panel(m):
+def live_panel(m):
     cfg, bank = m["cfg"], m["bank"]
     delta = bank["current"] - bank["start"]
     dtone = "good" if delta > 0 else ("bad" if delta < 0 else "flat")
@@ -775,17 +999,22 @@ def market_panel(m):
                       f'{money(sum(b["_stake"] for b in m["open"]))} at risk'
                       if m["open"] else "—"))
     tiles.append(tile(
-        "Mean CLV",
-        signed_pct(m["mean_clv"]) if m["mean_clv"] is not None else "—",
-        f'n = {m["n_clv"]}' + (f' · t = {m["t_stat"]:.2f}'
-                               if m["t_stat"] is not None else ""),
-        "good" if (m["mean_clv"] or 0) > 0 else
-        ("bad" if m["mean_clv"] is not None and m["mean_clv"] < 0 else "")))
-    tiles.append(tile(
         "P&L", signed_money(m["pnl"]) if m["settled"] else "—",
         f'{signed_pct(m["roi"])} ROI on {money(m["staked"])} staked'
         if m["roi"] is not None else "nothing staked yet",
         "good" if m["pnl"] > 0 else ("bad" if m["pnl"] < 0 else "")))
+    tiles.append(tile(
+        "Mean CLV",
+        signed_pct(m["mean_clv"]) if m["mean_clv"] is not None else "—",
+        f'raw close · n = {m["n_clv"]}'
+        + (f' · t = {m["t_stat"]:.2f}'.replace("-", MINUS)
+           if m["t_stat"] is not None else "")))
+    tiles.append(tile(
+        "Mean CLV*",
+        signed_pct(m["mean_cal"]) if m["mean_cal"] is not None else "—",
+        "shade-adjusted close — the fair yardstick (AUDIT N1)",
+        "good" if (m["mean_cal"] or 0) > 0 else
+        ("bad" if m["mean_cal"] is not None and m["mean_cal"] < 0 else "")))
     if m["n_ev"]:
         tiles.append(tile(
             "Model-expected P&L", signed_money(m["model_exp_pnl"]),
@@ -805,43 +1034,68 @@ def market_panel(m):
         tiles.append(tile(
             "Model calibration",
             f'{c["obs"]}W vs {c["exp"]:.1f} expected',
-            f'binomial z = {c["z"]:+.2f} on the model\'s own win claims '
-            f'(n = {c["n"]})',
+            f'binomial z = {c["z"]:+.2f}'.replace("-", MINUS)
+            + f' on the model\'s own win claims (n = {c["n"]})',
             "bad" if c["z"] <= -2 else ("good" if abs(c["z"]) < 1 else "")))
     if m["pushes"] or m["voids"]:
         tiles.append(tile("Push / void", f'{m["pushes"]} / {m["voids"]}',
                           "stake returned"))
 
+    pnl_chart = line_chart(
+        [{"label": "actual P&L", "pts": m["pnl_pts"]},
+         {"label": "CLV-expected P&L", "pts": m["exp_pts"]}],
+        "pnl", "money", events=EVENTS, area=True,
+        aria=f'Cumulative profit and loss over time, currently '
+             f'{signed_money(m["pnl"])}')
+    clv_chart = line_chart(
+        [{"label": "vs raw close", "pts": m["clvm_pts"]},
+         {"label": "vs shade-adjusted close (CLV*)", "pts": m["calm_pts"]}],
+        "clv", "pct", events=EVENTS,
+        aria="Running mean closing-line value per bet over time")
+
+    charts = ""
+    if pnl_chart:
+        charts += f"""
+  <div class="block">
+    <h3>Profit &amp; loss over time</h3>
+    <p class="note">Cumulative settled P&amp;L, next to what the closing line
+      implied the same stakes were worth. Dashed rules mark process changes:
+      the from-scratch v3 model going live ({date_short(V3_LIVE)} — bets left
+      of it belong to the retired opener-anchored model) and the pick gates
+      ({date_short(GATES)}).</p>
+    {pnl_chart}
+  </div>"""
+    if clv_chart:
+        charts += f"""
+  <div class="block">
+    <h3>Closing-line value over time</h3>
+    <p class="note">Running mean CLV per bet. Raw CLV (vs the close as quoted)
+      skews negative by construction: an under-heavy sheet fades a close the
+      books shade toward overs. CLV* re-scores the same bets against the
+      shade-adjusted close (AUDIT N1) and is the fair yardstick.</p>
+    {clv_chart}
+  </div>"""
+
     cols, rows, aligns = bet_rows(m)
-    log = (table(cols, rows, "tbl", aligns) if rows else
+    no_match = (f'<tr class="no-match" hidden><td colspan="{len(cols)}">'
+                f'No bets match the current filters.</td></tr>')
+    log = (filter_block(m)
+           + table(cols, rows, "tbl", aligns,
+                   wrap_attrs=f' id="log-{cfg["id"]}"', extra_row=no_match)
+           if rows else
            empty("No bets logged yet",
                  "Fills are reported conversationally and logged to "
                  "live/bets.csv."))
     runs = "".join(f"<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>"
                    for k, v in cfg["runs"])
-    if cfg.get("cancelled"):
-        clv_block = (f'<div class="block"><h3>Why there is no record</h3>'
-                     f'<p class="note">{esc(cfg["cancelled"])} Full numbers '
-                     f'in the Evidence tab and the subproject README.</p>'
-                     f'</div>')
-    else:
-        clv_block = f"""
-  <div class="block">
-    <h3>Is it beating the close?</h3>
-    <p class="note">CLV is the scoreboard: one season of profit is noise, one
-      season of closing-line value is decisive. The band is what the backtest
-      says these bets should average.</p>
-    {clv_band(cfg, m['mean_clv'], m['n_clv'])}
-  </div>"""
 
     return f"""
-<section class="panel" id="panel-{cfg['id']}" role="tabpanel"
-         aria-labelledby="tab-{cfg['id']}" hidden>
+<section class="panel" id="panel-live" role="tabpanel"
+         aria-labelledby="tab-live">
   <div class="panel-head">
     <div>
       <h2>{esc(cfg['label'])} <span class="head-pill">{status_pill(m)}</span></h2>
       <p class="lede">{esc(cfg['what'])}</p>
-      {f'<p class="note">{esc(cfg["paused"])}</p>' if cfg.get("paused") else ''}
       <dl class="meta">{runs}</dl>
     </div>
     <div class="hero">
@@ -852,7 +1106,15 @@ def market_panel(m):
     </div>
   </div>
   <div class="tiles">{''.join(tiles)}</div>
-{clv_block}
+{charts}
+{era_block(m)}
+  <div class="block">
+    <h3>Is it beating the close?</h3>
+    <p class="note">CLV is the scoreboard: one season of profit is noise, one
+      season of closing-line value is decisive. The band is what the backtest
+      says these bets should average against the raw close.</p>
+    {clv_band(cfg, m['mean_clv'], m['n_clv'])}
+  </div>
   <div class="block">
     <h3>On the sheet now</h3>
     {picks_block(m)}
@@ -861,6 +1123,26 @@ def market_panel(m):
   <div class="block">
     <h3>Bet log</h3>
     {log}
+  </div>
+
+  <div class="block explain">
+    <h3>How to read this</h3>
+    <div class="explain-grid">
+      <div><h4>CLV, not profit</h4><p>Closing-line value is
+        <code>p_close × odds_taken − 1</code>: did the price beat where the
+        market ended up? It converges within a season. ROI needs several.</p></div>
+      <div><h4>Priced from scratch</h4><p>The v3 talent model never sees the
+        market's number. It prices the slate itself and bets FanDuel two-way
+        quotes where its claimed EV &gt; 10%, quarter-Kelly on half the
+        claimed edge.</p></div>
+      <div><h4>Two yardsticks</h4><p>Raw CLV compares to the close as quoted;
+        CLV* to the shade-adjusted close. On an under-heavy sheet the raw
+        number is structurally negative — CLV* is the one that has to reach
+        zero and beyond.</p></div>
+      <div><h4>Losing can still be a pass</h4><p>Negative P&amp;L with clearly
+        positive CLV means the model works and variance didn't cooperate.
+        Profit with negative CLV is just luck.</p></div>
+    </div>
   </div>
 
   <p class="foot">Protocol:
@@ -872,71 +1154,20 @@ def market_panel(m):
 </section>"""
 
 
-def live_panel(markets):
-    start = sum(m["bank"]["start"] for m in markets)
-    cur = sum(m["bank"]["current"] for m in markets)
-    delta = cur - start
-    dtone = "good" if delta > 0 else ("bad" if delta < 0 else "flat")
-    n_open = sum(len(m["open"]) for m in markets)
-    n_settled = sum(len(m["settled"]) for m in markets)
-    staked = sum(m["staked"] for m in markets)
-    clvs = [b["_clv"] for m in markets for b in m["graded"]
-            if b["_clv"] is not None]
-    mean_clv = sum(clvs) / len(clvs) if clvs else None
-    live_now = [m["cfg"]["label"] for m in markets if m["open"] or m["picks"]]
-
-    tiles = [
-        tile("Open positions", f"{n_open}",
-             f'{money(sum(b["_stake"] for m in markets for b in m["open"]))} at risk'
-             if n_open else "nothing live"),
-        tile("Settled bets", f"{n_settled}",
-             f"{money(staked)} staked" if staked else "none yet"),
-        tile("Mean CLV", signed_pct(mean_clv) if mean_clv is not None else "—",
-             f"n = {len(clvs)}" if clvs else "the scoreboard that matters",
-             "good" if (mean_clv or 0) > 0 else ""),
-        tile("Markets live", f"{len(live_now)} of {len(markets)}",
-             ", ".join(live_now) if live_now else "nothing on the board"),
-    ]
-    return f"""
-<section class="panel" id="panel-live" role="tabpanel"
-         aria-labelledby="tab-live">
-  <div class="panel-head">
-    <div>
-      <h2>The live experiment</h2>
-      <p class="lede">Real money on FanDuel, quarter-Kelly stakes.
-        <strong>WNBA props is running.</strong> The opener-anchored model was
-        retired on 2026-07-31 — it inverted its opinion out of the price
-        rather than pricing games itself — and live betting re-opened the same
-        evening on a from-scratch talent model, at a claimed-EV &gt; 10%
-        trigger. The soccer experiment was cancelled before its first bet when
-        the post-Pinnacle replay showed no edge; its card stays as the
-        record.</p>
-    </div>
-    <div class="hero">
-      <div class="hero-label">Combined bankroll</div>
-      <div class="hero-fig">{money(cur)}</div>
-      <div class="hero-sub val-{dtone}">{signed_money(delta)} on
-        {money(start, 0)} start</div>
-    </div>
-  </div>
-  <div class="tiles">{''.join(tiles)}</div>
-  <div class="cards">{''.join(market_card(m) for m in markets)}</div>
-
-  <div class="block explain">
-    <h3>How to read this</h3>
-    <div class="explain-grid">
-      <div><h4>CLV, not profit</h4><p>Closing-line value is
-        <code>p_close × odds_taken − 1</code>: did the price beat where the
-        market ended up? It converges within a season. ROI needs several.</p></div>
-      <div><h4>Bet the opener</h4><p>The edge is the stale opening price, not
-        the model knowing more than the market. Once a line moves, the pick is
-        dead — no chasing.</p></div>
-      <div><h4>Losing can still be a pass</h4><p>Negative P&amp;L with clearly
-        positive CLV means the model works and variance didn't cooperate.
-        Profit with negative CLV is just luck.</p></div>
-    </div>
-  </div>
-</section>"""
+def sim_table(spec):
+    body = []
+    for i, row in enumerate(spec["rows"]):
+        cells = []
+        for j, c in enumerate(row):
+            val = c if j < 2 else f'<span class="mono">{c}</span>'
+            cells.append(f'<td class="a-{"l" if j < 2 else "r"}">{val}</td>')
+        cls = "row-best" if i == spec["best"] else ""
+        body.append(f'<tr class="{cls}">{"".join(cells)}</tr>')
+    head = "".join(f'<th class="a-{"l" if j < 2 else "r"}">{c}</th>'
+                   for j, c in enumerate(spec["cols"]))
+    return (f'<div class="scroll"><table class="tbl"><thead><tr>{head}</tr>'
+            f'</thead><tbody>{"".join(body)}</tbody></table></div>'
+            f'<p class="note">{spec["caption"]}</p>')
 
 
 def evidence_panel():
@@ -969,32 +1200,6 @@ def evidence_panel():
             f'<div class="ledger-why">{esc(r["why"])} {report}'
             f'<div class="ledger-cap">{cap}</div></div></article>')
 
-    def sim(spec):
-        body = []
-        for i, row in enumerate(spec["rows"]):
-            cells = []
-            for j, c in enumerate(row):
-                val = c if j < 2 else f'<span class="mono">{c}</span>'
-                cells.append(f'<td class="a-{"l" if j < 2 else "r"}">{val}</td>')
-            cls = "row-best" if i == spec["best"] else ""
-            body.append(f'<tr class="{cls}">{"".join(cells)}</tr>')
-        head = "".join(f'<th class="a-{"l" if j < 2 else "r"}">{c}</th>'
-                       for j, c in enumerate(spec["cols"]))
-        return (f'<div class="scroll"><table class="tbl"><thead><tr>{head}</tr>'
-                f'</thead><tbody>{"".join(body)}</tbody></table></div>'
-                f'<p class="note">{spec["caption"]}</p>')
-
-    curve = backtest_curve()
-    chart = area_chart(curve, "backtest", "cumulative units", mark_dd=True)
-    chart_block = (f"""
-  <div class="block">
-    <h3>What the soccer edge looked like out-of-sample</h3>
-    <p class="note">Cumulative profit of the backtested strategy — flat 1-unit
-      bets at the best early price whenever the model saw &gt;2% EV, over 31,192
-      bets and nine walk-forward seasons. Never retrained on the future.</p>
-    {chart}
-  </div>""" if chart else "")
-
     return f"""
 <section class="panel" id="panel-evidence" role="tabpanel"
          aria-labelledby="tab-evidence" hidden>
@@ -1015,17 +1220,10 @@ def evidence_panel():
   </div>
 
   <div class="ledger">{''.join(rows)}</div>
-  {chart_block}
 
-  <div class="block two-up">
-    <div>
-      <h3>Soccer 1X2 betting simulation</h3>
-      {sim(SOCCER_SIM)}
-    </div>
-    <div>
-      <h3>WNBA props betting simulation</h3>
-      {sim(WNBA_SIM)}
-    </div>
+  <div class="block narrow">
+    <h3>WNBA props betting simulation</h3>
+    {sim_table(WNBA_SIM)}
   </div>
 
   <p class="foot">Full write-ups, caveats and reproduction steps:
@@ -1034,7 +1232,73 @@ def evidence_panel():
     <a href="{REPO}/tree/main/cricket">cricket/</a> ·
     <a href="{REPO}/tree/main/nba">nba/</a>.
     Simulations model prices, not frictions — limits, restrictions and
-    palpable-error voids are real and unmodelled.</p>
+    palpable-error voids are real and unmodelled. The soccer research record
+    lives in the Archive tab.</p>
+</section>"""
+
+
+def archive_panel(m):
+    cfg = m["cfg"]
+    curve = backtest_curve()
+    chart = line_chart(
+        [{"label": "cumulative units", "pts": curve}], "backtest", "units",
+        area=True, mark_dd=True,
+        aria=f'Soccer backtest cumulative units over time, ending '
+             f'{curve[-1][1]:+,.0f}' if curve else "")
+    chart_block = (f"""
+    <h4>What the edge looked like out-of-sample</h4>
+    <p class="note">Cumulative profit of the backtested strategy — flat 1-unit
+      bets at the best early price whenever the model saw &gt;2% EV, over 31,192
+      bets and nine walk-forward seasons. Never retrained on the future.</p>
+    {chart}""" if chart else "")
+    runs = "".join(f"<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>"
+                   for k, v in cfg["runs"])
+
+    return f"""
+<section class="panel" id="panel-archive" role="tabpanel"
+         aria-labelledby="tab-archive" hidden>
+  <div class="panel-head">
+    <div>
+      <h2>The archive</h2>
+      <p class="lede">Experiments that ended stay published — a cancelled
+        experiment is a result, not an embarrassment. Nothing here is live
+        and nothing here should be bet.</p>
+    </div>
+    <div class="hero">
+      <div class="hero-label">Live bets placed</div>
+      <div class="hero-fig">0</div>
+      <div class="hero-sub">across everything on this page</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>{esc(cfg['label'])} <span class="head-pill">{pill("cancelled", "idle")}</span></h3>
+    <p class="note">{esc(cfg['what'])}</p>
+    <p class="note"><strong>Why there is no record:</strong>
+      {esc(cfg['cancelled'])} Full numbers below and in the subproject
+      README.</p>
+    <dl class="meta">{runs}</dl>
+    {chart_block}
+    <h4>Betting simulation — the cancellation evidence</h4>
+    {sim_table(SOCCER_SIM)}
+    <p class="foot">Protocol:
+      <a href="{REPO}/blob/main/{cfg['protocol']}">{esc(cfg['protocol'])}</a>
+      · method and backtest:
+      <a href="{REPO}/blob/main/{cfg['readme']}">{esc(cfg['readme'])}</a></p>
+  </div>
+
+  <div class="block">
+    <h3>WNBA props — the anchored era <span class="head-pill">{pill("retired", "idle")}</span></h3>
+    <p class="note">The model that opened the WNBA live experiment anchored on
+      the market's opening price and bet the residual. It was retired on
+      {date_short(V3_LIVE)} — it inverted its opinion out of the price rather
+      than pricing games itself — and the from-scratch v3 talent model took
+      over the same evening. Its handful of bets stay in the live bet log,
+      left of the "v3 model live" rule on the charts, because the bankroll is
+      continuous. The full post-mortem is in
+      <a href="{REPO}/blob/main/PROGRESS.md">PROGRESS.md</a> and
+      <a href="{REPO}/blob/main/AUDIT.md">AUDIT.md</a>.</p>
+  </div>
 </section>"""
 
 
@@ -1098,8 +1362,8 @@ code{font-family:var(--mono);font-size:.88em;background:var(--sunk);
 .masthead .wrap{padding-top:26px;padding-bottom:0;display:flex;
   flex-wrap:wrap;gap:16px 28px;align-items:flex-start;
   justify-content:space-between}
-.brand h1{font-size:26px;letter-spacing:-.02em}
-.brand p{color:var(--ink2);max-width:56ch;margin-top:6px}
+.brand h1{font-size:27px;letter-spacing:-.02em}
+.brand p{color:var(--ink2);max-width:60ch;margin-top:6px}
 .stamp{color:var(--muted);font-size:12.5px;text-align:right;
   display:flex;flex-direction:column;gap:6px;align-items:flex-end}
 .stamp .mono{font-size:12px}
@@ -1141,39 +1405,17 @@ code{font-family:var(--mono);font-size:.88em;background:var(--sunk);
 .tile-val{font-size:24px;font-weight:600;letter-spacing:-.02em;margin-top:4px}
 .tile-sub{font-size:12.5px;color:var(--ink2);margin-top:2px}
 
-/* market cards */
-.cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  margin-top:14px}
-.mcard{display:block;text-decoration:none;background:var(--surface);
-  border:1px solid var(--rule);border-radius:12px;padding:16px 18px 14px;
-  box-shadow:var(--shadow);transition:border-color .15s,transform .15s}
-.mcard:hover{border-color:var(--base);transform:translateY(-1px)}
-.mcard:focus-visible{outline:2px solid var(--model);outline-offset:2px}
-.mcard-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.mcard-top h3{font-size:15px}
-.mcard-figure{font-size:32px;font-weight:600;letter-spacing:-.02em;margin-top:10px;
-  display:flex;align-items:baseline;gap:10px}
-.mcard-delta{font-size:13px;font-weight:400;color:var(--ink2)}
-.mcard-meta{font-size:12.5px;color:var(--ink2)}
-.mcard .spark{width:100%;height:56px;margin-top:12px;display:block}
-.card-empty{margin-top:12px;height:56px;display:flex;align-items:center;
-  justify-content:center;font-size:12.5px;color:var(--muted);
-  border:1px dashed var(--grid);border-radius:8px;text-align:center;padding:0 10px}
-.mcard-go{font-size:12.5px;color:var(--model);margin-top:12px}
-
 /* blocks */
 .block{margin-top:34px}
 .block>h3{font-size:16px;letter-spacing:-.01em}
-.block>.note,.block>p.note{margin-top:6px}
+.block h4{font-size:14px;margin-top:22px}
+.block>.note,.block>p.note,.block h4+.note{margin-top:6px}
 .note{font-size:13px;color:var(--ink2);max-width:70ch}
-.note+.scroll,.bandwrap,.tbl,.empty{margin-top:12px}
+.note+.scroll,.bandwrap,.tbl,.empty,h4+.scroll{margin-top:12px}
+.narrow{max-width:760px}
 .foot{margin-top:32px;padding-top:16px;border-top:1px solid var(--rule);
   font-size:12.5px;color:var(--muted);max-width:78ch}
 .foot a{color:var(--ink2)}
-.two-up{display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
-.two-up h3{font-size:15px}
-.two-up .tbl{font-size:12.5px}
-.two-up .tbl th,.two-up .tbl td{padding:8px 10px}
 
 /* how a market runs */
 .meta{display:flex;flex-wrap:wrap;gap:6px 26px;margin:14px 0 0}
@@ -1196,6 +1438,35 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13.5px}
 .tbl tbody tr:hover{background:var(--sunk)}
 .tbl .row-best td{background:var(--model-soft)}
 .tbl .row-best td:first-child{box-shadow:inset 2px 0 0 var(--model)}
+.tbl .no-match td{text-align:center;color:var(--muted);padding:20px}
+
+/* filters */
+.filterbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.filterbar select,.filterbar input{font:inherit;font-size:13px;
+  color:var(--ink);background:var(--surface);border:1px solid var(--rule);
+  border-radius:8px;padding:6px 10px}
+.filterbar input{flex:1;min-width:140px;max-width:240px}
+.filterbar select:hover,.filterbar input:hover{border-color:var(--base)}
+.filterbar select:focus-visible,.filterbar input:focus-visible{
+  outline:2px solid var(--model);outline-offset:1px}
+.fsummary{margin-top:10px;font-size:12.5px;color:var(--ink2);
+  font-variant-numeric:tabular-nums}
+.fsummary+.scroll{margin-top:10px}
+
+/* era comparison */
+.era{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  margin-top:14px}
+.era-card{background:var(--surface);border:1px solid var(--rule);
+  border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+.era-card h4{font-size:14px;margin:0}
+.era-now{border-color:color-mix(in srgb,var(--model) 45%,var(--rule))}
+.era-dates{font-size:12px;color:var(--muted);margin-top:2px}
+.era-stats{display:flex;flex-wrap:wrap;gap:12px 26px;margin-top:14px}
+.es-label{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted)}
+.es-val{font-size:17px;font-weight:600;letter-spacing:-.01em;margin-top:2px;
+  font-variant-numeric:tabular-nums}
+.band-note{font-size:12.5px;color:var(--ink2);margin-top:8px;max-width:70ch}
 
 /* chips + pills */
 .chip{display:inline-block;font-size:11.5px;padding:2px 7px;border-radius:5px;
@@ -1239,7 +1510,6 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13.5px}
 .band-axis{position:relative;height:16px;margin-top:5px}
 .band-axis span{position:absolute;transform:translateX(-50%);font-size:11px;
   color:var(--muted);font-variant-numeric:tabular-nums}
-.band-note{font-size:12.5px;color:var(--ink2);margin-top:8px}
 
 /* ledger */
 .ledger{display:flex;flex-direction:column;gap:1px;background:var(--rule);
@@ -1277,32 +1547,44 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13.5px}
 .chart .grid{stroke:var(--grid);stroke-width:1}
 .chart .zero{stroke:var(--base);stroke-width:1}
 .chart .tick{fill:var(--muted);font-size:11px;font-family:var(--sans)}
-.chart .area{fill:var(--model);opacity:.1;stroke:none}
-.chart .line{fill:none;stroke:var(--model);stroke-width:2;stroke-linejoin:round;
-  stroke-linecap:round}
-.chart .dot-end{fill:var(--model);stroke:var(--surface);stroke-width:2}
+.chart .area{fill:var(--model);opacity:.08;stroke:none}
+.chart .line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.chart .line.s1{stroke:var(--model)}
+.chart .line.s2{stroke:var(--market)}
+.chart .dot-end{stroke:var(--surface);stroke-width:2}
+.chart .dot-end.s1{fill:var(--model)}
+.chart .dot-end.s2{fill:var(--market)}
 .chart .dot-dd{fill:var(--market);stroke:var(--surface);stroke-width:2}
 .chart .ann{fill:var(--muted);font-size:11px;font-family:var(--sans)}
-.chart .end-label{fill:var(--ink);font-size:13px;font-weight:600;
+.chart .end-label{fill:var(--ink);font-size:12.5px;font-weight:600;
   font-family:var(--sans)}
+.chart .evt{stroke:var(--base);stroke-width:1;stroke-dasharray:3 4}
+.chart .evt-major{stroke:var(--ink2)}
+.chart .evt-label{fill:var(--muted);font-size:11px;font-family:var(--sans)}
+.chart .evt-label.major{fill:var(--ink2);font-weight:600}
 .chart .hit{fill:transparent}
 .chart .cross[hidden]{display:none}
 .chart .cross-l{stroke:var(--base);stroke-width:1}
-.chart .cross-d{fill:var(--model);stroke:var(--surface);stroke-width:2}
+.chart .cross-d{stroke:var(--surface);stroke-width:2}
+.chart .cross-d.s1{fill:var(--model)}
+.chart .cross-d.s2{fill:var(--market)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin:12px 0 0;
+  font-size:12.5px;color:var(--ink2)}
+.sw{display:inline-block;width:10px;height:10px;border-radius:3px;
+  margin-right:7px;vertical-align:-1px}
+.sw-1{background:var(--model)} .sw-2{background:var(--market)}
 .tip{position:absolute;pointer-events:none;background:var(--surface);
   border:1px solid var(--base);border-radius:8px;padding:7px 10px;font-size:12.5px;
-  box-shadow:var(--shadow);white-space:nowrap;transform:translate(-50%,-130%);
-  font-variant-numeric:tabular-nums}
-.tip b{font-size:13.5px}
-.spark .grid{stroke:var(--grid);stroke-width:1}
-.spark .area{fill:var(--model);opacity:.1}
-.spark .line{fill:none;stroke:var(--model);stroke-width:2}
-.spark .dot-end{fill:var(--model);stroke:var(--surface);stroke-width:2}
+  box-shadow:var(--shadow);white-space:nowrap;transform:translate(-50%,-118%);
+  font-variant-numeric:tabular-nums;display:flex;flex-direction:column;gap:2px}
+.tip[hidden]{display:none}
+.tip .td{color:var(--muted);font-size:11.5px}
+.tip b{font-size:13px}
 
 /* explainer */
 .explain-grid{display:grid;gap:18px;margin-top:12px;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
-.explain-grid h4{font-size:13.5px}
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.explain-grid h4{font-size:13.5px;margin-top:0}
 .explain-grid p{font-size:13px;color:var(--ink2);margin-top:4px}
 
 @media (max-width:640px){
@@ -1313,6 +1595,9 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13.5px}
   .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
   .tabs::-webkit-scrollbar{display:none}
   .tab{white-space:nowrap}
+  /* keep chart text legible: scroll sideways instead of squashing the svg */
+  .chart{overflow-x:auto}
+  .chart svg{min-width:640px}
 }
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important}
@@ -1322,6 +1607,9 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13.5px}
 JS = """
 (function(){
   var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  var ids=tabs.map(function(t){return t.dataset.panel;});
+  var alias={wnba:'live',soccer:'archive',evidence:'evidence'};
+  function canon(id){id=alias[id]||id;return ids.indexOf(id)>-1?id:ids[0];}
   function show(id,push){
     tabs.forEach(function(t){
       var on=t.dataset.panel===id;
@@ -1341,51 +1629,114 @@ JS = """
       n.focus();show(n.dataset.panel,true);
     });
   });
-  document.querySelectorAll('[data-goto]').forEach(function(a){
-    a.addEventListener('click',function(e){e.preventDefault();
-      show(a.dataset.goto,true);window.scrollTo({top:0,behavior:'smooth'});});
-  });
-  var ids=tabs.map(function(t){return t.dataset.panel;});
-  show(ids.indexOf(location.hash.slice(1))>-1?location.hash.slice(1):ids[0],false);
+  show(canon(location.hash.slice(1)),false);
   window.addEventListener('hashchange',function(){
-    if(ids.indexOf(location.hash.slice(1))>-1)show(location.hash.slice(1),false);
+    show(canon(location.hash.slice(1)),false);
   });
 
+  function fmtv(v,unit){
+    var s=v<0?'\\u2212':'+',a=Math.abs(v);
+    if(unit==='money')return s+'$'+a.toFixed(2);
+    if(unit==='pct')return s+a.toFixed(1)+'%';
+    return s+a.toLocaleString(undefined,{maximumFractionDigits:0})+'u';
+  }
   document.querySelectorAll('.chart').forEach(function(fig){
     var svg=fig.querySelector('svg'),tip=fig.querySelector('.tip'),
         cross=fig.querySelector('.cross'),hit=fig.querySelector('.hit'),
         d=JSON.parse(fig.querySelector('script[type="application/json"]').textContent),
+        dots=cross.querySelectorAll('.cross-d'),
         vb=svg.viewBox.baseVal;
     function at(ev){
-      var r=svg.getBoundingClientRect(),sx=(ev.clientX-r.left)/r.width*vb.width,i=0,
-          best=1e9;
+      var r=svg.getBoundingClientRect(),sx=(ev.clientX-r.left)/r.width*vb.width,
+          i=0,best=1e9;
       for(var k=0;k<d.x.length;k++){var dx=Math.abs(d.x[k]-sx);
         if(dx<best){best=dx;i=k;}}
       cross.removeAttribute('hidden');   // SVG has no .hidden property
       cross.querySelector('.cross-l').setAttribute('x1',d.x[i]);
       cross.querySelector('.cross-l').setAttribute('x2',d.x[i]);
-      cross.querySelector('.cross-d').setAttribute('cx',d.x[i]);
-      cross.querySelector('.cross-d').setAttribute('cy',d.y[i]);
+      var rows='',topY=1e9;
+      d.series.forEach(function(s,k){
+        if(dots[k]){dots[k].setAttribute('cx',d.x[i]);
+          dots[k].setAttribute('cy',s.y[i]);}
+        if(s.y[i]<topY)topY=s.y[i];
+        rows+='<span><i class="sw sw-'+(k+1)+'"></i>'+
+          (d.series.length>1?s.label+' ':'')+
+          '<b>'+fmtv(s.v[i],d.unit)+'</b></span>';
+      });
       tip.hidden=false;
-      tip.innerHTML='<b>'+(d.v[i]>=0?'+':'\\u2212')+
-        Math.abs(d.v[i]).toLocaleString(undefined,{maximumFractionDigits:0})+
-        'u</b><br>'+d.d[i];
-      tip.style.left=(d.x[i]/vb.width*100)+'%';
-      tip.style.top=(d.y[i]/vb.height*r.height)+'px';
+      tip.innerHTML='<span class="td">'+d.d[i]+'</span>'+rows;
+      // px against the figure origin, so it stays put when the chart
+      // scrolls sideways on small screens
+      var fr=fig.getBoundingClientRect();
+      var ox=r.left-fr.left+fig.scrollLeft,oy=r.top-fr.top;
+      var lx=ox+d.x[i]/vb.width*r.width;
+      tip.style.left=Math.max(ox+56,Math.min(ox+r.width-56,lx))+'px';
+      tip.style.top=(oy+topY/vb.height*r.height)+'px';
     }
     hit.addEventListener('pointermove',at);
     hit.addEventListener('pointerdown',at);
     fig.addEventListener('pointerleave',function(){
       cross.setAttribute('hidden','');tip.hidden=true;});
   });
+
+  document.querySelectorAll('.filterbar').forEach(function(bar){
+    var scope=document.getElementById(bar.dataset.scope);
+    var sum=document.getElementById(bar.dataset.summary);
+    if(!scope)return;
+    var rows=[].slice.call(scope.querySelectorAll('tbody tr[data-status]'));
+    var none=scope.querySelector('.no-match');
+    var ctrls=[].slice.call(bar.querySelectorAll('[data-f]'));
+    function mean(a){var s=0;a.forEach(function(v){s+=v;});return s/a.length;}
+    function pct(v){return (v<0?'\\u2212':'+')+Math.abs(v*100).toFixed(1)+'%';}
+    function mny(v){return (v<0?'\\u2212':'+')+'$'+Math.abs(v).toFixed(2);}
+    function apply(){
+      var f={};
+      ctrls.forEach(function(c){f[c.dataset.f]=c.value.trim().toLowerCase();});
+      var shown=0,w=0,l=0,settled=0,pnl=0,stake=0,clv=[],cal=[];
+      rows.forEach(function(r){
+        var ok=(!f.market||r.dataset.market===f.market)&&
+               (!f.side||r.dataset.side===f.side)&&
+               (!f.result||r.dataset.result===f.result)&&
+               (!f.era||r.dataset.era===f.era)&&
+               (!f.q||r.dataset.player.indexOf(f.q)>-1);
+        r.hidden=!ok;
+        if(!ok)return;
+        shown++;
+        if(r.dataset.status==='settled'){
+          settled++;pnl+=+r.dataset.pnl||0;stake+=+r.dataset.stake||0;
+          if(r.dataset.result==='won')w++;
+          else if(r.dataset.result==='lost')l++;
+        }
+        if(r.dataset.status!=='void'){
+          if(r.dataset.clv!=='')clv.push(+r.dataset.clv);
+          if(r.dataset.cal!=='')cal.push(+r.dataset.cal);
+        }
+      });
+      if(none)none.hidden=shown>0;
+      var bits=[shown+' of '+rows.length+' bets'];
+      if(settled){
+        bits.push(w+'W\\u2212'+l+'L');
+        bits.push('P&L '+mny(pnl)+(stake?' ('+pct(pnl/stake)+' ROI)':''));
+      }
+      if(clv.length)bits.push('mean CLV '+pct(mean(clv)));
+      if(cal.length)bits.push('CLV* '+pct(mean(cal)));
+      if(sum)sum.textContent=bits.join(' \\u00b7 ');
+    }
+    ctrls.forEach(function(c){
+      c.addEventListener(c.tagName==='INPUT'?'input':'change',apply);});
+    apply();
+  });
 })();
 """
+
+FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' "
+           "viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E"
+           "%F0%9F%93%88%3C/text%3E%3C/svg%3E")
 
 
 def render(markets, fragment=False):
     updated = stamp(markets)
-    tabs = [("live", "Live"), ("soccer", SOCCER["tab"]),
-            ("wnba", WNBA["tab"]), ("evidence", "Evidence")]
+    tabs = [("live", "Live"), ("evidence", "Evidence"), ("archive", "Archive")]
     tab_html = "".join(
         f'<button class="tab" role="tab" id="tab-{i}" data-panel="{i}" '
         f'aria-controls="panel-{i}" aria-selected="false" tabindex="-1">'
@@ -1397,11 +1748,11 @@ def render(markets, fragment=False):
   <div class="wrap">
     <div class="brand">
       <h1>Beating the opener</h1>
-      <p>Soft sportsbooks' opening lines are inefficient. Four markets tested,
-        two beaten in research. Soccer's live experiment was cancelled when
-        its regime died. WNBA props is betting again since 2026-07-31: the
-        model that anchored on the opening price is retired, and a
-        from-scratch talent model prices the games instead.</p>
+      <p>One live experiment: WNBA player props, priced from scratch by a
+        talent model that never sees the market's number, bet on FanDuel and
+        scored on closing-line value first, profit second. Four markets were
+        researched; the two honest "no"s and the cancelled soccer experiment
+        are kept in Evidence and the Archive.</p>
     </div>
     <div class="stamp">
       <a class="repo-link" href="{REPO}">Source on GitHub ↗</a>
@@ -1411,10 +1762,9 @@ def render(markets, fragment=False):
   </div>
 </header>
 <main class="wrap">
-{live_panel(markets)}
-{market_panel(by_id["soccer"])}
-{market_panel(by_id["wnba"])}
+{live_panel(by_id["wnba"])}
 {evidence_panel()}
+{archive_panel(by_id["soccer"])}
 </main>"""
 
     if fragment:
@@ -1428,12 +1778,14 @@ def render(markets, fragment=False):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Beating the opener — live scoreboard</title>
-<meta name="description" content="CLV, bankroll and bet log for two
- opening-line betting experiments — both now stopped — plus the out-of-sample
- evidence behind them.">
+<meta name="description" content="Live CLV, P&L and the full bet log for a
+ from-scratch WNBA props model betting FanDuel openers, plus the research
+ archive behind it.">
 <meta property="og:title" content="Beating the opener — scoreboard">
-<meta property="og:description" content="Two opening-line betting experiments
- scored on closing-line value, both now stopped, and the research behind them.">
+<meta property="og:description" content="A from-scratch WNBA props model
+ betting real money, scored on closing-line value, with the research record
+ behind it.">
+<link rel="icon" href="{FAVICON}">
 <!-- Generated by site/build_site.py - do not edit by hand. -->
 <style>{CSS}</style>
 </head>

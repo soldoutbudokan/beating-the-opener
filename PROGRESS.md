@@ -1152,3 +1152,13 @@ registrations are firewalled from betting outcomes.
   player/market/side again, which stays allowed; this concerns a *second,
   correlated* market on one player-game. Both Hamby bets stand (owner's
   call, recorded in the row's notes).
+- **2026-08-13 (site redesign, owner-directed)** — `docs/index.html`
+  rebuilt around the one live market. Soccer moved off the main view into
+  an Archive tab (old `#soccer`/`#wnba` links alias across); the Live tab
+  gains cumulative P&L vs CLV-expected P&L and running mean CLV
+  (raw + CLV*) time charts with dashed process-change rules at 2026-07-31
+  (v3 live) and 2026-08-08 (pick gates), a before/since-the-gates
+  comparison, a filterable bet log (market/side/result/era/player, live
+  summary), and a CLV* column the page had been missing. Presentation
+  only — no metric definitions changed; generator is still
+  `site/build_site.py` (markers live in its `EVENTS` constant).
