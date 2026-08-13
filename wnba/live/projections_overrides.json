@@ -2835,6 +2835,19 @@
       "quote": "League injury report at 0540Z downgrades Rice (Toronto Tempo) Day-To-Day -> Out - Ankle, comment \"out\", return_date 2026-08-18; the per-event report for 401857137 (TOR@DAL, 2026-08-12 ET) carries the same Out - Ankle. Supersedes entry 212 (questionable, until-cleared). Dated 2026-08-12 rather than until-cleared: that game is already FINAL, so minutes_est 0 touches no priced slate, and Toronto's next game IS her return date 2026-08-18 (event 2739), so a forward 0-minute clamp is not sourced. Toronto is not on the 2026-08-13 slate (events 2727 CON, 2728 NYL, 2729 LVA). Re-check before 08-18.",
       "author": "news-watch",
       "superseded_by": null
+    },
+    {
+      "player": "Azzi Fudd",
+      "added": "2026-08-13T15:06:00Z",
+      "game_date": "2026-08-14",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/1506Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Status carried forward, not a diff event: the 1506Z snapshot still lists Fudd (Dallas) Out - Knee, but the comment scopes it to a COMPLETED game (\"Fudd (knee) is out for Wednesday's game against Toronto\" = TOR@DAL, 2026-08-12 ET, event:401857137 STATUS_FINAL), and return_date is 2026-08-14 - the date of DAL@IND (event 2730), the game the sheet prices. Because the Out row has persisted unchanged since 2026-08-09, avail_watch's status diff has been empty every firing since, so no entry has been written for the return game; entry 115 (out/0) stays as the record of 08-09 and is not superseded (same treatment as the Alysha Clark 08-05 entry). Recorded as questionable with minutes_est null: the feed says returning, not playing, and this routine does not hand-set minutes on a return. DELIBERATELY INERT for pricing (fp_live moves a projection only on status 'out' or an explicit minutes number) - Fudd's threes OVER 1.5 stays play=True at the model's 2.42 and is FLAGGED, not filtered, per the 2026-08-08 'flag, don't fix' direction. OWNER: this is a knee return off four missed games priced as a full-load shooter; a minutes-limited return is the obvious failure mode for an over, and the talent model is slow on exactly that. Confirm she is in the lineup near tip before taking it.",
+      "author": "news-watch",
+      "superseded_by": null
     }
   ]
 }
