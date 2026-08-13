@@ -2509,7 +2509,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 0138Z adds Pissott (Las Vegas) Out - Leg: \"Pissott (leg) has been ruled out for Tuesday's game against the Mystics.\" return_date 2026-08-13. game_date 2026-08-12; minutes_est 0.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 203
     },
     {
       "player": "Kara Dunn",
@@ -2664,6 +2664,19 @@
       "source": "avail:2026-08-12/2333Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Dropped off the ESPN league injury report between the 2026-08-12 05:41Z and 23:33Z snapshots (CLEARED in the avail_watch diff), i.e. no longer listed with any designation. Status-only, no minutes estimate: it lifts a stale out rather than asserting a role. Supersedes the until-cleared out entry of 2026-08-10 - that one had game_date null and was still active, so clearing it matters.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Justine Pissott",
+      "added": "2026-08-13T00:41:00Z",
+      "game_date": "2026-08-13",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/0041Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 0041Z UPGRADES Pissott (Las Vegas) Out -> Day-To-Day, type Leg: \"Pissott (leg) is listed as questionable for Thursday's game versus Washington.\" return_date 2026-08-13. Thursday = 2026-08-13 ET, WAS@LVA (event 2729). Supersedes the 2026-08-12/0138Z out/0-minute entry, whose 0-minute clamp is no longer sourced now that the feed calls her questionable. Status-only, minutes_est null: her panel role is a deep-bench 3-14 min except a 25-min outlier on 2026-08-09, so any number here would manufacture an over or an under out of a leg-injury question. Records the doubt, changes no projection.",
       "author": "news-watch",
       "superseded_by": null
     }
