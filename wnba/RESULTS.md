@@ -6,19 +6,19 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $103.69** (start $100)
+**Bankroll: $105.70** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 90 (47W-43L), 0 push, 2 void, 20 open |
-| staked | $90.00 |
-| P&L | $+3.69 (+4.1% ROI) |
-| mean EV said (model) | +23.42% (n=90) |
+| settled | 102 (54W-48L), 0 push, 2 void, 9 open |
+| staked | $102.00 |
+| P&L | $+5.70 (+5.6% ROI) |
+| mean EV said (model) | +22.75% (n=102) |
 | mean CLV (vs close) | -4.46% (n=90) |
 | mean CLV* (shade-adj) | -3.38% (n=90) |
 | closing line moved | 16 of 90 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 56.2W vs observed 47W (z=-2.04) |
-| Model-expected P&L | $+21.53 |
+| model calibration | expected 63.2W vs observed 54W (z=-1.92) |
+| Model-expected P&L | $+23.66 |
 | CLV-expected P&L | $-4.01 |
 
 CLV t-stat: -4.86 (iid); -2.68 clustered by match date (13 dates)
@@ -35,18 +35,19 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-13 | Angel Reese | points | under | 17.5 | -122 | 1.0 | +13.4% |  |  |  |  |  |
 | 2026-08-13 | Jordin Canada | assists | under | 8.5 | -136 | 1.0 | +12.9% |  |  |  |  |  |
 | 2026-08-13 | Diamond Miller | threes | over | 1.5 | 162 | 1.0 | +11.6% |  |  |  |  |  |
-| 2026-08-12 | Courtney Vandersloot | points | under | 9.5 | -120 | 1.0 | +22.7% |  |  |  |  |  |
-| 2026-08-12 | Kayla McBride | points | over | 15.5 | -114 | 1.0 | +21.6% |  |  |  |  |  |
-| 2026-08-12 | Nyara Sabally | points | under | 13.5 | -114 | 1.0 | +20.6% |  |  |  |  |  |
-| 2026-08-12 | Megan DiLeo | threes | under | 1.5 | -114 | 1.0 | +19.4% |  |  |  |  |  |
-| 2026-08-12 | Natasha Howard | rebounds | over | 6.5 | 108 | 1.0 | +18.8% |  |  |  |  |  |
-| 2026-08-12 | Napheesa Collier | threes | over | 1.5 | -106 | 1.0 | +15.7% |  |  |  |  |  |
-| 2026-08-12 | Marina Mabrey | rebounds | over | 3.5 | 142 | 1.0 | +14.0% |  |  |  |  |  |
-| 2026-08-12 | Gabby Williams | rebounds | over | 2.5 | -102 | 1.0 | +13.6% |  |  |  |  |  |
-| 2026-08-12 | Arike Ogunbowale | threes | under | 1.5 | 148 | 1.0 | +11.3% |  |  |  |  |  |
-| 2026-08-12 | Paige Bueckers | assists | under | 5.5 | 116 | 1.0 | +21.5% |  |  |  |  |  |
-| 2026-08-12 | Olivia Miles | points | over | 19.5 | -102 | 1.0 | +21.0% |  |  |  |  |  |
-| 2026-08-12 | Courtney Williams | points | over | 12.5 | -118 | 1.0 | +12.9% |  |  |  |  |  |
+| 2026-08-13 | Sabrina Ionescu | points | under | 18.5 | -108 | 1.0 | +10.8% |  |  |  |  |  |
+| 2026-08-12 | Courtney Vandersloot | points | under | 9.5 | -120 | 1.0 | +22.7% | 6 | won | +0.83 |  |  |
+| 2026-08-12 | Kayla McBride | points | over | 15.5 | -114 | 1.0 | +21.6% | 19 | won | +0.88 |  |  |
+| 2026-08-12 | Nyara Sabally | points | under | 13.5 | -114 | 1.0 | +20.6% | 6 | won | +0.88 |  |  |
+| 2026-08-12 | Megan DiLeo | threes | under | 1.5 | -114 | 1.0 | +19.4% | 1 | won | +0.88 |  |  |
+| 2026-08-12 | Natasha Howard | rebounds | over | 6.5 | 108 | 1.0 | +18.8% | 12 | won | +1.08 |  |  |
+| 2026-08-12 | Napheesa Collier | threes | over | 1.5 | -106 | 1.0 | +15.7% | 0 | lost | -1.00 |  |  |
+| 2026-08-12 | Marina Mabrey | rebounds | over | 3.5 | 142 | 1.0 | +14.0% | 2 | lost | -1.00 |  |  |
+| 2026-08-12 | Gabby Williams | rebounds | over | 2.5 | -102 | 1.0 | +13.6% | 3 | won | +0.98 |  |  |
+| 2026-08-12 | Arike Ogunbowale | threes | under | 1.5 | 148 | 1.0 | +11.3% | 0 | won | +1.48 |  |  |
+| 2026-08-12 | Paige Bueckers | assists | under | 5.5 | 116 | 1.0 | +21.5% | 8 | lost | -1.00 |  |  |
+| 2026-08-12 | Olivia Miles | points | over | 19.5 | -102 | 1.0 | +21.0% | 13 | lost | -1.00 |  |  |
+| 2026-08-12 | Courtney Williams | points | over | 12.5 | -118 | 1.0 | +12.9% | 10 | lost | -1.00 |  |  |
 | 2026-08-11 | Dearica Hamby | points | over | 13.5 | -113 | 1.0 | +21.8% | 19 | won | +0.88 | -4.7% | -7.9% |
 | 2026-08-11 | Sonia Citron | threes | under | 1.5 | -136 | 1.0 | +15.7% | 1 | won | +0.74 | -6.5% | -2.7% |
 | 2026-08-11 | Nneka Ogwumike | points | over | 15.5 | -114 | 1.0 | +10.3% | 18 | won | +0.88 | -2.8% | -5.9% |
