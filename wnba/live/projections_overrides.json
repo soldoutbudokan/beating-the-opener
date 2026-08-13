@@ -2795,7 +2795,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW on the ESPN league + per-event report (401857137) at 0237Z: Rice (Toronto Tempo) Day-To-Day - Ankle. \"Rice (ankle) was injured in Wednesday's game against Dallas and required assistance off the court, Zulfi Sheikh of Sportsnet reports.\" return_date 2026-08-12. Recorded until-cleared because the injury happened tonight and Toronto's next game is not until 2026-08-18 (event 2739) - dating it to a game already played would lose the doubt. Status-only, minutes_est null: 'required assistance off the court' supports doubt, not a minutes number, so this changes no projection and only marks her for the next firings to re-check.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 215
     },
     {
       "player": "Janelle Salaun",
@@ -2820,6 +2820,19 @@
       "source": "avail:2026-08-13/0237Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "DOWNGRADE in the 0237Z diff: Leite (Portland Fire) Day-To-Day -> Out, type Knee. \"Leite (knee) is listed as out for Wednesday's game versus the Lynx.\" Confirmed on the per-event report for MIN@POR (401857139). return_date 2026-08-12. Wednesday = 2026-08-12 ET (10:00 PM ET tip, game in progress); minutes_est 0 for that game. Supersedes the 2026-08-12/0033Z questionable entry. Not carried forward - the return_date is today and Portland's next game is 2026-08-14 (event 2731) - but she has now been listed Out or Day-To-Day continuously since 2026-08-09, so later firings should re-check before pricing her.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kiki Rice",
+      "added": "2026-08-13T05:41:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/0540Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report at 0540Z downgrades Rice (Toronto Tempo) Day-To-Day -> Out - Ankle, comment \"out\", return_date 2026-08-18; the per-event report for 401857137 (TOR@DAL, 2026-08-12 ET) carries the same Out - Ankle. Supersedes entry 212 (questionable, until-cleared). Dated 2026-08-12 rather than until-cleared: that game is already FINAL, so minutes_est 0 touches no priced slate, and Toronto's next game IS her return date 2026-08-18 (event 2739), so a forward 0-minute clamp is not sourced. Toronto is not on the 2026-08-13 slate (events 2727 CON, 2728 NYL, 2729 LVA). Re-check before 08-18.",
       "author": "news-watch",
       "superseded_by": null
     }
