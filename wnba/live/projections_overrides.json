@@ -2548,7 +2548,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report (Rest, return 2026-08-14): 'Okonkwo (rest) has been ruled out for Wednesday's game against the Lynx.' Confirmed on the per-event report for MIN@PDX (401857139).",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 226
     },
     {
       "player": "Haley Jones",
@@ -2574,7 +2574,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report (Knee, return 2026-08-13): 'Griner (knee) is questionable for Thursday's game against Atlanta.' Thursday = 2026-08-13 ATL@CON. Status-only: no minutes estimate, so this changes no projection - it records the doubt without manufacturing an edge either way.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 227
     },
     {
       "player": "Julie Allemand",
@@ -2613,7 +2613,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Dropped off the ESPN league injury report between the 2026-08-12 05:41Z and 23:33Z snapshots (CLEARED in the avail_watch diff), i.e. no longer listed with any designation. Status-only, no minutes estimate: it lifts a stale out rather than asserting a role. Supersedes the 2026-08-12 out entry.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 222
     },
     {
       "player": "Alysha Clark",
@@ -2652,7 +2652,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Dropped off the ESPN league injury report between the 2026-08-12 05:41Z and 23:33Z snapshots (CLEARED in the avail_watch diff), i.e. no longer listed with any designation. Status-only, no minutes estimate: it lifts a stale out rather than asserting a role. Supersedes the until-cleared out entry of 2026-08-10 - that one had game_date null and was still active, so clearing it matters.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 223
     },
     {
       "player": "Raegan Beers",
@@ -2821,7 +2821,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "DOWNGRADE in the 0237Z diff: Leite (Portland Fire) Day-To-Day -> Out, type Knee. \"Leite (knee) is listed as out for Wednesday's game versus the Lynx.\" Confirmed on the per-event report for MIN@POR (401857139). return_date 2026-08-12. Wednesday = 2026-08-12 ET (10:00 PM ET tip, game in progress); minutes_est 0 for that game. Supersedes the 2026-08-12/0033Z questionable entry. Not carried forward - the return_date is today and Portland's next game is 2026-08-14 (event 2731) - but she has now been listed Out or Day-To-Day continuously since 2026-08-09, so later firings should re-check before pricing her.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 225
     },
     {
       "player": "Kiki Rice",
@@ -2911,6 +2911,84 @@
       "source": "avail:2026-08-13/2138Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report (snapshot 2138Z / 17:38 ET): CLEARED, was Out. Prior row was a Coach's Decision DNP for Tuesday's (8/11) IND-NY game with return_date 2026-08-14; the row has now dropped off the report. Deep-bench role - logged as in with no minutes estimate.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Alissa Pili",
+      "added": "2026-08-13T23:40:00Z",
+      "game_date": "2026-08-13",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/2340Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW Out (Coach's Decision), LAS: \"Pili (coach's decision) has been ruled out for Thursday's game against the Liberty.\" Confirmed in the per-event report for LA@NY (event 401857141). Zeroes her tonight.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ashlon Jackson",
+      "added": "2026-08-13T23:40:00Z",
+      "game_date": "2026-08-13",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/2340Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW Out (Coach's Decision), CON: \"Jackson (coach's decision) is out for Thursday's game against Atlanta.\" Confirmed in the per-event report for ATL@CON (event 401857140). Zeroes her tonight.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Brionna Jones",
+      "added": "2026-08-13T23:40:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/2340Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW Out (Leg), ATL, from the per-event report for ATL@CON (event 401857140), return_date 2026-08-16. Left until-cleared (game_date null) rather than tonight-only because the feed's own return date is three days out - the conservative direction, since it only blocks pricing an absent starter.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Carla Leite",
+      "added": "2026-08-13T23:40:00Z",
+      "game_date": "2026-08-14",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/2340Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPDATED Out -> Day-To-Day (Knee), POR: \"Leite (knee) is questionable for Friday's game against the Storm, Sean Highkin of RoseGardenReport.com reports.\" Status-only entry: an upgrade to questionable is not evidence for a minutes level, so no minutes_est is claimed. Supersedes the 08-12 out.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Amy Okonkwo",
+      "added": "2026-08-13T23:40:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/2340Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED (was Out - Rest, POR, for Wednesday's game vs the Lynx). She has dropped off the league report and Portland's next game is 08-14; the rest day was game-specific, so the out is retired without claiming a minutes level.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Brittney Griner",
+      "added": "2026-08-13T23:40:00Z",
+      "game_date": "2026-08-13",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/2340Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED (was Day-To-Day - Knee, CON, \"questionable for Thursday's game against Atlanta\"). She has dropped off both the league and the ATL@CON per-event report ahead of tonight's tip, so the questionable is retired. No minutes claim - the panel's own state is the estimate.",
       "author": "news-watch",
       "superseded_by": null
     }
