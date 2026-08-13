@@ -2574,7 +2574,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report (Knee, return 2026-08-13): 'Griner (knee) is questionable for Thursday's game against Atlanta.' Thursday = 2026-08-13 ATL@CON. Status-only: no minutes estimate, so this changes no projection - it records the doubt without manufacturing an edge either way.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 223
     },
     {
       "player": "Julie Allemand",
@@ -2652,7 +2652,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Dropped off the ESPN league injury report between the 2026-08-12 05:41Z and 23:33Z snapshots (CLEARED in the avail_watch diff), i.e. no longer listed with any designation. Status-only, no minutes estimate: it lifts a stale out rather than asserting a role. Supersedes the until-cleared out entry of 2026-08-10 - that one had game_date null and was still active, so clearing it matters.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 222
     },
     {
       "player": "Raegan Beers",
@@ -2911,6 +2911,32 @@
       "source": "avail:2026-08-13/2138Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report (snapshot 2138Z / 17:38 ET): CLEARED, was Out. Prior row was a Coach's Decision DNP for Tuesday's (8/11) IND-NY game with return_date 2026-08-14; the row has now dropped off the report. Deep-bench role - logged as in with no minutes estimate.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ashlon Jackson",
+      "added": "2026-08-13T22:43:00Z",
+      "game_date": "2026-08-13",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/2243Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Jackson (coach's decision) is out for Thursday's game against Atlanta. NEW in the 2243Z diff (entry 201 had her cleared/in); Connecticut hosts ATL tonight.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Brittney Griner",
+      "added": "2026-08-13T22:43:00Z",
+      "game_date": "2026-08-13",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/2243Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2243Z diff - Griner (knee) dropped off the injury report after being Day-To-Day for Thursday's game against Atlanta. Supersedes the questionable entry; no minutes estimate imposed.",
       "author": "news-watch",
       "superseded_by": null
     }
