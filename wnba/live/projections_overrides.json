@@ -1317,7 +1317,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED: dropped from both the league report and the IND@CHI per-event report between the 1533Z and 0133Z snapshots, while the Out entries on the same event report (Hall, Onyiah, Westbeld) persisted - so a genuine clearance, not a feed dropout. Removes the Day-To-Day flag; no minutes injected, the panel already carries her role.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 217
     },
     {
       "player": "Caitlin Clark",
@@ -2314,7 +2314,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 2233Z CLEARS Clark (Indiana) - she was Day-To-Day/Back and listed 'probable for Tuesday's game against the Liberty' at 2034Z, and is absent from the 2233Z report and from the NY@IND per-event report (event 401857134). Supersedes the 2026-08-10/2233Z questionable entry for the same game_date. Upgrade to in, minutes_est left null: the panel's own EW minutes are the right prior for a player who was never ruled out, and this routine does not hand-set minutes on a clearing. Her one row on tonight's sheet (assists under 9.5, NYL@IND) is blocked MOVED_OFF_OPEN and stays blocked - this changes no price.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 218
     },
     {
       "player": "Grace VanSlooten",
@@ -2366,7 +2366,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 2233Z adds Hall (Indiana) Out - Coach's Decision, comment \"Hall (coach's) decision) is out for Tuesday's game against the Liberty\", return_date 2026-08-14, corroborated by the per-event report (401857134). Supersedes the 2026-08-10/2233Z in entry for the same game_date. Targets NYL@IND (2026-08-11 ET, event 2721). minutes_est 0. She carries no row on the current sheet; the IND rows (Caitlin Clark, Kelsey Mitchell, Aliyah Boston) are priced without re-allocating her minutes, and she is a low-minute reserve. Note the pattern: this is the third coach's-decision flip on Hall in six days (out 08-06, in 08-08, out 08-08, in 08-10, out now) - her role is unsettled, which is exactly the situation the talent model is slow on.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 219
     },
     {
       "player": "Michelle Onyiah",
@@ -2379,7 +2379,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 2233Z adds Onyiah (Indiana) Out - Coach's Decision, comment \"Onyiah (coach's decision) has been ruled out for Tuesday's game against the Liberty\", return_date 2026-08-14, corroborated by the per-event report (401857134). Supersedes the 2026-08-10/2233Z in entry for the same game_date. Targets NYL@IND (2026-08-11 ET, event 2721). minutes_est 0. No row on the current sheet; low-minute reserve, no usage re-allocation is made.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 221
     },
     {
       "player": "Julie Allemand",
@@ -2561,7 +2561,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league + per-event (TOR@DAL, 401857137) injury report: Out, type Coach's Decision, return 2026-08-14. A Coach's Decision Out counts as Out under the v3 T3 rule.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 220
     },
     {
       "player": "Brittney Griner",
@@ -2846,6 +2846,71 @@
       "source": "avail:2026-08-13/1506Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Status carried forward, not a diff event: the 1506Z snapshot still lists Fudd (Dallas) Out - Knee, but the comment scopes it to a COMPLETED game (\"Fudd (knee) is out for Wednesday's game against Toronto\" = TOR@DAL, 2026-08-12 ET, event:401857137 STATUS_FINAL), and return_date is 2026-08-14 - the date of DAL@IND (event 2730), the game the sheet prices. Because the Out row has persisted unchanged since 2026-08-09, avail_watch's status diff has been empty every firing since, so no entry has been written for the return game; entry 115 (out/0) stays as the record of 08-09 and is not superseded (same treatment as the Alysha Clark 08-05 entry). Recorded as questionable with minutes_est null: the feed says returning, not playing, and this routine does not hand-set minutes on a return. DELIBERATELY INERT for pricing (fp_live moves a projection only on status 'out' or an explicit minutes number) - Fudd's threes OVER 1.5 stays play=True at the model's 2.42 and is FLAGGED, not filtered, per the 2026-08-08 'flag, don't fix' direction. OWNER: this is a knee return off four missed games priced as a full-load shooter; a minutes-limited return is the obvious failure mode for an over, and the talent model is slow on exactly that. Confirm she is in the lineup near tip before taking it.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Aliyah Boston",
+      "added": "2026-08-13T21:38:00Z",
+      "game_date": "2026-08-14",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report (snapshot 2138Z / 17:38 ET): NEW Day-To-Day, Lower Leg - \"Boston is probable for Friday's game against the Wings due to a lower right leg injury.\" Probable, not a scratch: logged as questionable with NO minutes estimate, so the row records the downgrade and changes no projection. IND does not play tonight (8/13 slate is ATL@CON, LA@NY, WSH@LV); this targets the 8/14 IND-DAL game.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Caitlin Clark",
+      "added": "2026-08-13T21:38:00Z",
+      "game_date": "2026-08-14",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report (snapshot 2138Z / 17:38 ET): NEW Day-To-Day, Back - \"Clark is probable for Friday's game against the Wings due to a back injury.\" Probable, not a scratch: questionable with NO minutes estimate, so no projection moves. Flagged because live/bets.csv carries an OPEN Clark assists under 9.5 (-110) on the 2026-08-14 IND-DAL game; a back issue cuts toward that side, so this entry deliberately does not manufacture a minutes cut that would favour a bet already held.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Bree Hall",
+      "added": "2026-08-13T21:38:00Z",
+      "game_date": "2026-08-14",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report (snapshot 2138Z / 17:38 ET): CLEARED, was Out. Prior row was a Coach's Decision DNP for Tuesday's (8/11) IND-NY game with return_date 2026-08-14; the row has now dropped off the report. Deep-bench role - logged as in with no minutes estimate.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Haley Jones",
+      "added": "2026-08-13T21:38:00Z",
+      "game_date": "2026-08-14",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report (snapshot 2138Z / 17:38 ET): CLEARED, was Out (Dallas Wings, Coach's Decision, return_date 2026-08-14). Row dropped off the report. Logged as in with no minutes estimate; DAL plays IND on 8/14.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Michelle Onyiah",
+      "added": "2026-08-13T21:38:00Z",
+      "game_date": "2026-08-14",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report (snapshot 2138Z / 17:38 ET): CLEARED, was Out. Prior row was a Coach's Decision DNP for Tuesday's (8/11) IND-NY game with return_date 2026-08-14; the row has now dropped off the report. Deep-bench role - logged as in with no minutes estimate.",
       "author": "news-watch",
       "superseded_by": null
     }
