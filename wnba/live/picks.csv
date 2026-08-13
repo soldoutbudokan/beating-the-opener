@@ -2,10 +2,10 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2731_points_dominique malonga_under,2026-08-14,2026-08-15 02:00:00,2731,points,Dominique Malonga,SEA,PDX@SEA,under,20.5,-115.0,0.6624,0.2384,True,-180,-166,3.5,17.87,,20.5,,True,False
 2731_points_emily engstler_under,2026-08-14,2026-08-15 02:00:00,2731,points,Emily Engstler,PDX,PDX@SEA,under,9.5,-106.0,0.6213,0.2074,True,-152,-141,3.0,8.33,,9.5,,True,False
 2729_assists_chelsea gray_over,2026-08-13,2026-08-14 02:00:00,2729,assists,Chelsea Gray,LVA,WAS@LVA,over,6.5,118.0,0.5489,0.1966,True,-114,-107,2.0,6.97,,6.5,,False,True
-2729_rebounds_jackie young_over,2026-08-13,2026-08-14 02:00:00,2729,rebounds,Jackie Young,LVA,WAS@LVA,over,4.5,120.0,0.5334,0.1735,True,-107,-101,2.0,4.89,,4.5,,False,True
+2729_rebounds_jackie young_over,2026-08-13,2026-08-14 02:00:00,2729,rebounds,Jackie Young,LVA,WAS@LVA,over,4.5,122.0,0.5334,0.1842,True,-107,-101,2.0,4.89,,4.5,,False,True
 2730_points_makayla timpson_under,2026-08-14,2026-08-14 23:30:00,2730,points,Makayla Timpson,IND,DAL@IND,under,6.5,-108.0,0.6082,0.1714,True,-144,-134,2.5,5.75,,6.5,ROLE_START?,True,False
+2729_threes_aja wilson_under,2026-08-13,2026-08-14 02:00:00,2729,threes,A'ja Wilson,LVA,WAS@LVA,under,0.5,178.0,0.4197,0.1666,True,146,153,1.0,0.87,,0.5,,False,True
 2730_assists_paige bueckers_under,2026-08-14,2026-08-14 23:30:00,2730,assists,Paige Bueckers,DAL,DAL@IND,under,6.5,-146.0,0.6893,0.1613,True,-202,-185,3.0,5.34,,6.5,,True,False
-2729_threes_aja wilson_under,2026-08-13,2026-08-14 02:00:00,2729,threes,A'ja Wilson,LVA,WAS@LVA,under,0.5,174.0,0.4197,0.1499,True,146,153,1.0,0.87,,0.5,,False,True
 2730_threes_azzi fudd_over,2026-08-14,2026-08-14 23:30:00,2730,threes,Azzi Fudd,DAL,DAL@IND,over,1.5,-154.0,0.6963,0.1485,True,-208,-191,3.0,2.42,,1.5,,True,False
 2731_assists_bridget carleton_under,2026-08-14,2026-08-15 02:00:00,2731,assists,Bridget Carleton,PDX,PDX@SEA,under,2.5,-114.0,0.6116,0.1481,True,-146,-136,2.0,2.16,,2.5,,True,False
 2730_assists_caitlin clark_under,2026-08-14,2026-08-14 23:30:00,2730,assists,Caitlin Clark,IND,DAL@IND,under,9.5,-110.0,0.599,0.1436,True,-138,-129,2.0,8.8,,9.5,,True,False
