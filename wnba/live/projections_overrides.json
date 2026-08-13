@@ -1,5 +1,5 @@
 {
-  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
   "entries": [
     {
       "player": "DiJonai Carrington",
@@ -2795,7 +2795,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW on the ESPN league + per-event report (401857137) at 0237Z: Rice (Toronto Tempo) Day-To-Day - Ankle. \"Rice (ankle) was injured in Wednesday's game against Dallas and required assistance off the court, Zulfi Sheikh of Sportsnet reports.\" return_date 2026-08-12. Recorded until-cleared because the injury happened tonight and Toronto's next game is not until 2026-08-18 (event 2739) - dating it to a game already played would lose the doubt. Status-only, minutes_est null: 'required assistance off the court' supports doubt, not a minutes number, so this changes no projection and only marks her for the next firings to re-check.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 215
     },
     {
       "player": "Janelle Salaun",
@@ -2820,6 +2820,19 @@
       "source": "avail:2026-08-13/0237Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "DOWNGRADE in the 0237Z diff: Leite (Portland Fire) Day-To-Day -> Out, type Knee. \"Leite (knee) is listed as out for Wednesday's game versus the Lynx.\" Confirmed on the per-event report for MIN@POR (401857139). return_date 2026-08-12. Wednesday = 2026-08-12 ET (10:00 PM ET tip, game in progress); minutes_est 0 for that game. Supersedes the 2026-08-12/0033Z questionable entry. Not carried forward - the return_date is today and Portland's next game is 2026-08-14 (event 2731) - but she has now been listed Out or Day-To-Day continuously since 2026-08-09, so later firings should re-check before pricing her.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kiki Rice",
+      "added": "2026-08-13T04:39:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/0439Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report: Kiki Rice (Toronto Tempo) downgraded Day-To-Day -> Out (Ankle), return_date 2026-08-18. Supersedes the 0237Z questionable entry from the same feed; until-cleared (game_date null) because the report carries a multi-day return date, and a later CLEARED/upgrade diff supersedes this in turn.",
       "author": "news-watch",
       "superseded_by": null
     }
