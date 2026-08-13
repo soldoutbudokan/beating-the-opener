@@ -14,6 +14,12 @@ stdlib only). Three tabs:
   and the retired opener-anchored WNBA era. Old `#soccer` / `#wnba` hash
   links are aliased to the new tabs by the page's JS.
 
+The masthead has a light/dark toggle (top right). It stamps `data-theme` on
+`<html>` — the same attribute every colour token block is scoped to — and
+persists the choice in `localStorage` (`theme`); with no stored choice the
+page follows `prefers-color-scheme`. A tiny head script applies the stored
+choice before first paint so there is no flash of the wrong theme.
+
 ```
 python3 site/build_site.py                 # -> docs/index.html
 python3 site/build_site.py --fragment /tmp/x.html   # body-only copy
