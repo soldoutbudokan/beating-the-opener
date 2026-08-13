@@ -10,23 +10,31 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 90 (47W-43L), 0 push, 2 void, 12 open |
+| settled | 90 (47W-43L), 0 push, 2 void, 20 open |
 | staked | $90.00 |
 | P&L | $+3.69 (+4.1% ROI) |
 | mean EV said (model) | +23.42% (n=90) |
-| mean CLV (vs close) | -4.34% (n=84) |
-| mean CLV* (shade-adj) | -3.07% (n=84) |
-| closing line moved | 16 of 84 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| mean CLV (vs close) | -4.46% (n=90) |
+| mean CLV* (shade-adj) | -3.38% (n=90) |
+| closing line moved | 16 of 90 stamped (the rest closed at the bet line: CLV ≈ vig there) |
 | model calibration | expected 56.2W vs observed 47W (z=-2.04) |
 | Model-expected P&L | $+21.53 |
-| CLV-expected P&L | $-3.65 |
+| CLV-expected P&L | $-4.01 |
 
-CLV t-stat: -4.52 (iid); -2.78 clustered by match date (13 dates)
+CLV t-stat: -4.86 (iid); -2.68 clustered by match date (13 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-08-13 | Chelsea Gray | assists | over | 6.5 | 118 | 1.0 | +19.6% |  |  |  |  |  |
+| 2026-08-13 | Rae Burrell | points | under | 15.5 | -114 | 1.0 | +19.4% |  |  |  |  |  |
+| 2026-08-13 | Jackie Young | rebounds | over | 4.5 | 122 | 1.0 | +18.3% |  |  |  |  |  |
+| 2026-08-13 | Pauline Astier | points | over | 7.5 | -114 | 1.0 | +17.7% |  |  |  |  |  |
+| 2026-08-13 | A'ja Wilson | threes | under | 0.5 | 178 | 1.0 | +16.6% |  |  |  |  |  |
+| 2026-08-13 | Angel Reese | points | under | 17.5 | -122 | 1.0 | +13.4% |  |  |  |  |  |
+| 2026-08-13 | Jordin Canada | assists | under | 8.5 | -136 | 1.0 | +12.9% |  |  |  |  |  |
+| 2026-08-13 | Diamond Miller | threes | over | 1.5 | 162 | 1.0 | +11.6% |  |  |  |  |  |
 | 2026-08-12 | Courtney Vandersloot | points | under | 9.5 | -120 | 1.0 | +22.7% |  |  |  |  |  |
 | 2026-08-12 | Kayla McBride | points | over | 15.5 | -114 | 1.0 | +21.6% |  |  |  |  |  |
 | 2026-08-12 | Nyara Sabally | points | under | 13.5 | -114 | 1.0 | +20.6% |  |  |  |  |  |
@@ -39,13 +47,13 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-12 | Paige Bueckers | assists | under | 5.5 | 116 | 1.0 | +21.5% |  |  |  |  |  |
 | 2026-08-12 | Olivia Miles | points | over | 19.5 | -102 | 1.0 | +21.0% |  |  |  |  |  |
 | 2026-08-12 | Courtney Williams | points | over | 12.5 | -118 | 1.0 | +12.9% |  |  |  |  |  |
-| 2026-08-11 | Dearica Hamby | points | over | 13.5 | -113 | 1.0 | +21.8% | 19 | won | +0.88 |  |  |
-| 2026-08-11 | Sonia Citron | threes | under | 1.5 | -136 | 1.0 | +15.7% | 1 | won | +0.74 |  |  |
-| 2026-08-11 | Nneka Ogwumike | points | over | 15.5 | -114 | 1.0 | +10.3% | 18 | won | +0.88 |  |  |
-| 2026-08-11 | Dearica Hamby | rebounds | over | 6.5 | -136 | 1.0 | +11.5% | 4 | lost | -1.00 |  |  |
+| 2026-08-11 | Dearica Hamby | points | over | 13.5 | -113 | 1.0 | +21.8% | 19 | won | +0.88 | -4.7% | -7.9% |
+| 2026-08-11 | Sonia Citron | threes | under | 1.5 | -136 | 1.0 | +15.7% | 1 | won | +0.74 | -6.5% | -2.7% |
+| 2026-08-11 | Nneka Ogwumike | points | over | 15.5 | -114 | 1.0 | +10.3% | 18 | won | +0.88 | -2.8% | -5.9% |
+| 2026-08-11 | Dearica Hamby | rebounds | over | 6.5 | -136 | 1.0 | +11.5% | 4 | lost | -1.00 | -20.8% | -25.8% |
 | 2026-08-11 | Aliyah Boston | rebounds | under | 8.5 | 114 | 1.0 | +10.2% | 7 | won | +1.14 | -11.3% | -5.2% |
-| 2026-08-11 | Michaela Onyenwere | threes | under | 1.5 | -114 | 1.0 | +21.6% | 0 | won | +0.88 |  |  |
-| 2026-08-11 | A'ja Wilson | rebounds | over | 9.5 | 110 | 1.0 | +13.0% | 13 | won | +1.10 |  |  |
+| 2026-08-11 | Michaela Onyenwere | threes | under | 1.5 | -114 | 1.0 | +21.6% | 0 | won | +0.88 | +1.7% | +5.8% |
+| 2026-08-11 | A'ja Wilson | rebounds | over | 9.5 | 110 | 1.0 | +13.0% | 13 | won | +1.10 | -3.6% | -9.7% |
 | 2026-08-10 | Jade Melbourne | points | under | 9.5 | -110 | 1.0 | +16.8% | 9 | won | +0.91 | -19.2% | -16.1% |
 | 2026-08-10 | Rhyne Howard | assists | over | 3.5 | -112 | 1.0 | +11.2% | 7 | won | +0.89 | -6.6% | -9.9% |
 | 2026-08-09 | Cecilia Zandalasini | assists | under | 2.5 | -162 | 1.0 | +33.2% | 2 | won | +0.62 | -8.7% | -6.0% |
