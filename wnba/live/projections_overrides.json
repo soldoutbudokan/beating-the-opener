@@ -2679,6 +2679,58 @@
       "quote": "League injury report at 0041Z UPGRADES Pissott (Las Vegas) Out -> Day-To-Day, type Leg: \"Pissott (leg) is listed as questionable for Thursday's game versus Washington.\" return_date 2026-08-13. Thursday = 2026-08-13 ET, WAS@LVA (event 2729). Supersedes the 2026-08-12/0138Z out/0-minute entry, whose 0-minute clamp is no longer sourced now that the feed calls her questionable. Status-only, minutes_est null: her panel role is a deep-bench 3-14 min except a 25-min outlier on 2026-08-09, so any number here would manufacture an over or an under out of a leg-injury question. Records the doubt, changes no projection.",
       "author": "news-watch",
       "superseded_by": null
+    },
+    {
+      "player": "Elena Buenavida",
+      "added": "2026-08-13T01:33:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/0133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report at 0133Z adds Buenavida (Minnesota Lynx) Out - Coach's Decision: \"Buenavida (coach's decision) is listed as out for Wednesday's game against Portland.\" return_date 2026-08-15. Confirmed on the per-event report for MIN@POR (401857139). Wednesday = 2026-08-12 ET (10:00 PM ET tip). A Coach's Decision Out counts as Out under the v3 T3 rule; minutes_est 0.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Liatu King",
+      "added": "2026-08-13T01:33:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/0133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report at 0133Z adds King (Minnesota Lynx) Out - Coach's Decision: \"King (coach's decision) won't play Wednesday against the Fire.\" return_date 2026-08-15. Confirmed on the per-event report for MIN@POR (401857139). Wednesday = 2026-08-12 ET; minutes_est 0. Her 2026-08-09 until-cleared 'in' entry is status-only and stays as history.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Maddy Westbeld",
+      "added": "2026-08-13T01:33:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/0133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report at 0133Z adds Westbeld (Chicago Sky) Out - Coach's Decision: \"Westbeld (coach's decision) is listed as out for Wednesday's game versus Golden State.\" return_date 2026-08-16. Confirmed on the per-event report for CHI@GS (401857138). Wednesday = 2026-08-12 ET; minutes_est 0. Dated to this game only - the 2026-08-12/0033Z until-cleared 'in' entry is status-only and carries no minutes, so nothing is edited or deleted.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Miela Sowah",
+      "added": "2026-08-13T01:33:00Z",
+      "game_date": "2026-08-12",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-13/0133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN per-event injury report for CHI@GS (401857138) at 0133Z adds Sowah (Golden State Valkyries) Out - Coach's Decision, return_date 2026-08-17. Wednesday = 2026-08-12 ET; minutes_est 0. Dated to this game only - the 2026-08-12/0033Z until-cleared 'in' entry is status-only and carries no minutes.",
+      "author": "news-watch",
+      "superseded_by": null
     }
   ]
 }

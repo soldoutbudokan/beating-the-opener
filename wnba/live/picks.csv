@@ -1,10 +1,9 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2729_assists_chelsea gray_over,2026-08-13,2026-08-14 02:00:00,2729,assists,Chelsea Gray,LVA,WAS@LVA,over,6.5,122.0,0.5488,0.2183,True,-114,-107,2.5,6.97,,6.5,,False,True
-2727_points_rhyne howard_under,2026-08-13,2026-08-13 23:00:00,2727,points,Rhyne Howard,ATL,ATL@CON,under,17.5,-102.0,0.6034,0.195,True,-141,-132,0.0,16.1,,17.5,MOVED_OFF_OPEN,False,False
-2728_points_rae burrell_under,2026-08-13,2026-08-14 00:00:00,2728,points,Rae Burrell,LAS,LAS@NYL,under,15.5,-114.0,0.6357,0.1934,True,-161,-149,3.0,13.67,,15.5,,False,True
-2728_points_pauline astier_over,2026-08-13,2026-08-14 00:00:00,2728,points,Pauline Astier,NYL,LAS@NYL,over,7.5,-113.0,0.6268,0.1815,True,-155,-144,2.5,9.65,,7.5,,False,True
-2729_threes_aja wilson_under,2026-08-13,2026-08-14 02:00:00,2729,threes,A'ja Wilson,LVA,WAS@LVA,under,0.5,178.0,0.4194,0.166,True,146,153,1.0,0.87,,0.5,,False,True
-2729_rebounds_jackie young_over,2026-08-13,2026-08-14 02:00:00,2729,rebounds,Jackie Young,LVA,WAS@LVA,over,4.5,118.0,0.5334,0.1627,True,-107,-101,2.0,4.89,,4.5,,False,True
-2727_assists_jordin canada_under,2026-08-13,2026-08-13 23:00:00,2727,assists,Jordin Canada,ATL,ATL@CON,under,8.5,-136.0,0.65,0.1279,True,-171,-158,2.5,7.45,,8.5,,False,True
-2727_rebounds_angel reese_under,2026-08-13,2026-08-13 23:00:00,2727,rebounds,Angel Reese,ATL,ATL@CON,under,13.5,-136.0,0.6437,0.1171,True,-166,-154,0.0,12.11,,13.5,PLAYER_ALREADY_BET(points under 17.5),False,False
-2727_threes_diamond miller_over,2026-08-13,2026-08-13 23:00:00,2727,threes,Diamond Miller,CON,ATL@CON,over,1.5,162.0,0.4258,0.1156,True,142,149,1.0,1.45,,1.5,,False,True
+2729_assists_chelsea gray_over,2026-08-13,2026-08-14 02:00:00,2729,assists,Chelsea Gray,LVA,WAS@LVA,over,6.5,118.0,0.5492,0.1971,True,-114,-107,2.0,6.97,,6.5,,False,True
+2727_points_rhyne howard_under,2026-08-13,2026-08-13 23:00:00,2727,points,Rhyne Howard,ATL,ATL@CON,under,17.5,-102.0,0.6038,0.1957,True,-141,-132,0.0,16.09,,17.5,MOVED_OFF_OPEN,False,False
+2729_rebounds_jackie young_over,2026-08-13,2026-08-14 02:00:00,2729,rebounds,Jackie Young,LVA,WAS@LVA,over,4.5,120.0,0.5336,0.174,True,-107,-101,2.0,4.89,,4.5,,False,True
+2729_threes_aja wilson_under,2026-08-13,2026-08-14 02:00:00,2729,threes,A'ja Wilson,LVA,WAS@LVA,under,0.5,178.0,0.4196,0.1664,True,146,153,1.0,0.87,,0.5,,False,True
+2727_assists_jordin canada_under,2026-08-13,2026-08-13 23:00:00,2727,assists,Jordin Canada,ATL,ATL@CON,under,8.5,-136.0,0.6496,0.1273,True,-170,-158,2.0,7.46,,8.5,,False,True
+2727_rebounds_angel reese_under,2026-08-13,2026-08-13 23:00:00,2727,rebounds,Angel Reese,ATL,ATL@CON,under,13.5,-136.0,0.6433,0.1164,True,-166,-154,0.0,12.12,,13.5,PLAYER_ALREADY_BET(points under 17.5),False,False
+2727_threes_diamond miller_over,2026-08-13,2026-08-13 23:00:00,2727,threes,Diamond Miller,CON,ATL@CON,over,1.5,162.0,0.4256,0.1151,True,143,150,1.0,1.45,,1.5,,False,True
+2728_points_sabrina ionescu_under,2026-08-13,2026-08-14 00:00:00,2728,points,Sabrina Ionescu,NYL,LAS@NYL,under,18.5,-108.0,0.5751,0.1076,True,-126,-118,1.5,17.55,,18.5,,True,False
