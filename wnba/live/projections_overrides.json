@@ -2106,7 +2106,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report downgrade at 0037Z: Seattle's Katie Lou Samuelson goes Day-To-Day (Knee) -> OUT (Knee) ahead of CHI@SEA (2026-08-10 ET). Supersedes the 2026-08-10 questionable entry.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 229
     },
     {
       "player": "Ezi Magbegor",
@@ -2639,7 +2639,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Dropped off the ESPN league injury report between the 2026-08-12 05:41Z and 23:33Z snapshots (CLEARED in the avail_watch diff), i.e. no longer listed with any designation. Status-only, no minutes estimate: it lifts a stale out rather than asserting a role. Supersedes the 2026-08-11 out entry.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 228
     },
     {
       "player": "Ashlon Jackson",
@@ -2989,6 +2989,32 @@
       "source": "avail:2026-08-13/2340Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED (was Day-To-Day - Knee, CON, \"questionable for Thursday's game against Atlanta\"). She has dropped off both the league and the ATL@CON per-event report ahead of tonight's tip, so the questionable is retired. No minutes claim - the panel's own state is the estimate.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Anneli Maley",
+      "added": "2026-08-14T00:46:00Z",
+      "game_date": "2026-08-14",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/0046Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW Out (Coach's Decision), NYL, on both the league report and the per-event report for event 401857141: \"Maley (coach's decision) has been ruled out for Thursday's game against Los Angeles.\" Ruled out, so minutes 0 for the 2026-08-14 ET game. Supersedes the 08-12 in entry (idx 200).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Katie Lou Samuelson",
+      "added": "2026-08-14T00:46:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/0046Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED (was Out - Knee, SEA, \"listed as out for Monday's game versus Chicago\", return_date 2026-08-14). She has dropped off the ESPN league injury report entirely between the 2026-08-13 2340Z and 2026-08-14 0046Z snapshots, so the stale out is lifted. Status-only, no minutes claim: coming off a knee absence, the panel state is the estimate. Supersedes the 08-11 out entry (idx 159).",
       "author": "news-watch",
       "superseded_by": null
     }
