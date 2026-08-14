@@ -2639,7 +2639,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Dropped off the ESPN league injury report between the 2026-08-12 05:41Z and 23:33Z snapshots (CLEARED in the avail_watch diff), i.e. no longer listed with any designation. Status-only, no minutes estimate: it lifts a stale out rather than asserting a role. Supersedes the 2026-08-11 out entry.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 228
     },
     {
       "player": "Ashlon Jackson",
@@ -2847,7 +2847,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Status carried forward, not a diff event: the 1506Z snapshot still lists Fudd (Dallas) Out - Knee, but the comment scopes it to a COMPLETED game (\"Fudd (knee) is out for Wednesday's game against Toronto\" = TOR@DAL, 2026-08-12 ET, event:401857137 STATUS_FINAL), and return_date is 2026-08-14 - the date of DAL@IND (event 2730), the game the sheet prices. Because the Out row has persisted unchanged since 2026-08-09, avail_watch's status diff has been empty every firing since, so no entry has been written for the return game; entry 115 (out/0) stays as the record of 08-09 and is not superseded (same treatment as the Alysha Clark 08-05 entry). Recorded as questionable with minutes_est null: the feed says returning, not playing, and this routine does not hand-set minutes on a return. DELIBERATELY INERT for pricing (fp_live moves a projection only on status 'out' or an explicit minutes number) - Fudd's threes OVER 1.5 stays play=True at the model's 2.42 and is FLAGGED, not filtered, per the 2026-08-08 'flag, don't fix' direction. OWNER: this is a knee return off four missed games priced as a full-load shooter; a minutes-limited return is the obvious failure mode for an over, and the talent model is slow on exactly that. Confirm she is in the lineup near tip before taking it.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 232
     },
     {
       "player": "Aliyah Boston",
@@ -2989,6 +2989,71 @@
       "source": "avail:2026-08-13/2340Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED (was Day-To-Day - Knee, CON, \"questionable for Thursday's game against Atlanta\"). She has dropped off both the league and the ATL@CON per-event report ahead of tonight's tip, so the questionable is retired. No minutes claim - the panel's own state is the estimate.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Anneli Maley",
+      "added": "2026-08-14T01:41:00Z",
+      "game_date": "2026-08-13",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/0140Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0140Z diff: 'Maley (coach's decision) has been ruled out for Thursday's game against Los Angeles.' Confirmed by both the league report and the per-event report for LA@NY (event 401857141). A Coach's Decision Out counts as Out per the 2026-08-08 amendments. Supersedes the 2026-08-12 until-cleared 'in' entry (index 200); date-scoped to the 2026-08-13 ET game, so it does not project onto NY's next game.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Sabrina Ionescu",
+      "added": "2026-08-14T01:41:00Z",
+      "game_date": null,
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/0140Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0140Z diff, Day-To-Day (Ankle): 'Ionescu (ankle) went to the locker room in the third quarter of Thursday's game against the Sparks' (Jackie Powell, The IX Sports). In-game injury, still unfolding - the lineup feed has her as a starter with no DNP, so tonight's open under 18.5 points bet is already live and untouched by this. Recorded until cleared with NO minutes estimate: the timeline is unknown and inventing one would manufacture an under on NY's next game rather than remove a stale projection. NY is not on the 2026-08-14 sheet, so this is currently inert and exists to flag her before the next NY slate.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Katie Lou Samuelson",
+      "added": "2026-08-14T01:41:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/0140Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 0140Z diff (was Out, knee). The 2340Z snapshot carried 'Samuelson (knee) is listed as out for Monday's game versus Chicago' with return_date 2026-08-14; she has now dropped off the Seattle Storm report entirely, which is coherent with a return for SEA's 2026-08-14 game (SEA@PDX). Recorded as available with NO minutes estimate: a returning player's true minutes are unknown, and stamping a number here would actively price a bet rather than remove a stale one. Display/record only - it flags her as a fresh returnee before the SEA slate.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Satou Sabally",
+      "added": "2026-08-14T01:41:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "ESPN news API [news_watch 2026-08-14T01:41Z]",
+      "url": "https://www.espn.com/wnba/",
+      "quote": "'Liberty's Sabally stepping away from team to deal with head injury' (published 2026-08-14T00:38Z): 'Satou Sabally, who hasn't played since suffering a concussion in June, will take time away from the team as she recovers from a head injury.' Out until cleared. Largely belt-and-braces - her last panel game is from June, so the 14-day STALE_PLAYER gate already blocks any NY prop on her - but the absence is now open-ended and explicit, so it is recorded rather than left to a gate.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Azzi Fudd",
+      "added": "2026-08-14T01:41:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/0140Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Dallas Wings report: Out (Knee), return_date 2026-08-17 - i.e. out through the 2026-08-14 DAL@IND game. Caught OUTSIDE the avail_watch diff: she has read Out since the 2026-08-13 15:06Z snapshot, and the diff keys on status, so an Out->Out row whose return_date slipped from 2026-08-14 to 2026-08-17 raised no NEW/UPDATED line. Supersedes index 216, which recorded her as 'questionable' for 2026-08-14 while the same feed already said Out. Mechanically inert for pricing (216 carried no minutes estimate and Fudd has no prop on the 2026-08-14 sheet); recorded so the file matches the feed and so DAL's absences are legible next to the ROLE_MIN? flag on Alanna Smith in that same game.",
       "author": "news-watch",
       "superseded_by": null
     }
