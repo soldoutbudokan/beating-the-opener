@@ -1,5 +1,5 @@
 {
-  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
   "entries": [
     {
       "player": "DiJonai Carrington",
@@ -2925,7 +2925,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW Out (Coach's Decision), LAS: \"Pili (coach's decision) has been ruled out for Thursday's game against the Liberty.\" Confirmed in the per-event report for LA@NY (event 401857141). Zeroes her tonight.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 244
     },
     {
       "player": "Ashlon Jackson",
@@ -2938,7 +2938,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW Out (Coach's Decision), CON: \"Jackson (coach's decision) is out for Thursday's game against Atlanta.\" Confirmed in the per-event report for ATL@CON (event 401857140). Zeroes her tonight.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 246
     },
     {
       "player": "Brionna Jones",
@@ -3003,7 +3003,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0140Z diff: 'Maley (coach's decision) has been ruled out for Thursday's game against Los Angeles.' Confirmed by both the league report and the per-event report for LA@NY (event 401857141). A Coach's Decision Out counts as Out per the 2026-08-08 amendments. Supersedes the 2026-08-12 until-cleared 'in' entry (index 200); date-scoped to the 2026-08-13 ET game, so it does not project onto NY's next game.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 245
     },
     {
       "player": "Sabrina Ionescu",
@@ -3094,7 +3094,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 0234Z diff (was Day-To-Day, Ankle, New York). Supersedes the 2026-08-14/0140Z questionable entry, which was written mid-game off 'Ionescu (ankle) went to the locker room in the third quarter of Thursday's game against the Sparks'. She has now dropped off the league report and the lineup feed for the completed LA@NY game (ESPN 401857141) has her starter=true with dnp=false, so she played through it. The open under 18.5 points bet on tonight's game (2728) is unaffected either way - it settles from the box score. Recorded as available with NO minutes estimate; NY's next game is 2026-08-15 13:00 ET at Connecticut (event 2732) and nothing here justifies moving her minutes.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 243
     },
     {
       "player": "Shakira Austin",
@@ -3133,7 +3133,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED in the 1715Z diff: Day-To-Day -> Out (Ribs), Los Angeles Sparks, comment 'out', return_date 2026-08-15. Supersedes entry 233 (the 0234Z Day-To-Day written after she left Thursday's game vs New York in the fourth quarter). The status escalates to Out, so it is recorded, but STILL status-only with NO minutes estimate: the feed's return_date is 2026-08-15, which IS LAS's next game (19:30 ET at Washington, event 2733), so this 'Out' most plausibly describes the game she left rather than ruling her out of the next one. A minutes_est of 0 here would manufacture a Brink under on the 08-15 sheet off an expected-return date - the assumption most favourable to a news-driven bet, not least. Kept open-ended (game_date null) so the OUT marker stands until a snapshot clears her or a later firing can date the absence. LAS is not on the 2026-08-14 sheet (DAL@IND, PDX@SEA), so this is inert tonight.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 242
     },
     {
       "player": "Kelsey Plum",
@@ -3145,6 +3145,97 @@
       "source": "avail:2026-08-14/2035Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "The 2035Z snapshot carries no status change (Out, Calf, Phoenix in both the 1933Z and 2035Z captures, so avail_watch printed no NEW/UPDATED/CLEARED line), but the underlying league-report entry was rewritten: comment 'Plum (leg) is listed as out for Tuesday's game against Los Angeles' -> 'Plum (calf) won't play in Sunday's game against Portland, per Annie Costabile of The Athletic', and return_date 2026-08-16 -> 2026-08-22. That is a six-day extension of a known absence, and it outlives the standing marker: entry 172 was dated game_date 2026-08-11, so it had already gone inert for every future slate while she is in fact still out. Recorded open-ended (game_date null) so the OUT marker stands until a snapshot clears her, and supersedes 172. Status-only with NO minutes estimate: a minutes_est of 0 on an until-cleared entry would price every Plum prop through 2026-08-22 as a maximal under, which is the Kelsey Plum failure mode the 2026-08-08 gates exist to stop, not a news edge. PHO is not on the 2026-08-14 sheet (DAL@IND, PDX@SEA); the next Phoenix game is Sunday 2026-08-16 vs Portland, which this covers.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Aaliyah Edwards",
+      "added": "2026-08-14T21:34:00Z",
+      "game_date": "2026-08-15",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/2134Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2134Z diff: Day-To-Day, Ankle, Connecticut Sun, comment \"Edwards (ankle) is questionable for Saturday's game against the Liberty.\", return_date 2026-08-15. That game is NY@CT, 2026-08-15 13:00 ET (event 2732), so the doubt is dated to it. First entry for her. Status-only with NO minutes estimate: a questionable tag on its own shows no reduced role, and a number here would manufacture an Edwards under on the 08-15 sheet off nothing but the designation. Tonight's sheet is DAL@IND and POR@SEA (no CT), so this is inert for 2026-08-14.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Brittney Griner",
+      "added": "2026-08-14T21:34:00Z",
+      "game_date": "2026-08-15",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/2134Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2134Z diff: Day-To-Day, Knee, Connecticut Sun, comment \"Griner (knee) is questionable for Saturday's game against the Liberty.\", return_date 2026-08-15 - i.e. NY@CT, 13:00 ET, event 2732. This is the SAME event as the owner's open Griner points over 11.5 @ -108 bet, so it is the one entry in this batch that touches live exposure; a knee designation on a starting centre is the kind that can cut minutes even when she plays. Recorded status-only with NO minutes estimate anyway: an estimate would move mu on a bet already struck without changing anything about it, and the sheet's job here is to record the doubt, not to re-price a filled position. Entry 227 (\"in\", game_date 2026-08-13) is left standing un-superseded - it correctly described Wednesday's game, which she played, and is history rather than a live marker. Not on tonight's sheet (DAL@IND, POR@SEA).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Cameron Brink",
+      "added": "2026-08-14T21:34:00Z",
+      "game_date": "2026-08-15",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/2134Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPDATED in the 2134Z diff: Out -> Day-To-Day (Ribs), Los Angeles Sparks, comment \"Brink (ribs) is questionable for Saturday's game against the Mystics.\", return_date 2026-08-15. Supersedes entry 238, the open-ended OUT written at 1715Z, and confirms what that entry hedged for: the Out described the game she left, not the next one. The comment now names LAS's next game explicitly (2026-08-15 19:30 ET at Washington, event 2733), so the doubt is dated to it and the until-cleared OUT marker comes off. Status-only with NO minutes estimate - an upgrade to questionable is not evidence of a minutes cap. LAS is not on tonight's sheet (DAL@IND, POR@SEA).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Sabrina Ionescu",
+      "added": "2026-08-14T21:34:00Z",
+      "game_date": "2026-08-15",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/2134Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2134Z diff: Day-To-Day, Foot, New York Liberty, comment \"Ionescu (foot) is listed as questionable for Saturday's game against the Sun.\" (NY@CT, 2026-08-15 13:00 ET, event 2732), return_date 2026-08-15. Supersedes entry 235, the open-ended \"in\" written at 0234Z after she cleared the ankle designation from Thursday's game vs the Sparks - this is a new and different body part, so the clearance no longer describes her. The owner holds an open Ionescu points under 18.5 @ -114 on that same event; the designation is recorded because it is real, but status-only with NO minutes estimate, since inventing a minutes cut here would tilt an already-struck under in the direction the entry itself would favour. Not on tonight's sheet (DAL@IND, POR@SEA).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Alissa Pili",
+      "added": "2026-08-14T21:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/2134Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2134Z diff (was Out, Coach's Decision, Los Angeles Sparks). Supersedes entry 222. This is the ordinary post-game roll-off of a coach's-decision DNP, not a return from injury: the entry it supersedes was dated to the completed 2026-08-13 game (LAS at New York), and that game is over, so the league report simply dropped the row. Recorded as available, open-ended, with NO minutes estimate - nothing here shows a role either way. Los Angeles Sparks next plays 2026-08-15; tonight's sheet is DAL@IND and POR@SEA, so this is inert for 2026-08-14.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Anneli Maley",
+      "added": "2026-08-14T21:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/2134Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2134Z diff (was Out, Coach's Decision, New York Liberty). Supersedes entry 228. This is the ordinary post-game roll-off of a coach's-decision DNP, not a return from injury: the entry it supersedes was dated to the completed 2026-08-13 game (LAS at New York), and that game is over, so the league report simply dropped the row. Recorded as available, open-ended, with NO minutes estimate - nothing here shows a role either way. New York Liberty next plays 2026-08-15; tonight's sheet is DAL@IND and POR@SEA, so this is inert for 2026-08-14.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ashlon Jackson",
+      "added": "2026-08-14T21:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/2134Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2134Z diff (was Out, Coach's Decision, Connecticut Sun). Supersedes entry 223. This is the ordinary post-game roll-off of a coach's-decision DNP, not a return from injury: the entry it supersedes was dated to the completed 2026-08-13 game (Connecticut vs Atlanta), and that game is over, so the league report simply dropped the row. Recorded as available, open-ended, with NO minutes estimate - nothing here shows a role either way. Connecticut Sun next plays 2026-08-15; tonight's sheet is DAL@IND and POR@SEA, so this is inert for 2026-08-14.",
       "author": "news-watch",
       "superseded_by": null
     }
