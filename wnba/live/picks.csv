@@ -1,19 +1,19 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2730_threes_alanna smith_under,2026-08-14,2026-08-14 23:30:00,2730,threes,Alanna Smith,DAL,DAL@IND,under,1.5,-130.0,0.7859,0.3904,True,-321,-286,0.0,0.86,,1.5,MOVED_OFF_OPEN;SUSPECT_EV(39%);ROLE_MIN?,False,False
+2730_threes_alanna smith_under,2026-08-14,2026-08-14 23:30:00,2730,threes,Alanna Smith,DAL,DAL@IND,under,1.5,-132.0,0.7859,0.3812,True,-321,-286,0.0,0.86,,1.5,SUSPECT_EV(38%);ROLE_MIN?,False,False
 2733_threes_rae burrell_under,2026-08-15,2026-08-15 23:30:00,2733,threes,Rae Burrell,LAS,LAS@WAS,under,1.5,148.0,0.5553,0.3772,True,-116,-110,0.0,1.51,,1.5,SUSPECT_EV(38%),False,False
 2734_threes_olivia miles_over,2026-08-15,2026-08-16 00:00:00,2734,threes,Olivia Miles,MIN,MIN@LVA,over,1.5,110.0,0.6394,0.3426,True,-163,-152,0.0,2.18,,1.5,SUSPECT_EV(34%),False,False
 2734_points_kayla mcbride_over,2026-08-15,2026-08-16 00:00:00,2734,points,Kayla McBride,MIN,MIN@LVA,over,16.5,-102.0,0.6694,0.3257,True,-185,-171,0.0,20.05,,16.5,SUSPECT_EV(33%);PLAYER_ALREADY_BET(threes over 2.5),False,False
 2730_rebounds_makayla timpson_under,2026-08-14,2026-08-14 23:30:00,2730,rebounds,Makayla Timpson,IND,DAL@IND,under,5.5,118.0,0.5914,0.2893,True,-134,-126,0.0,5.03,,5.5,MOVED_OFF_OPEN;SUSPECT_EV(29%);ROLE_START?,False,False
-2731_points_emily engstler_under,2026-08-14,2026-08-15 02:00:00,2731,points,Emily Engstler,PDX,PDX@SEA,under,9.5,100.0,0.621,0.2419,True,-151,-141,0.0,8.33,,9.5,MOVED_OFF_OPEN,False,True
-2731_points_dominique malonga_under,2026-08-14,2026-08-15 02:00:00,2731,points,Dominique Malonga,SEA,PDX@SEA,under,19.5,100.0,0.6106,0.2212,True,-145,-135,0.0,17.87,,20.5,MOVED_OFF_OPEN,False,True
+2731_threes_natisha hiedeman_under,2026-08-14,2026-08-15 02:00:00,2731,threes,Natisha Hiedeman,SEA,PDX@SEA,under,1.5,144.0,0.5082,0.2401,True,103,109,0.0,1.65,,1.5,MOVED_OFF_OPEN,False,True
 2730_assists_paige bueckers_under,2026-08-14,2026-08-14 23:30:00,2730,assists,Paige Bueckers,DAL,DAL@IND,under,6.5,-130.0,0.6878,0.2168,True,-200,-184,0.0,5.35,,6.5,MOVED_OFF_OPEN,False,True
+2731_points_emily engstler_under,2026-08-14,2026-08-15 02:00:00,2731,points,Emily Engstler,PDX,PDX@SEA,under,10.5,-132.0,0.6881,0.2093,True,-201,-185,0.0,8.33,,9.5,MOVED_OFF_OPEN,False,True
+2731_points_dominique malonga_under,2026-08-14,2026-08-15 02:00:00,2731,points,Dominique Malonga,SEA,PDX@SEA,under,19.5,-102.0,0.6106,0.2092,True,-145,-135,0.0,17.87,,20.5,MOVED_OFF_OPEN,False,True
 2731_assists_jade melbourne_under,2026-08-14,2026-08-15 02:00:00,2731,assists,Jade Melbourne,SEA,PDX@SEA,under,5.5,-132.0,0.6877,0.2087,True,-200,-184,0.0,4.46,,4.5,MOVED_OFF_OPEN,False,True
 2732_points_sabrina ionescu_under,2026-08-15,2026-08-15 17:00:00,2732,points,Sabrina Ionescu,NYL,NYL@CON,under,18.5,-114.0,0.6315,0.1855,True,-158,-147,2.5,16.56,,18.5,,False,True
 2731_points_bridget carleton_under,2026-08-14,2026-08-15 02:00:00,2731,points,Bridget Carleton,PDX,PDX@SEA,under,16.5,-114.0,0.6314,0.1852,True,-158,-147,0.0,14.68,,16.5,PLAYER_ALREADY_BET(assists under 2.5),False,False
 2730_threes_arike ogunbowale_under,2026-08-14,2026-08-14 23:30:00,2730,threes,Arike Ogunbowale,DAL,DAL@IND,under,1.5,140.0,0.493,0.1833,True,109,116,0.0,1.7,,2.5,MOVED_OFF_OPEN,False,True
-2731_threes_natisha hiedeman_under,2026-08-14,2026-08-15 02:00:00,2731,threes,Natisha Hiedeman,SEA,PDX@SEA,under,1.5,130.0,0.5082,0.1689,True,103,109,1.5,1.65,,1.5,,False,True
 2734_threes_napheesa collier_over,2026-08-15,2026-08-16 00:00:00,2734,threes,Napheesa Collier,MIN,MIN@LVA,over,1.5,-106.0,0.6006,0.1672,True,-139,-130,2.0,2.02,,1.5,,False,True
 2732_points_brittney griner_over,2026-08-15,2026-08-15 17:00:00,2732,points,Brittney Griner,CON,NYL@CON,over,11.5,-108.0,0.5998,0.1552,True,-139,-130,2.0,13.46,,11.5,,False,True
 2730_assists_caitlin clark_under,2026-08-14,2026-08-14 23:30:00,2730,assists,Caitlin Clark,IND,DAL@IND,under,9.5,-108.0,0.597,0.1499,True,-137,-128,2.0,8.82,,9.5,,False,True
-2733_threes_erica wheeler_over,2026-08-15,2026-08-15 23:30:00,2733,threes,Erica Wheeler,LAS,LAS@WAS,over,1.5,140.0,0.4598,0.1034,True,125,131,1.0,1.55,,1.5,,True,False
+2733_assists_ariel atkins_over,2026-08-15,2026-08-15 23:30:00,2733,assists,Ariel Atkins,LAS,LAS@WAS,over,2.5,-140.0,0.6478,0.1104,True,-169,-157,2.0,3.38,,2.5,,False,True
 2734_rebounds_natasha howard_over,2026-08-15,2026-08-16 00:00:00,2734,rebounds,Natasha Howard,MIN,MIN@LVA,over,5.5,-140.0,0.6426,0.1016,True,-165,-153,2.0,6.78,,5.5,,False,True

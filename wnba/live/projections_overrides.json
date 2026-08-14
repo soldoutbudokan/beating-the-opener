@@ -2275,7 +2275,7 @@
       "url": "https://www.espn.com/wnba/",
       "quote": "ESPN news item published 2026-08-11T00:48:58Z: \"Mercury rule Kelsey Plum out vs. Sparks with leg injury - Mercury guard Kelsey Plum will miss Tuesday's game against her former team the Los Angeles Sparks due to a lower left leg injury.\" Corroborated by the league injury report in this snapshot (Phoenix, Out - Calf, return_date 2026-08-16). Targets PHO@LAS (2026-08-11 ET, event 2722) and supersedes the 2026-08-09 entry, whose game_date has expired. minutes_est 0. This matters for the sheet: Plum played 28 min on 8/7 and 14 min on 8/9, so her panel state is live, and Phoenix rows on this sheet (Kahleah Copper, Erica Wheeler) are priced without any re-allocation of the minutes she vacates - the model does not redistribute usage. Both are already blocked MOVED_OFF_OPEN; flagging so no Phoenix row is taken on a stale-usage read.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 239
     },
     {
       "player": "Carla Leite",
@@ -3132,6 +3132,19 @@
       "source": "avail:2026-08-14/1715Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED in the 1715Z diff: Day-To-Day -> Out (Ribs), Los Angeles Sparks, comment 'out', return_date 2026-08-15. Supersedes entry 233 (the 0234Z Day-To-Day written after she left Thursday's game vs New York in the fourth quarter). The status escalates to Out, so it is recorded, but STILL status-only with NO minutes estimate: the feed's return_date is 2026-08-15, which IS LAS's next game (19:30 ET at Washington, event 2733), so this 'Out' most plausibly describes the game she left rather than ruling her out of the next one. A minutes_est of 0 here would manufacture a Brink under on the 08-15 sheet off an expected-return date - the assumption most favourable to a news-driven bet, not least. Kept open-ended (game_date null) so the OUT marker stands until a snapshot clears her or a later firing can date the absence. LAS is not on the 2026-08-14 sheet (DAL@IND, PDX@SEA), so this is inert tonight.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kelsey Plum",
+      "added": "2026-08-14T20:35:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/2035Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "The 2035Z snapshot carries no status change (Out, Calf, Phoenix in both the 1933Z and 2035Z captures, so avail_watch printed no NEW/UPDATED/CLEARED line), but the underlying league-report entry was rewritten: comment 'Plum (leg) is listed as out for Tuesday's game against Los Angeles' -> 'Plum (calf) won't play in Sunday's game against Portland, per Annie Costabile of The Athletic', and return_date 2026-08-16 -> 2026-08-22. That is a six-day extension of a known absence, and it outlives the standing marker: entry 172 was dated game_date 2026-08-11, so it had already gone inert for every future slate while she is in fact still out. Recorded open-ended (game_date null) so the OUT marker stands until a snapshot clears her, and supersedes 172. Status-only with NO minutes estimate: a minutes_est of 0 on an until-cleared entry would price every Plum prop through 2026-08-22 as a maximal under, which is the Kelsey Plum failure mode the 2026-08-08 gates exist to stop, not a news edge. PHO is not on the 2026-08-14 sheet (DAL@IND, PDX@SEA); the next Phoenix game is Sunday 2026-08-16 vs Portland, which this covers.",
       "author": "news-watch",
       "superseded_by": null
     }
