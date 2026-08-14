@@ -3107,6 +3107,19 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0333Z diff: Day-To-Day, Head, Washington, comment 'day-to-day', return_date 2026-08-13. Judged against the same snapshot's lineup feed for the in-progress WAS@LVA game (event 2729/ESPN 401857142), which has her starter=true, dnp=false - she is playing tonight, so this is a fresh head designation on a player who is on the floor, not an absence. Head/concussion designations can escalate between games, so the doubt is carried forward to WAS's next game, 2026-08-15 19:30 ET vs LAS (event 2733). Status-only with NO minutes estimate: nothing here shows a reduced role, and a number would manufacture an Austin under on the 08-15 sheet instead of recording a doubt. Inert for the 2026-08-14 sheet (DAL@IND, PDX@SEA - no WAS).",
       "author": "news-watch",
+      "superseded_by": 237
+    },
+    {
+      "player": "Shakira Austin",
+      "added": "2026-08-14T04:39:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/0439Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 0439Z diff (was Day-To-Day, Head, Washington). Supersedes entry 236, the 0333Z questionable written while the WAS@LVA game (event 2729/ESPN 401857142) was in progress and carried forward to WAS's next game. That game is now STATUS_FINAL and the same snapshot's lineup feed has her starter=true, dnp=false, so she started and played through the head designation, which has since dropped off the league report. Recorded as available with NO minutes estimate - nothing here shows a role change, and WAS's next game (2026-08-15 19:30 ET vs LAS, event 2733) is off the current sheet. Inert for the 2026-08-14 sheet (DAL@IND, PDX@SEA - no WAS).",
+      "author": "news-watch",
       "superseded_by": null
     }
   ]
