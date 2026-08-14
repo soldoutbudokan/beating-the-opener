@@ -2678,7 +2678,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 0041Z UPGRADES Pissott (Las Vegas) Out -> Day-To-Day, type Leg: \"Pissott (leg) is listed as questionable for Thursday's game versus Washington.\" return_date 2026-08-13. Thursday = 2026-08-13 ET, WAS@LVA (event 2729). Supersedes the 2026-08-12/0138Z out/0-minute entry, whose 0-minute clamp is no longer sourced now that the feed calls her questionable. Status-only, minutes_est null: her panel role is a deep-bench 3-14 min except a 25-min outlier on 2026-08-09, so any number here would manufacture an over or an under out of a leg-injury question. Records the doubt, changes no projection.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 234
     },
     {
       "player": "Elena Buenavida",
@@ -3016,7 +3016,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0140Z diff, Day-To-Day (Ankle): 'Ionescu (ankle) went to the locker room in the third quarter of Thursday's game against the Sparks' (Jackie Powell, The IX Sports). In-game injury, still unfolding - the lineup feed has her as a starter with no DNP, so tonight's open under 18.5 points bet is already live and untouched by this. Recorded until cleared with NO minutes estimate: the timeline is unknown and inventing one would manufacture an under on NY's next game rather than remove a stale projection. NY is not on the 2026-08-14 sheet, so this is currently inert and exists to flag her before the next NY slate.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 235
     },
     {
       "player": "Katie Lou Samuelson",
@@ -3054,6 +3054,45 @@
       "source": "avail:2026-08-14/0140Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Dallas Wings report: Out (Knee), return_date 2026-08-17 - i.e. out through the 2026-08-14 DAL@IND game. Caught OUTSIDE the avail_watch diff: she has read Out since the 2026-08-13 15:06Z snapshot, and the diff keys on status, so an Out->Out row whose return_date slipped from 2026-08-14 to 2026-08-17 raised no NEW/UPDATED line. Supersedes index 216, which recorded her as 'questionable' for 2026-08-14 while the same feed already said Out. Mechanically inert for pricing (216 carried no minutes estimate and Fudd has no prop on the 2026-08-14 sheet); recorded so the file matches the feed and so DAL's absences are legible next to the ROLE_MIN? flag on Alanna Smith in that same game.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Cameron Brink",
+      "added": "2026-08-14T02:34:00Z",
+      "game_date": "2026-08-15",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/0234Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0234Z diff, Day-To-Day (Ribs), Los Angeles Sparks: \"Brink (ribs) went to the locker room in the fourth quarter of Thursday's game against New York, Myles Ehrlich of Winsidr.com reports.\" return_date 2026-08-15. LAS's next game is 2026-08-15 19:30 ET at Washington (event 2733), so the entry is dated to it. In-game injury with an unknown timeline: recorded status-only with NO minutes estimate, because a number here would manufacture a Brink under on the 08-15 sheet rather than remove a stale projection. LAS is not on the 2026-08-14 sheet (DAL@IND, PDX@SEA), so this is inert tonight and exists to flag her before the next Sparks slate.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Justine Pissott",
+      "added": "2026-08-14T02:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/0234Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 0234Z diff (was Day-To-Day, Leg, Las Vegas). She has dropped off the league injury report entirely. Corroborated by the lineup feed for the in-progress WAS@LVA game (event 2729/ESPN 401857142): Pissott is listed dnp=true with reason COACH'S DECISION, i.e. a healthy scratch rather than an injury absence. Supersedes the 2026-08-13/0041Z questionable. Recorded with NO minutes estimate - she is a deep-bench player whose availability is now a rotation question, not a medical one, and any number here would price a bet instead of retiring a stale doubt.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Sabrina Ionescu",
+      "added": "2026-08-14T02:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/0234Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 0234Z diff (was Day-To-Day, Ankle, New York). Supersedes the 2026-08-14/0140Z questionable entry, which was written mid-game off 'Ionescu (ankle) went to the locker room in the third quarter of Thursday's game against the Sparks'. She has now dropped off the league report and the lineup feed for the completed LA@NY game (ESPN 401857141) has her starter=true with dnp=false, so she played through it. The open under 18.5 points bet on tonight's game (2728) is unaffected either way - it settles from the box score. Recorded as available with NO minutes estimate; NY's next game is 2026-08-15 13:00 ET at Connecticut (event 2732) and nothing here justifies moving her minutes.",
       "author": "news-watch",
       "superseded_by": null
     }

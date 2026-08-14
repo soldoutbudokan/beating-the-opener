@@ -1,11 +1,11 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2730_threes_alanna smith_under,2026-08-14,2026-08-14 23:30:00,2730,threes,Alanna Smith,DAL,DAL@IND,under,1.5,-144.0,0.7852,0.3305,True,-320,-285,0.0,0.87,,1.5,SUSPECT_EV(33%);ROLE_MIN?,False,False
-2731_points_emily engstler_under,2026-08-14,2026-08-15 02:00:00,2731,points,Emily Engstler,PDX,PDX@SEA,under,9.5,-104.0,0.6196,0.2154,True,-150,-140,3.0,8.35,,9.5,,False,True
-2730_assists_paige bueckers_under,2026-08-14,2026-08-14 23:30:00,2730,assists,Paige Bueckers,DAL,DAL@IND,under,6.5,-132.0,0.6872,0.2079,True,-200,-184,3.5,5.36,,6.5,,False,True
-2731_threes_dominique malonga_under,2026-08-14,2026-08-15 02:00:00,2731,threes,Dominique Malonga,SEA,PDX@SEA,under,0.5,140.0,0.5014,0.2033,True,106,112,0.0,0.69,,0.5,PLAYER_ALREADY_BET(points under 20.5),False,False
-2730_points_makayla timpson_under,2026-08-14,2026-08-14 23:30:00,2730,points,Makayla Timpson,IND,DAL@IND,under,6.5,-108.0,0.6069,0.1689,True,-143,-133,2.5,5.76,,6.5,ROLE_START?,True,False
-2730_assists_caitlin clark_under,2026-08-14,2026-08-14 23:30:00,2730,assists,Caitlin Clark,IND,DAL@IND,under,9.5,-108.0,0.5963,0.1485,True,-137,-128,2.0,8.82,,9.5,,False,True
-2731_points_bridget carleton_under,2026-08-14,2026-08-15 02:00:00,2731,points,Bridget Carleton,PDX,PDX@SEA,under,16.5,-122.0,0.6296,0.1456,True,-157,-146,0.0,14.71,,16.5,PLAYER_ALREADY_BET(assists under 2.5),False,False
-2731_threes_natisha hiedeman_under,2026-08-14,2026-08-15 02:00:00,2731,threes,Natisha Hiedeman,SEA,PDX@SEA,under,1.5,124.0,0.5072,0.136,True,104,109,1.5,1.66,,1.5,,False,True
-2730_threes_arike ogunbowale_under,2026-08-14,2026-08-14 23:30:00,2730,threes,Arike Ogunbowale,DAL,DAL@IND,under,2.5,-210.0,0.7561,0.1162,True,-276,-248,3.0,1.7,,2.5,,False,True
-2731_assists_jade melbourne_under,2026-08-14,2026-08-15 02:00:00,2731,assists,Jade Melbourne,SEA,PDX@SEA,under,4.5,110.0,0.527,0.1068,True,-104,102,1.5,4.46,,4.5,,False,True
+2730_threes_alanna smith_under,2026-08-14,2026-08-14 23:30:00,2730,threes,Alanna Smith,DAL,DAL@IND,under,1.5,-146.0,0.7851,0.3228,True,-320,-285,0.0,0.87,,1.5,SUSPECT_EV(32%);ROLE_MIN?,False,False
+2730_assists_paige bueckers_under,2026-08-14,2026-08-14 23:30:00,2730,assists,Paige Bueckers,DAL,DAL@IND,under,6.5,-130.0,0.6871,0.2156,True,-200,-184,0.0,5.36,,6.5,MOVED_OFF_OPEN,False,True
+2731_threes_dominique malonga_under,2026-08-14,2026-08-15 02:00:00,2731,threes,Dominique Malonga,SEA,PDX@SEA,under,0.5,142.0,0.5012,0.213,True,106,112,0.0,0.69,,0.5,PLAYER_ALREADY_BET(points under 20.5),False,False
+2731_points_emily engstler_under,2026-08-14,2026-08-15 02:00:00,2731,points,Emily Engstler,PDX,PDX@SEA,under,9.5,-106.0,0.6194,0.2038,True,-150,-140,3.0,8.35,,9.5,,False,True
+2730_points_makayla timpson_under,2026-08-14,2026-08-14 23:30:00,2730,points,Makayla Timpson,IND,DAL@IND,under,6.5,-104.0,0.6067,0.1901,True,-143,-133,2.5,5.76,,6.5,ROLE_START?,True,False
+2730_assists_caitlin clark_under,2026-08-14,2026-08-14 23:30:00,2730,assists,Caitlin Clark,IND,DAL@IND,under,9.5,-108.0,0.5962,0.1482,True,-137,-128,2.0,8.82,,9.5,,False,True
+2731_assists_bridget carleton_under,2026-08-14,2026-08-15 02:00:00,2731,assists,Bridget Carleton,PDX,PDX@SEA,under,2.5,-114.0,0.6102,0.1454,True,-145,-135,2.0,2.16,,2.5,,False,True
+2731_threes_natisha hiedeman_under,2026-08-14,2026-08-15 02:00:00,2731,threes,Natisha Hiedeman,SEA,PDX@SEA,under,1.5,124.0,0.507,0.1356,True,104,110,1.5,1.66,,1.5,,False,True
+2731_assists_jade melbourne_under,2026-08-14,2026-08-15 02:00:00,2731,assists,Jade Melbourne,SEA,PDX@SEA,under,4.5,112.0,0.5269,0.1171,True,-104,102,1.5,4.46,,4.5,,False,True
+2730_threes_arike ogunbowale_under,2026-08-14,2026-08-14 23:30:00,2730,threes,Arike Ogunbowale,DAL,DAL@IND,under,2.5,-215.0,0.756,0.1076,True,-275,-248,3.0,1.7,,2.5,,False,True
