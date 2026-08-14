@@ -787,6 +787,7 @@ def bet_rows(m):
             f' data-market="{esc(txt(b, "market"))}"'
             f' data-side="{esc(txt(b, "side"))}"'
             f' data-era="{"post" if mdate >= GATES else "pre"}"'
+            f' data-date="{esc(mdate)}"'
             f' data-player="{esc(txt(b, "player").lower())}"'
             f' data-stake="{b["_stake"]:g}"'
             f' data-pnl="{g(b["_pnl"])}"'
@@ -831,6 +832,29 @@ def filter_block(m):
            f'<option value="">whole run</option>'
            f'<option value="post">since the gates ({esc(gates_lab)})</option>'
            f'<option value="pre">before the gates</option></select>')
+    # Game-date range. Bounded by the log's own span so the picker cannot
+    # wander off into empty months; both ends are inclusive and compared as
+    # ISO strings, which sort correctly without parsing.
+    days = sorted({txt(b, "match_date")[:10] for b in m["bets"]
+                   if txt(b, "match_date")})
+    span = (f' min="{esc(days[0])}" max="{esc(days[-1])}"') if days else ""
+    dates = (f'<span class="frange">'
+             f'<span class="flabel">games</span>'
+             f'<input data-f="from" type="date"{span} '
+             f'aria-label="games on or after" title="games on or after">'
+             f'<span class="fdash" aria-hidden="true">\u2013</span>'
+             f'<input data-f="to" type="date"{span} '
+             f'aria-label="games on or before" title="games on or before">'
+             f'</span>')
+    # Plus/minus EV as the market scored it: CLV is the primary metric, and
+    # unlike `ev_claimed` (positive on every logged bet, by the >10% trigger)
+    # its sign actually splits the log. Rows awaiting a close are their own
+    # bucket rather than silently counting as negative.
+    clvsign = (f'<select data-f="clvsign" aria-label="CLV sign">'
+               f'<option value="">+ and {MINUS} CLV</option>'
+               f'<option value="pos">beat the close (+CLV)</option>'
+               f'<option value="neg">lost to the close ({MINUS}CLV)</option>'
+               f'<option value="none">no close yet</option></select>')
     # server-side prerender of the all-bets summary line (no-JS fallback)
     parts = [f'{len(m["bets"])} of {len(m["bets"])} bets']
     if m["settled"]:
@@ -849,6 +873,8 @@ def filter_block(m):
         + sel("side", "over + under", sides)
         + sel("result", "any result", results)
         + era
+        + clvsign
+        + dates
         + f'<input data-f="q" type="search" placeholder="player…" '
           f'aria-label="filter by player">'
         + '</div>'
@@ -1466,6 +1492,11 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13.5px}
   color:var(--ink);background:var(--surface);border:1px solid var(--rule);
   border-radius:8px;padding:6px 10px}
 .filterbar input{flex:1;min-width:140px;max-width:240px}
+.filterbar .frange{display:flex;align-items:center;gap:6px}
+.filterbar input[type=date]{flex:0 0 auto;min-width:0;max-width:none;
+  padding:5px 8px}
+.filterbar .fdash{color:var(--muted);font-size:13px}
+.filterbar .flabel{color:var(--ink2);font-size:13px;padding-right:2px}
 .filterbar select:hover,.filterbar input:hover{border-color:var(--base)}
 .filterbar select:focus-visible,.filterbar input:focus-visible{
   outline:2px solid var(--model);outline-offset:1px}
@@ -1734,10 +1765,15 @@ JS = """
       ctrls.forEach(function(c){f[c.dataset.f]=c.value.trim().toLowerCase();});
       var shown=0,w=0,l=0,settled=0,pnl=0,stake=0,clv=[],cal=[];
       rows.forEach(function(r){
+        var c=r.dataset.clv;
         var ok=(!f.market||r.dataset.market===f.market)&&
                (!f.side||r.dataset.side===f.side)&&
                (!f.result||r.dataset.result===f.result)&&
                (!f.era||r.dataset.era===f.era)&&
+               (!f.from||r.dataset.date>=f.from)&&
+               (!f.to||r.dataset.date<=f.to)&&
+               (!f.clvsign||(f.clvsign==='none'?c==='':
+                 c!==''&&(f.clvsign==='pos'?+c>0:+c<0)))&&
                (!f.q||r.dataset.player.indexOf(f.q)>-1);
         r.hidden=!ok;
         if(!ok)return;
