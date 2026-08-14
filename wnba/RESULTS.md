@@ -6,22 +6,22 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $105.70** (start $100)
+**Bankroll: $100.26** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 102 (54W-48L), 0 push, 2 void, 17 open |
-| staked | $102.00 |
-| P&L | $+5.70 (+5.6% ROI) |
-| mean EV said (model) | +22.75% (n=102) |
-| mean CLV (vs close) | -4.63% (n=102) |
-| mean CLV* (shade-adj) | -3.81% (n=102) |
-| closing line moved | 22 of 102 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 63.2W vs observed 54W (z=-1.92) |
-| Model-expected P&L | $+23.66 |
-| CLV-expected P&L | $-4.72 |
+| settled | 111 (56W-55L), 0 push, 2 void, 8 open |
+| staked | $111.00 |
+| P&L | $+0.26 (+0.2% ROI) |
+| mean EV said (model) | +22.17% (n=111) |
+| mean CLV (vs close) | -4.56% (n=105) |
+| mean CLV* (shade-adj) | -3.76% (n=105) |
+| closing line moved | 23 of 105 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| model calibration | expected 68.3W vs observed 56W (z=-2.43) |
+| Model-expected P&L | $+25.06 |
+| CLV-expected P&L | $-4.79 |
 
-CLV t-stat: -5.14 (iid); -2.89 clustered by match date (14 dates)
+CLV t-stat: -5.14 (iid); -2.96 clustered by match date (15 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
@@ -35,15 +35,15 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-14 | Paige Bueckers | assists | under | 6.5 | -132 | 1.0 | +20.8% |  |  |  |  |  |
 | 2026-08-14 | Dominique Malonga | points | under | 20.5 | -122 | 1.0 | +20.1% |  |  |  |  |  |
 | 2026-08-14 | Arike Ogunbowale | threes | under | 2.5 | -215 | 1.0 | +10.8% |  |  |  |  |  |
-| 2026-08-13 | Chelsea Gray | assists | over | 6.5 | 118 | 1.0 | +19.6% |  |  |  |  |  |
-| 2026-08-13 | Rae Burrell | points | under | 15.5 | -114 | 1.0 | +19.4% |  |  |  |  |  |
-| 2026-08-13 | Jackie Young | rebounds | over | 4.5 | 122 | 1.0 | +18.3% |  |  |  |  |  |
-| 2026-08-13 | Pauline Astier | points | over | 7.5 | -114 | 1.0 | +17.7% |  |  |  |  |  |
-| 2026-08-13 | A'ja Wilson | threes | under | 0.5 | 178 | 1.0 | +16.6% |  |  |  |  |  |
-| 2026-08-13 | Angel Reese | points | under | 17.5 | -122 | 1.0 | +13.4% |  |  |  |  |  |
-| 2026-08-13 | Jordin Canada | assists | under | 8.5 | -136 | 1.0 | +12.9% |  |  |  |  |  |
-| 2026-08-13 | Diamond Miller | threes | over | 1.5 | 162 | 1.0 | +11.6% |  |  |  |  |  |
-| 2026-08-13 | Sabrina Ionescu | points | under | 18.5 | -108 | 1.0 | +10.8% |  |  |  |  |  |
+| 2026-08-13 | Chelsea Gray | assists | over | 6.5 | 118 | 1.0 | +19.6% | 5 | lost | -1.00 |  |  |
+| 2026-08-13 | Rae Burrell | points | under | 15.5 | -114 | 1.0 | +19.4% | 28 | lost | -1.00 |  |  |
+| 2026-08-13 | Jackie Young | rebounds | over | 4.5 | 122 | 1.0 | +18.3% | 2 | lost | -1.00 |  |  |
+| 2026-08-13 | Pauline Astier | points | over | 7.5 | -114 | 1.0 | +17.7% | 7 | lost | -1.00 |  |  |
+| 2026-08-13 | A'ja Wilson | threes | under | 0.5 | 178 | 1.0 | +16.6% | 1 | lost | -1.00 |  |  |
+| 2026-08-13 | Angel Reese | points | under | 17.5 | -122 | 1.0 | +13.4% | 8 | won | +0.82 | +9.6% | +12.5% |
+| 2026-08-13 | Jordin Canada | assists | under | 8.5 | -136 | 1.0 | +12.9% | 4 | won | +0.74 | -5.7% | -2.7% |
+| 2026-08-13 | Diamond Miller | threes | over | 1.5 | 162 | 1.0 | +11.6% | 0 | lost | -1.00 | -11.3% | -16.4% |
+| 2026-08-13 | Sabrina Ionescu | points | under | 18.5 | -108 | 1.0 | +10.8% | 20 | lost | -1.00 |  |  |
 | 2026-08-12 | Courtney Vandersloot | points | under | 9.5 | -120 | 1.0 | +22.7% | 6 | won | +0.83 | +1.0% | +4.0% |
 | 2026-08-12 | Kayla McBride | points | over | 15.5 | -114 | 1.0 | +21.6% | 19 | won | +0.88 | +5.4% | +2.3% |
 | 2026-08-12 | Nyara Sabally | points | under | 13.5 | -114 | 1.0 | +20.6% | 6 | won | +0.88 | -8.2% | -5.1% |
