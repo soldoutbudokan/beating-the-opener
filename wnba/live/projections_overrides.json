@@ -1,5 +1,5 @@
 {
-  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
   "entries": [
     {
       "player": "DiJonai Carrington",
@@ -3093,6 +3093,19 @@
       "source": "avail:2026-08-14/0234Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 0234Z diff (was Day-To-Day, Ankle, New York). Supersedes the 2026-08-14/0140Z questionable entry, which was written mid-game off 'Ionescu (ankle) went to the locker room in the third quarter of Thursday's game against the Sparks'. She has now dropped off the league report and the lineup feed for the completed LA@NY game (ESPN 401857141) has her starter=true with dnp=false, so she played through it. The open under 18.5 points bet on tonight's game (2728) is unaffected either way - it settles from the box score. Recorded as available with NO minutes estimate; NY's next game is 2026-08-15 13:00 ET at Connecticut (event 2732) and nothing here justifies moving her minutes.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Shakira Austin",
+      "added": "2026-08-14T03:36:00Z",
+      "game_date": "2026-08-15",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-14/0333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0333Z diff: Day-To-Day, Head, Washington, comment 'day-to-day', return_date 2026-08-13. Judged against the same snapshot's lineup feed for the in-progress WAS@LVA game (event 2729/ESPN 401857142), which has her starter=true, dnp=false - she is playing tonight, so this is a fresh head designation on a player who is on the floor, not an absence. Head/concussion designations can escalate between games, so the doubt is carried forward to WAS's next game, 2026-08-15 19:30 ET vs LAS (event 2733). Status-only with NO minutes estimate: nothing here shows a reduced role, and a number would manufacture an Austin under on the 08-15 sheet instead of recording a doubt. Inert for the 2026-08-14 sheet (DAL@IND, PDX@SEA - no WAS).",
       "author": "news-watch",
       "superseded_by": null
     }
