@@ -2964,7 +2964,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED Out -> Day-To-Day (Knee), POR: \"Leite (knee) is questionable for Friday's game against the Storm, Sean Highkin of RoseGardenReport.com reports.\" Status-only entry: an upgrade to questionable is not evidence for a minutes level, so no minutes_est is claimed. Supersedes the 08-12 out.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 258
     },
     {
       "player": "Amy Okonkwo",
@@ -3321,7 +3321,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0033Z diff: Day-To-Day, type 'Ankle', return_date 2026-08-14, present in BOTH the league report and the per-event report for 401857143 (DAL@IND) while that game sits at STATUS_HALFTIME. She started the game and the 2333Z capture carried no Clark row at all, so this is an in-game ankle designation, not a pre-tip listing. It supersedes entry 249 (the pre-tip clearance of the unrelated Back day-to-day). Deliberately non-committal: severity and whether she returned in the second half are unknown from the feed, so status is 'questionable' with minutes_est null - which carries NO pricing effect (active_overrides only moves minutes when est/range is set). It targets IND's next game, 2026-08-16 IND@ATL; tonight's props are already in progress and nothing here re-prices them. If the feed still shows the ankle before 8/16, a minutes judgement is the owner's call, not this routine's.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 257
     },
     {
       "player": "Justine Pissott",
@@ -3372,6 +3372,32 @@
       "source": "avail:2026-08-15/0033Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 0033Z diff (was Out, \"Coach's Decision\", Minnesota Lynx; dropped comment still referenced Wednesday against the Fire). Same post-game roll-off pattern she has shown repeatedly this month. Supersedes entry 205 (game_date 2026-08-12, already inert). No minutes claim.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Caitlin Clark",
+      "added": "2026-08-15T01:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/0137Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 0137Z diff (was Day-To-Day, Ankle, Indiana Fever). Dropped from BOTH the league report and the DAL@IND per-event report, so this is a real clearing rather than the per-event list rolling off at tip: the league row went with it. She is in tonight's IND game (in progress at capture; entry 249 already had her in). Supersedes entry 252, which had her questionable for 2026-08-16 off the 0033Z snapshot. Status only, no minutes claim - the panel's own minutes state is the conservative one for a player with no reported restriction. No IND props on the current sheet, so this is inert today.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Carla Leite",
+      "added": "2026-08-15T01:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/0137Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 0137Z diff (was Day-To-Day, Knee, Portland Fire). Dropped from both the league report and the POR@SEA per-event report roughly 50 minutes before that 22:00 ET tip, i.e. cleared to play rather than rolled off after a game. Supersedes entry 225 (questionable, game_date 2026-08-14). Status only, no minutes claim: she has been in and out of the report all month and the ramp is unknown, so no minutes override is the assumption least favourable to a news-driven bet. No PDX props on the current sheet - inert today.",
       "author": "news-watch",
       "superseded_by": null
     }

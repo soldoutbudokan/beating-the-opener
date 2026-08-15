@@ -7,5 +7,5 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2732_points_brittney griner_over,2026-08-15,2026-08-15 17:00:00,2732,points,Brittney Griner,CON,NYL@CON,over,11.5,-108.0,0.5998,0.1552,True,-139,-130,2.0,13.46,,11.5,,False,True
 2733_assists_ariel atkins_over,2026-08-15,2026-08-15 23:30:00,2733,assists,Ariel Atkins,LAS,LAS@WAS,over,2.5,-138.0,0.6478,0.1171,True,-169,-157,2.0,3.38,,2.5,,False,True
 2734_assists_courtney williams_over,2026-08-15,2026-08-16 00:00:00,2734,assists,Courtney Williams,MIN,MIN@LVA,over,4.5,126.0,0.4899,0.1071,True,111,117,0.0,4.56,,3.5,MOVED_OFF_OPEN,False,False
-2733_threes_erica wheeler_over,2026-08-15,2026-08-15 23:30:00,2733,threes,Erica Wheeler,LAS,LAS@WAS,over,1.5,140.0,0.4598,0.1034,True,125,131,1.0,1.55,,1.5,,True,False
+2733_threes_erica wheeler_over,2026-08-15,2026-08-15 23:30:00,2733,threes,Erica Wheeler,LAS,LAS@WAS,over,1.5,140.0,0.4598,0.1034,True,125,131,1.0,1.55,,1.5,,False,True
 2734_rebounds_natasha howard_over,2026-08-15,2026-08-16 00:00:00,2734,rebounds,Natasha Howard,MIN,MIN@LVA,over,5.5,-140.0,0.6426,0.1016,True,-165,-153,2.0,6.78,,5.5,,False,True
