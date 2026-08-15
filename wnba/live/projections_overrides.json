@@ -3438,6 +3438,32 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the ESPN league injury report at 15:33Z (was Day-To-Day, knee). No listing = no restriction reported; supersedes the 2026-08-14 questionable entry. Conservative read: available, no minutes adjustment applied.",
       "author": "news-watch",
+      "superseded_by": 262
+    },
+    {
+      "player": "Brittney Griner",
+      "added": "2026-08-15T16:33:00Z",
+      "game_date": "2026-08-15",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/1633Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report + per-event report for NY@CON (event 401857145, 1:00 PM ET): Griner (Knee) listed Out, return date 2026-08-18. Supersedes the 15:33Z 'in' entry from one firing earlier - this is a same-day downgrade on the day of the game. NOTE (display-only, not a model action): live/bets.csv already carries an owner-reported OPEN bet, 2732_points_brittney griner_over 11.5, on this game.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Hailey Van Lith",
+      "added": "2026-08-15T16:33:00Z",
+      "game_date": "2026-08-15",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/1633Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report + per-event report for NY@CON (event 401857145, 1:00 PM ET): Van Lith listed Out (Coach's Decision), return date 2026-08-18. First entry for this player; no prior override to supersede.",
+      "author": "news-watch",
       "superseded_by": null
     }
   ]
