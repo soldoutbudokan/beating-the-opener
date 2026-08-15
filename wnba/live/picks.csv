@@ -1,22 +1,24 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2734_points_kayla mcbride_over,2026-08-15,2026-08-16 00:00:00,2734,points,Kayla McBride,MIN,MIN@LVA,over,15.5,100.0,0.7171,0.4341,True,-229,-209,0.0,19.99,,16.5,MOVED_OFF_OPEN;SUSPECT_EV(43%);PLAYER_ALREADY_BET(threes over 2.5),False,False
+2734_points_kayla mcbride_over,2026-08-15,2026-08-16 00:00:00,2734,points,Kayla McBride,MIN,MIN@LVA,over,15.5,100.0,0.7171,0.4342,True,-229,-209,0.0,20.0,,16.5,MOVED_OFF_OPEN;SUSPECT_EV(43%);PLAYER_ALREADY_BET(threes over 2.5),False,False
 2733_threes_rae burrell_under,2026-08-15,2026-08-15 23:30:00,2733,threes,Rae Burrell,LAS,LAS@WAS,under,1.5,146.0,0.5567,0.3695,True,-117,-110,0.0,1.5,,1.5,SUSPECT_EV(37%),False,False
-2734_threes_olivia miles_over,2026-08-15,2026-08-16 00:00:00,2734,threes,Olivia Miles,MIN,MIN@LVA,over,1.5,112.0,0.6379,0.3523,True,-162,-151,0.0,2.17,,1.5,SUSPECT_EV(35%),False,False
+2734_threes_olivia miles_over,2026-08-15,2026-08-16 00:00:00,2734,threes,Olivia Miles,MIN,MIN@LVA,over,1.5,110.0,0.6379,0.3396,True,-162,-151,0.0,2.17,,1.5,SUSPECT_EV(34%),False,False
 2736_rebounds_jordan horston_under,2026-08-16,2026-08-16 21:00:00,2736,rebounds,Jordan Horston,SEA,CHI@SEA,under,3.5,128.0,0.5433,0.2388,True,-111,-105,2.5,3.42,,3.5,ROLE_START?,True,False
 2737_threes_carla leite_under,2026-08-16,2026-08-16 23:00:00,2737,threes,Carla Leite,PDX,PDX@PHO,under,0.5,164.0,0.4676,0.2344,True,121,127,2.0,0.76,,0.5,,True,False
 2737_points_megan dileo_under,2026-08-16,2026-08-16 23:00:00,2737,points,Megan DiLeo,PDX,PDX@PHO,under,13.5,100.0,0.6157,0.2313,True,-148,-138,3.0,12.12,,13.5,,True,False
 2737_points_bridget carleton_under,2026-08-16,2026-08-16 23:00:00,2737,points,Bridget Carleton,PDX,PDX@PHO,under,16.5,-118.0,0.658,0.2156,True,-176,-163,3.5,14.23,,16.5,,True,False
-2732_threes_rebecca allen_under,2026-08-15,2026-08-15 17:00:00,2732,threes,Rebecca Allen,NYL,NYL@CON,under,1.5,-118.0,0.6512,0.2031,True,-171,-159,3.0,1.23,,1.5,,True,False
-2734_threes_napheesa collier_over,2026-08-15,2026-08-16 00:00:00,2734,threes,Napheesa Collier,MIN,MIN@LVA,over,1.5,-102.0,0.5991,0.1864,True,-139,-129,2.5,2.02,,1.5,,False,True
+2732_threes_rebecca allen_under,2026-08-15,2026-08-15 17:00:00,2732,threes,Rebecca Allen,NYL,NYL@CON,under,1.5,-118.0,0.6512,0.203,True,-171,-159,3.0,1.23,,1.5,,True,False
+2734_threes_napheesa collier_over,2026-08-15,2026-08-16 00:00:00,2734,threes,Napheesa Collier,MIN,MIN@LVA,over,1.5,-104.0,0.5991,0.1752,True,-139,-129,2.5,2.02,,1.5,,False,True
 2732_assists_pauline astier_under,2026-08-15,2026-08-15 17:00:00,2732,assists,Pauline Astier,NYL,NYL@CON,under,3.5,-114.0,0.616,0.1563,True,-148,-138,0.0,3.04,,2.5,MOVED_OFF_OPEN,False,False
-2736_rebounds_ezi magbegor_under,2026-08-16,2026-08-16 21:00:00,2736,rebounds,Ezi Magbegor,SEA,CHI@SEA,under,5.5,-130.0,0.6448,0.1409,True,-167,-155,2.5,4.67,,5.5,,True,False
 2735_assists_rhyne howard_over,2026-08-16,2026-08-16 21:00:00,2735,assists,Rhyne Howard,ATL,IND@ATL,over,3.5,-110.0,0.5976,0.1409,True,-138,-129,2.0,4.17,,3.5,,True,False
+2736_rebounds_ezi magbegor_under,2026-08-16,2026-08-16 21:00:00,2736,rebounds,Ezi Magbegor,SEA,CHI@SEA,under,5.5,-130.0,0.6448,0.1409,True,-167,-155,2.5,4.67,,5.5,,True,False
 2737_assists_alyssa thomas_under,2026-08-16,2026-08-16 23:00:00,2737,assists,Alyssa Thomas,PHO,PDX@PHO,under,8.5,112.0,0.5369,0.1383,True,-108,-102,1.5,8.32,,8.5,,True,False
 2736_threes_natisha hiedeman_under,2026-08-16,2026-08-16 21:00:00,2736,threes,Natisha Hiedeman,SEA,CHI@SEA,under,1.5,104.0,0.556,0.1342,True,-117,-110,1.5,1.51,,1.5,,True,False
-2732_points_jonquel jones_under,2026-08-15,2026-08-15 17:00:00,2732,points,Jonquel Jones,NYL,NYL@CON,under,14.5,-110.0,0.5928,0.1317,True,-135,-126,2.0,13.42,,14.5,,True,False
+2732_points_jonquel jones_under,2026-08-15,2026-08-15 17:00:00,2732,points,Jonquel Jones,NYL,NYL@CON,under,14.5,-110.0,0.5928,0.1316,True,-135,-126,2.0,13.42,,14.5,,True,False
 2736_threes_jade melbourne_under,2026-08-16,2026-08-16 21:00:00,2736,threes,Jade Melbourne,SEA,CHI@SEA,under,1.5,-270.0,0.8173,0.12,True,-384,-336,4.5,0.78,,1.5,ROLE_MIN?,True,False
-2734_assists_courtney williams_over,2026-08-15,2026-08-16 00:00:00,2734,assists,Courtney Williams,MIN,MIN@LVA,over,4.5,128.0,0.4903,0.118,True,111,117,0.0,4.56,,3.5,MOVED_OFF_OPEN,False,False
+2734_assists_courtney williams_over,2026-08-15,2026-08-16 00:00:00,2734,assists,Courtney Williams,MIN,MIN@LVA,over,4.5,128.0,0.4904,0.118,True,111,117,0.0,4.56,,3.5,MOVED_OFF_OPEN,False,False
 2733_assists_ariel atkins_over,2026-08-15,2026-08-15 23:30:00,2733,assists,Ariel Atkins,LAS,LAS@WAS,over,2.5,-138.0,0.6481,0.1177,True,-169,-157,2.0,3.38,,2.5,,False,True
 2737_points_kahleah copper_under,2026-08-16,2026-08-16 23:00:00,2737,points,Kahleah Copper,PHO,PDX@PHO,under,21.5,-102.0,0.5632,0.1154,True,-120,-113,1.5,20.67,,21.5,,True,False
 2735_assists_caitlin clark_under,2026-08-16,2026-08-16 21:00:00,2735,assists,Caitlin Clark,IND,IND@ATL,under,9.5,-118.0,0.602,0.1121,True,-140,-131,1.5,8.78,,9.5,,True,False
 2736_rebounds_dominique malonga_under,2026-08-16,2026-08-16 21:00:00,2736,rebounds,Dominique Malonga,SEA,CHI@SEA,under,9.5,102.0,0.5485,0.108,True,-113,-107,1.5,9.21,,9.5,,True,False
+2732_points_sabrina ionescu_under,2026-08-15,2026-08-15 17:00:00,2732,points,Sabrina Ionescu,NYL,NYL@CON,under,18.5,-135.0,0.634,0.1037,True,-160,-148,0.0,16.51,,18.5,MOVED_OFF_OPEN,False,True
+2733_threes_erica wheeler_over,2026-08-15,2026-08-15 23:30:00,2733,threes,Erica Wheeler,LAS,LAS@WAS,over,1.5,140.0,0.4584,0.1001,True,125,132,1.0,1.55,,1.5,,False,True
