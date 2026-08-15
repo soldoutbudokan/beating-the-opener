@@ -6,44 +6,51 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $100.26** (start $100)
+**Bankroll: $105.42** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 111 (56W-55L), 0 push, 2 void, 8 open |
-| staked | $111.00 |
-| P&L | $+0.26 (+0.2% ROI) |
-| mean EV said (model) | +22.17% (n=111) |
-| mean CLV (vs close) | -4.56% (n=105) |
-| mean CLV* (shade-adj) | -3.76% (n=105) |
-| closing line moved | 23 of 105 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 68.3W vs observed 56W (z=-2.43) |
-| Model-expected P&L | $+25.06 |
-| CLV-expected P&L | $-4.79 |
+| settled | 119 (63W-56L), 0 push, 2 void, 7 open |
+| staked | $119.00 |
+| P&L | $+5.42 (+4.6% ROI) |
+| mean EV said (model) | +21.72% (n=119) |
+| mean CLV (vs close) | -4.55% (n=114) |
+| mean CLV* (shade-adj) | -3.74% (n=114) |
+| closing line moved | 24 of 114 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| model calibration | expected 73.3W vs observed 63W (z=-1.96) |
+| Model-expected P&L | $+26.29 |
+| CLV-expected P&L | $-5.18 |
 
-CLV t-stat: -5.14 (iid); -2.96 clustered by match date (15 dates)
+CLV t-stat: -5.52 (iid); -3.20 clustered by match date (16 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-08-14 | Jade Melbourne | assists | under | 4.5 | 108 | 1.0 | +10.0% |  |  |  |  |  |
-| 2026-08-14 | Caitlin Clark | assists | under | 9.5 | -110 | 1.0 | +14.3% |  |  |  |  |  |
-| 2026-08-14 | Bridget Carleton | assists | under | 2.5 | -118 | 1.0 | +13.0% |  |  |  |  |  |
-| 2026-08-14 | Natisha Hiedeman | threes | under | 1.5 | 122 | 1.0 | +12.9% |  |  |  |  |  |
-| 2026-08-14 | Emily Engstler | points | under | 9.5 | -104 | 1.0 | +21.5% |  |  |  |  |  |
-| 2026-08-14 | Paige Bueckers | assists | under | 6.5 | -132 | 1.0 | +20.8% |  |  |  |  |  |
-| 2026-08-14 | Dominique Malonga | points | under | 20.5 | -122 | 1.0 | +20.1% |  |  |  |  |  |
-| 2026-08-14 | Arike Ogunbowale | threes | under | 2.5 | -215 | 1.0 | +10.8% |  |  |  |  |  |
-| 2026-08-13 | Chelsea Gray | assists | over | 6.5 | 118 | 1.0 | +19.6% | 5 | lost | -1.00 |  |  |
-| 2026-08-13 | Rae Burrell | points | under | 15.5 | -114 | 1.0 | +19.4% | 28 | lost | -1.00 |  |  |
-| 2026-08-13 | Jackie Young | rebounds | over | 4.5 | 122 | 1.0 | +18.3% | 2 | lost | -1.00 |  |  |
-| 2026-08-13 | Pauline Astier | points | over | 7.5 | -114 | 1.0 | +17.7% | 7 | lost | -1.00 |  |  |
-| 2026-08-13 | A'ja Wilson | threes | under | 0.5 | 178 | 1.0 | +16.6% | 1 | lost | -1.00 |  |  |
+| 2026-08-15 | Kayla McBride | threes | over | 2.5 | -158 | 1.0 | +20.0% |  |  |  |  |  |
+| 2026-08-15 | Sabrina Ionescu | points | under | 18.5 | -114 | 1.0 | +18.4% |  |  |  |  |  |
+| 2026-08-15 | Napheesa Collier | threes | over | 1.5 | -104 | 1.0 | +17.9% |  |  |  |  |  |
+| 2026-08-15 | Brittney Griner | points | over | 11.5 | -108 | 1.0 | +15.6% |  |  |  |  |  |
+| 2026-08-15 | Ariel Atkins | assists | over | 2.5 | -140 | 1.0 | +11.1% |  |  |  |  |  |
+| 2026-08-15 | Natasha Howard | rebounds | over | 5.5 | -140 | 1.0 | +10.2% |  |  |  |  |  |
+| 2026-08-15 | Erica Wheeler | threes | over | 1.5 | 140 | 1.0 | +10.3% |  |  |  |  |  |
+| 2026-08-14 | Jade Melbourne | assists | under | 4.5 | 108 | 1.0 | +10.0% | 2 | won | +1.08 |  |  |
+| 2026-08-14 | Caitlin Clark | assists | under | 9.5 | -110 | 1.0 | +14.3% | 10 | lost | -1.00 | -7.5% | -4.3% |
+| 2026-08-14 | Bridget Carleton | assists | under | 2.5 | -118 | 1.0 | +13.0% | 2 | won | +0.85 |  |  |
+| 2026-08-14 | Natisha Hiedeman | threes | under | 1.5 | 122 | 1.0 | +12.9% | 1 | won | +1.22 |  |  |
+| 2026-08-14 | Emily Engstler | points | under | 9.5 | -104 | 1.0 | +21.5% | 9 | won | +0.96 |  |  |
+| 2026-08-14 | Paige Bueckers | assists | under | 6.5 | -132 | 1.0 | +20.8% | 6 | won | +0.76 | -7.6% | -4.6% |
+| 2026-08-14 | Dominique Malonga | points | under | 20.5 | -122 | 1.0 | +20.1% | 9 | won | +0.82 |  |  |
+| 2026-08-14 | Arike Ogunbowale | threes | under | 2.5 | -215 | 1.0 | +10.8% | 0 | won | +0.47 | -2.0% | +0.8% |
+| 2026-08-13 | Chelsea Gray | assists | over | 6.5 | 118 | 1.0 | +19.6% | 5 | lost | -1.00 | +2.9% | -0.8% |
+| 2026-08-13 | Rae Burrell | points | under | 15.5 | -114 | 1.0 | +19.4% | 28 | lost | -1.00 | -11.8% | -8.6% |
+| 2026-08-13 | Jackie Young | rebounds | over | 4.5 | 122 | 1.0 | +18.3% | 2 | lost | -1.00 | -1.4% | -7.7% |
+| 2026-08-13 | Pauline Astier | points | over | 7.5 | -114 | 1.0 | +17.7% | 7 | lost | -1.00 | -5.3% | -8.5% |
+| 2026-08-13 | A'ja Wilson | threes | under | 0.5 | 178 | 1.0 | +16.6% | 1 | lost | -1.00 | -1.7% | +4.0% |
 | 2026-08-13 | Angel Reese | points | under | 17.5 | -122 | 1.0 | +13.4% | 8 | won | +0.82 | +9.6% | +12.5% |
 | 2026-08-13 | Jordin Canada | assists | under | 8.5 | -136 | 1.0 | +12.9% | 4 | won | +0.74 | -5.7% | -2.7% |
 | 2026-08-13 | Diamond Miller | threes | over | 1.5 | 162 | 1.0 | +11.6% | 0 | lost | -1.00 | -11.3% | -16.4% |
-| 2026-08-13 | Sabrina Ionescu | points | under | 18.5 | -108 | 1.0 | +10.8% | 20 | lost | -1.00 |  |  |
+| 2026-08-13 | Sabrina Ionescu | points | under | 18.5 | -108 | 1.0 | +10.8% | 20 | lost | -1.00 | -5.0% | -1.7% |
 | 2026-08-12 | Courtney Vandersloot | points | under | 9.5 | -120 | 1.0 | +22.7% | 6 | won | +0.83 | +1.0% | +4.0% |
 | 2026-08-12 | Kayla McBride | points | over | 15.5 | -114 | 1.0 | +21.6% | 19 | won | +0.88 | +5.4% | +2.3% |
 | 2026-08-12 | Nyara Sabally | points | under | 13.5 | -114 | 1.0 | +20.6% | 6 | won | +0.88 | -8.2% | -5.1% |
