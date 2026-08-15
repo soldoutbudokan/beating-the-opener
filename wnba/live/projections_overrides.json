@@ -953,7 +953,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report 0336Z: \"Bibby (personal) is out for Saturday's game against the Aces.\" Event 2712 (LVA@MIN). Rolls the expired 2026-08-06 out entry forward onto the game date it now names. No prop rows; inert for pricing.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 254
     },
     {
       "player": "Taina Mair",
@@ -2691,7 +2691,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report at 0133Z adds Buenavida (Minnesota Lynx) Out - Coach's Decision: \"Buenavida (coach's decision) is listed as out for Wednesday's game against Portland.\" return_date 2026-08-15. Confirmed on the per-event report for MIN@POR (401857139). Wednesday = 2026-08-12 ET (10:00 PM ET tip). A Coach's Decision Out counts as Out under the v3 T3 rule; minutes_est 0.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 255
     },
     {
       "player": "Liatu King",
@@ -2704,7 +2704,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report at 0133Z adds King (Minnesota Lynx) Out - Coach's Decision: \"King (coach's decision) won't play Wednesday against the Fire.\" return_date 2026-08-15. Confirmed on the per-event report for MIN@POR (401857139). Wednesday = 2026-08-12 ET; minutes_est 0. Her 2026-08-09 until-cleared 'in' entry is status-only and stays as history.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 256
     },
     {
       "player": "Maddy Westbeld",
@@ -3081,7 +3081,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 0234Z diff (was Day-To-Day, Leg, Las Vegas). She has dropped off the league injury report entirely. Corroborated by the lineup feed for the in-progress WAS@LVA game (event 2729/ESPN 401857142): Pissott is listed dnp=true with reason COACH'S DECISION, i.e. a healthy scratch rather than an injury absence. Supersedes the 2026-08-13/0041Z questionable. Recorded with NO minutes estimate - she is a deep-bench player whose availability is now a rotation question, not a medical one, and any number here would price a bet instead of retiring a stale doubt.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 253
     },
     {
       "player": "Sabrina Ionescu",
@@ -3276,7 +3276,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2233Z diff (was Day-To-Day, Back, Indiana Fever), same pre-tip clearance as Boston: present in the 2134Z league AND per-event (401857143) reports as probable for tonight's DAL@IND, absent from the 2233Z capture at 18:33 ET. Recorded available for 2026-08-14, superseding 218. NO minutes_est. Flagged for the owner: live/bets.csv carries an OPEN Clark assists under 9.5 (-110) on this game, and this update cuts AGAINST that side - the back issue that entry 218 logged has cleared. Recorded as the source states it; the routine does not shade an availability entry toward a position already held, in either direction.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 252
     },
     {
       "player": "Bree Hall",
@@ -3307,6 +3307,71 @@
       "source": "avail:2026-08-14/2333Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Williams (coach's decision) is listed as out for Friday's game against the Fever.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Caitlin Clark",
+      "added": "2026-08-15T00:33:00Z",
+      "game_date": "2026-08-16",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/0033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0033Z diff: Day-To-Day, type 'Ankle', return_date 2026-08-14, present in BOTH the league report and the per-event report for 401857143 (DAL@IND) while that game sits at STATUS_HALFTIME. She started the game and the 2333Z capture carried no Clark row at all, so this is an in-game ankle designation, not a pre-tip listing. It supersedes entry 249 (the pre-tip clearance of the unrelated Back day-to-day). Deliberately non-committal: severity and whether she returned in the second half are unknown from the feed, so status is 'questionable' with minutes_est null - which carries NO pricing effect (active_overrides only moves minutes when est/range is set). It targets IND's next game, 2026-08-16 IND@ATL; tonight's props are already in progress and nothing here re-prices them. If the feed still shows the ankle before 8/16, a minutes judgement is the owner's call, not this routine's.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Justine Pissott",
+      "added": "2026-08-15T00:33:00Z",
+      "game_date": "2026-08-15",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/0033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0033Z diff: Day-To-Day, 'Leg', Las Vegas Aces, return_date 2026-08-15 - \"Pissott (leg) is listed as questionable for Saturday's game against the Lynx\" (MIN@LVA, 2026-08-15 20:00 ET). Supersedes entry 234, which had her clear with game_date null. minutes_est null: questionable is not out, she is a deep-bench minute, and manufacturing a minutes cut would manufacture an under.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Chloe Bibby",
+      "added": "2026-08-15T00:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/0033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 0033Z diff (was Out, 'Personal', Minnesota Lynx). The dropped report still read \"out for Wednesday's game in Portland\" - a stale listing rolling off, not a fresh return. Supersedes entry 71, which targeted 2026-08-08 and was already inert. Bookkeeping only: no minutes claim, and MIN's next game is 2026-08-15 MIN@LVA.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Elena Buenavida",
+      "added": "2026-08-15T00:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/0033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 0033Z diff (was Out, \"Coach's Decision\", Minnesota Lynx; dropped comment still referenced Wednesday's game against Portland). Ordinary post-game roll-off of a coach's-decision DNP. Supersedes entry 204 (game_date 2026-08-12, already inert). No minutes claim.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Liatu King",
+      "added": "2026-08-15T00:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/0033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 0033Z diff (was Out, \"Coach's Decision\", Minnesota Lynx; dropped comment still referenced Wednesday against the Fire). Same post-game roll-off pattern she has shown repeatedly this month. Supersedes entry 205 (game_date 2026-08-12, already inert). No minutes claim.",
       "author": "news-watch",
       "superseded_by": null
     }
