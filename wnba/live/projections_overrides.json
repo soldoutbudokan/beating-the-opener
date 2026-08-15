@@ -1,5 +1,5 @@
 {
-  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
   "entries": [
     {
       "player": "DiJonai Carrington",
@@ -3237,7 +3237,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2134Z diff (was Out, Coach's Decision, Connecticut Sun). Supersedes entry 223. This is the ordinary post-game roll-off of a coach's-decision DNP, not a return from injury: the entry it supersedes was dated to the completed 2026-08-13 game (Connecticut vs Atlanta), and that game is over, so the league report simply dropped the row. Recorded as available, open-ended, with NO minutes estimate - nothing here shows a role either way. Connecticut Sun next plays 2026-08-15; tonight's sheet is DAL@IND and POR@SEA, so this is inert for 2026-08-14.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 265
     },
     {
       "player": "Aziaha James",
@@ -3463,6 +3463,32 @@
       "source": "avail:2026-08-15/1633Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report + per-event report for NY@CON (event 401857145, 1:00 PM ET): Van Lith listed Out (Coach's Decision), return date 2026-08-18. First entry for this player; no prior override to supersede.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Raquel Carrera",
+      "added": "2026-08-15T17:33:00Z",
+      "game_date": "2026-08-15",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/1733Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/summary?event=401857145",
+      "quote": "ESPN lineup feed for NY@CON (401857145, tipped 13:00 ET) lists Raquel Carrera as DNP - Coach's Decision. Not on the league or per-event injury report, so this is lineup-only information; conservative out/0 for tonight only. Game already in progress, so this entry is inert for pricing and exists for the record/training archive.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ashlon Jackson",
+      "added": "2026-08-15T17:33:00Z",
+      "game_date": "2026-08-15",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/1733Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/summary?event=401857145",
+      "quote": "ESPN lineup feed for NY@CON (401857145, tipped 13:00 ET) lists Ashlon Jackson as DNP - Coach's Decision, superseding her 2026-08-14 until-cleared 'in'. Not on the injury report; lineup-only. Out/0 scoped to tonight only - no claim about her next game. Game already in progress, so inert for pricing.",
       "author": "news-watch",
       "superseded_by": null
     }
