@@ -3185,7 +3185,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED in the 2134Z diff: Out -> Day-To-Day (Ribs), Los Angeles Sparks, comment \"Brink (ribs) is questionable for Saturday's game against the Mystics.\", return_date 2026-08-15. Supersedes entry 238, the open-ended OUT written at 1715Z, and confirms what that entry hedged for: the Out described the game she left, not the next one. The comment now names LAS's next game explicitly (2026-08-15 19:30 ET at Washington, event 2733), so the doubt is dated to it and the until-cleared OUT marker comes off. Status-only with NO minutes estimate - an upgrade to questionable is not evidence of a minutes cap. LAS is not on tonight's sheet (DAL@IND, POR@SEA).",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 269
     },
     {
       "player": "Sabrina Ionescu",
@@ -3334,7 +3334,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0033Z diff: Day-To-Day, 'Leg', Las Vegas Aces, return_date 2026-08-15 - \"Pissott (leg) is listed as questionable for Saturday's game against the Lynx\" (MIN@LVA, 2026-08-15 20:00 ET). Supersedes entry 234, which had her clear with game_date null. minutes_est null: questionable is not out, she is a deep-bench minute, and manufacturing a minutes cut would manufacture an under.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 273
     },
     {
       "player": "Chloe Bibby",
@@ -3360,7 +3360,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 0033Z diff (was Out, \"Coach's Decision\", Minnesota Lynx; dropped comment still referenced Wednesday's game against Portland). Ordinary post-game roll-off of a coach's-decision DNP. Supersedes entry 204 (game_date 2026-08-12, already inert). No minutes claim.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 270
     },
     {
       "player": "Liatu King",
@@ -3373,7 +3373,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 0033Z diff (was Out, \"Coach's Decision\", Minnesota Lynx; dropped comment still referenced Wednesday against the Fire). Same post-game roll-off pattern she has shown repeatedly this month. Supersedes entry 205 (game_date 2026-08-12, already inert). No minutes claim.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 271
     },
     {
       "player": "Caitlin Clark",
@@ -3528,6 +3528,71 @@
       "source": "avail:2026-08-15/2133Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2133Z diff (was Out, \"Coach's Decision\"/personal reasons, Atlanta Dream; the dropped listing still referenced Thursday's game versus Connecticut). Off both the league report and the per-event report. No restriction reported, no minutes assumption made. Supersedes index 156.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Cameron Brink",
+      "added": "2026-08-15T23:33:00Z",
+      "game_date": "2026-08-15",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPDATED in the 2333Z diff: Day-To-Day -> Out (Ribs), Los Angeles Sparks, return_date 2026-08-18. League report comment \"Brink (ribs) is out for Saturday's game against the Mystics.\", confirmed by the per-event report for event 401857146 (LA@WSH, 2026-08-15 19:30 ET, already IN_PROGRESS at capture). A downgrade to a hard Out for a named game: minutes_est 0. Supersedes entry 242, which dated the doubt to this same game while she was still questionable. LAS is not on the pick sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Elena Buenavida",
+      "added": "2026-08-15T23:33:00Z",
+      "game_date": "2026-08-15",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2333Z diff: Out, Coach's Decision, Minnesota Lynx, return_date 2026-08-19. League comment \"Buenavida (coach's decision) is out for Saturday's game in Las Vegas.\", confirmed by the per-event report for event 401857147 (MIN@LV, 2026-08-15 20:00 ET). Coach's Decision counts as Out per protocol: minutes_est 0 for this game only. Supersedes entry 255 (the 0033Z 'in' clear); this is the same recurring deep-bench DNP pattern re-appearing, not a new injury.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Liatu King",
+      "added": "2026-08-15T23:33:00Z",
+      "game_date": "2026-08-15",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2333Z diff: Out, Coach's Decision, Minnesota Lynx, return_date 2026-08-19. League comment is the bare string \"out\"; the per-event report for event 401857147 (MIN@LV, 2026-08-15 20:00 ET) carries the same listing, so the game it refers to is unambiguous. Coach's Decision counts as Out: minutes_est 0 for this game only. Supersedes entry 256 (the 0033Z 'in' clear) - same on/off DNP pattern as entries 98/121/205.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ta'Niya Latson",
+      "added": "2026-08-15T23:33:00Z",
+      "game_date": "2026-08-15",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2333Z diff: Out, Coach's Decision, Las Vegas Aces, return_date 2026-08-18. League comment \"Latson is out for Saturday's game against Minnesota due to a coach's decision.\", confirmed by the per-event report for event 401857147 (MIN@LV, 2026-08-15 20:00 ET). Coach's Decision counts as Out: minutes_est 0 for this game only. First entry for this player; no prior override to supersede.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Justine Pissott",
+      "added": "2026-08-15T23:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-15/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2333Z diff (was Day-To-Day, 'Leg', Las Vegas Aces). Off both the league report and the per-event report for event 401857147 (MIN@LV, 2026-08-15 20:00 ET) - the game entry 253 dated her doubt to - so the questionable tag resolved before tip rather than lapsing. Conservative reading: no restriction reported, no minutes assumption made. Supersedes entry 253.",
       "author": "news-watch",
       "superseded_by": null
     }
