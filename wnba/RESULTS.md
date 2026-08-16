@@ -6,41 +6,53 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $105.42** (start $100)
+**Bankroll: $108.20** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 119 (63W-56L), 0 push, 2 void, 7 open |
-| staked | $119.00 |
-| P&L | $+5.42 (+4.6% ROI) |
-| mean EV said (model) | +21.72% (n=119) |
-| mean CLV (vs close) | -4.55% (n=114) |
-| mean CLV* (shade-adj) | -3.74% (n=114) |
-| closing line moved | 24 of 114 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 73.3W vs observed 63W (z=-1.96) |
-| Model-expected P&L | $+26.29 |
-| CLV-expected P&L | $-5.18 |
+| settled | 124 (67W-57L), 0 push, 4 void, 12 open |
+| staked | $124.00 |
+| P&L | $+8.20 (+6.6% ROI) |
+| mean EV said (model) | +21.40% (n=124) |
+| mean CLV (vs close) | -4.57% (n=121) |
+| mean CLV* (shade-adj) | -3.73% (n=121) |
+| closing line moved | 25 of 121 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| model calibration | expected 76.3W vs observed 67W (z=-1.75) |
+| Model-expected P&L | $+27.33 |
+| CLV-expected P&L | $-5.53 |
 
-CLV t-stat: -5.52 (iid); -3.20 clustered by match date (16 dates)
+CLV t-stat: -5.78 (iid); -3.29 clustered by match date (17 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-08-15 | Kayla McBride | threes | over | 2.5 | -158 | 1.0 | +20.0% |  |  |  |  |  |
-| 2026-08-15 | Sabrina Ionescu | points | under | 18.5 | -114 | 1.0 | +18.4% |  |  |  |  |  |
-| 2026-08-15 | Napheesa Collier | threes | over | 1.5 | -104 | 1.0 | +17.9% |  |  |  |  |  |
-| 2026-08-15 | Brittney Griner | points | over | 11.5 | -108 | 1.0 | +15.6% |  |  |  |  |  |
-| 2026-08-15 | Ariel Atkins | assists | over | 2.5 | -140 | 1.0 | +11.1% |  |  |  |  |  |
-| 2026-08-15 | Natasha Howard | rebounds | over | 5.5 | -140 | 1.0 | +10.2% |  |  |  |  |  |
-| 2026-08-15 | Erica Wheeler | threes | over | 1.5 | 140 | 1.0 | +10.3% |  |  |  |  |  |
-| 2026-08-14 | Jade Melbourne | assists | under | 4.5 | 108 | 1.0 | +10.0% | 2 | won | +1.08 |  |  |
+| 2026-08-16 | Carla Leite | threes | under | 0.5 | 164 | 1.0 | +23.4% |  |  |  |  |  |
+| 2026-08-16 | Megan DiLeo | points | under | 13.5 | 100 | 1.0 | +23.1% |  |  |  |  |  |
+| 2026-08-16 | Bridget Carleton | points | under | 16.5 | -118 | 1.0 | +21.6% |  |  |  |  |  |
+| 2026-08-16 | Rhyne Howard | assists | over | 3.5 | -110 | 1.0 | +14.1% |  |  |  |  |  |
+| 2026-08-16 | Ezi Magbegor | rebounds | under | 5.5 | -130 | 1.0 | +14.1% |  |  |  |  |  |
+| 2026-08-16 | Alyssa Thomas | assists | under | 8.5 | 112 | 1.0 | +13.8% |  |  |  |  |  |
+| 2026-08-16 | Natisha Hiedeman | threes | under | 1.5 | 104 | 1.0 | +13.4% |  |  |  |  |  |
+| 2026-08-16 | Kahleah Copper | points | under | 21.5 | -102 | 1.0 | +11.5% |  |  |  |  |  |
+| 2026-08-16 | Caitlin Clark | assists | under | 9.5 | -118 | 1.0 | +11.2% |  |  |  |  |  |
+| 2026-08-16 | Dominique Malonga | rebounds | under | 9.5 | 102 | 1.0 | +10.8% |  |  |  |  |  |
+| 2026-08-16 | Sophie Cunningham | threes | over | 1.5 | 118 | 1.0 | +15.6% |  |  |  |  |  |
+| 2026-08-16 | DeWanna Bonner | threes | under | 1.5 | -140 | 1.0 | +10.3% |  |  |  |  |  |
+| 2026-08-15 | Kayla McBride | threes | over | 2.5 | -158 | 1.0 | +20.0% | 2 | lost | -1.00 |  |  |
+| 2026-08-15 | Sabrina Ionescu | points | under | 18.5 | -114 | 1.0 | +18.4% |  | void (DNP) | +0.00 |  |  |
+| 2026-08-15 | Napheesa Collier | threes | over | 1.5 | -104 | 1.0 | +17.9% | 2 | won | +0.96 |  |  |
+| 2026-08-15 | Brittney Griner | points | over | 11.5 | -108 | 1.0 | +15.6% |  | void (DNP) | +0.00 |  |  |
+| 2026-08-15 | Ariel Atkins | assists | over | 2.5 | -140 | 1.0 | +11.1% | 3 | won | +0.71 | +2.9% | +0.0% |
+| 2026-08-15 | Natasha Howard | rebounds | over | 5.5 | -140 | 1.0 | +10.2% | 11 | won | +0.71 |  |  |
+| 2026-08-15 | Erica Wheeler | threes | over | 1.5 | 140 | 1.0 | +10.3% | 2 | won | +1.40 | -8.4% | -13.4% |
+| 2026-08-14 | Jade Melbourne | assists | under | 4.5 | 108 | 1.0 | +10.0% | 2 | won | +1.08 | -11.6% | -8.0% |
 | 2026-08-14 | Caitlin Clark | assists | under | 9.5 | -110 | 1.0 | +14.3% | 10 | lost | -1.00 | -7.5% | -4.3% |
-| 2026-08-14 | Bridget Carleton | assists | under | 2.5 | -118 | 1.0 | +13.0% | 2 | won | +0.85 |  |  |
-| 2026-08-14 | Natisha Hiedeman | threes | under | 1.5 | 122 | 1.0 | +12.9% | 1 | won | +1.22 |  |  |
-| 2026-08-14 | Emily Engstler | points | under | 9.5 | -104 | 1.0 | +21.5% | 9 | won | +0.96 |  |  |
+| 2026-08-14 | Bridget Carleton | assists | under | 2.5 | -118 | 1.0 | +13.0% | 2 | won | +0.85 | +6.2% | +9.2% |
+| 2026-08-14 | Natisha Hiedeman | threes | under | 1.5 | 122 | 1.0 | +12.9% | 1 | won | +1.22 | -13.4% | -8.6% |
+| 2026-08-14 | Emily Engstler | points | under | 9.5 | -104 | 1.0 | +21.5% | 9 | won | +0.96 | -2.6% | +0.7% |
 | 2026-08-14 | Paige Bueckers | assists | under | 6.5 | -132 | 1.0 | +20.8% | 6 | won | +0.76 | -7.6% | -4.6% |
-| 2026-08-14 | Dominique Malonga | points | under | 20.5 | -122 | 1.0 | +20.1% | 9 | won | +0.82 |  |  |
+| 2026-08-14 | Dominique Malonga | points | under | 20.5 | -122 | 1.0 | +20.1% | 9 | won | +0.82 | -7.8% | -4.7% |
 | 2026-08-14 | Arike Ogunbowale | threes | under | 2.5 | -215 | 1.0 | +10.8% | 0 | won | +0.47 | -2.0% | +0.8% |
 | 2026-08-13 | Chelsea Gray | assists | over | 6.5 | 118 | 1.0 | +19.6% | 5 | lost | -1.00 | +2.9% | -0.8% |
 | 2026-08-13 | Rae Burrell | points | under | 15.5 | -114 | 1.0 | +19.4% | 28 | lost | -1.00 | -11.8% | -8.6% |
