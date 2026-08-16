@@ -10,7 +10,7 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 124 (67W-57L), 0 push, 4 void, 12 open |
+| settled | 124 (67W-57L), 0 push, 4 void, 14 open |
 | staked | $124.00 |
 | P&L | $+8.20 (+6.6% ROI) |
 | mean EV said (model) | +21.40% (n=124) |
@@ -27,6 +27,8 @@ Calibration reads the model's own claims against results: expected wins = sum of
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-08-17 | Paige Bueckers | assists | under | 5.5 | 112 | 1.0 | +10.8% |  |  |  |  |  |
+| 2026-08-17 | Arike Ogunbowale | points | under | 15.5 | 100 | 1.0 | +21.9% |  |  |  |  |  |
 | 2026-08-16 | Carla Leite | threes | under | 0.5 | 164 | 1.0 | +23.4% |  |  |  |  |  |
 | 2026-08-16 | Megan DiLeo | points | under | 13.5 | 100 | 1.0 | +23.1% |  |  |  |  |  |
 | 2026-08-16 | Bridget Carleton | points | under | 16.5 | -118 | 1.0 | +21.6% |  |  |  |  |  |
