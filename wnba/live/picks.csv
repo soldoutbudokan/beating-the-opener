@@ -1,14 +1,13 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
 2738_points_odyssey sims_under,2026-08-17,2026-08-18 02:00:00,2738,points,Odyssey Sims,DAL,DAL@GSV,under,10.5,-115.0,0.8285,0.5489,True,-411,-357,0.0,6.24,,10.5,SUSPECT_EV(55%);ROLE_START?,False,False
-2736_rebounds_jordan horston_under,2026-08-16,2026-08-16 21:00:00,2736,rebounds,Jordan Horston,SEA,CHI@SEA,under,4.5,-106.0,0.7018,0.3639,True,-213,-195,0.0,3.43,,3.5,MOVED_OFF_OPEN;SUSPECT_EV(36%);ROLE_START?,False,False
+2736_rebounds_jordan horston_under,2026-08-16,2026-08-16 21:00:00,2736,rebounds,Jordan Horston,SEA,CHI@SEA,under,4.5,-112.0,0.7018,0.3284,True,-213,-195,0.0,3.43,,3.5,MOVED_OFF_OPEN;SUSPECT_EV(33%);ROLE_START?,False,False
 2736_assists_jade melbourne_under,2026-08-16,2026-08-16 21:00:00,2736,assists,Jade Melbourne,SEA,CHI@SEA,under,4.5,118.0,0.5888,0.2835,True,-133,-124,0.0,4.11,,4.5,SUSPECT_EV(28%);ROLE_MIN?,False,False
+2736_points_ezi magbegor_under,2026-08-16,2026-08-16 21:00:00,2736,points,Ezi Magbegor,SEA,CHI@SEA,under,7.5,102.0,0.6301,0.2728,True,-157,-146,0.0,6.4,,7.5,SUSPECT_EV(27%);PLAYER_ALREADY_BET(rebounds under 5.5),False,False
 2738_threes_arike ogunbowale_under,2026-08-17,2026-08-18 02:00:00,2738,threes,Arike Ogunbowale,DAL,DAL@GSV,under,1.5,124.0,0.5655,0.2668,True,-121,-114,0.0,1.48,,1.5,SUSPECT_EV(27%),False,False
-2736_points_ezi magbegor_under,2026-08-16,2026-08-16 21:00:00,2736,points,Ezi Magbegor,SEA,CHI@SEA,under,7.5,100.0,0.6301,0.2602,True,-157,-146,0.0,6.4,,7.5,SUSPECT_EV(26%);PLAYER_ALREADY_BET(rebounds under 5.5),False,False
 2737_rebounds_carla leite_under,2026-08-16,2026-08-16 23:00:00,2737,rebounds,Carla Leite,PDX,PDX@PHO,under,2.5,-122.0,0.6665,0.2128,True,-183,-169,0.0,1.91,,2.5,PLAYER_ALREADY_BET(threes under 0.5),False,False
-2737_points_bridget carleton_under,2026-08-16,2026-08-16 23:00:00,2737,points,Bridget Carleton,PDX,PDX@PHO,under,16.5,-122.0,0.6577,0.1968,True,-176,-163,3.0,14.24,,16.5,,False,True
+2737_points_bridget carleton_under,2026-08-16,2026-08-16 23:00:00,2737,points,Bridget Carleton,PDX,PDX@PHO,under,16.5,-120.0,0.6577,0.2058,True,-176,-163,3.5,14.24,,16.5,,False,True
 2736_assists_dominique malonga_under,2026-08-16,2026-08-16 21:00:00,2736,assists,Dominique Malonga,SEA,CHI@SEA,under,1.5,148.0,0.48,0.1905,True,115,121,0.0,1.71,,1.5,MOVED_OFF_OPEN;PLAYER_ALREADY_BET(rebounds under 9.5),False,False
 2737_points_megan dileo_under,2026-08-16,2026-08-16 23:00:00,2737,points,Megan DiLeo,PDX,PDX@PHO,under,14.5,-132.0,0.6747,0.1859,True,-189,-175,0.0,12.12,,13.5,MOVED_OFF_OPEN,False,True
+2736_assists_natasha cloud_under,2026-08-16,2026-08-16 21:00:00,2736,assists,Natasha Cloud,CHI,CHI@SEA,under,5.5,120.0,0.5275,0.1605,True,-104,101,0.0,5.44,,5.5,MOVED_OFF_OPEN,False,False
 2737_assists_alyssa thomas_under,2026-08-16,2026-08-16 23:00:00,2737,assists,Alyssa Thomas,PHO,PDX@PHO,under,8.5,116.0,0.5365,0.1588,True,-108,-102,2.0,8.33,,8.5,,False,True
-2735_threes_sophie cunningham_over,2026-08-16,2026-08-16 21:00:00,2735,threes,Sophie Cunningham,IND,IND@ATL,over,1.5,116.0,0.5303,0.1455,True,-106,-100,1.5,1.78,,1.5,,False,True
-2737_threes_dewanna bonner_under,2026-08-16,2026-08-16 23:00:00,2737,threes,DeWanna Bonner,PHO,PDX@PHO,under,1.5,-140.0,0.6434,0.103,True,-166,-154,2.0,1.25,,1.5,,False,True
-2737_threes_kahleah copper_under,2026-08-16,2026-08-16 23:00:00,2737,threes,Kahleah Copper,PHO,PDX@PHO,under,2.5,-182.0,0.7117,0.1028,True,-223,-204,0.0,1.87,,2.5,PLAYER_ALREADY_BET(points under 21.5),False,False
+2735_threes_sophie cunningham_over,2026-08-16,2026-08-16 21:00:00,2735,threes,Sophie Cunningham,IND,IND@ATL,over,1.5,118.0,0.5303,0.1561,True,-106,-100,2.0,1.78,,1.5,,False,True
