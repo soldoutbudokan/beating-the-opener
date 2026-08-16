@@ -3711,7 +3711,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report 2026-08-16 20:33Z: structured status OUT (type cleared to null), was OUT. NOTE the feed's own comment disagrees - 'Paopao (leg) is listed as questionable for Sunday's game against the Fever' - so status and comment conflict. Following the structured status, as with every other Out this routine has logged; no Paopao props are on the sheet, so the entry is inert either way. Flagged here so a later reader sees the conflict rather than a clean Out.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 286
     },
     {
       "player": "Aliyah Boston",
@@ -3749,6 +3749,19 @@
       "source": "avail:2026-08-16/2033Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report 2026-08-16 20:33Z: CLEARED from Out (entry 138, gd 2026-08-10). No longer listed; back to the base model's minutes state. No Mair props on the sheet - inert, logged for the archive.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Te-Hina Paopao",
+      "added": "2026-08-16T21:33:00Z",
+      "game_date": "2026-08-16",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-16/2133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN 2026-08-16 21:33Z: CLEARED from the league injury report (was structured-Out with a conflicting 'questionable (leg)' comment - entry 282 flagged that conflict). The clearance resolves it in her favour on health, BUT the live IND@ATL (event:401857150) lineup captured in the same snapshot lists Paopao as a DNP (Coach's Decision) with the game already in progress, so she does not play tonight. Supersedes 282 with the same out/0 for 2026-08-16 and the correct reason (roster DNP, not injury). game_date-limited, so nothing carries past tonight; the health clearance is the standing fact from here. No Paopao props on the sheet - inert, logged for the archive.",
       "author": "news-watch",
       "superseded_by": null
     }
