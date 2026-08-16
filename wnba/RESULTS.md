@@ -14,14 +14,14 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 | staked | $124.00 |
 | P&L | $+8.20 (+6.6% ROI) |
 | mean EV said (model) | +21.40% (n=124) |
-| mean CLV (vs close) | -4.57% (n=121) |
-| mean CLV* (shade-adj) | -3.73% (n=121) |
-| closing line moved | 25 of 121 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| mean CLV (vs close) | -4.51% (n=124) |
+| mean CLV* (shade-adj) | -3.79% (n=124) |
+| closing line moved | 26 of 124 stamped (the rest closed at the bet line: CLV ≈ vig there) |
 | model calibration | expected 76.3W vs observed 67W (z=-1.75) |
 | Model-expected P&L | $+27.33 |
-| CLV-expected P&L | $-5.53 |
+| CLV-expected P&L | $-5.60 |
 
-CLV t-stat: -5.78 (iid); -3.29 clustered by match date (17 dates)
+CLV t-stat: -5.81 (iid); -3.27 clustered by match date (17 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
@@ -39,12 +39,12 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-16 | Dominique Malonga | rebounds | under | 9.5 | 102 | 1.0 | +10.8% |  |  |  |  |  |
 | 2026-08-16 | Sophie Cunningham | threes | over | 1.5 | 118 | 1.0 | +15.6% |  |  |  |  |  |
 | 2026-08-16 | DeWanna Bonner | threes | under | 1.5 | -140 | 1.0 | +10.3% |  |  |  |  |  |
-| 2026-08-15 | Kayla McBride | threes | over | 2.5 | -158 | 1.0 | +20.0% | 2 | lost | -1.00 |  |  |
+| 2026-08-15 | Kayla McBride | threes | over | 2.5 | -158 | 1.0 | +20.0% | 2 | lost | -1.00 | -5.1% | -8.6% |
 | 2026-08-15 | Sabrina Ionescu | points | under | 18.5 | -114 | 1.0 | +18.4% |  | void (DNP) | +0.00 |  |  |
-| 2026-08-15 | Napheesa Collier | threes | over | 1.5 | -104 | 1.0 | +17.9% | 2 | won | +0.96 |  |  |
+| 2026-08-15 | Napheesa Collier | threes | over | 1.5 | -104 | 1.0 | +17.9% | 2 | won | +0.96 | -7.1% | -11.5% |
 | 2026-08-15 | Brittney Griner | points | over | 11.5 | -108 | 1.0 | +15.6% |  | void (DNP) | +0.00 |  |  |
 | 2026-08-15 | Ariel Atkins | assists | over | 2.5 | -140 | 1.0 | +11.1% | 3 | won | +0.71 | +2.9% | +0.0% |
-| 2026-08-15 | Natasha Howard | rebounds | over | 5.5 | -140 | 1.0 | +10.2% | 11 | won | +0.71 |  |  |
+| 2026-08-15 | Natasha Howard | rebounds | over | 5.5 | -140 | 1.0 | +10.2% | 11 | won | +0.71 | +5.7% | +0.9% |
 | 2026-08-15 | Erica Wheeler | threes | over | 1.5 | 140 | 1.0 | +10.3% | 2 | won | +1.40 | -8.4% | -13.4% |
 | 2026-08-14 | Jade Melbourne | assists | under | 4.5 | 108 | 1.0 | +10.0% | 2 | won | +1.08 | -11.6% | -8.0% |
 | 2026-08-14 | Caitlin Clark | assists | under | 9.5 | -110 | 1.0 | +14.3% | 10 | lost | -1.00 | -7.5% | -4.3% |
