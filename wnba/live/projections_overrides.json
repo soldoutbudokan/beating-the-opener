@@ -1827,7 +1827,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW: ESPN league injury report, 0133Z. Mair (coach's decision) is out for Monday's game against the Sky; return_date 2026-08-14. Supersedes the expired 2026-08-08 entry. A coach's-decision absence is availability only and is not evidence of a role change.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 285
     },
     {
       "player": "Ezi Magbegor",
@@ -1879,7 +1879,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW: ESPN league injury report, 0133Z. 'Paopao (leg) has been ruled out for Monday's game against Toronto'; return_date 2026-08-16. Targets TOR @ ATL (event 2719, 2026-08-10 ET). Status only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 282
     },
     {
       "player": "Brittney Sykes",
@@ -2912,7 +2912,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report (snapshot 2138Z / 17:38 ET): CLEARED, was Out. Prior row was a Coach's Decision DNP for Tuesday's (8/11) IND-NY game with return_date 2026-08-14; the row has now dropped off the report. Deep-bench role - logged as in with no minutes estimate.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 280
     },
     {
       "player": "Alissa Pili",
@@ -3477,7 +3477,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report, snapshot 2133Z (17:33 ET): NEW Day-To-Day, Lower Leg (Indiana Fever, return_date 2026-08-16) - \"Boston (lower leg) is listed as probable for Sunday's game against the Dream.\" Probable = expected to play, so minutes are deliberately left UNCHANGED (minutes_est null); this entry exists as a flag and as training data, not as a projection change. Supersedes the 2026-08-14 'in' entry (index 248) - she has re-appeared on the report for the 8/16 IND@ATL game.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 283
     },
     {
       "player": "Caitlin Clark",
@@ -3490,7 +3490,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report, snapshot 2133Z (17:33 ET): NEW Day-To-Day, Back (Indiana Fever, return_date 2026-08-16) - \"Clark (back) is listed as probable for Sunday's game against the Dream.\" Same back issue that cleared at 0137Z today and has recurred on the report ahead of 8/16; probable, so minutes left UNCHANGED (minutes_est null). Supersedes index 257 ('in', 0137Z). NOTE: an OPEN owner bet exists on this player-game (2735_assists_caitlin clark_under) - availability is a live check near tip, not a model input.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 284
     },
     {
       "player": "Jordin Canada",
@@ -3503,7 +3503,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report, snapshot 2133Z (17:33 ET): NEW Day-To-Day, Illness (Atlanta Dream, return_date 2026-08-16) - \"Canada (illness) is listed as questionable for Sunday's game against Indiana.\" Questionable (not probable), so a genuine doubt for the 8/16 IND@ATL game, but no defensible minutes number exists for an illness listing this far out - minutes left UNCHANGED (minutes_est null) per the standing convention that only 'Out' zeroes a player. First entry for this player; flagged for the near-tip availability check.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 278
     },
     {
       "player": "Bree Hall",
@@ -3516,7 +3516,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2133Z diff (was Out, \"Coach's Decision\", Indiana Fever; the dropped listing still referenced Friday's game against the Wings, i.e. a stale coach's-decision line). Off both the league report and the per-event report. Conservative reading: no restriction reported, no minutes assumption made. Supersedes index 250.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 279
     },
     {
       "player": "Indya Nivar",
@@ -3645,6 +3645,110 @@
       "source": "avail:2026-08-16/0034Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 0034Z diff (was Out, Coach's Decision, Chicago Sky; the dropped listing referenced Wednesday's game against Golden State, i.e. a stale coach's-decision line, return_date 2026-08-16). Conservative reading: no restriction reported, no minutes assumption made. Supersedes index 206.",
+      "author": "news-watch",
+      "superseded_by": 281
+    },
+    {
+      "player": "Jordin Canada",
+      "added": "2026-08-16T20:33:00Z",
+      "game_date": "2026-08-16",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-16/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report 2026-08-16 20:33Z: Canada (illness) OUT vs Indiana (was Day-To-Day at the 08-15 21:33Z snapshot). 'Canada (illness) has been ruled out for Sunday's game against Indiana.' Return date 2026-08-18. She has ATL props on today's sheet, so this is the one live entry of this batch.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Bree Hall",
+      "added": "2026-08-16T20:33:00Z",
+      "game_date": "2026-08-16",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-16/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + event:401857150 injury reports 2026-08-16 20:33Z: Hall OUT (Coach's Decision) at Atlanta. NEW vs the 08-15 snapshot, where she was cleared. No Hall props on the sheet - inert, logged for the archive.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Michelle Onyiah",
+      "added": "2026-08-16T20:33:00Z",
+      "game_date": "2026-08-16",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-16/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + event:401857150 injury reports 2026-08-16 20:33Z: Onyiah OUT (Coach's Decision) vs the Dream. NEW vs the previous snapshot. No props on the sheet - inert, logged for the archive.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Maddy Westbeld",
+      "added": "2026-08-16T20:33:00Z",
+      "game_date": "2026-08-16",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-16/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league + event:401857148 injury reports 2026-08-16 20:33Z: Westbeld OUT (Coach's Decision) vs the Storm. NEW vs the 08-16 00:34Z snapshot, where she was in. No props on the sheet - inert, logged for the archive.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Te-Hina Paopao",
+      "added": "2026-08-16T20:33:00Z",
+      "game_date": "2026-08-16",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-16/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report 2026-08-16 20:33Z: structured status OUT (type cleared to null), was OUT. NOTE the feed's own comment disagrees - 'Paopao (leg) is listed as questionable for Sunday's game against the Fever' - so status and comment conflict. Following the structured status, as with every other Out this routine has logged; no Paopao props are on the sheet, so the entry is inert either way. Flagged here so a later reader sees the conflict rather than a clean Out.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Aliyah Boston",
+      "added": "2026-08-16T20:33:00Z",
+      "game_date": "2026-08-16",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-16/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report 2026-08-16 20:33Z: CLEARED from Day-To-Day (entry 264, gd 2026-08-16 questionable). No longer listed; back to the base model's minutes state. Boston has IND props on today's sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Caitlin Clark",
+      "added": "2026-08-16T20:33:00Z",
+      "game_date": "2026-08-16",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-16/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report 2026-08-16 20:33Z: CLEARED from Day-To-Day (entry 265, gd 2026-08-16 questionable). No longer listed; back to the base model's minutes state. Clark has IND props on today's sheet and an OPEN owner bet on assists under 9.5 for this game - clearing means she is expected to play.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Taina Mair",
+      "added": "2026-08-16T20:33:00Z",
+      "game_date": "2026-08-16",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-16/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report 2026-08-16 20:33Z: CLEARED from Out (entry 138, gd 2026-08-10). No longer listed; back to the base model's minutes state. No Mair props on the sheet - inert, logged for the archive.",
       "author": "news-watch",
       "superseded_by": null
     }
