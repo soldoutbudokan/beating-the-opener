@@ -3764,6 +3764,19 @@
       "quote": "ESPN 2026-08-16 21:33Z: CLEARED from the league injury report (was structured-Out with a conflicting 'questionable (leg)' comment - entry 282 flagged that conflict). The clearance resolves it in her favour on health, BUT the live IND@ATL (event:401857150) lineup captured in the same snapshot lists Paopao as a DNP (Coach's Decision) with the game already in progress, so she does not play tonight. Supersedes 282 with the same out/0 for 2026-08-16 and the correct reason (roster DNP, not injury). game_date-limited, so nothing carries past tonight; the health clearance is the standing fact from here. No Paopao props on the sheet - inert, logged for the archive.",
       "author": "news-watch",
       "superseded_by": null
+    },
+    {
+      "player": "Jordan Horston",
+      "added": "2026-08-16T23:33:00Z",
+      "game_date": null,
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-16/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN 2026-08-16 23:33Z: NEW Day-To-Day (Shoulder), return_date 2026-08-23. 'Horston will not return to Sunday's game against the Sky due to a shoulder injury' (Beta Basket via ESPN). She STARTED CHI@SEA tonight (event:401857148, now final), so this does not touch a played game; it targets her next appearances. Left game_date null (until cleared) and minutes deliberately unset - Day-To-Day with no severity read, and SEA has no props on the current or 2026-08-17 sheet, so the entry is inert until a later firing can price it. Supersede with a minutes call if she is still listed when SEA props next appear.",
+      "author": "news-watch",
+      "superseded_by": null
     }
   ]
 }
