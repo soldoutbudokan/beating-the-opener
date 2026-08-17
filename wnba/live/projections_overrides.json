@@ -2444,7 +2444,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 0033Z DOWNGRADES Stokes (Golden State) Day-To-Day/Neck -> Out, type Concussion, comment \"Stokes (concussion) has been ruled out for Wednesday's game against the Sky\", return_date 2026-08-17. Supersedes the 2026-08-10/0133Z questionable/status-only entry. game_date left null (until cleared) rather than pinned to 2026-08-12: a concussion with a 2026-08-17 return date spans more than the next game, and the entry is superseded the moment she reappears on the report. minutes_est 0. She carries no row on the current sheet; the GSV rows are priced without re-allocating the minutes she vacates - the model does not redistribute usage.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 291
     },
     {
       "player": "Ashten Prechtel",
@@ -2730,7 +2730,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN per-event injury report for CHI@GS (401857138) at 0133Z adds Sowah (Golden State Valkyries) Out - Coach's Decision, return_date 2026-08-17. Wednesday = 2026-08-12 ET; minutes_est 0. Dated to this game only - the 2026-08-12/0033Z until-cleared 'in' entry is status-only and carries no minutes.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 292
     },
     {
       "player": "Teja Oblak",
@@ -2808,7 +2808,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "DOWNGRADE in the 0237Z diff: Salaun (Golden State Valkyries) Day-To-Day -> Out, type Knee. \"Salaun (knee) won't play in Wednesday's game versus Chicago.\" Confirmed on the per-event report for CHI@GS (401857138). return_date 2026-08-17. Wednesday = 2026-08-12 ET (10:00 PM ET tip, game in progress); minutes_est 0 for that game. Supersedes the 2026-08-12/0033Z questionable entry, which the feed has now resolved. Not carried forward: Golden State's next game is 2026-08-17 (event 2738), which is the return_date.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 290
     },
     {
       "player": "Carla Leite",
@@ -3807,6 +3807,45 @@
       "source": "avail:2026-08-17/0034Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Standing (not a diff change): league report still lists Griner Out (Knee) - \"Griner (knee) has been ruled out for Saturday's game against the Liberty\" - with return_date 2026-08-18, which IS the game_date of the LAS@CON prop on the sheet. Treated as a returning player per T3: questionable, minutes haircut to her last game played (19 min on 2026-08-13; she missed 08-15). Supersedes nothing - entry 262 was game_date-limited to 2026-08-15 and is already inert.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Janelle Salaun",
+      "added": "2026-08-17T01:33:00Z",
+      "game_date": "2026-08-17",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-17/0133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPGRADE in the 0133Z diff: Salaun (Golden State Valkyries) Out -> Day-To-Day, type Knee, \"Salaun (knee) is listed as questionable for Monday's game versus the Wings\", return_date 2026-08-17. Monday = 2026-08-17 ET, the DAL@GSV game (event 2738) two open bets sit on. Supersedes the 2026-08-13/0237Z out entry (index 213), which was game_date-limited to 2026-08-12 and already inert. Conservative per T3: questionable, minutes_est null - this routine does not hand-cut minutes on a day-to-day tag, and an upgrade toward playing is not a reason to add minutes either. No Salaun row on the current sheet; flagged because she is a Golden State rotation forward and GSV is the event the Bueckers and Ogunbowale opens are on.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kiah Stokes",
+      "added": "2026-08-17T01:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-17/0133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED at 0133Z: Stokes (Golden State Valkyries) dropped off the ESPN league injury report; at 0034Z she was still Out - Concussion (\"Stokes (concussion) has been ruled out for Wednesday's game against the Sky\") with return_date 2026-08-17, which is today ET and Golden State's next game (DAL@GSV, event 2738). Supersedes the until-cleared out entry from 2026-08-12/0033Z (index 185). Status in; minutes_est null - a clearance carries no minutes information and she is returning from a five-day concussion absence, so no minutes claim is made in either direction. No Stokes row on the current sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Miela Sowah",
+      "added": "2026-08-17T01:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-17/0133Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED at 0133Z: Sowah (Golden State Valkyries) dropped off the ESPN league injury report; at 0034Z she was still Out - Coach's Decision (\"Sowah (coach's decision) is listed as out for Wednesday's game versus Chicago\") with return_date 2026-08-17. Supersedes the 2026-08-13/0133Z out entry (index 207), whose game_date 2026-08-12 had already expired, so nothing was being priced off it. game_date null, status in, minutes_est null - a coach's-decision clearance says available, not how many minutes. No Sowah row on the current sheet.",
       "author": "news-watch",
       "superseded_by": null
     }
