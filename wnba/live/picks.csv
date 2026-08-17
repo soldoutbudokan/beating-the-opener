@@ -1,6 +1,6 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
 2738_points_odyssey sims_under,2026-08-17,2026-08-18 02:00:00,2738,points,Odyssey Sims,DAL,DAL@GSV,under,9.5,-114.0,0.7776,0.4596,True,-308,-275,0.0,6.22,,10.5,MOVED_OFF_OPEN;SUSPECT_EV(46%);ROLE_START?,False,False
-2738_threes_arike ogunbowale_under,2026-08-17,2026-08-18 02:00:00,2738,threes,Arike Ogunbowale,DAL,DAL@GSV,under,1.5,120.0,0.567,0.2474,True,-122,-115,0.0,1.47,,1.5,PLAYER_ALREADY_BET(points under 15.5),False,False
+2738_threes_arike ogunbowale_under,2026-08-17,2026-08-18 02:00:00,2738,threes,Arike Ogunbowale,DAL,DAL@GSV,under,1.5,122.0,0.567,0.2587,True,-122,-115,0.0,1.47,,1.5,SUSPECT_EV(26%);PLAYER_ALREADY_BET(points under 15.5),False,False
 2739_assists_caitlin clark_under,2026-08-18,2026-08-18 23:00:00,2739,assists,Caitlin Clark,IND,IND@TOR,under,9.5,104.0,0.5999,0.2238,True,-139,-130,3.0,8.79,,9.5,ROLE_MIN?,True,False
 2739_points_makayla timpson_under,2026-08-18,2026-08-18 23:00:00,2739,points,Makayla Timpson,IND,IND@TOR,under,6.5,100.0,0.6102,0.2205,True,-145,-135,3.0,5.73,,6.5,ROLE_MIN?;ROLE_START?,True,False
 2740_points_rae burrell_under,2026-08-18,2026-08-18 23:00:00,2740,points,Rae Burrell,LAS,LAS@CON,under,16.5,-102.0,0.6136,0.2151,True,-147,-137,3.0,14.98,,16.5,,True,False
@@ -11,5 +11,5 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2740_assists_leila lacan_under,2026-08-18,2026-08-18 23:00:00,2740,assists,Leila Lacan,CON,LAS@CON,under,4.5,102.0,0.5679,0.1473,True,-122,-115,2.0,4.23,,4.5,,True,False
 2740_points_brittney griner_under,2026-08-18,2026-08-18 23:00:00,2740,points,Brittney Griner,CON,LAS@CON,under,11.5,-120.0,0.6173,0.1316,True,-149,-139,2.0,10.23,,11.5,,True,False
 2742_points_angel reese_under,2026-08-18,2026-08-19 01:00:00,2742,points,Angel Reese,ATL,ATL@LVA,under,15.5,100.0,0.5596,0.1193,True,-118,-111,1.5,14.91,,15.5,,True,False
+2738_threes_cecilia zandalasini_over,2026-08-17,2026-08-18 02:00:00,2738,threes,Cecilia Zandalasini,GSV,DAL@GSV,over,1.5,120.0,0.5049,0.1108,True,105,110,1.0,1.69,,1.5,ROLE_MIN?,True,False
 2738_assists_jessica shepard_over,2026-08-17,2026-08-18 02:00:00,2738,assists,Jessica Shepard,DAL,DAL@GSV,over,4.5,114.0,0.5179,0.1083,True,-101,105,1.5,4.73,,4.5,ROLE_MIN?,True,False
-2738_threes_cecilia zandalasini_over,2026-08-17,2026-08-18 02:00:00,2738,threes,Cecilia Zandalasini,GSV,DAL@GSV,over,1.5,118.0,0.5049,0.1007,True,105,110,1.0,1.69,,1.5,ROLE_MIN?,True,False
