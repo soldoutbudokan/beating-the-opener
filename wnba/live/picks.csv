@@ -1,15 +1,15 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
 2738_points_odyssey sims_under,2026-08-17,2026-08-18 02:00:00,2738,points,Odyssey Sims,DAL,DAL@GSV,under,9.5,-114.0,0.7776,0.4596,True,-308,-275,0.0,6.22,,10.5,MOVED_OFF_OPEN;SUSPECT_EV(46%);ROLE_START?,False,False
 2738_threes_arike ogunbowale_under,2026-08-17,2026-08-18 02:00:00,2738,threes,Arike Ogunbowale,DAL,DAL@GSV,under,1.5,120.0,0.567,0.2474,True,-122,-115,0.0,1.47,,1.5,PLAYER_ALREADY_BET(points under 15.5),False,False
-2739_assists_caitlin clark_under,2026-08-18,2026-08-18 23:00:00,2739,assists,Caitlin Clark,IND,IND@TOR,under,9.5,104.0,0.6,0.224,True,-139,-130,3.0,8.79,,9.5,ROLE_MIN?,True,False
-2739_points_makayla timpson_under,2026-08-18,2026-08-18 23:00:00,2739,points,Makayla Timpson,IND,IND@TOR,under,6.5,100.0,0.6103,0.2207,True,-145,-135,3.0,5.72,,6.5,ROLE_MIN?;ROLE_START?,True,False
-2740_points_rae burrell_under,2026-08-18,2026-08-18 23:00:00,2740,points,Rae Burrell,LAS,LAS@CON,under,16.5,-102.0,0.6138,0.2155,True,-147,-137,3.0,14.98,,16.5,,True,False
-2742_threes_jackie young_over,2026-08-18,2026-08-19 01:00:00,2742,threes,Jackie Young,LVA,ATL@LVA,over,2.5,140.0,0.4966,0.1918,True,108,114,2.0,2.66,,2.5,,True,False
-2741_rebounds_azura stevens_over,2026-08-18,2026-08-19 01:00:00,2741,rebounds,Azura Stevens,CHI,NYL@CHI,over,6.5,122.0,0.5294,0.1752,True,-105,101,2.0,6.89,,6.5,,True,False
-2741_points_breanna stewart_under,2026-08-18,2026-08-19 01:00:00,2741,points,Breanna Stewart,NYL,NYL@CHI,under,22.5,-122.0,0.6387,0.1622,True,-163,-151,2.5,20.19,,22.5,,True,False
-2742_assists_chelsea gray_over,2026-08-18,2026-08-19 01:00:00,2742,assists,Chelsea Gray,LVA,ATL@LVA,over,5.5,-132.0,0.6611,0.162,True,-179,-165,3.0,6.77,,5.5,,True,False
-2740_assists_leila lacan_under,2026-08-18,2026-08-18 23:00:00,2740,assists,Leila Lacan,CON,LAS@CON,under,4.5,102.0,0.568,0.1474,True,-122,-115,2.0,4.23,,4.5,,True,False
-2740_points_brittney griner_under,2026-08-18,2026-08-18 23:00:00,2740,points,Brittney Griner,CON,LAS@CON,under,11.5,-120.0,0.6174,0.1319,True,-149,-139,2.0,10.23,,11.5,,True,False
-2742_points_angel reese_under,2026-08-18,2026-08-19 01:00:00,2742,points,Angel Reese,ATL,ATL@LVA,under,15.5,100.0,0.5598,0.1196,True,-119,-111,1.5,14.91,,15.5,,True,False
+2739_assists_caitlin clark_under,2026-08-18,2026-08-18 23:00:00,2739,assists,Caitlin Clark,IND,IND@TOR,under,9.5,104.0,0.5999,0.2238,True,-139,-130,3.0,8.79,,9.5,ROLE_MIN?,True,False
+2739_points_makayla timpson_under,2026-08-18,2026-08-18 23:00:00,2739,points,Makayla Timpson,IND,IND@TOR,under,6.5,100.0,0.6102,0.2205,True,-145,-135,3.0,5.73,,6.5,ROLE_MIN?;ROLE_START?,True,False
+2740_points_rae burrell_under,2026-08-18,2026-08-18 23:00:00,2740,points,Rae Burrell,LAS,LAS@CON,under,16.5,-102.0,0.6136,0.2151,True,-147,-137,3.0,14.98,,16.5,,True,False
+2742_threes_jackie young_over,2026-08-18,2026-08-19 01:00:00,2742,threes,Jackie Young,LVA,ATL@LVA,over,2.5,140.0,0.4967,0.1921,True,108,114,2.0,2.66,,2.5,,True,False
+2741_rebounds_azura stevens_over,2026-08-18,2026-08-19 01:00:00,2741,rebounds,Azura Stevens,CHI,NYL@CHI,over,6.5,122.0,0.5295,0.1754,True,-105,101,2.0,6.89,,6.5,,True,False
+2742_assists_chelsea gray_over,2026-08-18,2026-08-19 01:00:00,2742,assists,Chelsea Gray,LVA,ATL@LVA,over,5.5,-132.0,0.6612,0.1621,True,-179,-165,3.0,6.77,,5.5,,True,False
+2741_points_breanna stewart_under,2026-08-18,2026-08-19 01:00:00,2741,points,Breanna Stewart,NYL,NYL@CHI,under,22.5,-122.0,0.6385,0.1618,True,-163,-151,2.5,20.19,,22.5,,True,False
+2740_assists_leila lacan_under,2026-08-18,2026-08-18 23:00:00,2740,assists,Leila Lacan,CON,LAS@CON,under,4.5,102.0,0.5679,0.1473,True,-122,-115,2.0,4.23,,4.5,,True,False
+2740_points_brittney griner_under,2026-08-18,2026-08-18 23:00:00,2740,points,Brittney Griner,CON,LAS@CON,under,11.5,-120.0,0.6173,0.1316,True,-149,-139,2.0,10.23,,11.5,,True,False
+2742_points_angel reese_under,2026-08-18,2026-08-19 01:00:00,2742,points,Angel Reese,ATL,ATL@LVA,under,15.5,100.0,0.5596,0.1193,True,-118,-111,1.5,14.91,,15.5,,True,False
 2738_assists_jessica shepard_over,2026-08-17,2026-08-18 02:00:00,2738,assists,Jessica Shepard,DAL,DAL@GSV,over,4.5,114.0,0.5179,0.1083,True,-101,105,1.5,4.73,,4.5,ROLE_MIN?,True,False
 2738_threes_cecilia zandalasini_over,2026-08-17,2026-08-18 02:00:00,2738,threes,Cecilia Zandalasini,GSV,DAL@GSV,over,1.5,118.0,0.5049,0.1007,True,105,110,1.0,1.69,,1.5,ROLE_MIN?,True,False
