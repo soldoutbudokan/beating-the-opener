@@ -1201,3 +1201,23 @@ registrations are firewalled from betting outcomes.
   FanDuel limits** table that renders only once `wnba/live/limits.csv`
   has rows, so the new protocol duty has a home on the scoreboard
   without empty scaffolding meanwhile.
+- **2026-08-17 (site: Players tab, owner-directed)** — `docs/index.html`
+  gains a "What the model thinks" view built from the committed
+  projection archive (`wnba/live/projections.csv`, the sheet
+  `fp_live.py` appends every news-watch firing): one row per player with
+  the latest news-adjusted per-game projection per market
+  (PTS/REB/AST/3PM/PRA) shaded by league percentile among players priced
+  in the last 14 days, a season-arc points sparkline, leaderboard cards,
+  and a one-claim-per-player "argues with the market" list from the
+  newest firing (claims above 25% rendered quarantined, mirroring the
+  pick gates). Display semantics: an OUT override zeroes `mu_news` on
+  the sheet, so the player view falls back to `mu_base` for that row and
+  shows an OUT chip — availability news is not a talent opinion; players
+  unpriced for over 14 days render unshaded + "stale" (the `fp_live`
+  staleness gate, mirrored). Presentation only — no metric definitions
+  changed, no model touched; generator still `site/build_site.py`
+  (stdlib-only, deterministic, timestamps from the data). The tab
+  refreshes on the normal `refresh_site()` path (settlement / fill
+  logging / manual rebuild), so it can lag the hourly sheet between
+  settlements; wiring a rebuild into the news-watch routine would be a
+  routine change and stays an owner decision.

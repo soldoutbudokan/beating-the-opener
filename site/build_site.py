@@ -1,9 +1,11 @@
 """Build docs/index.html - the at-a-glance scoreboard for the live experiment.
 
-Reads the WNBA market's live/ files (bankroll, bets, picks) plus the archived
-soccer experiment's records and renders one self-contained page: bankroll,
-CLV and P&L over time (with process-change markers), open positions, a
-filterable bet log, and the research evidence behind the wedge.
+Reads the WNBA market's live/ files (bankroll, bets, picks, the projection
+archive) plus the archived soccer experiment's records and renders one
+self-contained page: bankroll, CLV and P&L over time (with process-change
+markers), open positions, a filterable bet log, a per-player view of what
+the model currently thinks (Players tab, from live/projections.csv), and
+the research evidence behind the wedge.
 
 Auto-generated - the last step of each market's settle_bets.py run regenerates
 it, so never hand-edit docs/index.html. Stdlib only, no build step.
@@ -14,6 +16,7 @@ it, so never hand-edit docs/index.html. Stdlib only, no build step.
 The page is written only when its content changes, and every timestamp on it
 comes from the data (not the clock), so no-op runs produce no commit churn.
 """
+import bisect
 import csv
 import datetime as dt
 import html
@@ -1145,6 +1148,450 @@ def limits_block(m):
   </div>"""
 
 
+# -------------------------------------------------------------- players ----
+# "What the model thinks" - the per-player view of the live projection
+# sheet. Source: wnba/live/projections.csv, the append-only archive
+# fp_live.py writes on every news-watch firing (one row per game date x
+# player x market it priced, chronological in generated_utc). Everything
+# here derives from that one committed file, so the tab rebuilds
+# deterministically and refreshes whenever the sheet does.
+
+PLAYER_STATS = [("points", "PTS"), ("rebounds", "REB"), ("assists", "AST"),
+                ("threes", "3PM"), ("pra", "PRA")]
+STAT_KEY = {"points": "pts", "rebounds": "reb", "assists": "ast",
+            "threes": "tpm", "pra": "pra"}
+PLAYER_STALE_D = 14   # mirrors fp_live.MAX_PLAYER_STALE_D (pick gate)
+SUSPECT_EV = 0.25     # mirrors fp_live.MAX_SANE_EV (EV quarantine gate)
+MIN_RANK_N = 8        # fewer fresh players than this -> no percentile shade
+
+
+def _date_or_none(s):
+    try:
+        return dt.date.fromisoformat(str(s)[:10])
+    except ValueError:
+        return None
+
+
+def ordn(n):
+    if 11 <= n % 100 <= 13:
+        return f"{n}th"
+    return f"{n}{ {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th') }"
+
+
+def pct_rank(sorted_vals, v):
+    """Mid-rank percentile of v within sorted_vals, 0..1."""
+    if len(sorted_vals) < 2:
+        return None
+    i = bisect.bisect_left(sorted_vals, v)
+    j = bisect.bisect_right(sorted_vals, v)
+    return ((i + max(j - 1, i)) / 2) / (len(sorted_vals) - 1)
+
+
+def heat_bin(p):
+    """Percentile -> shade bin. 0 = no fill (bottom decile recedes)."""
+    for b, hi in ((0, .10), (1, .30), (2, .50), (3, .70), (4, .90)):
+        if p < hi:
+            return b
+    return 5
+
+
+def load_players():
+    """Aggregate the projection archive into one row per player."""
+    path = os.path.join(ROOT, "wnba", "live", "projections.csv")
+    if not os.path.exists(path) or os.path.getsize(path) == 0:
+        return None
+    tracked = {mk for mk, _ in PLAYER_STATS}
+    latest = {}       # (player, market) -> newest entry by (gen, date)
+    spark = {}        # player -> {game date: points mu_news}
+    pdate = {}        # player -> latest game date priced (any market)
+    first_d, last_gen, latest_rows = "9999", "", []
+    with open(path, newline="") as fh:
+        for r in csv.DictReader(fh):
+            gen, d = txt(r, "generated_utc"), txt(r, "date")[:10]
+            p, mk = txt(r, "player"), txt(r, "market")
+            mu = num(r, "mu_news")
+            base = num(r, "mu_base")
+            if not (gen and d and p and mk) or mu is None \
+                    or _date_or_none(d) is None:
+                continue
+            # an OUT override zeroes mu_news for that game - that is
+            # availability news, not the model's read on the player, so
+            # the player view falls back to the talent number (the OUT
+            # chip carries the news)
+            if base is not None and (txt(r, "override") == "OUT"
+                                     or (mu == 0 and base > 0)):
+                mu = base
+            if gen > last_gen:
+                last_gen, latest_rows = gen, []
+            if gen == last_gen:
+                latest_rows.append(r)
+            if mk not in tracked:
+                continue
+            if d > pdate.get(p, ""):
+                pdate[p] = d
+            first_d = min(first_d, d)
+            cur = latest.get((p, mk))
+            if cur is None or (gen, d) >= cur["sort"]:
+                latest[(p, mk)] = {"sort": (gen, d), "mu": mu,
+                                   "line": num(r, "line"), "date": d,
+                                   "ovr": txt(r, "override")}
+            if mk == "points":
+                spark.setdefault(p, {})[d] = mu
+    if not latest:
+        return None
+
+    asof = max(pdate.values())
+    asof_d = _date_or_none(asof)
+
+    def is_fresh(p):
+        d = _date_or_none(pdate[p])
+        return (d is not None and asof_d is not None
+                and (asof_d - d).days <= PLAYER_STALE_D)
+
+    # percentile distributions among fresh players only - a shade should
+    # mean "vs the league as priced now", never vs a stale ghost
+    dist = {mk: sorted(e["mu"] for (p, m), e in latest.items()
+                       if m == mk and is_fresh(p))
+            for mk, _ in PLAYER_STATS}
+
+    players = []
+    for p in sorted(pdate):
+        fresh = is_fresh(p)
+        stats = {}
+        for mk, _ in PLAYER_STATS:
+            e = latest.get((p, mk))
+            if e is None:
+                continue
+            e = dict(e)
+            if fresh and len(dist[mk]) >= MIN_RANK_N:
+                e["pct"] = pct_rank(dist[mk], e["mu"])
+            stats[mk] = e
+        if not stats:
+            continue
+        # override chip only when the newest-priced row carries one and
+        # its game is at the sheet's frontier (override news is per-game)
+        newest = max(stats.values(), key=lambda e: e["sort"])
+        ovr, nd = "", _date_or_none(newest["sort"][1])
+        if (newest["ovr"] and nd is not None and asof_d is not None
+                and (asof_d - nd).days <= 2):
+            ovr = newest["ovr"]
+        ser = sorted(spark.get(p, {}).items())
+        players.append({
+            "name": p, "last": pdate[p], "fresh": fresh, "ovr": ovr,
+            "stats": stats, "spark": ser,
+            "delta": ser[-1][1] - ser[0][1] if len(ser) >= 2 else None,
+        })
+    players.sort(key=lambda r: -(r["stats"].get("points", {}).get("mu")
+                                 if "points" in r["stats"] else -1e9))
+
+    # steepest model-vs-market claims on the newest firing, one per
+    # player (the sheet's own one-bet-per-player-game discipline)
+    dis, seen_p = [], set()
+    rows_ev = []
+    for r in latest_rows:
+        ev = num(r, "ev_best")
+        if ev is not None and ev > 0:
+            rows_ev.append((ev, r))
+    for ev, r in sorted(rows_ev, key=lambda x: -x[0]):
+        p = txt(r, "player")
+        if p in seen_p:
+            continue
+        seen_p.add(p)
+        fd = num(r, "ev_fd")
+        at_fd = fd is not None and abs(fd - ev) < 1e-9
+        dis.append({"date": txt(r, "date")[:10], "player": p,
+                    "market": txt(r, "market"), "mu": num(r, "mu_news"),
+                    "line": num(r, "line"), "ev": ev,
+                    "side": txt(r, "side_fd" if at_fd else "side_cons"),
+                    "src": "FanDuel" if at_fd else "consensus",
+                    "ovr": txt(r, "override")})
+
+    ds = [d for p in players for d, _ in p["spark"]]
+    d0 = _date_or_none(min(ds)) if ds else None
+    d1 = _date_or_none(max(ds)) if ds else None
+    return {"players": players, "dis": dis[:8], "asof": asof,
+            "gen": last_gen, "first": first_d,
+            "n_fresh": sum(1 for p in players if p["fresh"]),
+            "dist": dist,
+            "x0": d0.toordinal() if d0 else 0,
+            "x1": d1.toordinal() if d1 else 0}
+
+
+def spark_svg(ser, x0, x1, label):
+    """Tiny season-arc line: points mu_news by game date, drawn on the
+    sheet's global date window so position always means time."""
+    if len(ser) < 2 or x1 <= x0:
+        return ""
+    w, h, pad = 120, 30, 4
+    os_ = [_date_or_none(d).toordinal() for d, _ in ser]
+    vs = [v for _, v in ser]
+    lo, hi = min(vs), max(vs)
+    if hi - lo < 3.0:   # keep flat arcs flat - never zoom noise into drama
+        mid = (hi + lo) / 2
+        lo, hi = mid - 1.5, mid + 1.5
+    span = hi - lo
+    lo -= span * .08
+    hi += span * .08
+
+    def px(o):
+        return pad + (o - x0) / (x1 - x0) * (w - 2 * pad)
+
+    def py(v):
+        return pad + (hi - v) / (hi - lo) * (h - 2 * pad)
+
+    path = " ".join(f"{'M' if i == 0 else 'L'}{px(o):.1f},{py(v):.1f}"
+                    for i, (o, v) in enumerate(zip(os_, vs)))
+    t = (f"{label} projection by game, "
+         f"{date_short(ser[0][0])} – {date_short(ser[-1][0])}: "
+         f"{vs[0]:.1f} → {vs[-1]:.1f}")
+    return (f'<svg class="spark" viewBox="0 0 {w} {h}" role="img" '
+            f'aria-label="{esc(t)}"><title>{esc(t)}</title>'
+            f'<path class="sl" d="{path}"/>'
+            f'<circle class="sd" cx="{px(os_[-1]):.1f}" '
+            f'cy="{py(vs[-1]):.1f}" r="2.5"/></svg>')
+
+
+def player_chips(p):
+    chips = ""
+    if p["ovr"] == "OUT":
+        chips += (' <span class="chip chip-bad" title="News override on the '
+                  'latest sheet: ruled out">OUT</span>')
+    elif p["ovr"].startswith("min="):
+        chips += (f' <span class="chip" title="News override on the latest '
+                  f'sheet: minutes capped">≈{esc(p["ovr"][4:])} min</span>')
+    if not p["fresh"]:
+        chips += (f' <span class="chip" title="Not priced in over '
+                  f'{PLAYER_STALE_D} days — outside the pick gate, shown '
+                  f'unshaded">stale</span>')
+    return chips
+
+
+def heat_cell(e, label, n_fresh):
+    if e is None:
+        return '<td class="a-r"><span class="muted">—</span></td>'
+    v = f"{e['mu']:.1f}"
+    cls, title = "", f"{label} {v}"
+    if e.get("pct") is not None:
+        b = heat_bin(e["pct"])
+        title += f" — {ordn(round(e['pct'] * 100))} percentile of {n_fresh}"
+        if b:
+            cls = f" h{b}"
+    if e.get("line") is not None:
+        title += f" · latest line {e['line']:g} ({date_short(e['date'])})"
+    return (f'<td class="a-r mono heat{cls}" title="{esc(title)}">{v}</td>')
+
+
+def leader_cards(pl):
+    cards = ""
+    for mk, label in PLAYER_STATS:
+        if mk == "pra":
+            continue
+        top = sorted((p for p in pl["players"]
+                      if p["fresh"] and mk in p["stats"]),
+                     key=lambda p: -p["stats"][mk]["mu"])[:5]
+        if not top:
+            continue
+        lead = top[0]["stats"][mk]["mu"]
+        rows = ""
+        for i, p in enumerate(top):
+            v = p["stats"][mk]["mu"]
+            wpct = max(4.0, v / lead * 100 if lead else 0)
+            rows += (
+                f'<div class="lb"><span class="lb-rank mono">{i + 1}</span>'
+                f'<div class="lb-mid"><span class="lb-name">'
+                f'{esc(p["name"])}</span>'
+                f'<div class="lb-track"><div class="lb-fill" '
+                f'style="width:{wpct:.1f}%"></div></div></div>'
+                f'<span class="lb-val mono">{v:.1f}</span></div>')
+        sub = {"points": "projected points per game",
+               "rebounds": "projected rebounds per game",
+               "assists": "projected assists per game",
+               "threes": "projected threes per game"}[mk]
+        name = {"points": "Scoring", "rebounds": "Rebounding",
+                "assists": "Playmaking", "threes": "Shooting"}[mk]
+        cards += (f'<article class="leader"><h4>{name}</h4>'
+                  f'<div class="leader-sub">{sub}</div>{rows}</article>')
+    return f'<div class="leaders">{cards}</div>'
+
+
+def players_table(pl):
+    heads = [("name", "Player", "l"), ("asof", "Last priced", "l"),
+             ("pts", "PTS", "r"), ("reb", "REB", "r"), ("ast", "AST", "r"),
+             ("tpm", "3PM", "r"), ("pra", "PRA", "r"),
+             ("trend", "Season arc", "l")]
+    head = "".join(
+        f'<th class="a-{a}" data-key="{k}"'
+        + (' aria-sort="descending"' if k == "pts" else "")
+        + f'><button class="thsort" type="button">{esc(lab)}</button></th>'
+        for k, lab, a in heads)
+    body = []
+    for p in pl["players"]:
+        cells = [f'<td class="a-l pname">{esc(p["name"])}{player_chips(p)}'
+                 '</td>',
+                 f'<td class="a-l muted" title="{esc(p["last"])}">'
+                 f'{date_short(p["last"])}</td>']
+        attrs = (f' data-name="{esc(p["name"].lower())}"'
+                 f' data-asof="{esc(p["last"])}"')
+        for mk, lab in PLAYER_STATS:
+            e = p["stats"].get(mk)
+            cells.append(heat_cell(e, lab, len(pl["dist"][mk])))
+            attrs += (f' data-{STAT_KEY[mk]}="{e["mu"]:g}"' if e else
+                      f' data-{STAT_KEY[mk]}=""')
+        svg = spark_svg(p["spark"], pl["x0"], pl["x1"], "PTS")
+        if svg and p["delta"] is not None:
+            d1 = round(p["delta"], 1)
+            tone = "good" if d1 > 0 else ("bad" if d1 < 0 else "flat")
+            dtxt = "0.0" if d1 == 0 else \
+                f'{"+" if d1 > 0 else MINUS}{abs(d1):.1f}'
+            svg += (f' <span class="trend-d mono val-{tone}" title="Change '
+                    f'in the projected points since first priced">'
+                    f'{dtxt}</span>')
+            attrs += f' data-trend="{p["delta"]:g}"'
+        else:
+            svg = '<span class="muted">—</span>'
+            attrs += ' data-trend=""'
+        cells.append(f'<td class="a-l trend">{svg}</td>')
+        if not p["fresh"]:
+            attrs += ' class="row-stale"'
+        body.append(f'<tr{attrs}>{"".join(cells)}</tr>')
+    no_match = (f'<tr class="no-match" hidden><td colspan="{len(heads)}">'
+                f'No players match.</td></tr>')
+    return (f'<div class="scroll players-scroll"><table class="tbl psort" '
+            f'id="ptable"><thead><tr>{head}</tr></thead>'
+            f'<tbody>{"".join(body)}{no_match}</tbody></table></div>')
+
+
+def disagree_block(pl):
+    if not pl["dis"]:
+        return empty("No live disagreements on the newest sheet",
+                     "The next hourly firing repopulates this list.")
+    rows = []
+    for d in pl["dis"]:
+        flag = ""
+        if d["ev"] > SUSPECT_EV:
+            flag = (' <span class="chip chip-bad" title="Claimed EV above '
+                    '25% is quarantined by the pick gates as a suspected '
+                    'defect, never bet">⛔ quarantined</span>')
+        if d["ovr"]:
+            flag += f' <span class="chip">{esc(d["ovr"])}</span>'
+        rows.append([
+            date_short(d["date"]),
+            esc(d["player"]),
+            f'<span class="chip">{esc(d["market"])} {esc(d["side"])} '
+            f'{d["line"]:g}</span>{flag}' if d["line"] is not None
+            else f'<span class="chip">{esc(d["market"])} '
+                 f'{esc(d["side"])}</span>{flag}',
+            f'<span class="mono">{d["mu"]:.1f}</span>'
+            if d["mu"] is not None else "—",
+            f'{d["line"]:g}' if d["line"] is not None else "—",
+            f'<span class="mono">{signed_pct(d["ev"])}</span> '
+            f'<span class="muted">{esc(d["src"])}</span>',
+        ])
+    return table(["game", "player", "claim", "model", "line",
+                  "claimed EV"], rows, "tbl",
+                 ["l", "l", "l", "r", "r", "r"])
+
+
+def players_panel(pl):
+    cfg = WNBA
+    n_total = len(pl["players"])
+    heat_key = "".join(f'<i class="hk{" h" + str(b) if b else ""}"></i>'
+                       for b in range(6))
+    return f"""
+<section class="panel" id="panel-players" role="tabpanel"
+         aria-labelledby="tab-players" hidden>
+  <div class="panel-head">
+    <div>
+      <h2>What the model thinks</h2>
+      <p class="lede">Per-game projections for every player the model
+        prices, straight from the live sheet. The talent engine keeps a
+        Kalman state per stat per player — per-minute talent, nudged by
+        every game, regressed toward a career-curve prior — and prices a
+        slate as talent × minutes with opponent pace and defense applied
+        at game level, news-desk minutes overrides on top. The market's
+        number is never an input; the lines below are only what the model
+        is compared against.</p>
+    </div>
+    <div class="hero">
+      <div class="hero-label">Players priced</div>
+      <div class="hero-fig">{pl["n_fresh"]}</div>
+      <div class="hero-sub">of {n_total} since {date_short(pl["first"])} ·
+        sheet through <span class="mono">{esc(pl["gen"])} UTC</span></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>The model's board</h3>
+    <p class="note">The league by the model's current news-adjusted
+      projection, among players priced in the last {PLAYER_STALE_D} days.</p>
+    {leader_cards(pl)}
+  </div>
+
+  <div class="block">
+    <h3>Every player on the sheet</h3>
+    <p class="note">One row per player: the latest projection for each
+      market the books hang a line on. Cell shade is the league percentile
+      <span class="heat-key" title="bottom decile unshaded, then deciles
+      10–30–50–70–90+">{heat_key}</span> among fresh players; the season
+      arc is the points projection by game since {date_short(pl["first"])}.
+      Click a column to sort. A player the sheet hasn't priced in
+      {PLAYER_STALE_D} days shows unshaded and stale — the same staleness
+      that blocks picks.</p>
+    <div class="filterbar" role="group" aria-label="Filter players">
+      <input id="pfind" data-f="q" type="search" placeholder="player…"
+             aria-label="filter by player">
+    </div>
+    <p class="fsummary" id="fsum-players">{n_total} of {n_total} players</p>
+    {players_table(pl)}
+  </div>
+
+  <div class="block">
+    <h3>Where the model argues with the market</h3>
+    <p class="note">The steepest claims on the newest sheet
+      (<span class="mono">{esc(pl["gen"])} UTC</span>): the model's number
+      against the current two-way quote, sized as claimed EV at the better
+      of FanDuel and consensus, one claim per player. Descriptive, not
+      picks — what is actually playable passes the Live tab's gates first,
+      and a claim above {SUSPECT_EV:.0%} is treated as a defect alarm, not
+      an edge.</p>
+    {disagree_block(pl)}
+  </div>
+
+  <div class="block explain">
+    <h3>Where these numbers come from</h3>
+    <div class="explain-grid">
+      <div><h4>A talent state, not an average</h4><p>Every game updates a
+        per-minute Kalman state; hot streaks shrink back toward an
+        informed career-curve prior, and the offseason widens uncertainty.
+        Parameters were fit strictly pre-2025 and pinned — this is the
+        same model whose prospective test is running.</p></div>
+      <div><h4>Minutes are the hard part</h4><p>Rates ride on a minutes
+        estimate from recent usage. The hourly news desk turns injury
+        reports into overrides — OUT, or a minutes cap — and the
+        projection scales with them. Chips on a row mark an active
+        override.</p></div>
+      <div><h4>The market never leaks in</h4><p>Projections are priced
+        blind. Lines appear here only as the after-the-fact comparison —
+        the same discipline the backtests were scored under.</p></div>
+      <div><h4>Disagreement is not a bet</h4><p>A gap becomes a pick only
+        through the gates: FanDuel still at its opener, fresh panel, fresh
+        player, claimed EV under {SUSPECT_EV:.0%}. Bigger claims are
+        quarantined as suspected defects.</p></div>
+    </div>
+  </div>
+
+  <p class="foot">Projection sheet:
+    <a href="{REPO}/blob/main/wnba/src/fp_live.py">wnba/src/fp_live.py</a>
+    · talent engine:
+    <a href="{REPO}/blob/main/wnba/src/talent.py">wnba/src/talent.py</a>
+    · raw archive:
+    <a href="{REPO}/blob/main/wnba/live/projections.csv">wnba/live/projections.csv</a>
+    · registrations and method:
+    <a href="{REPO}/blob/main/PROGRESS.md">PROGRESS.md</a> ·
+    <a href="{REPO}/blob/main/{cfg['readme']}">{esc(cfg['readme'])}</a></p>
+</section>"""
+
+
 def live_panel(m):
     cfg, bank = m["cfg"], m["bank"]
     delta = bank["current"] - bank["start"]
@@ -1472,6 +1919,11 @@ CSS = """
   --grid:#e1e0d9; --rule:#e6e5df; --base:#c3c2b7;
   --model:#2a78d6; --model-soft:rgba(42,120,214,.12);
   --market:#eb6834;
+  /* players heat ramp: sequential blue, bottom decile recedes to surface;
+     ink per step flips to white where the fill goes dark (all pairs
+     computed >= 4.4:1) */
+  --h1:#cde2fb; --h2:#9ec5f4; --h3:#6da7ec; --h4:#2a78d6; --h5:#184f95;
+  --h1i:#0b0b0b; --h2i:#0b0b0b; --h3i:#0b0b0b; --h4i:#fff; --h5i:#fff;
   /* status as text: the light-surface success/critical steps; warning is
      darkened from #fab219, which is illegible as small text on cream. */
   --good:#006300; --bad:#d03b3b; --warn:#b07100;
@@ -1487,6 +1939,10 @@ CSS = """
     --grid:#2c2c2a; --rule:#2c2c2a; --base:#383835;
     --model:#3987e5; --model-soft:rgba(57,135,229,.16);
     --market:#d95926;
+    /* heat ramp flips anchor: near-zero recedes to the dark surface,
+       magnitude brightens */
+    --h1:#104281; --h2:#1c5cab; --h3:#2a78d6; --h4:#5598e7; --h5:#86b6ef;
+    --h1i:#fff; --h2i:#fff; --h3i:#fff; --h4i:#0b0b0b; --h5i:#0b0b0b;
     --good:#0ca30c; --bad:#e66767; --warn:#fab219;
     --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
   }
@@ -1498,6 +1954,8 @@ CSS = """
   --grid:#2c2c2a; --rule:#2c2c2a; --base:#383835;
   --model:#3987e5; --model-soft:rgba(57,135,229,.16);
   --market:#d95926;
+  --h1:#104281; --h2:#1c5cab; --h3:#2a78d6; --h4:#5598e7; --h5:#86b6ef;
+  --h1i:#fff; --h2i:#fff; --h3i:#fff; --h4i:#0b0b0b; --h5i:#0b0b0b;
   --good:#0ca30c; --bad:#e66767; --warn:#fab219;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
 }
@@ -1619,6 +2077,53 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13.5px}
 .tbl .row-best td{background:var(--model-soft)}
 .tbl .row-best td:first-child{box-shadow:inset 2px 0 0 var(--model)}
 .tbl .no-match td{text-align:center;color:var(--muted);padding:20px}
+
+/* players: heat cells, leaderboard cards, season-arc sparklines */
+.tbl td.heat{min-width:56px}
+.tbl td.h1{background:var(--h1);color:var(--h1i)}
+.tbl td.h2{background:var(--h2);color:var(--h2i)}
+.tbl td.h3{background:var(--h3);color:var(--h3i)}
+.tbl td.h4{background:var(--h4);color:var(--h4i)}
+.tbl td.h5{background:var(--h5);color:var(--h5i)}
+.row-stale td{color:var(--muted)}
+.pname{font-weight:600}
+.heat-key{white-space:nowrap}
+.hk{display:inline-block;width:13px;height:9px;border-radius:2px;
+  background:var(--sunk);margin:0 1px;vertical-align:-1px}
+.hk.h1{background:var(--h1)} .hk.h2{background:var(--h2)}
+.hk.h3{background:var(--h3)} .hk.h4{background:var(--h4)}
+.hk.h5{background:var(--h5)}
+.leaders{display:grid;gap:12px;margin-top:14px;
+  grid-template-columns:repeat(auto-fit,minmax(225px,1fr))}
+.leader{background:var(--surface);border:1px solid var(--rule);
+  border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.leader h4{font-size:13.5px;margin:0}
+.leader-sub{font-size:11px;color:var(--muted);margin:1px 0 8px}
+.lb{display:flex;gap:9px;align-items:center;padding:4px 0}
+.lb-rank{color:var(--muted);font-size:11px;width:12px;text-align:right;
+  flex:none}
+.lb-mid{flex:1;min-width:0}
+.lb-name{display:block;font-size:13px;white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis}
+.lb-track{height:3px;border-radius:2px;background:var(--model-soft);
+  margin-top:3px}
+.lb-fill{height:100%;border-radius:2px;background:var(--model)}
+.lb-val{font-size:13px;flex:none}
+.players-scroll{max-height:640px;overflow-y:auto}
+.spark{width:120px;height:30px;vertical-align:middle}
+.spark .sl{fill:none;stroke:var(--model);stroke-width:2;
+  stroke-linejoin:round;stroke-linecap:round}
+.spark .sd{fill:var(--model);stroke:var(--surface);stroke-width:2}
+.trend{white-space:nowrap}
+.trend-d{font-size:12px;margin-left:6px}
+.thsort{appearance:none;background:none;border:0;padding:0;font:inherit;
+  color:inherit;cursor:pointer;letter-spacing:inherit;
+  text-transform:inherit}
+.thsort:hover{color:var(--ink)}
+.thsort:focus-visible{outline:2px solid var(--model);outline-offset:1px}
+th[aria-sort] .thsort{color:var(--ink);font-weight:600}
+th[aria-sort="descending"] .thsort::after{content:" ↓"}
+th[aria-sort="ascending"] .thsort::after{content:" ↑"}
 
 /* filters */
 .filterbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
@@ -1891,6 +2396,44 @@ JS = """
       cross.setAttribute('hidden','');tip.hidden=true;});
   });
 
+  // players table: column sort + name filter
+  var pt=document.getElementById('ptable');
+  if(pt){
+    var ptb=pt.tBodies[0];
+    var prows=[].slice.call(ptb.querySelectorAll('tr[data-name]'));
+    var pnone=ptb.querySelector('.no-match');
+    var psum=document.getElementById('fsum-players');
+    pt.querySelectorAll('th[data-key]').forEach(function(th){
+      th.querySelector('.thsort').addEventListener('click',function(){
+        var k=th.dataset.key,alpha=k==='name'||k==='asof';
+        var dir=pt.dataset.sk===k?(pt.dataset.sd==='d'?'a':'d')
+                                 :(alpha?'a':'d');
+        pt.dataset.sk=k;pt.dataset.sd=dir;
+        pt.querySelectorAll('th[data-key]').forEach(function(t){
+          t.removeAttribute('aria-sort');});
+        th.setAttribute('aria-sort',dir==='d'?'descending':'ascending');
+        prows.sort(function(a,b){
+          var av=a.dataset[k],bv=b.dataset[k];
+          var am=av===''||av==null,bm=bv===''||bv==null;
+          if(am&&bm)return 0;if(am)return 1;if(bm)return -1;
+          var c=alpha?(av<bv?-1:av>bv?1:0):(+av)-(+bv);
+          return dir==='d'?-c:c;
+        });
+        prows.forEach(function(r){ptb.insertBefore(r,pnone);});
+      });
+    });
+    var pq=document.getElementById('pfind');
+    if(pq)pq.addEventListener('input',function(){
+      var q=pq.value.trim().toLowerCase(),shown=0;
+      prows.forEach(function(r){
+        var ok=!q||r.dataset.name.indexOf(q)>-1;
+        r.hidden=!ok;if(ok)shown++;
+      });
+      if(pnone)pnone.hidden=shown>0;
+      if(psum)psum.textContent=shown+' of '+prows.length+' players';
+    });
+  }
+
   document.querySelectorAll('.filterbar').forEach(function(bar){
     var scope=document.getElementById(bar.dataset.scope);
     var sum=document.getElementById(bar.dataset.summary);
@@ -1951,9 +2494,13 @@ FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' "
            "%F0%9F%93%88%3C/text%3E%3C/svg%3E")
 
 
-def render(markets, fragment=False):
+def render(markets, players=None, fragment=False):
     updated = stamp(markets)
     tabs = [("live", "Live"), ("evidence", "Evidence"), ("archive", "Archive")]
+    if players:
+        tabs.insert(1, ("players", "Players"))
+    players_blurb = (" The Players tab is the model's current read on every"
+                     " player it prices." if players else "")
     tab_html = "".join(
         f'<button class="tab" role="tab" id="tab-{i}" data-panel="{i}" '
         f'aria-controls="panel-{i}" aria-selected="false" tabindex="-1">'
@@ -1967,9 +2514,10 @@ def render(markets, fragment=False):
       <h1>Beating the opener</h1>
       <p>One live experiment: WNBA player props, priced from scratch by a
         talent model that never sees the market's number, bet on FanDuel and
-        scored on closing-line value first, profit second. Four markets were
-        researched; the two honest "no"s and the cancelled soccer experiment
-        are kept in Evidence and the Archive.</p>
+        scored on closing-line value first, profit second.{players_blurb}
+        Four markets were researched, and the two honest "no"s and the
+        cancelled soccer experiment are kept in Evidence and the
+        Archive.</p>
     </div>
     <div class="stamp">
       <div class="stamp-row">
@@ -1994,6 +2542,7 @@ def render(markets, fragment=False):
 </header>
 <main class="wrap">
 {live_panel(by_id["wnba"])}
+{players_panel(players) if players else ""}
 {evidence_panel()}
 {archive_panel(by_id["soccer"])}
 </main>"""
@@ -2058,13 +2607,14 @@ def copy_pages():
 
 def main():
     markets = [load_market(cfg) for cfg in MARKETS]
+    players = load_players()
     if "--fragment" in sys.argv:
         path = sys.argv[sys.argv.index("--fragment") + 1]
-        write_if_changed(path, render(markets, fragment=True))
+        write_if_changed(path, render(markets, players, fragment=True))
         print(f"fragment -> {path}")
         return
     copy_pages()
-    changed = write_if_changed(OUT, render(markets))
+    changed = write_if_changed(OUT, render(markets, players))
     print(f"docs/index.html {'updated' if changed else 'unchanged'}")
 
 
