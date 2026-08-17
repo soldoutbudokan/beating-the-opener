@@ -3308,7 +3308,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Williams (coach's decision) is listed as out for Friday's game against the Fever.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 288
     },
     {
       "player": "Caitlin Clark",
@@ -3762,6 +3762,51 @@
       "source": "avail:2026-08-16/2133Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN 2026-08-16 21:33Z: CLEARED from the league injury report (was structured-Out with a conflicting 'questionable (leg)' comment - entry 282 flagged that conflict). The clearance resolves it in her favour on health, BUT the live IND@ATL (event:401857150) lineup captured in the same snapshot lists Paopao as a DNP (Coach's Decision) with the game already in progress, so she does not play tonight. Supersedes 282 with the same out/0 for 2026-08-16 and the correct reason (roster DNP, not injury). game_date-limited, so nothing carries past tonight; the health clearance is the standing fact from here. No Paopao props on the sheet - inert, logged for the archive.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Jordan Horston",
+      "added": "2026-08-17T00:34:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": [
+        0,
+        0
+      ],
+      "source": "avail:2026-08-17/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW (league + event:401857148 reports): Horston Day-To-Day (Shoulder), return_date 2026-08-23 - \"Horston will not return to Sunday's game against the Sky due to a shoulder injury\" (Beta Basket). Feed status is Day-To-Day; the stated 8/23 return falls after Seattle's next games, so priced conservatively as out until a CLEARED snapshot supersedes this.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Christyn Williams",
+      "added": "2026-08-17T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-17/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED: Williams (was Out) dropped from the ESPN league injury report between the 2026-08-16/2133Z and 2026-08-17/0034Z snapshots. Supersedes the 2026-08-14 out entry (index 251); no minutes claim made.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Brittney Griner",
+      "added": "2026-08-17T00:34:00Z",
+      "game_date": "2026-08-18",
+      "status": "questionable",
+      "minutes_est": 19,
+      "minutes_range": [
+        12,
+        24
+      ],
+      "source": "avail:2026-08-17/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Standing (not a diff change): league report still lists Griner Out (Knee) - \"Griner (knee) has been ruled out for Saturday's game against the Liberty\" - with return_date 2026-08-18, which IS the game_date of the LAS@CON prop on the sheet. Treated as a returning player per T3: questionable, minutes haircut to her last game played (19 min on 2026-08-13; she missed 08-15). Supersedes nothing - entry 262 was game_date-limited to 2026-08-15 and is already inert.",
       "author": "news-watch",
       "superseded_by": null
     }
