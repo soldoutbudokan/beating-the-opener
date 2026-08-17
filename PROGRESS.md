@@ -1162,3 +1162,25 @@ registrations are firewalled from betting outcomes.
   summary), and a CLV* column the page had been missing. Presentation
   only — no metric definitions changed; generator is still
   `site/build_site.py` (markers live in its `EVENTS` constant).
+- **2026-08-17 (limits research, owner-directed)** — Question: can
+  FanDuel betting limits be scraped as a market-efficiency proxy?
+  Findings: BettingPros carries no limit data anywhere (verified live
+  against `/offers`, `/markets`, `/books` — no limit/stake/wager fields);
+  no public FanDuel endpoint publishes limits either; the only readout is
+  the authenticated betslip, which reveals the max wager when an
+  oversized stake is typed (owner-confirmed) — and that number is
+  `min(house market cap, account cap)`, so it degrades silently if the
+  account gets profiled. Built `tools/fd_limits/` (owner-machine-only
+  Playwright probe): types $1M into a small stratified sample of markets,
+  records the revealed max to `fd_limits.csv`, and archives every
+  betslip-related API response so a direct-API version can follow; hard
+  guard against ever placing a bet; deliberately unscheduled and outside
+  every routine. Decision gate written into its README: if the max is
+  flat across markets, the signal doesn't exist at FD — stop probing.
+  Also recorded: the committed BP offers archive keeps 11–14 books per
+  prop, so cross-book count/dispersion/vig/open→close-move efficiency
+  proxies are already buildable with no new scraping; and this remote
+  environment egress-blocks fanduel.com and pinnacle.com (whose guest API
+  publishes true per-market `maxRiskStake` — the standard limit signal,
+  US-geo-blocked, unverified for WNBA props). Research only; no live
+  implication, no model change.

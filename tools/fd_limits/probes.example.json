@@ -1,0 +1,49 @@
+{
+  "_comment": [
+    "Copy to probes.json and edit. Each probe: a page URL, a case-insensitive",
+    "regex matched against the selection button's accessible name (run",
+    "`python3 probe.py --discover --url <URL>` to see the names on a page),",
+    "and an optional `nth` when the regex matches several buttons.",
+    "The stratification below is the point: one star prop, one bench prop,",
+    "a WNBA side and total, then NBA/NFL anchors — enough to see whether",
+    "FanDuel's max wager varies by market class and within WNBA props.",
+    "Keep the list SHORT. This runs against your real account."
+  ],
+  "probes": [
+    {
+      "label": "wnba_star_points_over",
+      "url": "https://sportsbook.fanduel.com/basketball/wnba",
+      "match": "Wilson.*Over.*Point"
+    },
+    {
+      "label": "wnba_bench_points_over",
+      "url": "https://sportsbook.fanduel.com/basketball/wnba",
+      "match": "REPLACE_WITH_A_BENCH_PLAYER.*Over.*Point"
+    },
+    {
+      "label": "wnba_star_rebounds_over",
+      "url": "https://sportsbook.fanduel.com/basketball/wnba",
+      "match": "Wilson.*Over.*Rebound"
+    },
+    {
+      "label": "wnba_spread",
+      "url": "https://sportsbook.fanduel.com/basketball/wnba",
+      "match": "Spread Betting.*[+-]?\\d+\\.5"
+    },
+    {
+      "label": "wnba_total_over",
+      "url": "https://sportsbook.fanduel.com/basketball/wnba",
+      "match": "Total Points.*Over"
+    },
+    {
+      "label": "wnba_moneyline",
+      "url": "https://sportsbook.fanduel.com/basketball/wnba",
+      "match": "Moneyline"
+    },
+    {
+      "label": "nba_or_nfl_spread_anchor",
+      "url": "https://sportsbook.fanduel.com/navigation/nfl",
+      "match": "Spread Betting.*[+-]?\\d+\\.5"
+    }
+  ]
+}
