@@ -1190,3 +1190,14 @@ registrations are firewalled from betting outcomes.
   (hand-append log, schema in header). Observation only, pre-registered
   as such: never a gate, never a model input, never changes what gets
   bet without a fresh registration.
+- **2026-08-17 (site additions, owner-directed)** — presentation only,
+  no metric definitions changed (`site/build_site.py`): **"The record,
+  sliced"** block on the Live tab — the bet log cut by market, by
+  over/under (the split that caught the unders failure, now permanently
+  visible), and by claimed-EV bucket (the live audit of `ev_claimed`
+  against results; dev said claims realize ~half) — all using the era
+  cards' aggregation so every number reconciles with the log filters;
+  **tip times (ET)** on the "On the sheet now" table; and an **Observed
+  FanDuel limits** table that renders only once `wnba/live/limits.csv`
+  has rows, so the new protocol duty has a home on the scoreboard
+  without empty scaffolding meanwhile.

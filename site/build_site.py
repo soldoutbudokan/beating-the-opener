@@ -195,10 +195,9 @@ def pick_expired(p, as_of):
     return bool(d) and d < as_of[:10]
 
 
-def era_stats(bets, era):
-    """Aggregate record for the bets before ("pre") / since ("post") GATES."""
-    sel = [b for b in bets if txt(b, "match_date")
-           and ((txt(b, "match_date") < GATES) == (era == "pre"))]
+def agg_record(sel):
+    """One slice of the bet log, aggregated the way the era cards read:
+    W-L/P&L over settled rows, CLV/CLV* over stamped non-void rows."""
     settled = [b for b in sel if b["_status"] == "settled"]
     wins = sum(1 for b in settled if txt(b, "result") == "won")
     staked = sum(b["_stake"] for b in settled)
@@ -215,6 +214,12 @@ def era_stats(bets, era):
             "n_clv": len(clvs),
             "cal": sum(cals) / len(cals) if cals else None,
             "first": dates[0] if dates else "", "last": dates[-1] if dates else ""}
+
+
+def era_stats(bets, era):
+    """Aggregate record for the bets before ("pre") / since ("post") GATES."""
+    return agg_record([b for b in bets if txt(b, "match_date")
+                       and ((txt(b, "match_date") < GATES) == (era == "pre"))])
 
 
 def load_market(cfg):
@@ -333,6 +338,9 @@ def load_market(cfg):
     live_picks = [p for p in picks_all if not pick_expired(p, as_of)]
     return {
         "cfg": cfg, "bank": bank, "meta": meta, "bets": bets,
+        # betslip max-wager observations (PROTOCOL "Limit capture",
+        # 2026-08-17) - the block renders only once the log has rows
+        "limits": read_rows(os.path.join(live, "limits.csv")),
         "settled": settled, "graded": graded, "open": open_bets,
         # Split the sheet three ways: rows whose game has already tipped are
         # the record of what the model priced, and rows already in the bet
@@ -452,6 +460,22 @@ def date_short(s):
     except ValueError:
         return esc(s)
     return f"{d.day} {d.strftime('%b')}"
+
+
+def et_time(s):
+    """'7:00pm ET' from a UTC tip stamp; falls back to UTC if the tz
+    database is unavailable, and to nothing if the stamp doesn't parse."""
+    try:
+        t = dt.datetime.fromisoformat(str(s).replace("Z", ""))
+    except ValueError:
+        return ""
+    try:
+        from zoneinfo import ZoneInfo
+        loc = t.replace(tzinfo=dt.timezone.utc).astimezone(
+            ZoneInfo("America/New_York"))
+        return (loc.strftime("%I:%M%p").lstrip("0").lower() + " ET")
+    except Exception:
+        return t.strftime("%H:%M UTC")
 
 
 def tile(label, value, sub="", tone=""):
@@ -926,9 +950,11 @@ def picks_block(m):
         flags = txt(p, "flags")
         blocked = any(f and not f.endswith("?")
                       for f in flags.split(";")) if flags else False
+        tip = et_time(txt(p, "tip"))
         rows.append([
             f'<span class="muted mono">{esc(txt(p, "game"))}</span> '
-            f'{date_short(txt(p, "date"))}',
+            f'{date_short(txt(p, "date"))}'
+            + (f' <span class="muted">{esc(tip)}</span>' if tip else ""),
             esc(txt(p, "player")),
             f'<span class="chip">{esc(txt(p, "market"))} {esc(txt(p, "side"))} '
             f'{num(p, "fd_line"):g}</span>'
@@ -1009,6 +1035,113 @@ def era_block(m):
     <p class="band-note">{post["n_settled"]} settled bets since the gates is
       an early read, not a verdict — the split is shown so the process change
       stays visible in the record, win or lose.</p>
+  </div>"""
+
+
+def slices_block(m):
+    """The record cut three ways: by market, by side, by claimed EV.
+
+    The side split is the page-level version of the check that caught the
+    under-side calibration failure; the claimed-EV split audits the model's
+    own claims (dev: claims realize ~half). Same aggregation as the era
+    cards, so every number here reconciles with the bet log's filters.
+    """
+    bets = [b for b in m["bets"] if b["_status"] != "open" or
+            b["_clv"] is not None]
+    if len(m["settled"]) < 10:
+        return ""
+
+    def mini(title, pairs):
+        rows = []
+        for label, st in pairs:
+            if not st["n"]:
+                continue
+            rows.append([
+                esc(label),
+                f'{st["n"]}',
+                f'{st["wins"]}W{MINUS}{st["losses"]}L'
+                if st["n_settled"] else "—",
+                pnl_cell(st["pnl"]) if st["n_settled"] else "—",
+                clv_cell(st["cal"]) if st["cal"] is not None else "—"])
+        if not rows:
+            return ""
+        cols = ["", "bets", "W–L", "P&L", "CLV*"]
+        return (f'<div class="slice"><h4>{esc(title)}</h4>'
+                + table(cols, rows, "tbl", ["l", "r", "r", "r", "r"])
+                + '</div>')
+
+    by_market = {}
+    for b in bets:
+        by_market.setdefault(txt(b, "market") or "?", []).append(b)
+    markets = mini("By market", sorted(
+        ((k, agg_record(v)) for k, v in by_market.items()),
+        key=lambda kv: -kv[1]["n"]))
+
+    sides = mini("Overs vs unders", [
+        (s, agg_record([b for b in bets if txt(b, "side") == s]))
+        for s in ("over", "under")])
+
+    buckets = [(0.00, 0.10, "under 10%"), (0.10, 0.15, "10–15%"),
+               (0.15, 0.20, "15–20%"), (0.20, 0.25, "20–25%"),
+               (0.25, 9.99, "over 25%")]
+    claims = mini("By the model's claimed EV", [
+        (lab, agg_record([b for b in bets if b["_ev"] is not None
+                          and lo < b["_ev"] <= hi]))
+        for lo, hi, lab in buckets])
+
+    cuts = markets + sides + claims
+    if not cuts:
+        return ""
+    return f"""
+  <div class="block">
+    <h3>The record, sliced</h3>
+    <p class="note">Three cuts of the same bet log. CLV* (vs the
+      shade-adjusted close) is the fair per-slice yardstick — P&amp;L at
+      these sample sizes is mostly noise, shown because it's the truth.
+      The claimed-EV cut audits the model against its own claims: on dev,
+      claims realized at roughly half their stated size.</p>
+    <div class="slices">{cuts}</div>
+  </div>"""
+
+
+def limits_block(m):
+    """Observed FanDuel betslip max-wagers (PROTOCOL "Limit capture").
+
+    Renders nothing until live/limits.csv has rows, so the page carries no
+    empty scaffolding while the log accrues.
+    """
+    rows_in = m.get("limits") or []
+    if not rows_in:
+        return ""
+    rows_in = sorted(rows_in, key=lambda r: txt(r, "recorded_at_utc"),
+                     reverse=True)
+    cols = ["seen", "player", "pick", "FD price", "max wager", "bet?"]
+    aligns = ["l", "l", "l", "r", "r", "l"]
+    rows = []
+    for r in rows_in[:100]:
+        mx = num(r, "max_wager")
+        line = num(r, "fd_line")
+        pick = (f'{esc(txt(r, "market"))} {esc(txt(r, "side"))}'
+                + (f' {line:g}' if line is not None else ""))
+        filled = str(r.get("filled", "")).strip().lower() in ("true", "1", "yes")
+        rows.append([
+            date_short(txt(r, "recorded_at_utc")),
+            esc(txt(r, "player")),
+            f'<span class="chip">{pick}</span>',
+            f'<span class="mono">{odds(num(r, "fd_cost"), "american")}</span>',
+            f'<span class="mono">{money(mx, 0)}</span>' if mx is not None
+            else "—",
+            "yes" if filled else '<span class="muted">no</span>'])
+    return f"""
+  <div class="block">
+    <h3>Observed FanDuel limits</h3>
+    <p class="note">The betslip's maximum wager, captured at the slip for
+      playable picks (protocol's Limit capture rule, 2026-08-17). Limits are
+      the book's own confidence in its price, so they proxy market
+      efficiency — but the number is min(house market cap, account cap),
+      and it is observation only: it never gates a pick or enters the
+      model.</p>
+    {table(cols, rows, "tbl", aligns)}
   </div>"""
 
 
@@ -1134,6 +1267,7 @@ def live_panel(m):
   <div class="tiles">{''.join(tiles)}</div>
 {charts}
 {era_block(m)}
+{slices_block(m)}
   <div class="block">
     <h3>Is it beating the close?</h3>
     <p class="note">CLV is the scoreboard: one season of profit is noise, one
@@ -1150,7 +1284,7 @@ def live_panel(m):
     <h3>Bet log</h3>
     {log}
   </div>
-
+{limits_block(m)}
   <div class="block explain">
     <h3>How to read this</h3>
     <div class="explain-grid">
@@ -1503,6 +1637,13 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13.5px}
 .fsummary{margin-top:10px;font-size:12.5px;color:var(--ink2);
   font-variant-numeric:tabular-nums}
 .fsummary+.scroll{margin-top:10px}
+
+/* record slices */
+.slices{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+  margin-top:12px;align-items:start}
+.slice h4{font-size:13px;margin:0 0 8px;color:var(--ink2)}
+.slice .scroll{margin-top:0}
+.slice .tbl th,.slice .tbl td{padding:8px 11px}
 
 /* era comparison */
 .era{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
