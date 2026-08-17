@@ -6,22 +6,22 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $108.20** (start $100)
+**Bankroll: $106.56** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 124 (67W-57L), 0 push, 4 void, 14 open |
-| staked | $124.00 |
-| P&L | $+8.20 (+6.6% ROI) |
-| mean EV said (model) | +21.40% (n=124) |
-| mean CLV (vs close) | -4.51% (n=124) |
-| mean CLV* (shade-adj) | -3.79% (n=124) |
-| closing line moved | 26 of 124 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 76.3W vs observed 67W (z=-1.75) |
-| Model-expected P&L | $+27.33 |
-| CLV-expected P&L | $-5.60 |
+| settled | 135 (72W-63L), 0 push, 5 void, 2 open |
+| staked | $135.00 |
+| P&L | $+6.56 (+4.9% ROI) |
+| mean EV said (model) | +20.91% (n=135) |
+| mean CLV (vs close) | -4.03% (n=135) |
+| mean CLV* (shade-adj) | -3.15% (n=135) |
+| closing line moved | 30 of 135 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| model calibration | expected 82.8W vs observed 72W (z=-1.93) |
+| Model-expected P&L | $+29.16 |
+| CLV-expected P&L | $-5.43 |
 
-CLV t-stat: -5.81 (iid); -3.27 clustered by match date (17 dates)
+CLV t-stat: -5.06 (iid); -3.14 clustered by match date (18 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
@@ -29,18 +29,18 @@ Calibration reads the model's own claims against results: expected wins = sum of
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 2026-08-17 | Paige Bueckers | assists | under | 5.5 | 112 | 1.0 | +10.8% |  |  |  |  |  |
 | 2026-08-17 | Arike Ogunbowale | points | under | 15.5 | 100 | 1.0 | +21.9% |  |  |  |  |  |
-| 2026-08-16 | Carla Leite | threes | under | 0.5 | 164 | 1.0 | +23.4% |  |  |  |  |  |
-| 2026-08-16 | Megan DiLeo | points | under | 13.5 | 100 | 1.0 | +23.1% |  |  |  |  |  |
-| 2026-08-16 | Bridget Carleton | points | under | 16.5 | -118 | 1.0 | +21.6% |  |  |  |  |  |
-| 2026-08-16 | Rhyne Howard | assists | over | 3.5 | -110 | 1.0 | +14.1% |  |  |  |  |  |
-| 2026-08-16 | Ezi Magbegor | rebounds | under | 5.5 | -130 | 1.0 | +14.1% |  |  |  |  |  |
-| 2026-08-16 | Alyssa Thomas | assists | under | 8.5 | 112 | 1.0 | +13.8% |  |  |  |  |  |
-| 2026-08-16 | Natisha Hiedeman | threes | under | 1.5 | 104 | 1.0 | +13.4% |  |  |  |  |  |
-| 2026-08-16 | Kahleah Copper | points | under | 21.5 | -102 | 1.0 | +11.5% |  |  |  |  |  |
-| 2026-08-16 | Caitlin Clark | assists | under | 9.5 | -118 | 1.0 | +11.2% |  |  |  |  |  |
-| 2026-08-16 | Dominique Malonga | rebounds | under | 9.5 | 102 | 1.0 | +10.8% |  |  |  |  |  |
-| 2026-08-16 | Sophie Cunningham | threes | over | 1.5 | 118 | 1.0 | +15.6% |  |  |  |  |  |
-| 2026-08-16 | DeWanna Bonner | threes | under | 1.5 | -140 | 1.0 | +10.3% |  |  |  |  |  |
+| 2026-08-16 | Carla Leite | threes | under | 0.5 | 164 | 1.0 | +23.4% | 1 | lost | -1.00 | +13.6% | +19.4% |
+| 2026-08-16 | Megan DiLeo | points | under | 13.5 | 100 | 1.0 | +23.1% | 15 | lost | -1.00 | -6.3% | -3.0% |
+| 2026-08-16 | Bridget Carleton | points | under | 16.5 | -118 | 1.0 | +21.6% | 9 | won | +0.85 | +6.3% | +9.3% |
+| 2026-08-16 | Rhyne Howard | assists | over | 3.5 | -110 | 1.0 | +14.1% | 5 | won | +0.91 | +36.9% | +34.2% |
+| 2026-08-16 | Ezi Magbegor | rebounds | under | 5.5 | -130 | 1.0 | +14.1% | 4 | won | +0.77 | -7.8% | -2.7% |
+| 2026-08-16 | Alyssa Thomas | assists | under | 8.5 | 112 | 1.0 | +13.8% | 9 | lost | -1.00 | -11.8% | -8.2% |
+| 2026-08-16 | Natisha Hiedeman | threes | under | 1.5 | 104 | 1.0 | +13.4% |  | void (DNP) | +0.00 |  |  |
+| 2026-08-16 | Kahleah Copper | points | under | 21.5 | -102 | 1.0 | +11.5% | 19 | won | +0.98 | -3.2% | +0.1% |
+| 2026-08-16 | Caitlin Clark | assists | under | 9.5 | -118 | 1.0 | +11.2% | 9 | won | +0.85 | +4.2% | +7.3% |
+| 2026-08-16 | Dominique Malonga | rebounds | under | 9.5 | 102 | 1.0 | +10.8% | 13 | lost | -1.00 | -3.0% | +2.9% |
+| 2026-08-16 | Sophie Cunningham | threes | over | 1.5 | 118 | 1.0 | +15.6% | 0 | lost | -1.00 | -7.2% | -11.9% |
+| 2026-08-16 | DeWanna Bonner | threes | under | 1.5 | -140 | 1.0 | +10.3% | 4 | lost | -1.00 | -5.6% | -1.8% |
 | 2026-08-15 | Kayla McBride | threes | over | 2.5 | -158 | 1.0 | +20.0% | 2 | lost | -1.00 | -5.1% | -8.6% |
 | 2026-08-15 | Sabrina Ionescu | points | under | 18.5 | -114 | 1.0 | +18.4% |  | void (DNP) | +0.00 |  |  |
 | 2026-08-15 | Napheesa Collier | threes | over | 1.5 | -104 | 1.0 | +17.9% | 2 | won | +0.96 | -7.1% | -11.5% |
