@@ -36,6 +36,10 @@ Research conclusions + reproduce steps: README.md.
   live/PROTOCOL.md (append to live/bets.csv copying key fields from
   live/picks.csv, commit, push) and note that the pick came from the paused
   model. Never invent fills.
+- If the user reports a FanDuel max-wager limit for a pick ("X was capped
+  at $250"), append it to live/limits.csv per PROTOCOL "Limit capture"
+  (hand-append OK there — plain observation log, nothing generated from
+  it), commit, push. Observation only: never a gate, never a model input.
 - Any session that does run src/live_pipeline.py at the user's explicit
   request opens its reply with a markdown table of every row in
   live/picks.csv, marginal rows included - see the "Pick table" section of

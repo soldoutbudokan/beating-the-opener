@@ -154,6 +154,44 @@
 > (expected wins under `model_p` vs observed - the test that caught the
 > under-side failure at n=59, z=-2.5, unders z=-3.0).
 >
+> ## Limit capture — 2026-08-17 (owner-directed; observation only)
+>
+> For every pick offered as **playable** (`play=True`, no blocking
+> flags), try to capture FanDuel's maximum wager while the betslip is
+> open: add the selection, type an oversized stake ($1,000,000), note
+> the max the slip reports, then stake normally — or don't bet at all;
+> capturing without filling is fine and wanted. Gated rows are excluded
+> on purpose: they aren't actionable, so they aren't worth the extra
+> betslip traffic on the betting account.
+>
+> Report limits in plain words, with or without a fill (*"Citron
+> assists over was capped at $250"*). The session appends to
+> **`live/limits.csv`** (header row defines the schema; copy
+> `key/date/game/player/market/side/fd_line/fd_cost` from the pick's
+> row in `picks.csv`, `filled` = whether the pick was actually bet).
+> Hand-appending is fine **here** — unlike `bets.csv`, nothing is
+> generated from this file and no stamp is computed; it is a plain
+> observation log. Commit as `live: log N limit(s) <date>`, push.
+>
+> Why: the betslip max is the closest thing FanDuel has to a published
+> per-market limit, and limits are a standard proxy for market
+> efficiency — over time this log joins against claimed EV and CLV to
+> show whether the model's "edges" concentrate where the book itself
+> is least confident. Findings behind this: PROGRESS.md 2026-08-17
+> (no odds feed carries limits; the authenticated betslip is the only
+> readout). `tools/fd_limits/` holds an owner-machine probe that can
+> capture a stratified sample outside the picks flow — optional, read
+> its README's risk notes first.
+>
+> Cautions, pre-registered: (a) **observation only** — the limit is
+> never a gate, never a model input, and never changes what gets bet
+> without a fresh registration; (b) the number is `min(house market
+> cap, account cap)` — if FanDuel ever limits the account, the log's
+> meaning changes silently, so a sudden across-the-board drop is a red
+> flag about the ACCOUNT, not about the markets; (c) the routine
+> cannot do this (no FanDuel access) — it is an owner-at-betslip duty,
+> best-effort, and a missing value is never a blocker to a fill.
+>
 > ## edge-watch routine — DATA-ONLY (unchanged)
 >
 > On every firing: run `python3 src/scrape_bettingpros.py` from `wnba/`,

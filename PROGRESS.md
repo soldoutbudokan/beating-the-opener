@@ -1183,4 +1183,10 @@ registrations are firewalled from betting outcomes.
   environment egress-blocks fanduel.com and pinnacle.com (whose guest API
   publishes true per-market `maxRiskStake` — the standard limit signal,
   US-geo-blocked, unverified for WNBA props). Research only; no live
-  implication, no model change.
+  implication, no model change. **Protocol amended the same day (owner
+  instruction): "Limit capture" section added to `wnba/live/PROTOCOL.md`**
+  — for playable (ungated) picks the owner captures the betslip max
+  wager at the slip, sessions log it to `wnba/live/limits.csv`
+  (hand-append log, schema in header). Observation only, pre-registered
+  as such: never a gate, never a model input, never changes what gets
+  bet without a fresh registration.
