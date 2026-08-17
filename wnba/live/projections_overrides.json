@@ -3864,6 +3864,19 @@
       "quote": "Standing (not a diff change), logged because she is a NEW playable row on this sheet (assists over 4.5, DAL@GSV, 2026-08-17). The league report is internally contradictory: status field \"Out\" (Ankle) but comment \"Shepard (ankle) is listed as probable for Monday's game against the Valkyries\", return_date 2026-08-17 = that same game. Probable reads as available, so no minutes claim and no out-status: this entry changes no price. It exists so the record shows why the chat table carries a loud Out annotation on a pick the model priced as if she plays - the display rule keys off the status field, and the status field says Out. Supersedes nothing (entry 122 was game_date-limited to 2026-08-09 and is inert).",
       "author": "news-watch",
       "superseded_by": null
+    },
+    {
+      "player": "Kiki Rice",
+      "added": "2026-08-17T20:32:00Z",
+      "game_date": "2026-08-18",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-17/1734Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Standing (not a diff change - avail_watch printed NO_CHANGE), logged because she is a NEW playable row on this sheet (points under 12.5, IND@TOR, event 2739, 2026-08-18). League report still lists Rice (Toronto Tempo) Out - Ankle, comment \"out\", return_date 2026-08-18 = the game_date of the prop, so T3 reads her as a RETURNING player, not an absentee. Status-only, minutes_est null on purpose: the Griner precedent (2026-08-17 0034Z entry) haircut a returnee to her last game played, but Rice's last game played IS the one she was hurt in (2026-08-12, 31 min, started) - above her recent blend, so 'last game played' is not a haircut here, and the pick on the sheet is an UNDER, where any downward minutes guess manufactures edge on exactly the side that would be bet. The base talent state prices her. Entry 215 (out, game_date 2026-08-12) is game_date-limited and already inert; supersedes nothing.",
+      "author": "news-watch",
+      "superseded_by": null
     }
   ]
 }
