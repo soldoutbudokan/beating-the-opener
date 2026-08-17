@@ -2782,7 +2782,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league + per-event report (401857137, TOR@DAL) at 0237Z adds Green (Toronto Tempo) Out - Coach's Decision: \"Green (coach's decision) is listed as out for Wednesday's game against Dallas.\" return_date 2026-08-18. A Coach's Decision Out counts as Out under the v3 T3 rule. Wednesday = 2026-08-12 ET, game FINAL; minutes_est 0, dated to that game only. Toronto's next game is 2026-08-18 (event 2739), which is also the return_date, so nothing is carried forward.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 305
     },
     {
       "player": "Kiki Rice",
@@ -3412,7 +3412,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Edwards (ankle) has been ruled out for Saturday's game against New York. ESPN league injury report downgrade Day-To-Day -> Out at 15:33Z; supersedes the 2026-08-14 questionable entry.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 297
     },
     {
       "player": "Sabrina Ionescu",
@@ -3464,7 +3464,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report + per-event report for NY@CON (event 401857145, 1:00 PM ET): Van Lith listed Out (Coach's Decision), return date 2026-08-18. First entry for this player; no prior override to supersede.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 302
     },
     {
       "player": "Aliyah Boston",
@@ -3542,7 +3542,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report + per-event report for LA@WSH (event 401857146, 7:30 PM ET), snapshot 0034Z (20:34 ET): UPDATED Day-To-Day -> Out, Ribs (Los Angeles Sparks, return_date 2026-08-18) - \"Brink (ribs) is out for Saturday's game against the Mystics.\" Supersedes index 242 (questionable for the same game date). The game is already in progress (halftime at capture), so this entry is a record of the resolved status, not an actionable change - no LA props are on the current sheet.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 298
     },
     {
       "player": "Elena Buenavida",
@@ -3672,7 +3672,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league + event:401857150 injury reports 2026-08-16 20:33Z: Hall OUT (Coach's Decision) at Atlanta. NEW vs the 08-15 snapshot, where she was cleared. No Hall props on the sheet - inert, logged for the archive.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 303
     },
     {
       "player": "Michelle Onyiah",
@@ -3685,7 +3685,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league + event:401857150 injury reports 2026-08-16 20:33Z: Onyiah OUT (Coach's Decision) vs the Dream. NEW vs the previous snapshot. No props on the sheet - inert, logged for the archive.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 304
     },
     {
       "player": "Maddy Westbeld",
@@ -3724,7 +3724,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report 2026-08-16 20:33Z: CLEARED from Day-To-Day (entry 264, gd 2026-08-16 questionable). No longer listed; back to the base model's minutes state. Boston has IND props on today's sheet.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 300
     },
     {
       "player": "Caitlin Clark",
@@ -3737,7 +3737,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report 2026-08-16 20:33Z: CLEARED from Day-To-Day (entry 265, gd 2026-08-16 questionable). No longer listed; back to the base model's minutes state. Clark has IND props on today's sheet and an OPEN owner bet on assists under 9.5 for this game - clearing means she is expected to play.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 301
     },
     {
       "player": "Taina Mair",
@@ -3808,7 +3808,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Standing (not a diff change): league report still lists Griner Out (Knee) - \"Griner (knee) has been ruled out for Saturday's game against the Liberty\" - with return_date 2026-08-18, which IS the game_date of the LAS@CON prop on the sheet. Treated as a returning player per T3: questionable, minutes haircut to her last game played (19 min on 2026-08-13; she missed 08-15). Supersedes nothing - entry 262 was game_date-limited to 2026-08-15 and is already inert.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 296
     },
     {
       "player": "Janelle Salaun",
@@ -3875,6 +3875,158 @@
       "source": "avail:2026-08-17/1734Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Standing (not a diff change - avail_watch printed NO_CHANGE), logged because she is a NEW playable row on this sheet (points under 12.5, IND@TOR, event 2739, 2026-08-18). League report still lists Rice (Toronto Tempo) Out - Ankle, comment \"out\", return_date 2026-08-18 = the game_date of the prop, so T3 reads her as a RETURNING player, not an absentee. Status-only, minutes_est null on purpose: the Griner precedent (2026-08-17 0034Z entry) haircut a returnee to her last game played, but Rice's last game played IS the one she was hurt in (2026-08-12, 31 min, started) - above her recent blend, so 'last game played' is not a haircut here, and the pick on the sheet is an UNDER, where any downward minutes guess manufactures edge on exactly the side that would be bet. The base talent state prices her. Entry 215 (out, game_date 2026-08-12) is game_date-limited and already inert; supersedes nothing.",
+      "author": "news-watch",
+      "superseded_by": 295
+    },
+    {
+      "player": "Kiki Rice",
+      "added": "2026-08-17T21:45:00Z",
+      "game_date": "2026-08-18",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-17/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2138Z diff: Rice (Toronto Tempo) drops off the league injury report entirely, from Out - Ankle with return_date 2026-08-18. Supersedes index 294, logged three hours earlier this same firing-cycle, which carried her as questionable for the 8/18 IND@TOR game because the feed still listed her Out with a return date equal to the game date. The clearance resolves that ambiguity the way the return_date implied: she is available. Status-only, no minutes - the panel already carries her current role (17-31 min in her last seven, 31 on 8/12) and she has not missed a listed game, so the base state needs no correction. Effect is display-only: it removes the Day-To-Day marker from her points-under 12.5 pick, and moves no price.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Brittney Griner",
+      "added": "2026-08-17T21:45:00Z",
+      "game_date": "2026-08-18",
+      "status": "questionable",
+      "minutes_est": 19,
+      "minutes_range": [
+        12,
+        24
+      ],
+      "source": "avail:2026-08-17/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPGRADE in the 2138Z diff: Griner (Connecticut Sun) Out -> Day-To-Day, Knee - 'Griner (knee) is questionable for Tuesday's game against the Sparks.' Tuesday = 2026-08-18 ET (event 2740, LAS@CON), the game_date of the prop on the sheet. Supersedes index 289, which reached the same 'questionable' judgement by inference from a stale Out listing whose return_date was 2026-08-18; the feed has now said it directly. The minutes estimate is deliberately UNCHANGED at 19 [12,24] - it is her last game actually played (19 min on 2026-08-13; she then missed 8/15 and 8/16), i.e. a measured number rather than one chosen to reach a bet. Recorded because it is the whole story on this row: her points-under 11.5 pick is playable ONLY under a ramped-minutes assumption; at a healthy-role 26-30 minutes the model would not price an under. She is a knee questionable coming off two missed games, so the ramp is the honest read - but the owner should treat this pick as an availability bet as much as a projection bet, and confirm she is in the lineup near tip.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Aaliyah Edwards",
+      "added": "2026-08-17T21:45:00Z",
+      "game_date": "2026-08-18",
+      "status": "questionable",
+      "minutes_est": 17,
+      "minutes_range": [
+        10,
+        24
+      ],
+      "source": "avail:2026-08-17/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPGRADE in the 2138Z diff: Edwards (Connecticut Sun) Out -> Day-To-Day, Ankle - 'Edwards (ankle) is questionable for Tuesday's game against the Sparks.' Tuesday = 2026-08-18 ET (event 2740, LAS@CON). Supersedes index 259 (out, game_date 2026-08-15, already inert). Returning player per T3: minutes haircut to her last game actually played (17 min on 2026-08-13; she missed 8/15 and 8/16), range [10,24] spanning a token ankle-limited shift to her healthy July role. Same convention as the Griner row above, applied to the same game.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Cameron Brink",
+      "added": "2026-08-17T21:45:00Z",
+      "game_date": "2026-08-18",
+      "status": "questionable",
+      "minutes_est": 19,
+      "minutes_range": [
+        12,
+        25
+      ],
+      "source": "avail:2026-08-17/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPGRADE in the 2138Z diff: Brink (Los Angeles Sparks) Out -> Day-To-Day, Ribs - 'Brink (ribs) is questionable for Tuesday's game against Connecticut.' Tuesday = 2026-08-18 ET (event 2740, LAS@CON). Supersedes index 269 (out, game_date 2026-08-15, inert). Returning from a rib injury that cost her 8/15 and 8/16: minutes haircut to her last game played (19 min on 2026-08-13), range [12,25] - her role has been a stable 14-25 all month, so this is a small correction, not a manufactured one. No Brink prop is on the sheet as of this firing; logged for the archive and in case one posts before tip.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Erica Wheeler",
+      "added": "2026-08-17T21:45:00Z",
+      "game_date": "2026-08-18",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-17/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2138Z diff: Wheeler (Los Angeles Sparks) Day-To-Day, Ankle - 'Wheeler (ankle) is questionable for Tuesday's game versus Connecticut' (2026-08-18 ET, event 2740, LAS@CON). First entry for this player. Minutes deliberately left UNCHANGED (minutes_est null): unlike Griner/Edwards/Brink above she has missed nothing - she played 23 minutes on 8/15 inside a steady 23-30 role - so there is no absence to ramp from, and haircutting a player who is merely listed would manufacture unders out of a status line. If the ankle actually scratches her the props void; if she plays she most likely plays her role. Flag and training data, not a projection change.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Aliyah Boston",
+      "added": "2026-08-17T21:45:00Z",
+      "game_date": "2026-08-18",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-17/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2138Z diff: Boston (Indiana Fever) Day-To-Day, Lower Leg - 'Boston (lower leg) is listed as probable for Tuesday's game against the Tempo' (2026-08-18 ET, event 2739, IND@TOR). Supersedes index 283 (the 8/16 clearance). The same lower-leg item that has appeared and cleared repeatedly this month. PROBABLE = expected to play, so minutes are left UNCHANGED (null) per the standing convention for probables (cf. index 264): flag and training data, not a projection change. She played 37 minutes on 8/16 with this listed.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Caitlin Clark",
+      "added": "2026-08-17T21:45:00Z",
+      "game_date": "2026-08-18",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-17/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2138Z diff: Clark (Indiana Fever) Day-To-Day, Back - 'Clark (back) is listed as probable for Tuesday's game against the Tempo' (2026-08-18 ET, event 2739, IND@TOR). Supersedes index 284 (the 8/16 clearance). Recurrence of the back item that has cycled on and off the report all month; she has played through every prior appearance of it, including 41 minutes on 8/16. PROBABLE, so minutes UNCHANGED (null) - flag only. NOTE: an OPEN owner bet exists on this player-game (2739_assists_caitlin clark_under 9.5 @ +104, filled 2026-08-17 14:23 ET). This entry does not touch it: availability is a live check near tip, never a retroactive model input, and the routine never edits bets.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Hailey Van Lith",
+      "added": "2026-08-17T21:45:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-17/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2138Z diff: Lith drops off the league injury report; was Out - Coach's Decision on the 8/15 NY@CON report (index 263, game_date 2026-08-15, already inert). Connecticut plays 2026-08-18 (LAS@CON); she is available for it as far as the feed is concerned. Status-only, no minutes - a clearance restores the base model's own state, and none of these players carries a prop on the current sheet, so the entry is inert by design. Logged because the supersede chain must never be left with a standing 'out' the feed has withdrawn (the Kiah Stokes case, index 291), and because the archive is the future training set.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Bree Hall",
+      "added": "2026-08-17T21:45:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-17/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2138Z diff: Hall drops off the league injury report; was Out - Coach's Decision at Atlanta on 8/16 (index 279). Indiana plays 2026-08-18 (IND@TOR). Status-only, no minutes - a clearance restores the base model's own state, and none of these players carries a prop on the current sheet, so the entry is inert by design. Logged because the supersede chain must never be left with a standing 'out' the feed has withdrawn (the Kiah Stokes case, index 291), and because the archive is the future training set.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Michelle Onyiah",
+      "added": "2026-08-17T21:45:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-17/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2138Z diff: Onyiah drops off the league injury report; was Out - Coach's Decision vs the Dream on 8/16 (index 280). Status-only, no minutes - a clearance restores the base model's own state, and none of these players carries a prop on the current sheet, so the entry is inert by design. Logged because the supersede chain must never be left with a standing 'out' the feed has withdrawn (the Kiah Stokes case, index 291), and because the archive is the future training set.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Zaay Green",
+      "added": "2026-08-17T21:45:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-17/2138Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2138Z diff: Green drops off the league injury report; was Out - Coach's Decision for the 8/12 TOR@DAL game (index 211, game_date 2026-08-12, already inert). Toronto plays 2026-08-18 (IND@TOR). Status-only, no minutes - a clearance restores the base model's own state, and none of these players carries a prop on the current sheet, so the entry is inert by design. Logged because the supersede chain must never be left with a standing 'out' the feed has withdrawn (the Kiah Stokes case, index 291), and because the archive is the future training set.",
       "author": "news-watch",
       "superseded_by": null
     }
