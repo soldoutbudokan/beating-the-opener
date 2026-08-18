@@ -16,7 +16,9 @@ import gzip
 import json
 import os
 import re
+import time
 import unicodedata
+import urllib.error
 import urllib.request
 
 import numpy as np
@@ -46,11 +48,34 @@ LIVE_PANEL_FEATS = [c for c in PANEL_FEATS if c != "absent_ew_min"]
 V2_EXTRA = ["move_mom", "move_mom_all", "gap_ew"]
 
 
-def get(url):
-    req = urllib.request.Request(url, headers={"x-api-key": KEY,
-                                               "User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.load(r)
+def get(url, tries=6):
+    """Fetch with the same backoff scrape_bettingpros.py uses.
+
+    The BettingPros API 504s intermittently on /offers (~1 call in 5 on
+    2026-08-18), and a single miss used to kill the whole run. The failures
+    look like upstream cache misses: a URL that 504s twice then serves 200
+    and keeps serving it, so tries/backoff are sized to ride that out.
+    Unlike the archiver this RAISES when every try fails instead of
+    returning None: a silently-missing market would shrink the offer set
+    fp_live prices from, and "highest-EV market only" would then pick from
+    an incomplete sheet.
+    """
+    last = None
+    for i in range(tries):
+        try:
+            req = urllib.request.Request(url, headers={
+                "x-api-key": KEY, "User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return json.load(r)
+        except (urllib.error.URLError, urllib.error.HTTPError,
+                TimeoutError) as e:
+            last = e
+            if i == tries - 1:
+                break
+            wait = min(2 ** (i + 1), 8)
+            print(f"  retry {i+1} in {wait}s: {e}", flush=True)
+            time.sleep(wait)
+    raise last
 
 
 def fetch_upcoming():

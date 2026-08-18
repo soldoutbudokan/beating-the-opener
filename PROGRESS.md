@@ -1221,3 +1221,23 @@ registrations are firewalled from betting outcomes.
   logging / manual rebuild), so it can lag the hourly sheet between
   settlements; wiring a rebuild into the news-watch routine would be a
   routine change and stays an owner decision.
+- **2026-08-18 (news-watch firing — live fetch made 504-tolerant)** —
+  Infrastructure only; no model, projection, price, EV or gate moved.
+  The routine's 10:31 ET firing could not price at all: the BettingPros
+  `/offers` endpoint was 504-ing on roughly one call in five, and
+  `live_pipeline.get()` — unlike `scrape_bettingpros.get()`, which has
+  carried `tries=4` with exponential backoff all along — had no retry, so
+  a single miss aborted `fp_live.py` before it wrote a sheet. Probing the
+  failing URLs showed the misses are not per-URL and not sticky: a URL
+  that 504s twice then serves 200 and keeps serving it (upstream cache
+  miss, warming). `get()` now retries `tries=6` with backoff capped at 8s
+  and, **unlike the archiver, raises when every try fails instead of
+  returning `None`** — a silently-missing market would shrink the offer
+  set `fp_live.py` prices from, and "highest-EV market only" would then
+  be choosing from an incomplete sheet. Hard-fail is the safe default and
+  is preserved. Same firing, unrelated: the container was fresh, so the
+  gitignored pickles were rebuilt from the committed archives along the
+  documented order (`build_props` → `grade_props` → `features` →
+  `talent --build` → `build_modelset`); the panel came back current to
+  2026-08-17 with the ESPN fallback supplying 2026-08-02..08-17, wehoop
+  still stalled at 08-01. No `PANEL_STALE` flags on the resulting sheet.
