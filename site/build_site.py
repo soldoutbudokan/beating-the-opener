@@ -943,7 +943,7 @@ def picks_block(m):
                f'already played and are not shown.' if stale else "")
             + '</p>')
     cols = ["game", "player", "pick", "price", "model p", "EV", "stake"]
-    aligns = ["l", "l", "l", "r", "r", "r", "r"]
+    aligns = ["l", "l", "l cellwrap", "r", "r", "r", "r"]
     rows = []
     for p in picks[:25]:
         ev = num(p, "ev")
@@ -957,7 +957,7 @@ def picks_block(m):
         rows.append([
             f'<span class="muted mono">{esc(txt(p, "game"))}</span> '
             f'{date_short(txt(p, "date"))}'
-            + (f' <span class="muted">{esc(tip)}</span>' if tip else ""),
+            + (f'<span class="cellsub">{esc(tip)}</span>' if tip else ""),
             esc(txt(p, "player")),
             f'<span class="chip">{esc(txt(p, "market"))} {esc(txt(p, "side"))} '
             f'{num(p, "fd_line"):g}</span>'
@@ -1686,7 +1686,7 @@ def live_panel(m):
     no_match = (f'<tr class="no-match" hidden><td colspan="{len(cols)}">'
                 f'No bets match the current filters.</td></tr>')
     log = (filter_block(m)
-           + table(cols, rows, "tbl", aligns,
+           + table(cols, rows, "tbl dense", aligns,
                    wrap_attrs=f' id="log-{cfg["id"]}"', extra_row=no_match)
            if rows else
            empty("No bets logged yet",
@@ -2067,11 +2067,21 @@ code{font-family:var(--mono);font-size:.88em;background:var(--sunk);
   background:var(--surface)}
 table.tbl{border-collapse:collapse;width:100%;font-size:13.5px}
 .tbl th{font-size:11px;letter-spacing:.07em;text-transform:uppercase;
-  color:var(--muted);font-weight:500;padding:10px 14px;white-space:nowrap;
+  color:var(--muted);font-weight:500;padding:10px 10px;white-space:nowrap;
   border-bottom:1px solid var(--rule);background:var(--surface);
   position:sticky;top:0}
-.tbl td{padding:9px 14px;border-bottom:1px solid var(--rule);white-space:nowrap;
+.tbl td{padding:9px 10px;border-bottom:1px solid var(--rule);white-space:nowrap;
   font-variant-numeric:tabular-nums}
+/* the bet log runs 12 columns; a denser gutter keeps it inside the card */
+.tbl.dense th{padding:10px 7px}
+.tbl.dense td{padding:9px 7px}
+.tbl th:first-child,.tbl td:first-child{padding-left:14px}
+.tbl th:last-child,.tbl td:last-child{padding-right:14px}
+/* a column that may wrap (chip runs, flag strings) instead of forcing the
+   table wide; chips themselves stay unbroken */
+.tbl td.cellwrap{white-space:normal;min-width:220px}
+.tbl td.cellwrap .chip{margin:1px 0}
+.cellsub{display:block;font-size:11px;color:var(--muted);margin-top:1px}
 .tbl tbody tr:last-child td{border-bottom:0}
 .tbl tbody tr:hover{background:var(--sunk)}
 .tbl .row-best td{background:var(--model-soft)}
@@ -2167,7 +2177,8 @@ th[aria-sort="ascending"] .thsort::after{content:" ↑"}
 
 /* chips + pills */
 .chip{display:inline-block;font-size:11.5px;padding:2px 7px;border-radius:5px;
-  background:var(--sunk);color:var(--ink2);border:1px solid var(--rule)}
+  background:var(--sunk);color:var(--ink2);border:1px solid var(--rule);
+  white-space:nowrap}
 .chip-good{color:var(--good);border-color:color-mix(in srgb,var(--good) 35%,transparent)}
 .chip-bad{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 35%,transparent)}
 .chip-open{color:var(--muted)}
