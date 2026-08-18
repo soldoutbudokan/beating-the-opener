@@ -1892,7 +1892,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW: ESPN league injury report, 0133Z. 'Sykes (foot) will remain on the inactive list for Monday's game in Atlanta'; return_date 2026-08-18. Targets TOR @ ATL (event 2719, 2026-08-10 ET). Status only - no minutes redistribution imposed on the Tempo rotation.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 316
     },
     {
       "player": "Kiah Stokes",
@@ -4154,6 +4154,19 @@
       "source": "avail:2026-08-18/0335Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED: no longer on the ESPN league or event injury report (was Day-To-Day); active for GS vs DAL.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Brittney Sykes",
+      "added": "2026-08-18T16:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/1634Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED: dropped from the ESPN league injury report between the 0733Z and 1634Z snapshots (was Out, foot; entry 143 carried return_date 2026-08-18, so she cleared exactly on schedule), while her Toronto teammates' Out entries (Conde, Allemand, N. Sabally) persisted - a genuine clearance, not a feed dropout. NO minutes injected: her last panel game is 2026-06-16 (~63 days before today), so her base state is a stale ~33-min pre-injury role and any ramp number would be a guess; any Sykes prop is STALE_PLAYER-gated regardless (last game >14 days), so this entry cannot produce a bet. It only removes the Out availability flag; supersedes entry 143.",
       "author": "news-watch",
       "superseded_by": null
     }
