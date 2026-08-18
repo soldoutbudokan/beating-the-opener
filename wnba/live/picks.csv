@@ -1,14 +1,14 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
 2739_rebounds_makayla timpson_under,2026-08-18,2026-08-18 23:00:00,2739,rebounds,Makayla Timpson,IND,IND@TOR,under,5.5,118.0,0.5911,0.2887,True,-134,-126,0.0,5.03,,5.5,SUSPECT_EV(29%);ROLE_MIN?;ROLE_START?,False,False
-2742_points_jackie young_over,2026-08-18,2026-08-19 01:00:00,2742,points,Jackie Young,LVA,ATL@LVA,over,18.5,-106.0,0.6546,0.2722,True,-174,-161,0.0,21.88,,18.5,SUSPECT_EV(27%);PLAYER_ALREADY_BET(threes over 2.5),False,False
-2739_assists_caitlin clark_under,2026-08-18,2026-08-18 23:00:00,2739,assists,Caitlin Clark,IND,IND@TOR,under,9.5,108.0,0.5999,0.2479,True,-139,-130,3.0,8.79,,9.5,ROLE_MIN?,False,True
-2741_assists_kamilla cardoso_under,2026-08-18,2026-08-19 01:00:00,2741,assists,Kamilla Cardoso,CHI,NYL@CHI,under,2.5,122.0,0.5539,0.2298,True,-116,-109,0.0,2.39,,2.5,MOVED_OFF_OPEN,False,False
-2739_rebounds_kiki rice_under,2026-08-18,2026-08-18 23:00:00,2739,rebounds,Kiki Rice,TOR,IND@TOR,under,5.5,-172.0,0.7613,0.204,True,-283,-254,4.5,3.88,,5.5,ROLE_START?,True,False
-2741_rebounds_azura stevens_over,2026-08-18,2026-08-19 01:00:00,2741,rebounds,Azura Stevens,CHI,NYL@CHI,over,6.5,124.0,0.5294,0.1859,True,-105,101,2.0,6.89,,6.5,,False,True
-2740_points_rae burrell_under,2026-08-18,2026-08-18 23:00:00,2740,points,Rae Burrell,LAS,LAS@CON,under,17.5,-130.0,0.6687,0.1831,True,-185,-170,0.0,14.97,,16.5,MOVED_OFF_OPEN,False,True
+2742_points_jackie young_over,2026-08-18,2026-08-19 01:00:00,2742,points,Jackie Young,LVA,ATL@LVA,over,18.5,-114.0,0.6546,0.2289,True,-174,-161,0.0,21.88,,18.5,PLAYER_ALREADY_BET(threes over 2.5),False,False
+2739_rebounds_kiki rice_under,2026-08-18,2026-08-18 23:00:00,2739,rebounds,Kiki Rice,TOR,IND@TOR,under,5.5,-168.0,0.7613,0.2145,True,-283,-254,5.0,3.88,,5.5,ROLE_START?,True,False
+2739_assists_caitlin clark_under,2026-08-18,2026-08-18 23:00:00,2739,assists,Caitlin Clark,IND,IND@TOR,under,9.5,102.0,0.5999,0.2119,True,-139,-130,3.0,8.79,,9.5,ROLE_MIN?,False,True
+2741_assists_kamilla cardoso_under,2026-08-18,2026-08-19 01:00:00,2741,assists,Kamilla Cardoso,CHI,NYL@CHI,under,2.5,118.0,0.5539,0.2076,True,-116,-109,0.0,2.39,,2.5,MOVED_OFF_OPEN,False,False
+2740_points_rae burrell_under,2026-08-18,2026-08-18 23:00:00,2740,points,Rae Burrell,LAS,LAS@CON,under,17.5,-128.0,0.6687,0.1911,True,-185,-170,0.0,14.97,,16.5,MOVED_OFF_OPEN,False,True
+2741_rebounds_azura stevens_over,2026-08-18,2026-08-19 01:00:00,2741,rebounds,Azura Stevens,CHI,NYL@CHI,over,6.5,122.0,0.5294,0.1753,True,-105,101,2.0,6.89,,6.5,,False,True
+2742_assists_chelsea gray_over,2026-08-18,2026-08-19 01:00:00,2742,assists,Chelsea Gray,LVA,ATL@LVA,over,5.5,-130.0,0.6612,0.1697,True,-179,-165,3.0,6.77,,5.5,,False,True
 2741_points_breanna stewart_under,2026-08-18,2026-08-19 01:00:00,2741,points,Breanna Stewart,NYL,NYL@CHI,under,22.5,-122.0,0.6388,0.1624,True,-163,-151,2.5,20.19,,22.5,,False,True
-2742_assists_chelsea gray_over,2026-08-18,2026-08-19 01:00:00,2742,assists,Chelsea Gray,LVA,ATL@LVA,over,5.5,-132.0,0.6612,0.162,True,-179,-165,3.0,6.77,,5.5,,False,True
 2740_assists_leila lacan_under,2026-08-18,2026-08-18 23:00:00,2740,assists,Leila Lacan,CON,LAS@CON,under,4.5,104.0,0.568,0.1587,True,-122,-115,2.0,4.23,,4.5,,False,True
 2740_points_brittney griner_under,2026-08-18,2026-08-18 23:00:00,2740,points,Brittney Griner,CON,LAS@CON,under,11.5,-120.0,0.6175,0.132,True,-149,-139,2.0,10.23,,11.5,,True,False
 2742_points_angel reese_under,2026-08-18,2026-08-19 01:00:00,2742,points,Angel Reese,ATL,ATL@LVA,under,15.5,100.0,0.5599,0.1198,True,-119,-111,1.5,14.9,,15.5,,False,True
-2741_rebounds_sabrina ionescu_over,2026-08-18,2026-08-19 01:00:00,2741,rebounds,Sabrina Ionescu,NYL,NYL@CHI,over,3.5,-114.0,0.5874,0.1027,True,-132,-124,0.0,4.21,,3.5,MOVED_OFF_OPEN,False,False
+2739_assists_marina mabrey_under,2026-08-18,2026-08-18 23:00:00,2739,assists,Marina Mabrey,TOR,IND@TOR,under,4.5,-132.0,0.6342,0.1147,True,-160,-148,0.0,3.87,,4.5,MOVED_OFF_OPEN,False,False

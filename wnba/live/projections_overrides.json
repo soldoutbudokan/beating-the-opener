@@ -1,5 +1,5 @@
 {
-  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
   "entries": [
     {
       "player": "DiJonai Carrington",
@@ -2457,7 +2457,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report at 0033Z CLEARS Prechtel (Golden State) - she was Out/Coach's Decision at 2233Z (\"Prechtel (coach's decision) won't play Sunday against the Sparks\") and is absent from the 0033Z report. Supersedes the 2026-08-09/2233Z out entry, whose game_date 2026-08-09 had already expired, so nothing was being priced off it. game_date null (until cleared) rather than pinned: Golden State's next game is CHI@GSV on 2026-08-12 and a coach's-decision DNP says nothing durable about the next one. minutes_est null. She carries no row on the current sheet.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 313
     },
     {
       "player": "Miela Sowah",
@@ -3850,7 +3850,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 0437Z diff: Sowah (Golden State Valkyries) drops off the report, from Out - Coach's Decision with return_date 2026-08-17. Supersedes entry 207 (out, dated 2026-08-12), which is expired anyway. Status-only, no minutes: a deep-bench player (3 MIN in each of her two 2026 appearances) whom the sheet never prices.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 314
     },
     {
       "player": "Jessica Shepard",
@@ -4048,7 +4048,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Standing, not a diff change: the 2237Z snapshot repeats 1734Z verbatim - Salaun (Golden State Valkyries) Day-To-Day, Knee, \"listed as questionable for Monday's game versus the Wings\", return_date 2026-08-17, and the per-event report for 401857151 agrees. Supersedes entry 290 because the condition that entry wrote itself under has changed: it set minutes_est 15 against a ~22 baseline as \"the honest middle\" of [0,24] and closed by noting \"She carries no row on the current sheet\". She now does - threes UNDER 1.5 at +134 (DAL@GSV, event 2738) prices at +15% claimed EV as a NEW playable row, and it prices at that number partly because of the 15-minute guess. That is the Plum case (entry 1, 2026-08-03) and the Rice case (entry 294, three hours ago): an uncertain returnee - four games missed, knee, questionable, last played 2026-08-09 - where an invented downward minutes number manufactures edge on exactly the side that would be bet. The registered discipline is to pick the assumption least favourable to a news-driven bet, so this entry asserts no minutes at all and lets the base talent state price her. Status stays questionable and the display annotation stands. This is deliberately NOT applied to Brittney Griner (entry 295, also a haircut feeding an under): her 19 is her actual last game played on 2026-08-13 off a declining knee-managed trend the panel already carries, not a guess about a player the panel has not seen in over a week. Owner call either way; the routine flags, it does not tune.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 315
     },
     {
       "player": "Jordin Canada",
@@ -4115,6 +4115,45 @@
       "source": "avail:2026-08-18/0134Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED: Shepard (Dallas, was Out/Ankle) dropped from the ESPN league injury report between the 2026-08-18/0038Z and 2026-08-18/0134Z snapshots. This resolves the contradiction logged at index 293 - the 0038Z row still carried status \"Out\" while its own comment read \"Shepard (ankle) is listed as probable for Monday's game against the Valkyries\" with return_date 2026-08-17; the row is now simply gone, i.e. available. Supersedes index 293. No minutes claim made, so this entry changes no price; it removes the loud Out annotation the status field was driving.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ashten Prechtel",
+      "added": "2026-08-18T03:38:00Z",
+      "game_date": "2026-08-17",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/0335Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Prechtel (coach's decision) is listed as out for Monday's game versus the Wings. (GS, event 401857151 report agrees)",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Miela Sowah",
+      "added": "2026-08-18T03:38:00Z",
+      "game_date": "2026-08-17",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/0335Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Sowah (coach's decision) has been ruled out for Monday's game against the Wings. (GS, event 401857151 report agrees)",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Janelle Salaun",
+      "added": "2026-08-18T03:38:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/0335Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED: no longer on the ESPN league or event injury report (was Day-To-Day); active for GS vs DAL.",
       "author": "news-watch",
       "superseded_by": null
     }
