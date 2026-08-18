@@ -6,19 +6,19 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $106.56** (start $100)
+**Bankroll: $106.68** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 135 (72W-63L), 0 push, 5 void, 11 open |
-| staked | $135.00 |
-| P&L | $+6.56 (+4.9% ROI) |
-| mean EV said (model) | +20.91% (n=135) |
+| settled | 137 (73W-64L), 0 push, 5 void, 9 open |
+| staked | $137.00 |
+| P&L | $+6.68 (+4.9% ROI) |
+| mean EV said (model) | +20.85% (n=137) |
 | mean CLV (vs close) | -4.03% (n=135) |
 | mean CLV* (shade-adj) | -3.15% (n=135) |
 | closing line moved | 30 of 135 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 82.8W vs observed 72W (z=-1.93) |
-| Model-expected P&L | $+29.16 |
+| model calibration | expected 83.9W vs observed 73W (z=-1.94) |
+| Model-expected P&L | $+29.48 |
 | CLV-expected P&L | $-5.43 |
 
 CLV t-stat: -5.06 (iid); -3.14 clustered by match date (18 dates)
@@ -36,8 +36,8 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-18 | Leila Lacan | assists | under | 4.5 | 102 | 1.0 | +14.7% |  |  |  |  |  |
 | 2026-08-18 | Caitlin Clark | assists | under | 9.5 | 104 | 1.0 | +22.5% |  |  |  |  |  |
 | 2026-08-18 | Aneesah Morrow | rebounds | over | 6.5 | 100 | 1.0 | +11.2% |  |  |  |  |  |
-| 2026-08-17 | Paige Bueckers | assists | under | 5.5 | 112 | 1.0 | +10.8% |  |  |  |  |  |
-| 2026-08-17 | Arike Ogunbowale | points | under | 15.5 | 100 | 1.0 | +21.9% |  |  |  |  |  |
+| 2026-08-17 | Paige Bueckers | assists | under | 5.5 | 112 | 1.0 | +10.8% | 3 | won | +1.12 |  |  |
+| 2026-08-17 | Arike Ogunbowale | points | under | 15.5 | 100 | 1.0 | +21.9% | 17 | lost | -1.00 |  |  |
 | 2026-08-16 | Carla Leite | threes | under | 0.5 | 164 | 1.0 | +23.4% | 1 | lost | -1.00 | +13.6% | +19.4% |
 | 2026-08-16 | Megan DiLeo | points | under | 13.5 | 100 | 1.0 | +23.1% | 15 | lost | -1.00 | -6.3% | -3.0% |
 | 2026-08-16 | Bridget Carleton | points | under | 16.5 | -118 | 1.0 | +21.6% | 9 | won | +0.85 | +6.3% | +9.3% |
