@@ -3792,7 +3792,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED: Williams (was Out) dropped from the ESPN league injury report between the 2026-08-16/2133Z and 2026-08-17/0034Z snapshots. Supersedes the 2026-08-14 out entry (index 251); no minutes claim made.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 311
     },
     {
       "player": "Brittney Griner",
@@ -3863,7 +3863,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Standing (not a diff change), logged because she is a NEW playable row on this sheet (assists over 4.5, DAL@GSV, 2026-08-17). The league report is internally contradictory: status field \"Out\" (Ankle) but comment \"Shepard (ankle) is listed as probable for Monday's game against the Valkyries\", return_date 2026-08-17 = that same game. Probable reads as available, so no minutes claim and no out-status: this entry changes no price. It exists so the record shows why the chat table carries a loud Out annotation on a pick the model priced as if she plays - the display rule keys off the status field, and the status field says Out. Supersedes nothing (entry 122 was game_date-limited to 2026-08-09 and is inert).",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 312
     },
     {
       "player": "Kiki Rice",
@@ -4086,6 +4086,35 @@
       "source": "avail:2026-08-18/0038Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the ESPN league injury report (Las Vegas). Prior listing: 'Latson is out for Saturday's game against Minnesota due to a coach's decision' (Out, Coach's Decision). Off the report at 2026-08-18 00:38Z, so she is available for event 2742 (LVA vs ATL, 2026-08-18). Coach's-decision absences are role signals, not injuries: recorded as available with no minutes estimate, so the talent model's own state prices her.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Christyn Williams",
+      "added": "2026-08-18T01:34:00Z",
+      "game_date": "2026-08-17",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": [
+        0,
+        0
+      ],
+      "source": "avail:2026-08-18/0134Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0134Z diff: ESPN league injury report lists Williams (Dallas) Out, type \"Coach's Decision\" - \"Williams (coach's decision) has been ruled out for Monday's game against Golden State\" (DAL @ GSV, 2026-08-17 ET, already under way at capture). Supersedes the 2026-08-17 CLEARED entry (index 288), which read her as available after the 2026-08-14 out was dropped. Scoped to the named game only: return_date on the feed is 2026-08-20, but a coach's-decision DNP is not a forward commitment, so no claim is made about 08-18/08-19 - inert for the current sheet either way (no DAL props on it).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Jessica Shepard",
+      "added": "2026-08-18T01:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/0134Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED: Shepard (Dallas, was Out/Ankle) dropped from the ESPN league injury report between the 2026-08-18/0038Z and 2026-08-18/0134Z snapshots. This resolves the contradiction logged at index 293 - the 0038Z row still carried status \"Out\" while its own comment read \"Shepard (ankle) is listed as probable for Monday's game against the Valkyries\" with return_date 2026-08-17; the row is now simply gone, i.e. available. Supersedes index 293. No minutes claim made, so this entry changes no price; it removes the loud Out annotation the status field was driving.",
       "author": "news-watch",
       "superseded_by": null
     }
