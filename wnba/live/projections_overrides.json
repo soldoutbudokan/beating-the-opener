@@ -1,5 +1,5 @@
 {
-  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+  "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
   "entries": [
     {
       "player": "DiJonai Carrington",
@@ -3944,7 +3944,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 2237Z diff: Boston (Indiana Fever) Day-To-Day, type Lower Leg. \"Boston (lower leg) is listed as probable for Tuesday's game against the Tempo.\" return_date 2026-08-18 = IND@TOR (event 2739). Probable reads as available, so status-only and no minutes claim - she has played 33/38/29/26/29/37 and started all six. Logged because IND@TOR carries four rows on the sheet (Clark, Rice, Morrow, Timpson) and a late Boston scratch would move all of them. Entry 283 (in, game_date 2026-08-16) is inert; supersedes nothing.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 327
     },
     {
       "player": "Caitlin Clark",
@@ -3957,7 +3957,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 2237Z diff: Clark (Indiana Fever) Day-To-Day, type Back. \"Clark (back) is listed as probable for Tuesday's game against the Tempo.\" return_date 2026-08-18 = IND@TOR (event 2739). Probable reads as available: status-only, NO minutes claim on purpose - she carries an OPEN bet (assists UNDER 9.5) and a sheet row, and any downward minutes guess would manufacture edge on exactly the side already held. Her last six are 34/38/36/35/34/41, all starts, with 41 min in the most recent game, so there is no haircut in the data either. Entry 284 (in, game_date 2026-08-16) is inert; supersedes nothing. Display-only consequence: the chat table carries a loud Day-To-Day annotation on her row.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 328
     },
     {
       "player": "Kiki Rice",
@@ -3983,7 +3983,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2237Z diff: Van Lith (Connecticut Sun) drops off the report, from Out - Coach's Decision with return_date 2026-08-18. Status-only, no minutes: a coach's-decision DNP rolling off as the feed moves to Tuesday's LAS@CON. Entry 263 (out, game_date 2026-08-15) is already inert, so this supersedes nothing and changes no price; she carries no row on the sheet.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 324
     },
     {
       "player": "Maddy Westbeld",
@@ -4009,7 +4009,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2237Z diff: Onyiah (Indiana Fever) drops off the report, from Out - Coach's Decision with return_date 2026-08-18. Status-only, no minutes: deep bench, no row on the sheet. Entry 280 (out, game_date 2026-08-16) is inert; supersedes nothing.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 323
     },
     {
       "player": "Bree Hall",
@@ -4022,7 +4022,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2237Z diff: Hall (Indiana Fever) drops off the report, from Out - Coach's Decision with return_date 2026-08-18. Status-only, no minutes: no row on the sheet. Entry 279 (out, game_date 2026-08-16) is inert; supersedes nothing.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 322
     },
     {
       "player": "Zaay Green",
@@ -4035,7 +4035,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2237Z diff: Green (Toronto Tempo) drops off the report, from Out - Coach's Decision with return_date 2026-08-18. Status-only, no minutes: no row on the sheet for IND@TOR. Entry 211 (out, game_date 2026-08-12) is game_date-limited and already inert; supersedes nothing.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 326
     },
     {
       "player": "Janelle Salaun",
@@ -4232,6 +4232,97 @@
       "source": "avail:2026-08-18/2133Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2133Z diff: Ionescu (New York Liberty, Foot) dropped off the ESPN league injury report and off the per-event report for NY@CHI (ESPN event 401857154, 9:00 PM ET) between 1533Z and 2133Z, having been Day-To-Day at 1533Z (\"Ionescu (foot) is listed as questionable for Tuesday's game in Chicago\", return_date 2026-08-18 = tonight). Status only, NO minutes estimate - the clear removes doubt about availability, not about workload coming off a foot issue. Her last dated entry (2026-08-15, out) was scoped to that game and is already inert.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Bree Hall",
+      "added": "2026-08-18T23:33:00Z",
+      "game_date": "2026-08-18",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Indiana Fever] Bree Hall (coach's decision) out for Tuesday's game vs the Tempo; ESPN league report + event:401857153 injury report both list her Out, return date 2026-08-20.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Michelle Onyiah",
+      "added": "2026-08-18T23:33:00Z",
+      "game_date": "2026-08-18",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Indiana Fever] Onyiah (coach's decision) has been ruled out for Tuesday's game against the Tempo; league report + event:401857153, return date 2026-08-20.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Hailey Van Lith",
+      "added": "2026-08-18T23:33:00Z",
+      "game_date": "2026-08-18",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Connecticut Sun] Van Lith (coach's decision) is out for Tuesday's game against the Sparks; league report + event:401857152, return date 2026-08-20.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Rayah Marshall",
+      "added": "2026-08-18T23:33:00Z",
+      "game_date": "2026-08-18",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Connecticut Sun] Marshall (coach's decision) has been ruled out for Tuesday's game against the Sparks; league report + event:401857152, return date 2026-08-20. First override entry for this player.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Zaay Green",
+      "added": "2026-08-18T23:33:00Z",
+      "game_date": "2026-08-18",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Toronto Tempo] Green (coach's decision) is out for Tuesday's game against the Fever; league report + event:401857153, return date 2026-08-19.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Aliyah Boston",
+      "added": "2026-08-18T23:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Indiana Fever] CLEARED from Day-To-Day in the 2333Z snapshot - no longer on the ESPN injury report ahead of Tuesday's Fever game vs Toronto. Supersedes the 2026-08-17 questionable entry; treat as available at normal role.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Caitlin Clark",
+      "added": "2026-08-18T23:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Indiana Fever] CLEARED from Day-To-Day in the 2333Z snapshot - no longer on the ESPN injury report ahead of Tuesday's Fever game vs Toronto. Supersedes the 2026-08-17 questionable entry; treat as available at normal role.",
       "author": "news-watch",
       "superseded_by": null
     }

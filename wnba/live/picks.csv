@@ -1,17 +1,19 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2739_points_makayla timpson_under,2026-08-18,2026-08-18 23:00:00,2739,points,Makayla Timpson,IND,IND@TOR,under,7.5,-104.0,0.687,0.3475,True,-200,-184,0.0,5.72,,6.5,MOVED_OFF_OPEN;SUSPECT_EV(35%);ROLE_MIN?;ROLE_START?,False,False
+2740_rebounds_brittney griner_under,2026-08-18,2026-08-18 23:00:00,2740,rebounds,Brittney Griner,CON,LAS@CON,under,5.5,104.0,1.0,1.04,True,-3333,-1666,0.0,0.0,,5.5,SUSPECT_EV(104%),False,False
+2740_points_erica wheeler_under,2026-08-18,2026-08-18 23:00:00,2740,points,Erica Wheeler,LAS,LAS@CON,under,8.5,100.0,0.9997,0.9995,True,-3299,-1657,0.0,0.0,,9.5,MOVED_OFF_OPEN;SUSPECT_EV(100%),False,False
+2739_points_makayla timpson_under,2026-08-18,2026-08-18 23:00:00,2739,points,Makayla Timpson,IND,IND@TOR,under,8.5,-135.0,0.7545,0.3135,True,-273,-246,0.0,5.72,,6.5,MOVED_OFF_OPEN;SUSPECT_EV(31%);ROLE_MIN?;ROLE_START?,False,False
 2739_assists_caitlin clark_under,2026-08-18,2026-08-18 23:00:00,2739,assists,Caitlin Clark,IND,IND@TOR,under,9.5,112.0,0.5987,0.2693,True,-138,-129,0.0,8.8,,9.5,SUSPECT_EV(27%);ROLE_MIN?,False,True
-2744_threes_kayla mcbride_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Kayla McBride,MIN,MIN@GSV,over,2.5,-118.0,0.6674,0.2331,True,-184,-169,3.5,3.44,,2.5,,True,False
+2744_threes_kayla mcbride_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Kayla McBride,MIN,MIN@GSV,over,2.5,-118.0,0.6675,0.2333,True,-184,-170,3.5,3.44,,2.5,,True,False
 2739_assists_marina mabrey_under,2026-08-18,2026-08-18 23:00:00,2739,assists,Marina Mabrey,TOR,IND@TOR,under,4.5,-106.0,0.6334,0.231,True,-159,-148,0.0,3.87,,4.5,MOVED_OFF_OPEN,False,False
-2740_assists_leila lacan_under,2026-08-18,2026-08-18 23:00:00,2740,assists,Leila Lacan,CON,LAS@CON,under,4.5,116.0,0.5671,0.225,True,-122,-115,2.5,4.24,,4.5,,False,True
-2741_assists_kamilla cardoso_under,2026-08-18,2026-08-19 01:00:00,2741,assists,Kamilla Cardoso,CHI,NYL@CHI,under,2.5,118.0,0.5533,0.2063,True,-116,-109,0.0,2.4,,2.5,MOVED_OFF_OPEN,False,False
-2740_points_rae burrell_under,2026-08-18,2026-08-18 23:00:00,2740,points,Rae Burrell,LAS,LAS@CON,under,17.5,-125.0,0.669,0.2042,True,-185,-171,0.0,14.97,,16.5,MOVED_OFF_OPEN,False,True
-2744_threes_cecilia zandalasini_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Cecilia Zandalasini,GSV,MIN@GSV,over,1.5,152.0,0.4762,0.2001,True,117,123,2.0,1.6,,1.5,,True,False
-2744_threes_olivia miles_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Olivia Miles,MIN,MIN@GSV,over,1.5,110.0,0.5657,0.1879,True,-121,-114,2.5,1.9,,1.5,,True,False
-2743_rebounds_shakira austin_under,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Shakira Austin,WAS,TOR@WAS,under,10.5,-108.0,0.6095,0.1739,True,-144,-135,2.5,9.62,,10.5,,False,True
-2742_points_jackie young_over,2026-08-18,2026-08-19 01:00:00,2742,points,Jackie Young,LVA,ATL@LVA,over,19.5,-106.0,0.6036,0.173,True,-141,-132,0.0,21.87,,18.5,MOVED_OFF_OPEN;PLAYER_ALREADY_BET(threes over 2.5),False,False
-2739_points_kiki rice_under,2026-08-18,2026-08-18 23:00:00,2739,points,Kiki Rice,TOR,IND@TOR,under,12.5,-115.0,0.6273,0.1727,True,-155,-144,2.5,11.01,,12.5,ROLE_START?,True,False
-2743_assists_sonia citron_under,2026-08-19,2026-08-19 23:30:00,2743,assists,Sonia Citron,WAS,TOR@WAS,under,4.5,110.0,0.554,0.1634,True,-116,-109,0.0,4.31,,4.5,MOVED_OFF_OPEN,False,False
-2741_rebounds_azura stevens_over,2026-08-18,2026-08-19 01:00:00,2741,rebounds,Azura Stevens,CHI,NYL@CHI,over,6.5,116.0,0.5304,0.1456,True,-106,-100,1.5,6.9,,6.5,,False,True
-2741_points_breanna stewart_under,2026-08-18,2026-08-19 01:00:00,2741,points,Breanna Stewart,NYL,NYL@CHI,under,21.5,-108.0,0.5892,0.1347,True,-133,-125,0.0,20.18,,22.5,MOVED_OFF_OPEN,False,True
-2740_threes_diamond miller_under,2026-08-18,2026-08-18 23:00:00,2740,threes,Diamond Miller,CON,LAS@CON,under,1.5,-132.0,0.6261,0.1004,True,-155,-144,0.0,1.3,,1.5,MOVED_OFF_OPEN;ROLE_MIN?,False,False
+2741_assists_kamilla cardoso_under,2026-08-18,2026-08-19 01:00:00,2741,assists,Kamilla Cardoso,CHI,NYL@CHI,under,2.5,120.0,0.5533,0.2173,True,-116,-109,0.0,2.4,,2.5,MOVED_OFF_OPEN,False,False
+2744_threes_olivia miles_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Olivia Miles,MIN,MIN@GSV,over,1.5,110.0,0.5658,0.1881,True,-121,-114,2.5,1.9,,1.5,,True,False
+2740_points_rae burrell_under,2026-08-18,2026-08-18 23:00:00,2740,points,Rae Burrell,LAS,LAS@CON,under,17.5,-130.0,0.6699,0.1853,True,-186,-171,0.0,14.95,,16.5,MOVED_OFF_OPEN,False,True
+2744_threes_cecilia zandalasini_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Cecilia Zandalasini,GSV,MIN@GSV,over,1.5,148.0,0.4761,0.1808,True,117,123,1.5,1.6,,1.5,,True,False
+2739_points_kiki rice_under,2026-08-18,2026-08-18 23:00:00,2739,points,Kiki Rice,TOR,IND@TOR,under,12.5,-114.0,0.6281,0.179,True,-156,-145,2.5,11.0,,12.5,ROLE_START?,True,False
+2743_rebounds_shakira austin_under,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Shakira Austin,WAS,TOR@WAS,under,10.5,-108.0,0.6094,0.1736,True,-144,-135,2.5,9.62,,10.5,,False,True
+2743_assists_sonia citron_under,2026-08-19,2026-08-19 23:30:00,2743,assists,Sonia Citron,WAS,TOR@WAS,under,4.5,110.0,0.5539,0.1631,True,-116,-109,0.0,4.31,,4.5,MOVED_OFF_OPEN,False,False
+2742_points_jackie young_over,2026-08-18,2026-08-19 01:00:00,2742,points,Jackie Young,LVA,ATL@LVA,over,19.5,-108.0,0.6024,0.1602,True,-140,-131,0.0,21.85,,18.5,MOVED_OFF_OPEN;PLAYER_ALREADY_BET(threes over 2.5),False,False
+2741_rebounds_azura stevens_over,2026-08-18,2026-08-19 01:00:00,2741,rebounds,Azura Stevens,CHI,NYL@CHI,over,6.5,116.0,0.5304,0.1457,True,-106,-100,1.5,6.9,,6.5,,False,True
+2740_assists_leila lacan_under,2026-08-18,2026-08-18 23:00:00,2740,assists,Leila Lacan,CON,LAS@CON,under,4.5,102.0,0.5671,0.1456,True,-122,-115,2.0,4.24,,4.5,,False,True
+2741_points_breanna stewart_under,2026-08-18,2026-08-19 01:00:00,2741,points,Breanna Stewart,NYL,NYL@CHI,under,21.5,-110.0,0.5904,0.127,True,-134,-125,0.0,20.16,,22.5,MOVED_OFF_OPEN,False,True
+2742_rebounds_nalyssa smith_over,2026-08-18,2026-08-19 01:00:00,2742,rebounds,NaLyssa Smith,LVA,ATL@LVA,over,6.5,116.0,0.5158,0.1142,True,-100,106,1.5,6.78,,6.5,,True,False
