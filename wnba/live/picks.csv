@@ -8,9 +8,9 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2739_assists_caitlin clark_under,2026-08-18,2026-08-18 23:00:00,2739,assists,Caitlin Clark,IND,IND@TOR,under,10.5,-152.0,0.7107,0.1783,True,-222,-203,0.0,8.79,,9.5,MOVED_OFF_OPEN;ROLE_MIN?,False,True
 2743_rebounds_shakira austin_under,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Shakira Austin,WAS,TOR@WAS,under,10.5,-108.0,0.6104,0.1755,True,-145,-135,2.5,9.61,,10.5,,True,False
 2741_points_breanna stewart_under,2026-08-18,2026-08-19 01:00:00,2741,points,Breanna Stewart,NYL,NYL@CHI,under,22.5,-122.0,0.6388,0.1624,True,-163,-151,2.5,20.19,,22.5,,False,True
-2742_assists_chelsea gray_over,2026-08-18,2026-08-19 01:00:00,2742,assists,Chelsea Gray,LVA,ATL@LVA,over,5.5,-132.0,0.6612,0.1621,True,-179,-165,3.0,6.77,,5.5,,False,True
 2740_assists_leila lacan_under,2026-08-18,2026-08-18 23:00:00,2740,assists,Leila Lacan,CON,LAS@CON,under,4.5,100.0,0.5679,0.1359,True,-122,-115,2.0,4.23,,4.5,,False,True
 2740_points_brittney griner_under,2026-08-18,2026-08-18 23:00:00,2740,points,Brittney Griner,CON,LAS@CON,under,11.5,-120.0,0.6175,0.1321,True,-149,-139,2.0,10.23,,11.5,,True,False
-2742_points_angel reese_under,2026-08-18,2026-08-19 01:00:00,2742,points,Angel Reese,ATL,ATL@LVA,under,15.5,100.0,0.5599,0.1199,True,-119,-111,1.5,14.9,,15.5,,False,True
 2739_assists_marina mabrey_under,2026-08-18,2026-08-18 23:00:00,2739,assists,Marina Mabrey,TOR,IND@TOR,under,4.5,-132.0,0.6342,0.1147,True,-160,-148,0.0,3.87,,4.5,MOVED_OFF_OPEN,False,False
+2742_assists_chelsea gray_over,2026-08-18,2026-08-19 01:00:00,2742,assists,Chelsea Gray,LVA,ATL@LVA,over,5.5,-146.0,0.6612,0.1141,True,-179,-165,2.0,6.77,,5.5,,False,True
+2742_points_angel reese_under,2026-08-18,2026-08-19 01:00:00,2742,points,Angel Reese,ATL,ATL@LVA,under,15.5,-102.0,0.5599,0.1089,True,-119,-111,0.0,14.9,,15.5,MOVED_OFF_OPEN,False,True
 2741_rebounds_sabrina ionescu_over,2026-08-18,2026-08-19 01:00:00,2741,rebounds,Sabrina Ionescu,NYL,NYL@CHI,over,3.5,-114.0,0.5875,0.1028,True,-132,-124,0.0,4.21,,3.5,MOVED_OFF_OPEN,False,False
