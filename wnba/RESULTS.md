@@ -10,7 +10,7 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 135 (72W-63L), 0 push, 5 void, 2 open |
+| settled | 135 (72W-63L), 0 push, 5 void, 11 open |
 | staked | $135.00 |
 | P&L | $+6.56 (+4.9% ROI) |
 | mean EV said (model) | +20.91% (n=135) |
@@ -27,6 +27,15 @@ Calibration reads the model's own claims against results: expected wins = sum of
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-08-18 | Jackie Young | threes | over | 2.5 | 140 | 1.0 | +19.2% |  |  |  |  |  |
+| 2026-08-18 | Azura Stevens | rebounds | over | 6.5 | 122 | 1.0 | +17.5% |  |  |  |  |  |
+| 2026-08-18 | Chelsea Gray | assists | over | 5.5 | -132 | 1.0 | +16.2% |  |  |  |  |  |
+| 2026-08-18 | Breanna Stewart | points | under | 22.5 | -122 | 1.0 | +16.2% |  |  |  |  |  |
+| 2026-08-18 | Angel Reese | points | under | 15.5 | 100 | 1.0 | +11.9% |  |  |  |  |  |
+| 2026-08-18 | Rae Burrell | points | under | 16.5 | 100 | 1.0 | +22.7% |  |  |  |  |  |
+| 2026-08-18 | Leila Lacan | assists | under | 4.5 | 102 | 1.0 | +14.7% |  |  |  |  |  |
+| 2026-08-18 | Caitlin Clark | assists | under | 9.5 | 104 | 1.0 | +22.5% |  |  |  |  |  |
+| 2026-08-18 | Aneesah Morrow | rebounds | over | 6.5 | 100 | 1.0 | +11.2% |  |  |  |  |  |
 | 2026-08-17 | Paige Bueckers | assists | under | 5.5 | 112 | 1.0 | +10.8% |  |  |  |  |  |
 | 2026-08-17 | Arike Ogunbowale | points | under | 15.5 | 100 | 1.0 | +21.9% |  |  |  |  |  |
 | 2026-08-16 | Carla Leite | threes | under | 0.5 | 164 | 1.0 | +23.4% | 1 | lost | -1.00 | +13.6% | +19.4% |

@@ -4049,6 +4049,45 @@
       "quote": "Standing, not a diff change: the 2237Z snapshot repeats 1734Z verbatim - Salaun (Golden State Valkyries) Day-To-Day, Knee, \"listed as questionable for Monday's game versus the Wings\", return_date 2026-08-17, and the per-event report for 401857151 agrees. Supersedes entry 290 because the condition that entry wrote itself under has changed: it set minutes_est 15 against a ~22 baseline as \"the honest middle\" of [0,24] and closed by noting \"She carries no row on the current sheet\". She now does - threes UNDER 1.5 at +134 (DAL@GSV, event 2738) prices at +15% claimed EV as a NEW playable row, and it prices at that number partly because of the 15-minute guess. That is the Plum case (entry 1, 2026-08-03) and the Rice case (entry 294, three hours ago): an uncertain returnee - four games missed, knee, questionable, last played 2026-08-09 - where an invented downward minutes number manufactures edge on exactly the side that would be bet. The registered discipline is to pick the assumption least favourable to a news-driven bet, so this entry asserts no minutes at all and lets the base talent state price her. Status stays questionable and the display annotation stands. This is deliberately NOT applied to Brittney Griner (entry 295, also a haircut feeding an under): her 19 is her actual last game played on 2026-08-13 off a declining knee-managed trend the panel already carries, not a guess about a player the panel has not seen in over a week. Owner call either way; the routine flags, it does not tune.",
       "author": "news-watch",
       "superseded_by": null
+    },
+    {
+      "player": "Jordin Canada",
+      "added": "2026-08-18T00:45:00Z",
+      "game_date": "2026-08-18",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/0038Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPDATED Out -> Day-To-Day (Illness), Atlanta: 'Canada (illness) is listed as probable for Tuesday's game versus the Aces.' She was ruled out for Sunday's game vs Indiana (entry 278, game_date 2026-08-16, now expired). Upgrade only: probable means she is expected to play LVA@ATL-side event 2742 (2026-08-18), so no minutes cut is recorded - a ramp estimate here would manufacture an under off a probable tag. Status recorded for the archive; pricing unchanged.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kierstan Bell",
+      "added": "2026-08-18T00:45:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/0038Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED from the ESPN league injury report (Las Vegas). Prior listing: 'Bell (personal) has been ruled out for Saturday's game against the Lynx' (Out, Personal). Off the report entirely at 2026-08-18 00:38Z, so she is available for event 2742 (LVA vs ATL, 2026-08-18). Inert entry: no minutes estimate, base talent state prices her.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ta'Niya Latson",
+      "added": "2026-08-18T00:45:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/0038Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED from the ESPN league injury report (Las Vegas). Prior listing: 'Latson is out for Saturday's game against Minnesota due to a coach's decision' (Out, Coach's Decision). Off the report at 2026-08-18 00:38Z, so she is available for event 2742 (LVA vs ATL, 2026-08-18). Coach's-decision absences are role signals, not injuries: recorded as available with no minutes estimate, so the talent model's own state prices her.",
+      "author": "news-watch",
+      "superseded_by": null
     }
   ]
 }
