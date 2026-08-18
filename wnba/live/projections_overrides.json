@@ -3892,7 +3892,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPGRADE in the 2237Z diff: Griner (Connecticut Sun) Out -> Day-To-Day, type Knee. \"Griner (knee) is questionable for Tuesday's game against the Sparks.\" return_date 2026-08-18 = the game_date of the LAS@CON prop on the sheet (event 2741). Supersedes entry 289 and deliberately carries the SAME numbers: this is the feed rolling forward to Tuesday's game and confirming what 289 already assumed (returning player, minutes haircut to her last game played - 19 min on 2026-08-13, and she missed 08-15), not new information about the knee. FLAG FOR THE OWNER, not a fix: her last six played are 34/24/26/31/24/19, so 19 sits below the blend and is the haircut that part of the +13% claimed EV on her POINTS UNDER 11.5 is priced off. The file's usual discipline is the assumption least favourable to a news-driven bet, which for an under would mean no haircut at all; the haircut is kept here only because 19 is her actual last game played rather than a guess, and a confirmatory feed roll is a poor reason for the routine to move a live price. If the owner wants the under priced off her base state instead, that is an owner call.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 316
     },
     {
       "player": "Aaliyah Edwards",
@@ -3905,7 +3905,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPGRADE in the 2237Z diff: Edwards (Connecticut Sun) Out -> Day-To-Day, type Ankle. \"Edwards (ankle) is questionable for Tuesday's game against the Sparks.\" return_date 2026-08-18 = LAS@CON (event 2741). Status-only, no minutes claim: she carries no row on the sheet, and her last six played (27/24/24/5/24/17, bench in five of six) give no stable number worth asserting. Entry 259 (out, game_date 2026-08-15) is game_date-limited and already inert, so this supersedes nothing and changes no price.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 317
     },
     {
       "player": "Cameron Brink",
@@ -4154,6 +4154,64 @@
       "source": "avail:2026-08-18/0335Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED: no longer on the ESPN league or event injury report (was Day-To-Day); active for GS vs DAL.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Brittney Griner",
+      "added": "2026-08-18T20:33:00Z",
+      "game_date": "2026-08-18",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": [
+        0,
+        0
+      ],
+      "source": "avail:2026-08-18/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "DOWNGRADE in the 2033Z diff: \"Griner (knee) is out for Tuesday's game against the Sparks\" (Connecticut, Out/Knee, return_date 2026-08-20); the event:401857152 report agrees. Was Day-To-Day/questionable at 1533Z with the same comment reading \"questionable\". Supersedes index 295 (questionable, 19 min). Scoped to LA @ CON, 2026-08-18 only.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Aaliyah Edwards",
+      "added": "2026-08-18T20:33:00Z",
+      "game_date": "2026-08-18",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": [
+        0,
+        0
+      ],
+      "source": "avail:2026-08-18/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "DOWNGRADE in the 2033Z diff: \"Edwards (ankle) is out for Tuesday's game against the Sparks\" (Connecticut, Out/Ankle, return_date 2026-08-20); the event:401857152 report agrees. Was Day-To-Day/questionable at 1533Z. Supersedes index 296. Scoped to LA @ CON, 2026-08-18 only.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Brittney Sykes",
+      "added": "2026-08-18T20:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED: Sykes (Toronto, foot) dropped off the ESPN league and event:401857153 injury reports between 1533Z and 2033Z. The 1533Z row was internally contradictory - status \"Out\" with the comment \"Sykes (foot) is listed as probable for Tuesday's game against the Fever\" - and the row is now simply gone, i.e. available for IND @ TOR (2026-08-18). No minutes claim made, so this entry changes no price; it removes the Out annotation the status field was driving.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Sabrina Ionescu",
+      "added": "2026-08-18T20:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-18/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED: Ionescu (New York, foot) dropped off the ESPN league and event:401857154 injury reports between 1533Z and 2033Z; the 1533Z listing read \"Ionescu (foot) is listed as questionable for Tuesday's game in Chicago\" (Day-To-Day). Available for NY @ CHI (2026-08-18). No minutes claim made - the talent model's own state prices her.",
       "author": "news-watch",
       "superseded_by": null
     }
