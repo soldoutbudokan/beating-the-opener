@@ -1,5 +1,5 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2744_points_kayla mcbride_over,2026-08-19,2026-08-20 02:00:00,2744,points,Kayla McBride,MIN,MIN@GSV,over,14.5,102.0,0.6912,0.3962,True,-204,-187,0.0,18.34,,13.5,NON_FD_OPEN;SUSPECT_EV(40%);PLAYER_ALREADY_BET(threes over 2.5),False,False
+2744_points_kayla mcbride_over,2026-08-19,2026-08-20 02:00:00,2744,points,Kayla McBride,MIN,MIN@GSV,over,14.5,104.0,0.6912,0.4101,True,-204,-187,0.0,18.34,,13.5,NON_FD_OPEN;SUSPECT_EV(41%);PLAYER_ALREADY_BET(threes over 2.5),False,False
 2746_points_diamond miller_under,2026-08-20,2026-08-21 02:00:00,2746,points,Diamond Miller,CON,CON@LVA,under,11.5,100.0,0.6912,0.3823,True,-204,-187,0.0,9.17,,11.5,SUSPECT_EV(38%),False,False
 2746_assists_leila lacan_under,2026-08-20,2026-08-21 02:00:00,2746,assists,Leila Lacan,CON,CON@LVA,under,4.5,116.0,0.5744,0.2408,True,-126,-118,3.0,4.19,,4.5,,True,False
 2745_points_jessica shepard_under,2026-08-20,2026-08-21 00:00:00,2745,points,Jessica Shepard,DAL,IND@DAL,under,14.5,-115.0,0.6619,0.2375,True,-179,-166,3.5,12.33,,14.5,,True,False
