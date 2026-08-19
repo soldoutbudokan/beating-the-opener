@@ -4444,6 +4444,35 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0132Z diff: Mitchell (Indiana Fever) appears as Day-To-Day (Undisclosed), return_date 2026-08-20, on both the league report and the per-event report for IND@TOR (event 401857153, now FINAL). \"Mitchell (undisclosed) exited to the locker room in the fourth quarter of Tuesday's game against the Tempo, Tony East of The Next reports.\" In-game exit, no diagnosis published. Indiana is NOT on the 2026-08-19 card, so this targets their next game, IND @ DAL on 2026-08-20 (8:00 PM ET, BP event 2745). She has started and played 31-39 minutes in every game since 2026-08-02 (35/39/36/31/36/36); conservative haircut to 24 with a floor at 0 pending a Wednesday practice report. Revisit at the next firing - if she is cleared or ruled out, supersede this entry.",
       "author": "news-watch",
+      "superseded_by": 339
+    },
+    {
+      "player": "Jonquel Jones",
+      "added": "2026-08-19T02:47:00Z",
+      "game_date": "2026-08-18",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/0234Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0234Z diff (vs 0132Z): \"Jones (ankle) won't return to Tuesday's game against the Sky, Madeline Kenney of the New York Post reports. She'll finish with five points (2-2 FG, 1-1 FT) and two assists across six minutes.\" League report and the per-event report for NY@CHI (401857154). This is an IN-GAME ruling, so the override targets the 2026-08-18 game only. ESPN's return_date is 2026-08-22, which is New York's very next game (IND @ NY) - the feed does not yet expect her to miss a future game. No NY props are on the 2026-08-19 board (TOR@WAS, MIN@GSV), so this is inert. Re-judge the ankle when NY's 08-22 props post: a fresh in-game ankle is exactly the case where a next-game return stamp tends to be optimistic.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kelsey Mitchell",
+      "added": "2026-08-19T02:47:00Z",
+      "game_date": "2026-08-20",
+      "status": "questionable",
+      "minutes_est": 24,
+      "minutes_range": [
+        0,
+        34
+      ],
+      "source": "avail:2026-08-19/0234Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPDATED in the 0234Z diff: Mitchell's league and per-event status escalated Day-To-Day -> Out (Undisclosed), return_date unchanged at 2026-08-20. Supersedes the 0132Z entry to record the downgrade; the estimate is deliberately UNCHANGED (questionable, 24 min, floor 0). Reasoning: the Out tag attaches to Tuesday's completed IND@TOR game (401857153), which she played - the ESPN box has didNotPlay=False, 24 minutes, 29 points (11-16 FG, 4-6 3PT), +20 - so it reads as the usual \"ruled out for the remainder\" designation after the fourth-quarter exit quoted in the 0132Z entry, not as a ruling on a future game. ESPN's return_date of 2026-08-20 is Indiana's next game (IND @ DAL), i.e. the feed still expects her available for it. No IND props are on the 2026-08-19 board, so this remains inert. FLAGGED FOR THE OWNER: an undisclosed in-game exit with no diagnosis is genuinely unresolved - if IND @ DAL props post before a Wednesday practice report, treat the 24-min haircut as a placeholder and re-judge, do not bet through it.",
+      "author": "news-watch",
       "superseded_by": null
     }
   ]
