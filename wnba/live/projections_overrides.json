@@ -4429,6 +4429,22 @@
       "quote": "[Minnesota Lynx] CLEARED in the 0034Z diff: was Out (Coach's Decision), return date 2026-08-19, league entry written for Saturday's game in Las Vegas. Lynx are NOT on tonight's four-game card (LA@CON, IND@TOR, NY@CHI, ATL@LV), so this is a stale league entry ageing off its return date, not evidence of a return. Logged for the archive only - no minutes estimate, no pricing effect.",
       "author": "news-watch",
       "superseded_by": null
+    },
+    {
+      "player": "Kelsey Mitchell",
+      "added": "2026-08-19T01:32:00Z",
+      "game_date": "2026-08-20",
+      "status": "questionable",
+      "minutes_est": 24,
+      "minutes_range": [
+        0,
+        34
+      ],
+      "source": "avail:2026-08-19/0132Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0132Z diff: Mitchell (Indiana Fever) appears as Day-To-Day (Undisclosed), return_date 2026-08-20, on both the league report and the per-event report for IND@TOR (event 401857153, now FINAL). \"Mitchell (undisclosed) exited to the locker room in the fourth quarter of Tuesday's game against the Tempo, Tony East of The Next reports.\" In-game exit, no diagnosis published. Indiana is NOT on the 2026-08-19 card, so this targets their next game, IND @ DAL on 2026-08-20 (8:00 PM ET, BP event 2745). She has started and played 31-39 minutes in every game since 2026-08-02 (35/39/36/31/36/36); conservative haircut to 24 with a floor at 0 pending a Wednesday practice report. Revisit at the next firing - if she is cleared or ruled out, supersede this entry.",
+      "author": "news-watch",
+      "superseded_by": null
     }
   ]
 }
