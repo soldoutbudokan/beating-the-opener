@@ -1,0 +1,380 @@
+{
+"captured_utc": "2026-08-19 21:34",
+"events": [
+{
+"date": "2026-08-19T23:30Z",
+"event_id": "401857156",
+"name": "TOR @ WSH",
+"status": "STATUS_SCHEDULED"
+},
+{
+"date": "2026-08-20T02:00Z",
+"event_id": "401857157",
+"name": "MIN @ GS",
+"status": "STATUS_SCHEDULED"
+}
+],
+"injuries": [
+{
+"comment": "Nivar (coach's decision) is out for Tuesday's game versus the Aces.",
+"player": "Indya Nivar",
+"return_date": "2026-08-20",
+"source": "league",
+"status": "Out",
+"team": "Atlanta Dream",
+"type": "Coach's Decision"
+},
+{
+"comment": "Dream head coach Karl Smesko told reporters Sunday that Jones does not have a timetable of return for a left leg injury, WNBA reporter Kareem Copeland reports.",
+"player": "Brionna Jones",
+"return_date": "2026-08-24",
+"source": "league",
+"status": "Out",
+"team": "Atlanta Dream",
+"type": "Leg"
+},
+{
+"comment": "Diggins (knee) is out for Monday's game against the Storm.",
+"player": "Skylar Diggins",
+"return_date": "2026-08-23",
+"source": "league",
+"status": "Out",
+"team": "Chicago Sky",
+"type": "Knee"
+},
+{
+"comment": "The Sky announced Tuesday that Jackson will miss the remainder of the season after suffering a torn ACL in her left knee during Sunday's 86-79 win over the Lynx.",
+"player": "Rickea Jackson",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Chicago Sky",
+"type": "Knee"
+},
+{
+"comment": "Van Lith (coach's decision) is out for Tuesday's game against the Sparks.",
+"player": "Hailey Van Lith",
+"return_date": "2026-08-20",
+"source": "league",
+"status": "Out",
+"team": "Connecticut Sun",
+"type": "Coach's Decision"
+},
+{
+"comment": "Marshall (coach's decision) has been ruled out for Tuesday's game against the Sparks.",
+"player": "Rayah Marshall",
+"return_date": "2026-08-20",
+"source": "league",
+"status": "Out",
+"team": "Connecticut Sun",
+"type": "Coach's Decision"
+},
+{
+"comment": "Edwards (ankle) is out for Tuesday's game against the Sparks.",
+"player": "Aaliyah Edwards",
+"return_date": "2026-08-20",
+"source": "league",
+"status": "Out",
+"team": "Connecticut Sun",
+"type": "Ankle"
+},
+{
+"comment": "Griner (knee) is out for Tuesday's game against the Sparks.",
+"player": "Brittney Griner",
+"return_date": "2026-08-20",
+"source": "league",
+"status": "Out",
+"team": "Connecticut Sun",
+"type": "Knee"
+},
+{
+"comment": "Fudd will undergo an arthroscopic procedure to address her right knee soreness and will be sidelined for the remainder of the 2026 season.",
+"player": "Azzi Fudd",
+"return_date": "2027-04-15",
+"source": "league",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Knee"
+},
+{
+"comment": "Williams (coach's decision) has been ruled out for Monday's game against Golden State.",
+"player": "Christyn Williams",
+"return_date": "2026-08-20",
+"source": "league",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Coach's Decision"
+},
+{
+"comment": "James (leg) is not with the team and is without a timetable for a return to game action, Christan Braswell of Off The Record WBB reports.",
+"player": "Aziaha James",
+"return_date": "2026-08-20",
+"source": "league",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Leg"
+},
+{
+"comment": "Verona's contract was temporarily suspended by the Wings Saturday.",
+"player": "Costanza Verona",
+"return_date": "2026-09-17",
+"source": "league",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Personal"
+},
+{
+"comment": "Rupert is pregnant, and the Valkyries have filed for a replacement contract ahead of the 2026 season, Alexa Philippou of ESPN.com reports Thursday.",
+"player": "Iliana Rupert",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Golden State Valkyries",
+"type": "Not Injury Related"
+},
+{
+"comment": "out",
+"player": "Kelsey Mitchell",
+"return_date": "2026-08-20",
+"source": "league",
+"status": "Out",
+"team": "Indiana Fever",
+"type": "Undisclosed"
+},
+{
+"comment": "out",
+"player": "Bree Hall",
+"return_date": "2026-08-20",
+"source": "league",
+"status": "Out",
+"team": "Indiana Fever",
+"type": "Coach's Decision"
+},
+{
+"comment": "Onyiah (coach's decision) has been ruled out for Tuesday's game against the Tempo.",
+"player": "Michelle Onyiah",
+"return_date": "2026-08-20",
+"source": "league",
+"status": "Out",
+"team": "Indiana Fever",
+"type": "Coach's Decision"
+},
+{
+"comment": "Dantas underwent left knee surgery Tuesday and will miss the remainder of the 2026 season, the Fever announced.",
+"player": "Damiris Dantas",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Indiana Fever",
+"type": "Knee"
+},
+{
+"comment": "Evans (leg) is listed as out for Tuesday's game against Atlanta.",
+"player": "Dana Evans",
+"return_date": "2026-08-20",
+"source": "league",
+"status": "Out",
+"team": "Las Vegas Aces",
+"type": "Leg"
+},
+{
+"comment": "Akoa Makani (ankle) won't play in Tuesday's game against the Sun, per independent WNBA writer Justin Russo.",
+"player": "Monique Akoa Makani",
+"return_date": "2026-08-20",
+"source": "league",
+"status": "Out",
+"team": "Los Angeles Sparks",
+"type": "Ankle"
+},
+{
+"comment": "Wheeler (ankle) won't play in Tuesday's game against the Sun, per independent WNBA writer Justin Russo.",
+"player": "Erica Wheeler",
+"return_date": "2026-08-20",
+"source": "league",
+"status": "Out",
+"team": "Los Angeles Sparks",
+"type": "Ankle"
+},
+{
+"comment": "Brink (ribs) has been ruled out for Tuesday's game against the Sun, independent WNBA writer Justin Russo reports.",
+"player": "Cameron Brink",
+"return_date": "2026-08-20",
+"source": "league",
+"status": "Out",
+"team": "Los Angeles Sparks",
+"type": "Ribs"
+},
+{
+"comment": "out",
+"player": "Satou Sabally",
+"return_date": "2026-08-27",
+"source": "league",
+"status": "Out",
+"team": "New York Liberty",
+"type": "Concussion"
+},
+{
+"comment": "Jones (ankle) won't return to Tuesday's game against the Sky, Madeline Kenney of the New York Post reports. She'll finish with five points (2-2 FG, 1-1 FT) and two assists across six minutes.",
+"player": "Jonquel Jones",
+"return_date": "2026-08-22",
+"source": "league",
+"status": "Out",
+"team": "New York Liberty",
+"type": "Ankle"
+},
+{
+"comment": "Head coach Chris DeMarco said Sunday that Fiebich is progressing in her recovery but is still without a timetable for a return to game action, Madeline Kenney of the New York Post reports.",
+"player": "Leonie Fiebich",
+"return_date": "2026-08-27",
+"source": "league",
+"status": "Out",
+"team": "New York Liberty",
+"type": "Foot"
+},
+{
+"comment": "Plum (calf) won't play in Sunday's game against Portland, per Annie Costabile of The Athletic.",
+"player": "Kelsey Plum",
+"return_date": "2026-08-22",
+"source": "league",
+"status": "Out",
+"team": "Phoenix Mercury",
+"type": "Calf"
+},
+{
+"comment": "Nogic (not injury related) intends to play professionally in Russia and won't return to Phoenix this season, Aya Abdeen of TheIXSports.com reports.",
+"player": "Jovana Nogic",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Phoenix Mercury",
+"type": "Not Injury Related"
+},
+{
+"comment": "Geiselsoder (personal) won't return this season, according to Sean Highkin of RoseGardenReport.com.",
+"player": "Luisa Geiselsoder",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Portland Fire",
+"type": "Personal"
+},
+{
+"comment": "The Fire announced Friday that Barker will undergo surgery to repair a torn ACL and will miss the remainder of the 2026 campaign.",
+"player": "Sarah Ashlee Barker",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Portland Fire",
+"type": "Knee"
+},
+{
+"comment": "Feagin (knee) was diagnosed with a torn left ACL on Thursday and will miss the rest of the 2026 campaign, WNBA reporter Kareem Copeland reports.",
+"player": "Sania Feagin",
+"return_date": "2027-05-01",
+"source": "league",
+"status": "Out",
+"team": "Portland Fire",
+"type": "Knee"
+},
+{
+"comment": "out",
+"player": "Jordan Horston",
+"return_date": "2026-08-23",
+"source": "league",
+"status": "Out",
+"team": "Seattle Storm",
+"type": "Shoulder"
+},
+{
+"comment": "Hiedeman is out for Sunday's game against Chicago due to a left shoulder injury.",
+"player": "Natisha Hiedeman",
+"return_date": "2026-08-23",
+"source": "league",
+"status": "Out",
+"team": "Seattle Storm",
+"type": "Shoulder"
+},
+{
+"comment": "Conde (calf) is out for Wednesday's game against the Mystics.",
+"player": "Maria Conde",
+"return_date": "2026-08-21",
+"source": "league",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Calf"
+},
+{
+"comment": "Sykes (rest) will sit out Wednesday against the Mystics.",
+"player": "Brittney Sykes",
+"return_date": "2026-08-21",
+"source": "league",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Rest"
+},
+{
+"comment": "Mabrey (hamstring) is doubtful for Wednesday's game against the Mystics.",
+"player": "Marina Mabrey",
+"return_date": "2026-08-19",
+"source": "league",
+"status": "Day-To-Day",
+"team": "Toronto Tempo",
+"type": "Hamstring"
+},
+{
+"comment": "Sabally (calf) is in a walking boot and will be re-evaluated in \"a few weeks,\" Chelsea Leite of TSN reports.",
+"player": "Nyara Sabally",
+"return_date": "2026-09-18",
+"source": "league",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Calf"
+},
+{
+"comment": "",
+"player": "Maria Conde",
+"return_date": "2026-08-21",
+"source": "event:401857156",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Calf"
+},
+{
+"comment": "",
+"player": "Brittney Sykes",
+"return_date": "2026-08-21",
+"source": "event:401857156",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Rest"
+},
+{
+"comment": "",
+"player": "Marina Mabrey",
+"return_date": "2026-08-19",
+"source": "event:401857156",
+"status": "Day-To-Day",
+"team": "Toronto Tempo",
+"type": "Hamstring"
+},
+{
+"comment": "",
+"player": "Nyara Sabally",
+"return_date": "2026-09-18",
+"source": "event:401857156",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Calf"
+},
+{
+"comment": "",
+"player": "Iliana Rupert",
+"return_date": "2027-05-01",
+"source": "event:401857157",
+"status": "Out",
+"team": "Golden State Valkyries",
+"type": "Not Injury Related"
+}
+],
+"lineups": []
+}

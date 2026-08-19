@@ -2587,7 +2587,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league + per-event (TOR@DAL) injury report, downgrade from Day-To-Day: 'Allemand (thigh) is out for Wednesday's game against Dallas, per Zulfi Sheikh of Sportsnet.' Return date 2026-08-18. Supersedes the 2026-08-11 questionable entry.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 348
     },
     {
       "player": "Maria Conde",
@@ -4588,6 +4588,19 @@
       "source": "avail:2026-08-19/2033Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report, 2033Z: Fudd (Dallas, Knee) still Out, but the comment and return_date changed - \"will undergo an arthroscopic procedure to address her right knee soreness and will be sidelined for the remainder of the 2026 season\", return_date 2026-08-20 -> 2027-04-15. Caught OUTSIDE avail_watch's status diff again (an Out -> Out row prints no NEW/UPDATED line; hers was the only field-level change between the 1933Z and 2033Z snapshots). Mechanically inert for pricing - entry 232 already carried out/0 until-cleared, and Dallas is not on tonight's two-game slate - but recorded so the file matches the feed and so a season-ending absence is legible rather than a day-to-day one. Supersedes 232.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Julie Allemand",
+      "added": "2026-08-19T21:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/2134Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2134Z diff: Allemand (Toronto Tempo, Thigh) dropped off BOTH the ESPN league injury report and the per-event report for tonight's TOR @ WSH (BP event 2743, ESPN event 401857156, 7:30 PM ET) between 2033Z and 2134Z. The 2033Z row already read Out with the comment \"Allemand (elbow) is probable for Wednesday's game against the Mystics\" and return_date 2026-08-19, so the clear resolves that probable upward: she is expected to play tonight after missing 08-12 through 08-18. Supersedes entry 196 (out / 0 minutes), which was scoped to game_date 2026-08-12 and is mechanically inert for tonight either way. Status only, NO minutes estimate, deliberately: her panel state is a pre-injury full-starter state (last panel game 2026-08-10, 26 min, starter; min_ewf 31.1 / min_ews 29.5), so the top of any if-she-plays range IS the base state, and hand-cutting minutes for a returnee would manufacture unders on a player the feed now says is available - the Mabrey rule from the 1733Z entry, applied in the other direction. 9 days since her last panel game, so she is inside the 14-day STALE_PLAYER gate and priceable if FanDuel posts her. FLAGGED FOR THE OWNER instead: a starter back from a four-game thigh absence is the classic minutes-limit case and the talent model is slow on role changes by design - confirm her in the lineup and check for a reported minutes cap before taking any Allemand over. No teammate minutes were re-estimated; the routine flags, it does not re-price the rotation.",
       "author": "news-watch",
       "superseded_by": null
     }
