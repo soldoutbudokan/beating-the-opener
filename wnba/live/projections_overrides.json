@@ -3779,7 +3779,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW (league + event:401857148 reports): Horston Day-To-Day (Shoulder), return_date 2026-08-23 - \"Horston will not return to Sunday's game against the Sky due to a shoulder injury\" (Beta Basket). Feed status is Day-To-Day; the stated 8/23 return falls after Seattle's next games, so priced conservatively as out until a CLEARED snapshot supersedes this.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 342
     },
     {
       "player": "Christyn Williams",
@@ -4504,6 +4504,22 @@
       "source": "avail:2026-08-19/0434Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "The 0434Z avail fetch returned NO_CHANGE (byte-identical to 0334Z, so no new snapshot file was written): Mitchell is still Out (Undisclosed) on both the league report and the per-event report for the completed IND@TOR game (401857153), return_date still 2026-08-20. Superseding to record that the condition the 0234Z and 0334Z entries flagged has now MATERIALIZED: the IND @ DAL props (BP event 2745, 2026-08-20, 8:00 PM ET) posted on this firing's board, and they posted BEFORE any Wednesday practice report - it is 12:34 AM ET Wednesday and the only public information is still Tuesday's undiagnosed fourth-quarter exit. Estimate deliberately UNCHANGED (questionable, 24 min, floor 0) - the routine flags, it does not re-price. FLAGGED FOR THE OWNER, loudly: fp_live now prices assists under 2.5 @ -174 (claimed EV 11.7%, ROLE_MIN?) off this 24-minute placeholder, and the haircut is what makes the under look good - the pick is a consequence of the placeholder, not independent evidence. Treat it as unbettable until a practice report or a lineup confirms her minutes; if she is ruled out or cleared, supersede this entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Jordan Horston",
+      "added": "2026-08-19T15:32:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": [
+        0,
+        0
+      ],
+      "source": "avail:2026-08-19/1532Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPDATED in the 1532Z diff: Horston (Seattle Storm) escalated Day-To-Day -> Out (Shoulder) on the league report, return_date still 2026-08-23. This CONFIRMS the conservative reading entry 287 took on 2026-08-17 - the feed now says Out outright - so the estimate is unchanged (out, 0 minutes). Seattle has no game on today's board (only TOR @ WSH and MIN @ GS), so this is currently inert; it stays in force until a CLEARED snapshot supersedes it.",
       "author": "news-watch",
       "superseded_by": null
     }
