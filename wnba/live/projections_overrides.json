@@ -3529,7 +3529,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2133Z diff (was Out, \"Coach's Decision\"/personal reasons, Atlanta Dream; the dropped listing still referenced Thursday's game versus Connecticut). Off both the league report and the per-event report. No restriction reported, no minutes assumption made. Supersedes index 156.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 329
     },
     {
       "player": "Cameron Brink",
@@ -4061,7 +4061,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED Out -> Day-To-Day (Illness), Atlanta: 'Canada (illness) is listed as probable for Tuesday's game versus the Aces.' She was ruled out for Sunday's game vs Indiana (entry 278, game_date 2026-08-16, now expired). Upgrade only: probable means she is expected to play LVA@ATL-side event 2742 (2026-08-18), so no minutes cut is recorded - a ramp estimate here would manufacture an under off a probable tag. Status recorded for the archive; pricing unchanged.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 331
     },
     {
       "player": "Kierstan Bell",
@@ -4323,6 +4323,110 @@
       "source": "avail:2026-08-18/2333Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "[Indiana Fever] CLEARED from Day-To-Day in the 2333Z snapshot - no longer on the ESPN injury report ahead of Tuesday's Fever game vs Toronto. Supersedes the 2026-08-17 questionable entry; treat as available at normal role.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Indya Nivar",
+      "added": "2026-08-19T00:34:00Z",
+      "game_date": "2026-08-18",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Atlanta Dream] NEW in the 0034Z diff: Nivar (coach's decision) ruled Out for Tuesday's game at Las Vegas (ATL@LV, ESPN event 401857155, 9:00 PM ET), return date 2026-08-20. League report + per-event report agree. Supersedes the 2026-08-15 'in' entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Cheyenne Parker-Tyus",
+      "added": "2026-08-19T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Las Vegas Aces] CLEARED in the 0034Z diff: dropped off the ESPN league report and off the per-event report for ATL@LV (event 401857155, 9:00 PM ET) between 2333Z and 0034Z; was Out (Concussion) with return date 2026-08-18. Caveat: the clear coincides with return_date rolling to today, so it may be a report rollover rather than a confirmed activation - no lineup feed is published for the 9pm games yet. Recorded as available with NO minutes estimate (pricing no-op); confirm at the betslip near tip.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Jordin Canada",
+      "added": "2026-08-19T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Atlanta Dream] CLEARED in the 0034Z diff: dropped off the league report and off the per-event report for ATL@LV (event 401857155, 9:00 PM ET) between 2333Z and 0034Z; was Day-To-Day (Illness) with return date 2026-08-18. Supersedes the 2026-08-18 questionable entry. Same caveat as Parker-Tyus: return_date rolled to today and no lineup feed is out for the 9pm games, so treat as available but unconfirmed. No minutes estimate (pricing no-op).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Sydney Taylor",
+      "added": "2026-08-19T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Chicago Sky] CLEARED in the 0034Z diff: dropped off the league report and off the per-event report for NY@CHI (event 401857154, 9:00 PM ET) between 2333Z and 0034Z; was Out (Groin) with return date 2026-08-18. Return_date rolled to today and no lineup feed is published for the 9pm games yet, so available-but-unconfirmed. No minutes estimate (pricing no-op).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ashten Prechtel",
+      "added": "2026-08-19T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Golden State Valkyries] CLEARED in the 0034Z diff: was Out (Coach's Decision), return date 2026-08-19, league entry written for Monday's game vs the Wings. Valkyries are NOT on tonight's four-game card (LA@CON, IND@TOR, NY@CHI, ATL@LV), so this is a stale league entry ageing off its return date, not evidence of a return. Logged for the archive only - no minutes estimate, no pricing effect.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Miela Sowah",
+      "added": "2026-08-19T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Golden State Valkyries] CLEARED in the 0034Z diff: was Out (Coach's Decision), return date 2026-08-19, league entry written for Monday's game vs the Wings. Valkyries are NOT on tonight's four-game card (LA@CON, IND@TOR, NY@CHI, ATL@LV), so this is a stale league entry ageing off its return date, not evidence of a return. Logged for the archive only - no minutes estimate, no pricing effect.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Elena Buenavida",
+      "added": "2026-08-19T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Minnesota Lynx] CLEARED in the 0034Z diff: was Out (Coach's Decision), return date 2026-08-19, league entry written for Saturday's game in Las Vegas. Lynx are NOT on tonight's four-game card (LA@CON, IND@TOR, NY@CHI, ATL@LV), so this is a stale league entry ageing off its return date, not evidence of a return. Logged for the archive only - no minutes estimate, no pricing effect.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Liatu King",
+      "added": "2026-08-19T00:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/0034Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "[Minnesota Lynx] CLEARED in the 0034Z diff: was Out (Coach's Decision), return date 2026-08-19, league entry written for Saturday's game in Las Vegas. Lynx are NOT on tonight's four-game card (LA@CON, IND@TOR, NY@CHI, ATL@LV), so this is a stale league entry ageing off its return date, not evidence of a return. Logged for the archive only - no minutes estimate, no pricing effect.",
       "author": "news-watch",
       "superseded_by": null
     }
