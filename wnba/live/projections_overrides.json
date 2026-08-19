@@ -3055,7 +3055,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Dallas Wings report: Out (Knee), return_date 2026-08-17 - i.e. out through the 2026-08-14 DAL@IND game. Caught OUTSIDE the avail_watch diff: she has read Out since the 2026-08-13 15:06Z snapshot, and the diff keys on status, so an Out->Out row whose return_date slipped from 2026-08-14 to 2026-08-17 raised no NEW/UPDATED line. Supersedes index 216, which recorded her as 'questionable' for 2026-08-14 while the same feed already said Out. Mechanically inert for pricing (216 carried no minutes estimate and Fudd has no prop on the 2026-08-14 sheet); recorded so the file matches the feed and so DAL's absences are legible next to the ROLE_MIN? flag on Alanna Smith in that same game.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 347
     },
     {
       "player": "Cameron Brink",
@@ -4575,6 +4575,19 @@
       "source": "avail:2026-08-19/1933Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 1933Z diff: Kliundikova dropped off the ESPN league injury report between 1733Z and 1933Z, where she had been carried as Out / Not Injury Related for Connecticut with return_date 2027-05-01 (the Toronto->Connecticut rights trade of entry 148). This is the listing rolling off, NOT evidence she is available: nothing in the feed says she has joined the Sun. Status only, NO minutes estimate - her last panel game is 2025-09-28 for Minnesota, so she is unpriceable regardless (STALE_PLAYER at ~326 days, plus TEAM_CHANGED against a CON prop), and she has no prop on tonight's or tomorrow's board. Supersedes entry 148.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Azzi Fudd",
+      "added": "2026-08-19T20:33:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report, 2033Z: Fudd (Dallas, Knee) still Out, but the comment and return_date changed - \"will undergo an arthroscopic procedure to address her right knee soreness and will be sidelined for the remainder of the 2026 season\", return_date 2026-08-20 -> 2027-04-15. Caught OUTSIDE avail_watch's status diff again (an Out -> Out row prints no NEW/UPDATED line; hers was the only field-level change between the 1933Z and 2033Z snapshots). Mechanically inert for pricing - entry 232 already carried out/0 until-cleared, and Dallas is not on tonight's two-game slate - but recorded so the file matches the feed and so a season-ending absence is legible rather than a day-to-day one. Supersedes 232.",
       "author": "news-watch",
       "superseded_by": null
     }
