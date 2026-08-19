@@ -1,17 +1,17 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2744_points_kayla mcbride_over,2026-08-19,2026-08-20 02:00:00,2744,points,Kayla McBride,MIN,MIN@GSV,over,14.5,104.0,0.6912,0.4101,True,-204,-187,0.0,18.34,,13.5,NON_FD_OPEN;SUSPECT_EV(41%);PLAYER_ALREADY_BET(threes over 2.5),False,False
-2746_points_diamond miller_under,2026-08-20,2026-08-21 02:00:00,2746,points,Diamond Miller,CON,CON@LVA,under,11.5,100.0,0.6912,0.3823,True,-204,-187,0.0,9.17,,11.5,SUSPECT_EV(38%),False,False
-2746_assists_leila lacan_under,2026-08-20,2026-08-21 02:00:00,2746,assists,Leila Lacan,CON,CON@LVA,under,4.5,116.0,0.5744,0.2408,True,-126,-118,3.0,4.19,,4.5,,True,False
-2745_points_jessica shepard_under,2026-08-20,2026-08-21 00:00:00,2745,points,Jessica Shepard,DAL,IND@DAL,under,14.5,-115.0,0.6619,0.2375,True,-179,-166,3.5,12.33,,14.5,,True,False
+2744_points_kayla mcbride_over,2026-08-19,2026-08-20 02:00:00,2744,points,Kayla McBride,MIN,MIN@GSV,over,14.5,102.0,0.6912,0.3962,True,-204,-187,0.0,18.34,,13.5,NON_FD_OPEN;SUSPECT_EV(40%);PLAYER_ALREADY_BET(threes over 2.5),False,False
+2746_points_diamond miller_under,2026-08-20,2026-08-21 02:00:00,2746,points,Diamond Miller,CON,CON@LVA,under,11.5,100.0,0.6909,0.3818,True,-203,-187,0.0,9.18,,11.5,SUSPECT_EV(38%),False,False
+2746_assists_leila lacan_under,2026-08-20,2026-08-21 02:00:00,2746,assists,Leila Lacan,CON,CON@LVA,under,4.5,116.0,0.5743,0.2404,True,-126,-118,3.0,4.2,,4.5,,True,False
+2745_points_jessica shepard_under,2026-08-20,2026-08-21 00:00:00,2745,points,Jessica Shepard,DAL,IND@DAL,under,14.5,-115.0,0.6616,0.2369,True,-179,-166,3.5,12.33,,14.5,,True,False
 2744_threes_olivia miles_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Olivia Miles,MIN,MIN@GSV,over,1.5,118.0,0.5647,0.2309,True,-121,-114,2.5,1.89,,1.5,,False,True
-2743_rebounds_michaela onyenwere_over,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Michaela Onyenwere,WAS,TOR@WAS,over,2.5,110.0,0.5776,0.2129,True,-127,-119,2.5,3.09,,2.5,ROLE_MIN?,True,False
+2743_rebounds_michaela onyenwere_over,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Michaela Onyenwere,WAS,TOR@WAS,over,2.5,108.0,0.5776,0.2013,True,-127,-119,2.5,3.09,,2.5,ROLE_MIN?,True,False
 2743_assists_sonia citron_under,2026-08-19,2026-08-19 23:30:00,2743,assists,Sonia Citron,WAS,TOR@WAS,under,4.5,116.0,0.5542,0.1971,True,-116,-109,0.0,4.31,,4.5,MOVED_OFF_OPEN,False,False
-2747_assists_dearica hamby_over,2026-08-20,2026-08-21 02:00:00,2747,assists,Dearica Hamby,LAS,ATL@LAS,over,2.5,122.0,0.5354,0.1885,True,-108,-102,2.0,2.79,,2.5,,True,False
-2745_threes_alanna smith_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Alanna Smith,DAL,IND@DAL,under,1.5,-192.0,0.7673,0.1669,True,-292,-262,4.5,0.91,,1.5,,True,False
-2743_rebounds_shakira austin_under,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Shakira Austin,WAS,TOR@WAS,under,10.5,-110.0,0.6098,0.1642,True,-145,-135,2.5,9.61,,10.5,,False,True
-2745_threes_arike ogunbowale_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Arike Ogunbowale,DAL,IND@DAL,under,1.5,100.0,0.5754,0.1508,True,-126,-118,2.0,1.45,,1.5,,True,False
-2746_assists_olivia nelsonododa_under,2026-08-20,2026-08-21 02:00:00,2746,assists,Olivia Nelson-Ododa,CON,CON@LVA,under,1.5,-108.0,0.5971,0.15,True,-137,-128,2.0,1.31,,1.5,,True,False
+2747_assists_dearica hamby_over,2026-08-20,2026-08-21 02:00:00,2747,assists,Dearica Hamby,LAS,ATL@LAS,over,2.5,122.0,0.5355,0.1888,True,-108,-102,2.0,2.79,,2.5,,True,False
+2743_rebounds_shakira austin_under,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Shakira Austin,WAS,TOR@WAS,under,10.5,-108.0,0.6098,0.1745,True,-145,-135,2.5,9.61,,10.5,,False,True
+2745_threes_alanna smith_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Alanna Smith,DAL,IND@DAL,under,1.5,-192.0,0.7672,0.1667,True,-291,-262,4.5,0.91,,1.5,,True,False
+2745_threes_arike ogunbowale_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Arike Ogunbowale,DAL,IND@DAL,under,1.5,100.0,0.5752,0.1504,True,-126,-118,2.0,1.45,,1.5,,True,False
+2746_assists_olivia nelsonododa_under,2026-08-20,2026-08-21 02:00:00,2746,assists,Olivia Nelson-Ododa,CON,CON@LVA,under,1.5,-108.0,0.597,0.1498,True,-137,-128,2.0,1.31,,1.5,,True,False
 2744_threes_cecilia zandalasini_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Cecilia Zandalasini,GSV,MIN@GSV,over,1.5,140.0,0.475,0.1401,True,117,124,1.5,1.6,,1.5,,False,True
-2745_assists_kelsey mitchell_under,2026-08-20,2026-08-21 00:00:00,2745,assists,Kelsey Mitchell,IND,IND@DAL,under,2.5,-174.0,0.7049,0.1101,True,-216,-198,2.5,1.79,,2.5,ROLE_MIN?,True,False
-2747_rebounds_naz hillmon_under,2026-08-20,2026-08-21 02:00:00,2747,rebounds,Naz Hillmon,ATL,ATL@LAS,under,4.5,114.0,0.517,0.1063,True,-100,106,1.0,4.56,,4.5,,True,False
-2747_assists_rae burrell_under,2026-08-20,2026-08-21 02:00:00,2747,assists,Rae Burrell,LAS,ATL@LAS,under,3.5,-132.0,0.6294,0.1062,True,-157,-146,2.0,2.98,,3.5,,True,False
+2745_assists_kelsey mitchell_under,2026-08-20,2026-08-21 00:00:00,2745,assists,Kelsey Mitchell,IND,IND@DAL,under,2.5,-174.0,0.7048,0.1099,True,-216,-198,2.5,1.79,,2.5,ROLE_MIN?,True,False
+2747_assists_rae burrell_under,2026-08-20,2026-08-21 02:00:00,2747,assists,Rae Burrell,LAS,ATL@LAS,under,3.5,-132.0,0.6293,0.106,True,-157,-146,2.0,2.98,,3.5,,True,False
+2747_rebounds_naz hillmon_under,2026-08-20,2026-08-21 02:00:00,2747,rebounds,Naz Hillmon,ATL,ATL@LAS,under,4.5,114.0,0.5168,0.1059,True,-100,106,1.0,4.56,,4.5,,True,False
