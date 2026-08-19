@@ -16,6 +16,8 @@ import gzip
 import json
 import os
 import re
+import sys
+import time
 import unicodedata
 import urllib.request
 
@@ -46,11 +48,28 @@ LIVE_PANEL_FEATS = [c for c in PANEL_FEATS if c != "absent_ew_min"]
 V2_EXTRA = ["move_mom", "move_mom_all", "gap_ew"]
 
 
-def get(url):
+def get(url, tries=5):
+    """GET with retries.
+
+    BettingPros' offers endpoint intermittently 504s (2026-08-19: ~17% of
+    requests in a 40-request sweep, spread randomly across events/markets),
+    which killed the whole sheet since a single failure aborted the fetch.
+    Retries with backoff; a request that never succeeds still RAISES - a
+    partial offer set would silently change which rows the one-bet-per-
+    player-game cap keeps, so it must fail loudly rather than skip.
+    """
     req = urllib.request.Request(url, headers={"x-api-key": KEY,
                                                "User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.load(r)
+    for attempt in range(tries):
+        try:
+            with urllib.request.urlopen(req, timeout=45) as r:
+                return json.load(r)
+        except Exception as e:
+            if attempt == tries - 1:
+                raise
+            print(f"retry {attempt + 1}/{tries - 1} after {e}: {url}",
+                  file=sys.stderr)
+            time.sleep(2 ** attempt)
 
 
 def fetch_upcoming():

@@ -1221,3 +1221,23 @@ registrations are firewalled from betting outcomes.
   logging / manual rebuild), so it can lag the hourly sheet between
   settlements; wiring a rebuild into the news-watch routine would be a
   routine change and stays an owner decision.
+
+- **2026-08-19 (live-path repair, news-watch firing; no model change)** —
+  the 09:31 ET firing hit a fresh container (all derived pickles are
+  gitignored) plus a flaky upstream, and both had to be fixed before a
+  sheet could be produced. (a) **BettingPros 504s**: a 40-request sweep
+  of the offers endpoint returned `HTTP 504 Gateway Timeout` on 7 of 40
+  calls, randomly spread across events/markets, and `live_pipeline.get()`
+  had no retry — one failure aborted the whole fetch, so `fp_live.py`
+  produced nothing on four consecutive attempts. `get()` now retries 5×
+  with 2/4/8/16s backoff at a 45s timeout and still **raises** if a
+  request never succeeds: a partial offer set would silently change which
+  rows survive the one-bet-per-player-game cap, so it must fail loudly
+  rather than skip. No projection, price, EV or gate is touched by this.
+  (b) **Container rebuild**: `data/panel.pkl` and friends were absent, so
+  the firing ran the full chain (`fetch_wehoop` → `fetch_espn_box` →
+  `build_props` → `grade_props` → `features` → `talent --build` →
+  `build_modelset`) before pricing; the panel came back current through
+  2026-08-18 (106,332 player-games) and no `PANEL_STALE` flag appears on
+  the sheet. Python deps (numpy/pandas/scipy/scikit-learn/pyarrow) also
+  had to be installed in the container.
