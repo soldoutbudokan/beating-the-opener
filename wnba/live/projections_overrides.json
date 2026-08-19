@@ -4103,7 +4103,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0134Z diff: ESPN league injury report lists Williams (Dallas) Out, type \"Coach's Decision\" - \"Williams (coach's decision) has been ruled out for Monday's game against Golden State\" (DAL @ GSV, 2026-08-17 ET, already under way at capture). Supersedes the 2026-08-17 CLEARED entry (index 288), which read her as available after the 2026-08-14 out was dropped. Scoped to the named game only: return_date on the feed is 2026-08-20, but a coach's-decision DNP is not a forward commitment, so no claim is made about 08-18/08-19 - inert for the current sheet either way (no DAL props on it).",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 353
     },
     {
       "player": "Jessica Shepard",
@@ -4246,7 +4246,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "[Indiana Fever] Bree Hall (coach's decision) out for Tuesday's game vs the Tempo; ESPN league report + event:401857153 injury report both list her Out, return date 2026-08-20.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 352
     },
     {
       "player": "Michelle Onyiah",
@@ -4259,7 +4259,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "[Indiana Fever] Onyiah (coach's decision) has been ruled out for Tuesday's game against the Tempo; league report + event:401857153, return date 2026-08-20.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 354
     },
     {
       "player": "Hailey Van Lith",
@@ -4324,7 +4324,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "[Indiana Fever] CLEARED from Day-To-Day in the 2333Z snapshot - no longer on the ESPN injury report ahead of Tuesday's Fever game vs Toronto. Supersedes the 2026-08-17 questionable entry; treat as available at normal role.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 351
     },
     {
       "player": "Indya Nivar",
@@ -4505,7 +4505,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "The 0434Z avail fetch returned NO_CHANGE (byte-identical to 0334Z, so no new snapshot file was written): Mitchell is still Out (Undisclosed) on both the league report and the per-event report for the completed IND@TOR game (401857153), return_date still 2026-08-20. Superseding to record that the condition the 0234Z and 0334Z entries flagged has now MATERIALIZED: the IND @ DAL props (BP event 2745, 2026-08-20, 8:00 PM ET) posted on this firing's board, and they posted BEFORE any Wednesday practice report - it is 12:34 AM ET Wednesday and the only public information is still Tuesday's undiagnosed fourth-quarter exit. Estimate deliberately UNCHANGED (questionable, 24 min, floor 0) - the routine flags, it does not re-price. FLAGGED FOR THE OWNER, loudly: fp_live now prices assists under 2.5 @ -174 (claimed EV 11.7%, ROLE_MIN?) off this 24-minute placeholder, and the haircut is what makes the under look good - the pick is a consequence of the placeholder, not independent evidence. Treat it as unbettable until a practice report or a lineup confirms her minutes; if she is ruled out or cleared, supersede this entry.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 350
     },
     {
       "player": "Jordan Horston",
@@ -4550,7 +4550,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 1733Z diff: Mabrey (Toronto Tempo, Hamstring) appears as Day-To-Day on the league report and on the per-event report for tonight's TOR @ WSH (ESPN event 401857156), comment 'Mabrey (hamstring) is doubtful for Wednesday's game against the Mystics', return_date 2026-08-19. Status recorded, NO minutes estimate, deliberately (the Plum rule): her panel state is min_ewf 30.4 / min_ews 30.4 and she played 29 minutes on 8/18, so the TOP of any if-she-plays range is her base state - the assumption least favourable to a news-driven bet is therefore the base itself, and inventing a haircut here would manufacture unders on a player whose props void outright if she sits. FLAGGED FOR THE OWNER instead: treat every Mabrey prop on tonight's board as unbettable until a lineup or a pre-game report resolves 'doubtful'. Nothing of hers is playable on the current sheet (her best FD claim at the 1638Z run was threes -0.2%), so this is currently inert.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 349
     },
     {
       "player": "Zaay Green",
@@ -4601,6 +4601,84 @@
       "source": "avail:2026-08-19/2134Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2134Z diff: Allemand (Toronto Tempo, Thigh) dropped off BOTH the ESPN league injury report and the per-event report for tonight's TOR @ WSH (BP event 2743, ESPN event 401857156, 7:30 PM ET) between 2033Z and 2134Z. The 2033Z row already read Out with the comment \"Allemand (elbow) is probable for Wednesday's game against the Mystics\" and return_date 2026-08-19, so the clear resolves that probable upward: she is expected to play tonight after missing 08-12 through 08-18. Supersedes entry 196 (out / 0 minutes), which was scoped to game_date 2026-08-12 and is mechanically inert for tonight either way. Status only, NO minutes estimate, deliberately: her panel state is a pre-injury full-starter state (last panel game 2026-08-10, 26 min, starter; min_ewf 31.1 / min_ews 29.5), so the top of any if-she-plays range IS the base state, and hand-cutting minutes for a returnee would manufacture unders on a player the feed now says is available - the Mabrey rule from the 1733Z entry, applied in the other direction. 9 days since her last panel game, so she is inside the 14-day STALE_PLAYER gate and priceable if FanDuel posts her. FLAGGED FOR THE OWNER instead: a starter back from a four-game thigh absence is the classic minutes-limit case and the talent model is slow on role changes by design - confirm her in the lineup and check for a reported minutes cap before taking any Allemand over. No teammate minutes were re-estimated; the routine flags, it does not re-price the rotation.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Marina Mabrey",
+      "added": "2026-08-19T22:33:00Z",
+      "game_date": "2026-08-19",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPDATED in the 2233Z diff: Mabrey (Toronto Tempo, hamstring) has moved Day-To-Day -> OUT on the league report AND on the per-event report for tonight's TOR @ WSH (ESPN event 401857156, 7:30 PM ET tip); comment \"Mabrey (hamstring) won't play in Wednesday's game versus the Mystics, Chelsea Leite of TSN reports\", return_date pushed to 2026-08-21. This resolves the 'doubtful' the 1733Z entry flagged as unbettable, in the direction of sitting: she does not play tonight, so her props void rather than settle. Superseding that entry with a hard out/0. Nothing of Mabrey's is on the current sheet, so this is inert for pricing; it exists so the 8/19 TOR props are never priced off her base 30-minute state.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kelsey Mitchell",
+      "added": "2026-08-19T22:33:00Z",
+      "game_date": "2026-08-20",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPDATED in the 2233Z diff, and it resolves the situation entries 337-341 flagged: Mitchell (Indiana Fever) has moved Out -> Day-To-Day on the league report, and the comment is now diagnosed and forward-looking - \"Mitchell (illness) is probable for Thursday's game against the Wings\", type Undisclosed, return_date 2026-08-20 (the IND @ DAL game, BP event 2745, 8:00 PM ET Thursday). The undiagnosed Tuesday fourth-quarter exit is now an illness she is PROBABLE to play through. The 24-minute placeholder in entry 341 was a holding assumption made when the only public information was that exit; the feed has now overtaken it, so this entry REMOVES it (minutes_est null -> she prices from her base panel state again) rather than carrying a haircut the news no longer supports. That is deliberately the change least favourable to a news-driven bet: the 24-min haircut was what made assists under 2.5 @ -178 look like +10.1% EV, and entry 341 said in terms that the pick was a consequence of the placeholder, not evidence. Status kept at questionable, not in, because 'probable' is not a lineup - confirm near tip.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Caitlin Clark",
+      "added": "2026-08-19T22:33:00Z",
+      "game_date": "2026-08-20",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2233Z diff: Clark (Indiana Fever, Back) appears as Day-To-Day on the league report, comment \"Clark (back) is listed as probable for Thursday's game against Dallas\", return_date 2026-08-20 - i.e. the IND @ DAL game (BP event 2745, 8:00 PM ET Thursday) that already carries four rows on the sheet. Supersedes the 2026-08-18 'in' entry (328), which asserted a clean bill she no longer has. Recorded WITHOUT a minutes estimate, deliberately: probable-with-a-back is not evidence of reduced minutes, and inventing a haircut here would manufacture unders on IND props the way the Mitchell placeholder did. Pricing-inert by construction; it is a flag for the owner to confirm Clark's status near tip before any IND @ DAL bet, not a re-price.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Bree Hall",
+      "added": "2026-08-19T22:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2233Z diff: Hall (Indiana Fever) no longer appears on the ESPN league injury report or on any per-event report; her 2026-08-18 coach's-decision Out (entry 322, return_date 2026-08-20) has expired as advertised. Superseding it with an in/no-estimate record. Inert for pricing - the out entry it replaces was already past its game_date, and no Hall prop is on the sheet.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Christyn Williams",
+      "added": "2026-08-19T22:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2233Z diff: Williams no longer appears on the ESPN league injury report or on any per-event report, superseding her 2026-08-17 Out (entry 311). In/no-estimate record; inert for pricing (past game_date, no props on the sheet).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Michelle Onyiah",
+      "added": "2026-08-19T22:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/2233Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2233Z diff: Onyiah (Indiana Fever) no longer appears on the ESPN league injury report or on any per-event report; her 2026-08-18 coach's-decision Out (entry 323, return_date 2026-08-20) has expired as advertised. Superseding with an in/no-estimate record. Inert for pricing.",
       "author": "news-watch",
       "superseded_by": null
     }
