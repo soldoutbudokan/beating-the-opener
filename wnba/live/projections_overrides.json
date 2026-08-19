@@ -1957,7 +1957,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW: ESPN league injury report, 0133Z, listed Out / Not Injury Related for Connecticut with return_date 2027-05-01: 'The Tempo traded Kliundikova's rights along with a second-round pick to the Sun in exchange for Aneesah Morrow.' A rights trade, not an injury - recorded until-cleared because a player who has changed teams is unpriceable from her old panel state (TEAM_CHANGED gate). Status only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 346
     },
     {
       "player": "Raegan Beers",
@@ -4562,6 +4562,19 @@
       "source": "avail:2026-08-19/1733Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 1733Z diff: Green (Toronto Tempo) dropped off both the league injury report and the per-event report between 1532Z and 1733Z; entry 326's Out was a Coach's Decision scoped to Tuesday's IND @ TOR with return_date 2026-08-19, so the clear is that DNP rolling off rather than an injury resolving. Status only, NO minutes estimate - she has no panel game (no rows in panel.pkl), so there is no state to adjust and no prop of hers on the board. Supersedes entry 326.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Maria Kliundikova",
+      "added": "2026-08-19T19:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/1933Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 1933Z diff: Kliundikova dropped off the ESPN league injury report between 1733Z and 1933Z, where she had been carried as Out / Not Injury Related for Connecticut with return_date 2027-05-01 (the Toronto->Connecticut rights trade of entry 148). This is the listing rolling off, NOT evidence she is available: nothing in the feed says she has joined the Sun. Status only, NO minutes estimate - her last panel game is 2025-09-28 for Minnesota, so she is unpriceable regardless (STALE_PLAYER at ~326 days, plus TEAM_CHANGED against a CON prop), and she has no prop on tonight's or tomorrow's board. Supersedes entry 148.",
       "author": "news-watch",
       "superseded_by": null
     }
