@@ -4429,6 +4429,32 @@
       "quote": "[Minnesota Lynx] CLEARED in the 0034Z diff: was Out (Coach's Decision), return date 2026-08-19, league entry written for Saturday's game in Las Vegas. Lynx are NOT on tonight's four-game card (LA@CON, IND@TOR, NY@CHI, ATL@LV), so this is a stale league entry ageing off its return date, not evidence of a return. Logged for the archive only - no minutes estimate, no pricing effect.",
       "author": "news-watch",
       "superseded_by": null
+    },
+    {
+      "player": "Jonquel Jones",
+      "added": "2026-08-19T02:38:00Z",
+      "game_date": "2026-08-18",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/0234Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Jones (ankle) won't return to Tuesday's game against the Sky, Madeline Kenney of the New York Post reports. She'll finish with five points (2-2 FG, 1-1 FT) and two assists across six minutes. Ruled out IN-GAME, so the override targets the 2026-08-18 game only: ESPN's return_date is 2026-08-22, which is New York's very next game (IND @ NY), i.e. the feed does not yet expect her to miss a future game. No NY props are on the current board (08-19 slate is TOR@WAS and MIN@GSV), so this is inert. Re-judge the ankle when NY's 08-22 props post - a fresh in-game ankle is exactly the case where the feed's next-game return stamp is optimistic.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kelsey Mitchell",
+      "added": "2026-08-19T02:38:00Z",
+      "game_date": "2026-08-18",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/0234Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "FEED LISTING REJECTED, not applied. The ESPN injury report (league level and per-event on 401857153, IND @ TOR) lists Mitchell Out (Undisclosed) with comment 'out' and return_date 2026-08-20. 2026-08-20 is Indiana's next game (IND @ DAL), so by this feed's convention the listing targets the 2026-08-18 game - which she played: the ESPN box for 401857153 has didNotPlay=False, 24 minutes, 29 points (11-16 FG, 4-6 3PT), +20, corroborated by the news item 'Kelsey Mitchell drops 29 for Fever in road win' (2026-08-19T01:22Z). A status=out / minutes_est=0 entry would therefore write a false zero-minutes state into an append-only archive that is a future training set, and would manufacture large under-EV on her next props rather than remove a bet. Recorded as 'in' with no minutes override (numerically inert) so the contradiction is on the record. Flagged to the owner: if the Undisclosed tag is instead a POST-game issue that ESPN stamped with a default next-game return date, it would bear on IND @ DAL (2026-08-20) - re-judge when those props post.",
+      "author": "news-watch",
+      "superseded_by": null
     }
   ]
 }

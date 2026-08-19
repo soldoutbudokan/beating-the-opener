@@ -1,6 +1,8 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2744_threes_kayla mcbride_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Kayla McBride,MIN,MIN@GSV,over,2.5,-118.0,0.6704,0.2385,True,-186,-172,4.0,3.45,,2.5,,True,False
-2744_threes_cecilia zandalasini_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Cecilia Zandalasini,GSV,MIN@GSV,over,1.5,152.0,0.4784,0.2055,True,116,122,2.0,1.61,,1.5,,True,False
-2744_threes_olivia miles_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Olivia Miles,MIN,MIN@GSV,over,1.5,110.0,0.5681,0.193,True,-122,-115,2.5,1.91,,1.5,,True,False
-2743_assists_sonia citron_under,2026-08-19,2026-08-19 23:30:00,2743,assists,Sonia Citron,WAS,TOR@WAS,under,4.5,112.0,0.5546,0.1757,True,-116,-109,0.0,4.31,,4.5,MOVED_OFF_OPEN,False,False
-2743_rebounds_shakira austin_under,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Shakira Austin,WAS,TOR@WAS,under,10.5,-108.0,0.6103,0.1754,True,-145,-135,2.5,9.61,,10.5,,False,True
+2744_threes_kayla mcbride_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Kayla McBride,MIN,MIN@GSV,over,2.5,-118.0,0.6668,0.2319,True,-183,-169,3.5,3.43,,2.5,,True,False
+2743_rebounds_michaela onyenwere_over,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Michaela Onyenwere,WAS,TOR@WAS,over,2.5,110.0,0.578,0.2138,True,-127,-119,2.5,3.1,,2.5,ROLE_MIN?,True,False
+2744_threes_cecilia zandalasini_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Cecilia Zandalasini,GSV,MIN@GSV,over,1.5,152.0,0.4755,0.1984,True,117,123,1.5,1.6,,1.5,,True,False
+2744_threes_olivia miles_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Olivia Miles,MIN,MIN@GSV,over,1.5,112.0,0.5651,0.1981,True,-121,-114,2.5,1.9,,1.5,,True,False
+2743_assists_sonia citron_under,2026-08-19,2026-08-19 23:30:00,2743,assists,Sonia Citron,WAS,TOR@WAS,under,4.5,116.0,0.5536,0.1958,True,-116,-109,0.0,4.31,,4.5,MOVED_OFF_OPEN,False,False
+2743_rebounds_shakira austin_under,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Shakira Austin,WAS,TOR@WAS,under,10.5,-108.0,0.609,0.1729,True,-144,-135,2.5,9.62,,10.5,,False,True
+2743_assists_marina mabrey_under,2026-08-19,2026-08-19 23:30:00,2743,assists,Marina Mabrey,TOR,TOR@WAS,under,4.5,-148.0,0.6621,0.1095,True,-179,-166,2.0,3.71,,4.5,,True,False
