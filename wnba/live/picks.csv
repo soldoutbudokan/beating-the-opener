@@ -3,8 +3,13 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2744_threes_olivia miles_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Olivia Miles,MIN,MIN@GSV,over,1.5,116.0,0.5645,0.2194,True,-121,-113,2.5,1.89,,1.5,,False,True
 2743_rebounds_michaela onyenwere_over,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Michaela Onyenwere,WAS,TOR@WAS,over,2.5,110.0,0.5786,0.2151,True,-128,-120,2.5,3.1,,2.5,ROLE_MIN?,True,False
 2743_assists_sonia citron_under,2026-08-19,2026-08-19 23:30:00,2743,assists,Sonia Citron,WAS,TOR@WAS,under,4.5,116.0,0.5527,0.1939,True,-115,-108,0.0,4.32,,4.5,MOVED_OFF_OPEN,False,False
-2743_rebounds_shakira austin_under,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Shakira Austin,WAS,TOR@WAS,under,10.5,-108.0,0.6078,0.1706,True,-143,-134,2.5,9.63,,10.5,,False,True
+2745_threes_arike ogunbowale_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Arike Ogunbowale,DAL,IND@DAL,under,1.5,104.0,0.5798,0.1829,True,-128,-120,2.5,1.43,,1.5,,True,False
+2747_assists_dearica hamby_over,2026-08-20,2026-08-21 02:00:00,2747,assists,Dearica Hamby,LAS,ATL@LAS,over,2.5,122.0,0.5322,0.1815,True,-106,-100,2.0,2.78,,2.5,,True,False
+2745_threes_alanna smith_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Alanna Smith,DAL,IND@DAL,under,1.5,-188.0,0.7703,0.18,True,-296,-265,4.5,0.91,,1.5,,True,False
+2743_rebounds_shakira austin_under,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Shakira Austin,WAS,TOR@WAS,under,10.5,-110.0,0.6078,0.1604,True,-143,-134,2.5,9.63,,10.5,,False,True
 2744_threes_cecilia zandalasini_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Cecilia Zandalasini,GSV,MIN@GSV,over,1.5,140.0,0.4749,0.1398,True,117,124,1.5,1.6,,1.5,,False,True
-2745_rebounds_jessica shepard_under,2026-08-20,2026-08-21 00:00:00,2745,rebounds,Jessica Shepard,DAL,IND@DAL,under,11.5,-152.0,0.683,0.1324,True,-196,-181,2.5,9.84,,11.5,,True,False
-2747_rebounds_naz hillmon_under,2026-08-20,2026-08-21 02:00:00,2747,rebounds,Naz Hillmon,ATL,ATL@LAS,under,4.5,116.0,0.5233,0.1303,True,-103,103,1.5,4.52,,4.5,,True,False
-2745_assists_kelsey mitchell_under,2026-08-20,2026-08-21 00:00:00,2745,assists,Kelsey Mitchell,IND,IND@DAL,under,2.5,-174.0,0.7091,0.1166,True,-220,-202,2.5,1.77,,2.5,ROLE_MIN?,True,False
+2745_rebounds_jessica shepard_under,2026-08-20,2026-08-21 00:00:00,2745,rebounds,Jessica Shepard,DAL,IND@DAL,under,11.5,-152.0,0.6792,0.1261,True,-193,-178,2.5,9.88,,11.5,,True,False
+2747_threes_angel reese_under,2026-08-20,2026-08-21 02:00:00,2747,threes,Angel Reese,ATL,ATL@LAS,under,0.5,-245.0,0.7964,0.1215,True,-340,-302,4.0,0.23,,0.5,,True,False
+2747_rebounds_naz hillmon_under,2026-08-20,2026-08-21 02:00:00,2747,rebounds,Naz Hillmon,ATL,ATL@LAS,under,4.5,114.0,0.5207,0.1142,True,-102,104,1.5,4.53,,4.5,,True,False
+2745_assists_kelsey mitchell_under,2026-08-20,2026-08-21 00:00:00,2745,assists,Kelsey Mitchell,IND,IND@DAL,under,2.5,-174.0,0.7074,0.1139,True,-219,-200,2.5,1.78,,2.5,ROLE_MIN?,True,False
+2747_assists_rae burrell_under,2026-08-20,2026-08-21 02:00:00,2747,assists,Rae Burrell,LAS,ATL@LAS,under,3.5,-132.0,0.6327,0.1121,True,-159,-148,2.0,2.96,,3.5,,True,False
