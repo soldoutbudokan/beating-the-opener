@@ -55,4 +55,9 @@ Research conclusions + reproduce steps: README.md.
   so the panel converges back to pure-wehoop after each stall
   (validation + registration-hygiene note in ../PROGRESS.md). Never
   delete or gitignore it either.
-- Push directly to main (solo project).
+- Push directly to main (solo project). If the harness pinned this session
+  to a `claude/...` branch, push that branch and then fast-forward main to
+  it (`git push origin HEAD:main`) — standing owner authorization,
+  2026-08-19; see the repo CLAUDE.md rule and PROTOCOL step 4. A firing
+  that ends without `git rev-list --count origin/main..HEAD` == 0 has
+  stranded its work.
