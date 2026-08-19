@@ -4220,7 +4220,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2133Z diff: Sykes (Toronto Tempo, Foot) dropped off the ESPN league injury report and off the per-event report for IND@TOR (ESPN event 401857153, 7:00 PM ET) between 1533Z and 2133Z. The 1533Z row was already self-contradictory - feed status \"Out\" against a comment reading \"Sykes (foot) is listed as probable for Tuesday's game against the Fever\" - and the clear resolves it toward available. Status only, NO minutes estimate: clearing an out-state is conservative, inventing a minutes figure for a player just off a foot injury would not be. Her last dated entry (2026-08-10, out) was scoped to that game and is already inert.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 343
     },
     {
       "player": "Sabrina Ionescu",
@@ -4298,7 +4298,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "[Toronto Tempo] Green (coach's decision) is out for Tuesday's game against the Fever; league report + event:401857153, return date 2026-08-19.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 345
     },
     {
       "player": "Aliyah Boston",
@@ -4520,6 +4520,48 @@
       "source": "avail:2026-08-19/1532Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED in the 1532Z diff: Horston (Seattle Storm) escalated Day-To-Day -> Out (Shoulder) on the league report, return_date still 2026-08-23. This CONFIRMS the conservative reading entry 287 took on 2026-08-17 - the feed now says Out outright - so the estimate is unchanged (out, 0 minutes). Seattle has no game on today's board (only TOR @ WSH and MIN @ GS), so this is currently inert; it stays in force until a CLEARED snapshot supersedes it.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Brittney Sykes",
+      "added": "2026-08-19T17:33:00Z",
+      "game_date": "2026-08-19",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": [
+        0,
+        0
+      ],
+      "source": "avail:2026-08-19/1733Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 1733Z diff: Sykes (Toronto Tempo) is Out - Rest for tonight's TOR @ WSH (BP event 2743, ESPN event 401857156, 7:30 PM ET), on BOTH the league report and the per-event report; comment 'Sykes (rest) will sit out Wednesday against the Mystics', return_date 2026-08-21. Unambiguous scratch, so 0 minutes, scoped to tonight only. Supersedes entry 320 (the 2026-08-18 CLEARED 'in'): she played 21 minutes on 8/18 off the foot issue and is now resting the second night of the back-to-back. FanDuel still had her points 10.5 / pts_ast 13.5 / assists 3.5 up at the 1638Z projection run against a 32-min stale-role state; this removes them from pricing rather than letting the model bet an over on a player who is not playing. No teammate minutes were re-estimated - the routine flags, it does not re-price the rest of the rotation.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Marina Mabrey",
+      "added": "2026-08-19T17:33:00Z",
+      "game_date": "2026-08-19",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/1733Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 1733Z diff: Mabrey (Toronto Tempo, Hamstring) appears as Day-To-Day on the league report and on the per-event report for tonight's TOR @ WSH (ESPN event 401857156), comment 'Mabrey (hamstring) is doubtful for Wednesday's game against the Mystics', return_date 2026-08-19. Status recorded, NO minutes estimate, deliberately (the Plum rule): her panel state is min_ewf 30.4 / min_ews 30.4 and she played 29 minutes on 8/18, so the TOP of any if-she-plays range is her base state - the assumption least favourable to a news-driven bet is therefore the base itself, and inventing a haircut here would manufacture unders on a player whose props void outright if she sits. FLAGGED FOR THE OWNER instead: treat every Mabrey prop on tonight's board as unbettable until a lineup or a pre-game report resolves 'doubtful'. Nothing of hers is playable on the current sheet (her best FD claim at the 1638Z run was threes -0.2%), so this is currently inert.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Zaay Green",
+      "added": "2026-08-19T17:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-19/1733Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 1733Z diff: Green (Toronto Tempo) dropped off both the league injury report and the per-event report between 1532Z and 1733Z; entry 326's Out was a Coach's Decision scoped to Tuesday's IND @ TOR with return_date 2026-08-19, so the clear is that DNP rolling off rather than an injury resolving. Status only, NO minutes estimate - she has no panel game (no rows in panel.pkl), so there is no state to adjust and no prop of hers on the board. Supersedes entry 326.",
       "author": "news-watch",
       "superseded_by": null
     }
