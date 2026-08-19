@@ -1,7 +1,10 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2744_points_kayla mcbride_over,2026-08-19,2026-08-20 02:00:00,2744,points,Kayla McBride,MIN,MIN@GSV,over,14.5,106.0,0.6924,0.4263,True,-205,-188,0.0,18.36,,13.5,NON_FD_OPEN;SUSPECT_EV(43%);PLAYER_ALREADY_BET(threes over 2.5),False,False
-2744_threes_olivia miles_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Olivia Miles,MIN,MIN@GSV,over,1.5,122.0,0.5654,0.2551,True,-121,-114,0.0,1.9,,1.5,SUSPECT_EV(26%),False,True
-2743_rebounds_michaela onyenwere_over,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Michaela Onyenwere,WAS,TOR@WAS,over,2.5,110.0,0.5776,0.213,True,-127,-119,2.5,3.09,,2.5,ROLE_MIN?,True,False
-2743_assists_sonia citron_under,2026-08-19,2026-08-19 23:30:00,2743,assists,Sonia Citron,WAS,TOR@WAS,under,4.5,116.0,0.5541,0.197,True,-116,-109,0.0,4.31,,4.5,MOVED_OFF_OPEN,False,False
-2743_rebounds_shakira austin_under,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Shakira Austin,WAS,TOR@WAS,under,10.5,-108.0,0.6097,0.1743,True,-145,-135,2.5,9.61,,10.5,,False,True
-2744_threes_cecilia zandalasini_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Cecilia Zandalasini,GSV,MIN@GSV,over,1.5,142.0,0.4758,0.1513,True,117,123,1.5,1.6,,1.5,,False,True
+2744_points_kayla mcbride_over,2026-08-19,2026-08-20 02:00:00,2744,points,Kayla McBride,MIN,MIN@GSV,over,14.5,102.0,0.691,0.3958,True,-203,-187,0.0,18.33,,13.5,NON_FD_OPEN;SUSPECT_EV(40%);PLAYER_ALREADY_BET(threes over 2.5),False,False
+2744_threes_olivia miles_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Olivia Miles,MIN,MIN@GSV,over,1.5,116.0,0.5645,0.2194,True,-121,-113,2.5,1.89,,1.5,,False,True
+2743_rebounds_michaela onyenwere_over,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Michaela Onyenwere,WAS,TOR@WAS,over,2.5,110.0,0.5786,0.2151,True,-128,-120,2.5,3.1,,2.5,ROLE_MIN?,True,False
+2743_assists_sonia citron_under,2026-08-19,2026-08-19 23:30:00,2743,assists,Sonia Citron,WAS,TOR@WAS,under,4.5,116.0,0.5527,0.1939,True,-115,-108,0.0,4.32,,4.5,MOVED_OFF_OPEN,False,False
+2743_rebounds_shakira austin_under,2026-08-19,2026-08-19 23:30:00,2743,rebounds,Shakira Austin,WAS,TOR@WAS,under,10.5,-108.0,0.6078,0.1706,True,-143,-134,2.5,9.63,,10.5,,False,True
+2744_threes_cecilia zandalasini_over,2026-08-19,2026-08-20 02:00:00,2744,threes,Cecilia Zandalasini,GSV,MIN@GSV,over,1.5,140.0,0.4749,0.1398,True,117,124,1.5,1.6,,1.5,,False,True
+2745_rebounds_jessica shepard_under,2026-08-20,2026-08-21 00:00:00,2745,rebounds,Jessica Shepard,DAL,IND@DAL,under,11.5,-152.0,0.683,0.1324,True,-196,-181,2.5,9.84,,11.5,,True,False
+2747_rebounds_naz hillmon_under,2026-08-20,2026-08-21 02:00:00,2747,rebounds,Naz Hillmon,ATL,ATL@LAS,under,4.5,116.0,0.5233,0.1303,True,-103,103,1.5,4.52,,4.5,,True,False
+2745_assists_kelsey mitchell_under,2026-08-20,2026-08-21 00:00:00,2745,assists,Kelsey Mitchell,IND,IND@DAL,under,2.5,-174.0,0.7091,0.1166,True,-220,-202,2.5,1.77,,2.5,ROLE_MIN?,True,False

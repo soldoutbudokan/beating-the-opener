@@ -4489,6 +4489,22 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NO status change in the 0334Z avail diff (it was empty; she remains Out (Undisclosed), return_date 2026-08-20). Superseding only to record a narrative item the 0334Z news fetch returned: \"Kelsey Mitchell scored 16 points in the first quarter and finished with 29 before sitting out the fourth, Caitlin Clark added 24 points and the Fever beat the Tempo 101-95 on Tuesday\" (ESPN recap, published 2026-08-19T03:06Z). The margin matters: 101-95 is a six-point game, so sitting the entire fourth was NOT rest in a decided game - it reinforces the 0234Z reading that the exit was injury-driven and is still undiagnosed. Estimate deliberately UNCHANGED (questionable, 24 min, floor 0). Indiana is not on the 2026-08-19 card, so this stays inert; it targets IND @ DAL on 2026-08-20 (8:00 PM ET, BP event 2745). STILL FLAGGED FOR THE OWNER: if the 08-20 props post before a Wednesday practice report, the 24-min haircut is a placeholder - re-judge, do not bet through it.",
       "author": "news-watch",
+      "superseded_by": 341
+    },
+    {
+      "player": "Kelsey Mitchell",
+      "added": "2026-08-19T04:34:00Z",
+      "game_date": "2026-08-20",
+      "status": "questionable",
+      "minutes_est": 24,
+      "minutes_range": [
+        0,
+        34
+      ],
+      "source": "avail:2026-08-19/0434Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "The 0434Z avail fetch returned NO_CHANGE (byte-identical to 0334Z, so no new snapshot file was written): Mitchell is still Out (Undisclosed) on both the league report and the per-event report for the completed IND@TOR game (401857153), return_date still 2026-08-20. Superseding to record that the condition the 0234Z and 0334Z entries flagged has now MATERIALIZED: the IND @ DAL props (BP event 2745, 2026-08-20, 8:00 PM ET) posted on this firing's board, and they posted BEFORE any Wednesday practice report - it is 12:34 AM ET Wednesday and the only public information is still Tuesday's undiagnosed fourth-quarter exit. Estimate deliberately UNCHANGED (questionable, 24 min, floor 0) - the routine flags, it does not re-price. FLAGGED FOR THE OWNER, loudly: fp_live now prices assists under 2.5 @ -174 (claimed EV 11.7%, ROLE_MIN?) off this 24-minute placeholder, and the haircut is what makes the under look good - the pick is a consequence of the placeholder, not independent evidence. Treat it as unbettable until a practice report or a lineup confirms her minutes; if she is ruled out or cleared, supersede this entry.",
+      "author": "news-watch",
       "superseded_by": null
     }
   ]
