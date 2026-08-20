@@ -6,22 +6,22 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $107.16** (start $100)
+**Bankroll: $109.00** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 147 (78W-69L), 0 push, 5 void, 12 open |
-| staked | $147.00 |
-| P&L | $+7.16 (+4.9% ROI) |
-| mean EV said (model) | +20.55% (n=147) |
-| mean CLV (vs close) | -3.73% (n=147) |
-| mean CLV* (shade-adj) | -2.94% (n=147) |
-| closing line moved | 34 of 147 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 89.6W vs observed 78W (z=-1.99) |
-| Model-expected P&L | $+31.13 |
-| CLV-expected P&L | $-5.48 |
+| settled | 151 (81W-70L), 0 push, 5 void, 8 open |
+| staked | $151.00 |
+| P&L | $+9.00 (+6.0% ROI) |
+| mean EV said (model) | +20.52% (n=151) |
+| mean CLV (vs close) | -3.70% (n=148) |
+| mean CLV* (shade-adj) | -2.88% (n=148) |
+| closing line moved | 34 of 148 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| model calibration | expected 91.9W vs observed 81W (z=-1.85) |
+| Model-expected P&L | $+31.91 |
+| CLV-expected P&L | $-5.47 |
 
-CLV t-stat: -4.89 (iid); -2.30 clustered by match date (20 dates)
+CLV t-stat: -4.88 (iid); -2.28 clustered by match date (21 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
@@ -35,10 +35,10 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-20 | Olivia Nelson-Ododa | assists | under | 1.5 | -108 | 1.0 | +15.0% |  |  |  |  |  |
 | 2026-08-20 | Rae Burrell | assists | under | 3.5 | -132 | 1.0 | +10.6% |  |  |  |  |  |
 | 2026-08-20 | Naz Hillmon | rebounds | under | 4.5 | 114 | 1.0 | +10.6% |  |  |  |  |  |
-| 2026-08-19 | Shakira Austin | rebounds | under | 10.5 | -108 | 1.0 | +17.6% |  |  |  |  |  |
-| 2026-08-19 | Kayla McBride | threes | over | 2.5 | -120 | 1.0 | +22.4% |  |  |  |  |  |
-| 2026-08-19 | Cecilia Zandalasini | threes | over | 1.5 | 152 | 1.0 | +20.0% |  |  |  |  |  |
-| 2026-08-19 | Olivia Miles | threes | over | 1.5 | 108 | 1.0 | +17.7% |  |  |  |  |  |
+| 2026-08-19 | Shakira Austin | rebounds | under | 10.5 | -108 | 1.0 | +17.6% | 10 | won | +0.93 | +0.5% | +6.0% |
+| 2026-08-19 | Kayla McBride | threes | over | 2.5 | -120 | 1.0 | +22.4% | 3 | won | +0.83 |  |  |
+| 2026-08-19 | Cecilia Zandalasini | threes | over | 1.5 | 152 | 1.0 | +20.0% | 1 | lost | -1.00 |  |  |
+| 2026-08-19 | Olivia Miles | threes | over | 1.5 | 108 | 1.0 | +17.7% | 3 | won | +1.08 |  |  |
 | 2026-08-18 | Jackie Young | threes | over | 2.5 | 140 | 1.0 | +19.2% | 4 | won | +1.40 | -3.3% | -8.4% |
 | 2026-08-18 | Azura Stevens | rebounds | over | 6.5 | 122 | 1.0 | +17.5% | 7 | won | +1.22 | +2.4% | -4.0% |
 | 2026-08-18 | Chelsea Gray | assists | over | 5.5 | -132 | 1.0 | +16.2% | 2 | lost | -1.00 | +4.2% | +1.3% |
