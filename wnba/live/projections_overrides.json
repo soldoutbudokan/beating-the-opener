@@ -4771,6 +4771,19 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0437Z diff: Miles (Minnesota Lynx) newly listed Day-To-Day, type Ankle, return_date 2026-08-19. The report's own comment is a recap of the game she just played through it: \"Miles (ankle) finished with 20 points (8-10 FG, 3-5 3Pt, 1-2 FT), five rebounds, seven assists, two steals and two blocks across 30 minutes in Wednesday's 77-66 win over Golden State.\" So the tag is a designation, not evidence of a restriction — 30 minutes is a full starter's load and matches her panel role. Recorded as questionable with NO minutes assertion (inert for pricing): asserting a cut would manufacture an under off a game she just started and starred in, and asserting an increase is unsupported. Revisit if a later snapshot downgrades her or MIN's next injury report restricts her.",
       "author": "news-watch",
+      "superseded_by": 362
+    },
+    {
+      "player": "Olivia Miles",
+      "added": "2026-08-20T05:32:00Z",
+      "game_date": null,
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "ESPN news API (news_watch 2026-08-20/0532Z)",
+      "url": "https://www.espn.com/wnba/",
+      "quote": "Supersedes 361 on a factual correction, not a new judgement. The AP recap published 2026-08-20T04:33Z says Miles had \"20 points, seven assists and five rebounds BEFORE LEAVING midway through the fourth quarter with a left ankle injury\" - entry 361 read the injury-report comment (30 minutes, full line) as proof she played through the tag and called it \"a designation, not evidence of a restriction\". She did not finish the game, so that reasoning is wrong even though the minutes total is right. Status stays questionable and this entry still asserts NO minutes (inert for pricing): MIN's next game is 08-21 at WAS, two days out, no team statement on her availability yet, and asserting a cut would manufacture unders on a starter off a 20-point night. Her only sheet row (2749_threes_olivia miles_over) is already gated MOVED_OFF_OPEN;SUSPECT_EV, so nothing is priced off this either way. Revisit when a WAS-game injury report or a Lynx statement lands.",
+      "author": "news-watch",
       "superseded_by": null
     }
   ]
