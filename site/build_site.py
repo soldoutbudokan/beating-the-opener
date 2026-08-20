@@ -784,6 +784,22 @@ def clv_cell(v):
     return f'<span class="val-{tone} mono">{signed_pct(v)}</span>'
 
 
+def predicted_roi(bets):
+    """Stake-weighted mean `ev_claimed`: what the model said this slice of
+    the log was worth, at the prices actually taken.
+
+    Computed over the SAME rows as the realized ROI printed beside it -
+    settled only - so the two numbers share a denominator and compare
+    directly. Rows carrying no claim drop out of both halves of the ratio
+    rather than counting as a zero-EV bet.
+    """
+    sel = [b for b in bets if b["_ev"] is not None]
+    staked = sum(b["_stake"] for b in sel)
+    if not staked:
+        return None
+    return sum(b["_stake"] * b["_ev"] for b in sel) / staked
+
+
 def bet_rows(m):
     """(columns, [(cells, tr-attrs)], aligns) for the WNBA bet log.
 
@@ -817,6 +833,7 @@ def bet_rows(m):
             f' data-date="{esc(mdate)}"'
             f' data-player="{esc(txt(b, "player").lower())}"'
             f' data-stake="{b["_stake"]:g}"'
+            f' data-ev="{g(b["_ev"])}"'
             f' data-pnl="{g(b["_pnl"])}"'
             f' data-clv="{g(b["_clv"])}"'
             f' data-cal="{g(b["_cal"])}"')
@@ -889,6 +906,12 @@ def filter_block(m):
         parts.append(f'P&L {signed_money(m["pnl"])}'
                      + (f' ({signed_pct(m["roi"])} ROI)'
                         if m["roi"] is not None else ""))
+        # The claim next to the outcome, over the same settled rows (owner
+        # request 2026-08-20). Every logged bet cleared the EV>10% trigger,
+        # so this is always positive - the gap to realized ROI is the point.
+        pred = predicted_roi(m["settled"])
+        if pred is not None:
+            parts.append(f'model predicted {signed_pct(pred)} ROI')
     if m["mean_clv"] is not None:
         parts.append(f'mean CLV {signed_pct(m["mean_clv"])}')
     if m["mean_cal"] is not None:
@@ -905,7 +928,12 @@ def filter_block(m):
         + f'<input data-f="q" type="search" placeholder="player…" '
           f'aria-label="filter by player">'
         + '</div>'
-        + f'<p class="fsummary" id="fsum-{cfg["id"]}">{" · ".join(parts)}</p>')
+        + f'<p class="fsummary" id="fsum-{cfg["id"]}" '
+          f'title="Realized and model-predicted ROI are both computed over '
+          f'the settled bets in the current filter, on the same staked '
+          f'total, so they compare directly. Predicted ROI is the '
+          f'stake-weighted mean of each bet\'s claimed EV at the price '
+          f'actually taken.">{" · ".join(parts)}</p>')
 
 
 def picks_block(m):
@@ -1746,6 +1774,13 @@ def live_panel(m):
         CLV* to the shade-adjusted close. On an under-heavy sheet the raw
         number is structurally negative — CLV* is the one that has to reach
         zero and beyond.</p></div>
+      <div><h4>Claim vs outcome</h4><p>The filter line's <em>model
+        predicted ROI</em> is the stake-weighted <code>ev_claimed</code> of
+        the same settled bets the realized ROI is computed from — the
+        model's own claim at the prices taken. It is positive on every
+        slice by construction (nothing is bet under +10%), so only the
+        <em>gap</em> is informative: the pre-registered expectation is that
+        a claim realizes about half.</p></div>
       <div><h4>Losing can still be a pass</h4><p>Negative P&amp;L with clearly
         positive CLV means the model works and variance didn't cooperate.
         Profit with negative CLV is just luck.</p></div>
@@ -2459,6 +2494,7 @@ JS = """
       var f={};
       ctrls.forEach(function(c){f[c.dataset.f]=c.value.trim().toLowerCase();});
       var shown=0,w=0,l=0,settled=0,pnl=0,stake=0,clv=[],cal=[];
+      var pev=0,pstake=0;
       rows.forEach(function(r){
         var c=r.dataset.clv;
         var ok=(!f.market||r.dataset.market===f.market)&&
@@ -2475,6 +2511,10 @@ JS = """
         shown++;
         if(r.dataset.status==='settled'){
           settled++;pnl+=+r.dataset.pnl||0;stake+=+r.dataset.stake||0;
+          if(r.dataset.ev!==''){
+            pev+=(+r.dataset.stake||0)*(+r.dataset.ev);
+            pstake+=+r.dataset.stake||0;
+          }
           if(r.dataset.result==='won')w++;
           else if(r.dataset.result==='lost')l++;
         }
@@ -2488,6 +2528,7 @@ JS = """
       if(settled){
         bits.push(w+'W\\u2212'+l+'L');
         bits.push('P&L '+mny(pnl)+(stake?' ('+pct(pnl/stake)+' ROI)':''));
+        if(pstake)bits.push('model predicted '+pct(pev/pstake)+' ROI');
       }
       if(clv.length)bits.push('mean CLV '+pct(mean(clv)));
       if(cal.length)bits.push('CLV* '+pct(mean(cal)));
