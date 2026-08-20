@@ -4732,7 +4732,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report + event:401857157 both list Buenavida (Minnesota Lynx) as Out, type Coach's Decision, comment \"out\", return_date 2026-08-21, for tonight's MIN @ GS (2026-08-19 22:00 ET). Supersedes the 08-19/0034Z 'in' clear.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 366
   },
   {
    "player": "Liatu King",
@@ -4745,7 +4745,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "\"King (coach's decision) is listed as out for Wednesday's game versus Golden State.\" - ESPN league injury report, corroborated by the event:401857157 report; Minnesota Lynx, return_date 2026-08-21. Supersedes the 08-19/0034Z 'in' clear.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 367
   },
   {
    "player": "Indya Nivar",
@@ -4799,6 +4799,58 @@
    "source": "avail:2026-08-20/1433Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "Firm downgrade to Out. UPDATED in the 1433Z diff: Miles (Minnesota Lynx) now listed Out, type Ankle, return_date 2026-08-21 - was Day-To-Day in the previous snapshot. Both the league injury feed (comment \"out\") and the per-event report (event:401857157, the 08-19 MIN@GS game that just went final) carry the Out tag, and the lineups feed records her as a starter who did not play, reason COACH'S DECISION (a tag ESPN often uses when the pre-game injury designation upgrades to Out at tip). Consistent with the AP recap (entry 362) that she left midway through Q4 with a left ankle injury. Return_date 2026-08-21 is the day of MIN's next game (@ WAS), so it is aspirational, not a clearance; supersedes 362 by moving from \"no minutes assertion\" to a hard zero because the situation is no longer ambiguous. If a subsequent snapshot or Lynx statement upgrades her, supersede again.",
+   "author": "news-watch",
+   "superseded_by": 365
+  },
+  {
+   "player": "Napheesa Collier",
+   "added": "2026-08-20T21:32:00Z",
+   "game_date": "2026-08-21",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-20/2132Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report (NEW this snapshot): 'Collier (rest) is out for Friday's game against the Mystics.' status Out, type Rest, return_date 2026-08-24. Friday = MIN@WAS (event 2749) on the current sheet, so the override is game-dated to it. Note for the owner, NOT modelled here: with Collier resting, Minnesota teammates' minutes/usage in that game are likely inflated relative to their panel state - the talent model does not redistribute team minutes and this routine does not invent teammate bumps, so any MIN prop on the 8/21 sheet should be read as a role-change situation.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Olivia Miles",
+   "added": "2026-08-20T21:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-20/2132Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report (UPDATED this snapshot, Out -> Day-To-Day): 'Miles (ankle) is probable for Friday's game against the Mystics.' return_date 2026-08-21. Supersedes the 2026-08-20T14:33Z out-0 entry: she is now probable, so zeroing her would be wrong. minutes left null = base panel state, the choice that manufactures no news-driven edge in either direction (the Plum precedent) while she ramps back from the ankle.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Elena Buenavida",
+   "added": "2026-08-20T21:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-20/2132Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report (CLEARED this snapshot, was Out): no longer listed on the league injury report. Supersedes the 2026-08-19-dated out-0 entry; status returned to base panel state, no minutes assumption.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Liatu King",
+   "added": "2026-08-20T21:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-20/2132Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report (CLEARED this snapshot, was Out): no longer listed on the league injury report. Supersedes the 2026-08-19-dated out-0 entry; status returned to base panel state, no minutes assumption.",
    "author": "news-watch",
    "superseded_by": null
   }
