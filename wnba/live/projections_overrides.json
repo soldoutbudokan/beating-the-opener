@@ -4337,7 +4337,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "[Atlanta Dream] NEW in the 0034Z diff: Nivar (coach's decision) ruled Out for Tuesday's game at Las Vegas (ATL@LV, ESPN event 401857155, 9:00 PM ET), return date 2026-08-20. League report + per-event report agree. Supersedes the 2026-08-15 'in' entry.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 360
     },
     {
       "player": "Cheyenne Parker-Tyus",
@@ -4415,7 +4415,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "[Minnesota Lynx] CLEARED in the 0034Z diff: was Out (Coach's Decision), return date 2026-08-19, league entry written for Saturday's game in Las Vegas. Lynx are NOT on tonight's four-game card (LA@CON, IND@TOR, NY@CHI, ATL@LV), so this is a stale league entry ageing off its return date, not evidence of a return. Logged for the archive only - no minutes estimate, no pricing effect.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 358
     },
     {
       "player": "Liatu King",
@@ -4428,7 +4428,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "[Minnesota Lynx] CLEARED in the 0034Z diff: was Out (Coach's Decision), return date 2026-08-19, league entry written for Saturday's game in Las Vegas. Lynx are NOT on tonight's four-game card (LA@CON, IND@TOR, NY@CHI, ATL@LV), so this is a stale league entry ageing off its return date, not evidence of a return. Logged for the archive only - no minutes estimate, no pricing effect.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 359
     },
     {
       "player": "Kelsey Mitchell",
@@ -4718,6 +4718,45 @@
       "source": "avail:2026-08-20/0037Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the league injury report (was Out on the 2026-08-18 snapshot). CON plays at LVA on 2026-08-20. Clears the out override; no minutes assertion — last panel game 2026-08-13, 6 min.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Elena Buenavida",
+      "added": "2026-08-20T01:32:00Z",
+      "game_date": "2026-08-19",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-20/0132Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report + event:401857157 both list Buenavida (Minnesota Lynx) as Out, type Coach's Decision, comment \"out\", return_date 2026-08-21, for tonight's MIN @ GS (2026-08-19 22:00 ET). Supersedes the 08-19/0034Z 'in' clear.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Liatu King",
+      "added": "2026-08-20T01:32:00Z",
+      "game_date": "2026-08-19",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-20/0132Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "\"King (coach's decision) is listed as out for Wednesday's game versus Golden State.\" - ESPN league injury report, corroborated by the event:401857157 report; Minnesota Lynx, return_date 2026-08-21. Supersedes the 08-19/0034Z 'in' clear.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Indya Nivar",
+      "added": "2026-08-20T01:32:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-20/0132Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared from the ESPN injury report at 0132Z; she had been listed Out (coach's decision) for Tuesday's ATL game vs the Aces with return_date 2026-08-20. Conservative 'in' with no minutes claim - the report no longer carries her, and a coach's-decision DNP tells us nothing reliable about her next role.",
       "author": "news-watch",
       "superseded_by": null
     }
