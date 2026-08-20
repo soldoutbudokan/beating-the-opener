@@ -4853,6 +4853,32 @@
    "quote": "ESPN league injury report (CLEARED this snapshot, was Out): no longer listed on the league injury report. Supersedes the 2026-08-19-dated out-0 entry; status returned to base panel state, no minutes assumption.",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "DiJonai Carrington",
+   "added": "2026-08-20T22:32:00Z",
+   "game_date": "2026-08-21",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-20/2232Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report (NEW this snapshot): 'Carrington is out for Friday's game against the Valkyries due to a left foot injury.' status Out, type Foot, Chicago Sky, return_date 2026-08-23. Friday = CHI vs GSV (event 2748) on the current sheet, so the override is game-dated to it. The only prior Carrington entry (index 0) is game-dated 2026-07-31 and long expired, so nothing live is superseded. Note for the owner, NOT modelled here: with Carrington out the Sky's wing minutes/usage are likely redistributed relative to panel state - the talent model does not reallocate team minutes and this routine does not invent teammate bumps, so any CHI prop on the 8/21 sheet should be read as a role-change situation.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Aicha Coulibaly",
+   "added": "2026-08-20T22:32:00Z",
+   "game_date": "2026-08-21",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-20/2232Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report (NEW this snapshot): 'Coulibaly (knee) is questionable for Friday's game against the Valkyries.' status Day-To-Day, type Knee, Chicago Sky, return_date 2026-08-21. Friday = CHI vs GSV (event 2748). Questionable with minutes left null = base panel state, the conservative choice that manufactures no news-driven edge in either direction (the Plum precedent, and the same treatment given Miles's newly-listed Day-To-Day at 0437Z). No prior Coulibaly entry to supersede.",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }
