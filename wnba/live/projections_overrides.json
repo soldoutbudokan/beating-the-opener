@@ -4207,7 +4207,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "DOWNGRADE in the 2133Z diff: Wheeler (Los Angeles Sparks) Day-To-Day -> Out, type Ankle. \"Wheeler (ankle) won't play in Tuesday's game against the Sun, per independent WNBA writer Justin Russo.\" Confirmed by BOTH the league injury report and the per-event report for LA@CON (ESPN event 401857152 = event 2741); return_date 2026-08-20. Supersedes the 2026-08-17 questionable entry.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 355
     },
     {
       "player": "Brittney Sykes",
@@ -4272,7 +4272,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "[Connecticut Sun] Van Lith (coach's decision) is out for Tuesday's game against the Sparks; league report + event:401857152, return date 2026-08-20.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 356
     },
     {
       "player": "Rayah Marshall",
@@ -4285,7 +4285,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "[Connecticut Sun] Marshall (coach's decision) has been ruled out for Tuesday's game against the Sparks; league report + event:401857152, return date 2026-08-20. First override entry for this player.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 357
     },
     {
       "player": "Zaay Green",
@@ -4679,6 +4679,45 @@
       "source": "avail:2026-08-19/2233Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2233Z diff: Onyiah (Indiana Fever) no longer appears on the ESPN league injury report or on any per-event report; her 2026-08-18 coach's-decision Out (entry 323, return_date 2026-08-20) has expired as advertised. Superseding with an in/no-estimate record. Inert for pricing.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Erica Wheeler",
+      "added": "2026-08-20T00:37:00Z",
+      "game_date": "2026-08-20",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-20/0037Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Ankle: upgraded Out → Day-To-Day on the league report, return_date 2026-08-20; LA hosts ATL that night. Supersedes the 2026-08-18 out entry. Upgrade only to questionable and no minutes asserted — her last panel game is 2026-08-15.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Hailey Van Lith",
+      "added": "2026-08-20T00:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-20/0037Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED from the league injury report (was Out on the 2026-08-18 snapshot). CON plays at LVA on 2026-08-20. Clears the out override; no minutes assertion — last panel game 2026-08-13, 14 min.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Rayah Marshall",
+      "added": "2026-08-20T00:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-20/0037Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED from the league injury report (was Out on the 2026-08-18 snapshot). CON plays at LVA on 2026-08-20. Clears the out override; no minutes assertion — last panel game 2026-08-13, 6 min.",
       "author": "news-watch",
       "superseded_by": null
     }
