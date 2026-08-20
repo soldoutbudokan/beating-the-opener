@@ -8,10 +8,11 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2748_points_sydney taylor_over,2026-08-21,2026-08-21 23:30:00,2748,points,Sydney Taylor,CHI,GSV@CHI,over,12.5,-130.0,0.6925,0.2252,True,-205,-188,0.0,16.18,,12.5,PLAYER_ALREADY_BET(threes over 1.5),False,False
 2748_assists_gabby williams_under,2026-08-21,2026-08-21 23:30:00,2748,assists,Gabby Williams,GSV,GSV@CHI,under,2.5,112.0,0.5753,0.2196,True,-126,-118,2.5,2.3,,2.5,,False,True
 2749_assists_kayla mcbride_under,2026-08-21,2026-08-21 23:30:00,2749,assists,Kayla McBride,MIN,MIN@WAS,under,2.5,-144.0,0.7086,0.2006,True,-220,-201,0.0,1.77,,1.5,MOVED_OFF_OPEN,False,False
-2745_threes_alanna smith_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Alanna Smith,DAL,IND@DAL,under,1.5,-192.0,0.7664,0.1656,True,-290,-261,4.5,0.92,,1.5,,False,True
+2745_threes_alanna smith_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Alanna Smith,DAL,IND@DAL,under,1.5,-198.0,0.7664,0.1535,True,-290,-261,4.0,0.92,,1.5,,False,True
 2750_points_megan dileo_under,2026-08-21,2026-08-22 02:00:00,2750,points,Megan DiLeo,PDX,PDX@TOR,under,14.5,-108.0,0.5916,0.1393,True,-134,-126,2.0,13.44,,14.5,,False,True
 2748_rebounds_kamilla cardoso_over,2026-08-21,2026-08-21 23:30:00,2748,rebounds,Kamilla Cardoso,CHI,GSV@CHI,over,8.5,118.0,0.5198,0.1331,True,-101,104,1.5,8.83,,8.5,,False,True
 2746_threes_leila lacan_under,2026-08-20,2026-08-21 02:00:00,2746,threes,Leila Lacan,CON,CON@LVA,under,1.5,-205.0,0.7557,0.1243,True,-275,-248,0.0,0.95,,1.5,PLAYER_ALREADY_BET(assists under 4.5),False,False
+2747_points_angel reese_under,2026-08-20,2026-08-21 02:00:00,2747,points,Angel Reese,ATL,ATL@LAS,under,17.5,-130.0,0.6304,0.1153,True,-157,-146,0.0,15.64,,15.5,MOVED_OFF_OPEN,False,False
 2748_threes_natasha cloud_under,2026-08-21,2026-08-21 23:30:00,2748,threes,Natasha Cloud,CHI,GSV@CHI,under,1.5,-205.0,0.7454,0.109,True,-261,-236,3.0,0.97,,1.5,,False,True
 2750_rebounds_brittney sykes_over,2026-08-21,2026-08-22 02:00:00,2750,rebounds,Brittney Sykes,TOR,PDX@TOR,over,2.5,-128.0,0.6217,0.1074,True,-152,-141,2.0,3.35,,2.5,ROLE_MIN?,True,False
 2747_rebounds_naz hillmon_under,2026-08-20,2026-08-21 02:00:00,2747,rebounds,Naz Hillmon,ATL,ATL@LAS,under,4.5,114.0,0.5159,0.1041,True,-100,106,1.0,4.56,,4.5,,False,True
