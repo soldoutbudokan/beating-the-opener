@@ -1,10 +1,10 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2746_rebounds_olivia nelsonododa_under,2026-08-20,2026-08-21 02:00:00,2746,rebounds,Olivia Nelson-Ododa,CON,CON@LVA,under,8.5,100.0,0.7748,0.5496,True,-303,-271,0.0,6.3,,8.5,SUSPECT_EV(55%);PLAYER_ALREADY_BET(assists under 1.5),False,False
-2746_points_diamond miller_under,2026-08-20,2026-08-21 02:00:00,2746,points,Diamond Miller,CON,CON@LVA,under,11.5,100.0,0.6908,0.3817,True,-203,-187,0.0,9.18,,11.5,SUSPECT_EV(38%),False,False
-2746_assists_leila lacan_under,2026-08-20,2026-08-21 02:00:00,2746,assists,Leila Lacan,CON,CON@LVA,under,4.5,116.0,0.5743,0.2405,True,-126,-118,3.0,4.2,,4.5,,False,True
-2747_assists_dearica hamby_over,2026-08-20,2026-08-21 02:00:00,2747,assists,Dearica Hamby,LAS,ATL@LAS,over,2.5,122.0,0.5355,0.1887,True,-108,-102,2.0,2.79,,2.5,,False,True
-2745_threes_alanna smith_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Alanna Smith,DAL,IND@DAL,under,1.5,-182.0,0.7671,0.1886,True,-291,-261,4.5,0.91,,1.5,,False,True
-2745_threes_arike ogunbowale_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Arike Ogunbowale,DAL,IND@DAL,under,1.5,104.0,0.5752,0.1733,True,-126,-118,2.0,1.45,,1.5,,False,True
-2745_rebounds_jessica shepard_under,2026-08-20,2026-08-21 00:00:00,2745,rebounds,Jessica Shepard,DAL,IND@DAL,under,11.5,-152.0,0.6737,0.117,True,-189,-174,0.0,9.94,,11.5,PLAYER_ALREADY_BET(points under 14.5),False,False
-2747_assists_nneka ogwumike_over,2026-08-20,2026-08-21 02:00:00,2747,assists,Nneka Ogwumike,LAS,ATL@LAS,over,2.5,-154.0,0.6742,0.112,True,-189,-174,0.0,3.53,,2.5,MOVED_OFF_OPEN,False,False
-2747_rebounds_naz hillmon_under,2026-08-20,2026-08-21 02:00:00,2747,rebounds,Naz Hillmon,ATL,ATL@LAS,under,4.5,114.0,0.5169,0.1061,True,-100,106,1.0,4.56,,4.5,,False,True
+2746_rebounds_olivia nelsonododa_under,2026-08-20,2026-08-21 02:00:00,2746,rebounds,Olivia Nelson-Ododa,CON,CON@LVA,under,8.5,100.0,0.7746,0.5491,True,-303,-271,0.0,6.3,,8.5,SUSPECT_EV(55%);PLAYER_ALREADY_BET(assists under 1.5),False,False
+2746_points_diamond miller_under,2026-08-20,2026-08-21 02:00:00,2746,points,Diamond Miller,CON,CON@LVA,under,11.5,100.0,0.6904,0.3809,True,-203,-186,0.0,9.18,,11.5,SUSPECT_EV(38%),False,False
+2746_assists_leila lacan_under,2026-08-20,2026-08-21 02:00:00,2746,assists,Leila Lacan,CON,CON@LVA,under,4.5,116.0,0.5741,0.24,True,-125,-118,3.0,4.2,,4.5,,False,True
+2747_assists_dearica hamby_over,2026-08-20,2026-08-21 02:00:00,2747,assists,Dearica Hamby,LAS,ATL@LAS,over,2.5,122.0,0.5357,0.1892,True,-108,-102,2.0,2.79,,2.5,,False,True
+2745_threes_alanna smith_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Alanna Smith,DAL,IND@DAL,under,1.5,-182.0,0.7669,0.1883,True,-291,-261,4.5,0.92,,1.5,,False,True
+2745_threes_arike ogunbowale_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Arike Ogunbowale,DAL,IND@DAL,under,1.5,104.0,0.5749,0.1727,True,-126,-118,2.0,1.45,,1.5,,False,True
+2745_rebounds_jessica shepard_under,2026-08-20,2026-08-21 00:00:00,2745,rebounds,Jessica Shepard,DAL,IND@DAL,under,11.5,-152.0,0.6734,0.1164,True,-188,-174,0.0,9.94,,11.5,PLAYER_ALREADY_BET(points under 14.5),False,False
+2747_assists_nneka ogwumike_over,2026-08-20,2026-08-21 02:00:00,2747,assists,Nneka Ogwumike,LAS,ATL@LAS,over,2.5,-154.0,0.6744,0.1123,True,-189,-174,0.0,3.53,,2.5,MOVED_OFF_OPEN,False,False
+2747_rebounds_naz hillmon_under,2026-08-20,2026-08-21 02:00:00,2747,rebounds,Naz Hillmon,ATL,ATL@LAS,under,4.5,114.0,0.5166,0.1056,True,-100,106,1.0,4.56,,4.5,,False,True
