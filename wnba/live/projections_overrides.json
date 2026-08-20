@@ -4759,6 +4759,19 @@
       "quote": "Cleared from the ESPN injury report at 0132Z; she had been listed Out (coach's decision) for Tuesday's ATL game vs the Aces with return_date 2026-08-20. Conservative 'in' with no minutes claim - the report no longer carries her, and a coach's-decision DNP tells us nothing reliable about her next role.",
       "author": "news-watch",
       "superseded_by": null
+    },
+    {
+      "player": "Olivia Miles",
+      "added": "2026-08-20T04:37:00Z",
+      "game_date": null,
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-20/0437Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0437Z diff: Miles (Minnesota Lynx) newly listed Day-To-Day, type Ankle, return_date 2026-08-19. The report's own comment is a recap of the game she just played through it: \"Miles (ankle) finished with 20 points (8-10 FG, 3-5 3Pt, 1-2 FT), five rebounds, seven assists, two steals and two blocks across 30 minutes in Wednesday's 77-66 win over Golden State.\" So the tag is a designation, not evidence of a restriction — 30 minutes is a full starter's load and matches her panel role. Recorded as questionable with NO minutes assertion (inert for pricing): asserting a cut would manufacture an under off a game she just started and starred in, and asserting an increase is unsupported. Revisit if a later snapshot downgrades her or MIN's next injury report restricts her.",
+      "author": "news-watch",
+      "superseded_by": null
     }
   ]
 }

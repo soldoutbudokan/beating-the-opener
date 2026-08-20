@@ -1,12 +1,20 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
 2746_rebounds_olivia nelsonododa_under,2026-08-20,2026-08-21 02:00:00,2746,rebounds,Olivia Nelson-Ododa,CON,CON@LVA,under,8.5,100.0,0.774,0.548,True,-302,-270,0.0,6.31,,8.5,SUSPECT_EV(55%);PLAYER_ALREADY_BET(assists under 1.5),False,False
-2749_points_kayla mcbride_over,2026-08-21,2026-08-21 23:30:00,2749,points,Kayla McBride,MIN,MIN@WAS,over,14.5,-104.0,0.7395,0.4506,True,-254,-230,0.0,19.4,,14.5,SUSPECT_EV(45%),False,False
 2746_points_diamond miller_under,2026-08-20,2026-08-21 02:00:00,2746,points,Diamond Miller,CON,CON@LVA,under,11.5,100.0,0.6896,0.3792,True,-202,-186,0.0,9.2,,11.5,SUSPECT_EV(38%),False,False
-2746_assists_leila lacan_under,2026-08-20,2026-08-21 02:00:00,2746,assists,Leila Lacan,CON,CON@LVA,under,4.5,114.0,0.5735,0.2272,True,-125,-117,2.5,4.2,,4.5,,False,True
-2749_threes_olivia miles_over,2026-08-21,2026-08-21 23:30:00,2749,threes,Olivia Miles,MIN,MIN@WAS,over,1.5,102.0,0.595,0.202,True,-136,-127,2.5,2.0,,1.5,,True,False
+2749_threes_olivia miles_over,2026-08-21,2026-08-21 23:30:00,2749,threes,Olivia Miles,MIN,MIN@WAS,over,1.5,120.0,0.6005,0.3212,True,-139,-130,0.0,2.02,,1.5,MOVED_OFF_OPEN;SUSPECT_EV(32%),False,False
+2749_threes_kayla mcbride_over,2026-08-21,2026-08-21 23:30:00,2749,threes,Kayla McBride,MIN,MIN@WAS,over,2.5,100.0,0.6518,0.3036,True,-172,-159,0.0,3.36,,2.5,MOVED_OFF_OPEN;SUSPECT_EV(30%),False,False
+2748_points_azura stevens_under,2026-08-21,2026-08-21 23:30:00,2748,points,Azura Stevens,CHI,GSV@CHI,under,10.5,100.0,0.6251,0.2502,True,-154,-143,0.0,9.19,,10.5,SUSPECT_EV(25%),False,False
+2750_assists_carla leite_under,2026-08-21,2026-08-22 02:00:00,2750,assists,Carla Leite,PDX,PDX@TOR,under,6.5,114.0,0.5827,0.247,True,-130,-122,3.0,6.05,,6.5,,True,False
+2746_assists_leila lacan_under,2026-08-20,2026-08-21 02:00:00,2746,assists,Leila Lacan,CON,CON@LVA,under,4.5,116.0,0.5735,0.2387,True,-125,-117,3.0,4.2,,4.5,,False,True
+2748_assists_gabby williams_under,2026-08-21,2026-08-21 23:30:00,2748,assists,Gabby Williams,GSV,GSV@CHI,under,2.5,112.0,0.5753,0.2197,True,-126,-118,2.5,2.3,,2.5,,True,False
 2745_assists_jessica shepard_under,2026-08-20,2026-08-21 00:00:00,2745,assists,Jessica Shepard,DAL,IND@DAL,under,5.5,-132.0,0.6815,0.1978,True,-195,-180,0.0,4.5,,4.5,MOVED_OFF_OPEN;PLAYER_ALREADY_BET(points under 14.5),False,False
-2745_threes_alanna smith_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Alanna Smith,DAL,IND@DAL,under,1.5,-180.0,0.7665,0.1923,True,-290,-261,4.5,0.92,,1.5,,False,True
 2747_assists_dearica hamby_over,2026-08-20,2026-08-21 02:00:00,2747,assists,Dearica Hamby,LAS,ATL@LAS,over,2.5,122.0,0.5361,0.1902,True,-108,-102,2.0,2.79,,2.5,,False,True
+2745_threes_alanna smith_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Alanna Smith,DAL,IND@DAL,under,1.5,-182.0,0.7665,0.1876,True,-290,-261,4.5,0.92,,1.5,,False,True
 2745_threes_arike ogunbowale_under,2026-08-20,2026-08-21 00:00:00,2745,threes,Arike Ogunbowale,DAL,IND@DAL,under,1.5,106.0,0.5742,0.1828,True,-125,-118,2.5,1.45,,1.5,,False,True
-2749_points_natasha howard_over,2026-08-21,2026-08-21 23:30:00,2749,points,Natasha Howard,MIN,MIN@WAS,over,10.5,-115.0,0.6208,0.1606,True,-151,-141,2.5,12.75,,10.5,ROLE_MIN?,True,False
+2748_threes_sydney taylor_over,2026-08-21,2026-08-21 23:30:00,2748,threes,Sydney Taylor,CHI,GSV@CHI,over,1.5,-144.0,0.6951,0.1778,True,-207,-190,3.5,2.42,,1.5,,True,False
+2748_rebounds_kamilla cardoso_over,2026-08-21,2026-08-21 23:30:00,2748,rebounds,Kamilla Cardoso,CHI,GSV@CHI,over,8.5,118.0,0.5197,0.133,True,-101,104,1.5,8.83,,8.5,,True,False
+2750_points_megan dileo_under,2026-08-21,2026-08-22 02:00:00,2750,points,Megan DiLeo,PDX,PDX@TOR,under,14.5,-110.0,0.5901,0.1266,True,-134,-125,2.0,13.46,,14.5,,True,False
+2749_threes_shakira austin_under,2026-08-21,2026-08-21 23:30:00,2749,threes,Shakira Austin,WAS,MIN@WAS,under,0.5,-114.0,0.5991,0.1246,True,-139,-129,2.0,0.51,,0.5,,True,False
+2748_threes_natasha cloud_under,2026-08-21,2026-08-21 23:30:00,2748,threes,Natasha Cloud,CHI,GSV@CHI,under,1.5,-205.0,0.7448,0.1081,True,-261,-236,3.0,0.98,,1.5,,True,False
+2750_rebounds_brittney sykes_over,2026-08-21,2026-08-22 02:00:00,2750,rebounds,Brittney Sykes,TOR,PDX@TOR,over,2.5,-128.0,0.6217,0.1074,True,-152,-141,2.0,3.35,,2.5,ROLE_MIN?,True,False
 2747_rebounds_naz hillmon_under,2026-08-20,2026-08-21 02:00:00,2747,rebounds,Naz Hillmon,ATL,ATL@LAS,under,4.5,114.0,0.5161,0.1044,True,-100,106,1.0,4.56,,4.5,,False,True
