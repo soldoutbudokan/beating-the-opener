@@ -1,5 +1,5 @@
 {
- "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries \u2014 expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
+ "_doc": "News-driven projection overrides (v3 T3, PROGRESS.md Market 1 v3). Append-only log; never delete entries — expired ones are history, and the layer's live performance is scored from this file later. Schema per entry: player (BP display name), added (UTC ISO), game_date (ET date the override targets, or null for until-cleared), status (out|questionable|in), minutes_est (number|null), minutes_range ([lo,hi]|null), source (short name), url, quote (short supporting quote), author (news-watch|owner), superseded_by (index|null).",
  "entries": [
   {
    "player": "DiJonai Carrington",
@@ -4691,7 +4691,7 @@
    "minutes_range": null,
    "source": "avail:2026-08-20/0037Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
-   "quote": "Ankle: upgraded Out \u2192 Day-To-Day on the league report, return_date 2026-08-20; LA hosts ATL that night. Supersedes the 2026-08-18 out entry. Upgrade only to questionable and no minutes asserted \u2014 her last panel game is 2026-08-15.",
+   "quote": "Ankle: upgraded Out → Day-To-Day on the league report, return_date 2026-08-20; LA hosts ATL that night. Supersedes the 2026-08-18 out entry. Upgrade only to questionable and no minutes asserted — her last panel game is 2026-08-15.",
    "author": "news-watch",
    "superseded_by": 383
   },
@@ -4704,7 +4704,7 @@
    "minutes_range": null,
    "source": "avail:2026-08-20/0037Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
-   "quote": "CLEARED from the league injury report (was Out on the 2026-08-18 snapshot). CON plays at LVA on 2026-08-20. Clears the out override; no minutes assertion \u2014 last panel game 2026-08-13, 14 min.",
+   "quote": "CLEARED from the league injury report (was Out on the 2026-08-18 snapshot). CON plays at LVA on 2026-08-20. Clears the out override; no minutes assertion — last panel game 2026-08-13, 14 min.",
    "author": "news-watch",
    "superseded_by": 377
   },
@@ -4717,7 +4717,7 @@
    "minutes_range": null,
    "source": "avail:2026-08-20/0037Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
-   "quote": "CLEARED from the league injury report (was Out on the 2026-08-18 snapshot). CON plays at LVA on 2026-08-20. Clears the out override; no minutes assertion \u2014 last panel game 2026-08-13, 6 min.",
+   "quote": "CLEARED from the league injury report (was Out on the 2026-08-18 snapshot). CON plays at LVA on 2026-08-20. Clears the out override; no minutes assertion — last panel game 2026-08-13, 6 min.",
    "author": "news-watch",
    "superseded_by": null
   },
@@ -4769,7 +4769,7 @@
    "minutes_range": null,
    "source": "avail:2026-08-20/0437Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
-   "quote": "NEW in the 0437Z diff: Miles (Minnesota Lynx) newly listed Day-To-Day, type Ankle, return_date 2026-08-19. The report's own comment is a recap of the game she just played through it: \"Miles (ankle) finished with 20 points (8-10 FG, 3-5 3Pt, 1-2 FT), five rebounds, seven assists, two steals and two blocks across 30 minutes in Wednesday's 77-66 win over Golden State.\" So the tag is a designation, not evidence of a restriction \u2014 30 minutes is a full starter's load and matches her panel role. Recorded as questionable with NO minutes assertion (inert for pricing): asserting a cut would manufacture an under off a game she just started and starred in, and asserting an increase is unsupported. Revisit if a later snapshot downgrades her or MIN's next injury report restricts her.",
+   "quote": "NEW in the 0437Z diff: Miles (Minnesota Lynx) newly listed Day-To-Day, type Ankle, return_date 2026-08-19. The report's own comment is a recap of the game she just played through it: \"Miles (ankle) finished with 20 points (8-10 FG, 3-5 3Pt, 1-2 FT), five rebounds, seven assists, two steals and two blocks across 30 minutes in Wednesday's 77-66 win over Golden State.\" So the tag is a designation, not evidence of a restriction — 30 minutes is a full starter's load and matches her panel role. Recorded as questionable with NO minutes assertion (inert for pricing): asserting a cut would manufacture an under off a game she just started and starred in, and asserting an increase is unsupported. Revisit if a later snapshot downgrades her or MIN's next injury report restricts her.",
    "author": "news-watch",
    "superseded_by": 362
   },
@@ -5201,6 +5201,45 @@
    "source": "avail:2026-08-21/2138Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 2138Z diff (was Out, Coach's Decision, est. return 2026-08-22): Onyiah is off the ESPN league injury report. Supersedes index 373 (out, game_date 2026-08-20, now inert). Availability only, no minutes estimate - same IND coach's-decision cycle as Hall (indices 60/80/96/153/180/221/280/304/323/354/373); eligible is not the same as playing.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Elena Buenavida",
+   "added": "2026-08-21T22:33:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/2233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "Buenavida (coach's decision) has been ruled out for Friday's game against the Mystics (est. return 2026-08-24). NEW on the ESPN league injury report + per-event (MIN@WSH) report. Coach's Decision counts as Out per protocol; conservative read is out until the feed clears her. game_date null (until-cleared), to be superseded by the next snapshot that moves her.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Liatu King",
+   "added": "2026-08-21T22:33:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/2233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "King listed Out (coach's decision) for the Lynx, est. return 2026-08-24. NEW on the ESPN league injury report + per-event (MIN@WSH) report. Coach's Decision counts as Out per protocol; conservative read is out until the feed clears her. game_date null (until-cleared).",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Morgan Maly",
+   "added": "2026-08-21T22:33:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/2233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "Maly listed Out (coach's decision) for the Sky, est. return 2026-08-23. NEW on the ESPN per-event (GS@CHI) report. Coach's Decision counts as Out per protocol; conservative read is out until the feed clears her. game_date null (until-cleared).",
    "author": "news-watch",
    "superseded_by": null
   }
