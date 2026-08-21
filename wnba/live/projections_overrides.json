@@ -2899,7 +2899,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report (snapshot 2138Z / 17:38 ET): CLEARED, was Out (Dallas Wings, Coach's Decision, return_date 2026-08-14). Row dropped off the report. Logged as in with no minutes estimate; DAL plays IND on 8/14.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 372
   },
   {
    "player": "Michelle Onyiah",
@@ -4537,7 +4537,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW in the 1733Z diff: Sykes (Toronto Tempo) is Out - Rest for tonight's TOR @ WSH (BP event 2743, ESPN event 401857156, 7:30 PM ET), on BOTH the league report and the per-event report; comment 'Sykes (rest) will sit out Wednesday against the Mystics', return_date 2026-08-21. Unambiguous scratch, so 0 minutes, scoped to tonight only. Supersedes entry 320 (the 2026-08-18 CLEARED 'in'): she played 21 minutes on 8/18 off the foot issue and is now resting the second night of the back-to-back. FanDuel still had her points 10.5 / pts_ast 13.5 / assists 3.5 up at the 1638Z projection run against a 32-min stale-role state; this removes them from pricing rather than letting the model bet an over on a player who is not playing. No teammate minutes were re-estimated - the routine flags, it does not re-price the rest of the rotation.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 374
   },
   {
    "player": "Marina Mabrey",
@@ -4628,7 +4628,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "UPDATED in the 2233Z diff, and it resolves the situation entries 337-341 flagged: Mitchell (Indiana Fever) has moved Out -> Day-To-Day on the league report, and the comment is now diagnosed and forward-looking - \"Mitchell (illness) is probable for Thursday's game against the Wings\", type Undisclosed, return_date 2026-08-20 (the IND @ DAL game, BP event 2745, 8:00 PM ET Thursday). The undiagnosed Tuesday fourth-quarter exit is now an illness she is PROBABLE to play through. The 24-minute placeholder in entry 341 was a holding assumption made when the only public information was that exit; the feed has now overtaken it, so this entry REMOVES it (minutes_est null -> she prices from her base panel state again) rather than carrying a haircut the news no longer supports. That is deliberately the change least favourable to a news-driven bet: the 24-min haircut was what made assists under 2.5 @ -178 look like +10.1% EV, and entry 341 said in terms that the pick was a consequence of the placeholder, not evidence. Status kept at questionable, not in, because 'probable' is not a lineup - confirm near tip.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 376
   },
   {
    "player": "Caitlin Clark",
@@ -4641,7 +4641,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW in the 2233Z diff: Clark (Indiana Fever, Back) appears as Day-To-Day on the league report, comment \"Clark (back) is listed as probable for Thursday's game against Dallas\", return_date 2026-08-20 - i.e. the IND @ DAL game (BP event 2745, 8:00 PM ET Thursday) that already carries four rows on the sheet. Supersedes the 2026-08-18 'in' entry (328), which asserted a clean bill she no longer has. Recorded WITHOUT a minutes estimate, deliberately: probable-with-a-back is not evidence of reduced minutes, and inventing a haircut here would manufacture unders on IND props the way the Mitchell placeholder did. Pricing-inert by construction; it is a flag for the owner to confirm Clark's status near tip before any IND @ DAL bet, not a re-price.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 375
   },
   {
    "player": "Bree Hall",
@@ -4654,7 +4654,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 2233Z diff: Hall (Indiana Fever) no longer appears on the ESPN league injury report or on any per-event report; her 2026-08-18 coach's-decision Out (entry 322, return_date 2026-08-20) has expired as advertised. Superseding it with an in/no-estimate record. Inert for pricing - the out entry it replaces was already past its game_date, and no Hall prop is on the sheet.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 370
   },
   {
    "player": "Christyn Williams",
@@ -4667,7 +4667,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 2233Z diff: Williams no longer appears on the ESPN league injury report or on any per-event report, superseding her 2026-08-17 Out (entry 311). In/no-estimate record; inert for pricing (past game_date, no props on the sheet).",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 371
   },
   {
    "player": "Michelle Onyiah",
@@ -4680,7 +4680,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 2233Z diff: Onyiah (Indiana Fever) no longer appears on the ESPN league injury report or on any per-event report; her 2026-08-18 coach's-decision Out (entry 323, return_date 2026-08-20) has expired as advertised. Superseding with an in/no-estimate record. Inert for pricing.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 373
   },
   {
    "player": "Erica Wheeler",
@@ -4877,6 +4877,109 @@
    "source": "avail:2026-08-20/2232Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report (NEW this snapshot): 'Coulibaly (knee) is questionable for Friday's game against the Valkyries.' status Day-To-Day, type Knee, Chicago Sky, return_date 2026-08-21. Friday = CHI vs GSV (event 2748). Questionable with minutes left null = base panel state, the conservative choice that manufactures no news-driven edge in either direction (the Plum precedent, and the same treatment given Miles's newly-listed Day-To-Day at 0437Z). No prior Coulibaly entry to supersede.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Bree Hall",
+   "added": "2026-08-21T00:33:00Z",
+   "game_date": "2026-08-20",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": [
+    0,
+    0
+   ],
+   "source": "avail:2026-08-21/0033Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW in the 0033Z diff: Hall (Indiana Fever) is Out - Coach's Decision for tonight's IND @ DAL (ESPN event 401857158, 8:00 PM ET), on BOTH the league report and the per-event report; comment \"Hall (coach's decision) is out for Thursday's game against Dallas\", return_date 2026-08-22. Unambiguous scratch, so 0 minutes, scoped to tonight. Supersedes entry 352 (the 2026-08-19 CLEARED 'in'). Inert for pricing: the game had already tipped when this snapshot was taken (ESPN status STATUS_END_PERIOD), and no Hall prop is on the sheet. Recorded because the archive is the training set.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Christyn Williams",
+   "added": "2026-08-21T00:33:00Z",
+   "game_date": "2026-08-20",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": [
+    0,
+    0
+   ],
+   "source": "avail:2026-08-21/0033Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW in the 0033Z diff: Williams (Dallas Wings) is Out - Coach's Decision for tonight's IND @ DAL (ESPN event 401857158), on BOTH the league and per-event reports; comment \"Williams (coach's decision) is out for Thursday's game against the Fever\", return_date 2026-08-23. 0 minutes, scoped to tonight. Supersedes entry 353 (the 2026-08-19 CLEARED 'in'). Inert for pricing - game already tipped at snapshot time and no Williams prop is on the sheet.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Haley Jones",
+   "added": "2026-08-21T00:33:00Z",
+   "game_date": "2026-08-20",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": [
+    0,
+    0
+   ],
+   "source": "avail:2026-08-21/0033Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW in the 0033Z diff: Jones (Dallas Wings) is Out - Coach's Decision for tonight's IND @ DAL (ESPN event 401857158), on BOTH the league and per-event reports; comment \"Jones (coach's decision) won't play Thursday against the Fever\", return_date 2026-08-23. 0 minutes, scoped to tonight. Supersedes entry 220 (2026-08-13 'in', the last live Jones record). Inert for pricing - game already tipped at snapshot time and no Jones prop is on the sheet.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Michelle Onyiah",
+   "added": "2026-08-21T00:33:00Z",
+   "game_date": "2026-08-20",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": [
+    0,
+    0
+   ],
+   "source": "avail:2026-08-21/0033Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW in the 0033Z diff: Onyiah (Indiana Fever) is Out - Coach's Decision for tonight's IND @ DAL (ESPN event 401857158), on BOTH the league and per-event reports; comment \"Onyiah (coach's decision) won't play Thursday against the Wings\", return_date 2026-08-22. 0 minutes, scoped to tonight. Supersedes entry 354 (the 2026-08-19 CLEARED 'in'). Inert for pricing - game already tipped at snapshot time and no Onyiah prop is on the sheet.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Brittney Sykes",
+   "added": "2026-08-21T00:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/0033Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED in the 0033Z diff: Sykes (Toronto Tempo) no longer appears on the ESPN league injury report or on any per-event report. Her 2026-08-19 Out - Rest (entry 343, return_date 2026-08-21) has expired as advertised, so this supersedes it with an in/no-estimate record rather than leaving a 0-minute override sitting over TOR's 2026-08-21 PDX @ TOR sheet. No minutes estimate: 'no longer listed' is not a minutes report, and the base panel state is the conservative choice. Owner note: she sat the second night of a back-to-back for rest, so tomorrow is a return-from-rest game, not a return-from-injury ramp - but ESPN has published no lineup for that event yet, so confirm near tip before acting on any TOR prop.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Caitlin Clark",
+   "added": "2026-08-21T00:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/0033Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED in the 0033Z diff: Clark (Indiana Fever) is off the injury report entirely and appears in tonight's per-event lineup for IND @ DAL as a STARTER. Supersedes entry 351 (2026-08-19 'questionable' for the 2026-08-20 back issue) with an in/no-estimate record. Resolved upward - she is playing - but the game had already tipped when the snapshot was taken, so this is history, not pricing input.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Kelsey Mitchell",
+   "added": "2026-08-21T00:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/0033Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED in the 0033Z diff: Mitchell (Indiana Fever) is off the injury report (the illness/Day-To-Day tag is gone) and appears in tonight's per-event lineup for IND @ DAL as a STARTER. Supersedes entry 350 (2026-08-19 'questionable' for 2026-08-20, the last of the 24-minute illness chain) with an in/no-estimate record - the 24-minute illness estimate is retired now that she is a confirmed starter. Game already tipped at snapshot time, so this is history, not pricing input.",
    "author": "news-watch",
    "superseded_by": null
   }
