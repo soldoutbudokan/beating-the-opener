@@ -4457,7 +4457,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW in the 0234Z diff (vs 0132Z): \"Jones (ankle) won't return to Tuesday's game against the Sky, Madeline Kenney of the New York Post reports. She'll finish with five points (2-2 FG, 1-1 FT) and two assists across six minutes.\" League report and the per-event report for NY@CHI (401857154). This is an IN-GAME ruling, so the override targets the 2026-08-18 game only. ESPN's return_date is 2026-08-22, which is New York's very next game (IND @ NY) - the feed does not yet expect her to miss a future game. No NY props are on the 2026-08-19 board (TOR@WAS, MIN@GSV), so this is inert. Re-judge the ankle when NY's 08-22 props post: a fresh in-game ankle is exactly the case where a next-game return stamp tends to be optimistic.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 387
   },
   {
    "player": "Kelsey Mitchell",
@@ -5110,6 +5110,32 @@
    "source": "avail:2026-08-21/0438Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report, NEW: Atkins (Head) listed Out for the Sparks, est. return 2026-08-22 - \"Atkins won't return to Thursday's game against the Dream due to a head injury ... nine points ... in 16 minutes.\" Exiting a game mid-game with a head injury is concussion-protocol territory, so the conservative read is out until the feed clears her; game_date null (until-cleared), to be superseded by the next snapshot that moves her.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Jonquel Jones",
+   "added": "2026-08-21T17:32:00Z",
+   "game_date": null,
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/1732Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "UPDATED in the 1732Z diff (was Out): \"Jones (ankle) said she plans to play Saturday against the Fever, Madeline Kenney of the New York Post reports.\" Status Out -> Day-To-Day, return_date 2026-08-22. Supersedes the 2026-08-19 out entry (index 338), which targeted game_date 2026-08-18 and is already inert. No minutes estimate attached on purpose: this is an upgrade with a stated intent to play, her panel state is her own recent NYL form (last listed game 2026-08-18, not a stale role), and inventing a ramp cut here would manufacture an under out of a status change. NYL do not play tonight (8/21 slate is MIN@WSH, GS@CHI, POR@TOR); this bears on the 8/22 sheet, where availability must be re-confirmed near tip.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Leonie Fiebich",
+   "added": "2026-08-21T17:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/1732Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED in the 1732Z diff (was Out): Fiebich is off the ESPN league injury report entirely. No prior override entry existed for her, so this records availability only - no minutes estimate, since a returnee's minutes are the talent model's business and a guess in either direction would manufacture a bet. NYL's next game is 2026-08-22 vs the Fever.",
    "author": "news-watch",
    "superseded_by": null
   }
