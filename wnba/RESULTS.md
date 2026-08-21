@@ -6,39 +6,46 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $109.00** (start $100)
+**Bankroll: $108.37** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 151 (81W-70L), 0 push, 5 void, 8 open |
-| staked | $151.00 |
-| P&L | $+9.00 (+6.0% ROI) |
-| mean EV said (model) | +20.52% (n=151) |
-| mean CLV (vs close) | -3.70% (n=148) |
-| mean CLV* (shade-adj) | -2.88% (n=148) |
-| closing line moved | 34 of 148 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 91.9W vs observed 81W (z=-1.85) |
-| Model-expected P&L | $+31.91 |
-| CLV-expected P&L | $-5.47 |
+| settled | 159 (85W-74L), 0 push, 5 void, 7 open |
+| staked | $159.00 |
+| P&L | $+8.37 (+5.3% ROI) |
+| mean EV said (model) | +20.33% (n=159) |
+| mean CLV (vs close) | -3.80% (n=151) |
+| mean CLV* (shade-adj) | -3.08% (n=151) |
+| closing line moved | 34 of 151 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| model calibration | expected 96.8W vs observed 85W (z=-1.94) |
+| Model-expected P&L | $+33.25 |
+| CLV-expected P&L | $-5.73 |
 
-CLV t-stat: -4.88 (iid); -2.28 clustered by match date (21 dates)
+CLV t-stat: -5.08 (iid); -2.48 clustered by match date (21 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-08-20 | Leila Lacan | assists | under | 4.5 | 116 | 1.0 | +24.1% |  |  |  |  |  |
-| 2026-08-20 | Jessica Shepard | points | under | 14.5 | -115 | 1.0 | +23.7% |  |  |  |  |  |
-| 2026-08-20 | Dearica Hamby | assists | over | 2.5 | 122 | 1.0 | +18.9% |  |  |  |  |  |
-| 2026-08-20 | Alanna Smith | threes | under | 1.5 | -192 | 1.0 | +16.7% |  |  |  |  |  |
-| 2026-08-20 | Arike Ogunbowale | threes | under | 1.5 | 100 | 1.0 | +15.0% |  |  |  |  |  |
-| 2026-08-20 | Olivia Nelson-Ododa | assists | under | 1.5 | -108 | 1.0 | +15.0% |  |  |  |  |  |
-| 2026-08-20 | Rae Burrell | assists | under | 3.5 | -132 | 1.0 | +10.6% |  |  |  |  |  |
-| 2026-08-20 | Naz Hillmon | rebounds | under | 4.5 | 114 | 1.0 | +10.6% |  |  |  |  |  |
+| 2026-08-21 | Carla Leite | assists | under | 6.5 | 114 | 1.0 | +24.7% |  |  |  |  |  |
+| 2026-08-21 | Gabby Williams | assists | under | 2.5 | 112 | 1.0 | +22.0% |  |  |  |  |  |
+| 2026-08-21 | Sydney Taylor | threes | over | 1.5 | -144 | 1.0 | +17.6% |  |  |  |  |  |
+| 2026-08-21 | Kamilla Cardoso | rebounds | over | 8.5 | 118 | 1.0 | +13.2% |  |  |  |  |  |
+| 2026-08-21 | Megan DiLeo | points | under | 14.5 | -110 | 1.0 | +12.9% |  |  |  |  |  |
+| 2026-08-21 | Natasha Cloud | threes | under | 1.5 | -205 | 1.0 | +10.9% |  |  |  |  |  |
+| 2026-08-21 | Shakira Austin | threes | under | 0.5 | -118 | 1.0 | +10.8% |  |  |  |  |  |
+| 2026-08-20 | Leila Lacan | assists | under | 4.5 | 116 | 1.0 | +24.1% | 3 | won | +1.16 |  |  |
+| 2026-08-20 | Jessica Shepard | points | under | 14.5 | -115 | 1.0 | +23.7% | 26 | lost | -1.00 |  |  |
+| 2026-08-20 | Dearica Hamby | assists | over | 2.5 | 122 | 1.0 | +18.9% | 2 | lost | -1.00 |  |  |
+| 2026-08-20 | Alanna Smith | threes | under | 1.5 | -192 | 1.0 | +16.7% | 0 | won | +0.52 |  |  |
+| 2026-08-20 | Arike Ogunbowale | threes | under | 1.5 | 100 | 1.0 | +15.0% | 2 | lost | -1.00 |  |  |
+| 2026-08-20 | Olivia Nelson-Ododa | assists | under | 1.5 | -108 | 1.0 | +15.0% | 0 | won | +0.93 |  |  |
+| 2026-08-20 | Rae Burrell | assists | under | 3.5 | -132 | 1.0 | +10.6% | 2 | won | +0.76 |  |  |
+| 2026-08-20 | Naz Hillmon | rebounds | under | 4.5 | 114 | 1.0 | +10.6% | 5 | lost | -1.00 |  |  |
 | 2026-08-19 | Shakira Austin | rebounds | under | 10.5 | -108 | 1.0 | +17.6% | 10 | won | +0.93 | +0.5% | +6.0% |
-| 2026-08-19 | Kayla McBride | threes | over | 2.5 | -120 | 1.0 | +22.4% | 3 | won | +0.83 |  |  |
-| 2026-08-19 | Cecilia Zandalasini | threes | over | 1.5 | 152 | 1.0 | +20.0% | 1 | lost | -1.00 |  |  |
-| 2026-08-19 | Olivia Miles | threes | over | 1.5 | 108 | 1.0 | +17.7% | 3 | won | +1.08 |  |  |
+| 2026-08-19 | Kayla McBride | threes | over | 2.5 | -120 | 1.0 | +22.4% | 3 | won | +0.83 | -16.4% | -20.4% |
+| 2026-08-19 | Cecilia Zandalasini | threes | over | 1.5 | 152 | 1.0 | +20.0% | 1 | lost | -1.00 | -3.8% | -9.0% |
+| 2026-08-19 | Olivia Miles | threes | over | 1.5 | 108 | 1.0 | +17.7% | 3 | won | +1.08 | -5.6% | -10.1% |
 | 2026-08-18 | Jackie Young | threes | over | 2.5 | 140 | 1.0 | +19.2% | 4 | won | +1.40 | -3.3% | -8.4% |
 | 2026-08-18 | Azura Stevens | rebounds | over | 6.5 | 122 | 1.0 | +17.5% | 7 | won | +1.22 | +2.4% | -4.0% |
 | 2026-08-18 | Chelsea Gray | assists | over | 5.5 | -132 | 1.0 | +16.2% | 2 | lost | -1.00 | +4.2% | +1.3% |
