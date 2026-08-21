@@ -10,7 +10,7 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 159 (85W-74L), 0 push, 5 void, 7 open |
+| settled | 159 (85W-74L), 0 push, 5 void, 17 open |
 | staked | $159.00 |
 | P&L | $+8.37 (+5.3% ROI) |
 | mean EV said (model) | +20.33% (n=159) |
@@ -27,6 +27,16 @@ Calibration reads the model's own claims against results: expected wins = sum of
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-08-22 | Olivia Nelson-Ododa | rebounds | under | 8.5 | -138 | 1.0 | +24.3% |  |  |  |  |  |
+| 2026-08-22 | Breanna Stewart | points | under | 23.5 | -128 | 1.0 | +22.5% |  |  |  |  |  |
+| 2026-08-22 | Nneka Ogwumike | assists | over | 2.5 | -102 | 1.0 | +21.7% |  |  |  |  |  |
+| 2026-08-22 | Rae Burrell | rebounds | under | 2.5 | 116 | 1.0 | +19.0% |  |  |  |  |  |
+| 2026-08-22 | Leila Lacan | points | under | 11.5 | -106 | 1.0 | +17.3% |  |  |  |  |  |
+| 2026-08-22 | Naz Hillmon | rebounds | under | 4.5 | 122 | 1.0 | +16.8% |  |  |  |  |  |
+| 2026-08-22 | Pauline Astier | assists | over | 3.5 | 146 | 1.0 | +14.1% |  |  |  |  |  |
+| 2026-08-22 | Kelsey Mitchell | assists | over | 2.5 | 146 | 1.0 | +14.1% |  |  |  |  |  |
+| 2026-08-22 | Dearica Hamby | assists | over | 2.5 | 116 | 1.0 | +12.8% |  |  |  |  |  |
+| 2026-08-22 | Caitlin Clark | rebounds | under | 3.5 | 126 | 1.0 | +10.2% |  |  |  |  |  |
 | 2026-08-21 | Carla Leite | assists | under | 6.5 | 114 | 1.0 | +24.7% |  |  |  |  |  |
 | 2026-08-21 | Gabby Williams | assists | under | 2.5 | 112 | 1.0 | +22.0% |  |  |  |  |  |
 | 2026-08-21 | Sydney Taylor | threes | over | 1.5 | -144 | 1.0 | +17.6% |  |  |  |  |  |

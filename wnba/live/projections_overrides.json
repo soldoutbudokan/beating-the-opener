@@ -4311,7 +4311,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "[Indiana Fever] CLEARED from Day-To-Day in the 2333Z snapshot - no longer on the ESPN injury report ahead of Tuesday's Fever game vs Toronto. Supersedes the 2026-08-17 questionable entry; treat as available at normal role.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 389
   },
   {
    "player": "Caitlin Clark",
@@ -4894,7 +4894,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW in the 0033Z diff: Hall (Indiana Fever) is Out - Coach's Decision for tonight's IND @ DAL (ESPN event 401857158, 8:00 PM ET), on BOTH the league report and the per-event report; comment \"Hall (coach's decision) is out for Thursday's game against Dallas\", return_date 2026-08-22. Unambiguous scratch, so 0 minutes, scoped to tonight. Supersedes entry 352 (the 2026-08-19 CLEARED 'in'). Inert for pricing: the game had already tipped when this snapshot was taken (ESPN status STATUS_END_PERIOD), and no Hall prop is on the sheet. Recorded because the archive is the training set.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 392
   },
   {
    "player": "Christyn Williams",
@@ -4942,7 +4942,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW in the 0033Z diff: Onyiah (Indiana Fever) is Out - Coach's Decision for tonight's IND @ DAL (ESPN event 401857158), on BOTH the league and per-event reports; comment \"Onyiah (coach's decision) won't play Thursday against the Wings\", return_date 2026-08-22. 0 minutes, scoped to tonight. Supersedes entry 354 (the 2026-08-19 CLEARED 'in'). Inert for pricing - game already tipped at snapshot time and no Onyiah prop is on the sheet.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 393
   },
   {
    "player": "Brittney Sykes",
@@ -4968,7 +4968,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 0033Z diff: Clark (Indiana Fever) is off the injury report entirely and appears in tonight's per-event lineup for IND @ DAL as a STARTER. Supersedes entry 351 (2026-08-19 'questionable' for the 2026-08-20 back issue) with an in/no-estimate record. Resolved upward - she is playing - but the game had already tipped when the snapshot was taken, so this is history, not pricing input.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 390
   },
   {
    "player": "Kelsey Mitchell",
@@ -5136,6 +5136,71 @@
    "source": "avail:2026-08-21/1732Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 1732Z diff (was Out): Fiebich is off the ESPN league injury report entirely. No prior override entry existed for her, so this records availability only - no minutes estimate, since a returnee's minutes are the talent model's business and a guess in either direction would manufacture a bet. NYL's next game is 2026-08-22 vs the Fever.",
+   "author": "news-watch",
+   "superseded_by": 391
+  },
+  {
+   "player": "Aliyah Boston",
+   "added": "2026-08-21T21:38:00Z",
+   "game_date": "2026-08-22",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/2138Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report, NEW in the 2138Z diff (absent from the 1732Z report): Boston listed Day-To-Day (Lower Leg) for the Fever, est. return 2026-08-22 - \"Boston (lower leg) is listed as questionable for Saturday's game against the Liberty.\" Supersedes index 327 (in, until-cleared). No minutes estimate on purpose: this is the same questionable->in cycle she has run through repeatedly this month (indices 15/53/73/99/217/248/264/283/299/327), her panel state is her own current IND role, and inventing a ramp cut would manufacture an under out of a status listing. Targets the 8/22 NYL@IND sheet (event 2751); re-confirm near tip.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Caitlin Clark",
+   "added": "2026-08-21T21:38:00Z",
+   "game_date": "2026-08-22",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/2138Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report, NEW in the 2138Z diff (absent from the 1732Z report): Clark listed Day-To-Day (Back) for the Fever, est. return 2026-08-22 - \"Clark (back) is probable for Saturday's game against the Liberty.\" Supersedes index 375 (in, until-cleared). Status is the softest kind of doubtful - the feed's own comment says PROBABLE - so no minutes estimate is attached and no projection moves; this records the listing for the availability annotation only. Note the open 8/22 bet 2751_rebounds_caitlin clark_under (owner fill this morning at 126): a back listing is not a reason to re-price a placed bet, but it is a reason to check the lineup near tip. Targets event 2751.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Leonie Fiebich",
+   "added": "2026-08-21T21:38:00Z",
+   "game_date": "2026-08-22",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/2138Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report, NEW in the 2138Z diff: Fiebich listed Out (Foot) for the Liberty, est. return 2026-08-22, but the feed's own comment on the same row says \"Fiebich (foot) is questionable for Saturday's game against the Fever.\" The status field and the comment disagree; recorded as questionable, the reading that neither manufactures unders on her own props nor overs on NYL teammates (Stewart, Jones), since a hard out=0 here would do both. Supersedes index 388 (in, cleared in the 1732Z diff four hours earlier) - she has moved off-report and back on within one afternoon, so treat the feed as unsettled and re-confirm near tip. Targets the 8/22 NYL@IND sheet (event 2751), where an open Breanna Stewart points-under bet already stands.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Bree Hall",
+   "added": "2026-08-21T21:38:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/2138Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED in the 2138Z diff (was Out, Coach's Decision, est. return 2026-08-22): Hall is off the ESPN league injury report. Supersedes index 370 (out, game_date 2026-08-20, now inert). Availability only, no minutes estimate - this is the IND end-of-bench coach's-decision flip that has cycled all month (indices 14/51/79/97/152/179/219/250/267/279/305/322/352/370); being off the report says she is eligible, not that she plays.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Michelle Onyiah",
+   "added": "2026-08-21T21:38:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/2138Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED in the 2138Z diff (was Out, Coach's Decision, est. return 2026-08-22): Onyiah is off the ESPN league injury report. Supersedes index 373 (out, game_date 2026-08-20, now inert). Availability only, no minutes estimate - same IND coach's-decision cycle as Hall (indices 60/80/96/153/180/221/280/304/323/354/373); eligible is not the same as playing.",
    "author": "news-watch",
    "superseded_by": null
   }
