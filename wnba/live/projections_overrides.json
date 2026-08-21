@@ -5046,7 +5046,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league + event:401857158 injury report: Alanna Smith newly listed Day-To-Day (Leg), return_date 2026-08-20, for IND@DAL (20:00 ET 8/20, already IN PROGRESS at the time of this snapshot). Status downgrade from unlisted, so recorded conservatively as questionable with no minutes estimate rather than a manufactured number - she is on the event report, which usually means active. Inert for pricing: the game had already tipped and no DAL props are on the 8/21 sheet. Flagged for the record because an open bet (2745_threes_alanna smith_under) rides this player-game.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 385
   },
   {
    "player": "Cameron Brink",
@@ -5084,6 +5084,19 @@
    "source": "avail:2026-08-21/0133Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the ESPN injury report this firing (was Out, Ankle; the 00:33Z league comment read 'Akoa Makani (ankle) is probable for Thursday's game versus the Dream'). Available for ATL@LA (22:00 ET 8/20). Status 'in', no minutes estimate. Supersedes the 08-12 out entry, the last live one for this player. No LA props on the current 8/21 sheet.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Alanna Smith",
+   "added": "2026-08-21T02:35:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/0235Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from BOTH the ESPN league report and the event:401857158 report this firing (was Day-To-Day, Leg, return_date 2026-08-20). IND@DAL is now STATUS_FINAL, so part of this is the event report retiring with the game - but she also dropped off the LEAGUE report, which is a real clearing, and her listed return date had arrived. Recorded 'in' with no minutes estimate: a cleared player's role is what the talent model should price, and manufacturing a ramp number here would be the news layer guessing. Supersedes entry 381 (the 01:33Z questionable). Inert for pricing - the game she was listed for has finished and no DAL props are on the 8/21 sheet; the open bet 2745_threes_alanna smith_under rode that completed game.",
    "author": "news-watch",
    "superseded_by": null
   }
