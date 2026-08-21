@@ -14,14 +14,14 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 | staked | $159.00 |
 | P&L | $+8.37 (+5.3% ROI) |
 | mean EV said (model) | +20.33% (n=159) |
-| mean CLV (vs close) | -3.80% (n=151) |
-| mean CLV* (shade-adj) | -3.08% (n=151) |
-| closing line moved | 34 of 151 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| mean CLV (vs close) | -3.55% (n=159) |
+| mean CLV* (shade-adj) | -2.73% (n=159) |
+| closing line moved | 36 of 159 stamped (the rest closed at the bet line: CLV ≈ vig there) |
 | model calibration | expected 96.8W vs observed 85W (z=-1.94) |
 | Model-expected P&L | $+33.25 |
-| CLV-expected P&L | $-5.73 |
+| CLV-expected P&L | $-5.65 |
 
-CLV t-stat: -5.08 (iid); -2.48 clustered by match date (21 dates)
+CLV t-stat: -4.79 (iid); -2.43 clustered by match date (22 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
@@ -34,14 +34,14 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-21 | Megan DiLeo | points | under | 14.5 | -110 | 1.0 | +12.9% |  |  |  |  |  |
 | 2026-08-21 | Natasha Cloud | threes | under | 1.5 | -205 | 1.0 | +10.9% |  |  |  |  |  |
 | 2026-08-21 | Shakira Austin | threes | under | 0.5 | -118 | 1.0 | +10.8% |  |  |  |  |  |
-| 2026-08-20 | Leila Lacan | assists | under | 4.5 | 116 | 1.0 | +24.1% | 3 | won | +1.16 |  |  |
-| 2026-08-20 | Jessica Shepard | points | under | 14.5 | -115 | 1.0 | +23.7% | 26 | lost | -1.00 |  |  |
-| 2026-08-20 | Dearica Hamby | assists | over | 2.5 | 122 | 1.0 | +18.9% | 2 | lost | -1.00 |  |  |
-| 2026-08-20 | Alanna Smith | threes | under | 1.5 | -192 | 1.0 | +16.7% | 0 | won | +0.52 |  |  |
-| 2026-08-20 | Arike Ogunbowale | threes | under | 1.5 | 100 | 1.0 | +15.0% | 2 | lost | -1.00 |  |  |
-| 2026-08-20 | Olivia Nelson-Ododa | assists | under | 1.5 | -108 | 1.0 | +15.0% | 0 | won | +0.93 |  |  |
-| 2026-08-20 | Rae Burrell | assists | under | 3.5 | -132 | 1.0 | +10.6% | 2 | won | +0.76 |  |  |
-| 2026-08-20 | Naz Hillmon | rebounds | under | 4.5 | 114 | 1.0 | +10.6% | 5 | lost | -1.00 |  |  |
+| 2026-08-20 | Leila Lacan | assists | under | 4.5 | 116 | 1.0 | +24.1% | 3 | won | +1.16 | +23.0% | +26.6% |
+| 2026-08-20 | Jessica Shepard | points | under | 14.5 | -115 | 1.0 | +23.7% | 26 | lost | -1.00 | +6.1% | +9.2% |
+| 2026-08-20 | Dearica Hamby | assists | over | 2.5 | 122 | 1.0 | +18.9% | 2 | lost | -1.00 | -14.6% | -18.1% |
+| 2026-08-20 | Alanna Smith | threes | under | 1.5 | -192 | 1.0 | +16.7% | 0 | won | +0.52 | -3.2% | -0.1% |
+| 2026-08-20 | Arike Ogunbowale | threes | under | 1.5 | 100 | 1.0 | +15.0% | 2 | lost | -1.00 | -8.1% | -3.7% |
+| 2026-08-20 | Olivia Nelson-Ododa | assists | under | 1.5 | -108 | 1.0 | +15.0% | 0 | won | +0.93 | +6.6% | +9.8% |
+| 2026-08-20 | Rae Burrell | assists | under | 3.5 | -132 | 1.0 | +10.6% | 2 | won | +0.76 | +6.6% | +9.4% |
+| 2026-08-20 | Naz Hillmon | rebounds | under | 4.5 | 114 | 1.0 | +10.6% | 5 | lost | -1.00 | -8.1% | -1.9% |
 | 2026-08-19 | Shakira Austin | rebounds | under | 10.5 | -108 | 1.0 | +17.6% | 10 | won | +0.93 | +0.5% | +6.0% |
 | 2026-08-19 | Kayla McBride | threes | over | 2.5 | -120 | 1.0 | +22.4% | 3 | won | +0.83 | -16.4% | -20.4% |
 | 2026-08-19 | Cecilia Zandalasini | threes | over | 1.5 | 152 | 1.0 | +20.0% | 1 | lost | -1.00 | -3.8% | -9.0% |
