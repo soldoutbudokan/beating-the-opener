@@ -2535,7 +2535,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "League injury report at 0138Z DOWNGRADES Akoa Makani (Los Angeles Sparks) Day-To-Day -> Out (Ankle): \"Akoa Makani (ankle) has been ruled out for Tuesday's game against Phoenix.\" return_date 2026-08-13. game_date 2026-08-12; minutes_est 0.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 384
   },
   {
    "player": "Amy Okonkwo",
@@ -4087,7 +4087,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the ESPN league injury report (Las Vegas). Prior listing: 'Latson is out for Saturday's game against Minnesota due to a coach's decision' (Out, Coach's Decision). Off the report at 2026-08-18 00:38Z, so she is available for event 2742 (LVA vs ATL, 2026-08-18). Coach's-decision absences are role signals, not injuries: recorded as available with no minutes estimate, so the talent model's own state prices her.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 380
   },
   {
    "player": "Christyn Williams",
@@ -4194,7 +4194,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "DOWNGRADE in the 2133Z diff: Brink (Los Angeles Sparks) Day-To-Day -> Out, type Ribs. \"Brink (ribs) has been ruled out for Tuesday's game against the Sun, independent WNBA writer Justin Russo reports.\" Confirmed by BOTH the league injury report and the per-event report for LA@CON (ESPN event 401857152 = event 2741); return_date 2026-08-20. Supersedes the 2026-08-17 questionable entry.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 382
   },
   {
    "player": "Erica Wheeler",
@@ -4693,7 +4693,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "Ankle: upgraded Out \u2192 Day-To-Day on the league report, return_date 2026-08-20; LA hosts ATL that night. Supersedes the 2026-08-18 out entry. Upgrade only to questionable and no minutes asserted \u2014 her last panel game is 2026-08-15.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 383
   },
   {
    "player": "Hailey Van Lith",
@@ -4706,7 +4706,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league injury report (was Out on the 2026-08-18 snapshot). CON plays at LVA on 2026-08-20. Clears the out override; no minutes assertion \u2014 last panel game 2026-08-13, 14 min.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 377
   },
   {
    "player": "Rayah Marshall",
@@ -4758,7 +4758,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "Cleared from the ESPN injury report at 0132Z; she had been listed Out (coach's decision) for Tuesday's ATL game vs the Aces with return_date 2026-08-20. Conservative 'in' with no minutes claim - the report no longer carries her, and a coach's-decision DNP tells us nothing reliable about her next role.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 378
   },
   {
    "player": "Olivia Miles",
@@ -4980,6 +4980,110 @@
    "source": "avail:2026-08-21/0033Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 0033Z diff: Mitchell (Indiana Fever) is off the injury report (the illness/Day-To-Day tag is gone) and appears in tonight's per-event lineup for IND @ DAL as a STARTER. Supersedes entry 350 (2026-08-19 'questionable' for 2026-08-20, the last of the 24-minute illness chain) with an in/no-estimate record - the 24-minute illness estimate is retired now that she is a confirmed starter. Game already tipped at snapshot time, so this is history, not pricing input.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Hailey Van Lith",
+   "added": "2026-08-21T01:33:00Z",
+   "game_date": "2026-08-20",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/0133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league + event:401857159 injury report: Van Lith (coach's decision) OUT for Thursday's CON@LV (22:00 ET 8/20), return_date 2026-08-22. Newly listed this firing; supersedes the 08-20 'in' entry. CON minutes she would have taken most plausibly go to the guard rotation (Lacan), but that is not priced here - the override only zeroes her own line. No CON props on the current 8/21 sheet, so this is inert for pricing.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Indya Nivar",
+   "added": "2026-08-21T01:33:00Z",
+   "game_date": "2026-08-20",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/0133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league + event:401857160 injury report: 'Nivar (coach's decision) is out for Thursday's game against the Sparks' (ATL@LA, 22:00 ET 8/20), return_date 2026-08-22. Newly listed this firing; supersedes the 08-20 'in' entry. No ATL props on the current 8/21 sheet - inert for pricing.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Jaylyn Sherrod",
+   "added": "2026-08-21T01:33:00Z",
+   "game_date": "2026-08-20",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/0133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league + event:401857160 injury report: 'Sherrod (coach's decision) is out for Thursday's game versus the Sparks' (ATL@LA, 22:00 ET 8/20), return_date 2026-08-22. First override entry for this player. No ATL props on the current 8/21 sheet - inert for pricing.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Ta'Niya Latson",
+   "added": "2026-08-21T01:33:00Z",
+   "game_date": "2026-08-20",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/0133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league + event:401857159 injury report: 'Latson (coach's decision) is inactive for Thursday's game against Connecticut' (CON@LV, 22:00 ET 8/20), return_date 2026-08-23. Supersedes the 08-18 'in' entry. No LV props on the current 8/21 sheet - inert for pricing.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Alanna Smith",
+   "added": "2026-08-21T01:33:00Z",
+   "game_date": "2026-08-20",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/0133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league + event:401857158 injury report: Alanna Smith newly listed Day-To-Day (Leg), return_date 2026-08-20, for IND@DAL (20:00 ET 8/20, already IN PROGRESS at the time of this snapshot). Status downgrade from unlisted, so recorded conservatively as questionable with no minutes estimate rather than a manufactured number - she is on the event report, which usually means active. Inert for pricing: the game had already tipped and no DAL props are on the 8/21 sheet. Flagged for the record because an open bet (2745_threes_alanna smith_under) rides this player-game.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Cameron Brink",
+   "added": "2026-08-21T01:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/0133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the ESPN injury report this firing (was Out, Ribs; the 00:33Z league comment already read 'Brink (ribs) is probable for Thursday's game against the Dream'). Dropping off the report = available for ATL@LA (22:00 ET 8/20). Recorded status 'in' with no minutes estimate - a returning player's role is exactly what the talent model should be left to price, and inventing a ramp number here would be the news layer guessing. Supersedes the 08-18 out entry. No LA props on the current 8/21 sheet.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Erica Wheeler",
+   "added": "2026-08-21T01:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/0133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the ESPN injury report this firing (was Day-To-Day, Ankle; the 00:33Z league comment read 'Wheeler (ankle) is listed as probable for Thursday's game versus the Dream'). Available for ATL@LA (22:00 ET 8/20). Status 'in', no minutes estimate. Supersedes the 08-20 questionable entry. No LA props on the current 8/21 sheet.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Monique Akoa Makani",
+   "added": "2026-08-21T01:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/0133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the ESPN injury report this firing (was Out, Ankle; the 00:33Z league comment read 'Akoa Makani (ankle) is probable for Thursday's game versus the Dream'). Available for ATL@LA (22:00 ET 8/20). Status 'in', no minutes estimate. Supersedes the 08-12 out entry, the last live one for this player. No LA props on the current 8/21 sheet.",
    "author": "news-watch",
    "superseded_by": null
   }
