@@ -6,9 +6,9 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2748_points_sydney taylor_over,2026-08-21,2026-08-21 23:30:00,2748,points,Sydney Taylor,CHI,GSV@CHI,over,12.5,-128.0,0.6899,0.2289,True,-202,-186,0.0,16.13,,12.5,PLAYER_ALREADY_BET(threes over 1.5),False,False
 2748_assists_gabby williams_under,2026-08-21,2026-08-21 23:30:00,2748,assists,Gabby Williams,GSV,GSV@CHI,under,2.5,112.0,0.5761,0.2212,True,-126,-119,2.5,2.3,,2.5,,False,True
 2750_assists_kiki rice_under,2026-08-21,2026-08-22 02:00:00,2750,assists,Kiki Rice,TOR,PDX@TOR,under,3.5,122.0,0.5434,0.2064,True,-111,-105,0.0,3.4,,3.5,MOVED_OFF_OPEN,False,False
-2749_assists_kayla mcbride_under,2026-08-21,2026-08-21 23:30:00,2749,assists,Kayla McBride,MIN,MIN@WAS,under,2.5,-144.0,0.7092,0.2017,True,-221,-202,0.0,1.77,,1.5,MOVED_OFF_OPEN,False,False
+2749_threes_kayla mcbride_over,2026-08-21,2026-08-21 23:30:00,2749,threes,Kayla McBride,MIN,MIN@WAS,over,2.5,-122.0,0.6486,0.1802,True,-170,-157,0.0,3.34,,2.5,MOVED_OFF_OPEN,False,False
 2750_points_brittney sykes_over,2026-08-21,2026-08-22 02:00:00,2750,points,Brittney Sykes,TOR,PDX@TOR,over,14.5,-128.0,0.6495,0.157,True,-170,-158,0.0,17.51,,12.5,MOVED_OFF_OPEN;ROLE_MIN?,False,False
 2750_points_megan dileo_under,2026-08-21,2026-08-22 02:00:00,2750,points,Megan DiLeo,PDX,PDX@TOR,under,14.5,-106.0,0.5943,0.1549,True,-136,-127,2.0,13.4,,14.5,,False,True
 2748_rebounds_kamilla cardoso_over,2026-08-21,2026-08-21 23:30:00,2748,rebounds,Kamilla Cardoso,CHI,GSV@CHI,over,8.5,118.0,0.5185,0.1303,True,-101,105,1.5,8.82,,8.5,,False,True
-2749_rebounds_shakira austin_under,2026-08-21,2026-08-21 23:30:00,2749,rebounds,Shakira Austin,WAS,MIN@WAS,under,10.5,-128.0,0.6272,0.1173,True,-155,-144,0.0,9.45,,10.5,MOVED_OFF_OPEN;PLAYER_ALREADY_BET(threes under 0.5),False,False
+2749_rebounds_shakira austin_under,2026-08-21,2026-08-21 23:30:00,2749,rebounds,Shakira Austin,WAS,MIN@WAS,under,10.5,-125.0,0.6272,0.129,True,-155,-144,0.0,9.45,,10.5,MOVED_OFF_OPEN;PLAYER_ALREADY_BET(threes under 0.5),False,False
 2748_threes_natasha cloud_under,2026-08-21,2026-08-21 23:30:00,2748,threes,Natasha Cloud,CHI,GSV@CHI,under,1.5,-205.0,0.7465,0.1106,True,-263,-238,3.0,0.97,,1.5,,False,True

@@ -5099,6 +5099,19 @@
    "quote": "CLEARED from BOTH the ESPN league report and the event:401857158 report this firing (was Day-To-Day, Leg, return_date 2026-08-20). IND@DAL is now STATUS_FINAL, so part of this is the event report retiring with the game - but she also dropped off the LEAGUE report, which is a real clearing, and her listed return date had arrived. Recorded 'in' with no minutes estimate: a cleared player's role is what the talent model should price, and manufacturing a ramp number here would be the news layer guessing. Supersedes entry 381 (the 01:33Z questionable). Inert for pricing - the game she was listed for has finished and no DAL props are on the 8/21 sheet; the open bet 2745_threes_alanna smith_under rode that completed game.",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "Ariel Atkins",
+   "added": "2026-08-21T04:38:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/0438Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report, NEW: Atkins (Head) listed Out for the Sparks, est. return 2026-08-22 - \"Atkins won't return to Thursday's game against the Dream due to a head injury ... nine points ... in 16 minutes.\" Exiting a game mid-game with a head injury is concussion-protocol territory, so the conservative read is out until the feed clears her; game_date null (until-cleared), to be superseded by the next snapshot that moves her.",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }
