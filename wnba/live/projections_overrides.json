@@ -4521,7 +4521,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "UPDATED in the 1532Z diff: Horston (Seattle Storm) escalated Day-To-Day -> Out (Shoulder) on the league report, return_date still 2026-08-23. This CONFIRMS the conservative reading entry 287 took on 2026-08-17 - the feed now says Out outright - so the estimate is unchanged (out, 0 minutes). Seattle has no game on today's board (only TOR @ WSH and MIN @ GS), so this is currently inert; it stays in force until a CLEARED snapshot supersedes it.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 409
   },
   {
    "player": "Brittney Sykes",
@@ -4926,7 +4926,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW in the 0033Z diff: Jones (Dallas Wings) is Out - Coach's Decision for tonight's IND @ DAL (ESPN event 401857158), on BOTH the league and per-event reports; comment \"Jones (coach's decision) won't play Thursday against the Fever\", return_date 2026-08-23. 0 minutes, scoped to tonight. Supersedes entry 220 (2026-08-13 'in', the last live Jones record). Inert for pricing - game already tipped at snapshot time and no Jones prop is on the sheet.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 408
   },
   {
    "player": "Michelle Onyiah",
@@ -5241,7 +5241,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "Maly listed Out (coach's decision) for the Sky, est. return 2026-08-23. NEW on the ESPN per-event (GS@CHI) report. Coach's Decision counts as Out per protocol; conservative read is out until the feed clears her. game_date null (until-cleared).",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 410
   },
   {
    "player": "Aicha Coulibaly",
@@ -5383,6 +5383,45 @@
    "source": "avail:2026-08-22/1833Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Day-To-Day (Head), Phoenix Mercury, per-event report for ATL@PHX (event:401857166), return_date 2026-08-22 = tonight's game, no comment text. The only diff row this firing. game_date pinned to 2026-08-22 rather than until-cleared: the feed's own return date is tonight, so a head DTD listed hours before tip is a game-time decision, not an ongoing absence, and an until-cleared entry would silently zero her out of Sunday. Status only, no minutes change - the Boston/Clark precedent (a questionable is a display flag, not a model input) and here there is nothing to haircut anyway: she is deep bench (3-7 min in each of her last six, last panel game 2026-08-16, 3 min) and carries no rows in projections.csv, so the entry is inert for pricing and recorded for the archive.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Haley Jones",
+   "added": "2026-08-22T22:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/2233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league injury report in the 2233Z diff (was Out, Dallas Wings, Coach's Decision, return_date 2026-08-23; entry 372). Treated as available with no minutes assumption - a clearing is evidence of availability, not of a role. Last panel game 2026-08-14 (1 min, bench); she has played 2 and 1 minutes in her two Wings appearances, so this is inert for pricing either way. Supersedes 372.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Jordan Horston",
+   "added": "2026-08-22T22:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/2233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league injury report in the 2233Z diff (was Out, Seattle Storm, Shoulder, comment 'out', return_date 2026-08-23 - entry 342, which escalated the 2026-08-17 Day-To-Day). The clearing lands on the eve of her listed return date and ahead of SEA@DAL on 2026-08-23, where the sheet carries Seattle props. Logged as in with minutes_est null: her panel state (last game 2026-08-16, 9 min after starting 23/25 min on 8/10 and 8/14 - the game she left injured) already sits BELOW her pre-injury starter role, so adding no minutes assumption is the reading least favourable to a news-driven over on Horston and least disruptive to teammates' minutes. A return off a shoulder injury may also be a ramp; if she starts and plays through, the panel picks it up from her next game. Supersedes 342.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Morgan Maly",
+   "added": "2026-08-22T22:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/2233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league injury report in the 2233Z diff (was Out, Chicago Sky, Coach's Decision for Friday's game vs Golden State, return_date 2026-08-23; entry 396). Treated as available with no minutes assumption. She has zero panel games, so she is unpriceable and this is inert - logged for the archive and to close out the Out entry. Supersedes 396.",
    "author": "news-watch",
    "superseded_by": null
   }
