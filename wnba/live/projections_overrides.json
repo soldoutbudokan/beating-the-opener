@@ -5359,6 +5359,19 @@
    "quote": "NEW Out (Coach's Decision), Toronto Tempo, league report at 0237Z: 'Green (coach's decision) has been ruled out for Friday's game against the Fire' - Friday = tonight's PDX@TOR - return_date 2026-08-23. Supersedes index 345 (the 2026-08-19/1733Z clearing). game_date null on the Ashlon Jackson precedent (index for 2026-08-10): a coach's decision is normally one game, but the feed's return date (08-23) is Toronto's next game, so until-cleared is the direction that does not quietly re-activate her. Deep bench - one panel game all season (2026-08-19, 5 min) - so this is inert for pricing either way; availability only, no minutes estimate.",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "Aneesah Morrow",
+   "added": "2026-08-22T03:33:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/0333Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Out (Knee), Toronto Tempo, league report at 0333Z: \"Morrow (knee) won't return to Friday's game against Portland, Zulfi Sheikh of Sportsnet reports. She went scoreless (0-2 FG, 0-1 3Pt), adding two rebounds.\" Mirrored on the PDX@TOR per-event report (event 401857163, still IN_PROGRESS at snapshot time) and the lineup row shows her not starting with reason COACH'S DECISION - an in-game exit, not a pre-game scratch. return_date 2026-08-23 = Toronto's next game, so game_date null (until-cleared) on the Zaay Green/Ashlon Jackson precedent: an in-game knee exit with no stated severity should not quietly re-activate her. Status only, no minutes claim - her workload after the injury is unknowable from this feed. Index 5 (in, game_date 2026-08-04) is inert and is not superseded. No Morrow prop is on the current sheet (ATL@PHO, CON@LAS, IND@NYL); recorded for the archive and for the next Toronto slate.",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }
