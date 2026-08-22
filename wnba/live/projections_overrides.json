@@ -4563,7 +4563,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 1733Z diff: Green (Toronto Tempo) dropped off both the league injury report and the per-event report between 1532Z and 1733Z; entry 326's Out was a Coach's Decision scoped to Tuesday's IND @ TOR with return_date 2026-08-19, so the clear is that DNP rolling off rather than an injury resolving. Status only, NO minutes estimate - she has no panel game (no rows in panel.pkl), so there is no state to adjust and no prop of hers on the board. Supersedes entry 326.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 405
   },
   {
    "player": "Maria Kliundikova",
@@ -4955,7 +4955,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 0033Z diff: Sykes (Toronto Tempo) no longer appears on the ESPN league injury report or on any per-event report. Her 2026-08-19 Out - Rest (entry 343, return_date 2026-08-21) has expired as advertised, so this supersedes it with an in/no-estimate record rather than leaving a 0-minute override sitting over TOR's 2026-08-21 PDX @ TOR sheet. No minutes estimate: 'no longer listed' is not a minutes report, and the base panel state is the conservative choice. Owner note: she sat the second night of a back-to-back for rest, so tomorrow is a return-from-rest game, not a return-from-injury ramp - but ESPN has published no lineup for that event yet, so confirm near tip before acting on any TOR prop.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 403
   },
   {
    "player": "Caitlin Clark",
@@ -5318,6 +5318,45 @@
    "source": "avail:2026-08-22/0036Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league injury report (was Out as of the 2026-08-21 snapshot). Atlanta; last panel game 2026-08-16 (8 min). Treated as available with no minutes assumption. Supersedes the 2026-08-21 out entry.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Brittney Sykes",
+   "added": "2026-08-22T02:37:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/0237Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Out (Foot), Toronto Tempo, league report at 0237Z, comment 'out', return_date 2026-08-23. Supersedes index 374 (the 2026-08-21/0033Z clearing that put her back to in). game_date null rather than tonight-only: the feed's own return date is 08-23, which is Toronto's NEXT game (LVA@TOR, Sun 19:00 ET), so the absence runs past the PDX@TOR game already in progress and an entry pinned to 08-21 would be inert on arrival. Availability only, no minutes estimate - she is Toronto's starting guard (21 min on 08-18 in her first game back from the mid-June foot absence), and guessing at a reduced load for whoever replaces her would manufacture news-driven edges the feed does not support. Toronto are not on the 2026-08-22 slate, so this is currently inert for pricing; supersede when the feed clears her.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Courtney Williams",
+   "added": "2026-08-22T02:37:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/0237Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Out (Lower Leg), Minnesota Lynx, league report at 0237Z, return_date 2026-08-24: 'Williams sustained an apparent lower right leg injury in the final minute of Friday's 94-84 win over the Mystics, per Mitchell Hansen of CanisHoopus.com. She finished with 13 points (5-11 FG, 1-3 3Pt, 2-2 FT), eight assists, six rebounds and one steal in 31 minutes.' Confirmed by the per-event report for 401857161. No prior override entry for her. game_date null (until-cleared): the injury happened in a game that is already over and the return date is 08-24, which is Minnesota's next game (GSV@MIN, Mon 20:00 ET). Availability only, no minutes estimate - she is a 29-31 min starter (08-09 through 08-19 panel), and an injury reported minutes after the final buzzer is exactly the situation where the severity is unknown; the conservative call is to remove her rather than invent a ramp. Minnesota are not on the 2026-08-22 slate, so this is inert for tomorrow's pricing. Supersede when the feed updates.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Zaay Green",
+   "added": "2026-08-22T02:37:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/0237Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Out (Coach's Decision), Toronto Tempo, league report at 0237Z: 'Green (coach's decision) has been ruled out for Friday's game against the Fire' - Friday = tonight's PDX@TOR - return_date 2026-08-23. Supersedes index 345 (the 2026-08-19/1733Z clearing). game_date null on the Ashlon Jackson precedent (index for 2026-08-10): a coach's decision is normally one game, but the feed's return date (08-23) is Toronto's next game, so until-cleared is the direction that does not quietly re-activate her. Deep bench - one panel game all season (2026-08-19, 5 min) - so this is inert for pricing either way; availability only, no minutes estimate.",
    "author": "news-watch",
    "superseded_by": null
   }

@@ -2,9 +2,10 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2752_rebounds_olivia nelsonododa_under,2026-08-22,2026-08-23 01:00:00,2752,rebounds,Olivia Nelson-Ododa,CON,CON@LAS,under,8.5,-114.0,0.7201,0.3519,True,-232,-211,0.0,6.79,,8.5,MOVED_OFF_OPEN;SUSPECT_EV(35%),False,True
 2752_assists_nneka ogwumike_over,2026-08-22,2026-08-23 01:00:00,2752,assists,Nneka Ogwumike,LAS,CON@LAS,over,2.5,-102.0,0.6149,0.2177,True,-148,-138,3.0,3.19,,2.5,,False,True
 2752_points_leila lacan_under,2026-08-22,2026-08-23 01:00:00,2752,points,Leila Lacan,CON,CON@LAS,under,12.5,-122.0,0.6677,0.215,True,-184,-170,0.0,10.42,,11.5,MOVED_OFF_OPEN,False,True
-2751_points_breanna stewart_under,2026-08-22,2026-08-22 23:00:00,2751,points,Breanna Stewart,NYL,IND@NYL,under,22.5,-115.0,0.6414,0.1991,True,-165,-153,0.0,20.14,,23.5,MOVED_OFF_OPEN,False,True
+2751_points_breanna stewart_under,2026-08-22,2026-08-22 23:00:00,2751,points,Breanna Stewart,NYL,IND@NYL,under,22.5,-114.0,0.6414,0.204,True,-165,-153,0.0,20.14,,23.5,MOVED_OFF_OPEN,False,True
 2752_rebounds_rae burrell_under,2026-08-22,2026-08-23 01:00:00,2752,rebounds,Rae Burrell,LAS,CON@LAS,under,2.5,116.0,0.5508,0.1897,True,-114,-108,2.0,2.43,,2.5,,False,True
 2753_rebounds_naz hillmon_under,2026-08-22,2026-08-23 02:00:00,2753,rebounds,Naz Hillmon,ATL,ATL@PHO,under,4.5,122.0,0.5256,0.1668,True,-104,102,2.0,4.5,,4.5,,False,True
-2751_assists_kelsey mitchell_over,2026-08-22,2026-08-22 23:00:00,2751,assists,Kelsey Mitchell,IND,IND@NYL,over,2.5,144.0,0.464,0.1322,True,122,129,1.0,2.47,,2.5,,False,True
+2751_assists_kelsey mitchell_over,2026-08-22,2026-08-22 23:00:00,2751,assists,Kelsey Mitchell,IND,IND@NYL,over,2.5,148.0,0.464,0.1507,True,122,129,1.5,2.47,,2.5,,False,True
 2752_assists_dearica hamby_over,2026-08-22,2026-08-23 01:00:00,2752,assists,Dearica Hamby,LAS,CON@LAS,over,2.5,116.0,0.5226,0.1288,True,-102,103,1.5,2.73,,2.5,,False,True
 2751_rebounds_caitlin clark_under,2026-08-22,2026-08-22 23:00:00,2751,rebounds,Caitlin Clark,IND,IND@NYL,under,3.5,128.0,0.4872,0.1107,True,112,118,1.0,3.75,,3.5,,False,True
+2751_threes_sabrina ionescu_under,2026-08-22,2026-08-22 23:00:00,2751,threes,Sabrina Ionescu,NYL,IND@NYL,under,2.5,-132.0,0.627,0.102,True,-155,-144,2.0,2.18,,2.5,,True,False
