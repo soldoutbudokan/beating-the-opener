@@ -5372,6 +5372,19 @@
    "quote": "NEW Out (Knee), Toronto Tempo, league report at 0333Z: \"Morrow (knee) won't return to Friday's game against Portland, Zulfi Sheikh of Sportsnet reports. She went scoreless (0-2 FG, 0-1 3Pt), adding two rebounds.\" Mirrored on the PDX@TOR per-event report (event 401857163, still IN_PROGRESS at snapshot time) and the lineup row shows her not starting with reason COACH'S DECISION - an in-game exit, not a pre-game scratch. return_date 2026-08-23 = Toronto's next game, so game_date null (until-cleared) on the Zaay Green/Ashlon Jackson precedent: an in-game knee exit with no stated severity should not quietly re-activate her. Status only, no minutes claim - her workload after the injury is unknowable from this feed. Index 5 (in, game_date 2026-08-04) is inert and is not superseded. No Morrow prop is on the current sheet (ATL@PHO, CON@LAS, IND@NYL); recorded for the archive and for the next Toronto slate.",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "Marta Suarez",
+   "added": "2026-08-22T18:33:00Z",
+   "game_date": "2026-08-22",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/1833Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Day-To-Day (Head), Phoenix Mercury, per-event report for ATL@PHX (event:401857166), return_date 2026-08-22 = tonight's game, no comment text. The only diff row this firing. game_date pinned to 2026-08-22 rather than until-cleared: the feed's own return date is tonight, so a head DTD listed hours before tip is a game-time decision, not an ongoing absence, and an until-cleared entry would silently zero her out of Sunday. Status only, no minutes change - the Boston/Clark precedent (a questionable is a display flag, not a model input) and here there is nothing to haircut anyway: she is deep bench (3-7 min in each of her last six, last panel game 2026-08-16, 3 min) and carries no rows in projections.csv, so the entry is inert for pricing and recorded for the archive.",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }
