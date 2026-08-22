@@ -6,22 +6,22 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $108.37** (start $100)
+**Bankroll: $113.26** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 159 (85W-74L), 0 push, 5 void, 17 open |
-| staked | $159.00 |
-| P&L | $+8.37 (+5.3% ROI) |
-| mean EV said (model) | +20.33% (n=159) |
-| mean CLV (vs close) | -3.55% (n=159) |
-| mean CLV* (shade-adj) | -2.73% (n=159) |
-| closing line moved | 36 of 159 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 96.8W vs observed 85W (z=-1.94) |
-| Model-expected P&L | $+33.25 |
-| CLV-expected P&L | $-5.65 |
+| settled | 166 (91W-75L), 0 push, 5 void, 10 open |
+| staked | $166.00 |
+| P&L | $+13.26 (+8.0% ROI) |
+| mean EV said (model) | +20.15% (n=166) |
+| mean CLV (vs close) | -3.38% (n=164) |
+| mean CLV* (shade-adj) | -2.58% (n=164) |
+| closing line moved | 36 of 164 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| model calibration | expected 101.1W vs observed 91W (z=-1.63) |
+| Model-expected P&L | $+34.37 |
+| CLV-expected P&L | $-5.55 |
 
-CLV t-stat: -4.79 (iid); -2.43 clustered by match date (22 dates)
+CLV t-stat: -4.64 (iid); -2.34 clustered by match date (23 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
@@ -37,13 +37,13 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-22 | Kelsey Mitchell | assists | over | 2.5 | 146 | 1.0 | +14.1% |  |  |  |  |  |
 | 2026-08-22 | Dearica Hamby | assists | over | 2.5 | 116 | 1.0 | +12.8% |  |  |  |  |  |
 | 2026-08-22 | Caitlin Clark | rebounds | under | 3.5 | 126 | 1.0 | +10.2% |  |  |  |  |  |
-| 2026-08-21 | Carla Leite | assists | under | 6.5 | 114 | 1.0 | +24.7% |  |  |  |  |  |
-| 2026-08-21 | Gabby Williams | assists | under | 2.5 | 112 | 1.0 | +22.0% |  |  |  |  |  |
-| 2026-08-21 | Sydney Taylor | threes | over | 1.5 | -144 | 1.0 | +17.6% |  |  |  |  |  |
-| 2026-08-21 | Kamilla Cardoso | rebounds | over | 8.5 | 118 | 1.0 | +13.2% |  |  |  |  |  |
-| 2026-08-21 | Megan DiLeo | points | under | 14.5 | -110 | 1.0 | +12.9% |  |  |  |  |  |
-| 2026-08-21 | Natasha Cloud | threes | under | 1.5 | -205 | 1.0 | +10.9% |  |  |  |  |  |
-| 2026-08-21 | Shakira Austin | threes | under | 0.5 | -118 | 1.0 | +10.8% |  |  |  |  |  |
+| 2026-08-21 | Carla Leite | assists | under | 6.5 | 114 | 1.0 | +24.7% | 6 | won | +1.14 |  |  |
+| 2026-08-21 | Gabby Williams | assists | under | 2.5 | 112 | 1.0 | +22.0% | 0 | won | +1.12 | +13.1% | +17.2% |
+| 2026-08-21 | Sydney Taylor | threes | over | 1.5 | -144 | 1.0 | +17.6% | 4 | won | +0.69 | +1.0% | -1.8% |
+| 2026-08-21 | Kamilla Cardoso | rebounds | over | 8.5 | 118 | 1.0 | +13.2% | 10 | won | +1.18 | +6.8% | +1.2% |
+| 2026-08-21 | Megan DiLeo | points | under | 14.5 | -110 | 1.0 | +12.9% | 14 | won | +0.91 |  |  |
+| 2026-08-21 | Natasha Cloud | threes | under | 1.5 | -205 | 1.0 | +10.9% | 5 | lost | -1.00 | -3.9% | -1.6% |
+| 2026-08-21 | Shakira Austin | threes | under | 0.5 | -118 | 1.0 | +10.8% | 0 | won | +0.85 | -6.8% | -3.7% |
 | 2026-08-20 | Leila Lacan | assists | under | 4.5 | 116 | 1.0 | +24.1% | 3 | won | +1.16 | +23.0% | +26.6% |
 | 2026-08-20 | Jessica Shepard | points | under | 14.5 | -115 | 1.0 | +23.7% | 26 | lost | -1.00 | +6.1% | +9.2% |
 | 2026-08-20 | Dearica Hamby | assists | over | 2.5 | 122 | 1.0 | +18.9% | 2 | lost | -1.00 | -14.6% | -18.1% |
