@@ -3224,7 +3224,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 2134Z diff (was Out, Coach's Decision, New York Liberty). Supersedes entry 228. This is the ordinary post-game roll-off of a coach's-decision DNP, not a return from injury: the entry it supersedes was dated to the completed 2026-08-13 game (LAS at New York), and that game is over, so the league report simply dropped the row. Recorded as available, open-ended, with NO minutes estimate - nothing here shows a role either way. New York Liberty next plays 2026-08-15; tonight's sheet is DAL@IND and POR@SEA, so this is inert for 2026-08-14.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 411
   },
   {
    "player": "Ashlon Jackson",
@@ -4865,7 +4865,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report (NEW this snapshot): 'Carrington is out for Friday's game against the Valkyries due to a left foot injury.' status Out, type Foot, Chicago Sky, return_date 2026-08-23. Friday = CHI vs GSV (event 2748) on the current sheet, so the override is game-dated to it. The only prior Carrington entry (index 0) is game-dated 2026-07-31 and long expired, so nothing live is superseded. Note for the owner, NOT modelled here: with Carrington out the Sky's wing minutes/usage are likely redistributed relative to panel state - the talent model does not reallocate team minutes and this routine does not invent teammate bumps, so any CHI prop on the 8/21 sheet should be read as a role-change situation.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 414
   },
   {
    "player": "Aicha Coulibaly",
@@ -4910,7 +4910,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW in the 0033Z diff: Williams (Dallas Wings) is Out - Coach's Decision for tonight's IND @ DAL (ESPN event 401857158), on BOTH the league and per-event reports; comment \"Williams (coach's decision) is out for Thursday's game against the Fever\", return_date 2026-08-23. 0 minutes, scoped to tonight. Supersedes entry 353 (the 2026-08-19 CLEARED 'in'). Inert for pricing - game already tipped at snapshot time and no Williams prop is on the sheet.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 415
   },
   {
    "player": "Haley Jones",
@@ -5202,7 +5202,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 2138Z diff (was Out, Coach's Decision, est. return 2026-08-22): Onyiah is off the ESPN league injury report. Supersedes index 373 (out, game_date 2026-08-20, now inert). Availability only, no minutes estimate - same IND coach's-decision cycle as Hall (indices 60/80/96/153/180/221/280/304/323/354/373); eligible is not the same as playing.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 413
   },
   {
    "player": "Elena Buenavida",
@@ -5422,6 +5422,71 @@
    "source": "avail:2026-08-22/2233Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league injury report in the 2233Z diff (was Out, Chicago Sky, Coach's Decision for Friday's game vs Golden State, return_date 2026-08-23; entry 396). Treated as available with no minutes assumption. She has zero panel games, so she is unpriceable and this is inert - logged for the archive and to close out the Out entry. Supersedes 396.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Anneli Maley",
+   "added": "2026-08-22T23:32:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/2332Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Out (Coach's Decision), New York Liberty, league report at 2332Z: 'Maley (coach's decision) won't play Saturday against the Fever.' Mirrored on the IND@NY per-event report (event 401857164, IN_PROGRESS at snapshot time). return_date 2026-08-27 is SEVERAL New York games past tonight, so game_date null (until-cleared) on the Zaay Green / Ashlon Jackson precedent: a coach's decision is normally one game, but a return date beyond the next game must not quietly re-activate her tomorrow. Supersedes index 245 (the 2026-08-14/2134Z clearing). Deep bench - inert for pricing; availability only, no minutes estimate.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Elizabeth Balogun",
+   "added": "2026-08-22T23:32:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/2332Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Out (Coach's Decision), New York Liberty, league report at 2332Z: 'Balogun (coach's decision) is out for Saturday's game versus the Fever.' Mirrored on the IND@NY per-event report (event 401857164, IN_PROGRESS at snapshot time). return_date 2026-08-27 is several New York games past tonight, so game_date null (until-cleared) on the Zaay Green precedent, same reading as the Maley row in this same diff. First override entry for this player - supersedes nothing. Deep bench, no rows in projections.csv, so this is inert for pricing; availability only, no minutes estimate.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Michelle Onyiah",
+   "added": "2026-08-22T23:32:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/2332Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Out (Coach's Decision), Indiana Fever, league report at 2332Z: 'Onyiah is out for Saturday's game against the Liberty due to a coach's decision.' Mirrored on the IND@NY per-event report (event 401857164, IN_PROGRESS at snapshot time). return_date 2026-08-23 = Indiana's next game, so game_date null (until-cleared) exactly on the Zaay Green precedent - the direction that does not quietly re-activate her. Supersedes index 393 (the 2026-08-21/2138Z clearing); this is the third out/in cycle on her coach's-decision status this week. Deep bench - inert for pricing; availability only, no minutes estimate.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "DiJonai Carrington",
+   "added": "2026-08-22T23:32:00Z",
+   "game_date": "2026-08-23",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/2332Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "UPDATED Out -> Day-To-Day (Foot), Chicago Sky, league report at 2332Z, comment 'day-to-day', return_date 2026-08-23. An UPGRADE from index 368 (Out, 'left foot injury', for Friday's game vs the Valkyries), which this supersedes. Chicago does not play on tonight's 3-game slate (IND@NY, CON@LA, ATL@PHX), so nothing on the current sheet is touched. game_date pinned to 2026-08-23 rather than until-cleared, on the Marta Suarez precedent: the feed's own return date is Chicago's next game, so a foot DTD is a game-time decision for that game, not an ongoing absence. Status only, minutes_est null - the Boston/Clark precedent (a questionable is a display flag, not a model input), and a haircut here would be guessing at a ramp the feed does not describe. If she is still DTD on Sunday the next firing re-logs it.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Christyn Williams",
+   "added": "2026-08-22T23:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/2332Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league injury report in the 2332Z diff (was Out, Dallas Wings, Coach's Decision, comment 'Williams (coach's decision) is out for Thursday's game against the Fever', return_date 2026-08-23; entry 371, which this supersedes). Judged a REAL clearing, unlike the four other CLEARED rows in this same diff: Dallas is not on tonight's slate, so this drop cannot be the tip-off artifact described in those (see the Boston/Dantas/Jones/Fiebich note in this firing's report) - it is a one-game coach's decision expiring ahead of SEA@DAL on 2026-08-23. Treated as available with no minutes assumption: a clearing is evidence of availability, not of a role. Her panel state is deep bench, so this is inert for pricing.",
    "author": "news-watch",
    "superseded_by": null
   }
