@@ -4826,7 +4826,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report (UPDATED this snapshot, Out -> Day-To-Day): 'Miles (ankle) is probable for Friday's game against the Mystics.' return_date 2026-08-21. Supersedes the 2026-08-20T14:33Z out-0 entry: she is now probable, so zeroing her would be wrong. minutes left null = base panel state, the choice that manufactures no news-driven edge in either direction (the Plum precedent) while she ramps back from the ankle.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 398
   },
   {
    "player": "Elena Buenavida",
@@ -4878,7 +4878,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report (NEW this snapshot): 'Coulibaly (knee) is questionable for Friday's game against the Valkyries.' status Day-To-Day, type Knee, Chicago Sky, return_date 2026-08-21. Friday = CHI vs GSV (event 2748). Questionable with minutes left null = base panel state, the conservative choice that manufactures no news-driven edge in either direction (the Plum precedent, and the same treatment given Miles's newly-listed Day-To-Day at 0437Z). No prior Coulibaly entry to supersede.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 397
   },
   {
    "player": "Bree Hall",
@@ -5240,6 +5240,32 @@
    "source": "avail:2026-08-21/2233Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "Maly listed Out (coach's decision) for the Sky, est. return 2026-08-23. NEW on the ESPN per-event (GS@CHI) report. Coach's Decision counts as Out per protocol; conservative read is out until the feed clears her. game_date null (until-cleared).",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Aicha Coulibaly",
+   "added": "2026-08-21T23:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/2332Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED in the 2332Z diff (was Day-To-Day, Knee, est. return 2026-08-21): Coulibaly is off the ESPN league injury report, which at 2233Z still read 'Coulibaly (knee) is questionable for Friday's game against the Valkyries.' Friday = tonight's CHI vs GSV. Supersedes index 369 (questionable, game_date 2026-08-21), which asserted no minutes either. The feed is healthy this snapshot (52 rows vs 55 at 2233Z), so this is a real clearing, not an outage. Availability only, no minutes estimate: being off the report says she is eligible, not how she is used - the conservative base-panel choice that manufactures no news-driven edge in either direction.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Olivia Miles",
+   "added": "2026-08-21T23:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-21/2332Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED in the 2332Z diff (was Day-To-Day, Ankle, est. return 2026-08-21): Miles is off the ESPN league injury report, which at 2233Z still read 'Miles (ankle) is probable for Friday's game against the Mystics.' Friday = tonight's MIN at WAS. Supersedes index 365, which already carried status in with no minutes after the 08-20 probable update; this entry changes nothing about pricing and exists to record that the ankle tag from the 08-19 fourth-quarter exit is now fully cleared. Availability only, no minutes estimate - the same base-panel choice as 365.",
    "author": "news-watch",
    "superseded_by": null
   }
