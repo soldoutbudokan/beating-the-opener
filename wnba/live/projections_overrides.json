@@ -4994,7 +4994,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league + event:401857159 injury report: Van Lith (coach's decision) OUT for Thursday's CON@LV (22:00 ET 8/20), return_date 2026-08-22. Newly listed this firing; supersedes the 08-20 'in' entry. CON minutes she would have taken most plausibly go to the guard rotation (Lacan), but that is not priced here - the override only zeroes her own line. No CON props on the current 8/21 sheet, so this is inert for pricing.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 400
   },
   {
    "player": "Indya Nivar",
@@ -5007,7 +5007,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league + event:401857160 injury report: 'Nivar (coach's decision) is out for Thursday's game against the Sparks' (ATL@LA, 22:00 ET 8/20), return_date 2026-08-22. Newly listed this firing; supersedes the 08-20 'in' entry. No ATL props on the current 8/21 sheet - inert for pricing.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 401
   },
   {
    "player": "Jaylyn Sherrod",
@@ -5020,7 +5020,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league + event:401857160 injury report: 'Sherrod (coach's decision) is out for Thursday's game versus the Sparks' (ATL@LA, 22:00 ET 8/20), return_date 2026-08-22. First override entry for this player. No ATL props on the current 8/21 sheet - inert for pricing.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 402
   },
   {
    "player": "Ta'Niya Latson",
@@ -5111,7 +5111,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report, NEW: Atkins (Head) listed Out for the Sparks, est. return 2026-08-22 - \"Atkins won't return to Thursday's game against the Dream due to a head injury ... nine points ... in 16 minutes.\" Exiting a game mid-game with a head injury is concussion-protocol territory, so the conservative read is out until the feed clears her; game_date null (until-cleared), to be superseded by the next snapshot that moves her.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 399
   },
   {
    "player": "Jonquel Jones",
@@ -5266,6 +5266,58 @@
    "source": "avail:2026-08-21/2332Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 2332Z diff (was Day-To-Day, Ankle, est. return 2026-08-21): Miles is off the ESPN league injury report, which at 2233Z still read 'Miles (ankle) is probable for Friday's game against the Mystics.' Friday = tonight's MIN at WAS. Supersedes index 365, which already carried status in with no minutes after the 08-20 probable update; this entry changes nothing about pricing and exists to record that the ankle tag from the 08-19 fourth-quarter exit is now fully cleared. Availability only, no minutes estimate - the same base-panel choice as 365.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Ariel Atkins",
+   "added": "2026-08-22T00:36:00Z",
+   "game_date": null,
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/0036Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "Status UPGRADED Out -> Day-To-Day (Head). League report: 'Atkins (head) is listed as probable for Saturday's game against Connecticut.' Supersedes the 2026-08-21 out entry, which is now stale: she actually played 2026-08-20 (16 min, cut short from her 26-30 min norm), and the feed now has her probable. minutes_est left null deliberately - she is not a stale-role returnee (her last panel game is two days old), so there is no role gap to correct, and inventing a minutes cut here would manufacture an under exactly as inventing a full load would manufacture an over. The entry's only job is to clear an OUT that the feed has withdrawn.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Hailey Van Lith",
+   "added": "2026-08-22T00:36:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/0036Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league injury report (was Out as of the 2026-08-21 snapshot). Connecticut; last panel game 2026-08-13 (14 min). Treated as available with no minutes assumption - a clearing is evidence she is off the report, not evidence of a role. Supersedes the 2026-08-21 out entry.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Indya Nivar",
+   "added": "2026-08-22T00:36:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/0036Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league injury report (was Out as of the 2026-08-21 snapshot). Atlanta; last panel game 2026-07-11 (1 min) - deep bench, so this is inert for pricing either way. Supersedes the 2026-08-21 out entry.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Jaylyn Sherrod",
+   "added": "2026-08-22T00:36:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-22/0036Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league injury report (was Out as of the 2026-08-21 snapshot). Atlanta; last panel game 2026-08-16 (8 min). Treated as available with no minutes assumption. Supersedes the 2026-08-21 out entry.",
    "author": "news-watch",
    "superseded_by": null
   }
