@@ -10,12 +10,12 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2754_points_alanna smith_under,2026-08-23,2026-08-23 20:00:00,2754,points,Alanna Smith,DAL,SEA@DAL,under,10.5,-122.0,0.6551,0.192,True,-174,-161,3.5,8.78,,10.5,ROLE_MIN?,True,False
 2752_rebounds_rae burrell_under,2026-08-22,2026-08-23 01:00:00,2752,rebounds,Rae Burrell,LAS,CON@LAS,under,2.5,116.0,0.5496,0.1871,True,-114,-107,2.5,2.44,,2.5,,False,True
 2756_points_natasha cloud_over,2026-08-23,2026-08-23 23:00:00,2756,points,Natasha Cloud,CHI,IND@CHI,over,11.5,-122.0,0.6499,0.1826,True,-170,-158,3.0,14.3,,11.5,,True,False
-2751_threes_breanna stewart_under,2026-08-22,2026-08-22 23:00:00,2751,threes,Breanna Stewart,NYL,IND@NYL,under,0.5,164.0,0.4458,0.1768,True,132,138,0.0,0.81,,0.5,PLAYER_ALREADY_BET(points under 23.5),False,False
 2754_threes_dominique malonga_under,2026-08-23,2026-08-23 20:00:00,2754,threes,Dominique Malonga,SEA,SEA@DAL,under,0.5,154.0,0.4628,0.1756,True,123,130,1.5,0.77,,0.5,,True,False
-2753_assists_jordin canada_under,2026-08-22,2026-08-23 02:00:00,2753,assists,Jordin Canada,ATL,ATL@PHO,under,7.5,100.0,0.5871,0.1742,True,-132,-124,0.0,6.98,,7.5,MOVED_OFF_OPEN,False,False
-2753_rebounds_naz hillmon_under,2026-08-22,2026-08-23 02:00:00,2753,rebounds,Naz Hillmon,ATL,ATL@PHO,under,4.5,124.0,0.5239,0.1736,True,-103,103,2.0,4.51,,4.5,,False,True
 2754_threes_arike ogunbowale_under,2026-08-23,2026-08-23 20:00:00,2754,threes,Arike Ogunbowale,DAL,SEA@DAL,under,1.5,102.0,0.5807,0.1731,True,-129,-121,2.5,1.43,,1.5,,True,False
 2756_points_sydney taylor_over,2026-08-23,2026-08-23 23:00:00,2756,points,Sydney Taylor,CHI,IND@CHI,over,14.5,-114.0,0.6239,0.1711,True,-153,-143,3.0,17.03,,14.5,,True,False
+2753_rebounds_naz hillmon_under,2026-08-22,2026-08-23 02:00:00,2753,rebounds,Naz Hillmon,ATL,ATL@PHO,under,4.5,122.0,0.5239,0.1631,True,-103,103,2.0,4.51,,4.5,,False,True
+2753_assists_jordin canada_under,2026-08-22,2026-08-23 02:00:00,2753,assists,Jordin Canada,ATL,ATL@PHO,under,7.5,-102.0,0.5871,0.1627,True,-132,-124,0.0,6.98,,7.5,MOVED_OFF_OPEN,False,False
+2751_points_breanna stewart_under,2026-08-22,2026-08-22 23:00:00,2751,points,Breanna Stewart,NYL,IND@NYL,under,22.5,-122.0,0.6388,0.1623,True,-163,-151,0.0,20.19,,23.5,MOVED_OFF_OPEN,False,True
 2752_rebounds_ariel atkins_over,2026-08-22,2026-08-23 01:00:00,2752,rebounds,Ariel Atkins,LAS,CON@LAS,over,2.5,110.0,0.543,0.1404,True,-111,-105,0.0,2.91,,2.5,NON_FD_OPEN;ROLE_MIN?,False,False
 2752_assists_dearica hamby_over,2026-08-22,2026-08-23 01:00:00,2752,assists,Dearica Hamby,LAS,CON@LAS,over,2.5,116.0,0.524,0.1318,True,-103,103,1.5,2.74,,2.5,,False,True
 2755_assists_shakira austin_under,2026-08-23,2026-08-23 23:00:00,2755,assists,Shakira Austin,WAS,WAS@PDX,under,2.5,-110.0,0.5907,0.1276,True,-134,-125,2.0,2.24,,2.5,,True,False
