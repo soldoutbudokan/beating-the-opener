@@ -1,0 +1,221 @@
+{
+"captured_utc": "2026-08-23 18:33",
+"events": [
+{
+"date": "2026-08-23T20:00Z",
+"event_id": "401857167",
+"name": "SEA @ DAL",
+"status": "STATUS_SCHEDULED"
+},
+{
+"date": "2026-08-23T23:00Z",
+"event_id": "401857168",
+"name": "IND @ CHI",
+"status": "STATUS_SCHEDULED"
+},
+{
+"date": "2026-08-23T23:00Z",
+"event_id": "401857169",
+"name": "WSH @ POR",
+"status": "STATUS_SCHEDULED"
+},
+{
+"date": "2026-08-23T23:00Z",
+"event_id": "401857170",
+"name": "LV @ TOR",
+"status": "STATUS_SCHEDULED"
+}
+],
+"injuries": [
+{
+"comment": "",
+"player": "Azzi Fudd",
+"return_date": "2027-04-15",
+"source": "event:401857167",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Knee"
+},
+{
+"comment": "",
+"player": "Aziaha James",
+"return_date": "2026-08-30",
+"source": "event:401857167",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Leg"
+},
+{
+"comment": "",
+"player": "Costanza Verona",
+"return_date": "2026-09-17",
+"source": "event:401857167",
+"status": "Out",
+"team": "Dallas Wings",
+"type": "Personal"
+},
+{
+"comment": "",
+"player": "Natisha Hiedeman",
+"return_date": "2026-08-26",
+"source": "event:401857167",
+"status": "Out",
+"team": "Seattle Storm",
+"type": "Shoulder"
+},
+{
+"comment": "",
+"player": "DiJonai Carrington",
+"return_date": "2026-08-23",
+"source": "event:401857168",
+"status": "Day-To-Day",
+"team": "Chicago Sky",
+"type": "Foot"
+},
+{
+"comment": "",
+"player": "Skylar Diggins",
+"return_date": "2026-08-29",
+"source": "event:401857168",
+"status": "Out",
+"team": "Chicago Sky",
+"type": "Knee"
+},
+{
+"comment": "",
+"player": "Rickea Jackson",
+"return_date": "2027-05-01",
+"source": "event:401857168",
+"status": "Out",
+"team": "Chicago Sky",
+"type": "Knee"
+},
+{
+"comment": "",
+"player": "Myisha Hines-Allen",
+"return_date": "2026-08-23",
+"source": "event:401857168",
+"status": "Day-To-Day",
+"team": "Indiana Fever",
+"type": "Shoulder"
+},
+{
+"comment": "",
+"player": "Caitlin Clark",
+"return_date": "2026-08-23",
+"source": "event:401857168",
+"status": "Day-To-Day",
+"team": "Indiana Fever",
+"type": "Back"
+},
+{
+"comment": "",
+"player": "Aliyah Boston",
+"return_date": "2026-08-28",
+"source": "event:401857168",
+"status": "Out",
+"team": "Indiana Fever",
+"type": "Lower Leg"
+},
+{
+"comment": "",
+"player": "Luisa Geiselsoder",
+"return_date": "2027-05-01",
+"source": "event:401857169",
+"status": "Out",
+"team": "Portland Fire",
+"type": "Personal"
+},
+{
+"comment": "",
+"player": "Sarah Ashlee Barker",
+"return_date": "2027-05-01",
+"source": "event:401857169",
+"status": "Out",
+"team": "Portland Fire",
+"type": "Knee"
+},
+{
+"comment": "",
+"player": "Sania Feagin",
+"return_date": "2027-05-01",
+"source": "event:401857169",
+"status": "Out",
+"team": "Portland Fire",
+"type": "Knee"
+},
+{
+"comment": "",
+"player": "Shakira Austin",
+"return_date": "2026-08-23",
+"source": "event:401857169",
+"status": "Day-To-Day",
+"team": "Washington Mystics",
+"type": "Knee"
+},
+{
+"comment": "",
+"player": "Aneesah Morrow",
+"return_date": "2026-08-26",
+"source": "event:401857170",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Knee"
+},
+{
+"comment": "",
+"player": "Maria Conde",
+"return_date": "2026-08-26",
+"source": "event:401857170",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Calf"
+},
+{
+"comment": "",
+"player": "Brittney Sykes",
+"return_date": "2026-08-26",
+"source": "event:401857170",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Foot"
+},
+{
+"comment": "",
+"player": "Marina Mabrey",
+"return_date": "2026-08-26",
+"source": "event:401857170",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Hip"
+},
+{
+"comment": "",
+"player": "Nyara Sabally",
+"return_date": "2026-09-18",
+"source": "event:401857170",
+"status": "Out",
+"team": "Toronto Tempo",
+"type": "Calf"
+},
+{
+"comment": "",
+"player": "A'ja Wilson",
+"return_date": "2026-08-23",
+"source": "event:401857170",
+"status": "Day-To-Day",
+"team": "Las Vegas Aces",
+"type": "Back"
+},
+{
+"comment": "",
+"player": "Dana Evans",
+"return_date": "2026-08-23",
+"source": "event:401857170",
+"status": "Out",
+"team": "Las Vegas Aces",
+"type": "Leg"
+}
+],
+"lineups": []
+}

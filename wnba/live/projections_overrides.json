@@ -5150,7 +5150,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report, NEW in the 2138Z diff (absent from the 1732Z report): Boston listed Day-To-Day (Lower Leg) for the Fever, est. return 2026-08-22 - \"Boston (lower leg) is listed as questionable for Saturday's game against the Liberty.\" Supersedes index 327 (in, until-cleared). No minutes estimate on purpose: this is the same questionable->in cycle she has run through repeatedly this month (indices 15/53/73/99/217/248/264/283/299/327), her panel state is her own current IND role, and inventing a ramp cut would manufacture an under out of a status listing. Targets the 8/22 NYL@IND sheet (event 2751); re-confirm near tip.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 430
   },
   {
    "player": "Caitlin Clark",
@@ -5462,7 +5462,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Out (Coach's Decision), Indiana Fever, league report at 2332Z: 'Onyiah is out for Saturday's game against the Liberty due to a coach's decision.' Mirrored on the IND@NY per-event report (event 401857164, IN_PROGRESS at snapshot time). return_date 2026-08-23 = Indiana's next game, so game_date null (until-cleared) exactly on the Zaay Green precedent - the direction that does not quietly re-activate her. Supersedes index 393 (the 2026-08-21/2138Z clearing); this is the third out/in cycle on her coach's-decision status this week. Deep bench - inert for pricing; availability only, no minutes estimate.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 433
   },
   {
    "player": "DiJonai Carrington",
@@ -5514,7 +5514,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league AND per-event (401857164) injury reports in the 0032Z diff; was Day-To-Day (Back) with comment 'Clark (back) is available for Saturday's game against the Liberty' (entry 390, which this supersedes). Judged a REAL clearing and not the tip-off drop-off artifact: the same snapshot's lineup feed lists her for IND@NY as starter=true, dnp=false. Treated as available with no minutes assumption - a clearing is evidence of availability, not of a role, and a back DTD that clears on game day gives no basis for a minutes haircut the feed does not describe. Note the sheet carries an OPEN owner bet on Clark rebounds under (key 2751_rebounds_caitlin clark_under); this entry does not change its pricing, it records that she played rather than sat.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 431
   },
   {
    "player": "Ariel Atkins",
@@ -5669,6 +5669,58 @@
    "source": "avail:2026-08-23/1732Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Day-To-Day (Knee), Washington Mystics, ESPN league report + per-event report for WSH@POR at 1732Z (13:32 ET): \"Austin (knee) is listed as questionable for Sunday's game against the Fire.\" return_date 2026-08-23 - today's WAS@PDX (19:00 ET, event 2755), STATUS_SCHEDULED in the same snapshot. Supersedes entry 237 (the 08-14 'in' clearing of her head DTD). Status only, no minutes estimate. Material rather than inert: the owner already holds an OPEN bet on this player-game (2755_assists_shakira austin_under 2.5 @ -110, filled 2026-08-22), and an under on a questionable player cuts both ways - fewer minutes helps the under, a scratch voids it. Flagged in this firing's chat tables as a display-only availability warning; the routine does not touch bets.csv or picks.csv.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Aliyah Boston",
+   "added": "2026-08-23T18:33:00Z",
+   "game_date": "2026-08-23",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/1833Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Out (Lower Leg), Indiana Fever, IND@CHI per-event report (event 401857168, STATUS_SCHEDULED, 19:00 ET) at 1833Z (14:33 ET); return_date 2026-08-28, so she is out for tonight and the next two Indiana games, not a same-day question. The ESPN league report 502'd on this firing, so this comes from the per-event feed alone - which is the stronger of the two sources for a game-day scratch anyway. Supersedes index 389 (the 08-21 'questionable' for 08-22). Definite Out with a forward return date, so minutes_est 0: this is the starting centre's role removed, and pricing any Boston prop off her full-role state tonight would be exactly the information gap the panel gate exists to stop. No Boston prop is on the current sheet, so this is inert for pricing; it exists so the sheet cannot pick her up and so the archive carries the scratch. NOT a licence to re-price her team-mates: the routine does not redistribute minutes.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Caitlin Clark",
+   "added": "2026-08-23T18:33:00Z",
+   "game_date": "2026-08-23",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/1833Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Day-To-Day (Back), Indiana Fever, IND@CHI per-event report (event 401857168, STATUS_SCHEDULED, 19:00 ET) at 1833Z (14:33 ET); return_date 2026-08-23 = tonight, so this is forward-looking doubt on a scheduled game, not a post-hoc DNP. Supersedes index 417 (the 08-23 00:32Z 'in'). Status only, no minutes estimate - a same-day back DTD on a franchise player records a fresh doubt; asserting a minutes number here would manufacture an under out of the routine's own guess. Arrives on the same event report as Boston's Out, so treat the Indiana front court and back court as unsettled until lineups post near tip.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Myisha Hines-Allen",
+   "added": "2026-08-23T18:33:00Z",
+   "game_date": "2026-08-23",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/1833Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Day-To-Day (Shoulder), Indiana Fever, IND@CHI per-event report (event 401857168, STATUS_SCHEDULED, 19:00 ET) at 1833Z (14:33 ET); return_date 2026-08-23 = tonight. First override entry for this player - nothing to supersede. Status only, no minutes estimate. Third Indiana name added by this one snapshot (with Boston Out and Clark DTD), so the Fever rotation is the unsettled situation of the slate; no Hines-Allen prop is on the sheet, so this is availability record-keeping, not pricing.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Michelle Onyiah",
+   "added": "2026-08-23T18:33:00Z",
+   "game_date": "2026-08-23",
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/1833Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED - was Out (Coach's Decision), Indiana Fever. She drops off the IND@CHI per-event report (event 401857168) between 1732Z and 1833Z, and that report is a LIVE source on this firing (only the league feed 502'd), so unlike the 20 league-only disappearances in the same diff this one is a real clearing, not an outage artifact. Supersedes index 413 (the 08-22 'out'); this is the fourth out/in cycle on her coach's-decision status this month, which is what a coach's decision looks like - it clears and returns with the rotation. Deep bench, inert for pricing: status only, no minutes estimate, and the clearing asserts availability, never a role.",
    "author": "news-watch",
    "superseded_by": null
   }
