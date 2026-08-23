@@ -4719,7 +4719,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league injury report (was Out on the 2026-08-18 snapshot). CON plays at LVA on 2026-08-20. Clears the out override; no minutes assertion — last panel game 2026-08-13, 6 min.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 423
   },
   {
    "player": "Elena Buenavida",
@@ -5306,7 +5306,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league injury report (was Out as of the 2026-08-21 snapshot). Atlanta; last panel game 2026-07-11 (1 min) - deep bench, so this is inert for pricing either way. Supersedes the 2026-08-21 out entry.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 422
   },
   {
    "player": "Jaylyn Sherrod",
@@ -5319,7 +5319,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league injury report (was Out as of the 2026-08-21 snapshot). Atlanta; last panel game 2026-08-16 (8 min). Treated as available with no minutes assumption. Supersedes the 2026-08-21 out entry.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 421
   },
   {
    "player": "Brittney Sykes",
@@ -5552,6 +5552,45 @@
    "source": "avail:2026-08-23/0032Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league injury report in the 0032Z diff; was Out (Coach's Decision), Toronto Tempo, 'Green (coach's decision) has been ruled out for Friday's game against the Fire', return_date 2026-08-23 (entry 405, which this supersedes). Toronto is not on tonight's slate, so not the tip-off artifact - a one-game coach's decision expiring at its stated return date, ahead of TOR vs LV on 2026-08-23. This is the same out/in cycle the earlier Green entries record (211/306/326/345/405); until-cleared game_date on that precedent. Available, no minutes assumption; deep bench, inert for pricing.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Jaylyn Sherrod",
+   "added": "2026-08-23T01:37:00Z",
+   "game_date": "2026-08-22",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/0137Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league + event:401857166 injury report at 0137Z, Atlanta Dream: 'Sherrod (coach's decision) will remain on the inactive list for Saturday's game against the Mercury' (ATL@PHX, 22:00 ET 8/22), return_date 2026-08-24. NEW this firing; supersedes the 08-22 'in' entry (402). Atlanta is not on the 8/23 sheet (IND@CHI, LVA@TOR, SEA@DAL, WAS@PDX) and she carries no prop tonight - inert for pricing, recorded for the archive.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Indya Nivar",
+   "added": "2026-08-23T01:37:00Z",
+   "game_date": "2026-08-22",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/0137Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league + event:401857166 injury report at 0137Z, Atlanta Dream: 'Nivar (coach's decision) has been ruled out for Saturday's game in Phoenix' (ATL@PHX, 22:00 ET 8/22), return_date 2026-08-24. NEW this firing; supersedes the 08-22 'in' entry (401). This is her fourth coach's-decision out in two weeks - a rotation-edge player, not an injury. Atlanta is not on the 8/23 sheet - inert for pricing.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Rayah Marshall",
+   "added": "2026-08-23T01:37:00Z",
+   "game_date": "2026-08-22",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/0137Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league + event:401857165 injury report at 0137Z, Connecticut Sun: 'Marshall (coach's decision) is out for Saturday's game versus the Sparks' (CON@LA, 21:00 ET 8/22, already in progress), return_date 2026-08-25. NEW this firing; supersedes the 08-19 'in' entry (357). No Marshall prop is on any sheet and Connecticut is not on the 8/23 sheet - inert for pricing.",
    "author": "news-watch",
    "superseded_by": null
   }
