@@ -4813,7 +4813,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report (NEW this snapshot): 'Collier (rest) is out for Friday's game against the Mystics.' status Out, type Rest, return_date 2026-08-24. Friday = MIN@WAS (event 2749) on the current sheet, so the override is game-dated to it. Note for the owner, NOT modelled here: with Collier resting, Minnesota teammates' minutes/usage in that game are likely inflated relative to their panel state - the talent model does not redistribute team minutes and this routine does not invent teammate bumps, so any MIN prop on the 8/21 sheet should be read as a role-change situation.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 438
   },
   {
    "player": "Olivia Miles",
@@ -5215,7 +5215,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "Buenavida (coach's decision) has been ruled out for Friday's game against the Mystics (est. return 2026-08-24). NEW on the ESPN league injury report + per-event (MIN@WSH) report. Coach's Decision counts as Out per protocol; conservative read is out until the feed clears her. game_date null (until-cleared), to be superseded by the next snapshot that moves her.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 439
   },
   {
    "player": "Liatu King",
@@ -5228,7 +5228,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "King listed Out (coach's decision) for the Lynx, est. return 2026-08-24. NEW on the ESPN league injury report + per-event (MIN@WSH) report. Coach's Decision counts as Out per protocol; conservative read is out until the feed clears her. game_date null (until-cleared).",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 440
   },
   {
    "player": "Morgan Maly",
@@ -5696,7 +5696,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Day-To-Day (Back), Indiana Fever, IND@CHI per-event report (event 401857168, STATUS_SCHEDULED, 19:00 ET) at 1833Z (14:33 ET); return_date 2026-08-23 = tonight, so this is forward-looking doubt on a scheduled game, not a post-hoc DNP. Supersedes index 417 (the 08-23 00:32Z 'in'). Status only, no minutes estimate - a same-day back DTD on a franchise player records a fresh doubt; asserting a minutes number here would manufacture an under out of the routine's own guess. Arrives on the same event report as Boston's Out, so treat the Indiana front court and back court as unsettled until lineups post near tip.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 436
   },
   {
    "player": "Myisha Hines-Allen",
@@ -5709,7 +5709,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Day-To-Day (Shoulder), Indiana Fever, IND@CHI per-event report (event 401857168, STATUS_SCHEDULED, 19:00 ET) at 1833Z (14:33 ET); return_date 2026-08-23 = tonight. First override entry for this player - nothing to supersede. Status only, no minutes estimate. Third Indiana name added by this one snapshot (with Boston Out and Clark DTD), so the Fever rotation is the unsettled situation of the slate; no Hines-Allen prop is on the sheet, so this is availability record-keeping, not pricing.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 437
   },
   {
    "player": "Michelle Onyiah",
@@ -5747,6 +5747,71 @@
    "source": "avail:2026-08-23/2133Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Out (Leg), Las Vegas Aces, from the LV@TOR per-event report (event 401857170) at 2133Z (17:33 ET); no comment text on the feed, return_date 2027-05-01. The league feed was live on this firing (42 league rows alongside 22 event rows), so this is a real appearance, not an outage artifact. game_date null (until cleared) because a next-May return date is a season-ending absence, not a one-night doubt; a later report of her return supersedes this entry. No prior entry for her, so nothing to supersede. She is not on tonight's picks sheet and carries no props, so this prices nothing today. Status only, no minutes estimate: an absence needs no minutes guess, and the routine does not reassign her minutes to teammates.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Caitlin Clark",
+   "added": "2026-08-23T22:32:00Z",
+   "game_date": "2026-08-23",
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/2232Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED at 2232Z (18:32 ET), was Day-To-Day (Back): dropped from BOTH the league report and the IND@CHI per-event report (event 401857168) about 28 minutes before the 19:00 ET tip, while Aliyah Boston's Out persists on both - so this is a real clearing, not a feed outage (38 league rows plus all four event reports present this snapshot). Supersedes index 431 (today's 1833Z questionable). Status returned to base panel state, no minutes assertion: a clearing says available, it does not say how many minutes, and the routine does not invent one.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Myisha Hines-Allen",
+   "added": "2026-08-23T22:32:00Z",
+   "game_date": "2026-08-23",
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/2232Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED at 2232Z (18:32 ET), was Day-To-Day (Shoulder): dropped from both the league report and the IND@CHI per-event report (event 401857168) ~28 minutes before the 19:00 ET tip, with Boston's Out still listed on both, so the feed was healthy and this is a genuine clearing. Supersedes index 432 (today's 1833Z questionable). Status only, no minutes estimate. She carries no prop on the sheet - availability record-keeping, not pricing.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Napheesa Collier",
+   "added": "2026-08-23T22:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/2232Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED at 2232Z (18:32 ET), was Out (Rest) for Friday's MIN@WAS with return_date 2026-08-24. Supersedes index 364, the 08-21-dated rest entry, which is now expired anyway; Courtney Williams' Out persists on the same league report, so the drop is real and not an outage. Minnesota is not on tonight's four-game slate (SEA@DAL, IND@CHI, WSH@POR, LV@TOR), so this prices nothing today - it is recorded now so the Lynx's next game does not price her as rested-out. Status returned to base panel state, no minutes assertion; the routine does not un-do the teammate role-change note attached to the superseded entry.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Elena Buenavida",
+   "added": "2026-08-23T22:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/2232Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED at 2232Z (18:32 ET), was Out (Coach's Decision) for Friday's MIN@WAS, return_date 2026-08-24. Supersedes index 394 (the 08-21 22:33Z until-cleared out). Feed healthy this snapshot (38 league rows, all four event reports, Williams' Out still listed). Minnesota does not play tonight, so this prices nothing today; it clears a standing until-cleared out so the Lynx's next game reads from the base panel state. No minutes assertion.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Liatu King",
+   "added": "2026-08-23T22:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/2232Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED at 2232Z (18:32 ET), was Out (Coach's Decision) for Friday's MIN@WAS, return_date 2026-08-24. Supersedes index 395 (the 08-21 22:33Z until-cleared out). Same healthy-feed check as the other Lynx clearings this snapshot. Minnesota is not on tonight's slate, so nothing is priced off this; it removes a standing out ahead of the Lynx's next game. Status only, no minutes estimate - her coach's-decision status has oscillated all month, so a clearing restores the panel state rather than asserting a role.",
    "author": "news-watch",
    "superseded_by": null
   }
