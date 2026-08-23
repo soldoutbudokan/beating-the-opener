@@ -200,7 +200,8 @@ def pick_expired(p, as_of):
 
 def agg_record(sel):
     """One slice of the bet log, aggregated the way the era cards read:
-    W-L/P&L over settled rows, CLV/CLV* over stamped non-void rows."""
+    W-L/P&L/ROI/expected ROI over settled rows, CLV/CLV* over stamped
+    non-void rows."""
     settled = [b for b in sel if b["_status"] == "settled"]
     wins = sum(1 for b in settled if txt(b, "result") == "won")
     staked = sum(b["_stake"] for b in settled)
@@ -213,6 +214,7 @@ def agg_record(sel):
     return {"n": len(sel), "n_settled": len(settled), "wins": wins,
             "losses": len(settled) - wins, "staked": staked, "pnl": pnl,
             "roi": pnl / staked if staked else None,
+            "pred": predicted_roi(settled),
             "clv": sum(clvs) / len(clvs) if clvs else None,
             "n_clv": len(clvs),
             "cal": sum(cals) / len(cals) if cals else None,
@@ -1037,6 +1039,8 @@ def era_block(m):
             stat("P&L", signed_money(st["pnl"]), ptone),
             stat("ROI", signed_pct(st["roi"]) if st["roi"] is not None
                  else "—", ptone),
+            stat("Expected ROI", signed_pct(st["pred"])
+                 if st["pred"] is not None else "—"),
             stat("Mean CLV", signed_pct(st["clv"]) if st["clv"] is not None
                  else "—"),
             stat("CLV*", signed_pct(st["cal"]) if st["cal"] is not None
@@ -1065,7 +1069,10 @@ def era_block(m):
     </div>
     <p class="band-note">{post["n_settled"]} settled bets since the gates is
       an early read, not a verdict — the split is shown so the process change
-      stays visible in the record, win or lose.</p>
+      stays visible in the record, win or lose. Expected ROI is the
+      stake-weighted model claim (<code>ev_claimed</code>) over the same
+      settled bets as the realized ROI — positive on every slice by
+      construction, so the gap between the two is the informative part.</p>
   </div>"""
 
 
