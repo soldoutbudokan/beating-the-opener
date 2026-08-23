@@ -2665,7 +2665,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "Dropped off the ESPN league injury report between the 2026-08-12 05:41Z and 23:33Z snapshots (CLEARED in the avail_watch diff), i.e. no longer listed with any designation. Status-only, no minutes estimate: it lifts a stale out rather than asserting a role. Supersedes the until-cleared out entry of 2026-08-10 - that one had game_date null and was still active, so clearing it matters.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 427
   },
   {
    "player": "Justine Pissott",
@@ -5630,6 +5630,19 @@
    "source": "avail:2026-08-23/0233Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "UPDATED Day-To-Day -> Out (Head), Phoenix Mercury, league report at 0233Z, comment \"out\", return_date 2026-08-25. This resolves index 407 (the 1833Z head DTD for tonight's ATL@PHX) in the conservative direction: she did not clear for a game the same snapshot shows IN_PROGRESS. Supersedes 407 - same game_date, same game, status only changed. minutes_est 0. A head/concussion-protocol absence can run past one game, but the feed's return_date points at Phoenix's next game (08-25) and says nothing about ruling her out of it, so game_date stays pinned to 2026-08-22 rather than until-cleared; if she is still Out on the 08-25 report the next firing re-logs it. Nil price effect - the game is live and she has no prop on the sheet.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Raegan Beers",
+   "added": "2026-08-23T03:37:00Z",
+   "game_date": null,
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/0337Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Day-To-Day (Jaw), Connecticut Sun, ESPN league injury report at 0337Z (23:37 ET 8/22): 'Beers will not return to Saturday's game against the Sparks due to a jaw injury', return_date 2026-08-25. In-game exit, so the timetable is open-ended - until-cleared rather than tied to one date. Status only, no minutes estimate: it records a fresh doubt, it does not assert a role. Supersedes the 2026-08-12 'in' entry (index 202), which was until-cleared and still active.",
    "author": "news-watch",
    "superseded_by": null
   }
