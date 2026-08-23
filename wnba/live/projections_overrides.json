@@ -5736,6 +5736,19 @@
    "quote": "NEW Out (Not Injury Related), Connecticut Sun, league injury report at 2032Z (16:32 ET): 'The Sun announced Sunday that Lacan will join Team France for the FIBA World Cup and miss the Sun's next four games.' return_date 2026-09-17. game_date null (until cleared) because this is a multi-game absence with a stated return, not a one-night doubt; a later report of her return supersedes this entry. No prior entry for her, so nothing to supersede. Connecticut is not on tonight's four-game slate (SEA@DAL, IND@CHI, WSH@POR, LV@TOR), so this prices nothing today - it is recorded now so the Sun's next games do not price her stale. Status only, no minutes estimate: an absence needs no minutes guess, and the routine does not reassign her minutes to teammates.",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "Janiah Barker",
+   "added": "2026-08-23T21:33:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/2133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Out (Leg), Las Vegas Aces, from the LV@TOR per-event report (event 401857170) at 2133Z (17:33 ET); no comment text on the feed, return_date 2027-05-01. The league feed was live on this firing (42 league rows alongside 22 event rows), so this is a real appearance, not an outage artifact. game_date null (until cleared) because a next-May return date is a season-ending absence, not a one-night doubt; a later report of her return supersedes this entry. No prior entry for her, so nothing to supersede. She is not on tonight's picks sheet and carries no props, so this prices nothing today. Status only, no minutes estimate: an absence needs no minutes guess, and the routine does not reassign her minutes to teammates.",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }
