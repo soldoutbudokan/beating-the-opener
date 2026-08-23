@@ -10,23 +10,35 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 166 (91W-75L), 0 push, 5 void, 10 open |
+| settled | 166 (91W-75L), 0 push, 5 void, 22 open |
 | staked | $166.00 |
 | P&L | $+13.26 (+8.0% ROI) |
 | mean EV said (model) | +20.15% (n=166) |
-| mean CLV (vs close) | -3.38% (n=164) |
-| mean CLV* (shade-adj) | -2.58% (n=164) |
-| closing line moved | 36 of 164 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| mean CLV (vs close) | -3.44% (n=166) |
+| mean CLV* (shade-adj) | -2.60% (n=166) |
+| closing line moved | 37 of 166 stamped (the rest closed at the bet line: CLV ≈ vig there) |
 | model calibration | expected 101.1W vs observed 91W (z=-1.63) |
 | Model-expected P&L | $+34.37 |
-| CLV-expected P&L | $-5.55 |
+| CLV-expected P&L | $-5.71 |
 
-CLV t-stat: -4.64 (iid); -2.34 clustered by match date (23 dates)
+CLV t-stat: -4.76 (iid); -2.45 clustered by match date (23 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-08-23 | Bridget Carleton | points | under | 14.5 | -102 | 1.0 | +21.9% |  |  |  |  |  |
+| 2026-08-23 | Megan DiLeo | points | under | 13.5 | -102 | 1.0 | +21.6% |  |  |  |  |  |
+| 2026-08-23 | Carla Leite | points | under | 16.5 | -118 | 1.0 | +19.2% |  |  |  |  |  |
+| 2026-08-23 | Natasha Cloud | points | over | 11.5 | -122 | 1.0 | +18.3% |  |  |  |  |  |
+| 2026-08-23 | Dominique Malonga | threes | under | 0.5 | 154 | 1.0 | +17.5% |  |  |  |  |  |
+| 2026-08-23 | Arike Ogunbowale | threes | under | 1.5 | 102 | 1.0 | +17.3% |  |  |  |  |  |
+| 2026-08-23 | Sydney Taylor | points | over | 14.5 | -114 | 1.0 | +17.1% |  |  |  |  |  |
+| 2026-08-23 | Azura Stevens | rebounds | under | 7.5 | -114 | 1.0 | +11.6% |  |  |  |  |  |
+| 2026-08-23 | Shakira Austin | assists | under | 2.5 | -110 | 1.0 | +12.8% |  |  |  |  |  |
+| 2026-08-23 | Kamilla Cardoso | assists | over | 2.5 | 122 | 1.0 | +10.6% |  |  |  |  |  |
+| 2026-08-23 | Chelsea Gray | threes | over | 1.5 | 102 | 1.0 | +11.4% |  |  |  |  |  |
+| 2026-08-23 | Jackie Young | points | over | 19.5 | -104 | 1.0 | +12.2% |  |  |  |  |  |
 | 2026-08-22 | Olivia Nelson-Ododa | rebounds | under | 8.5 | -138 | 1.0 | +24.3% |  |  |  |  |  |
 | 2026-08-22 | Breanna Stewart | points | under | 23.5 | -128 | 1.0 | +22.5% |  |  |  |  |  |
 | 2026-08-22 | Nneka Ogwumike | assists | over | 2.5 | -102 | 1.0 | +21.7% |  |  |  |  |  |
@@ -37,11 +49,11 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-22 | Kelsey Mitchell | assists | over | 2.5 | 146 | 1.0 | +14.1% |  |  |  |  |  |
 | 2026-08-22 | Dearica Hamby | assists | over | 2.5 | 116 | 1.0 | +12.8% |  |  |  |  |  |
 | 2026-08-22 | Caitlin Clark | rebounds | under | 3.5 | 126 | 1.0 | +10.2% |  |  |  |  |  |
-| 2026-08-21 | Carla Leite | assists | under | 6.5 | 114 | 1.0 | +24.7% | 6 | won | +1.14 |  |  |
+| 2026-08-21 | Carla Leite | assists | under | 6.5 | 114 | 1.0 | +24.7% | 6 | won | +1.14 | -11.8% | -7.9% |
 | 2026-08-21 | Gabby Williams | assists | under | 2.5 | 112 | 1.0 | +22.0% | 0 | won | +1.12 | +13.1% | +17.2% |
 | 2026-08-21 | Sydney Taylor | threes | over | 1.5 | -144 | 1.0 | +17.6% | 4 | won | +0.69 | +1.0% | -1.8% |
 | 2026-08-21 | Kamilla Cardoso | rebounds | over | 8.5 | 118 | 1.0 | +13.2% | 10 | won | +1.18 | +6.8% | +1.2% |
-| 2026-08-21 | Megan DiLeo | points | under | 14.5 | -110 | 1.0 | +12.9% | 14 | won | +0.91 |  |  |
+| 2026-08-21 | Megan DiLeo | points | under | 14.5 | -110 | 1.0 | +12.9% | 14 | won | +0.91 | -4.5% | -1.2% |
 | 2026-08-21 | Natasha Cloud | threes | under | 1.5 | -205 | 1.0 | +10.9% | 5 | lost | -1.00 | -3.9% | -1.6% |
 | 2026-08-21 | Shakira Austin | threes | under | 0.5 | -118 | 1.0 | +10.8% | 0 | won | +0.85 | -6.8% | -3.7% |
 | 2026-08-20 | Leila Lacan | assists | under | 4.5 | 116 | 1.0 | +24.1% | 3 | won | +1.16 | +23.0% | +26.6% |
