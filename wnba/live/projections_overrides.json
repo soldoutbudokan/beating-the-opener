@@ -3633,7 +3633,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 0034Z diff (was Out, Coach's Decision, Phoenix Mercury; the dropped listing referenced Tuesday's game against the Sparks, i.e. a stale coach's-decision line, return_date 2026-08-16). Conservative reading: no restriction reported, no minutes assumption made. Supersedes index 191.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 424
   },
   {
    "player": "Maddy Westbeld",
@@ -5384,7 +5384,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Day-To-Day (Head), Phoenix Mercury, per-event report for ATL@PHX (event:401857166), return_date 2026-08-22 = tonight's game, no comment text. The only diff row this firing. game_date pinned to 2026-08-22 rather than until-cleared: the feed's own return date is tonight, so a head DTD listed hours before tip is a game-time decision, not an ongoing absence, and an until-cleared entry would silently zero her out of Sunday. Status only, no minutes change - the Boston/Clark precedent (a questionable is a display flag, not a model input) and here there is nothing to haircut anyway: she is deep bench (3-7 min in each of her last six, last panel game 2026-08-16, 3 min) and carries no rows in projections.csv, so the entry is inert for pricing and recorded for the archive.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 426
   },
   {
    "player": "Haley Jones",
@@ -5591,6 +5591,45 @@
    "source": "avail:2026-08-23/0137Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league + event:401857165 injury report at 0137Z, Connecticut Sun: 'Marshall (coach's decision) is out for Saturday's game versus the Sparks' (CON@LA, 21:00 ET 8/22, already in progress), return_date 2026-08-25. NEW this firing; supersedes the 08-19 'in' entry (357). No Marshall prop is on any sheet and Connecticut is not on the 8/23 sheet - inert for pricing.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Kara Dunn",
+   "added": "2026-08-23T02:33:00Z",
+   "game_date": "2026-08-22",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/0233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Out - Coach's Decision, Phoenix Mercury, league report at 0233Z: \"Dunn (coach's decision) is out for Saturday's game against Atlanta.\" Saturday = 2026-08-22 ET, i.e. ATL@PHX, which the same snapshot shows as IN_PROGRESS - this is a tip-off inactive, not forward-looking news, so the price effect is nil (the FD-opener gate rules out any bet on a live game). return_date 2026-08-25 is Phoenix's next game and the feed does NOT list her out for it, so game_date is pinned to 2026-08-22 rather than left until-cleared. Supersedes index 276 (the 2026-08-16 CLEARED/in entry) - Dunn's coach's-decision DNPs have cycled all month (191 out, 276 in) and this is the same pattern again. minutes_est 0.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Shay Ciezki",
+   "added": "2026-08-23T02:33:00Z",
+   "game_date": "2026-08-22",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/0233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Out - Coach's Decision, Phoenix Mercury, league report at 0233Z, comment text just \"out\", return_date 2026-08-25. Same tip-off-inactive rollover as Dunn in this diff: ATL@PHX (2026-08-22 ET) is IN_PROGRESS in the same snapshot, so this records a DNP already determined, with nil price effect, and 2026-08-25 is Phoenix's next game rather than a game she is ruled out of. game_date 2026-08-22, minutes_est 0. NOT superseding index 119 (out for 2026-08-09): that slate is FINAL and the entry stands as the record of what was believed then, per the 2026-08-06 precedent in this file. Ciezki is a deep-bench guard with no prop on the sheet.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Marta Suarez",
+   "added": "2026-08-23T02:33:00Z",
+   "game_date": "2026-08-22",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/0233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "UPDATED Day-To-Day -> Out (Head), Phoenix Mercury, league report at 0233Z, comment \"out\", return_date 2026-08-25. This resolves index 407 (the 1833Z head DTD for tonight's ATL@PHX) in the conservative direction: she did not clear for a game the same snapshot shows IN_PROGRESS. Supersedes 407 - same game_date, same game, status only changed. minutes_est 0. A head/concussion-protocol absence can run past one game, but the feed's return_date points at Phoenix's next game (08-25) and says nothing about ruling her out of it, so game_date stays pinned to 2026-08-22 rather than until-cleared; if she is still Out on the 08-25 report the next firing re-logs it. Nil price effect - the game is live and she has no prop on the sheet.",
    "author": "news-watch",
    "superseded_by": null
   }
