@@ -2,27 +2,16 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2754_points_dominique malonga_under,2026-08-23,2026-08-23 20:00:00,2754,points,Dominique Malonga,SEA,SEA@DAL,under,19.5,-104.0,0.6844,0.3424,True,-198,-182,0.0,16.53,,20.5,MOVED_OFF_OPEN;SUSPECT_EV(34%);PLAYER_ALREADY_BET(threes under 0.5),False,False
 2754_assists_flaujae johnson_under,2026-08-23,2026-08-23 20:00:00,2754,assists,Flau'jae Johnson,SEA,SEA@DAL,under,3.5,102.0,0.6605,0.3342,True,-178,-165,0.0,2.83,,3.5,MOVED_OFF_OPEN;SUSPECT_EV(33%),False,False
 2754_threes_awak kuier_under,2026-08-23,2026-08-23 20:00:00,2754,threes,Awak Kuier,DAL,SEA@DAL,under,1.5,-245.0,0.9021,0.2703,True,-705,-571,0.0,0.53,,1.5,SUSPECT_EV(27%);ROLE_MIN?,False,False
-2754_points_jessica shepard_under,2026-08-23,2026-08-23 20:00:00,2754,points,Jessica Shepard,DAL,SEA@DAL,under,14.5,-128.0,0.7076,0.2604,True,-219,-200,0.0,11.59,,13.5,MOVED_OFF_OPEN;SUSPECT_EV(26%),False,False
 2755_assists_carla leite_under,2026-08-23,2026-08-23 23:00:00,2755,assists,Carla Leite,PDX,WAS@PDX,under,6.5,114.0,0.5877,0.2576,True,-132,-124,0.0,6.02,,7.5,MOVED_OFF_OPEN;SUSPECT_EV(26%);PLAYER_ALREADY_BET(points under 16.5),False,False
-2751_threes_rebecca allen_over,2026-08-22,2026-08-22 23:00:00,2751,threes,Rebecca Allen,NYL,IND@NYL,over,1.5,182.0,0.4384,0.2362,True,135,142,0.0,1.49,,1.5,MOVED_OFF_OPEN;ROLE_MIN?,False,False
-2752_assists_nneka ogwumike_over,2026-08-22,2026-08-23 01:00:00,2752,assists,Nneka Ogwumike,LAS,CON@LAS,over,2.5,-102.0,0.6162,0.2204,True,-148,-138,3.0,3.2,,2.5,,False,True
+2754_points_jessica shepard_under,2026-08-23,2026-08-23 20:00:00,2754,points,Jessica Shepard,DAL,SEA@DAL,under,14.5,-130.0,0.7076,0.2519,True,-219,-200,0.0,11.59,,13.5,MOVED_OFF_OPEN;SUSPECT_EV(25%),False,False
 2755_points_bridget carleton_under,2026-08-23,2026-08-23 23:00:00,2755,points,Bridget Carleton,PDX,WAS@PDX,under,14.5,-102.0,0.6131,0.2141,True,-147,-137,3.0,13.1,,14.5,,False,True
-2752_points_leila lacan_under,2026-08-22,2026-08-23 01:00:00,2752,points,Leila Lacan,CON,CON@LAS,under,12.5,-125.0,0.666,0.1989,True,-182,-169,0.0,10.44,,11.5,MOVED_OFF_OPEN,False,True
-2753_assists_alyssa thomas_over,2026-08-22,2026-08-23 02:00:00,2753,assists,Alyssa Thomas,PHO,ATL@PHO,over,7.5,-108.0,0.6207,0.1954,True,-151,-141,0.0,8.58,,8.5,MOVED_OFF_OPEN,False,False
-2752_assists_erica wheeler_over,2026-08-22,2026-08-23 01:00:00,2752,assists,Erica Wheeler,LAS,CON@LAS,over,4.5,102.0,0.589,0.1897,True,-133,-125,0.0,5.17,,4.5,NON_FD_OPEN;ROLE_MIN?,False,False
+2755_assists_shakira austin_under,2026-08-23,2026-08-23 23:00:00,2755,assists,Shakira Austin,WAS,WAS@PDX,under,3.5,-188.0,0.7848,0.2022,True,-320,-285,0.0,2.24,,2.5,MOVED_OFF_OPEN,False,True
 2756_points_natasha cloud_over,2026-08-23,2026-08-23 23:00:00,2756,points,Natasha Cloud,CHI,IND@CHI,over,11.5,-122.0,0.6524,0.1871,True,-172,-160,3.0,14.35,,11.5,,False,True
-2754_threes_arike ogunbowale_under,2026-08-23,2026-08-23 20:00:00,2754,threes,Arike Ogunbowale,DAL,SEA@DAL,under,1.5,104.0,0.5792,0.1816,True,-128,-120,2.5,1.44,,1.5,,False,True
-2755_assists_shakira austin_under,2026-08-23,2026-08-23 23:00:00,2755,assists,Shakira Austin,WAS,WAS@PDX,under,2.5,100.0,0.5906,0.1811,True,-134,-125,0.0,2.24,,2.5,MOVED_OFF_OPEN,False,True
-2751_threes_breanna stewart_under,2026-08-22,2026-08-22 23:00:00,2751,threes,Breanna Stewart,NYL,IND@NYL,under,0.5,164.0,0.4458,0.177,True,132,138,0.0,0.81,,0.5,PLAYER_ALREADY_BET(points under 23.5),False,False
 2756_points_sydney taylor_over,2026-08-23,2026-08-23 23:00:00,2756,points,Sydney Taylor,CHI,IND@CHI,over,14.5,-114.0,0.6267,0.1764,True,-155,-144,3.0,17.08,,14.5,,False,True
-2753_assists_jordin canada_under,2026-08-22,2026-08-23 02:00:00,2753,assists,Jordin Canada,ATL,ATL@PHO,under,7.5,100.0,0.5872,0.1744,True,-132,-124,0.0,6.98,,7.5,MOVED_OFF_OPEN,False,False
-2754_points_alanna smith_under,2026-08-23,2026-08-23 20:00:00,2754,points,Alanna Smith,DAL,SEA@DAL,under,9.5,-102.0,0.5842,0.1569,True,-131,-122,0.0,8.81,,10.5,MOVED_OFF_OPEN;ROLE_MIN?,False,False
-2752_assists_ariel atkins_over,2026-08-22,2026-08-23 01:00:00,2752,assists,Ariel Atkins,LAS,CON@LAS,over,2.5,-114.0,0.6135,0.1517,True,-147,-137,0.0,3.18,,2.5,NON_FD_OPEN;ROLE_MIN?,False,False
+2754_threes_arike ogunbowale_under,2026-08-23,2026-08-23 20:00:00,2754,threes,Arike Ogunbowale,DAL,SEA@DAL,under,1.5,102.0,0.5792,0.17,True,-128,-120,2.5,1.44,,1.5,,False,True
 2755_points_megan dileo_under,2026-08-23,2026-08-23 23:00:00,2755,points,Megan DiLeo,PDX,WAS@PDX,under,13.5,-114.0,0.6114,0.1478,True,-146,-136,2.5,12.19,,13.5,,False,True
-2757_points_jackie young_over,2026-08-23,2026-08-23 23:00:00,2757,points,Jackie Young,LVA,LVA@TOR,over,19.5,-102.0,0.5721,0.133,True,-124,-117,0.0,21.24,,19.5,MOVED_OFF_OPEN,False,False
-2751_assists_pauline astier_over,2026-08-22,2026-08-22 23:00:00,2751,assists,Pauline Astier,NYL,IND@NYL,over,2.5,-140.0,0.6598,0.1311,True,-178,-164,0.0,3.45,,3.5,MOVED_OFF_OPEN,False,True
-2753_threes_rhyne howard_under,2026-08-22,2026-08-23 02:00:00,2753,threes,Rhyne Howard,ATL,ATL@PHO,under,3.5,-118.0,0.6083,0.1238,True,-144,-134,0.0,3.17,,3.5,MOVED_OFF_OPEN;ROLE_MIN?,False,False
-2751_assists_sabrina ionescu_under,2026-08-22,2026-08-22 23:00:00,2751,assists,Sabrina Ionescu,NYL,IND@NYL,under,5.5,-112.0,0.5917,0.12,True,-134,-126,0.0,5.04,,5.5,MOVED_OFF_OPEN,False,False
+2754_points_alanna smith_under,2026-08-23,2026-08-23 20:00:00,2754,points,Alanna Smith,DAL,SEA@DAL,under,9.5,-104.0,0.5842,0.1458,True,-131,-122,0.0,8.81,,10.5,MOVED_OFF_OPEN;ROLE_MIN?,False,False
+2757_points_jackie young_over,2026-08-23,2026-08-23 23:00:00,2757,points,Jackie Young,LVA,LVA@TOR,over,19.5,-104.0,0.5721,0.1222,True,-124,-117,2.0,21.24,,19.5,,True,False
 2756_rebounds_azura stevens_under,2026-08-23,2026-08-23 23:00:00,2756,rebounds,Azura Stevens,CHI,IND@CHI,under,7.5,-114.0,0.5945,0.116,True,-136,-127,2.0,6.9,,7.5,,False,True
 2756_assists_kamilla cardoso_over,2026-08-23,2026-08-23 23:00:00,2756,assists,Kamilla Cardoso,CHI,IND@CHI,over,2.5,124.0,0.4982,0.1159,True,107,113,1.5,2.62,,2.5,,False,True
 2757_threes_chelsea gray_over,2026-08-23,2026-08-23 23:00:00,2757,threes,Chelsea Gray,LVA,LVA@TOR,over,1.5,102.0,0.5514,0.1139,True,-115,-108,1.5,1.85,,1.5,,False,True

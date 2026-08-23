@@ -4615,7 +4615,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "UPDATED in the 2233Z diff: Mabrey (Toronto Tempo, hamstring) has moved Day-To-Day -> OUT on the league report AND on the per-event report for tonight's TOR @ WSH (ESPN event 401857156, 7:30 PM ET tip); comment \"Mabrey (hamstring) won't play in Wednesday's game versus the Mystics, Chelsea Leite of TSN reports\", return_date pushed to 2026-08-21. This resolves the 'doubtful' the 1733Z entry flagged as unbettable, in the direction of sitting: she does not play tonight, so her props void rather than settle. Superseding that entry with a hard out/0. Nothing of Mabrey's is on the current sheet, so this is inert for pricing; it exists so the 8/19 TOR props are never priced off her base 30-minute state.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 416
   },
   {
    "player": "Kelsey Mitchell",
@@ -5033,7 +5033,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league + event:401857159 injury report: 'Latson (coach's decision) is inactive for Thursday's game against Connecticut' (CON@LV, 22:00 ET 8/20), return_date 2026-08-23. Supersedes the 08-18 'in' entry. No LV props on the current 8/21 sheet - inert for pricing.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 419
   },
   {
    "player": "Alanna Smith",
@@ -5163,7 +5163,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report, NEW in the 2138Z diff (absent from the 1732Z report): Clark listed Day-To-Day (Back) for the Fever, est. return 2026-08-22 - \"Clark (back) is probable for Saturday's game against the Liberty.\" Supersedes index 375 (in, until-cleared). Status is the softest kind of doubtful - the feed's own comment says PROBABLE - so no minutes estimate is attached and no projection moves; this records the listing for the availability annotation only. Note the open 8/22 bet 2751_rebounds_caitlin clark_under (owner fill this morning at 126): a back listing is not a reason to re-price a placed bet, but it is a reason to check the lineup near tip. Targets event 2751.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 417
   },
   {
    "player": "Leonie Fiebich",
@@ -5280,7 +5280,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "Status UPGRADED Out -> Day-To-Day (Head). League report: 'Atkins (head) is listed as probable for Saturday's game against Connecticut.' Supersedes the 2026-08-21 out entry, which is now stale: she actually played 2026-08-20 (16 min, cut short from her 26-30 min norm), and the feed now has her probable. minutes_est left null deliberately - she is not a stale-role returnee (her last panel game is two days old), so there is no role gap to correct, and inventing a minutes cut here would manufacture an under exactly as inventing a full load would manufacture an over. The entry's only job is to clear an OUT that the feed has withdrawn.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 418
   },
   {
    "player": "Hailey Van Lith",
@@ -5358,7 +5358,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Out (Coach's Decision), Toronto Tempo, league report at 0237Z: 'Green (coach's decision) has been ruled out for Friday's game against the Fire' - Friday = tonight's PDX@TOR - return_date 2026-08-23. Supersedes index 345 (the 2026-08-19/1733Z clearing). game_date null on the Ashlon Jackson precedent (index for 2026-08-10): a coach's decision is normally one game, but the feed's return date (08-23) is Toronto's next game, so until-cleared is the direction that does not quietly re-activate her. Deep bench - one panel game all season (2026-08-19, 5 min) - so this is inert for pricing either way; availability only, no minutes estimate.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 420
   },
   {
    "player": "Aneesah Morrow",
@@ -5487,6 +5487,71 @@
    "source": "avail:2026-08-22/2332Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league injury report in the 2332Z diff (was Out, Dallas Wings, Coach's Decision, comment 'Williams (coach's decision) is out for Thursday's game against the Fever', return_date 2026-08-23; entry 371, which this supersedes). Judged a REAL clearing, unlike the four other CLEARED rows in this same diff: Dallas is not on tonight's slate, so this drop cannot be the tip-off artifact described in those (see the Boston/Dantas/Jones/Fiebich note in this firing's report) - it is a one-game coach's decision expiring ahead of SEA@DAL on 2026-08-23. Treated as available with no minutes assumption: a clearing is evidence of availability, not of a role. Her panel state is deep bench, so this is inert for pricing.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Marina Mabrey",
+   "added": "2026-08-23T00:32:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/0032Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "UPDATED (still Out) on the league report at 0032Z, Toronto Tempo: comment moves from 'Mabrey (adductor) is out for Friday's game against the Fire' to 'Mabrey (adductor) won't play Sunday against the Aces', type relabelled Hamstring -> Hip, and return_date pushed 2026-08-23 -> 2026-08-26. This is a DOWNGRADE in duration, not a status change: her absence now explicitly covers Toronto's next game (TOR vs LV, 2026-08-23), which entry 349's game_date-2026-08-19 row no longer reached. game_date null (until-cleared) because the return date is past that game. Toronto is not on tonight's 3-game slate (IND@NY, CON@LA, ATL@PHX), so nothing on the current sheet moves; this matters for the 08-23 sheet, where a Mabrey prop must not be priced and her minutes are already out of the Tempo rotation the panel sees. Availability only, no minutes estimate. Supersedes 349.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Caitlin Clark",
+   "added": "2026-08-23T00:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/0032Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league AND per-event (401857164) injury reports in the 0032Z diff; was Day-To-Day (Back) with comment 'Clark (back) is available for Saturday's game against the Liberty' (entry 390, which this supersedes). Judged a REAL clearing and not the tip-off drop-off artifact: the same snapshot's lineup feed lists her for IND@NY as starter=true, dnp=false. Treated as available with no minutes assumption - a clearing is evidence of availability, not of a role, and a back DTD that clears on game day gives no basis for a minutes haircut the feed does not describe. Note the sheet carries an OPEN owner bet on Clark rebounds under (key 2751_rebounds_caitlin clark_under); this entry does not change its pricing, it records that she played rather than sat.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Ariel Atkins",
+   "added": "2026-08-23T00:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/0032Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league AND per-event (401857165) injury reports in the 0032Z diff; was Day-To-Day (Head), Los Angeles Sparks, comment 'Atkins (head) is practicing with the Sparks on Saturday morning' and, the firing before, 'listed as probable for Saturday's game against Connecticut' (entry 399, which this supersedes). CON@LA was still STATUS_SCHEDULED at snapshot time (01:00Z tip, 21:00 ET), so this clearing cannot be the post-tip-off drop-off artifact - it is a probable resolving to available ahead of the game. The lineup feed has no LA rows yet, so availability is from the report only; the pre-bet check near tip still applies. Treated as available with no minutes assumption: she has missed time with a head injury, and the reading least favourable to a news-driven over is to add nothing and let the panel pick up her real minutes from this game.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Ta'Niya Latson",
+   "added": "2026-08-23T00:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/0032Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league injury report in the 0032Z diff; was Out (Coach's Decision), Las Vegas Aces, 'Latson (coach's decision) is inactive for Thursday's game against Connecticut', return_date 2026-08-23 (entry 380, which this supersedes). Las Vegas is not on tonight's 3-game slate, so this cannot be the tip-off drop-off artifact - it is a one-game coach's decision expiring at its own stated return date, ahead of LV's next game. Treated as available with no minutes assumption; deep bench, so inert for pricing - logged to close out the Out entry and for the archive.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Zaay Green",
+   "added": "2026-08-23T00:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/0032Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league injury report in the 0032Z diff; was Out (Coach's Decision), Toronto Tempo, 'Green (coach's decision) has been ruled out for Friday's game against the Fire', return_date 2026-08-23 (entry 405, which this supersedes). Toronto is not on tonight's slate, so not the tip-off artifact - a one-game coach's decision expiring at its stated return date, ahead of TOR vs LV on 2026-08-23. This is the same out/in cycle the earlier Green entries record (211/306/326/345/405); until-cleared game_date on that precedent. Available, no minutes assumption; deep bench, inert for pricing.",
    "author": "news-watch",
    "superseded_by": null
   }
