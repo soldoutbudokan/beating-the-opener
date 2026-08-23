@@ -2132,7 +2132,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report at 0037Z drops A'ja Wilson from Las Vegas's block (was Out - Rest, carried since 2026-08-09 for LV@NY). The Aces' block survives in the feed (Cheyenne Parker-Tyus still listed Out - Concussion), so this is a real rolloff of the 8/9 rest designation, not a dropped team. Records her as available for WAS@LVA (2026-08-11 ET); no minutes estimate, so the entry cannot inflate a projection. NOTE for the owner: A'ja Wilson rebounds over is a play=True row on this sheet and the rest designation was 8/9-only, so this changes no price - confirm the lineup near tip per PROTOCOL.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 428
   },
   {
    "player": "Chelsea Gray",
@@ -3120,7 +3120,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 0439Z diff (was Day-To-Day, Head, Washington). Supersedes entry 236, the 0333Z questionable written while the WAS@LVA game (event 2729/ESPN 401857142) was in progress and carried forward to WAS's next game. That game is now STATUS_FINAL and the same snapshot's lineup feed has her starter=true, dnp=false, so she started and played through the head designation, which has since dropped off the league report. Recorded as available with NO minutes estimate - nothing here shows a role change, and WAS's next game (2026-08-15 19:30 ET vs LAS, event 2733) is off the current sheet. Inert for the 2026-08-14 sheet (DAL@IND, PDX@SEA - no WAS).",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 429
   },
   {
    "player": "Cameron Brink",
@@ -5643,6 +5643,32 @@
    "source": "avail:2026-08-23/0337Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Day-To-Day (Jaw), Connecticut Sun, ESPN league injury report at 0337Z (23:37 ET 8/22): 'Beers will not return to Saturday's game against the Sparks due to a jaw injury', return_date 2026-08-25. In-game exit, so the timetable is open-ended - until-cleared rather than tied to one date. Status only, no minutes estimate: it records a fresh doubt, it does not assert a role. Supersedes the 2026-08-12 'in' entry (index 202), which was until-cleared and still active.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "A'ja Wilson",
+   "added": "2026-08-23T17:32:00Z",
+   "game_date": "2026-08-23",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/1732Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Day-To-Day (Back), Las Vegas Aces, ESPN league report + per-event report for LV@TOR at 1732Z (13:32 ET): \"Wilson is listed as questionable for Sunday's game against the Tempo due to a back injury.\" return_date 2026-08-23, i.e. today's game (LVA@TOR, 19:00 ET, event 2760 on the sheet), which the same snapshot shows STATUS_SCHEDULED - so this is forward-looking doubt, not a post-hoc DNP. Supersedes entry 161 (the 08-11 'in' rolloff of her August rest). Status only, no minutes estimate: a same-day back DTD on a franchise player records a fresh doubt, it does not license the routine to assert a role - and a minutes number here would manufacture an under. No Wilson prop is playable on the current sheet, so this is inert for pricing; it exists so a later firing sees the doubt and so the archive carries it.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Shakira Austin",
+   "added": "2026-08-23T17:32:00Z",
+   "game_date": "2026-08-23",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/1732Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW Day-To-Day (Knee), Washington Mystics, ESPN league report + per-event report for WSH@POR at 1732Z (13:32 ET): \"Austin (knee) is listed as questionable for Sunday's game against the Fire.\" return_date 2026-08-23 - today's WAS@PDX (19:00 ET, event 2755), STATUS_SCHEDULED in the same snapshot. Supersedes entry 237 (the 08-14 'in' clearing of her head DTD). Status only, no minutes estimate. Material rather than inert: the owner already holds an OPEN bet on this player-game (2755_assists_shakira austin_under 2.5 @ -110, filled 2026-08-22), and an under on a questionable player cuts both ways - fewer minutes helps the under, a scratch voids it. Flagged in this firing's chat tables as a display-only availability warning; the routine does not touch bets.csv or picks.csv.",
    "author": "news-watch",
    "superseded_by": null
   }
