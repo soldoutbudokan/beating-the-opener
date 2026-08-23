@@ -5475,7 +5475,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "UPDATED Out -> Day-To-Day (Foot), Chicago Sky, league report at 2332Z, comment 'day-to-day', return_date 2026-08-23. An UPGRADE from index 368 (Out, 'left foot injury', for Friday's game vs the Valkyries), which this supersedes. Chicago does not play on tonight's 3-game slate (IND@NY, CON@LA, ATL@PHX), so nothing on the current sheet is touched. game_date pinned to 2026-08-23 rather than until-cleared, on the Marta Suarez precedent: the feed's own return date is Chicago's next game, so a foot DTD is a game-time decision for that game, not an ongoing absence. Status only, minutes_est null - the Boston/Clark precedent (a questionable is a display flag, not a model input), and a haircut here would be guessing at a ramp the feed does not describe. If she is still DTD on Sunday the next firing re-logs it.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 443
   },
   {
    "player": "Christyn Williams",
@@ -5657,7 +5657,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Day-To-Day (Back), Las Vegas Aces, ESPN league report + per-event report for LV@TOR at 1732Z (13:32 ET): \"Wilson is listed as questionable for Sunday's game against the Tempo due to a back injury.\" return_date 2026-08-23, i.e. today's game (LVA@TOR, 19:00 ET, event 2760 on the sheet), which the same snapshot shows STATUS_SCHEDULED - so this is forward-looking doubt, not a post-hoc DNP. Supersedes entry 161 (the 08-11 'in' rolloff of her August rest). Status only, no minutes estimate: a same-day back DTD on a franchise player records a fresh doubt, it does not license the routine to assert a role - and a minutes number here would manufacture an under. No Wilson prop is playable on the current sheet, so this is inert for pricing; it exists so a later firing sees the doubt and so the archive carries it.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 441
   },
   {
    "player": "Shakira Austin",
@@ -5670,7 +5670,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Day-To-Day (Knee), Washington Mystics, ESPN league report + per-event report for WSH@POR at 1732Z (13:32 ET): \"Austin (knee) is listed as questionable for Sunday's game against the Fire.\" return_date 2026-08-23 - today's WAS@PDX (19:00 ET, event 2755), STATUS_SCHEDULED in the same snapshot. Supersedes entry 237 (the 08-14 'in' clearing of her head DTD). Status only, no minutes estimate. Material rather than inert: the owner already holds an OPEN bet on this player-game (2755_assists_shakira austin_under 2.5 @ -110, filled 2026-08-22), and an under on a questionable player cuts both ways - fewer minutes helps the under, a scratch voids it. Flagged in this firing's chat tables as a display-only availability warning; the routine does not touch bets.csv or picks.csv.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 442
   },
   {
    "player": "Aliyah Boston",
@@ -5812,6 +5812,45 @@
    "source": "avail:2026-08-23/2232Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED at 2232Z (18:32 ET), was Out (Coach's Decision) for Friday's MIN@WAS, return_date 2026-08-24. Supersedes index 395 (the 08-21 22:33Z until-cleared out). Same healthy-feed check as the other Lynx clearings this snapshot. Minnesota is not on tonight's slate, so nothing is priced off this; it removes a standing out ahead of the Lynx's next game. Status only, no minutes estimate - her coach's-decision status has oscillated all month, so a clearing restores the panel state rather than asserting a role.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "A'ja Wilson",
+   "added": "2026-08-23T23:33:00Z",
+   "game_date": "2026-08-23",
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/2333Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED at 2333Z (19:33 ET), was Day-To-Day (Back): dropped from the ESPN league report while 34 Out rows persist unchanged (35 rows this snapshot, no adds, no other changes) - a real clearing, not a feed outage. Confirmed by the same snapshot's lineup feed for LV@TOR (event 401857170, STATUS_IN_PROGRESS): listed as a STARTER, reason COACH'S DECISION, dnp=false. Supersedes index 428 (today's 1732Z questionable). Status returned to base panel state, no minutes assertion: a clearing says available, it does not say how many minutes, and the routine does not invent one. Inert for pricing - her game is already underway - it exists so the archive carries the resolution.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Shakira Austin",
+   "added": "2026-08-23T23:33:00Z",
+   "game_date": "2026-08-23",
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/2333Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED at 2333Z (19:33 ET), was Day-To-Day (Knee): dropped from the ESPN league report while 34 Out rows persist unchanged (35 rows this snapshot, no adds, no other changes) - a real clearing, not a feed outage. Confirmed by the same snapshot's lineup feed for WSH@POR (event 401857169, STATUS_IN_PROGRESS): listed as a STARTER, reason COACH'S DECISION, dnp=false. Supersedes index 429 (today's 1732Z questionable). Status returned to base panel state, no minutes assertion: a clearing says available, it does not say how many minutes, and the routine does not invent one. Inert for pricing - her game is already underway - it exists so the archive carries the resolution.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "DiJonai Carrington",
+   "added": "2026-08-23T23:33:00Z",
+   "game_date": "2026-08-23",
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-23/2333Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED at 2333Z (19:33 ET), was Day-To-Day (Foot): dropped from the ESPN league report while 34 Out rows persist unchanged (35 rows this snapshot, no adds, no other changes) - a real clearing, not a feed outage. Confirmed by the same snapshot's lineup feed for IND@CHI (event 401857168, STATUS_IN_PROGRESS): active off the bench (starter=false), reason COACH'S DECISION, dnp=false. Supersedes index 414 (the 08-22 2332Z questionable for today). Status returned to base panel state, no minutes assertion: a clearing says available, it does not say how many minutes, and the routine does not invent one. Inert for pricing - her game is already underway - it exists so the archive carries the resolution.",
    "author": "news-watch",
    "superseded_by": null
   }
