@@ -607,6 +607,49 @@ holdout UNSPENT, exactly as registered.**
   (c) **the T3 analogue** — point-in-time projected-lineups/PP-unit/
   TOI capture, the information prize the M-lesson points at.
 
+### Registration N2 — shots via an attempts observation model (Corsi de-noising) — gates registered 2026-08-24, before any N2 code exists
+
+Motivation: N left shots at +0.00299 (t=2.44) with the M-lesson reading
+(information gap); but one *estimator* upgrade remains untried and is
+the canonical one for this exact stat — SOG is a thinned sample of shot
+attempts (~2.3× the event count), so filtering on attempts should
+estimate the underlying rate better than filtering on SOG alone.
+Verified this session before registering: api-web pbp serves attributed
+`shot-on-goal`/`missed-shot`/`blocked-shot`/`goal` events back to 2011
+in the modern schema (goals are separate events; blocked events carry
+both shooter and blocker ids).
+
+**Data.** Per-player-game attempt counts aggregated in-flight from
+api-web pbp for all training+eval games (raw payloads not retained;
+aggregates gitignored/regenerable). **QC gate before any tuning:**
+(a) pbp coverage ≥ 98% of fetched games per season; (b) internal
+consistency — pbp-derived SOG (goal + shot-on-goal events) equals the
+boxscore `sog` on ≥ 97% of skater-game rows, and attempts ≥ boxscore
+`sog` on ≥ 99.9% of rows, in each of 2013-14, 2018-19, 2022-23 and
+2025-26. Investigate any failure before the engine sees anything.
+
+**Engine class (fixed now).** The usg/eff two-state template from the
+WNBA game model: per player, `att` = attempts per TOI-minute (obs
+attempts/toi, R = rvar_att/toi) and `og` = on-goal fraction (obs
+sog/attempts, R = rvar_og/attempts, update only when attempts > 0);
+predicted SOG/min = att × og. Curves/rvar/q/p0 per state fit and tuned
+strictly pre-2019-07-01 (grids and conventions exactly as N). Delivery:
+`talent_sog` replaced by the att×og prediction; blocked_shots keeps the
+N iteration-1 path; W_RATE/c/home/dispersion refit pre-odds as N it. 1.
+
+- **N2-G1 (market-free)**: same window/rows/metric as N-G1 — must beat
+  the N engine's sog per-game MSE **1.9348** (EW blend 1.9696 reported
+  alongside).
+- **N2-G2 (dev)**: pooled cell (shots via N2, blocked via N) must
+  improve on N's **+0.00227**; |pooled cal| ≤ 2.5pp; at most two
+  iterations (it. 2 = engine-aware pre-odds recalibration choice).
+- **Tripwire and Stage C unchanged from N**: spend condition pooled
+  dev ≤ 0.000; holdout scored once with ROI, placebo, no-move share.
+- Multiple-testing note, stated openly: this is a second registration
+  against the same dev season — dev is dev-grade only, reused; the
+  19,924-prop holdout stays single-shot and is the only place a
+  market-beat claim can come from.
+
 ## Market 5 — NBA (`props/` + `nba/`)
 
 - Game lines: `nba/` already ran this experiment and produced a *bounded*
