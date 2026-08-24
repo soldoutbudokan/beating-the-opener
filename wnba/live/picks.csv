@@ -1,5 +1,13 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2758_rebounds_napheesa collier_under,2026-08-24,2026-08-25 00:00:00,2758,rebounds,Napheesa Collier,MIN,GSV@MIN,under,7.5,116.0,0.5826,0.2583,True,-130,-122,0.0,6.99,,7.5,SUSPECT_EV(26%),False,False
-2758_threes_olivia miles_over,2026-08-24,2026-08-25 00:00:00,2758,threes,Olivia Miles,MIN,GSV@MIN,over,1.5,100.0,0.5957,0.1913,True,-137,-128,0.0,2.01,,1.5,PLAYER_ALREADY_BET(assists over 6.5),False,False
-2759_rebounds_nneka ogwumike_over,2026-08-24,2026-08-25 02:00:00,2759,rebounds,Nneka Ogwumike,LAS,ATL@LAS,over,7.5,104.0,0.5828,0.189,True,-130,-122,2.5,8.37,,7.5,,False,True
-2759_points_dearica hamby_over,2026-08-24,2026-08-25 02:00:00,2759,points,Dearica Hamby,LAS,ATL@LAS,over,13.5,-120.0,0.6003,0.1006,True,-139,-130,1.5,15.56,,13.5,ROLE_MIN?,True,False
+2762_assists_kelsey plum_over,2026-08-25,2026-08-26 02:00:00,2762,assists,Kelsey Plum,PHO,WAS@PHO,over,3.5,106.0,0.7624,0.5705,True,-284,-256,0.0,5.36,,3.5,STALE_PLAYER(16d);SUSPECT_EV(57%);ROLE_MIN?,False,False
+2761_points_jessica shepard_under,2026-08-25,2026-08-26 00:00:00,2761,points,Jessica Shepard,DAL,PDX@DAL,under,15.5,-130.0,0.7493,0.3257,True,-266,-241,0.0,11.77,,15.5,SUSPECT_EV(33%),False,False
+2758_rebounds_napheesa collier_under,2026-08-24,2026-08-25 00:00:00,2758,rebounds,Napheesa Collier,MIN,GSV@MIN,under,7.5,116.0,0.582,0.2572,True,-129,-121,0.0,7.0,,7.5,SUSPECT_EV(26%),False,False
+2761_rebounds_carla leite_under,2026-08-25,2026-08-26 00:00:00,2761,rebounds,Carla Leite,PDX,PDX@DAL,under,2.5,-114.0,0.6585,0.2361,True,-177,-164,4.0,1.94,,2.5,,True,False
+2761_threes_arike ogunbowale_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Arike Ogunbowale,DAL,PDX@DAL,under,1.5,116.0,0.5717,0.2349,True,-124,-117,3.0,1.46,,1.5,,True,False
+2762_threes_kahleah copper_under,2026-08-25,2026-08-26 02:00:00,2762,threes,Kahleah Copper,PHO,WAS@PHO,under,1.5,148.0,0.4846,0.2018,True,113,119,2.0,1.73,,1.5,,True,False
+2758_threes_olivia miles_over,2026-08-24,2026-08-25 00:00:00,2758,threes,Olivia Miles,MIN,GSV@MIN,over,1.5,100.0,0.5953,0.1906,True,-136,-128,0.0,2.0,,1.5,PLAYER_ALREADY_BET(assists over 6.5),False,False
+2759_rebounds_nneka ogwumike_over,2026-08-24,2026-08-25 02:00:00,2759,rebounds,Nneka Ogwumike,LAS,ATL@LAS,over,7.5,104.0,0.5834,0.1901,True,-130,-122,2.5,8.38,,7.5,,False,True
+2762_assists_alyssa thomas_over,2026-08-25,2026-08-26 02:00:00,2762,assists,Alyssa Thomas,PHO,WAS@PHO,over,7.5,-108.0,0.5976,0.1509,True,-138,-129,2.5,8.39,,7.5,,True,False
+2762_assists_dewanna bonner_under,2026-08-25,2026-08-26 02:00:00,2762,assists,DeWanna Bonner,PHO,WAS@PHO,under,1.5,126.0,0.5039,0.1389,True,105,111,1.5,1.63,,1.5,,True,False
+2761_rebounds_bridget carleton_over,2026-08-25,2026-08-26 00:00:00,2761,rebounds,Bridget Carleton,PDX,PDX@DAL,over,4.5,-106.0,0.5848,0.1365,True,-131,-123,2.0,5.25,,4.5,,True,False
+2761_points_megan dileo_under,2026-08-25,2026-08-26 00:00:00,2761,points,Megan DiLeo,PDX,PDX@DAL,under,14.5,-132.0,0.6323,0.1114,True,-158,-147,2.0,12.8,,14.5,,True,False
