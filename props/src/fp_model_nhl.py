@@ -190,7 +190,13 @@ def main():
     ap.add_argument("--lin", action="store_true",
                     help="registration N iteration 2: engine-aware linear "
                          "mu recalibration, fit pre-odds (requires --talent)")
+    ap.add_argument("--talent2", action="store_true",
+                    help="registration N2: attempts-engine sog rate "
+                         "(talent_nhl2.pkl) replaces talent_sog; blocked "
+                         "keeps the N path (implies --talent)")
     args = ap.parse_args()
+    if args.talent2:
+        args.talent = True
     if args.lin and not args.talent:
         raise SystemExit("--lin requires --talent")
     if args.talent and args.expanding:
@@ -206,6 +212,11 @@ def main():
         tal = pd.read_pickle(os.path.join(ROOT, "data", "talent_nhl.pkl"))
         tal_cols = [c for c in tal.columns if c.startswith("talent_")]
         panel = panel.merge(tal, on=["pid", "game_id"], how="left")
+        if args.talent2:
+            tal2 = pd.read_pickle(os.path.join(ROOT, "data",
+                                               "talent_nhl2.pkl"))
+            panel = panel.merge(tal2, on=["pid", "game_id"], how="left")
+            panel["talent_sog"] = panel.talent_sog2.fillna(panel.talent_sog)
         tmap = (panel[panel.role == "skater"]
                 .groupby(["nname", "native_id"])[tal_cols].max()
                 .reset_index())
@@ -213,7 +224,8 @@ def main():
         cov = ev[ev.market.isin(TALENT_MKTS)]["talent_sog"].notna().mean()
         print(f"talent join coverage on cell markets: {cov:.2%}")
         wr = fit_w_rate(panel, ODDS_START)
-    mode = ("talent " if args.talent else "") + (
+    mode = ("talent2 " if args.talent2 else
+            "talent " if args.talent else "") + (
         "lin-recal " if args.lin else "") + (
         "expanding-weekly" if args.expanding else "frozen pre-odds")
     for name in ["dev"] + (["holdout"] if args.holdout else []):
