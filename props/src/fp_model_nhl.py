@@ -102,7 +102,30 @@ def fit_w_rate(panel, cutoff):
     return wr
 
 
-def fit_play_cal(panel, cutoff, wr=None, lin=False):
+def fit_r_threshold(muc, act):
+    """Registration N/N2 iteration-2 option: NegBin dispersion fit by
+    binary over/under likelihood at synthetic half-integer thresholds
+    around mu (pre-odds rows only) — targets P(over) accuracy directly
+    instead of squared residuals, which fold model error into the
+    conditional variance."""
+    mu = np.maximum(np.asarray(muc, float), 1e-6)
+    a = np.asarray(act, float)
+    best_r, best_ll = None, -np.inf
+    for r in list(np.geomspace(2, 400, 28)) + [1e6]:
+        ll_tot = 0.0
+        for off in (-1.0, 0.0, 1.0):
+            kf = np.maximum(np.floor(mu) + off, 0.0)  # P(X > kf + 0.5)
+            over = (a > kf).astype(float)
+            p = 1.0 - sps.nbinom.cdf(kf, r, r / (r + mu))
+            p = np.clip(p, 1e-9, 1 - 1e-9)
+            ll_tot += float((over * np.log(p)
+                             + (1 - over) * np.log(1 - p)).sum())
+        if ll_tot > best_ll:
+            best_ll, best_r = ll_tot, r
+    return None if best_r >= 1e6 else float(best_r)
+
+
+def fit_play_cal(panel, cutoff, wr=None, lin=False, disp=False):
     cal = {"c": {}, "home": {}, "sigma": {}, "nb_r": {}, "lin": {}}
     for mkt, (role, st, act, fac) in MKT.items():
         d = panel[(panel.role == role) & (panel.game_date < cutoff)
@@ -130,6 +153,10 @@ def fit_play_cal(panel, cutoff, wr=None, lin=False):
         if mkt in NORMAL:
             b, aa = np.polyfit(muc, resid2, 1)
             cal["sigma"][mkt] = (max(aa, 0.1), max(b, 0.2))
+        elif disp and wr is not None and mkt in TALENT_MKTS:
+            cal["nb_r"][mkt] = fit_r_threshold(muc, d[act])
+            print(f"  disp[{mkt}]: threshold-likelihood r = "
+                  f"{cal['nb_r'][mkt]}")
         else:
             # method of moments: var = mu + mu^2/r
             excess = resid2.mean() - muc.mean()
@@ -157,9 +184,9 @@ def p_over(mkt, mu, line, cal):
     return float(1.0 - sps.nbinom.cdf(k - 1, r, r / (r + mu)))
 
 
-def score(sub, panel, expanding, wr=None, lin=False):
+def score(sub, panel, expanding, wr=None, lin=False, disp=False):
     def one(grp, cutoff):
-        cal = fit_play_cal(panel, cutoff, wr, lin)
+        cal = fit_play_cal(panel, cutoff, wr, lin, disp)
         g = grp.copy()
         g["mu_model"] = np.nan
         for mkt, (role, st, act, fac) in MKT.items():
@@ -194,6 +221,9 @@ def main():
                     help="registration N2: attempts-engine sog rate "
                          "(talent_nhl2.pkl) replaces talent_sog; blocked "
                          "keeps the N path (implies --talent)")
+    ap.add_argument("--disp", action="store_true",
+                    help="iteration-2 recalibration option: NegBin r fit "
+                         "by pre-odds threshold likelihood (cell markets)")
     args = ap.parse_args()
     if args.talent2:
         args.talent = True
@@ -227,10 +257,11 @@ def main():
     mode = ("talent2 " if args.talent2 else
             "talent " if args.talent else "") + (
         "lin-recal " if args.lin else "") + (
+        "disp-recal " if args.disp else "") + (
         "expanding-weekly" if args.expanding else "frozen pre-odds")
     for name in ["dev"] + (["holdout"] if args.holdout else []):
         sub = ev[ev.split == name].copy()
-        evx = score(sub, panel, args.expanding, wr, args.lin)
+        evx = score(sub, panel, args.expanding, wr, args.lin, args.disp)
         print(f"\n{name} [{mode}]: coverage {len(evx)/len(sub)*100:.1f}%")
         evx["ll_model"] = ll(evx.p_model, evx.over)
         evx["ll_open"] = ll(evx.p_open, evx.over)
