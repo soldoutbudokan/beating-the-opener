@@ -5566,7 +5566,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league + event:401857166 injury report at 0137Z, Atlanta Dream: 'Sherrod (coach's decision) will remain on the inactive list for Saturday's game against the Mercury' (ATL@PHX, 22:00 ET 8/22), return_date 2026-08-24. NEW this firing; supersedes the 08-22 'in' entry (402). Atlanta is not on the 8/23 sheet (IND@CHI, LVA@TOR, SEA@DAL, WAS@PDX) and she carries no prop tonight - inert for pricing, recorded for the archive.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 447
   },
   {
    "player": "Indya Nivar",
@@ -5579,7 +5579,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league + event:401857166 injury report at 0137Z, Atlanta Dream: 'Nivar (coach's decision) has been ruled out for Saturday's game in Phoenix' (ATL@PHX, 22:00 ET 8/22), return_date 2026-08-24. NEW this firing; supersedes the 08-22 'in' entry (401). This is her fourth coach's-decision out in two weeks - a rotation-edge player, not an injury. Atlanta is not on the 8/23 sheet - inert for pricing.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 446
   },
   {
    "player": "Rayah Marshall",
@@ -5864,6 +5864,45 @@
    "source": "avail:2026-08-24/0032Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "League injury report, NEW this snapshot: 'Allemand (head) won't return to Sunday's game against Las Vegas... She finished with three points (1-3 FG, 1-3 3Pt), one rebound and two assists across 15 minutes.' Status Out, type Head, feed return_date 2026-08-26. She left tonight's TOR game in progress with a head injury; head/concussion timelines are protocol-gated and unknowable from the feed, so this is until-cleared (game_date null) rather than dated to the feed's optimistic 8/26. Supersedes entry 348 (the 2026-08-19 'in'). Conservative direction: 'out' removes her from pricing entirely rather than manufacturing a reduced-minutes under off an unknown protocol timeline. No TOR props are on the current sheet, so this is inert until Toronto's next game.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "NaLyssa Smith",
+   "added": "2026-08-24T01:33:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-24/0133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "League injury report, NEW this snapshot: \"Smith (lower body) won't return to Sunday's game against Toronto, Chelsea Leite of TSN reports. She finished with eight points (4-4 FG, 0-2 FT), eight rebounds, one assist, three steals and one block over 19 minutes.\" Status Out, type Lower Body, feed return_date 2026-08-28. She left tonight's LV@TOR (event 401857170) after 19 minutes; that game is already FINAL, so this is inert for the completed slate and targets Las Vegas's NEXT game. Until-cleared (game_date null) rather than dated to the feed's 8/28: an in-game lower-body exit has no reliable timeline from this feed, and the same feed carried optimistic return dates that later moved. Conservative direction: 'out' removes her from pricing entirely rather than inventing a reduced-minutes number. First entry for this player - nothing to supersede. No LV props on the current sheet, so inert until Las Vegas plays again.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Indya Nivar",
+   "added": "2026-08-24T01:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-24/0133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED at 0133Z (2026-08-23 21:33 ET), was Out (Coach's Decision): \"Nivar (coach's decision) has been ruled out for Saturday's game in Phoenix.\" That game (8/22) is over and Atlanta did not play tonight, so this is the routine post-game expiry of a game-specific inactive, not a health change. Feed verified healthy, not an outage: league rows 36 -> 35 across the hour with Nivar and Sherrod dropping and NaLyssa Smith added, and the other 34 Out rows unchanged. Supersedes index 422 (the 2026-08-22 'out'). Status returned to base panel state with no minutes assertion - a clearing says available, it does not say how many minutes, and a repeat coach's-decision scratch for Atlanta's next game stays possible (she has been in/out four times since 8/18). Inert for the current sheet: no Atlanta props on it.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Jaylyn Sherrod",
+   "added": "2026-08-24T01:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-24/0133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED at 0133Z (2026-08-23 21:33 ET), was Out (Coach's Decision): \"Sherrod (coach's decision) will remain on the inactive list for Saturday's game against the Mercury.\" Same pattern as her Atlanta teammate Nivar - the 8/22 game is over, Atlanta did not play tonight, so the row expired rather than the player changing status. Feed verified healthy (36 -> 35 league rows, two ATL drops, one add, 34 Out rows unchanged). Supersedes index 421 (the 2026-08-22 'out'). Base panel state restored, no minutes asserted; 'remain on the inactive list' language means another scratch for Atlanta's next game is likely, so this is availability-neutral, not a signal of a role. Inert for the current sheet.",
    "author": "news-watch",
    "superseded_by": null
   }
