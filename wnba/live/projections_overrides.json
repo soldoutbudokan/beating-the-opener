@@ -4389,7 +4389,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "[Golden State Valkyries] CLEARED in the 0034Z diff: was Out (Coach's Decision), return date 2026-08-19, league entry written for Monday's game vs the Wings. Valkyries are NOT on tonight's four-game card (LA@CON, IND@TOR, NY@CHI, ATL@LV), so this is a stale league entry ageing off its return date, not evidence of a return. Logged for the archive only - no minutes estimate, no pricing effect.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 455
   },
   {
    "player": "Miela Sowah",
@@ -5994,6 +5994,19 @@
    "source": "avail:2026-08-24/2133Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 2133Z diff (17:33 ET), was Out (Coach's Decision): 'Marshall (coach's decision) is out for Saturday's game versus the Sparks', return_date 2026-08-25. That game (CON@LA, 8/22) is over and Connecticut has not played since, so this is the routine post-game expiry of a game-specific inactive - the Nivar/Sherrod pattern (indices 446, 447) - reinforced here by the Sun's report being rewritten for Tuesday in this same snapshot (Nelson-Ododa added with a comment naming that game). Feed verified healthy: league rows 34 -> 33, two Connecticut drops and one Connecticut add, all other rows unchanged, per-event reports unchanged. Supersedes index 423 (the 2026-08-22 'out'). Base panel state restored, no minutes asserted; she is deep bench (last panel game 2026-08-20, 7 min, 4-7 min in each 2026 appearance) and has been a coach's-decision scratch repeatedly, so another one for Tuesday stays possible - this is availability-neutral, not a signal of a role. She carries no props on the current sheet.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Ashten Prechtel",
+   "added": "2026-08-24T23:32:00Z",
+   "game_date": "2026-08-24",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-24/2332Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report, NEW in the 2332Z diff (19:32 ET): Prechtel (Golden State) Out, type Coach's Decision, return_date 2026-08-26, and the per-event report for 401857171 (GSV @ MIN, 20:00 ET tonight) carries the same Out - so this targets tonight's GSV@MIN game on the sheet. Supersedes index 333 (2026-08-19 'in', the stale-league-entry clearance). A coach's-decision Out is an availability fact, so minutes_est 0; no teammate minutes are reallocated - Prechtel is deep bench (two panel games all season: 5 min on 5/25, 18 min on 8/12), so asserting a Valkyries minutes shift off her DNP would be invention. She carries no row on the current sheet, and no GSV prop is playable on it, so this is archive plus the pre-tip availability check. Fifth coach's-decision Out logged for her since 8/06 - the pattern is a rotation call, not an injury.",
    "author": "news-watch",
    "superseded_by": null
   }
