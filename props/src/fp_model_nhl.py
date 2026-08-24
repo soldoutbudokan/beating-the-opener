@@ -67,7 +67,12 @@ def mu_one(df, datecol, st, fac_col, cal, key, wr=None):
     fac = ((df[fac_col] / lg) ** FAC_EXP).fillna(1.0)
     mu = core * fac
     if cal is not None:
-        mu = mu * cal["c"][key] * cal["home"][key] ** (df.home - 0.5)
+        if key in cal.get("lin", {}):
+            a_, b_ = cal["lin"][key]
+            mu = np.maximum(a_ + b_ * mu, 0.05)
+        else:
+            mu = mu * cal["c"][key]
+        mu = mu * cal["home"][key] ** (df.home - 0.5)
     return mu
 
 
@@ -97,8 +102,8 @@ def fit_w_rate(panel, cutoff):
     return wr
 
 
-def fit_play_cal(panel, cutoff, wr=None):
-    cal = {"c": {}, "home": {}, "sigma": {}, "nb_r": {}}
+def fit_play_cal(panel, cutoff, wr=None, lin=False):
+    cal = {"c": {}, "home": {}, "sigma": {}, "nb_r": {}, "lin": {}}
     for mkt, (role, st, act, fac) in MKT.items():
         d = panel[(panel.role == role) & (panel.game_date < cutoff)
                   & (panel.gp >= 4)].copy()
@@ -106,11 +111,21 @@ def fit_play_cal(panel, cutoff, wr=None):
         mu0 = mu_one(d, "game_date", st, fac, None, mkt, wr)
         ok = mu0.notna() & d[act].notna()
         d, mu0 = d[ok], mu0[ok]
-        cal["c"][mkt] = d[act].mean() / mu0.mean()
+        if lin and wr is not None and mkt in TALENT_MKTS:
+            # registration N iteration 2: engine-aware linear mu
+            # recalibration (actual ~ a + b*mu), fit strictly pre-odds
+            b_, a_ = np.polyfit(mu0, d[act], 1)
+            cal["lin"][mkt] = (float(a_), float(b_))
+            cal["c"][mkt] = 1.0
+            print(f"  lin[{mkt}]: mu' = {a_:+.3f} {b_:+.3f}*mu")
+            mu1 = np.maximum(a_ + b_ * mu0, 0.05)
+        else:
+            cal["c"][mkt] = d[act].mean() / mu0.mean()
+            mu1 = mu0 * cal["c"][mkt]
         h, a = d.home == 1, d.home == 0
-        cal["home"][mkt] = ((d[act][h].mean() / mu0[h].mean())
-                            / (d[act][a].mean() / mu0[a].mean()))
-        muc = mu0 * cal["c"][mkt] * cal["home"][mkt] ** (d.home - 0.5)
+        cal["home"][mkt] = ((d[act][h].mean() / mu1[h].mean())
+                            / (d[act][a].mean() / mu1[a].mean()))
+        muc = mu1 * cal["home"][mkt] ** (d.home - 0.5)
         resid2 = (d[act] - muc) ** 2
         if mkt in NORMAL:
             b, aa = np.polyfit(muc, resid2, 1)
@@ -142,9 +157,9 @@ def p_over(mkt, mu, line, cal):
     return float(1.0 - sps.nbinom.cdf(k - 1, r, r / (r + mu)))
 
 
-def score(sub, panel, expanding, wr=None):
+def score(sub, panel, expanding, wr=None, lin=False):
     def one(grp, cutoff):
-        cal = fit_play_cal(panel, cutoff, wr)
+        cal = fit_play_cal(panel, cutoff, wr, lin)
         g = grp.copy()
         g["mu_model"] = np.nan
         for mkt, (role, st, act, fac) in MKT.items():
@@ -172,7 +187,12 @@ def main():
     ap.add_argument("--talent", action="store_true",
                     help="registration N: talent-engine mu path for the "
                          "registered cell (TALENT_MKTS)")
+    ap.add_argument("--lin", action="store_true",
+                    help="registration N iteration 2: engine-aware linear "
+                         "mu recalibration, fit pre-odds (requires --talent)")
     args = ap.parse_args()
+    if args.lin and not args.talent:
+        raise SystemExit("--lin requires --talent")
     if args.talent and args.expanding:
         raise SystemExit("registration N: talent-path constants are fit "
                          "strictly pre-odds; --expanding is not allowed "
@@ -194,10 +214,11 @@ def main():
         print(f"talent join coverage on cell markets: {cov:.2%}")
         wr = fit_w_rate(panel, ODDS_START)
     mode = ("talent " if args.talent else "") + (
+        "lin-recal " if args.lin else "") + (
         "expanding-weekly" if args.expanding else "frozen pre-odds")
     for name in ["dev"] + (["holdout"] if args.holdout else []):
         sub = ev[ev.split == name].copy()
-        evx = score(sub, panel, args.expanding, wr)
+        evx = score(sub, panel, args.expanding, wr, args.lin)
         print(f"\n{name} [{mode}]: coverage {len(evx)/len(sub)*100:.1f}%")
         evx["ll_model"] = ll(evx.p_model, evx.over)
         evx["ll_open"] = ll(evx.p_open, evx.over)
