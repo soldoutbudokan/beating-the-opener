@@ -5644,7 +5644,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Day-To-Day (Jaw), Connecticut Sun, ESPN league injury report at 0337Z (23:37 ET 8/22): 'Beers will not return to Saturday's game against the Sparks due to a jaw injury', return_date 2026-08-25. In-game exit, so the timetable is open-ended - until-cleared rather than tied to one date. Status only, no minutes estimate: it records a fresh doubt, it does not assert a role. Supersedes the 2026-08-12 'in' entry (index 202), which was until-cleared and still active.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 451
   },
   {
    "player": "A'ja Wilson",
@@ -5942,6 +5942,19 @@
    "source": "ESPN news API (news_watch item 0ac465dd72594, published 2026-08-24T17:52:05Z = 13:52 ET)",
    "url": "https://www.espn.com/wnba/",
    "quote": "'Mercury buy out DeWanna Bonner, who will seek title chance' - 'The Mercury and DeWanna Bonner have reached an agreement to buy out her contract. Once she clears waivers, the six-time All-Star will look for a chance to sign as a free agent with a playoff team.' She has been a Mercury starter all season (last 8 games all starts, 19-34 min, 30 min on 8/22 vs ATL) and the panel team is Mercury, so the base model still prices her into Phoenix's rotation. A bought-out player does not play for the buying-out team again: OUT until cleared, minutes 0, game_date null. Not team-specific by construction - if she signs elsewhere she becomes unpriceable anyway under the TEAM_CHANGED gate until her first game with the new team enters the panel, and this entry must then be SUPERSEDED rather than edited. NOTE FOR THE OWNER: an open bet in bets.csv, 2762_assists_dewanna bonner_under (PHO event 2762, 2026-08-25 ET), rides on her playing for Phoenix - expect FanDuel to void it. The routine does not touch bets.csv.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Raegan Beers",
+   "added": "2026-08-24T20:32:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-24/2032Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED in the avail_watch diff: dropped off the ESPN league injury report between the 2026-08-24 19:33Z and 20:32Z snapshots, i.e. no longer carries the Day-To-Day (Jaw) designation whose listed return_date was 2026-08-25. Status-only, no minutes estimate: it lifts a stale doubt rather than asserting a role. Supersedes the 2026-08-23 questionable entry (index 427), which was until-cleared and still active. Connecticut is not on tonight's ESPN slate (GS@MIN, ATL@LA), so this is record-only for now.",
    "author": "news-watch",
    "superseded_by": null
   }
