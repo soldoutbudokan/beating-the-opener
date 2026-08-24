@@ -36,7 +36,7 @@ Easiest → hardest, tackled one at a time:
 | 1b | WNBA game lines | `wnba/` | prospective | v1 + v2 **ML head = control** (v2 GV2-1 +0.020 vs ≤+0.010 after the one-ball rework halved v1's gap); v2 **spread head passed dev gates** (+0.0072, cal −1.5pp) → `fp-games-prospective-1` accruing on games 2026-08-01+, scored at season end; no betting |
 | 2 | BBL cricket match odds | `cricket/` | done | **control #3 confirmed** — player model passed dev gates, holdout FAIL (+0.052, t=3.6, ROI −34%); benchmark n=297 is structurally too small; future cricket → IPL pending odds source |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
-| 4 | NHL player props | `props/` | **striking distance, unproven** | Registration N complete 2026-08-24: talent engine closed 71% of the shots/blocked gap (pooled +0.0078 → **+0.0023 t=2.3**; blocked **+0.0007 t=0.4 = parity**); spend condition (dev ≤ 0.000) not met → **holdout unspent**; forward paths recorded (Corsi observation model, lineup/TOI capture, 2026-27 prospective arm) |
+| 4 | NHL player props | `props/` | **striking distance, unproven** | Registrations N + N2 complete 2026-08-24: talent engine then attempts (Corsi) engine closed 83% of the shots/blocked gap (pooled +0.0078 t=5.7 → **+0.0014 t=1.4** — statistically indistinguishable from the opener; blocked +0.0002 t=0.1); spend condition (dev ≤ 0.000) not met → **holdout unspent**; next: information layer (lineups/PP/goalies), 2026-27 prospective arm (owner decision) |
 | 5 | NBA player props | `props/` | parked | **control** — G1 fail both iterations (+0.0247); calibration fine, discrimination gap; **holdout unspent** (awaits Stage D injury data) |
 
 ## Common protocol (all markets)
@@ -649,6 +649,45 @@ N iteration-1 path; W_RATE/c/home/dispersion refit pre-odds as N it. 1.
   against the same dev season — dev is dev-grade only, reused; the
   19,924-prop holdout stays single-shot and is the only place a
   market-beat claim can come from.
+
+**N2 verdicts (2026-08-24, both iterations spent).**
+- **QC PASS**: pbp fetched for all 20,591 games (0 failures), 100%
+  coverage every season; SOG identity ≥ 99.94% on all four registered
+  seasons; attempts ≥ sog on 100% of rows; attempts/SOG ratio 1.84–2.10
+  (the de-noising headroom). Data-semantics fix caught before tuning:
+  a played skater with no attempt events in a covered game is a TRUE
+  ZERO, not missing — without the fill the att state never updates
+  down for fringe players.
+- **N2-G1 PASS**: per-game SOG MSE 2019-20..2023-24 (n=227,194):
+  attempts engine **1.92591** vs N engine 1.93476 vs EW blend 1.96963.
+- **N2-G2: PASS on the improvement gate; spend condition NOT met →
+  holdout UNSPENT.** Iteration 1 (att×og rate into the N delivery
+  path, w_rate[shots]=0.10): shots +0.00299 → **+0.00185**, pooled
+  cell **+0.00149**. Iteration 2 (`--disp`, NegBin r by pre-odds
+  threshold likelihood — MoM r folds model error into conditional
+  variance and suppresses P(over); fitted r: shots 14.2, blocked 6.5):
+  blocked +0.00068 → **+0.00022 (t=0.12, cal −0.2pp)**, shots +0.00188
+  (t=1.62), **pooled cell +0.00136 (clustered t=1.40, cal −1.22pp) —
+  adopted as the N2 model of record.** vs same-line close +0.00219
+  (t=2.26): no tripwire. Cell ROI at consensus open: EV>2% −1.49%
+  (t=−1.0), EV>5% +1.68% (t=0.9) = noise; placebo 0 bets.
+- **Where the NHL revisit ends (2026-08-24)**: across one session the
+  cell went +0.00779 (t=5.72) → N +0.00227 (t=2.30) → N2 **+0.00136
+  (t=1.40)** — 83% of the gap closed, and the pooled cell is now
+  *statistically indistinguishable from the opener* (blocked
+  effectively AT the opener at +0.00022). The registered spend
+  condition (point estimate ≤ 0.000) is honestly unmet, and rightly
+  so: a model indistinguishable from the market would not survive the
+  holdout's t ≤ −2 superiority test either. All iteration budgets
+  (Stage-B ×2, N ×2, N2 ×2) are spent; the 19,924-prop holdout is
+  preserved for a model that shows dev superiority under a fresh
+  registration. The remaining candidates, in order of the evidence:
+  the T3-analogue information layer (projected lineups/PP units/
+  starting goalies — the M-lesson prize), a 2026-27 prospective arm
+  (needs an owner decision to archive NHL odds next season), and
+  engine refinements that would need genuinely new structure
+  (PP/ES-split states, opponent-conditioned og) rather than more
+  recalibration.
 
 ## Market 5 — NBA (`props/` + `nba/`)
 
@@ -1527,6 +1566,17 @@ possible cricket odds proxy "used carefully". Session findings:
   diagnosed as information (role/TOI news), reproducing the WNBA M
   lesson. Forward paths + owner actions recorded in the Market 4
   revisit section and the exploration section.
+- **2026-08-24 (registration N2 run + verdict)** — pbp attempts data
+  fetched (20,591 games, 0 failures), QC PASS (identities ≥ 99.94%,
+  attempts/SOG 1.84–2.10×; true-zero semantics fix caught pre-tuning);
+  N2-G1 PASS (1.92591 vs N 1.93476 vs EW 1.96963); N2-G2 it.1 pooled
+  +0.00149, it.2 (--disp threshold-likelihood dispersion) **+0.00136
+  (t=1.40)** adopted — the cell is now statistically indistinguishable
+  from the opener, but the spend condition (≤ 0.000) is honestly unmet
+  → **holdout unspent**, all iteration budgets closed. Session arc:
+  +0.00779 (t=5.72) → +0.00227 (t=2.30) → +0.00136 (t=1.40). Next
+  paths recorded (information layer; 2026-27 prospective arm = owner
+  decision on archiving NHL odds).
 - **2026-08-24 (lessons-learned doc, owner-requested)** — `LESSONS.md`
   added at the repo root: the programme's cross-market lessons distilled
   from AUDIT.md, this file, the subproject READMEs and the live record
