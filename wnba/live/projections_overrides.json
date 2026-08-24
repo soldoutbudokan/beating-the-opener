@@ -5748,7 +5748,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Out (Leg), Las Vegas Aces, from the LV@TOR per-event report (event 401857170) at 2133Z (17:33 ET); no comment text on the feed, return_date 2027-05-01. The league feed was live on this firing (42 league rows alongside 22 event rows), so this is a real appearance, not an outage artifact. game_date null (until cleared) because a next-May return date is a season-ending absence, not a one-night doubt; a later report of her return supersedes this entry. No prior entry for her, so nothing to supersede. She is not on tonight's picks sheet and carries no props, so this prices nothing today. Status only, no minutes estimate: an absence needs no minutes guess, and the routine does not reassign her minutes to teammates.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 448
   },
   {
    "player": "Caitlin Clark",
@@ -5903,6 +5903,19 @@
    "source": "avail:2026-08-24/0133Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED at 0133Z (2026-08-23 21:33 ET), was Out (Coach's Decision): \"Sherrod (coach's decision) will remain on the inactive list for Saturday's game against the Mercury.\" Same pattern as her Atlanta teammate Nivar - the 8/22 game is over, Atlanta did not play tonight, so the row expired rather than the player changing status. Feed verified healthy (36 -> 35 league rows, two ATL drops, one add, 34 Out rows unchanged). Supersedes index 421 (the 2026-08-22 'out'). Base panel state restored, no minutes asserted; 'remain on the inactive list' language means another scratch for Atlanta's next game is likely, so this is availability-neutral, not a signal of a role. Inert for the current sheet.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Janiah Barker",
+   "added": "2026-08-24T02:33:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-24/0233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED at 0233Z (2026-08-23 22:33 ET) per the diff, but judged NOT a return, so this supersedes index 435 with the SAME 'out' status rather than restoring her. What actually happened: both of her rows (league and the LV@TOR per-event report) dropped together, one hour after they first appeared with type Leg and return_date 2027-05-01. Feed verified healthy, not an outage: league rows 35 -> 34 with Barker the only drop and the other 34 unchanged; the four per-event reports otherwise identical. The LV@TOR final (401857170, STATUS_FINAL) settles it - the other Las Vegas/Toronto inactives resolved from generic COACH'S DECISION to real reasons (Dana Evans LEFT LEG INJURY, Mabrey RIGHT ADDUCTOR, Sabally/Conde LEFT CALF), while Barker vanished from the inactive list entirely and appears NOWHERE in the box, not even as a DNP. A player absent from the box is off the active roster, which reads as a roster/report removal for a season-ending absence, not a clearing; no return was reported anywhere. Nothing here asserts she is available, so the conservative state is unchanged: out, until-cleared, no minutes asserted. Inert for the current sheet either way - she carries no props.",
    "author": "news-watch",
    "superseded_by": null
   }
