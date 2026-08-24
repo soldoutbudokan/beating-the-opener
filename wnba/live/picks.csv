@@ -11,8 +11,8 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2761_threes_paige bueckers_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Paige Bueckers,DAL,PDX@DAL,under,1.5,104.0,0.5691,0.161,True,-123,-115,2.0,1.47,,1.5,,True,False
 2761_points_carla leite_under,2026-08-25,2026-08-26 00:00:00,2761,points,Carla Leite,PDX,PDX@DAL,under,15.5,-102.0,0.5861,0.1607,True,-132,-123,2.0,14.48,,15.5,,True,False
 2761_points_megan dileo_under,2026-08-25,2026-08-26 00:00:00,2761,points,Megan DiLeo,PDX,PDX@DAL,under,14.5,-130.0,0.6505,0.1509,True,-171,-158,2.5,12.51,,14.5,,True,False
-2758_points_kayla mcbride_over,2026-08-24,2026-08-25 00:00:00,2758,points,Kayla McBride,MIN,GSV@MIN,over,16.5,102.0,0.5679,0.1471,True,-122,-115,0.0,18.08,,17.5,MOVED_OFF_OPEN,False,False
 2762_assists_alyssa thomas_over,2026-08-25,2026-08-26 02:00:00,2762,assists,Alyssa Thomas,PHO,WAS@PHO,over,7.5,-108.0,0.5956,0.147,True,-137,-128,2.0,8.37,,7.5,,True,False
 2762_threes_michaela onyenwere_under,2026-08-25,2026-08-26 02:00:00,2762,threes,Michaela Onyenwere,WAS,WAS@PHO,under,1.5,-104.0,0.578,0.1339,True,-127,-119,2.0,1.44,,1.5,,True,False
+2758_points_kayla mcbride_over,2026-08-24,2026-08-25 00:00:00,2758,points,Kayla McBride,MIN,GSV@MIN,over,15.5,-128.0,0.6241,0.1116,True,-153,-143,0.0,18.08,,17.5,MOVED_OFF_OPEN,False,False
 2760_points_natasha cloud_over,2026-08-25,2026-08-25 23:00:00,2760,points,Natasha Cloud,CHI,CHI@CON,over,12.5,-102.0,0.5611,0.1112,True,-119,-112,0.0,13.87,,12.5,MOVED_OFF_OPEN,False,False
 2761_rebounds_bridget carleton_over,2026-08-25,2026-08-26 00:00:00,2761,rebounds,Bridget Carleton,PDX,PDX@DAL,over,4.5,-106.0,0.5663,0.1006,True,-122,-114,1.5,5.12,,4.5,,True,False
