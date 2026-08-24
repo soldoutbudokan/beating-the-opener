@@ -33,8 +33,12 @@ def load_with_attempts():
     if not files:
         raise SystemExit("no attempts parquet - run fetch_nhl_pbp.py")
     att = pd.concat([pd.read_parquet(f) for f in files], ignore_index=True)
+    covered = set(att.game_id.unique())
     att = att[["game_id", "pid", "attempts"]]
     d = d.merge(att, on=["game_id", "pid"], how="left")
+    # a covered game with no row for a played skater is a TRUE ZERO
+    # (no attempt events), not missing data
+    d.loc[d.game_id.isin(covered) & d.attempts.isna(), "attempts"] = 0.0
     d["y_att"] = d.attempts / d.toi_min
     d["den_att"] = d.toi_min.where(d.attempts.notna(), 0.0)
     d["y_og"] = np.where(d.attempts > 0, d.sog / d.attempts.replace(0, np.nan),
@@ -105,7 +109,8 @@ def main():
     m = ((d.date >= T.VAL_LO) & (d.date < T.VAL_HI)
          & (d.toi_min >= T.TOI_FLOOR) & np.isfinite(inc)
          & np.isfinite(act)).to_numpy()
-    m &= np.isfinite(pred_rate) & np.isfinite(pred_n) & np.isfinite(toi_blend)
+    m = (m & np.isfinite(pred_rate) & np.isfinite(pred_n)
+         & np.isfinite(toi_blend))
     mse2 = float(np.mean((act[m] - pred_rate[m] * toi_blend[m]) ** 2))
     msen = float(np.mean((act[m] - pred_n[m] * toi_blend[m]) ** 2))
     msee = float(np.mean((act[m] - inc[m]) ** 2))
