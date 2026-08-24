@@ -5918,6 +5918,32 @@
    "quote": "CLEARED at 0233Z (2026-08-23 22:33 ET) per the diff, but judged NOT a return, so this supersedes index 435 with the SAME 'out' status rather than restoring her. What actually happened: both of her rows (league and the LV@TOR per-event report) dropped together, one hour after they first appeared with type Leg and return_date 2027-05-01. Feed verified healthy, not an outage: league rows 35 -> 34 with Barker the only drop and the other 34 unchanged; the four per-event reports otherwise identical. The LV@TOR final (401857170, STATUS_FINAL) settles it - the other Las Vegas/Toronto inactives resolved from generic COACH'S DECISION to real reasons (Dana Evans LEFT LEG INJURY, Mabrey RIGHT ADDUCTOR, Sabally/Conde LEFT CALF), while Barker vanished from the inactive list entirely and appears NOWHERE in the box, not even as a DNP. A player absent from the box is off the active roster, which reads as a roster/report removal for a season-ending absence, not a clearing; no return was reported anywhere. Nothing here asserts she is available, so the conservative state is unchanged: out, until-cleared, no minutes asserted. Inert for the current sheet either way - she carries no props.",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "Rae Burrell",
+   "added": "2026-08-24T18:36:00Z",
+   "game_date": "2026-08-24",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-24/1836Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report, NEW this snapshot (1836Z = 14:36 ET): 'day-to-day', status Day-To-Day, type Illness, Los Angeles Sparks, return_date 2026-08-24 - i.e. the feed expects her available for tonight's LAS home game (event 2759, 22:00 ET). She is a full-time starter (last 8 games all starts, 25-35 min, 30 min in each of the last two). Comment carries no detail beyond 'day-to-day' and an illness that the feed itself dates to clear today, so minutes are left NULL = base panel state: the conservative choice that manufactures no news-driven edge in either direction (a cut estimate would invent unders, an inflated one overs). Annotation for the pre-tip availability check, not a projection change. Same handling as index 369 (Coulibaly).",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "DeWanna Bonner",
+   "added": "2026-08-24T18:36:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "ESPN news API (news_watch item 0ac465dd72594, published 2026-08-24T17:52:05Z = 13:52 ET)",
+   "url": "https://www.espn.com/wnba/",
+   "quote": "'Mercury buy out DeWanna Bonner, who will seek title chance' - 'The Mercury and DeWanna Bonner have reached an agreement to buy out her contract. Once she clears waivers, the six-time All-Star will look for a chance to sign as a free agent with a playoff team.' She has been a Mercury starter all season (last 8 games all starts, 19-34 min, 30 min on 8/22 vs ATL) and the panel team is Mercury, so the base model still prices her into Phoenix's rotation. A bought-out player does not play for the buying-out team again: OUT until cleared, minutes 0, game_date null. Not team-specific by construction - if she signs elsewhere she becomes unpriceable anyway under the TEAM_CHANGED gate until her first game with the new team enters the panel, and this entry must then be SUPERSEDED rather than edited. NOTE FOR THE OWNER: an open bet in bets.csv, 2762_assists_dewanna bonner_under (PHO event 2762, 2026-08-25 ET), rides on her playing for Phoenix - expect FanDuel to void it. The routine does not touch bets.csv.",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }
