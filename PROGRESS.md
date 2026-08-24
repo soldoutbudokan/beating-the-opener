@@ -36,7 +36,7 @@ Easiest → hardest, tackled one at a time:
 | 1b | WNBA game lines | `wnba/` | prospective | v1 + v2 **ML head = control** (v2 GV2-1 +0.020 vs ≤+0.010 after the one-ball rework halved v1's gap); v2 **spread head passed dev gates** (+0.0072, cal −1.5pp) → `fp-games-prospective-1` accruing on games 2026-08-01+, scored at season end; no betting |
 | 2 | BBL cricket match odds | `cricket/` | done | **control #3 confirmed** — player model passed dev gates, holdout FAIL (+0.052, t=3.6, ROI −34%); benchmark n=297 is structurally too small; future cricket → IPL pending odds source |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
-| 4 | NHL player props | `props/` | **ACTIVE (registration N)** | Stage-B control stands (+0.0191 both iterations), but shots/blocked sat inside the gate → 2026-08-24 talent-engine revisit registered (gates below); **holdout unspent** pending the registered spend condition |
+| 4 | NHL player props | `props/` | **striking distance, unproven** | Registration N complete 2026-08-24: talent engine closed 71% of the shots/blocked gap (pooled +0.0078 → **+0.0023 t=2.3**; blocked **+0.0007 t=0.4 = parity**); spend condition (dev ≤ 0.000) not met → **holdout unspent**; forward paths recorded (Corsi observation model, lineup/TOI capture, 2026-27 prospective arm) |
 | 5 | NBA player props | `props/` | parked | **control** — G1 fail both iterations (+0.0247); calibration fine, discrimination gap; **holdout unspent** (awaits Stage D injury data) |
 
 ## Common protocol (all markets)
@@ -566,6 +566,46 @@ exactly as T1 had to: the tuner chose the lowest process noise AND
 lowest p0 in the grid (q=1e-4, p0=0.05) on every stat — maximum
 regression/stability. The grid was not widened post-hoc; noted as a
 candidate for a future registration, not this one.
+
+**N-G2 verdict (2026-08-24): PASS on the improvement gate after
+iteration 1; iteration 2 not adopted; Stage C spend condition NOT met →
+holdout UNSPENT, exactly as registered.**
+- Iteration 1 (`--talent`, W_RATE + c/home/dispersion fit pre-odds):
+  the pre-odds fit chose **w_rate ≈ 0** (shots 0.05, blocked 0.00) —
+  pure talent_rate × toi_blend, the per-game EW blend discarded, same
+  as WNBA. Dev cell: **pooled +0.00227 (clustered t=2.30, cal
+  −0.43pp)** vs the same-data baseline **+0.00779 (t=5.72)** — 71% of
+  the cell gap closed. Per stat: **blocked_shots +0.00068 (t=0.40) —
+  statistical parity with the opener**; shots +0.00299 (t=2.44).
+  Full-slate calibration −1.43pp. N-G3: model is BEHIND the same-line
+  close on the cell (+0.00314, t=3.2) — no tripwire. Cell-only ROI at
+  consensus open: EV>2% −1.53% (t=−1.1), EV>5% **+0.24% (t=0.1) =
+  noise, reported as such**; placebo 0 bets. (Incumbent cell ROI was
+  ≈ −7%.)
+- Iteration 2 (`--lin`, engine-aware linear μ recalibration fit
+  pre-odds; motivated by a dev diagnostic showing monotone μ-scale
+  bias, low-μ −5.1pp / high-μ +2.1pp): shots +0.00297 (no change),
+  blocked +0.00101 (slightly worse), calibration worse (−2.0/−2.4pp).
+  **Not adopted; iteration 1 is the model of record.** Reading: the
+  panel-wide pre-odds linear fit does not transfer to the prop-priced
+  population — the residual low-μ bias lives in rows where the market
+  prices role/TOI changes our participation history lags, i.e. the
+  WNBA M lesson reproduced in NHL: what remains is an **information
+  gap (ice time/lineups), not an estimator gap**.
+- Where this leaves NHL: shots/blocked went from "control at +0.0078
+  (t=5.7)" to **"striking distance, unproven" (+0.0023, t=2.3)** with
+  blocked at parity — the same designation as the WNBA 1b-v2 spread
+  head. Both N-G2 iterations and the two Stage-B iterations are spent;
+  the 19,924-prop holdout is preserved for a model that reaches dev
+  ≤ 0.000 under a fresh registration. Recorded forward paths (each
+  needs its own registration): (a) **prospective 2026-27 arm** — the
+  iteration-1 model is frozen and scoreable, but no routine archives
+  NHL odds, so accrual needs an owner decision to extend the archiver;
+  (b) **shot-attempts observation model** — pbp with attempts exists
+  on the fastRhockey mirror; Corsi-as-observation is the standard
+  de-noising of SOG rates and targets exactly the shots gap;
+  (c) **the T3 analogue** — point-in-time projected-lineups/PP-unit/
+  TOI capture, the information prize the M-lesson points at.
 
 ## Market 5 — NBA (`props/` + `nba/`)
 
@@ -1432,6 +1472,18 @@ possible cricket odds proxy "used carefully". Session findings:
   the follow-up candidate. Eval-era NHL fetch rerun clean (2,788 games,
   0 failed); training-era 2010-11–2023-24 api-web fetch + QC next, then
   the engine build.
+- **2026-08-24 (registration N run + verdict)** — QC PASS (17,799/17,799
+  games, dual-source 99.9–100%); N-G1 PASS 5/5 (engine beats the EW
+  blend on every stat, cell = shots+blocked); N-G2 iteration 1 PASS on
+  the improvement gate (dev cell +0.00779 → **+0.00227 t=2.3**, blocked
+  at parity +0.00068 t=0.4, cal −0.43pp, cell EV>5% ROI +0.24% t=0.1 =
+  noise, placebo 0 bets, no tripwire); iteration 2 (linear μ recal) not
+  adopted (no improvement, calibration worse). **Spend condition dev ≤
+  0.000 not met → Stage C not run, 19,924-prop holdout preserved.**
+  NHL moves control → "striking distance, unproven"; the residual gap
+  diagnosed as information (role/TOI news), reproducing the WNBA M
+  lesson. Forward paths + owner actions recorded in the Market 4
+  revisit section and the exploration section.
 - **2026-08-24 (lessons-learned doc, owner-requested)** — `LESSONS.md`
   added at the repo root: the programme's cross-market lessons distilled
   from AUDIT.md, this file, the subproject READMEs and the live record
