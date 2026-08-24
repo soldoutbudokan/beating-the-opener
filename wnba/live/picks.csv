@@ -4,7 +4,6 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2760_points_sydney taylor_over,2026-08-25,2026-08-25 23:00:00,2760,points,Sydney Taylor,CHI,CHI@CON,over,13.5,100.0,0.6149,0.2298,True,-148,-138,3.0,15.81,,13.5,,True,False
 2761_threes_arike ogunbowale_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Arike Ogunbowale,DAL,PDX@DAL,under,1.5,118.0,0.5523,0.2039,True,-115,-108,2.5,1.52,,1.5,ROLE_MIN?,True,False
 2762_threes_kahleah copper_under,2026-08-25,2026-08-26 02:00:00,2762,threes,Kahleah Copper,PHO,WAS@PHO,under,1.5,146.0,0.4852,0.1937,True,113,119,2.0,1.73,,1.5,,True,False
-2758_threes_olivia miles_over,2026-08-24,2026-08-25 00:00:00,2758,threes,Olivia Miles,MIN,GSV@MIN,over,1.5,100.0,0.5954,0.1908,True,-136,-128,0.0,2.01,,1.5,PLAYER_ALREADY_BET(assists over 6.5),False,False
 2759_rebounds_nneka ogwumike_over,2026-08-24,2026-08-25 02:00:00,2759,rebounds,Nneka Ogwumike,LAS,ATL@LAS,over,7.5,104.0,0.5835,0.1904,True,-130,-122,2.5,8.38,,7.5,,False,True
 2761_points_jessica shepard_under,2026-08-25,2026-08-26 00:00:00,2761,points,Jessica Shepard,DAL,PDX@DAL,under,15.5,-132.0,0.6669,0.1721,True,-183,-169,3.0,13.17,,15.5,,True,False
 2762_assists_dewanna bonner_under,2026-08-25,2026-08-26 02:00:00,2762,assists,DeWanna Bonner,PHO,WAS@PHO,under,1.5,130.0,0.5048,0.1611,True,105,110,1.5,1.62,,1.5,,True,False
