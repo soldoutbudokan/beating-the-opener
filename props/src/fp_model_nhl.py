@@ -44,26 +44,66 @@ NORMAL = {"saves"}
 W_FAST = 0.6
 FAC_EXP = 0.5
 ODDS_START = "2025-10-07"
+# registration N (PROGRESS.md Market 4 revisit): the markets whose mu path
+# switches to the talent engine under --talent = the registered cell (the
+# subset of {shots, blocked_shots} that passed N-G1). All other markets
+# keep the incumbent path unconditionally.
+TALENT_MKTS = {"shots": "sog", "blocked_shots": "blk"}
 
 
-def mu_one(df, datecol, st, fac_col, cal, key):
+def mu_one(df, datecol, st, fac_col, cal, key, wr=None):
     per_game = (W_FAST * df[f"{st}_ewf"]
                 + (1 - W_FAST) * df[f"{st}_ews"]).fillna(df[f"{st}_ewf"])
+    if wr is not None and key in wr and f"talent_{st}" in df.columns:
+        toi_b = (W_FAST * df.toi_min_ewf
+                 + (1 - W_FAST) * df.toi_min_ews).fillna(df.toi_min_ewf)
+        rate_mu = df[f"talent_{st}"] * toi_b
+        w = wr[key]
+        core = (w * per_game.fillna(rate_mu)
+                + (1 - w) * rate_mu.fillna(per_game))
+    else:
+        core = per_game
     lg = df.groupby(datecol)[fac_col].transform("mean")
     fac = ((df[fac_col] / lg) ** FAC_EXP).fillna(1.0)
-    mu = per_game * fac
+    mu = core * fac
     if cal is not None:
         mu = mu * cal["c"][key] * cal["home"][key] ** (df.home - 0.5)
     return mu
 
 
-def fit_play_cal(panel, cutoff):
+def fit_w_rate(panel, cutoff):
+    """Registration N: per-market blend weight between the incumbent
+    per-game EW and talent_rate x toi_blend, fit STRICTLY pre-odds
+    (rows < cutoff, the fit_play_cal filter)."""
+    wr = {}
+    for mkt, (role, st, act, fac) in MKT.items():
+        if mkt not in TALENT_MKTS:
+            continue
+        d = panel[(panel.role == role) & (panel.game_date < cutoff)
+                  & (panel.gp >= 4)]
+        per_game = (W_FAST * d[f"{st}_ewf"]
+                    + (1 - W_FAST) * d[f"{st}_ews"]).fillna(d[f"{st}_ewf"])
+        toi_b = (W_FAST * d.toi_min_ewf
+                 + (1 - W_FAST) * d.toi_min_ews).fillna(d.toi_min_ewf)
+        rate_mu = d[f"talent_{st}"] * toi_b
+        ok = per_game.notna() & rate_mu.notna() & d[act].notna()
+        act_v = d[act][ok]
+        best = min((float(((w * per_game[ok] + (1 - w) * rate_mu[ok]
+                            - act_v) ** 2).mean()), round(w, 2))
+                   for w in np.arange(0.0, 1.0001, 0.05))
+        wr[mkt] = best[1]
+        print(f"  w_rate[{mkt}] = {best[1]:.2f} "
+              f"(pre-odds mse {best[0]:.4f}, n={int(ok.sum())})")
+    return wr
+
+
+def fit_play_cal(panel, cutoff, wr=None):
     cal = {"c": {}, "home": {}, "sigma": {}, "nb_r": {}}
     for mkt, (role, st, act, fac) in MKT.items():
         d = panel[(panel.role == role) & (panel.game_date < cutoff)
                   & (panel.gp >= 4)].copy()
         d["home"] = d.home.astype(float)
-        mu0 = mu_one(d, "game_date", st, fac, None, mkt)
+        mu0 = mu_one(d, "game_date", st, fac, None, mkt, wr)
         ok = mu0.notna() & d[act].notna()
         d, mu0 = d[ok], mu0[ok]
         cal["c"][mkt] = d[act].mean() / mu0.mean()
@@ -102,16 +142,16 @@ def p_over(mkt, mu, line, cal):
     return float(1.0 - sps.nbinom.cdf(k - 1, r, r / (r + mu)))
 
 
-def score(sub, panel, expanding):
+def score(sub, panel, expanding, wr=None):
     def one(grp, cutoff):
-        cal = fit_play_cal(panel, cutoff)
+        cal = fit_play_cal(panel, cutoff, wr)
         g = grp.copy()
         g["mu_model"] = np.nan
         for mkt, (role, st, act, fac) in MKT.items():
             rows = g.market == mkt
             if rows.any():
                 g.loc[rows, "mu_model"] = mu_one(
-                    g[rows], "date", st, fac, cal, mkt)
+                    g[rows], "date", st, fac, cal, mkt, wr)
         g = g[g.mu_model.notna()].copy()
         g["p_model"] = [p_over(m, mu, li, cal) for m, mu, li in
                         zip(g.market, g.mu_model, g.open_line)]
@@ -129,15 +169,35 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--holdout", action="store_true")
     ap.add_argument("--expanding", action="store_true")
+    ap.add_argument("--talent", action="store_true",
+                    help="registration N: talent-engine mu path for the "
+                         "registered cell (TALENT_MKTS)")
     args = ap.parse_args()
+    if args.talent and args.expanding:
+        raise SystemExit("registration N: talent-path constants are fit "
+                         "strictly pre-odds; --expanding is not allowed "
+                         "with --talent")
 
     panel = pd.read_pickle(os.path.join(ROOT, "data", "panel_nhl.pkl"))
     panel["game_date"] = pd.to_datetime(panel.date).dt.strftime("%Y-%m-%d")
     ev = load_eval("nhl")
-    mode = "expanding-weekly" if args.expanding else "frozen pre-odds"
+    wr = None
+    if args.talent:
+        tal = pd.read_pickle(os.path.join(ROOT, "data", "talent_nhl.pkl"))
+        tal_cols = [c for c in tal.columns if c.startswith("talent_")]
+        panel = panel.merge(tal, on=["pid", "game_id"], how="left")
+        tmap = (panel[panel.role == "skater"]
+                .groupby(["nname", "native_id"])[tal_cols].max()
+                .reset_index())
+        ev = ev.merge(tmap, on=["nname", "native_id"], how="left")
+        cov = ev[ev.market.isin(TALENT_MKTS)]["talent_sog"].notna().mean()
+        print(f"talent join coverage on cell markets: {cov:.2%}")
+        wr = fit_w_rate(panel, ODDS_START)
+    mode = ("talent " if args.talent else "") + (
+        "expanding-weekly" if args.expanding else "frozen pre-odds")
     for name in ["dev"] + (["holdout"] if args.holdout else []):
         sub = ev[ev.split == name].copy()
-        evx = score(sub, panel, args.expanding)
+        evx = score(sub, panel, args.expanding, wr)
         print(f"\n{name} [{mode}]: coverage {len(evx)/len(sub)*100:.1f}%")
         evx["ll_model"] = ll(evx.p_model, evx.over)
         evx["ll_open"] = ll(evx.p_open, evx.over)
