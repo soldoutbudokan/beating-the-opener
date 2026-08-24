@@ -4168,7 +4168,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "DOWNGRADE in the 2133Z diff: Edwards (Connecticut Sun) Day-To-Day -> Out, type Ankle. \"Edwards (ankle) is out for Tuesday's game against the Sparks.\" Confirmed by BOTH the league injury report and the per-event report for LA@CON (ESPN event 401857152, 7:00 PM ET = event 2741 on the sheet); return_date 2026-08-20, i.e. past tonight. Supersedes the 2026-08-17 questionable entry, which is now stale in the wrong direction.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 453
   },
   {
    "player": "Brittney Griner",
@@ -5592,7 +5592,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league + event:401857165 injury report at 0137Z, Connecticut Sun: 'Marshall (coach's decision) is out for Saturday's game versus the Sparks' (CON@LA, 21:00 ET 8/22, already in progress), return_date 2026-08-25. NEW this firing; supersedes the 08-19 'in' entry (357). No Marshall prop is on any sheet and Connecticut is not on the 8/23 sheet - inert for pricing.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 454
   },
   {
    "player": "Kara Dunn",
@@ -5955,6 +5955,45 @@
    "source": "avail:2026-08-24/2032Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the avail_watch diff: dropped off the ESPN league injury report between the 2026-08-24 19:33Z and 20:32Z snapshots, i.e. no longer carries the Day-To-Day (Jaw) designation whose listed return_date was 2026-08-25. Status-only, no minutes estimate: it lifts a stale doubt rather than asserting a role. Supersedes the 2026-08-23 questionable entry (index 427), which was until-cleared and still active. Connecticut is not on tonight's ESPN slate (GS@MIN, ATL@LA), so this is record-only for now.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Olivia Nelson-Ododa",
+   "added": "2026-08-24T21:33:00Z",
+   "game_date": "2026-08-25",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-24/2133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report, NEW in the 2133Z diff (17:33 ET): 'Nelson-Ododa (knee) is questionable for Tuesday's game against the Sky.', status Day-To-Day, type Knee, Connecticut Sun, return_date 2026-08-25 - i.e. the CHI@CON game that IS on the current sheet (event 2760, 2026-08-25 ET). First override entry for this player. She is a full-time Connecticut starter (last 8 panel games all starts) but her most recent game, 8/22 at LA, was 10 minutes against 24-29 in the four before it, which is consistent with the knee showing up in that game rather than after it - corroboration for the doubt, not a minutes number. minutes_est left NULL = base panel state, the conservative choice that manufactures no news-driven edge in either direction (a cut estimate would invent unders on her, an inflated one overs), and no teammate minutes are asserted either: reallocating Connecticut's frontcourt minutes off a 'questionable' would be invention, not news. Same handling as index 449 (Burrell) and 369 (Coulibaly). She carries no props on the current sheet - the two CHI@CON rows are both Chicago players - so this is an annotation for the pre-tip availability check.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Aaliyah Edwards",
+   "added": "2026-08-24T21:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-24/2133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED in the 2133Z diff (17:33 ET): dropped off the ESPN league injury report, where she had carried Out (Ankle) continuously since the 2026-08-15 downgrade - last comment 'Edwards (ankle) is listed as out for Saturday's game against the Sparks', return_date 2026-08-25. Read as a genuine clearing rather than a stale row expiring, because Connecticut's report was REFRESHED in this same snapshot rather than simply aged out: Nelson-Ododa was ADDED with a comment naming Tuesday's game, while Edwards and Marshall dropped - ESPN rewrote the Sun's report for the next game and left both of them off it. Feed verified healthy, not an outage: league rows 34 -> 33 with exactly these two drops and one add, every other row byte-identical, and both per-event reports (401857171, 401857172) unchanged at 2 rows each. Supersedes index 316 (the 2026-08-18 'out'). Status-only, no minutes asserted - a clearing says available, it does not say how many minutes, and her role has been bench since July (last panel game 2026-08-13, 17 min, not a starter). She carries no props on the current sheet.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Rayah Marshall",
+   "added": "2026-08-24T21:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-24/2133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED in the 2133Z diff (17:33 ET), was Out (Coach's Decision): 'Marshall (coach's decision) is out for Saturday's game versus the Sparks', return_date 2026-08-25. That game (CON@LA, 8/22) is over and Connecticut has not played since, so this is the routine post-game expiry of a game-specific inactive - the Nivar/Sherrod pattern (indices 446, 447) - reinforced here by the Sun's report being rewritten for Tuesday in this same snapshot (Nelson-Ododa added with a comment naming that game). Feed verified healthy: league rows 34 -> 33, two Connecticut drops and one Connecticut add, all other rows unchanged, per-event reports unchanged. Supersedes index 423 (the 2026-08-22 'out'). Base panel state restored, no minutes asserted; she is deep bench (last panel game 2026-08-20, 7 min, 4-7 min in each 2026 appearance) and has been a coach's-decision scratch repeatedly, so another one for Tuesday stays possible - this is availability-neutral, not a signal of a role. She carries no props on the current sheet.",
    "author": "news-watch",
    "superseded_by": null
   }
