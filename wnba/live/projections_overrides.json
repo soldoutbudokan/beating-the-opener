@@ -4602,7 +4602,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 2134Z diff: Allemand (Toronto Tempo, Thigh) dropped off BOTH the ESPN league injury report and the per-event report for tonight's TOR @ WSH (BP event 2743, ESPN event 401857156, 7:30 PM ET) between 2033Z and 2134Z. The 2033Z row already read Out with the comment \"Allemand (elbow) is probable for Wednesday's game against the Mystics\" and return_date 2026-08-19, so the clear resolves that probable upward: she is expected to play tonight after missing 08-12 through 08-18. Supersedes entry 196 (out / 0 minutes), which was scoped to game_date 2026-08-12 and is mechanically inert for tonight either way. Status only, NO minutes estimate, deliberately: her panel state is a pre-injury full-starter state (last panel game 2026-08-10, 26 min, starter; min_ewf 31.1 / min_ews 29.5), so the top of any if-she-plays range IS the base state, and hand-cutting minutes for a returnee would manufacture unders on a player the feed now says is available - the Mabrey rule from the 1733Z entry, applied in the other direction. 9 days since her last panel game, so she is inside the 14-day STALE_PLAYER gate and priceable if FanDuel posts her. FLAGGED FOR THE OWNER instead: a starter back from a four-game thigh absence is the classic minutes-limit case and the talent model is slow on role changes by design - confirm her in the lineup and check for a reported minutes cap before taking any Allemand over. No teammate minutes were re-estimated; the routine flags, it does not re-price the rotation.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 444
   },
   {
    "player": "Marina Mabrey",
@@ -5851,6 +5851,19 @@
    "source": "avail:2026-08-23/2333Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED at 2333Z (19:33 ET), was Day-To-Day (Foot): dropped from the ESPN league report while 34 Out rows persist unchanged (35 rows this snapshot, no adds, no other changes) - a real clearing, not a feed outage. Confirmed by the same snapshot's lineup feed for IND@CHI (event 401857168, STATUS_IN_PROGRESS): active off the bench (starter=false), reason COACH'S DECISION, dnp=false. Supersedes index 414 (the 08-22 2332Z questionable for today). Status returned to base panel state, no minutes assertion: a clearing says available, it does not say how many minutes, and the routine does not invent one. Inert for pricing - her game is already underway - it exists so the archive carries the resolution.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Julie Allemand",
+   "added": "2026-08-24T00:32:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-24/0032Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "League injury report, NEW this snapshot: 'Allemand (head) won't return to Sunday's game against Las Vegas... She finished with three points (1-3 FG, 1-3 3Pt), one rebound and two assists across 15 minutes.' Status Out, type Head, feed return_date 2026-08-26. She left tonight's TOR game in progress with a head injury; head/concussion timelines are protocol-gated and unknowable from the feed, so this is until-cleared (game_date null) rather than dated to the feed's optimistic 8/26. Supersedes entry 348 (the 2026-08-19 'in'). Conservative direction: 'out' removes her from pricing entirely rather than manufacturing a reduced-minutes under off an unknown protocol timeline. No TOR props are on the current sheet, so this is inert until Toronto's next game.",
    "author": "news-watch",
    "superseded_by": null
   }
