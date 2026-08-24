@@ -547,6 +547,26 @@ inside the registered cell; saves shades 3.1pp the other way and goals
 devigged-open placebo column remains the control for any shade-driven
 ROI.
 
+**QC verdict (2026-08-24): PASS.** Training fetch landed 17,799/17,799
+scheduled final games (100.0% coverage, every season 2010-11–2023-24,
+0 failed requests). Dual-source vs the fastRhockey mirror on the three
+registered seasons: 300/300 joined each; stat cells 100.0%/100.0%/99.92%
+(one cell in 1,200 — consistent with a late official scoring change);
+toi within 0.5 min on 100% of rows. Gates (≥98% / ≥95%) cleared with
+room. `qc_nhl_hist.py` prints `QC_PASS`; tuning unlocked.
+
+**N-G1 verdict (2026-08-24): PASS 5/5 → registered cell =
+{shots, blocked_shots}, both alive.** 741,136 skater-games, 2,815
+players, seasons 2010-11–2025-26. Walk-forward next-game per-game-stat
+MSE, 2019-20..2023-24 (n=227,194 per stat, toi ≥ 5):
+sog **1.9348 vs blend 1.9696** (−1.8%), blk **0.9092 vs 0.9318**
+(−2.4%); diagnostics g −2.8%, a −2.7%, p −2.6% — the engine wins
+everywhere, same as T1's 7/7. Grid-boundary note, recorded again
+exactly as T1 had to: the tuner chose the lowest process noise AND
+lowest p0 in the grid (q=1e-4, p0=0.05) on every stat — maximum
+regression/stability. The grid was not widened post-hoc; noted as a
+candidate for a future registration, not this one.
+
 ## Market 5 — NBA (`props/` + `nba/`)
 
 - Game lines: `nba/` already ran this experiment and produced a *bounded*
