@@ -1241,3 +1241,13 @@ registrations are firewalled from betting outcomes.
   2026-08-18 (106,332 player-games) and no `PANEL_STALE` flag appears on
   the sheet. Python deps (numpy/pandas/scipy/scikit-learn/pyarrow) also
   had to be installed in the container.
+- **2026-08-24 (lessons-learned doc, owner-requested)** — `LESSONS.md`
+  added at the repo root: the programme's cross-market lessons distilled
+  from AUDIT.md, this file, the subproject READMEs and the live record
+  (measurement artifacts, zero-skill placebos, CLV's non-zero break-even,
+  calibration-z as the fast tripwire, regime dependence, gates-as-code,
+  stale-data-looks-like-edge, invariants against full history). Documentation
+  only — no model, gate, metric definition or generated file touched. The
+  post-gates snapshot quoted in it (112 settled, 66W–46L, +14.9% ROI,
+  calibration z −0.23, raw CLV −2.98% vs the registered ≈ −3%) was
+  recomputed this session from `bets.csv` and reconciles with RESULTS.md.
