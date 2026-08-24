@@ -58,6 +58,11 @@ def main():
         mir = mir[mir.skater_stats_time_on_ice.notna()].copy()
         mir = mir.rename(columns=mirror_cols)
         mir["toi_min_mir"] = toi_min(mir.skater_stats_time_on_ice)
+        mir["player_id"] = pd.to_numeric(mir.player_id, errors="coerce")
+        mir["game_id"] = pd.to_numeric(mir.game_id, errors="coerce")
+        mir = mir.dropna(subset=["player_id", "game_id"])
+        mir["player_id"] = mir.player_id.astype("int64")
+        mir["game_id"] = mir.game_id.astype("int64")
         mir = mir[["game_id", "player_id"] + list(mirror_cols.values())
                   + ["toi_min_mir"]]
         box = box[box.toi.notna()].copy()

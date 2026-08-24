@@ -520,6 +520,33 @@ re-run the |corr| > 0.12 leakage guard (none is planned).
   placebo; no-move share reported for CLV context (AUDIT N2). Research
   only — no live-betting implication under any outcome.
 
+**Rebuild + baseline recompute (2026-08-24, before any talent run).**
+Pipeline rebuilt end-to-end in a fresh container (eval fetch 2,788
+games, 0 failures; panel 106,397 player-games — identical to the
+2026-07-31 build). The eval population GREW 55,338 → 62,070: today's
+post-season roster files resolve player names the mid-July fetch could
+not, so grading match rates rose to 94.9–99.6% (blocked 99.6, shots
+99.0; the old-era rate was 87.2%). More matches → more rows survive
+`matched`; the benchmark shifts with the population and every number
+below is the same-data baseline the gates compare against:
+
+| split | n | LL(open) | LL(close, same line) | open−close (t) | over rate | implied |
+|---|---|---|---|---|---|---|
+| dev (≤ 2026-02-28) | 42,146 | 0.61165 | 0.61100 (n=41,594) | +0.00025 (t=1.5) | 0.393 | 0.387 |
+| holdout (2026-03-01+) | 19,924 | 0.60560 | 0.60428 (n=19,586) | +0.00050 (t=2.0) | 0.373 | 0.377 |
+
+Incumbent Stage-B model recomputed on this data (frozen pre-odds cal):
+pooled +0.01998 (t=11.4; July: +0.01921), **shots +0.00814 (n=9,222),
+blocked_shots +0.00702 (n=4,170)** — the registered N-G2 baselines,
+pooled cell ≈ +0.00779. Reproduction is clean; the July per-stat values
+(+0.0084/+0.0068) sit within population-shift distance. Also noted for
+the record: dev **blocked_shots carries a 3.1pp over-shade** (implied
+P(over) 0.519 vs realized 0.488) — a WNBA-like structural miscalibration
+inside the registered cell; saves shades 3.1pp the other way and goals
+2.5pp (both outside the cell). n-multiplicity caveat applies; the
+devigged-open placebo column remains the control for any shade-driven
+ROI.
+
 ## Market 5 — NBA (`props/` + `nba/`)
 
 - Game lines: `nba/` already ran this experiment and produced a *bounded*
@@ -1095,6 +1122,14 @@ possible cricket odds proxy "used carefully". Session findings:
   injury/inactive reports via Wayback (reachable) against the unspent
   38k holdout — a large supervised-wave collection job, queued behind
   NHL, not started this session.
+- **MLB props — flagged as the untouched archive.** The from-scratch
+  programme never ran MLB (markets 1–5 skip it): the old-era kill was
+  FanDuel *availability* (16 bets/13mo), not measured edge, and the
+  committed archive is the repo's largest (327 MB, 13 months of offers).
+  Blocked today: statsapi.mlb.com is egress-refused, so outcomes can't
+  be graded from this environment. Owner action if wanted: allowlist
+  statsapi.mlb.com — then MLB Stage A (benchmark + shade table + gates)
+  is a rerun of the NHL machinery on the biggest archive we own.
 - **Also noted for later**: the old-era wedge FLAGGED NHL *game*
   markets (pooled gate A+B true; puck line 77.8% directional on 90
   moves; goalie-news information flow per props/FINDINGS.md) — a
