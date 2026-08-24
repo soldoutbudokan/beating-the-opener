@@ -36,7 +36,7 @@ Easiest → hardest, tackled one at a time:
 | 1b | WNBA game lines | `wnba/` | prospective | v1 + v2 **ML head = control** (v2 GV2-1 +0.020 vs ≤+0.010 after the one-ball rework halved v1's gap); v2 **spread head passed dev gates** (+0.0072, cal −1.5pp) → `fp-games-prospective-1` accruing on games 2026-08-01+, scored at season end; no betting |
 | 2 | BBL cricket match odds | `cricket/` | done | **control #3 confirmed** — player model passed dev gates, holdout FAIL (+0.052, t=3.6, ROI −34%); benchmark n=297 is structurally too small; future cricket → IPL pending odds source |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
-| 4 | NHL player props | `props/` | parked | **control** — G1 fail both iterations (+0.0191); shots/blocked individually inside the gate; **holdout unspent** |
+| 4 | NHL player props | `props/` | **ACTIVE (registration N)** | Stage-B control stands (+0.0191 both iterations), but shots/blocked sat inside the gate → 2026-08-24 talent-engine revisit registered (gates below); **holdout unspent** pending the registered spend condition |
 | 5 | NBA player props | `props/` | parked | **control** — G1 fail both iterations (+0.0247); calibration fine, discrimination gap; **holdout unspent** (awaits Stage D injury data) |
 
 ## Common protocol (all markets)
@@ -434,6 +434,91 @@ predictable), while goals (+0.032), saves (+0.032, cal −7pp) and assists
 and goalie-matchup priors beat per-game EWs. ROI −7% (t=−9), placebo 0
 bets. The 17,818-prop holdout is UNSPENT — a future registration could
 legitimately target the shots/blocked cell, which was competitive on dev.
+
+### Market 4 revisit — NHL talent engine (registration N) — gates registered 2026-08-24, before any engine code exists
+
+Owner ask (2026-08-24): apply LESSONS.md to a new backtestable market
+(cricket/NBA/NHL preferred). Decision — NHL shots/blocked first (see
+"New-market exploration" below for the probe results and the cricket/NBA
+paths): it is the only named market with committed odds (the 2025-26 BP
+archive → 55,338-prop modelset recipe), reachable outcomes (api-web), an
+UNSPENT 17,818-prop holdout, a cell already inside the Stage-B gate
+(shots +0.0084, blocked +0.0068), and an untested port of the repo's one
+validated modelling advance — the WNBA Kalman talent engine (T1: 7/7
+market-free, dev +0.00469 → −0.00059, the source of the live arm).
+Motivating gap in the incumbent: `fp_model_nhl.py` has **no rate × TOI
+path at all** (pure per-game EW blend; `toi_min_ewf/ews` sit unused in
+the panel), so the port introduces the same structural upgrade T1 did.
+
+**Design class (fixed now).** Walk-forward scalar Kalman per
+(player, stat) on per-TOI-minute rates, the T1 architecture adapted:
+obs y = stat/toi_min, R = rvar/toi_min, prediction written pre-update
+(leak-free by construction); position-group career-trajectory curves by
+the T1 delta method with NHL sizing fixed before tuning (groups
+{C, L→F, R→F, D}; BUCKET=40, MAX_BUCKET=20 → flat past 800 career
+games); season key derived from game_id (NHL seasons straddle the new
+year — `dt.year` is banned as the offseason-inflation key); offseason
+state inflation ×10 as T1. Skater stats sog/blk are the candidates;
+g/a/p reported for diagnostics; goalies out of scope (saves stays a
+control). Career gp counts games within 2010-11+ (pre-2010 veterans
+enter mid-career — the same truncation WNBA accepted at 2003).
+
+**Data (acquisition, not modelling).** Training era 2010-11–2023-24
+skater boxes fetched from api-web itself (verified this session:
+`gamecenter/{id}/boxscore` serves 2011+ with sog/blockedShots/toi in
+the modern schema — single source end to end, no mirror schema risk),
+gitignored/regenerable like the eval-era fetch. **QC gate before any
+tuning (pre-registered):** (a) per-season coverage ≥ 98% of that
+season's api-web schedule (types 2+3); (b) dual-source agreement vs the
+independent fastRhockey-data mirror parquet on a random 300-skater-game
+sample in each of 2013-14, 2018-19, 2022-23: exact match ≥ 98% of
+{g, a, sog, blk} cells, toi within 0.5 min on ≥ 95% of rows. Fail →
+investigate and fix before the engine sees anything.
+
+**Isolation rule.** `data/nhl/` (eval fetch), the panel, the modelset
+and the benchmark builders are UNTOUCHED — Stage-B baselines must
+reproduce byte-comparably. The talent module reads the historical fetch
+from its own directory, runs the filter over history+eval combined, and
+emits `talent_{st}` per (pid, game_id) joined only at scoring time (the
+wnba `--talent` pattern). Any new column entering the modelset would
+re-run the |corr| > 0.12 leakage guard (none is planned).
+
+- **Tuning**: q/p0 grids and offseason mult as T1; curves, rvar and all
+  grid scoring on games **before 2019-07-01 only** (≤ 2018-19).
+- **N-G1 (market-free)**: walk-forward next-game prediction on seasons
+  2019-20 through 2023-24, skater rows with toi_min ≥ 5: MSE of
+  per-game stat prediction — engine path = talent_rate ×
+  (0.6·toi_min_ewf + 0.4·toi_min_ews) vs the incumbent per-game blend
+  0.6·{st}_ewf + 0.4·{st}_ews (same alphas f=0.15/s=0.05,
+  shift-then-ewm, computed identically in the module). Engine must
+  win on sog AND blk. **Cell rule fixed now: the registered cell for
+  N-G2/Stage C = the subset of {shots, blocked_shots} that passes
+  N-G1; if neither passes → stop market-free, nothing touches dev or
+  holdout.**
+- **N-G2 (dev = eval props ≤ 2026-02-28)**: `fp_model_nhl.py --talent`
+  gives cell markets the μ path W_RATE·(per-game blend) +
+  (1−W_RATE)·(talent_rate × toi_blend), fillna cross-fallbacks as the
+  WNBA path; W_RATE and every calibration constant (c, home, NB r) fit
+  strictly on pre-odds rows (< 2025-10-07). Gate: pooled cell
+  LL(model) − LL(open) must improve on the same-data Stage-B baseline
+  (recomputed at evaluation time on the rebuilt pipeline; registered
+  2026-07-31 values shots +0.0084 / blocked +0.0068), AND pooled
+  |mean P(over) − realized| ≤ 2.5pp. **At most two iterations**
+  (iteration 2 = engine-aware pre-odds recalibration / W_RATE refit,
+  still pre-odds-only).
+- **N-G3 tripwire**: beats the same-line close by > 0.001 LL at
+  |t| > 3 → halt, leakage investigation (weak evidence here — the NHL
+  close ≈ its open — investigate anyway).
+- **Stage C (holdout = props 2026-03-01+, scored ONCE) — spend
+  condition registered now: run only if N-G2's pooled dev gap ≤
+  0.000.** Market 1's lesson applied: its Stage C spent a holdout from
+  "striking distance" (+0.00469) and failed; the talent engine earned
+  its live arm at dev −0.00059. "Improved but still positive" → record,
+  park, holdout stays unspent. If run: pooled + per-stat LL gap vs open
+  with date-clustered t (≤ −2 = the opener beaten from scratch); flat
+  $1 ROI at consensus open, EV > 2% / 5%, clustered t, devigged-open
+  placebo; no-move share reported for CLV context (AUDIT N2). Research
+  only — no live-betting implication under any outcome.
 
 ## Market 5 — NBA (`props/` + `nba/`)
 
@@ -978,6 +1063,45 @@ registrations are firewalled from betting outcomes.
   `edge-watch` found already off since 07-31. Open at pause: 17 bets
   (8/8–8/9 games) needing closes + settlement, currently manual.
 
+## New-market exploration (2026-08-24, owner-directed)
+
+Owner ask: apply the lessons (LESSONS.md/AUDIT.md/this file) to another
+backtestable market — cricket/NBA/NHL named, Polymarket floated as a
+possible cricket odds proxy "used carefully". Session findings:
+
+- **Network probes (this environment)**: polymarket.com and all three
+  Polymarket APIs (clob/gamma/data) are egress-blocked (proxy 403);
+  aussportsbetting.com still blocked; cricsheet.org, api-web.nhle.com,
+  web.archive.org and raw.githubusercontent.com are reachable.
+- **Decision — NHL first** (registration N under Market 4): the only
+  named market runnable end-to-end today, with the shots/blocked cell
+  and the unspent holdout as the pre-existing wedge, and the T1 talent
+  engine as the untested upgrade.
+- **Cricket stays odds-blocked.** Owner actions (either unblocks it):
+  (a) the good route — Betfair historical exchange data downloaded to
+  `cricket/data/raw/betfair/` (real traded IPL prices, timestamped,
+  ~2016+); or (b) allowlist the Polymarket domains. Polymarket-as-proxy
+  caveats, recorded now so a future benchmark is designed honestly: its
+  niche-sport books are thin, so the recorded price is a stale
+  last-trade/mid you could not have filled at size (an edge measured
+  against it is an upper bound, not an expectation); there is no
+  "opener" — the benchmark timestamp must be pre-registered (pre-toss
+  for cricket, per the BBL toss-noise finding); fees/slippage and UMA
+  resolution risk apply; and cricket coverage only begins ~2025, so n
+  lands near BBL's structurally-too-small 297 (the recorded reason
+  control #3 could never have proven anything). A Polymarket benchmark
+  can screen for gross mispricing; it cannot certify a tradeable edge.
+- **NBA props**: the identified path remains Stage D point-in-time
+  injury/inactive reports via Wayback (reachable) against the unspent
+  38k holdout — a large supervised-wave collection job, queued behind
+  NHL, not started this session.
+- **Also noted for later**: the old-era wedge FLAGGED NHL *game*
+  markets (pooled gate A+B true; puck line 77.8% directional on 90
+  moves; goalie-news information flow per props/FINDINGS.md) — a
+  from-scratch NHL game model (Poisson goals + goalie states vs
+  ML/puck-line openers) is the natural follow-up registration if the
+  props cell dies, using the same archived game-market offers.
+
 ## Push log
 
 - **2026-07-31** — Programme opened. PROGRESS.md created (recreated from
@@ -1241,6 +1365,18 @@ registrations are firewalled from betting outcomes.
   2026-08-18 (106,332 player-games) and no `PANEL_STALE` flag appears on
   the sheet. Python deps (numpy/pandas/scipy/scikit-learn/pyarrow) also
   had to be installed in the container.
+- **2026-08-24 (new-market exploration, owner-directed)** — Registration
+  N pushed: NHL talent-engine revisit of the shots/blocked cell, gates
+  above registered **before any engine code exists** (data-source QC
+  gate, pre-2019-07-01 tuning era, N-G1 market-free vs the incumbent EW
+  blend, N-G2 dev vs the recomputed Stage-B baseline, and a holdout
+  spend condition of dev ≤ 0.000 — the Market-1 lesson made a rule).
+  Exploration section added: Polymarket egress-blocked (cricket proxy
+  route needs an owner allowlist or the Betfair download; proxy caveats
+  recorded), NBA Stage D queued behind NHL, NHL game markets noted as
+  the follow-up candidate. Eval-era NHL fetch rerun clean (2,788 games,
+  0 failed); training-era 2010-11–2023-24 api-web fetch + QC next, then
+  the engine build.
 - **2026-08-24 (lessons-learned doc, owner-requested)** — `LESSONS.md`
   added at the repo root: the programme's cross-market lessons distilled
   from AUDIT.md, this file, the subproject READMEs and the live record
