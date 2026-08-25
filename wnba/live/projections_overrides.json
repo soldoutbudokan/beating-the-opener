@@ -5397,7 +5397,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league injury report in the 2233Z diff (was Out, Dallas Wings, Coach's Decision, return_date 2026-08-23; entry 372). Treated as available with no minutes assumption - a clearing is evidence of availability, not of a role. Last panel game 2026-08-14 (1 min, bench); she has played 2 and 1 minutes in her two Wings appearances, so this is inert for pricing either way. Supersedes 372.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 475
   },
   {
    "player": "Jordan Horston",
@@ -5488,7 +5488,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league injury report in the 2332Z diff (was Out, Dallas Wings, Coach's Decision, comment 'Williams (coach's decision) is out for Thursday's game against the Fever', return_date 2026-08-23; entry 371, which this supersedes). Judged a REAL clearing, unlike the four other CLEARED rows in this same diff: Dallas is not on tonight's slate, so this drop cannot be the tip-off artifact described in those (see the Boston/Dantas/Jones/Fiebich note in this firing's report) - it is a one-game coach's decision expiring ahead of SEA@DAL on 2026-08-23. Treated as available with no minutes assumption: a clearing is evidence of availability, not of a role. Her panel state is deep bench, so this is inert for pricing.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 474
   },
   {
    "player": "Marina Mabrey",
@@ -6241,6 +6241,32 @@
    "source": "avail:2026-08-25/2233Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in this snapshot's diff: the 2026-08-25/2133Z report carried \"Carrington (illness) is questionable for Tuesday's game against the Sun\" (Day-To-Day, Chicago Sky); she is off both the league and the per-event (401857173) report at 2233Z. Supersedes the 2133Z questionable entry. Status 'in' only, no minutes estimate - clearing an illness tag is not evidence of a role change, so nothing is manufactured in either direction.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Christyn Williams",
+   "added": "2026-08-25T23:32:00Z",
+   "game_date": "2026-08-25",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/2332Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report, NEW in the 2332Z diff (19:32 ET): 'Williams (coach's decision) is out for Tuesday's game against the Fire.' - status Out, type Coach's Decision, Dallas Wings, return_date 2026-08-30. Tuesday's game is POR@DAL tonight (20:00 ET), so game_date 2026-08-25. Supersedes 415 (the 08-22 clearing). This is the fourth Out/clear cycle for her since 08-14: a recurring one-game coach's decision on a deep-bench player. Inert for pricing either way - her last panel game is 2025-09-11 (4 min), so any prop on her would be blocked by STALE_PLAYER regardless. minutes_est 0 records the availability fact; no Dallas teammate minutes are reallocated, because a healthy scratch who last played a year ago frees no minutes to reallocate.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Haley Jones",
+   "added": "2026-08-25T23:32:00Z",
+   "game_date": "2026-08-25",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/2332Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report, NEW in the 2332Z diff (19:32 ET): 'Jones (coach's decision) has been ruled out for Tuesday's game against the Fire.' - status Out, type Coach's Decision, Dallas Wings, return_date 2026-08-30, same Dallas pair as Christyn Williams. Tuesday's game is POR@DAL tonight (20:00 ET), so game_date 2026-08-25. Supersedes 408 (the 08-22 clearing). Deep bench: her two 2026 Wings appearances are 2 min (08-09) and 1 min (08-14), so this is inert for pricing. minutes_est 0 is the availability fact only; no teammate minutes are reallocated off a 1-minute reserve.",
    "author": "news-watch",
    "superseded_by": null
   }
