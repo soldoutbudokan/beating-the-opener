@@ -1,20 +1,22 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2764_rebounds_julie allemand_under,2026-08-26,2026-08-27 02:00:00,2764,rebounds,Julie Allemand,TOR,TOR@SEA,under,3.5,122.0,1.0,1.22,True,-3333,-1666,0.0,0.0,,3.5,SUSPECT_EV(122%);ROLE_MIN?,False,False
-2762_assists_kelsey plum_over,2026-08-25,2026-08-26 02:00:00,2762,assists,Kelsey Plum,PHO,WAS@PHO,over,3.5,120.0,0.7609,0.674,True,-282,-254,0.0,5.35,,3.5,STALE_PLAYER(16d);SUSPECT_EV(67%);ROLE_MIN?,False,False
-2764_assists_kiki rice_under,2026-08-26,2026-08-27 02:00:00,2764,assists,Kiki Rice,TOR,TOR@SEA,under,4.5,106.0,0.752,0.5491,True,-270,-244,0.0,3.22,,4.5,MOVED_OFF_OPEN;SUSPECT_EV(55%);PLAYER_ALREADY_BET(rebounds under 4.5),False,False
-2764_points_isabelle harrison_under,2026-08-26,2026-08-27 02:00:00,2764,points,Isabelle Harrison,TOR,TOR@SEA,under,14.5,-113.0,0.7859,0.4815,True,-321,-286,0.0,10.26,,14.5,SUSPECT_EV(48%);PLAYER_ALREADY_BET(assists under 1.5),False,False
-2764_rebounds_temi fagbenle_under,2026-08-26,2026-08-27 02:00:00,2764,rebounds,Temi Fagbenle,TOR,TOR@SEA,under,3.5,128.0,0.6105,0.3919,True,-145,-135,0.0,3.06,,3.5,SUSPECT_EV(39%);ROLE_MIN?;ROLE_START?,False,False
-2761_assists_jessica shepard_under,2026-08-25,2026-08-26 00:00:00,2761,assists,Jessica Shepard,DAL,PDX@DAL,under,4.5,116.0,0.6071,0.3113,True,-143,-134,0.0,4.01,,4.5,MOVED_OFF_OPEN;SUSPECT_EV(31%);PLAYER_ALREADY_BET(points under 15.5),False,False
+2762_assists_kelsey plum_over,2026-08-25,2026-08-26 02:00:00,2762,assists,Kelsey Plum,PHO,WAS@PHO,over,3.5,140.0,0.761,0.8263,True,-282,-254,0.0,5.35,,3.5,STALE_PLAYER(16d);MOVED_OFF_OPEN;SUSPECT_EV(83%);ROLE_MIN?,False,False
+2764_assists_kiki rice_under,2026-08-26,2026-08-27 02:00:00,2764,assists,Kiki Rice,TOR,TOR@SEA,under,5.5,-106.0,0.8732,0.697,True,-556,-467,0.0,3.22,,4.5,MOVED_OFF_OPEN;SUSPECT_EV(70%);PLAYER_ALREADY_BET(rebounds under 4.5),False,False
+2764_points_isabelle harrison_under,2026-08-26,2026-08-27 02:00:00,2764,points,Isabelle Harrison,TOR,TOR@SEA,under,15.5,-120.0,0.8297,0.5212,True,-414,-360,0.0,10.26,,14.5,MOVED_OFF_OPEN;SUSPECT_EV(52%);PLAYER_ALREADY_BET(assists under 1.5),False,False
+2760_points_saniya rivers_under,2026-08-25,2026-08-25 23:00:00,2760,points,Saniya Rivers,CON,CHI@CON,under,10.5,-125.0,0.7699,0.3859,True,-296,-265,0.0,7.16,,9.5,OPEN_INCOHERENT;SUSPECT_EV(39%),False,False
+2764_rebounds_temi fagbenle_under,2026-08-26,2026-08-27 02:00:00,2764,rebounds,Temi Fagbenle,TOR,TOR@SEA,under,3.5,126.0,0.6105,0.3797,True,-145,-135,0.0,3.06,,3.5,SUSPECT_EV(38%);ROLE_MIN?;ROLE_START?,False,False
+2761_assists_jessica shepard_under,2026-08-25,2026-08-26 00:00:00,2761,assists,Jessica Shepard,DAL,PDX@DAL,under,4.5,124.0,0.607,0.3598,True,-143,-133,0.0,4.01,,4.5,MOVED_OFF_OPEN;SUSPECT_EV(36%);PLAYER_ALREADY_BET(points under 15.5),False,False
+2764_assists_laura juskaite_under,2026-08-26,2026-08-27 02:00:00,2764,assists,Laura Juskaite,TOR,TOR@SEA,under,2.5,-114.0,0.6898,0.2949,True,-202,-186,0.0,1.85,,2.5,MOVED_OFF_OPEN;SUSPECT_EV(29%);PLAYER_ALREADY_BET(points under 12.5),False,False
 2764_threes_dominique malonga_under,2026-08-26,2026-08-27 02:00:00,2764,threes,Dominique Malonga,SEA,TOR@SEA,under,0.5,164.0,0.4886,0.29,True,111,117,0.0,0.72,,0.5,SUSPECT_EV(29%),False,False
-2761_threes_awak kuier_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Awak Kuier,DAL,PDX@DAL,under,1.5,-198.0,0.8513,0.2812,True,-476,-407,0.0,0.68,,1.5,MOVED_OFF_OPEN;SUSPECT_EV(28%),False,True
-2761_assists_carla leite_under,2026-08-25,2026-08-26 00:00:00,2761,assists,Carla Leite,PDX,PDX@DAL,under,6.5,112.0,0.603,0.2783,True,-141,-131,0.0,5.92,,6.5,MOVED_OFF_OPEN;SUSPECT_EV(28%);PLAYER_ALREADY_BET(points under 15.5),False,False
-2760_threes_natasha cloud_over,2026-08-25,2026-08-25 23:00:00,2760,threes,Natasha Cloud,CHI,CHI@CON,over,1.5,152.0,0.5031,0.2678,True,105,111,0.0,1.69,,1.5,MOVED_OFF_OPEN;SUSPECT_EV(27%),False,False
-2760_points_sydney taylor_over,2026-08-25,2026-08-25 23:00:00,2760,points,Sydney Taylor,CHI,CHI@CON,over,12.5,-122.0,0.6718,0.2225,True,-187,-173,0.0,15.78,,13.5,MOVED_OFF_OPEN,False,True
-2764_assists_laura juskaite_under,2026-08-26,2026-08-27 02:00:00,2764,assists,Laura Juskaite,TOR,TOR@SEA,under,2.5,-130.0,0.6898,0.2204,True,-202,-186,0.0,1.85,,2.5,PLAYER_ALREADY_BET(points under 12.5),False,False
-2761_points_megan dileo_under,2026-08-25,2026-08-26 00:00:00,2761,points,Megan DiLeo,PDX,PDX@DAL,under,14.5,-122.0,0.652,0.1863,True,-172,-159,3.0,12.49,,14.5,,False,True
-2761_threes_arike ogunbowale_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Arike Ogunbowale,DAL,PDX@DAL,under,1.5,112.0,0.5532,0.1728,True,-116,-109,2.0,1.51,,1.5,ROLE_MIN?,False,True
-2762_rebounds_shakira austin_under,2026-08-25,2026-08-26 02:00:00,2762,rebounds,Shakira Austin,WAS,WAS@PHO,under,9.5,112.0,0.5516,0.1693,True,-115,-108,0.0,9.18,,9.5,MOVED_OFF_OPEN,False,False
-2762_assists_alyssa thomas_over,2026-08-25,2026-08-26 02:00:00,2762,assists,Alyssa Thomas,PHO,WAS@PHO,over,7.5,-108.0,0.5951,0.1461,True,-136,-128,2.0,8.36,,7.5,,False,True
+2761_assists_carla leite_under,2026-08-25,2026-08-26 00:00:00,2761,assists,Carla Leite,PDX,PDX@DAL,under,6.5,110.0,0.6029,0.2661,True,-141,-131,0.0,5.92,,6.5,MOVED_OFF_OPEN;SUSPECT_EV(27%);PLAYER_ALREADY_BET(points under 15.5),False,False
+2760_points_sydney taylor_over,2026-08-25,2026-08-25 23:00:00,2760,points,Sydney Taylor,CHI,CHI@CON,over,12.5,-114.0,0.6718,0.2612,True,-187,-173,0.0,15.78,,13.5,MOVED_OFF_OPEN;SUSPECT_EV(26%),False,True
+2761_threes_awak kuier_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Awak Kuier,DAL,PDX@DAL,under,1.5,-235.0,0.8513,0.2135,True,-476,-407,5.5,0.68,,1.5,,False,True
+2760_threes_natasha cloud_over,2026-08-25,2026-08-25 23:00:00,2760,threes,Natasha Cloud,CHI,CHI@CON,over,1.5,140.0,0.5031,0.2075,True,105,111,0.0,1.69,,1.5,MOVED_OFF_OPEN,False,False
+2761_points_megan dileo_under,2026-08-25,2026-08-26 00:00:00,2761,points,Megan DiLeo,PDX,PDX@DAL,under,14.5,-120.0,0.6519,0.1952,True,-172,-159,3.0,12.49,,14.5,,False,True
+2761_threes_arike ogunbowale_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Arike Ogunbowale,DAL,PDX@DAL,under,1.5,114.0,0.5532,0.1838,True,-116,-109,2.0,1.51,,1.5,ROLE_MIN?,False,True
+2762_rebounds_shakira austin_under,2026-08-25,2026-08-26 02:00:00,2762,rebounds,Shakira Austin,WAS,WAS@PHO,under,9.5,112.0,0.5515,0.1692,True,-115,-108,0.0,9.19,,9.5,MOVED_OFF_OPEN,False,False
+2762_assists_alyssa thomas_over,2026-08-25,2026-08-26 02:00:00,2762,assists,Alyssa Thomas,PHO,WAS@PHO,over,7.5,-108.0,0.5951,0.1462,True,-136,-128,2.0,8.37,,7.5,,False,True
 2761_threes_paige bueckers_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Paige Bueckers,DAL,PDX@DAL,under,1.5,100.0,0.57,0.14,True,-123,-116,2.0,1.46,,1.5,,False,True
+2760_rebounds_kennedy burke_under,2026-08-25,2026-08-25 23:00:00,2760,rebounds,Kennedy Burke,CON,CHI@CON,under,3.5,-132.0,0.6317,0.1103,True,-158,-147,0.0,2.95,,3.5,OPEN_INCOHERENT;ROLE_MIN?,False,False
+2761_threes_emily engstler_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Emily Engstler,PDX,PDX@DAL,under,1.5,-205.0,0.7449,0.1083,True,-261,-236,3.0,0.98,,1.5,,False,True
 2764_threes_natisha hiedeman_under,2026-08-26,2026-08-27 02:00:00,2764,threes,Natisha Hiedeman,SEA,TOR@SEA,under,1.5,-102.0,0.557,0.1031,True,-117,-110,1.5,1.5,,1.5,,True,False
 2762_threes_kahleah copper_under,2026-08-25,2026-08-26 02:00:00,2762,threes,Kahleah Copper,PHO,WAS@PHO,under,2.5,-215.0,0.7512,0.1006,True,-269,-243,0.0,1.72,,1.5,MOVED_OFF_OPEN,False,True

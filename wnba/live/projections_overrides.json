@@ -5852,7 +5852,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED at 2333Z (19:33 ET), was Day-To-Day (Foot): dropped from the ESPN league report while 34 Out rows persist unchanged (35 rows this snapshot, no adds, no other changes) - a real clearing, not a feed outage. Confirmed by the same snapshot's lineup feed for IND@CHI (event 401857168, STATUS_IN_PROGRESS): active off the bench (starter=false), reason COACH'S DECISION, dnp=false. Supersedes index 414 (the 08-22 2332Z questionable for today). Status returned to base panel state, no minutes assertion: a clearing says available, it does not say how many minutes, and the routine does not invent one. Inert for pricing - her game is already underway - it exists so the archive carries the resolution.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 468
   },
   {
    "player": "Julie Allemand",
@@ -5969,7 +5969,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report, NEW in the 2133Z diff (17:33 ET): 'Nelson-Ododa (knee) is questionable for Tuesday's game against the Sky.', status Day-To-Day, type Knee, Connecticut Sun, return_date 2026-08-25 - i.e. the CHI@CON game that IS on the current sheet (event 2760, 2026-08-25 ET). First override entry for this player. She is a full-time Connecticut starter (last 8 panel games all starts) but her most recent game, 8/22 at LA, was 10 minutes against 24-29 in the four before it, which is consistent with the knee showing up in that game rather than after it - corroboration for the doubt, not a minutes number. minutes_est left NULL = base panel state, the conservative choice that manufactures no news-driven edge in either direction (a cut estimate would invent unders on her, an inflated one overs), and no teammate minutes are asserted either: reallocating Connecticut's frontcourt minutes off a 'questionable' would be invention, not news. Same handling as index 449 (Burrell) and 369 (Coulibaly). She carries no props on the current sheet - the two CHI@CON rows are both Chicago players - so this is an annotation for the pre-tip availability check.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 469
   },
   {
    "player": "Aaliyah Edwards",
@@ -6008,7 +6008,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report, NEW in the 2332Z diff (19:32 ET): Prechtel (Golden State) Out, type Coach's Decision, return_date 2026-08-26, and the per-event report for 401857171 (GSV @ MIN, 20:00 ET tonight) carries the same Out - so this targets tonight's GSV@MIN game on the sheet. Supersedes index 333 (2026-08-19 'in', the stale-league-entry clearance). A coach's-decision Out is an availability fact, so minutes_est 0; no teammate minutes are reallocated - Prechtel is deep bench (two panel games all season: 5 min on 5/25, 18 min on 8/12), so asserting a Valkyries minutes shift off her DNP would be invention. She carries no row on the current sheet, and no GSV prop is playable on it, so this is archive plus the pre-tip availability check. Fifth coach's-decision Out logged for her since 8/06 - the pattern is a rotation call, not an injury.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 471
   },
   {
    "player": "Elena Buenavida",
@@ -6163,6 +6163,58 @@
    "source": "avail:2026-08-25/1733Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report: 'The Lynx temporarily suspended Delaere's contract Tuesday.' Listed Out, type 'Not Injury Related', return date 2026-09-18.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "DiJonai Carrington",
+   "added": "2026-08-25T21:33:00Z",
+   "game_date": "2026-08-25",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/2133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report, NEW in the 2133Z diff (17:33 ET): 'Carrington (illness) is questionable for Tuesday's game against the Sun.', status Day-To-Day, type Illness, Chicago Sky, return_date 2026-08-25 - i.e. tonight's CHI@CON (19:00 ET), corroborated by the per-event report for 401857173 carrying the same Day-To-Day. Supersedes index 443 (the 08-23 clearance that returned her to base state). She is a bench piece with volatile minutes off the panel (last eight CHI games 20/12/4/27/24/14/19/18, never a start), so an illness questionable is exactly the case where a minutes number would be invention: minutes_est left NULL = base panel state, the conservative choice that manufactures no news-driven edge in either direction, and no teammate minutes are reallocated either. Fourth status flip for her in five days (out 8/21 -> questionable 8/22 -> in 8/23 -> day-to-day now); treat the pre-tip lineup check as the binding one.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Olivia Nelson-Ododa",
+   "added": "2026-08-25T21:33:00Z",
+   "game_date": "2026-08-25",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/2133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report, UPDATED in the 2133Z diff (17:33 ET): 'Nelson-Ododa (knee) is out for Tuesday's game against the Sky.' - status Out (was Day-To-Day at 2026-08-24 2133Z), type Knee, Connecticut Sun, return_date 2026-08-26, and the per-event report for 401857173 (CHI@CON, 19:00 ET tonight) carries the same Out. Supersedes index 452 (yesterday's questionable for this same game): the doubt has resolved to a ruling, so minutes_est 0. She is a full-time Connecticut starter (last eight panel games all starts, 10-29 min), and her 8/22 line at LA - 10 minutes against 24-29 in the four before it - now reads as the knee already limiting her in that game. No teammate minutes are reallocated: Connecticut loses a starting big, but asserting who absorbs those minutes would be invention rather than news, and the routine does not manufacture overs on unnamed teammates.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Serah Williams",
+   "added": "2026-08-25T21:33:00Z",
+   "game_date": "2026-08-25",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/2133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report, NEW in the 2133Z diff (17:33 ET): 'Williams is out for Tuesday's game against the Wings with an illness.' - status Out, type Illness, Portland Fire, return_date 2026-08-28, and the per-event report for 401857174 (POR@DAL, 20:00 ET tonight) carries the same Out. First override entry for this player. She is a bench rotation piece, not a starter: last eight panel games 11/12/16/17/12/13/19/13 minutes, zero starts, single-digit scoring in seven of eight. An Out is an availability fact, so minutes_est 0; no Portland teammate minutes are reallocated, because a 13-minute reserve's absence does not identify who absorbs them and the routine does not invent that.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Ashten Prechtel",
+   "added": "2026-08-25T21:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/2133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED at 2133Z (17:33 ET), was Out (Coach's Decision) - dropped from the ESPN league report, superseding index 455 (the 08-24 coach's-decision Out for GSV@MIN). Golden State is NOT on tonight's three-game slate (CHI@CON, POR@DAL, WSH@PHX), so this is a between-games clearance rather than a game-day ruling: status returned to base panel state with no minutes assertion, game_date null (until-cleared). Her coach's-decision Outs have cycled repeatedly since 8/06 (indices 127, 313, 455 out; 107, 186, 333 clear), and the panel shows a single Valkyries appearance in the window (18 min on 8/12), so the honest read is an unstable deep-bench rotation call, not an injury. Inert for pricing; logged so the archive carries the resolution.",
    "author": "news-watch",
    "superseded_by": null
   }
