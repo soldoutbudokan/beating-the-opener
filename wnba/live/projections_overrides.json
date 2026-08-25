@@ -6152,6 +6152,19 @@
    "quote": "ESPN league injury report: Juhasz (Minnesota Lynx) listed Out, type 'Not Injury Related', return date 2026-09-18.",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "Antonia Delaere",
+   "added": "2026-08-25T17:33:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/1733Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report: 'The Lynx temporarily suspended Delaere's contract Tuesday.' Listed Out, type 'Not Injury Related', return date 2026-09-18.",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }
