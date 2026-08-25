@@ -6,19 +6,19 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $107.48** (start $100)
+**Bankroll: $107.52** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 192 (101W-91L), 0 push, 5 void, 16 open |
-| staked | $192.00 |
-| P&L | $+7.48 (+3.9% ROI) |
-| mean EV said (model) | +19.66% (n=192) |
+| settled | 194 (102W-92L), 0 push, 5 void, 14 open |
+| staked | $194.00 |
+| P&L | $+7.52 (+3.9% ROI) |
+| mean EV said (model) | +19.62% (n=194) |
 | mean CLV (vs close) | -3.50% (n=192) |
 | mean CLV* (shade-adj) | -2.58% (n=192) |
 | closing line moved | 41 of 192 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 116.1W vs observed 101W (z=-2.26) |
-| Model-expected P&L | $+38.68 |
+| model calibration | expected 117.2W vs observed 102W (z=-2.26) |
+| Model-expected P&L | $+38.99 |
 | CLV-expected P&L | $-6.71 |
 
 CLV t-stat: -5.26 (iid); -2.67 clustered by match date (25 dates)
@@ -41,8 +41,8 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-25 | Sonia Citron | threes | under | 1.5 | 104 | 1.0 | +10.5% |  |  |  |  |  |
 | 2026-08-25 | Awak Kuier | threes | under | 1.5 | -220 | 1.0 | +23.8% |  |  |  |  |  |
 | 2026-08-25 | Emily Engstler | threes | under | 1.5 | -200 | 1.0 | +11.7% |  |  |  |  |  |
-| 2026-08-24 | Nneka Ogwumike | rebounds | over | 7.5 | 104 | 1.0 | +19.8% |  |  |  |  |  |
-| 2026-08-24 | Olivia Miles | assists | over | 6.5 | 118 | 1.0 | +11.7% |  |  |  |  |  |
+| 2026-08-24 | Nneka Ogwumike | rebounds | over | 7.5 | 104 | 1.0 | +19.8% | 16 | won | +1.04 |  |  |
+| 2026-08-24 | Olivia Miles | assists | over | 6.5 | 118 | 1.0 | +11.7% | 5 | lost | -1.00 |  |  |
 | 2026-08-23 | Bridget Carleton | points | under | 14.5 | -102 | 1.0 | +21.9% | 18 | lost | -1.00 | -5.2% | -1.7% |
 | 2026-08-23 | Megan DiLeo | points | under | 13.5 | -102 | 1.0 | +21.6% | 21 | lost | -1.00 | +1.6% | +5.1% |
 | 2026-08-23 | Carla Leite | points | under | 16.5 | -118 | 1.0 | +19.2% | 27 | lost | -1.00 | -3.5% | -0.3% |
