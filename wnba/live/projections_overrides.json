@@ -5891,7 +5891,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED at 0133Z (2026-08-23 21:33 ET), was Out (Coach's Decision): \"Nivar (coach's decision) has been ruled out for Saturday's game in Phoenix.\" That game (8/22) is over and Atlanta did not play tonight, so this is the routine post-game expiry of a game-specific inactive, not a health change. Feed verified healthy, not an outage: league rows 36 -> 35 across the hour with Nivar and Sherrod dropping and NaLyssa Smith added, and the other 34 Out rows unchanged. Supersedes index 422 (the 2026-08-22 'out'). Status returned to base panel state with no minutes assertion - a clearing says available, it does not say how many minutes, and a repeat coach's-decision scratch for Atlanta's next game stays possible (she has been in/out four times since 8/18). Inert for the current sheet: no Atlanta props on it.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 462
   },
   {
    "player": "Jaylyn Sherrod",
@@ -5904,7 +5904,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED at 0133Z (2026-08-23 21:33 ET), was Out (Coach's Decision): \"Sherrod (coach's decision) will remain on the inactive list for Saturday's game against the Mercury.\" Same pattern as her Atlanta teammate Nivar - the 8/22 game is over, Atlanta did not play tonight, so the row expired rather than the player changing status. Feed verified healthy (36 -> 35 league rows, two ATL drops, one add, 34 Out rows unchanged). Supersedes index 421 (the 2026-08-22 'out'). Base panel state restored, no minutes asserted; 'remain on the inactive list' language means another scratch for Atlanta's next game is likely, so this is availability-neutral, not a signal of a role. Inert for the current sheet.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 463
   },
   {
    "player": "Janiah Barker",
@@ -5930,7 +5930,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report, NEW this snapshot (1836Z = 14:36 ET): 'day-to-day', status Day-To-Day, type Illness, Los Angeles Sparks, return_date 2026-08-24 - i.e. the feed expects her available for tonight's LAS home game (event 2759, 22:00 ET). She is a full-time starter (last 8 games all starts, 25-35 min, 30 min in each of the last two). Comment carries no detail beyond 'day-to-day' and an illness that the feed itself dates to clear today, so minutes are left NULL = base panel state: the conservative choice that manufactures no news-driven edge in either direction (a cut estimate would invent unders, an inflated one overs). Annotation for the pre-tip availability check, not a projection change. Same handling as index 369 (Coulibaly).",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 464
   },
   {
    "player": "DeWanna Bonner",
@@ -6085,6 +6085,45 @@
    "source": "avail:2026-08-25/0033Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league injury report (was Out on the 2026-08-23 0233Z snapshot). Clears the out override; no minutes assertion.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Indya Nivar",
+   "added": "2026-08-25T01:33:00Z",
+   "game_date": "2026-08-24",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/0133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW in the 0133Z diff: Nivar (Atlanta Dream) listed Out, type Coach's Decision — \"Nivar (coach's decision) has been ruled out for Monday's game against the Sparks.\" Date-scoped to tonight's ATL@LA (2026-08-24 ET, 22:00 tip); supersedes the 2026-08-24 clear. Same in-and-out coach's-decision pattern as 08-18/08-20/08-22.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Jaylyn Sherrod",
+   "added": "2026-08-25T01:33:00Z",
+   "game_date": "2026-08-24",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/0133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW in the 0133Z diff: Sherrod (Atlanta Dream) listed Out, type Coach's Decision — \"Sherrod (coach's decision) is listed as out for Monday's game versus the Sparks.\" Date-scoped to tonight's ATL@LA (2026-08-24 ET); supersedes the 2026-08-24 clear.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Rae Burrell",
+   "added": "2026-08-25T01:33:00Z",
+   "game_date": "2026-08-24",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/0133Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "UPDATED in the 0133Z diff: Burrell (Los Angeles Sparks) downgraded Day-To-Day → Out, type Illness — \"Burrell (illness) is listed as out for Monday's game against the Dream.\" Confirmed by the per-event report for ATL@LA (event 401857172). Supersedes the 2026-08-24 18:36Z questionable entry; date-scoped to tonight's ET slate.",
    "author": "news-watch",
    "superseded_by": null
   }
