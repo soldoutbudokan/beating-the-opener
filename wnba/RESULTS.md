@@ -10,7 +10,7 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 192 (101W-91L), 0 push, 5 void, 2 open |
+| settled | 192 (101W-91L), 0 push, 5 void, 16 open |
 | staked | $192.00 |
 | P&L | $+7.48 (+3.9% ROI) |
 | mean EV said (model) | +19.66% (n=192) |
@@ -27,6 +27,20 @@ Calibration reads the model's own claims against results: expected wins = sum of
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-08-25 | Sydney Taylor | points | over | 13.5 | 100 | 1.0 | +23.0% |  |  |  |  |  |
+| 2026-08-25 | Arike Ogunbowale | threes | under | 1.5 | 118 | 1.0 | +20.4% |  |  |  |  |  |
+| 2026-08-25 | Kahleah Copper | threes | under | 1.5 | 146 | 1.0 | +19.4% |  |  |  |  |  |
+| 2026-08-25 | Jessica Shepard | points | under | 15.5 | -132 | 1.0 | +17.2% |  |  |  |  |  |
+| 2026-08-25 | DeWanna Bonner | assists | under | 1.5 | 130 | 1.0 | +16.1% |  |  |  |  |  |
+| 2026-08-25 | Paige Bueckers | threes | under | 1.5 | 104 | 1.0 | +16.1% |  |  |  |  |  |
+| 2026-08-25 | Carla Leite | points | under | 15.5 | -102 | 1.0 | +16.1% |  |  |  |  |  |
+| 2026-08-25 | Alyssa Thomas | assists | over | 7.5 | -106 | 1.0 | +15.8% |  |  |  |  |  |
+| 2026-08-25 | Michaela Onyenwere | threes | under | 1.5 | -102 | 1.0 | +14.5% |  |  |  |  |  |
+| 2026-08-25 | Bridget Carleton | rebounds | over | 4.5 | -106 | 1.0 | +10.1% |  |  |  |  |  |
+| 2026-08-25 | Megan DiLeo | points | under | 14.5 | -132 | 1.0 | +14.3% |  |  |  |  |  |
+| 2026-08-25 | Sonia Citron | threes | under | 1.5 | 104 | 1.0 | +10.5% |  |  |  |  |  |
+| 2026-08-25 | Awak Kuier | threes | under | 1.5 | -220 | 1.0 | +23.8% |  |  |  |  |  |
+| 2026-08-25 | Emily Engstler | threes | under | 1.5 | -200 | 1.0 | +11.7% |  |  |  |  |  |
 | 2026-08-24 | Nneka Ogwumike | rebounds | over | 7.5 | 104 | 1.0 | +19.8% |  |  |  |  |  |
 | 2026-08-24 | Olivia Miles | assists | over | 6.5 | 118 | 1.0 | +11.7% |  |  |  |  |  |
 | 2026-08-23 | Bridget Carleton | points | under | 14.5 | -102 | 1.0 | +21.9% | 18 | lost | -1.00 | -5.2% | -1.7% |
@@ -213,16 +227,3 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-01 | Jackie Young | assists | under | 7.5 | -146 | 1.0 | +23.3% | 5 | won | +0.68 | +3.9% | +6.7% |
 | 2026-08-01 | Jonquel Jones | assists | over | 2.5 | 110 | 1.0 | +22.6% | 5 | won | +1.10 | -0.4% | -4.1% |
 | 2026-08-01 | Sabrina Ionescu | assists | under | 5.5 | -108 | 1.0 | +21.7% | 10 | lost | -1.00 | -0.5% | +2.9% |
-| 2026-07-31 | Caitlin Clark | assists | under | 9.5 | -152 | 1.0 | +25.7% | 10 | lost | -1.00 | -7.2% | -4.4% |
-| 2026-07-31 | Aliyah Boston | points | under | 17.5 | -122 | 1.0 | +25.7% | 14 | won | +0.82 | -3.2% | -0.1% |
-| 2026-07-31 | Angel Reese | rebounds | under | 11.5 | 102 | 1.0 | +23.6% | 13 | lost | -1.00 | -6.6% | -0.8% |
-| 2026-07-31 | Bridget Carleton | rebounds | over | 3.5 | 104 | 1.0 | +22.2% | 3 | lost | -1.00 | -5.7% | -11.6% |
-| 2026-07-31 | Awa Fam | rebounds | over | 5.5 | -118 | 1.0 | +19.2% | 9 | won | +0.85 | -10.0% | -15.4% |
-| 2026-07-31 | Megan DiLeo | points | under | 14.5 | -113 | 1.0 | +15.6% | 5 | won | +0.88 | -9.8% | -6.7% |
-| 2026-07-31 | Natisha Hiedeman | threes | under | 2.5 | -205 | 1.0 | +15.0% | 0 | won | +0.49 | -7.6% | -4.5% |
-| 2026-07-31 | Michaela Onyenwere | rebounds | under | 2.5 | 130 | 1.0 | +15.0% | 4 | lost | -1.00 | -1.0% | +5.6% |
-| 2026-07-28 | Carla Leite | assists | over | 6.5 | 128 | 1.0 | +7.6% | 3 | lost | -1.00 | -3.9% | -8.0% |
-| 2026-07-28 | Caitlin Clark | threes | over | 2.5 | 108 | 1.0 | +6.8% | 4 | won | +1.08 | +7.3% | +3.2% |
-| 2026-07-28 | Kayla McBride | points | over | 17.5 | -120 | 1.0 | +5.0% | 18 | won | +0.83 | -7.7% | -11.2% |
-| 2026-07-28 | Emily Engstler | threes | over | 1.5 | 194 | 1.0 | +31.7% | 1 | lost | -1.00 | -10.3% | -15.1% |
-| 2026-07-28 | Caitlin Clark | rebounds | under | 3.5 | 106 | 1.0 | +6.7% | 4 | lost | -1.00 | -6.1% | -0.7% |
