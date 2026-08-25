@@ -6139,6 +6139,19 @@
    "quote": "NEW in the 0438Z diff: Morgan (Los Angeles Sparks) listed Out, type Undisclosed — \"Morgan (undisclosed) exited Monday's 78-71 loss to the Dream in the fourth quarter and did not return, finishing with zero points (0-5 FG, 0-1 3Pt), three assists and one rebound across 15 minutes.\" An in-game injury exit, not the coach's-decision in-and-out pattern of her earlier entries, so it is scoped until-cleared (game_date null) rather than to one date; ESPN's return_date is 2026-08-28, which is exactly LAS's next game (WAS@LAS, 2026-08-28 ET). No LAS game is on the current sheet (CHI@CON, PDX@DAL, WAS@PHO) and she carries no prop on it, so this is record-only.",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "Dorka Juhasz",
+   "added": "2026-08-25T16:33:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/1633Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report: Juhasz (Minnesota Lynx) listed Out, type 'Not Injury Related', return date 2026-09-18.",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }
