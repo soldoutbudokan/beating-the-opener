@@ -1,19 +1,15 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2762_assists_kelsey plum_over,2026-08-25,2026-08-26 02:00:00,2762,assists,Kelsey Plum,PHO,WAS@PHO,over,3.5,108.0,0.7612,0.5833,True,-283,-254,0.0,5.35,,3.5,STALE_PLAYER(16d);SUSPECT_EV(58%);ROLE_MIN?,False,False
-2761_assists_carla leite_under,2026-08-25,2026-08-26 00:00:00,2761,assists,Carla Leite,PDX,PDX@DAL,under,6.5,116.0,0.6026,0.3015,True,-140,-131,0.0,5.92,,6.5,MOVED_OFF_OPEN;SUSPECT_EV(30%);PLAYER_ALREADY_BET(points under 15.5),False,False
-2761_rebounds_jessica shepard_under,2026-08-25,2026-08-26 00:00:00,2761,rebounds,Jessica Shepard,DAL,PDX@DAL,under,10.5,108.0,0.6104,0.2696,True,-145,-135,0.0,9.61,,10.5,SUSPECT_EV(27%);PLAYER_ALREADY_BET(points under 15.5),False,False
-2759_assists_rae burrell_over,2026-08-24,2026-08-25 02:00:00,2759,assists,Rae Burrell,LAS,ATL@LAS,over,2.5,110.0,0.6036,0.2675,True,-141,-132,0.0,3.13,,2.5,MOVED_OFF_OPEN;SUSPECT_EV(27%),False,False
-2761_threes_awak kuier_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Awak Kuier,DAL,PDX@DAL,under,1.5,-205.0,0.8511,0.2663,True,-475,-407,0.0,0.68,,1.5,SUSPECT_EV(27%),False,True
-2759_rebounds_nneka ogwumike_over,2026-08-24,2026-08-25 02:00:00,2759,rebounds,Nneka Ogwumike,LAS,ATL@LAS,over,7.5,116.0,0.5839,0.2612,True,-130,-122,0.0,8.38,,7.5,SUSPECT_EV(26%),False,True
-2760_points_sydney taylor_over,2026-08-25,2026-08-25 23:00:00,2760,points,Sydney Taylor,CHI,CHI@CON,over,13.5,102.0,0.6141,0.2404,True,-147,-137,3.0,15.8,,13.5,,False,True
-2761_points_megan dileo_under,2026-08-25,2026-08-26 00:00:00,2761,points,Megan DiLeo,PDX,PDX@DAL,under,14.5,-120.0,0.6513,0.194,True,-171,-159,3.0,12.5,,14.5,,False,True
-2761_threes_arike ogunbowale_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Arike Ogunbowale,DAL,PDX@DAL,under,1.5,116.0,0.5527,0.1939,True,-115,-108,2.0,1.52,,1.5,ROLE_MIN?,False,True
-2758_threes_napheesa collier_over,2026-08-24,2026-08-25 00:00:00,2758,threes,Napheesa Collier,MIN,GSV@MIN,over,1.5,138.0,0.4951,0.1784,True,109,115,0.0,1.66,,1.5,MOVED_OFF_OPEN,False,False
-2761_points_bridget carleton_under,2026-08-25,2026-08-26 00:00:00,2761,points,Bridget Carleton,PDX,PDX@DAL,under,15.5,-110.0,0.6156,0.1753,True,-148,-138,0.0,14.0,,14.5,MOVED_OFF_OPEN;PLAYER_ALREADY_BET(rebounds over 4.5),False,False
-2761_threes_paige bueckers_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Paige Bueckers,DAL,PDX@DAL,under,1.5,102.0,0.5696,0.1506,True,-123,-116,2.0,1.47,,1.5,,False,True
-2762_assists_alyssa thomas_over,2026-08-25,2026-08-26 02:00:00,2762,assists,Alyssa Thomas,PHO,WAS@PHO,over,7.5,-108.0,0.5955,0.147,True,-137,-128,2.0,8.37,,7.5,,False,True
-2758_threes_veronica burton_over,2026-08-24,2026-08-25 00:00:00,2758,threes,Veronica Burton,GSV,GSV@MIN,over,1.5,128.0,0.5027,0.1461,True,105,111,0.0,1.69,,1.5,MOVED_OFF_OPEN;ROLE_MIN?,False,False
-2762_threes_michaela onyenwere_under,2026-08-25,2026-08-26 02:00:00,2762,threes,Michaela Onyenwere,WAS,WAS@PHO,under,1.5,-102.0,0.5785,0.1457,True,-128,-120,2.0,1.44,,1.5,,False,True
-2762_assists_sonia citron_under,2026-08-25,2026-08-26 02:00:00,2762,assists,Sonia Citron,WAS,WAS@PHO,under,4.5,118.0,0.5157,0.1241,True,-100,106,0.0,4.53,,4.5,PLAYER_ALREADY_BET(threes under 1.5),False,False
-2761_threes_emily engstler_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Emily Engstler,PDX,PDX@DAL,under,1.5,-200.0,0.7446,0.117,True,-260,-236,3.0,0.98,,1.5,,False,True
-2760_points_natasha cloud_over,2026-08-25,2026-08-25 23:00:00,2760,points,Natasha Cloud,CHI,CHI@CON,over,12.5,-102.0,0.5603,0.1096,True,-119,-112,0.0,13.85,,12.5,MOVED_OFF_OPEN,False,False
+2762_assists_kelsey plum_over,2026-08-25,2026-08-26 02:00:00,2762,assists,Kelsey Plum,PHO,WAS@PHO,over,3.5,106.0,0.7613,0.5682,True,-283,-254,0.0,5.35,,3.5,STALE_PLAYER(16d);SUSPECT_EV(57%);ROLE_MIN?,False,False
+2761_assists_carla leite_under,2026-08-25,2026-08-26 00:00:00,2761,assists,Carla Leite,PDX,PDX@DAL,under,6.5,116.0,0.6024,0.3013,True,-140,-131,0.0,5.92,,6.5,MOVED_OFF_OPEN;SUSPECT_EV(30%);PLAYER_ALREADY_BET(points under 15.5),False,False
+2761_rebounds_jessica shepard_under,2026-08-25,2026-08-26 00:00:00,2761,rebounds,Jessica Shepard,DAL,PDX@DAL,under,10.5,108.0,0.6103,0.2694,True,-145,-135,0.0,9.61,,10.5,SUSPECT_EV(27%);PLAYER_ALREADY_BET(points under 15.5),False,False
+2761_threes_awak kuier_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Awak Kuier,DAL,PDX@DAL,under,1.5,-205.0,0.8509,0.2659,True,-475,-406,0.0,0.68,,1.5,SUSPECT_EV(27%),False,True
+2760_points_sydney taylor_over,2026-08-25,2026-08-25 23:00:00,2760,points,Sydney Taylor,CHI,CHI@CON,over,13.5,102.0,0.6149,0.2422,True,-148,-138,3.0,15.81,,13.5,,False,True
+2761_threes_arike ogunbowale_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Arike Ogunbowale,DAL,PDX@DAL,under,1.5,116.0,0.5523,0.1929,True,-115,-108,2.0,1.52,,1.5,ROLE_MIN?,False,True
+2761_points_megan dileo_under,2026-08-25,2026-08-26 00:00:00,2761,points,Megan DiLeo,PDX,PDX@DAL,under,14.5,-120.0,0.6505,0.1926,True,-171,-158,3.0,12.51,,14.5,,False,True
+2761_points_bridget carleton_under,2026-08-25,2026-08-26 00:00:00,2761,points,Bridget Carleton,PDX,PDX@DAL,under,15.5,-110.0,0.6148,0.1736,True,-148,-138,0.0,14.01,,14.5,MOVED_OFF_OPEN;PLAYER_ALREADY_BET(rebounds over 4.5),False,False
+2762_assists_alyssa thomas_over,2026-08-25,2026-08-26 02:00:00,2762,assists,Alyssa Thomas,PHO,WAS@PHO,over,7.5,-106.0,0.5957,0.1576,True,-137,-128,2.0,8.37,,7.5,,False,True
+2761_threes_paige bueckers_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Paige Bueckers,DAL,PDX@DAL,under,1.5,102.0,0.5691,0.1496,True,-123,-115,2.0,1.47,,1.5,,False,True
+2762_threes_michaela onyenwere_under,2026-08-25,2026-08-26 02:00:00,2762,threes,Michaela Onyenwere,WAS,WAS@PHO,under,1.5,-102.0,0.578,0.1447,True,-127,-119,2.0,1.44,,1.5,,False,True
+2762_assists_sonia citron_under,2026-08-25,2026-08-26 02:00:00,2762,assists,Sonia Citron,WAS,WAS@PHO,under,4.5,118.0,0.5156,0.1239,True,-100,106,0.0,4.53,,4.5,PLAYER_ALREADY_BET(threes under 1.5),False,False
+2761_threes_emily engstler_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Emily Engstler,PDX,PDX@DAL,under,1.5,-200.0,0.7443,0.1164,True,-260,-235,3.0,0.98,,1.5,,False,True
+2760_points_natasha cloud_over,2026-08-25,2026-08-25 23:00:00,2760,points,Natasha Cloud,CHI,CHI@CON,over,12.5,-102.0,0.5611,0.1113,True,-119,-112,0.0,13.87,,12.5,MOVED_OFF_OPEN,False,False

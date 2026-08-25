@@ -3146,7 +3146,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "The 2035Z snapshot carries no status change (Out, Calf, Phoenix in both the 1933Z and 2035Z captures, so avail_watch printed no NEW/UPDATED/CLEARED line), but the underlying league-report entry was rewritten: comment 'Plum (leg) is listed as out for Tuesday's game against Los Angeles' -> 'Plum (calf) won't play in Sunday's game against Portland, per Annie Costabile of The Athletic', and return_date 2026-08-16 -> 2026-08-22. That is a six-day extension of a known absence, and it outlives the standing marker: entry 172 was dated game_date 2026-08-11, so it had already gone inert for every future slate while she is in fact still out. Recorded open-ended (game_date null) so the OUT marker stands until a snapshot clears her, and supersedes 172. Status-only with NO minutes estimate: a minutes_est of 0 on an until-cleared entry would price every Plum prop through 2026-08-22 as a maximal under, which is the Kelsey Plum failure mode the 2026-08-08 gates exist to stop, not a news edge. PHO is not on the 2026-08-14 sheet (DAL@IND, PDX@SEA); the next Phoenix game is Sunday 2026-08-16 vs Portland, which this covers.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 459
   },
   {
    "player": "Aaliyah Edwards",
@@ -5605,7 +5605,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Out - Coach's Decision, Phoenix Mercury, league report at 0233Z: \"Dunn (coach's decision) is out for Saturday's game against Atlanta.\" Saturday = 2026-08-22 ET, i.e. ATL@PHX, which the same snapshot shows as IN_PROGRESS - this is a tip-off inactive, not forward-looking news, so the price effect is nil (the FD-opener gate rules out any bet on a live game). return_date 2026-08-25 is Phoenix's next game and the feed does NOT list her out for it, so game_date is pinned to 2026-08-22 rather than left until-cleared. Supersedes index 276 (the 2026-08-16 CLEARED/in entry) - Dunn's coach's-decision DNPs have cycled all month (191 out, 276 in) and this is the same pattern again. minutes_est 0.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 460
   },
   {
    "player": "Shay Ciezki",
@@ -5618,7 +5618,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW Out - Coach's Decision, Phoenix Mercury, league report at 0233Z, comment text just \"out\", return_date 2026-08-25. Same tip-off-inactive rollover as Dunn in this diff: ATL@PHX (2026-08-22 ET) is IN_PROGRESS in the same snapshot, so this records a DNP already determined, with nil price effect, and 2026-08-25 is Phoenix's next game rather than a game she is ruled out of. game_date 2026-08-22, minutes_est 0. NOT superseding index 119 (out for 2026-08-09): that slate is FINAL and the entry stands as the record of what was believed then, per the 2026-08-06 precedent in this file. Ciezki is a deep-bench guard with no prop on the sheet.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 461
   },
   {
    "player": "Marta Suarez",
@@ -5800,7 +5800,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED at 2232Z (18:32 ET), was Out (Coach's Decision) for Friday's MIN@WAS, return_date 2026-08-24. Supersedes index 394 (the 08-21 22:33Z until-cleared out). Feed healthy this snapshot (38 league rows, all four event reports, Williams' Out still listed). Minnesota does not play tonight, so this prices nothing today; it clears a standing until-cleared out so the Lynx's next game reads from the base panel state. No minutes assertion.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 456
   },
   {
    "player": "Liatu King",
@@ -5813,7 +5813,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED at 2232Z (18:32 ET), was Out (Coach's Decision) for Friday's MIN@WAS, return_date 2026-08-24. Supersedes index 395 (the 08-21 22:33Z until-cleared out). Same healthy-feed check as the other Lynx clearings this snapshot. Minnesota is not on tonight's slate, so nothing is priced off this; it removes a standing out ahead of the Lynx's next game. Status only, no minutes estimate - her coach's-decision status has oscillated all month, so a clearing restores the panel state rather than asserting a role.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 457
   },
   {
    "player": "A'ja Wilson",
@@ -6007,6 +6007,84 @@
    "source": "avail:2026-08-24/2332Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report, NEW in the 2332Z diff (19:32 ET): Prechtel (Golden State) Out, type Coach's Decision, return_date 2026-08-26, and the per-event report for 401857171 (GSV @ MIN, 20:00 ET tonight) carries the same Out - so this targets tonight's GSV@MIN game on the sheet. Supersedes index 333 (2026-08-19 'in', the stale-league-entry clearance). A coach's-decision Out is an availability fact, so minutes_est 0; no teammate minutes are reallocated - Prechtel is deep bench (two panel games all season: 5 min on 5/25, 18 min on 8/12), so asserting a Valkyries minutes shift off her DNP would be invention. She carries no row on the current sheet, and no GSV prop is playable on it, so this is archive plus the pre-tip availability check. Fifth coach's-decision Out logged for her since 8/06 - the pattern is a rotation call, not an injury.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Elena Buenavida",
+   "added": "2026-08-25T00:33:00Z",
+   "game_date": "2026-08-24",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/0033Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW in the 0033Z diff: Buenavida (Minnesota Lynx) listed Out, type Coach's Decision — \"Buenavida (coach's decision) is listed as out for Monday's game against Golden State.\" Confirmed by the per-event report for GS@MIN (event 401857171). Date-scoped to tonight's ET slate only; supersedes the 2026-08-23 clear.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Liatu King",
+   "added": "2026-08-25T00:33:00Z",
+   "game_date": "2026-08-24",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/0033Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW in the 0033Z diff: King (Minnesota Lynx) listed Out, type Coach's Decision — \"King (coach's decision) has been ruled out for Monday's game against Golden State.\" Confirmed by the per-event report for GS@MIN (event 401857171). Date-scoped to tonight's ET slate only; supersedes the 2026-08-23 clear.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Sami Whitcomb",
+   "added": "2026-08-25T00:33:00Z",
+   "game_date": "2026-08-25",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/0033Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW in the 0033Z diff: Whitcomb (Phoenix Mercury) newly Day-To-Day, type Knee — \"Whitcomb (knee) is listed as probable for Tuesday's game versus the Mystics.\" Probable, so recorded as questionable with NO minutes assertion (inert for pricing): a knee tag on a probable player is not evidence of a minutes cut, and asserting one would manufacture an under. Scoped to the 2026-08-25 WAS@PHO date. Revisit if a later snapshot downgrades her.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Kelsey Plum",
+   "added": "2026-08-25T00:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/0033Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league injury report (was Out, until-cleared, since the 2026-08-14 2035Z snapshot). Clears the out override; NO minutes assertion — she has not played since the trade window and her last panel game is 16 days before the 2026-08-25 WAS@PHO date, so the STALE_PLAYER gate governs her, not this entry.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Kara Dunn",
+   "added": "2026-08-25T00:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/0033Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league injury report (was Out on the 2026-08-23 0233Z snapshot). Clears the out override; no minutes assertion.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Shay Ciezki",
+   "added": "2026-08-25T00:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/0033Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED from the league injury report (was Out on the 2026-08-23 0233Z snapshot). Clears the out override; no minutes assertion.",
    "author": "news-watch",
    "superseded_by": null
   }
