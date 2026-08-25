@@ -5995,7 +5995,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 2133Z diff (17:33 ET), was Out (Coach's Decision): 'Marshall (coach's decision) is out for Saturday's game versus the Sparks', return_date 2026-08-25. That game (CON@LA, 8/22) is over and Connecticut has not played since, so this is the routine post-game expiry of a game-specific inactive - the Nivar/Sherrod pattern (indices 446, 447) - reinforced here by the Sun's report being rewritten for Tuesday in this same snapshot (Nelson-Ododa added with a comment naming that game). Feed verified healthy: league rows 34 -> 33, two Connecticut drops and one Connecticut add, all other rows unchanged, per-event reports unchanged. Supersedes index 423 (the 2026-08-22 'out'). Base panel state restored, no minutes asserted; she is deep bench (last panel game 2026-08-20, 7 min, 4-7 min in each 2026 appearance) and has been a coach's-decision scratch repeatedly, so another one for Tuesday stays possible - this is availability-neutral, not a signal of a role. She carries no props on the current sheet.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 472
   },
   {
    "player": "Ashten Prechtel",
@@ -6177,7 +6177,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report, NEW in the 2133Z diff (17:33 ET): 'Carrington (illness) is questionable for Tuesday's game against the Sun.', status Day-To-Day, type Illness, Chicago Sky, return_date 2026-08-25 - i.e. tonight's CHI@CON (19:00 ET), corroborated by the per-event report for 401857173 carrying the same Day-To-Day. Supersedes index 443 (the 08-23 clearance that returned her to base state). She is a bench piece with volatile minutes off the panel (last eight CHI games 20/12/4/27/24/14/19/18, never a start), so an illness questionable is exactly the case where a minutes number would be invention: minutes_est left NULL = base panel state, the conservative choice that manufactures no news-driven edge in either direction, and no teammate minutes are reallocated either. Fourth status flip for her in five days (out 8/21 -> questionable 8/22 -> in 8/23 -> day-to-day now); treat the pre-tip lineup check as the binding one.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 473
   },
   {
    "player": "Olivia Nelson-Ododa",
@@ -6215,6 +6215,32 @@
    "source": "avail:2026-08-25/2133Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED at 2133Z (17:33 ET), was Out (Coach's Decision) - dropped from the ESPN league report, superseding index 455 (the 08-24 coach's-decision Out for GSV@MIN). Golden State is NOT on tonight's three-game slate (CHI@CON, POR@DAL, WSH@PHX), so this is a between-games clearance rather than a game-day ruling: status returned to base panel state with no minutes assertion, game_date null (until-cleared). Her coach's-decision Outs have cycled repeatedly since 8/06 (indices 127, 313, 455 out; 107, 186, 333 clear), and the panel shows a single Valkyries appearance in the window (18 min on 8/12), so the honest read is an unstable deep-bench rotation call, not an injury. Inert for pricing; logged so the archive carries the resolution.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Rayah Marshall",
+   "added": "2026-08-25T22:33:00Z",
+   "game_date": "2026-08-25",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/2233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "League + per-event (401857173) injury report: \"Marshall (coach's decision) is out for Tuesday's game against the Sky.\" Status Out, type Coach's Decision, return_date 2026-08-26. NEW in this snapshot's diff; supersedes the 2026-08-24/2133Z 'in' entry. Coach's Decision counts as Out per the v3 T3 instruction.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "DiJonai Carrington",
+   "added": "2026-08-25T22:33:00Z",
+   "game_date": "2026-08-25",
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-25/2233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED in this snapshot's diff: the 2026-08-25/2133Z report carried \"Carrington (illness) is questionable for Tuesday's game against the Sun\" (Day-To-Day, Chicago Sky); she is off both the league and the per-event (401857173) report at 2233Z. Supersedes the 2133Z questionable entry. Status 'in' only, no minutes estimate - clearing an illness tag is not evidence of a role change, so nothing is manufactured in either direction.",
    "author": "news-watch",
    "superseded_by": null
   }
