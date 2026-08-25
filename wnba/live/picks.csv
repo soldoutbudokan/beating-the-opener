@@ -13,8 +13,8 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2761_threes_paige bueckers_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Paige Bueckers,DAL,PDX@DAL,under,1.5,104.0,0.5702,0.1632,True,-124,-116,2.0,1.46,,1.5,,False,True
 2762_rebounds_shakira austin_under,2026-08-25,2026-08-26 02:00:00,2762,rebounds,Shakira Austin,WAS,WAS@PHO,under,9.5,110.0,0.5514,0.1578,True,-115,-108,0.0,9.19,,9.5,MOVED_OFF_OPEN,False,False
 2762_assists_alyssa thomas_over,2026-08-25,2026-08-26 02:00:00,2762,assists,Alyssa Thomas,PHO,WAS@PHO,over,7.5,-108.0,0.5953,0.1465,True,-136,-128,2.0,8.37,,7.5,,False,True
+2762_assists_sonia citron_under,2026-08-25,2026-08-26 02:00:00,2762,assists,Sonia Citron,WAS,WAS@PHO,under,4.5,118.0,0.5159,0.1246,True,-100,106,0.0,4.53,,4.5,PLAYER_ALREADY_BET(threes under 1.5),False,False
 2764_assists_isabelle harrison_under,2026-08-26,2026-08-27 02:00:00,2764,assists,Isabelle Harrison,TOR,TOR@SEA,under,1.5,106.0,0.5424,0.1173,True,-111,-104,1.5,1.49,,1.5,,True,False
-2762_assists_sonia citron_under,2026-08-25,2026-08-26 02:00:00,2762,assists,Sonia Citron,WAS,WAS@PHO,under,4.5,116.0,0.5159,0.1143,True,-100,106,0.0,4.53,,4.5,PLAYER_ALREADY_BET(threes under 1.5),False,False
 2764_rebounds_kiki rice_under,2026-08-26,2026-08-27 02:00:00,2764,rebounds,Kiki Rice,TOR,TOR@SEA,under,4.5,-180.0,0.7154,0.1128,True,-227,-207,2.5,3.34,,4.5,,True,False
 2761_threes_emily engstler_under,2026-08-25,2026-08-26 00:00:00,2761,threes,Emily Engstler,PDX,PDX@DAL,under,1.5,-205.0,0.7451,0.1085,True,-261,-236,3.0,0.97,,1.5,,False,True
 2764_threes_natisha hiedeman_under,2026-08-26,2026-08-27 02:00:00,2764,threes,Natisha Hiedeman,SEA,TOR@SEA,under,1.5,-102.0,0.557,0.1031,True,-117,-110,1.5,1.5,,1.5,,True,False
