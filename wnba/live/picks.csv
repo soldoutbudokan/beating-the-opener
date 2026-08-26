@@ -1,20 +1,21 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
 2764_assists_kiki rice_under,2026-08-26,2026-08-27 02:00:00,2764,assists,Kiki Rice,TOR,TOR@SEA,under,5.5,102.0,0.8693,0.756,True,-540,-455,0.0,3.25,,4.5,MOVED_OFF_OPEN;SUSPECT_EV(76%);PLAYER_ALREADY_BET(rebounds under 4.5),False,False
+2766_rebounds_natasha mack_under,2026-08-27,2026-08-28 02:00:00,2766,rebounds,Natasha Mack,PHO,WAS@PHO,under,7.5,-104.0,0.7938,0.5571,True,-336,-298,0.0,5.29,,7.5,MOVED_OFF_OPEN;SUSPECT_EV(56%);ROLE_START?,False,False
 2764_points_isabelle harrison_under,2026-08-26,2026-08-27 02:00:00,2764,points,Isabelle Harrison,TOR,TOR@SEA,under,15.5,-130.0,0.8113,0.4354,True,-370,-326,0.0,10.63,,14.5,MOVED_OFF_OPEN;SUSPECT_EV(44%);PLAYER_ALREADY_BET(assists under 1.5),False,False
-2763_points_aaliyah edwards_under,2026-08-26,2026-08-26 23:00:00,2763,points,Aaliyah Edwards,CON,GSV@CON,under,11.5,-110.0,0.7418,0.4162,True,-257,-233,0.0,8.43,,11.5,SUSPECT_EV(42%);ROLE_MIN?;ROLE_START?,False,False
-2766_rebounds_natasha mack_under,2026-08-27,2026-08-28 02:00:00,2766,rebounds,Natasha Mack,PHO,WAS@PHO,under,7.5,-130.0,0.7938,0.4044,True,-336,-298,0.0,5.29,,7.5,SUSPECT_EV(40%);ROLE_START?,False,False
+2763_points_aaliyah edwards_under,2026-08-26,2026-08-26 23:00:00,2763,points,Aaliyah Edwards,CON,GSV@CON,under,11.5,-108.0,0.7418,0.4287,True,-257,-233,0.0,8.43,,11.5,SUSPECT_EV(43%);ROLE_MIN?;ROLE_START?,False,False
 2764_rebounds_temi fagbenle_under,2026-08-26,2026-08-27 02:00:00,2764,rebounds,Temi Fagbenle,TOR,TOR@SEA,under,3.5,120.0,0.605,0.3309,True,-142,-132,0.0,3.09,,3.5,SUSPECT_EV(33%);ROLE_MIN?;ROLE_START?,False,False
 2766_threes_kelsey plum_over,2026-08-27,2026-08-28 02:00:00,2766,threes,Kelsey Plum,PHO,WAS@PHO,over,1.5,102.0,0.6202,0.2528,True,-151,-141,0.0,2.1,,1.5,SUSPECT_EV(25%);ROLE_MIN?;ROLE_START?,False,False
 2765_points_breanna stewart_under,2026-08-27,2026-08-28 00:00:00,2765,points,Breanna Stewart,NYL,GSV@NYL,under,21.5,-115.0,0.6683,0.2494,True,-184,-170,3.5,18.68,,21.5,,True,False
-2763_rebounds_cecilia zandalasini_over,2026-08-26,2026-08-26 23:00:00,2763,rebounds,Cecilia Zandalasini,GSV,GSV@CON,over,2.5,158.0,0.4745,0.2242,True,118,124,2.0,2.56,,2.5,ROLE_MIN?,True,False
 2765_points_leonie fiebich_under,2026-08-27,2026-08-28 00:00:00,2765,points,Leonie Fiebich,NYL,GSV@NYL,under,10.5,-114.0,0.6446,0.2101,True,-167,-155,3.0,8.93,,10.5,,True,False
-2766_assists_alyssa thomas_over,2026-08-27,2026-08-28 02:00:00,2766,assists,Alyssa Thomas,PHO,WAS@PHO,over,7.5,-106.0,0.6204,0.2057,True,-151,-141,3.0,8.58,,7.5,,True,False
-2763_assists_saniya rivers_under,2026-08-26,2026-08-26 23:00:00,2763,assists,Saniya Rivers,CON,GSV@CON,under,3.5,-120.0,0.6482,0.1883,True,-169,-157,3.0,2.89,,3.5,ROLE_START?,True,False
-2763_rebounds_diamond miller_under,2026-08-26,2026-08-26 23:00:00,2763,rebounds,Diamond Miller,CON,GSV@CON,under,2.5,112.0,0.5558,0.1783,True,-117,-110,2.0,2.41,,2.5,,True,False
-2763_points_kennedy burke_under,2026-08-26,2026-08-26 23:00:00,2763,points,Kennedy Burke,CON,GSV@CON,under,9.5,-102.0,0.5905,0.1695,True,-134,-125,2.5,8.73,,9.5,ROLE_MIN?,True,False
+2763_rebounds_cecilia zandalasini_over,2026-08-26,2026-08-26 23:00:00,2763,rebounds,Cecilia Zandalasini,GSV,GSV@CON,over,2.5,154.0,0.4745,0.2052,True,118,124,1.5,2.56,,2.5,ROLE_MIN?,True,False
+2763_assists_saniya rivers_under,2026-08-26,2026-08-26 23:00:00,2763,assists,Saniya Rivers,CON,GSV@CON,under,3.5,-118.0,0.6482,0.1975,True,-169,-157,3.0,2.89,,3.5,ROLE_START?,True,False
+2763_points_kennedy burke_under,2026-08-26,2026-08-26 23:00:00,2763,points,Kennedy Burke,CON,GSV@CON,under,9.5,100.0,0.5905,0.1811,True,-134,-125,0.0,8.73,,9.5,MOVED_OFF_OPEN;ROLE_MIN?,False,False
+2763_rebounds_diamond miller_under,2026-08-26,2026-08-26 23:00:00,2763,rebounds,Diamond Miller,CON,GSV@CON,under,2.5,110.0,0.5558,0.1672,True,-117,-110,2.0,2.41,,2.5,,True,False
 2765_points_jonquel jones_under,2026-08-27,2026-08-28 00:00:00,2765,points,Jonquel Jones,NYL,GSV@NYL,under,14.5,-130.0,0.6518,0.1532,True,-172,-159,0.0,12.49,,13.5,MOVED_OFF_OPEN,False,False
 2764_points_dominique malonga_under,2026-08-26,2026-08-27 02:00:00,2764,points,Dominique Malonga,SEA,TOR@SEA,under,19.5,-106.0,0.5892,0.145,True,-133,-125,0.0,18.26,,20.5,MOVED_OFF_OPEN,False,False
-2766_points_kahleah copper_over,2026-08-27,2026-08-28 02:00:00,2766,points,Kahleah Copper,PHO,WAS@PHO,over,19.5,-114.0,0.6082,0.1416,True,-144,-134,2.0,21.96,,19.5,,True,False
-2763_assists_veronica burton_under,2026-08-26,2026-08-26 23:00:00,2763,assists,Veronica Burton,GSV,GSV@CON,under,6.5,-152.0,0.6883,0.1411,True,-201,-185,3.0,5.35,,6.5,,False,True
+2766_points_kahleah copper_over,2026-08-27,2026-08-28 02:00:00,2766,points,Kahleah Copper,PHO,WAS@PHO,over,19.5,-115.0,0.6082,0.137,True,-144,-134,2.0,21.96,,19.5,,True,False
 2764_rebounds_laura juskaite_under,2026-08-26,2026-08-27 02:00:00,2764,rebounds,Laura Juskaite,TOR,TOR@SEA,under,5.5,-152.0,0.6856,0.1366,True,-199,-183,0.0,4.4,,4.5,MOVED_OFF_OPEN;PLAYER_ALREADY_BET(points under 12.5),False,False
-2766_assists_sonia citron_under,2026-08-27,2026-08-28 02:00:00,2766,assists,Sonia Citron,WAS,WAS@PHO,under,5.5,-146.0,0.6578,0.1084,True,-176,-163,2.0,4.64,,5.5,,True,False
+2766_rebounds_alyssa thomas_over,2026-08-27,2026-08-28 02:00:00,2766,rebounds,Alyssa Thomas,PHO,WAS@PHO,over,8.5,116.0,0.526,0.1362,True,-104,102,1.5,8.89,,8.5,,True,False
+2763_assists_veronica burton_under,2026-08-26,2026-08-26 23:00:00,2763,assists,Veronica Burton,GSV,GSV@CON,under,6.5,-154.0,0.6883,0.1352,True,-201,-185,2.5,5.35,,6.5,,False,True
+2766_assists_sonia citron_under,2026-08-27,2026-08-28 02:00:00,2766,assists,Sonia Citron,WAS,WAS@PHO,under,5.5,-148.0,0.6578,0.1023,True,-176,-163,2.0,4.64,,5.5,,True,False
+2766_rebounds_shakira austin_under,2026-08-27,2026-08-28 02:00:00,2766,rebounds,Shakira Austin,WAS,WAS@PHO,under,9.5,104.0,0.5397,0.1009,True,-110,-103,1.5,9.29,,9.5,,True,False
