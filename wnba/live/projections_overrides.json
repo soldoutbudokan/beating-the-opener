@@ -6229,7 +6229,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "League + per-event (401857173) injury report: \"Marshall (coach's decision) is out for Tuesday's game against the Sky.\" Status Out, type Coach's Decision, return_date 2026-08-26. NEW in this snapshot's diff; supersedes the 2026-08-24/2133Z 'in' entry. Coach's Decision counts as Out per the v3 T3 instruction.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 484
   },
   {
    "player": "DiJonai Carrington",
@@ -6371,6 +6371,19 @@
    "source": "avail:2026-08-26/1735Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report + the GS @ CON event report (event:401857176), UPDATED in the 1735Z diff (13:35 ET): \"Nelson-Ododa (knee) is listed as questionable for Wednesday against the Valkyries.\" - status Day-To-Day (was Out at 2026-08-25 2133Z), type Knee, Connecticut Sun, estimated return 2026-08-26. This is an UPGRADE: she sat out Tuesday's CHI@CON game under the Out ruling and is now doubtful-but-possible for tonight's GSV @ CON (event 2763, 19:00 ET). Supersedes 469 (the Out that targeted the now-final 2026-08-25 game) so the chain stays single-threaded on the same continuing knee; the new entry targets 2026-08-26. minutes_est left NULL = base panel state, the conservative choice: she is a full-time Connecticut starter (last eight panel games all starts) whose most recent appearance, 10 minutes at LA on 8/22 against 24-29 in the four before it, already reads as the knee limiting her, so neither a haircut nor a full-starter estimate is supportable off a questionable - a cut would manufacture unders on her, an inflated one overs. No Connecticut teammate minutes are reallocated in either direction: naming who absorbs or gives back a starting big's minutes on a questionable is invention, not news. Same handling as 452 (her own 08-24 questionable) and 449 (Burrell). Annotation for the pre-tip availability check.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Rayah Marshall",
+   "added": "2026-08-26T18:37:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-26/1837Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED in the 1837Z diff (14:37 ET): both her rows - league and per-event (401857176) - dropped, having read \"Marshall (coach's decision) is out for Tuesday's game against the Sky\" (status Out, type Coach's Decision, return_date 2026-08-26). That CHI@CON game (8/25) is final, and the Connecticut report in this same snapshot has already been rewritten for TONIGHT's GS @ CON (19:00 ET, event 401857176 = event 2763): Nelson-Ododa, Griner and Lacan all carry 'Wednesday against the Valkyries' comments and Marshall is in neither the league nor the per-event list. So this is the routine post-game expiry of a game-specific coach's-decision inactive - the same pattern as indices 357 and 454 on this player - not an injury clearance. Feed verified healthy: league+event rows 58 -> 56, the only delta being the two Marshall drops; every other row unchanged. Supersedes index 472 (the Out that targeted the now-final 2026-08-25 game); base panel state restored with NO minutes assertion, the conservative choice - she is deep bench (4-7 minutes in every 2026 appearance) and has been a coach's-decision scratch four times this month, so another one tonight stays entirely possible; this entry asserts availability-neutrality, not a role. No Marshall prop is on the current sheet, so it is inert for pricing.",
    "author": "news-watch",
    "superseded_by": null
   }
