@@ -6,43 +6,47 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $107.52** (start $100)
+**Bankroll: $104.16** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 194 (102W-92L), 0 push, 5 void, 14 open |
-| staked | $194.00 |
-| P&L | $+7.52 (+3.9% ROI) |
-| mean EV said (model) | +19.62% (n=194) |
-| mean CLV (vs close) | -3.50% (n=192) |
-| mean CLV* (shade-adj) | -2.58% (n=192) |
-| closing line moved | 41 of 192 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 117.2W vs observed 102W (z=-2.26) |
-| Model-expected P&L | $+38.99 |
-| CLV-expected P&L | $-6.71 |
+| settled | 207 (107W-100L), 0 push, 5 void, 5 open |
+| staked | $207.00 |
+| P&L | $+4.16 (+2.0% ROI) |
+| mean EV said (model) | +19.42% (n=207) |
+| mean CLV (vs close) | -3.49% (n=195) |
+| mean CLV* (shade-adj) | -2.65% (n=195) |
+| closing line moved | 42 of 195 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| model calibration | expected 125.2W vs observed 107W (z=-2.62) |
+| Model-expected P&L | $+41.12 |
+| CLV-expected P&L | $-6.81 |
 
-CLV t-stat: -5.26 (iid); -2.67 clustered by match date (25 dates)
+CLV t-stat: -5.29 (iid); -2.89 clustered by match date (27 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-08-25 | Sydney Taylor | points | over | 13.5 | 100 | 1.0 | +23.0% |  |  |  |  |  |
-| 2026-08-25 | Arike Ogunbowale | threes | under | 1.5 | 118 | 1.0 | +20.4% |  |  |  |  |  |
-| 2026-08-25 | Kahleah Copper | threes | under | 1.5 | 146 | 1.0 | +19.4% |  |  |  |  |  |
-| 2026-08-25 | Jessica Shepard | points | under | 15.5 | -132 | 1.0 | +17.2% |  |  |  |  |  |
+| 2026-08-26 | Laura Juskaite | points | under | 12.5 | -114 | 1.0 | +21.8% |  |  |  |  |  |
+| 2026-08-26 | Isabelle Harrison | assists | under | 1.5 | 108 | 1.0 | +12.8% |  |  |  |  |  |
+| 2026-08-26 | Kiki Rice | rebounds | under | 4.5 | -180 | 1.0 | +11.3% |  |  |  |  |  |
+| 2026-08-26 | Veronica Burton | assists | under | 6.5 | -154 | 3.0 | +13.8% |  |  |  |  |  |
+| 2026-08-25 | Sydney Taylor | points | over | 13.5 | 100 | 1.0 | +23.0% | 4 | lost | -1.00 | -9.6% | -13.1% |
+| 2026-08-25 | Arike Ogunbowale | threes | under | 1.5 | 118 | 1.0 | +20.4% | 3 | lost | -1.00 |  |  |
+| 2026-08-25 | Kahleah Copper | threes | under | 1.5 | 146 | 1.0 | +19.4% | 0 | won | +1.46 |  |  |
+| 2026-08-25 | Jessica Shepard | points | under | 15.5 | -132 | 1.0 | +17.2% | 21 | lost | -1.00 |  |  |
 | 2026-08-25 | DeWanna Bonner | assists | under | 1.5 | 130 | 1.0 | +16.1% |  |  |  |  |  |
-| 2026-08-25 | Paige Bueckers | threes | under | 1.5 | 104 | 1.0 | +16.1% |  |  |  |  |  |
-| 2026-08-25 | Carla Leite | points | under | 15.5 | -102 | 1.0 | +16.1% |  |  |  |  |  |
-| 2026-08-25 | Alyssa Thomas | assists | over | 7.5 | -106 | 1.0 | +15.8% |  |  |  |  |  |
-| 2026-08-25 | Michaela Onyenwere | threes | under | 1.5 | -102 | 1.0 | +14.5% |  |  |  |  |  |
-| 2026-08-25 | Bridget Carleton | rebounds | over | 4.5 | -106 | 1.0 | +10.1% |  |  |  |  |  |
-| 2026-08-25 | Megan DiLeo | points | under | 14.5 | -132 | 1.0 | +14.3% |  |  |  |  |  |
-| 2026-08-25 | Sonia Citron | threes | under | 1.5 | 104 | 1.0 | +10.5% |  |  |  |  |  |
-| 2026-08-25 | Awak Kuier | threes | under | 1.5 | -220 | 1.0 | +23.8% |  |  |  |  |  |
-| 2026-08-25 | Emily Engstler | threes | under | 1.5 | -200 | 1.0 | +11.7% |  |  |  |  |  |
-| 2026-08-24 | Nneka Ogwumike | rebounds | over | 7.5 | 104 | 1.0 | +19.8% | 16 | won | +1.04 |  |  |
-| 2026-08-24 | Olivia Miles | assists | over | 6.5 | 118 | 1.0 | +11.7% | 5 | lost | -1.00 |  |  |
+| 2026-08-25 | Paige Bueckers | threes | under | 1.5 | 104 | 1.0 | +16.1% | 3 | lost | -1.00 |  |  |
+| 2026-08-25 | Carla Leite | points | under | 15.5 | -102 | 1.0 | +16.1% | 10 | won | +0.98 |  |  |
+| 2026-08-25 | Alyssa Thomas | assists | over | 7.5 | -106 | 1.0 | +15.8% | 10 | won | +0.94 |  |  |
+| 2026-08-25 | Michaela Onyenwere | threes | under | 1.5 | -102 | 1.0 | +14.5% | 2 | lost | -1.00 |  |  |
+| 2026-08-25 | Bridget Carleton | rebounds | over | 4.5 | -106 | 1.0 | +10.1% | 2 | lost | -1.00 |  |  |
+| 2026-08-25 | Megan DiLeo | points | under | 14.5 | -132 | 1.0 | +14.3% | 13 | won | +0.76 |  |  |
+| 2026-08-25 | Sonia Citron | threes | under | 1.5 | 104 | 1.0 | +10.5% | 3 | lost | -1.00 |  |  |
+| 2026-08-25 | Awak Kuier | threes | under | 1.5 | -220 | 1.0 | +23.8% | 2 | lost | -1.00 |  |  |
+| 2026-08-25 | Emily Engstler | threes | under | 1.5 | -200 | 1.0 | +11.7% | 1 | won | +0.50 |  |  |
+| 2026-08-24 | Nneka Ogwumike | rebounds | over | 7.5 | 104 | 1.0 | +19.8% | 16 | won | +1.04 | -11.7% | -16.8% |
+| 2026-08-24 | Olivia Miles | assists | over | 6.5 | 118 | 1.0 | +11.7% | 5 | lost | -1.00 | +11.4% | +7.3% |
 | 2026-08-23 | Bridget Carleton | points | under | 14.5 | -102 | 1.0 | +21.9% | 18 | lost | -1.00 | -5.2% | -1.7% |
 | 2026-08-23 | Megan DiLeo | points | under | 13.5 | -102 | 1.0 | +21.6% | 21 | lost | -1.00 | +1.6% | +5.1% |
 | 2026-08-23 | Carla Leite | points | under | 16.5 | -118 | 1.0 | +19.2% | 27 | lost | -1.00 | -3.5% | -0.3% |
@@ -223,7 +227,3 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-02 | Leila Lacan | assists | under | 4.5 | 110 | 1.0 | +18.4% | 2 | won | +1.10 | -2.6% | +1.8% |
 | 2026-08-02 | Marina Mabrey | points | under | 19.5 | -108 | 1.0 | +15.9% |  | void (DNP) | +0.00 |  |  |
 | 2026-08-01 | Kahleah Copper | threes | under | 1.5 | 146 | 1.0 | +38.7% | 2 | lost | -1.00 | -3.9% | +1.1% |
-| 2026-08-01 | A'ja Wilson | assists | under | 3.5 | 102 | 1.0 | +28.9% | 4 | lost | -1.00 | +1.7% | +5.3% |
-| 2026-08-01 | Jackie Young | assists | under | 7.5 | -146 | 1.0 | +23.3% | 5 | won | +0.68 | +3.9% | +6.7% |
-| 2026-08-01 | Jonquel Jones | assists | over | 2.5 | 110 | 1.0 | +22.6% | 5 | won | +1.10 | -0.4% | -4.1% |
-| 2026-08-01 | Sabrina Ionescu | assists | under | 5.5 | -108 | 1.0 | +21.7% | 10 | lost | -1.00 | -0.5% | +2.9% |
