@@ -6047,7 +6047,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW in the 0033Z diff: Whitcomb (Phoenix Mercury) newly Day-To-Day, type Knee — \"Whitcomb (knee) is listed as probable for Tuesday's game versus the Mystics.\" Probable, so recorded as questionable with NO minutes assertion (inert for pricing): a knee tag on a probable player is not evidence of a minutes cut, and asserting one would manufacture an under. Scoped to the 2026-08-25 WAS@PHO date. Revisit if a later snapshot downgrades her.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 482
   },
   {
    "player": "Kelsey Plum",
@@ -6073,7 +6073,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league injury report (was Out on the 2026-08-23 0233Z snapshot). Clears the out override; no minutes assertion.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 479
   },
   {
    "player": "Shay Ciezki",
@@ -6086,7 +6086,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED from the league injury report (was Out on the 2026-08-23 0233Z snapshot). Clears the out override; no minutes assertion.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 480
   },
   {
    "player": "Indya Nivar",
@@ -6306,6 +6306,58 @@
    "source": "avail:2026-08-26/0132Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "NEW on the league and CHI @ CON event injury reports: \"Cloud won't return to Tuesday's game against the Sun due to a right knee injury.\" (Chicago Sky, Day-To-Day, Knee, estimated return 2026-08-29). She started tonight's game and left it, so the panel's healthy state is stale. Chicago's next game IS 2026-08-29 (CHI @ NYL, event 2771) - the same date as the report's own return estimate - so nothing priceable falls inside the gap and this targets 08-29 as questionable rather than out. No minutes haircut: an in-game exit with a same-day-as-next-game return estimate is not enough to manufacture a number. Supersede if the 08-29 event report firms it either way.",
+   "author": "news-watch",
+   "superseded_by": 481
+  },
+  {
+   "player": "Kara Dunn",
+   "added": "2026-08-26T02:33:00Z",
+   "game_date": "2026-08-25",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-26/0233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league report + the WSH @ PHX event report (event:401857175), NEW in the 0233Z diff (22:33 ET): \"Dunn (coach's decision) has been ruled out for Tuesday's game against the Mystics.\" - status Out, type Coach's Decision, Phoenix Mercury, estimated return 2026-08-27. Tuesday's game is WSH @ PHX, tipped 22:00 ET and already IN PROGRESS at snapshot time, so game_date 2026-08-25 and this is pricing-inert for tonight. Supersedes 460 (the 08-25 00:33Z clearing) - the fifth out/clear cycle for her since 08-05. Deep bench: she appears in none of the last ten archived box scores, so minutes_est 0 records the availability fact only and no Phoenix teammate minutes are reallocated - a healthy scratch who has not played frees no minutes.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Shay Ciezki",
+   "added": "2026-08-26T02:33:00Z",
+   "game_date": "2026-08-25",
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-26/0233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league report + the WSH @ PHX event report (event:401857175), NEW in the 0233Z diff (22:33 ET): \"Ciezki (coach's decision) has been ruled out for Tuesday's game against Washington.\" - status Out, type Coach's Decision, Phoenix Mercury, estimated return 2026-08-27, the same Phoenix coach's-decision pair as Kara Dunn. Game in progress at snapshot time, so pricing-inert; game_date 2026-08-25. Supersedes 461 (the 08-25 00:33Z clearing). Deep bench - absent from all ten most recent archived box scores - so minutes_est 0 is the availability fact and nothing is reallocated.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Natasha Cloud",
+   "added": "2026-08-26T02:33:00Z",
+   "game_date": "2026-08-29",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-26/0233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "UPDATED in the 0233Z diff: Cloud is now listed **Out** (Knee) on both the league report and the CHI @ CON event report (event:401857173), upgraded from the Day-To-Day tag the 0132Z snapshot carried after she left Tuesday's game; estimated return still 2026-08-29. Supersedes 478 (0132Z). The 'Out' attaches to tonight's game, which is FINAL, and the report's own return estimate is the date of Chicago's next game (2026-08-29, CHI @ NYL), so nothing priceable falls inside the gap: the status is recorded as questionable for 08-29 rather than out. Deliberately NO minutes haircut - she is a 30-36 minute starter in the last four archived box scores, so an out entry here would zero her and reallocate a starter's minutes to Sky teammates on nothing firmer than an in-game exit with a same-day-as-next-game return estimate. Supersede if the 08-29 event report firms it either way.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Sami Whitcomb",
+   "added": "2026-08-26T02:33:00Z",
+   "game_date": null,
+   "status": "in",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-26/0233Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "CLEARED in the 0233Z diff: the Day-To-Day tag carried at 0033Z is off both the league report and the WSH @ PHX event report, and the event lineup feed lists her STARTING for Phoenix tonight (event:401857175, dnp=false, starter=true). Supersedes 458 (the 08-25 00:33Z questionable for this game). Until-cleared 'in' rather than single-game: there is no remaining injury tag. Status only, no minutes estimate - she is an established starter (26 min on 08-16, 28 min on 08-22), and clearing a day-to-day tag on a player already in her normal role is not evidence of a role change, so nothing is manufactured in either direction.",
    "author": "news-watch",
    "superseded_by": null
   }
