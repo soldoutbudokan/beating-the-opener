@@ -1,21 +1,21 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2764_assists_kiki rice_under,2026-08-26,2026-08-27 02:00:00,2764,assists,Kiki Rice,TOR,TOR@SEA,under,5.5,116.0,0.8692,0.8775,True,-540,-455,0.0,3.25,,4.5,MOVED_OFF_OPEN;SUSPECT_EV(88%);PLAYER_ALREADY_BET(rebounds under 4.5),False,False
-2764_points_isabelle harrison_under,2026-08-26,2026-08-27 02:00:00,2764,points,Isabelle Harrison,TOR,TOR@SEA,under,15.5,-120.0,0.8107,0.4863,True,-369,-325,0.0,10.64,,14.5,MOVED_OFF_OPEN;SUSPECT_EV(49%);PLAYER_ALREADY_BET(assists under 1.5),False,False
-2763_points_aaliyah edwards_under,2026-08-26,2026-08-26 23:00:00,2763,points,Aaliyah Edwards,CON,GSV@CON,under,11.5,-110.0,0.7412,0.4149,True,-256,-232,0.0,8.44,,11.5,SUSPECT_EV(41%);ROLE_MIN?;ROLE_START?,False,False
+2764_assists_kiki rice_under,2026-08-26,2026-08-27 02:00:00,2764,assists,Kiki Rice,TOR,TOR@SEA,under,5.5,122.0,0.8691,0.9295,True,-540,-455,0.0,3.25,,4.5,MOVED_OFF_OPEN;SUSPECT_EV(93%);PLAYER_ALREADY_BET(rebounds under 4.5),False,False
+2764_points_isabelle harrison_under,2026-08-26,2026-08-27 02:00:00,2764,points,Isabelle Harrison,TOR,TOR@SEA,under,15.5,-118.0,0.8106,0.4975,True,-369,-325,0.0,10.64,,14.5,MOVED_OFF_OPEN;SUSPECT_EV(50%);PLAYER_ALREADY_BET(assists under 1.5),False,False
+2763_points_aaliyah edwards_under,2026-08-26,2026-08-26 23:00:00,2763,points,Aaliyah Edwards,CON,GSV@CON,under,11.5,-110.0,0.741,0.4147,True,-256,-232,0.0,8.44,,11.5,SUSPECT_EV(41%);ROLE_MIN?;ROLE_START?,False,False
 2766_rebounds_natasha mack_under,2026-08-27,2026-08-28 02:00:00,2766,rebounds,Natasha Mack,PHO,WAS@PHO,under,7.5,-128.0,0.7938,0.414,True,-336,-298,0.0,5.29,,7.5,SUSPECT_EV(41%);ROLE_START?,False,False
-2764_rebounds_temi fagbenle_under,2026-08-26,2026-08-27 02:00:00,2764,rebounds,Temi Fagbenle,TOR,TOR@SEA,under,3.5,128.0,0.6048,0.379,True,-142,-132,0.0,3.09,,3.5,SUSPECT_EV(38%);ROLE_MIN?;ROLE_START?,False,False
-2764_threes_dominique malonga_under,2026-08-26,2026-08-27 02:00:00,2764,threes,Dominique Malonga,SEA,TOR@SEA,under,0.5,164.0,0.4759,0.2563,True,117,123,0.0,0.74,,0.5,SUSPECT_EV(26%),False,False
+2764_rebounds_temi fagbenle_under,2026-08-26,2026-08-27 02:00:00,2764,rebounds,Temi Fagbenle,TOR,TOR@SEA,under,3.5,124.0,0.6047,0.3545,True,-142,-132,0.0,3.09,,3.5,SUSPECT_EV(35%);ROLE_MIN?;ROLE_START?,False,False
 2766_threes_kelsey plum_over,2026-08-27,2026-08-28 02:00:00,2766,threes,Kelsey Plum,PHO,WAS@PHO,over,1.5,102.0,0.6202,0.2528,True,-151,-141,0.0,2.1,,1.5,SUSPECT_EV(25%);ROLE_MIN?;ROLE_START?,False,False
-2763_rebounds_cecilia zandalasini_over,2026-08-26,2026-08-26 23:00:00,2763,rebounds,Cecilia Zandalasini,GSV,GSV@CON,over,2.5,158.0,0.4746,0.2246,True,118,124,2.0,2.56,,2.5,ROLE_MIN?,True,False
-2763_assists_saniya rivers_under,2026-08-26,2026-08-26 23:00:00,2763,assists,Saniya Rivers,CON,GSV@CON,under,3.5,-114.0,0.648,0.2165,True,-169,-157,3.0,2.89,,3.5,ROLE_START?,True,False
+2763_rebounds_cecilia zandalasini_over,2026-08-26,2026-08-26 23:00:00,2763,rebounds,Cecilia Zandalasini,GSV,GSV@CON,over,2.5,158.0,0.4747,0.2248,True,117,124,2.0,2.56,,2.5,ROLE_MIN?,True,False
+2763_assists_saniya rivers_under,2026-08-26,2026-08-26 23:00:00,2763,assists,Saniya Rivers,CON,GSV@CON,under,3.5,-114.0,0.6479,0.2162,True,-169,-157,3.0,2.89,,3.5,ROLE_START?,True,False
 2765_points_breanna stewart_under,2026-08-27,2026-08-28 00:00:00,2765,points,Breanna Stewart,NYL,GSV@NYL,under,21.5,-122.0,0.6683,0.216,True,-184,-170,3.5,18.68,,21.5,,True,False
 2765_points_leonie fiebich_under,2026-08-27,2026-08-28 00:00:00,2765,points,Leonie Fiebich,NYL,GSV@NYL,under,10.5,-113.0,0.6446,0.2151,True,-167,-155,3.0,8.93,,10.5,,True,False
 2766_assists_alyssa thomas_over,2026-08-27,2026-08-28 02:00:00,2766,assists,Alyssa Thomas,PHO,WAS@PHO,over,7.5,-106.0,0.6204,0.2057,True,-151,-141,3.0,8.58,,7.5,,True,False
-2763_points_kennedy burke_under,2026-08-26,2026-08-26 23:00:00,2763,points,Kennedy Burke,CON,GSV@CON,under,9.5,100.0,0.5898,0.1795,True,-133,-125,0.0,8.74,,9.5,MOVED_OFF_OPEN;ROLE_MIN?,False,False
-2764_points_laura juskaite_under,2026-08-26,2026-08-27 02:00:00,2764,points,Laura Juskaite,TOR,TOR@SEA,under,12.5,-114.0,0.6221,0.1678,True,-152,-142,2.5,11.09,,12.5,,False,True
+2763_points_kennedy burke_under,2026-08-26,2026-08-26 23:00:00,2763,points,Kennedy Burke,CON,GSV@CON,under,9.5,100.0,0.5896,0.1792,True,-133,-125,0.0,8.74,,9.5,MOVED_OFF_OPEN;ROLE_MIN?,False,False
+2764_points_laura juskaite_under,2026-08-26,2026-08-27 02:00:00,2764,points,Laura Juskaite,TOR,TOR@SEA,under,12.5,-114.0,0.6219,0.1674,True,-152,-141,2.5,11.09,,12.5,,False,True
+2764_points_dominique malonga_under,2026-08-26,2026-08-27 02:00:00,2764,points,Dominique Malonga,SEA,TOR@SEA,under,19.5,-102.0,0.5877,0.164,True,-132,-124,0.0,18.28,,20.5,MOVED_OFF_OPEN,False,False
 2765_points_jonquel jones_under,2026-08-27,2026-08-28 00:00:00,2765,points,Jonquel Jones,NYL,GSV@NYL,under,13.5,-104.0,0.5915,0.1603,True,-134,-126,2.0,12.49,,13.5,,True,False
-2763_assists_veronica burton_under,2026-08-26,2026-08-26 23:00:00,2763,assists,Veronica Burton,GSV,GSV@CON,under,6.5,-146.0,0.688,0.1593,True,-201,-184,3.0,5.35,,6.5,,False,True
+2763_assists_veronica burton_under,2026-08-26,2026-08-26 23:00:00,2763,assists,Veronica Burton,GSV,GSV@CON,under,6.5,-146.0,0.6879,0.159,True,-201,-184,3.0,5.35,,6.5,,False,True
 2766_points_kahleah copper_over,2026-08-27,2026-08-28 02:00:00,2766,points,Kahleah Copper,PHO,WAS@PHO,over,19.5,-114.0,0.6082,0.1416,True,-144,-134,2.0,21.96,,19.5,,True,False
 2766_rebounds_sonia citron_under,2026-08-27,2026-08-28 02:00:00,2766,rebounds,Sonia Citron,WAS,WAS@PHO,under,3.5,122.0,0.5011,0.1125,True,106,112,1.0,3.67,,3.5,,True,False
-2763_rebounds_diamond miller_under,2026-08-26,2026-08-26 23:00:00,2763,rebounds,Diamond Miller,CON,GSV@CON,under,2.5,100.0,0.5557,0.1114,True,-117,-110,1.5,2.41,,2.5,,True,False
+2763_rebounds_diamond miller_under,2026-08-26,2026-08-26 23:00:00,2763,rebounds,Diamond Miller,CON,GSV@CON,under,2.5,100.0,0.5556,0.1112,True,-117,-110,1.5,2.41,,2.5,,True,False
 2766_assists_shakira austin_under,2026-08-27,2026-08-28 02:00:00,2766,assists,Shakira Austin,WAS,WAS@PHO,under,2.5,-104.0,0.5613,0.1009,True,-119,-112,1.5,2.36,,2.5,,True,False
