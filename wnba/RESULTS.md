@@ -10,7 +10,7 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 207 (107W-100L), 0 push, 5 void, 5 open |
+| settled | 207 (107W-100L), 0 push, 5 void, 11 open |
 | staked | $207.00 |
 | P&L | $+4.16 (+2.0% ROI) |
 | mean EV said (model) | +19.42% (n=207) |
@@ -27,6 +27,12 @@ Calibration reads the model's own claims against results: expected wins = sum of
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-08-27 | Breanna Stewart | points | under | 21.5 | -115 | 1.0 | +24.9% |  |  |  |  |  |
+| 2026-08-27 | Leonie Fiebich | points | under | 10.5 | -114 | 1.0 | +21.0% |  |  |  |  |  |
+| 2026-08-27 | Kahleah Copper | points | over | 19.5 | -115 | 1.0 | +13.7% |  |  |  |  |  |
+| 2026-08-27 | Alyssa Thomas | rebounds | over | 8.5 | 116 | 1.0 | +13.6% |  |  |  |  |  |
+| 2026-08-27 | Sonia Citron | assists | under | 5.5 | -148 | 1.0 | +10.2% |  |  |  |  |  |
+| 2026-08-27 | Shakira Austin | rebounds | under | 9.5 | 104 | 1.0 | +10.1% |  |  |  |  |  |
 | 2026-08-26 | Laura Juskaite | points | under | 12.5 | -114 | 1.0 | +21.8% |  |  |  |  |  |
 | 2026-08-26 | Isabelle Harrison | assists | under | 1.5 | 108 | 1.0 | +12.8% |  |  |  |  |  |
 | 2026-08-26 | Kiki Rice | rebounds | under | 4.5 | -180 | 1.0 | +11.3% |  |  |  |  |  |
@@ -221,9 +227,3 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-03 | Sydney Taylor | threes | under | 2.5 | 106 | 1.0 | +20.3% | 3 | lost | -1.00 | -0.2% | +4.3% |
 | 2026-08-02 | Aliyah Boston | rebounds | under | 8.5 | -118 | 1.0 | +33.4% | 8 | won | +0.85 | -9.3% | -4.4% |
 | 2026-08-02 | Olivia Miles | rebounds | over | 4.5 | 118 | 1.0 | +34.1% | 4 | lost | -1.00 | -3.2% | -8.8% |
-| 2026-08-02 | Kelsey Plum | assists | over | 4.5 | -114 | 1.0 | +29.0% |  | void (DNP) | +0.00 |  |  |
-| 2026-08-02 | Janelle Salaun | assists | under | 1.5 | -114 | 1.0 | +28.6% | 2 | lost | -1.00 | -6.1% | -2.1% |
-| 2026-08-02 | Kayla McBride | points | over | 17.5 | -110 | 1.0 | +28.3% | 10 | lost | -1.00 | -11.1% | -14.9% |
-| 2026-08-02 | Leila Lacan | assists | under | 4.5 | 110 | 1.0 | +18.4% | 2 | won | +1.10 | -2.6% | +1.8% |
-| 2026-08-02 | Marina Mabrey | points | under | 19.5 | -108 | 1.0 | +15.9% |  | void (DNP) | +0.00 |  |  |
-| 2026-08-01 | Kahleah Copper | threes | under | 1.5 | 146 | 1.0 | +38.7% | 2 | lost | -1.00 | -3.9% | +1.1% |
