@@ -6190,7 +6190,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report, UPDATED in the 2133Z diff (17:33 ET): 'Nelson-Ododa (knee) is out for Tuesday's game against the Sky.' - status Out (was Day-To-Day at 2026-08-24 2133Z), type Knee, Connecticut Sun, return_date 2026-08-26, and the per-event report for 401857173 (CHI@CON, 19:00 ET tonight) carries the same Out. Supersedes index 452 (yesterday's questionable for this same game): the doubt has resolved to a ruling, so minutes_est 0. She is a full-time Connecticut starter (last eight panel games all starts, 10-29 min), and her 8/22 line at LA - 10 minutes against 24-29 in the four before it - now reads as the knee already limiting her in that game. No teammate minutes are reallocated: Connecticut loses a starting big, but asserting who absorbs those minutes would be invention rather than news, and the routine does not manufacture overs on unnamed teammates.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 483
   },
   {
    "player": "Serah Williams",
@@ -6358,6 +6358,19 @@
    "source": "avail:2026-08-26/0233Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 0233Z diff: the Day-To-Day tag carried at 0033Z is off both the league report and the WSH @ PHX event report, and the event lineup feed lists her STARTING for Phoenix tonight (event:401857175, dnp=false, starter=true). Supersedes 458 (the 08-25 00:33Z questionable for this game). Until-cleared 'in' rather than single-game: there is no remaining injury tag. Status only, no minutes estimate - she is an established starter (26 min on 08-16, 28 min on 08-22), and clearing a day-to-day tag on a player already in her normal role is not evidence of a role change, so nothing is manufactured in either direction.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Olivia Nelson-Ododa",
+   "added": "2026-08-26T17:35:00Z",
+   "game_date": "2026-08-26",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-26/1735Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "ESPN league injury report + the GS @ CON event report (event:401857176), UPDATED in the 1735Z diff (13:35 ET): \"Nelson-Ododa (knee) is listed as questionable for Wednesday against the Valkyries.\" - status Day-To-Day (was Out at 2026-08-25 2133Z), type Knee, Connecticut Sun, estimated return 2026-08-26. This is an UPGRADE: she sat out Tuesday's CHI@CON game under the Out ruling and is now doubtful-but-possible for tonight's GSV @ CON (event 2763, 19:00 ET). Supersedes 469 (the Out that targeted the now-final 2026-08-25 game) so the chain stays single-threaded on the same continuing knee; the new entry targets 2026-08-26. minutes_est left NULL = base panel state, the conservative choice: she is a full-time Connecticut starter (last eight panel games all starts) whose most recent appearance, 10 minutes at LA on 8/22 against 24-29 in the four before it, already reads as the knee limiting her, so neither a haircut nor a full-starter estimate is supportable off a questionable - a cut would manufacture unders on her, an inflated one overs. No Connecticut teammate minutes are reallocated in either direction: naming who absorbs or gives back a starting big's minutes on a questionable is invention, not news. Same handling as 452 (her own 08-24 questionable) and 449 (Burrell). Annotation for the pre-tip availability check.",
    "author": "news-watch",
    "superseded_by": null
   }
