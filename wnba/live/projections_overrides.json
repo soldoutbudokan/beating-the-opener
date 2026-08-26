@@ -6295,6 +6295,19 @@
    "quote": "League injury report: \"Johnson (ankle) is probable for Wednesday's game versus the Tempo.\" (Seattle Storm, return date 2026-08-26). A downgrade from the until-cleared 'in' entry of 2026-08-16, but the report itself says probable, so no minutes haircut is applied - recording the status change without manufacturing a bet in either direction.",
    "author": "news-watch",
    "superseded_by": null
+  },
+  {
+   "player": "Natasha Cloud",
+   "added": "2026-08-26T01:32:00Z",
+   "game_date": "2026-08-29",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-26/0132Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "NEW on the league and CHI @ CON event injury reports: \"Cloud won't return to Tuesday's game against the Sun due to a right knee injury.\" (Chicago Sky, Day-To-Day, Knee, estimated return 2026-08-29). She started tonight's game and left it, so the panel's healthy state is stale. Chicago's next game IS 2026-08-29 (CHI @ NYL, event 2771) - the same date as the report's own return estimate - so nothing priceable falls inside the gap and this targets 08-29 as questionable rather than out. No minutes haircut: an in-game exit with a same-day-as-next-game return estimate is not enough to manufacture a number. Supersede if the 08-29 event report firms it either way.",
+   "author": "news-watch",
+   "superseded_by": null
   }
  ]
 }

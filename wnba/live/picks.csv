@@ -1,9 +1,8 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2764_assists_kiki rice_under,2026-08-26,2026-08-27 02:00:00,2764,assists,Kiki Rice,TOR,TOR@SEA,under,5.5,104.0,0.8693,0.7733,True,-540,-455,0.0,3.25,,4.5,MOVED_OFF_OPEN;SUSPECT_EV(77%);PLAYER_ALREADY_BET(rebounds under 4.5),False,False
+2764_assists_kiki rice_under,2026-08-26,2026-08-27 02:00:00,2764,assists,Kiki Rice,TOR,TOR@SEA,under,5.5,118.0,0.8693,0.895,True,-540,-455,0.0,3.25,,4.5,MOVED_OFF_OPEN;SUSPECT_EV(90%);PLAYER_ALREADY_BET(rebounds under 4.5),False,False
 2764_points_isabelle harrison_under,2026-08-26,2026-08-27 02:00:00,2764,points,Isabelle Harrison,TOR,TOR@SEA,under,15.5,-120.0,0.8209,0.5049,True,-392,-343,0.0,10.44,,14.5,MOVED_OFF_OPEN;SUSPECT_EV(50%);PLAYER_ALREADY_BET(assists under 1.5),False,False
 2764_rebounds_temi fagbenle_under,2026-08-26,2026-08-27 02:00:00,2764,rebounds,Temi Fagbenle,TOR,TOR@SEA,under,3.5,128.0,0.6049,0.3792,True,-142,-132,0.0,3.09,,3.5,SUSPECT_EV(38%);ROLE_MIN?;ROLE_START?,False,False
 2764_assists_laura juskaite_under,2026-08-26,2026-08-27 02:00:00,2764,assists,Laura Juskaite,TOR,TOR@SEA,under,2.5,-114.0,0.6852,0.2863,True,-198,-182,0.0,1.86,,2.5,MOVED_OFF_OPEN;SUSPECT_EV(29%);PLAYER_ALREADY_BET(points under 12.5),False,False
 2764_threes_dominique malonga_under,2026-08-26,2026-08-27 02:00:00,2764,threes,Dominique Malonga,SEA,TOR@SEA,under,0.5,164.0,0.4826,0.2741,True,114,120,0.0,0.73,,0.5,SUSPECT_EV(27%),False,False
 2763_rebounds_cecilia zandalasini_over,2026-08-26,2026-08-26 23:00:00,2763,rebounds,Cecilia Zandalasini,GSV,GSV@CON,over,2.5,154.0,0.4732,0.2019,True,118,125,2.0,2.55,,2.5,ROLE_MIN?,True,False
 2763_assists_veronica burton_under,2026-08-26,2026-08-26 23:00:00,2763,assists,Veronica Burton,GSV,GSV@CON,under,6.5,-154.0,0.6902,0.1384,True,-203,-186,3.0,5.34,,6.5,,True,False
-2763_threes_gabby williams_under,2026-08-26,2026-08-26 23:00:00,2763,threes,Gabby Williams,GSV,GSV@CON,under,1.5,-144.0,0.6657,0.1279,True,-182,-168,2.5,1.19,,1.5,,True,False
