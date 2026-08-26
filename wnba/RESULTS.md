@@ -14,14 +14,14 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 | staked | $207.00 |
 | P&L | $+4.16 (+2.0% ROI) |
 | mean EV said (model) | +19.42% (n=207) |
-| mean CLV (vs close) | -3.49% (n=195) |
-| mean CLV* (shade-adj) | -2.65% (n=195) |
-| closing line moved | 42 of 195 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| mean CLV (vs close) | -3.59% (n=203) |
+| mean CLV* (shade-adj) | -2.70% (n=203) |
+| closing line moved | 43 of 203 stamped (the rest closed at the bet line: CLV ≈ vig there) |
 | model calibration | expected 125.2W vs observed 107W (z=-2.62) |
 | Model-expected P&L | $+41.12 |
-| CLV-expected P&L | $-6.81 |
+| CLV-expected P&L | $-7.29 |
 
-CLV t-stat: -5.29 (iid); -2.89 clustered by match date (27 dates)
+CLV t-stat: -5.63 (iid); -2.83 clustered by match date (27 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
@@ -32,19 +32,19 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-26 | Kiki Rice | rebounds | under | 4.5 | -180 | 1.0 | +11.3% |  |  |  |  |  |
 | 2026-08-26 | Veronica Burton | assists | under | 6.5 | -154 | 3.0 | +13.8% |  |  |  |  |  |
 | 2026-08-25 | Sydney Taylor | points | over | 13.5 | 100 | 1.0 | +23.0% | 4 | lost | -1.00 | -9.6% | -13.1% |
-| 2026-08-25 | Arike Ogunbowale | threes | under | 1.5 | 118 | 1.0 | +20.4% | 3 | lost | -1.00 |  |  |
+| 2026-08-25 | Arike Ogunbowale | threes | under | 1.5 | 118 | 1.0 | +20.4% | 3 | lost | -1.00 | -4.2% | -0.6% |
 | 2026-08-25 | Kahleah Copper | threes | under | 1.5 | 146 | 1.0 | +19.4% | 0 | won | +1.46 |  |  |
-| 2026-08-25 | Jessica Shepard | points | under | 15.5 | -132 | 1.0 | +17.2% | 21 | lost | -1.00 |  |  |
+| 2026-08-25 | Jessica Shepard | points | under | 15.5 | -132 | 1.0 | +17.2% | 21 | lost | -1.00 | -12.1% | -9.0% |
 | 2026-08-25 | DeWanna Bonner | assists | under | 1.5 | 130 | 1.0 | +16.1% |  |  |  |  |  |
-| 2026-08-25 | Paige Bueckers | threes | under | 1.5 | 104 | 1.0 | +16.1% | 3 | lost | -1.00 |  |  |
-| 2026-08-25 | Carla Leite | points | under | 15.5 | -102 | 1.0 | +16.1% | 10 | won | +0.98 |  |  |
+| 2026-08-25 | Paige Bueckers | threes | under | 1.5 | 104 | 1.0 | +16.1% | 3 | lost | -1.00 | -6.7% | -3.2% |
+| 2026-08-25 | Carla Leite | points | under | 15.5 | -102 | 1.0 | +16.1% | 10 | won | +0.98 | -10.6% | -7.1% |
 | 2026-08-25 | Alyssa Thomas | assists | over | 7.5 | -106 | 1.0 | +15.8% | 10 | won | +0.94 |  |  |
 | 2026-08-25 | Michaela Onyenwere | threes | under | 1.5 | -102 | 1.0 | +14.5% | 2 | lost | -1.00 |  |  |
-| 2026-08-25 | Bridget Carleton | rebounds | over | 4.5 | -106 | 1.0 | +10.1% | 2 | lost | -1.00 |  |  |
-| 2026-08-25 | Megan DiLeo | points | under | 14.5 | -132 | 1.0 | +14.3% | 13 | won | +0.76 |  |  |
+| 2026-08-25 | Bridget Carleton | rebounds | over | 4.5 | -106 | 1.0 | +10.1% | 2 | lost | -1.00 | -1.8% | -6.7% |
+| 2026-08-25 | Megan DiLeo | points | under | 14.5 | -132 | 1.0 | +14.3% | 13 | won | +0.76 | -8.9% | -5.9% |
 | 2026-08-25 | Sonia Citron | threes | under | 1.5 | 104 | 1.0 | +10.5% | 3 | lost | -1.00 |  |  |
-| 2026-08-25 | Awak Kuier | threes | under | 1.5 | -220 | 1.0 | +23.8% | 2 | lost | -1.00 |  |  |
-| 2026-08-25 | Emily Engstler | threes | under | 1.5 | -200 | 1.0 | +11.7% | 1 | won | +0.50 |  |  |
+| 2026-08-25 | Awak Kuier | threes | under | 1.5 | -220 | 1.0 | +23.8% | 2 | lost | -1.00 | -1.3% | +0.8% |
+| 2026-08-25 | Emily Engstler | threes | under | 1.5 | -200 | 1.0 | +11.7% | 1 | won | +0.50 | -1.8% | +0.5% |
 | 2026-08-24 | Nneka Ogwumike | rebounds | over | 7.5 | 104 | 1.0 | +19.8% | 16 | won | +1.04 | -11.7% | -16.8% |
 | 2026-08-24 | Olivia Miles | assists | over | 6.5 | 118 | 1.0 | +11.7% | 5 | lost | -1.00 | +11.4% | +7.3% |
 | 2026-08-23 | Bridget Carleton | points | under | 14.5 | -102 | 1.0 | +21.9% | 18 | lost | -1.00 | -5.2% | -1.7% |
