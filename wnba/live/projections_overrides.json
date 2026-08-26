@@ -3607,7 +3607,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in the 0034Z diff (was Out, Ankle, Seattle Storm; the dropped listing referenced Friday's game against the Fire, return_date 2026-08-16). Off both the league report and the per-event reports. Conservative reading: no restriction reported, no minutes assumption made. Supersedes index 158.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 477
   },
   {
    "player": "Justine Pissott",
@@ -6242,7 +6242,7 @@
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "CLEARED in this snapshot's diff: the 2026-08-25/2133Z report carried \"Carrington (illness) is questionable for Tuesday's game against the Sun\" (Day-To-Day, Chicago Sky); she is off both the league and the per-event (401857173) report at 2233Z. Supersedes the 2133Z questionable entry. Status 'in' only, no minutes estimate - clearing an illness tag is not evidence of a role change, so nothing is manufactured in either direction.",
    "author": "news-watch",
-   "superseded_by": null
+   "superseded_by": 476
   },
   {
    "player": "Christyn Williams",
@@ -6267,6 +6267,32 @@
    "source": "avail:2026-08-25/2332Z",
    "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
    "quote": "ESPN league injury report, NEW in the 2332Z diff (19:32 ET): 'Jones (coach's decision) has been ruled out for Tuesday's game against the Fire.' - status Out, type Coach's Decision, Dallas Wings, return_date 2026-08-30, same Dallas pair as Christyn Williams. Tuesday's game is POR@DAL tonight (20:00 ET), so game_date 2026-08-25. Supersedes 408 (the 08-22 clearing). Deep bench: her two 2026 Wings appearances are 2 min (08-09) and 1 min (08-14), so this is inert for pricing. minutes_est 0 is the availability fact only; no teammate minutes are reallocated off a 1-minute reserve.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "DiJonai Carrington",
+   "added": "2026-08-26T00:32:00Z",
+   "game_date": null,
+   "status": "out",
+   "minutes_est": 0,
+   "minutes_range": null,
+   "source": "avail:2026-08-26/0032Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "Event injury report for CHI @ CON (event:401857173) lists Carrington (foot) as Out, estimated return 2026-08-29. Supersedes the 2026-08-25 22:33Z 'in' entry: she was active on the report three hours ago and is now ruled out, so the panel's healthy state is stale for Chicago's next games too. Until-cleared rather than single-game because the report's own return date is three days out; a CLEARED diff supersedes this.",
+   "author": "news-watch",
+   "superseded_by": null
+  },
+  {
+   "player": "Flau'jae Johnson",
+   "added": "2026-08-26T00:32:00Z",
+   "game_date": "2026-08-26",
+   "status": "questionable",
+   "minutes_est": null,
+   "minutes_range": null,
+   "source": "avail:2026-08-26/0032Z",
+   "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+   "quote": "League injury report: \"Johnson (ankle) is probable for Wednesday's game versus the Tempo.\" (Seattle Storm, return date 2026-08-26). A downgrade from the until-cleared 'in' entry of 2026-08-16, but the report itself says probable, so no minutes haircut is applied - recording the status change without manufacturing a bet in either direction.",
    "author": "news-watch",
    "superseded_by": null
   }
