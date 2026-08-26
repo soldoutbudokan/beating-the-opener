@@ -5943,7 +5943,7 @@
       "url": "https://www.espn.com/wnba/",
       "quote": "'Mercury buy out DeWanna Bonner, who will seek title chance' - 'The Mercury and DeWanna Bonner have reached an agreement to buy out her contract. Once she clears waivers, the six-time All-Star will look for a chance to sign as a free agent with a playoff team.' She has been a Mercury starter all season (last 8 games all starts, 19-34 min, 30 min on 8/22 vs ATL) and the panel team is Mercury, so the base model still prices her into Phoenix's rotation. A bought-out player does not play for the buying-out team again: OUT until cleared, minutes 0, game_date null. Not team-specific by construction - if she signs elsewhere she becomes unpriceable anyway under the TEAM_CHANGED gate until her first game with the new team enters the panel, and this entry must then be SUPERSEDED rather than edited. NOTE FOR THE OWNER: an open bet in bets.csv, 2762_assists_dewanna bonner_under (PHO event 2762, 2026-08-25 ET), rides on her playing for Phoenix - expect FanDuel to void it. The routine does not touch bets.csv.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 491
     },
     {
       "player": "Raegan Beers",
@@ -6462,6 +6462,19 @@
       "source": "avail:2026-08-26/2237Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Cleared from the ESPN injury report at 2237Z (prior listing was calf, Out for the 8/26 game vs Seattle).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "DeWanna Bonner",
+      "added": "2026-08-26T23:37:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "ESPN news API",
+      "url": "https://www.espn.com/wnba/",
+      "quote": "'Sources: DeWanna Bonner signing with Dream after Mercury buyout' (published 2026-08-26T22:51Z) - 'Free agent DeWanna Bonner is signing with the Dream following her contract buyout with the Mercury.' Supersedes the 2026-08-24 buyout entry with the destination now known: she is off Phoenix for good (the panel still carries her PHO state, and she did not appear in the 2026-08-25 WSH@PHX box at all), and she has not yet played a game for Atlanta. Held OUT / 0 minutes until an Atlanta appearance enters the panel - per the 2026-08-08 amendment gate 3 a traded player is unpriceable until her first game with the new team is in the panel, so this override is belt-and-braces on top of TEAM_CHANGED, not a minutes call. No Atlanta debut date is reported in the item.",
       "author": "news-watch",
       "superseded_by": null
     }
