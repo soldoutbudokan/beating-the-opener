@@ -6112,7 +6112,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0133Z diff: Sherrod (Atlanta Dream) listed Out, type Coach's Decision — \"Sherrod (coach's decision) is listed as out for Monday's game versus the Sparks.\" Date-scoped to tonight's ATL@LA (2026-08-24 ET); supersedes the 2026-08-24 clear.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 499
     },
     {
       "player": "Rae Burrell",
@@ -6463,7 +6463,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Cleared from the ESPN injury report at 2237Z (prior listing was calf, Out for the 8/26 game vs Seattle).",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 498
     },
     {
       "player": "DeWanna Bonner",
@@ -6553,6 +6553,32 @@
       "source": "avail:2026-08-27/0238Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the injury report in the 0238Z diff; was Day-To-Day (Ankle, Seattle Storm), \"Johnson (ankle) is probable for Wednesday's game versus the Tempo.\", return_date 2026-08-26 (entry 477, which this supersedes). The same snapshot's lineup feed for event 401857177 (TOR@SEA) has her dnp=false and starter=true, so she is not merely cleared but starting - the probable tag resolved to available. No minutes assumption: she was probable throughout, so there is no haircut to remove and none to add. Until-cleared game_date, matching the 2026-08-16 'in' entry (274) this restores.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Maria Conde",
+      "added": "2026-08-27T16:39:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/1639Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 1639Z diff (12:39 ET): league report lists Conde (Toronto Tempo) Out - Not Injury Related, \"The Tempo temporarily suspended Conde's contract on Thursday.\", return_date 2026-09-18. Not a one-game scratch, so game_date is null (until-cleared) rather than pinned to a slate. Unlike the usual deep-bench coach's-decision churn this one moves minutes: she played 20 min for TOR last night (2026-08-26, 4 pts) after four straight DNPs, so the panel's freshest state for her is a rotation state that is now unavailable. Supersedes entry 490 (the until-cleared 'in' of 2026-08-26 22:37Z). Toronto teammate Nyara Sabally (calf) had her contract suspended the same day with the same 2026-09-18 return date, but that row was already standing in the report and is not part of this diff.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Jaylyn Sherrod",
+      "added": "2026-08-27T16:39:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/1639Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED from the league injury report in the 1639Z diff; was Out - Coach's Decision (Atlanta Dream), \"Sherrod (coach's decision) is listed as out for Monday's game versus the Sparks.\", return_date 2026-08-28 (entry 463, which this supersedes). Clears the out override with NO minutes assertion: her last appearance was 2026-08-16 (8 min) and she has DNP'd every game since, so nothing is reallocated - the same inert out/in cycle entries 379/402/421/447/463 record for her.",
       "author": "news-watch",
       "superseded_by": null
     }
