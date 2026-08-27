@@ -5878,7 +5878,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report, NEW this snapshot: \"Smith (lower body) won't return to Sunday's game against Toronto, Chelsea Leite of TSN reports. She finished with eight points (4-4 FG, 0-2 FT), eight rebounds, one assist, three steals and one block over 19 minutes.\" Status Out, type Lower Body, feed return_date 2026-08-28. She left tonight's LV@TOR (event 401857170) after 19 minutes; that game is already FINAL, so this is inert for the completed slate and targets Las Vegas's NEXT game. Until-cleared (game_date null) rather than dated to the feed's 8/28: an in-game lower-body exit has no reliable timeline from this feed, and the same feed carried optimistic return dates that later moved. Conservative direction: 'out' removes her from pricing entirely rather than inventing a reduced-minutes number. First entry for this player - nothing to supersede. No LV props on the current sheet, so inert until Las Vegas plays again.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 500
     },
     {
       "player": "Indya Nivar",
@@ -6579,6 +6579,19 @@
       "source": "avail:2026-08-27/1639Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the league injury report in the 1639Z diff; was Out - Coach's Decision (Atlanta Dream), \"Sherrod (coach's decision) is listed as out for Monday's game versus the Sparks.\", return_date 2026-08-28 (entry 463, which this supersedes). Clears the out override with NO minutes assertion: her last appearance was 2026-08-16 (8 min) and she has DNP'd every game since, so nothing is reallocated - the same inert out/in cycle entries 379/402/421/447/463 record for her.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "NaLyssa Smith",
+      "added": "2026-08-27T20:38:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/2038Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Season-ending. League injury report UPDATED this snapshot (Out -> Out, type now 'Leg'), and news_watch carried the reason at 2026-08-27 15:53 ET: \"Aces' NaLyssa Smith to miss rest of season with leg injury - Aces starting forward NaLyssa Smith will be out the rest of the WNBA season after sustaining a left leg injury in Sunday's 88-78 victory at Toronto.\" Supersedes index 445 (2026-08-24, the in-game exit with feed return_date 2026-08-28, written as until-cleared because that timeline was untrustworthy - it was). Effective pricing state is UNCHANGED: she was already out/0 minutes and stays so. The point of the supersede is durability - a stale 8/28 return date in the feed could otherwise produce a spurious CLEARED read that puts a season-ended player back into pricing. Conservative direction as always: 'out' removes her rather than inventing reduced minutes. Inert for the current sheet - no Las Vegas props are playable on it.",
       "author": "news-watch",
       "superseded_by": null
     }
