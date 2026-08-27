@@ -5553,7 +5553,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the league injury report in the 0032Z diff; was Out (Coach's Decision), Toronto Tempo, 'Green (coach's decision) has been ruled out for Friday's game against the Fire', return_date 2026-08-23 (entry 405, which this supersedes). Toronto is not on tonight's slate, so not the tip-off artifact - a one-game coach's decision expiring at its stated return date, ahead of TOR vs LV on 2026-08-23. This is the same out/in cycle the earlier Green entries record (211/306/326/345/405); until-cleared game_date on that precedent. Available, no minutes assumption; deep bench, inert for pricing.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 496
     },
     {
       "player": "Jaylyn Sherrod",
@@ -6294,7 +6294,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report: \"Johnson (ankle) is probable for Wednesday's game versus the Tempo.\" (Seattle Storm, return date 2026-08-26). A downgrade from the until-cleared 'in' entry of 2026-08-16, but the report itself says probable, so no minutes haircut is applied - recording the status change without manufacturing a bet in either direction.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 497
     },
     {
       "player": "Natasha Cloud",
@@ -6527,6 +6527,32 @@
       "source": "avail:2026-08-27/0038Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the league injury report in the 0038Z diff (was Out, Coach's Decision, Phoenix Mercury, index 480 pinned to 2026-08-25) - the same Phoenix coach's-decision pair as Kara Dunn, cleared together. Clears the out override; NO minutes assertion - her last appearance was 2026-06-27 (8 min) and she has DNP'd every game since, so nothing is reallocated.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Zaay Green",
+      "added": "2026-08-27T02:38:00Z",
+      "game_date": "2026-08-26",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/0238Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0238Z diff (22:38 ET): league AND per-event report (401857177, TOR@SEA) list Green (Toronto Tempo) Out - Coach's Decision, \"Green (coach's decision) has been ruled out for Wednesday's game against Seattle.\", return_date 2026-08-28. A Coach's Decision Out counts as Out under the v3 T3 rule. Wednesday = 2026-08-26 ET, and that game is already IN PROGRESS at capture time, so this is a record of the scratch rather than a pricing input; dated to that game only, and the stated return_date 2026-08-28 is Toronto's next game, so nothing carries forward. Supersedes entry 420 (the until-cleared 'in' of 2026-08-23) - the same out/in cycle entries 211/306/326/345/405/420 record for a deep-bench player who is inert for pricing.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Flau'jae Johnson",
+      "added": "2026-08-27T02:38:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/0238Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED from the injury report in the 0238Z diff; was Day-To-Day (Ankle, Seattle Storm), \"Johnson (ankle) is probable for Wednesday's game versus the Tempo.\", return_date 2026-08-26 (entry 477, which this supersedes). The same snapshot's lineup feed for event 401857177 (TOR@SEA) has her dnp=false and starter=true, so she is not merely cleared but starting - the probable tag resolved to available. No minutes assumption: she was probable throughout, so there is no haircut to remove and none to add. Until-cleared game_date, matching the 2026-08-16 'in' entry (274) this restores.",
       "author": "news-watch",
       "superseded_by": null
     }

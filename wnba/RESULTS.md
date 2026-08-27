@@ -10,7 +10,7 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 207 (107W-100L), 0 push, 5 void, 11 open |
+| settled | 207 (107W-100L), 0 push, 5 void, 13 open |
 | staked | $207.00 |
 | P&L | $+4.16 (+2.0% ROI) |
 | mean EV said (model) | +19.42% (n=207) |
@@ -33,6 +33,8 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-27 | Alyssa Thomas | rebounds | over | 8.5 | 116 | 1.0 | +13.6% |  |  |  |  |  |
 | 2026-08-27 | Sonia Citron | assists | under | 5.5 | -148 | 1.0 | +10.2% |  |  |  |  |  |
 | 2026-08-27 | Shakira Austin | rebounds | under | 9.5 | 104 | 1.0 | +10.1% |  |  |  |  |  |
+| 2026-08-27 | Marine Johannes | points | over | 5.5 | -125 | 1.0 | +19.4% |  |  |  |  |  |
+| 2026-08-27 | Jonquel Jones | points | under | 13.5 | -102 | 1.0 | +17.7% |  |  |  |  |  |
 | 2026-08-26 | Laura Juskaite | points | under | 12.5 | -114 | 1.0 | +21.8% |  |  |  |  |  |
 | 2026-08-26 | Isabelle Harrison | assists | under | 1.5 | 108 | 1.0 | +12.8% |  |  |  |  |  |
 | 2026-08-26 | Kiki Rice | rebounds | under | 4.5 | -180 | 1.0 | +11.3% |  |  |  |  |  |
@@ -225,5 +227,3 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-03 | Sabrina Ionescu | assists | under | 5.5 | -106 | 1.0 | +16.4% | 5 | won | +0.94 | -11.2% | -7.9% |
 | 2026-08-03 | Jackie Young | rebounds | under | 4.5 | -152 | 1.0 | +24.7% | 11 | lost | -1.00 | -6.4% | -1.7% |
 | 2026-08-03 | Sydney Taylor | threes | under | 2.5 | 106 | 1.0 | +20.3% | 3 | lost | -1.00 | -0.2% | +4.3% |
-| 2026-08-02 | Aliyah Boston | rebounds | under | 8.5 | -118 | 1.0 | +33.4% | 8 | won | +0.85 | -9.3% | -4.4% |
-| 2026-08-02 | Olivia Miles | rebounds | over | 4.5 | 118 | 1.0 | +34.1% | 4 | lost | -1.00 | -3.2% | -8.8% |
