@@ -1,5 +1,5 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2766_rebounds_natasha mack_under,2026-08-27,2026-08-28 02:00:00,2766,rebounds,Natasha Mack,PHO,WAS@PHO,under,7.5,-102.0,0.7891,0.5627,True,-327,-291,0.0,5.33,,7.5,MOVED_OFF_OPEN;SUSPECT_EV(56%);ROLE_START?,False,False
+2766_rebounds_natasha mack_under,2026-08-27,2026-08-28 02:00:00,2766,rebounds,Natasha Mack,PHO,WAS@PHO,under,7.5,-104.0,0.7891,0.5479,True,-327,-291,0.0,5.33,,7.5,MOVED_OFF_OPEN;SUSPECT_EV(55%);ROLE_START?,False,False
 2770_points_isabelle harrison_under,2026-08-28,2026-08-29 02:00:00,2770,points,Isabelle Harrison,TOR,TOR@LVA,under,14.5,-114.0,0.7852,0.4739,True,-320,-285,0.0,10.27,,14.5,SUSPECT_EV(47%);ROLE_MIN?,False,False
 2768_rebounds_aaliyah edwards_under,2026-08-28,2026-08-28 23:30:00,2768,rebounds,Aaliyah Edwards,CON,CON@IND,under,5.5,-102.0,0.6239,0.2355,True,-153,-143,3.0,4.81,,5.5,ROLE_START?,True,False
 2770_assists_laura juskaite_under,2026-08-28,2026-08-29 02:00:00,2770,assists,Laura Juskaite,TOR,TOR@LVA,under,2.5,-130.0,0.6978,0.2345,True,-210,-192,4.0,1.82,,2.5,,True,False
@@ -19,3 +19,4 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2767_rebounds_emily engstler_under,2026-08-28,2026-08-28 23:30:00,2767,rebounds,Emily Engstler,PDX,PDX@ATL,under,5.5,116.0,0.5242,0.1322,True,-103,103,1.5,5.49,,5.5,,True,False
 2768_threes_caitlin clark_under,2026-08-28,2026-08-28 23:30:00,2768,threes,Caitlin Clark,IND,CON@IND,under,2.5,136.0,0.4756,0.1223,True,117,123,1.0,2.77,,2.5,,True,False
 2767_assists_carla leite_under,2026-08-28,2026-08-28 23:30:00,2767,assists,Carla Leite,PDX,PDX@ATL,under,6.5,116.0,0.5173,0.1174,True,-100,105,1.5,6.5,,6.5,,True,False
+2766_points_georgia amoore_under,2026-08-27,2026-08-28 02:00:00,2766,points,Georgia Amoore,WAS,WAS@PHO,under,6.5,100.0,0.5545,0.109,True,-116,-109,0.0,6.35,,6.5,MOVED_OFF_OPEN,False,False
