@@ -1,20 +1,20 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2766_rebounds_natasha mack_under,2026-08-27,2026-08-28 02:00:00,2766,rebounds,Natasha Mack,PHO,WAS@PHO,under,7.5,-104.0,0.7893,0.5482,True,-327,-291,0.0,5.33,,7.5,MOVED_OFF_OPEN;SUSPECT_EV(55%);ROLE_START?,False,False
-2770_points_isabelle harrison_under,2026-08-28,2026-08-29 02:00:00,2770,points,Isabelle Harrison,TOR,TOR@LVA,under,14.5,-114.0,0.7855,0.4745,True,-321,-286,0.0,10.27,,14.5,SUSPECT_EV(47%);ROLE_MIN?,False,False
+2766_rebounds_natasha mack_under,2026-08-27,2026-08-28 02:00:00,2766,rebounds,Natasha Mack,PHO,WAS@PHO,under,7.5,-104.0,0.7891,0.5478,True,-327,-291,0.0,5.33,,7.5,MOVED_OFF_OPEN;SUSPECT_EV(55%);ROLE_START?,False,False
+2770_points_isabelle harrison_under,2026-08-28,2026-08-29 02:00:00,2770,points,Isabelle Harrison,TOR,TOR@LVA,under,14.5,-114.0,0.7854,0.4744,True,-321,-286,0.0,10.27,,14.5,SUSPECT_EV(47%);ROLE_MIN?,False,False
 2770_assists_kiki rice_under,2026-08-28,2026-08-29 02:00:00,2770,assists,Kiki Rice,TOR,TOR@LVA,under,5.5,-154.0,0.86,0.4184,True,-505,-429,0.0,3.33,,5.5,SUSPECT_EV(42%);PLAYER_ALREADY_BET(rebounds under 4.5),False,False
+2765_points_marine johannes_over,2026-08-27,2026-08-28 00:00:00,2765,points,Marine Johannes,NYL,GSV@NYL,over,5.5,100.0,0.6584,0.3168,True,-177,-163,0.0,7.94,,5.5,MOVED_OFF_OPEN;SUSPECT_EV(32%),False,True
 2768_assists_kelsey mitchell_over,2026-08-28,2026-08-28 23:30:00,2768,assists,Kelsey Mitchell,IND,CON@IND,over,2.5,122.0,0.5647,0.2536,True,-121,-114,0.0,2.93,,2.5,SUSPECT_EV(25%);PLAYER_ALREADY_BET(rebounds under 2.5),False,False
-2765_points_jonquel jones_under,2026-08-27,2026-08-28 00:00:00,2765,points,Jonquel Jones,NYL,GSV@NYL,under,14.5,-115.0,0.661,0.2358,True,-179,-165,0.0,12.34,,13.5,MOVED_OFF_OPEN,False,True
 2768_rebounds_aaliyah edwards_under,2026-08-28,2026-08-28 23:30:00,2768,rebounds,Aaliyah Edwards,CON,CON@IND,under,5.5,-102.0,0.6231,0.234,True,-153,-142,3.0,4.82,,5.5,ROLE_START?,True,False
 2770_assists_laura juskaite_under,2026-08-28,2026-08-29 02:00:00,2770,assists,Laura Juskaite,TOR,TOR@LVA,under,2.5,-130.0,0.6973,0.2336,True,-209,-192,4.0,1.82,,2.5,,False,True
-2765_points_marine johannes_over,2026-08-27,2026-08-28 00:00:00,2765,points,Marine Johannes,NYL,GSV@NYL,over,5.5,-115.0,0.6584,0.231,True,-177,-163,3.5,7.94,,5.5,,False,True
-2768_points_makayla timpson_under,2026-08-28,2026-08-28 23:30:00,2768,points,Makayla Timpson,IND,CON@IND,under,8.5,-104.0,0.6182,0.2127,True,-150,-139,3.0,7.45,,8.5,,False,True
+2768_points_makayla timpson_under,2026-08-28,2026-08-28 23:30:00,2768,points,Makayla Timpson,IND,CON@IND,under,8.5,-104.0,0.6182,0.2126,True,-150,-139,3.0,7.45,,8.5,,False,True
 2769_assists_rae burrell_over,2026-08-28,2026-08-29 02:00:00,2769,assists,Rae Burrell,LAS,WAS@LAS,over,2.5,110.0,0.5766,0.2109,True,-127,-119,2.5,2.99,,2.5,,True,False
-2768_threes_aliyah boston_under,2026-08-28,2026-08-28 23:30:00,2768,threes,Aliyah Boston,IND,CON@IND,under,0.5,168.0,0.4419,0.1842,True,134,140,1.5,0.82,,0.5,,False,True
-2767_rebounds_bridget carleton_over,2026-08-28,2026-08-28 23:30:00,2767,rebounds,Bridget Carleton,PDX,PDX@ATL,over,4.5,108.0,0.5652,0.1756,True,-121,-114,2.0,5.11,,4.5,,False,True
-2769_assists_nneka ogwumike_over,2026-08-28,2026-08-29 02:00:00,2769,assists,Nneka Ogwumike,LAS,WAS@LAS,over,2.5,-104.0,0.5992,0.1753,True,-139,-130,2.5,3.11,,2.5,,False,True
-2766_assists_sonia citron_under,2026-08-27,2026-08-28 02:00:00,2766,assists,Sonia Citron,WAS,WAS@PHO,under,5.5,-125.0,0.652,0.1736,True,-172,-159,0.0,4.68,,5.5,MOVED_OFF_OPEN,False,True
-2768_threes_caitlin clark_under,2026-08-28,2026-08-28 23:30:00,2768,threes,Caitlin Clark,IND,CON@IND,under,2.5,140.0,0.4759,0.1423,True,117,123,1.5,2.77,,2.5,,False,True
+2765_points_jonquel jones_under,2026-08-27,2026-08-28 00:00:00,2765,points,Jonquel Jones,NYL,GSV@NYL,under,13.5,-102.0,0.6012,0.1905,True,-140,-131,2.5,12.34,,13.5,,False,True
+2768_threes_aliyah boston_under,2026-08-28,2026-08-28 23:30:00,2768,threes,Aliyah Boston,IND,CON@IND,under,0.5,168.0,0.4418,0.1841,True,134,140,1.5,0.82,,0.5,,False,True
+2767_rebounds_bridget carleton_over,2026-08-28,2026-08-28 23:30:00,2767,rebounds,Bridget Carleton,PDX,PDX@ATL,over,4.5,108.0,0.5651,0.1755,True,-121,-114,2.0,5.11,,4.5,,False,True
+2769_assists_nneka ogwumike_over,2026-08-28,2026-08-29 02:00:00,2769,assists,Nneka Ogwumike,LAS,WAS@LAS,over,2.5,-104.0,0.5991,0.1752,True,-139,-129,2.5,3.11,,2.5,,False,True
+2766_assists_sonia citron_under,2026-08-27,2026-08-28 02:00:00,2766,assists,Sonia Citron,WAS,WAS@PHO,under,5.5,-128.0,0.6518,0.161,True,-172,-159,0.0,4.68,,5.5,MOVED_OFF_OPEN,False,True
+2768_threes_caitlin clark_under,2026-08-28,2026-08-28 23:30:00,2768,threes,Caitlin Clark,IND,CON@IND,under,2.5,140.0,0.4759,0.1422,True,117,123,1.5,2.77,,2.5,,False,True
 2770_threes_aja wilson_under,2026-08-28,2026-08-29 02:00:00,2770,threes,A'ja Wilson,LVA,TOR@LVA,under,0.5,172.0,0.4179,0.1366,True,147,154,1.0,0.87,,0.5,,False,True
-2767_rebounds_emily engstler_under,2026-08-28,2026-08-28 23:30:00,2767,rebounds,Emily Engstler,PDX,PDX@ATL,under,5.5,116.0,0.5233,0.1304,True,-103,103,1.5,5.5,,5.5,,False,True
+2767_rebounds_emily engstler_under,2026-08-28,2026-08-28 23:30:00,2767,rebounds,Emily Engstler,PDX,PDX@ATL,under,5.5,116.0,0.5234,0.1305,True,-103,103,1.5,5.5,,5.5,,False,True
 2767_assists_carla leite_under,2026-08-28,2026-08-28 23:30:00,2767,assists,Carla Leite,PDX,PDX@ATL,under,6.5,118.0,0.5163,0.1256,True,-100,106,0.0,6.5,,6.5,MOVED_OFF_OPEN,False,False
-2765_rebounds_breanna stewart_under,2026-08-27,2026-08-28 00:00:00,2765,rebounds,Breanna Stewart,NYL,GSV@NYL,under,7.5,104.0,0.5453,0.1124,True,-112,-105,0.0,7.29,,7.5,PLAYER_ALREADY_BET(points under 21.5),False,False
+2765_rebounds_breanna stewart_under,2026-08-27,2026-08-28 00:00:00,2765,rebounds,Breanna Stewart,NYL,GSV@NYL,under,7.5,104.0,0.545,0.1119,True,-112,-105,0.0,7.29,,7.5,PLAYER_ALREADY_BET(points under 21.5),False,False
