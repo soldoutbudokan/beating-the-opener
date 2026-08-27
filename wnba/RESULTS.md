@@ -6,22 +6,22 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $104.16** (start $100)
+**Bankroll: $101.80** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 207 (107W-100L), 0 push, 5 void, 13 open |
-| staked | $207.00 |
-| P&L | $+4.16 (+2.0% ROI) |
-| mean EV said (model) | +19.42% (n=207) |
-| mean CLV (vs close) | -3.49% (n=208) |
-| mean CLV* (shade-adj) | -2.57% (n=208) |
-| closing line moved | 43 of 208 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 125.2W vs observed 107W (z=-2.62) |
-| Model-expected P&L | $+41.12 |
-| CLV-expected P&L | $-7.26 |
+| settled | 211 (109W-102L), 0 push, 5 void, 9 open |
+| staked | $213.00 |
+| P&L | $+1.80 (+0.8% ROI) |
+| mean EV said (model) | +19.33% (n=211) |
+| mean CLV (vs close) | -3.50% (n=209) |
+| mean CLV* (shade-adj) | -2.57% (n=209) |
+| closing line moved | 44 of 209 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| model calibration | expected 127.8W vs observed 109W (z=-2.68) |
+| Model-expected P&L | $+42.00 |
+| CLV-expected P&L | $-7.42 |
 
-CLV t-stat: -5.52 (iid); -2.77 clustered by match date (27 dates)
+CLV t-stat: -5.56 (iid); -2.92 clustered by match date (28 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
@@ -35,10 +35,10 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-27 | Shakira Austin | rebounds | under | 9.5 | 104 | 1.0 | +10.1% |  |  |  |  |  |
 | 2026-08-27 | Marine Johannes | points | over | 5.5 | -125 | 1.0 | +19.4% |  |  |  |  |  |
 | 2026-08-27 | Jonquel Jones | points | under | 13.5 | -102 | 1.0 | +17.7% |  |  |  |  |  |
-| 2026-08-26 | Laura Juskaite | points | under | 12.5 | -114 | 1.0 | +21.8% |  |  |  |  |  |
-| 2026-08-26 | Isabelle Harrison | assists | under | 1.5 | 108 | 1.0 | +12.8% |  |  |  |  |  |
-| 2026-08-26 | Kiki Rice | rebounds | under | 4.5 | -180 | 1.0 | +11.3% |  |  |  |  |  |
-| 2026-08-26 | Veronica Burton | assists | under | 6.5 | -154 | 3.0 | +13.8% |  |  |  |  |  |
+| 2026-08-26 | Laura Juskaite | points | under | 12.5 | -114 | 1.0 | +21.8% | 14 | lost | -1.00 |  |  |
+| 2026-08-26 | Isabelle Harrison | assists | under | 1.5 | 108 | 1.0 | +12.8% | 1 | won | +1.08 |  |  |
+| 2026-08-26 | Kiki Rice | rebounds | under | 4.5 | -180 | 1.0 | +11.3% | 3 | won | +0.56 |  |  |
+| 2026-08-26 | Veronica Burton | assists | under | 6.5 | -154 | 3.0 | +13.8% | 7 | lost | -3.00 | -5.5% | -2.3% |
 | 2026-08-25 | Sydney Taylor | points | over | 13.5 | 100 | 1.0 | +23.0% | 4 | lost | -1.00 | -9.6% | -13.1% |
 | 2026-08-25 | Arike Ogunbowale | threes | under | 1.5 | 118 | 1.0 | +20.4% | 3 | lost | -1.00 | -4.2% | -0.6% |
 | 2026-08-25 | Kahleah Copper | threes | under | 1.5 | 146 | 1.0 | +19.4% | 0 | won | +1.46 | -1.6% | +2.3% |
