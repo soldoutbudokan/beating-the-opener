@@ -5631,7 +5631,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED Day-To-Day -> Out (Head), Phoenix Mercury, league report at 0233Z, comment \"out\", return_date 2026-08-25. This resolves index 407 (the 1833Z head DTD for tonight's ATL@PHX) in the conservative direction: she did not clear for a game the same snapshot shows IN_PROGRESS. Supersedes 407 - same game_date, same game, status only changed. minutes_est 0. A head/concussion-protocol absence can run past one game, but the feed's return_date points at Phoenix's next game (08-25) and says nothing about ruling her out of it, so game_date stays pinned to 2026-08-22 rather than until-cleared; if she is still Out on the 08-25 report the next firing re-logs it. Nil price effect - the game is live and she has no prop on the sheet.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 493
     },
     {
       "player": "Raegan Beers",
@@ -6060,7 +6060,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the league injury report (was Out, until-cleared, since the 2026-08-14 2035Z snapshot). Clears the out override; NO minutes assertion — she has not played since the trade window and her last panel game is 16 days before the 2026-08-25 WAS@PHO date, so the STALE_PLAYER gate governs her, not this entry.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 492
     },
     {
       "player": "Kara Dunn",
@@ -6320,7 +6320,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league report + the WSH @ PHX event report (event:401857175), NEW in the 0233Z diff (22:33 ET): \"Dunn (coach's decision) has been ruled out for Tuesday's game against the Mystics.\" - status Out, type Coach's Decision, Phoenix Mercury, estimated return 2026-08-27. Tuesday's game is WSH @ PHX, tipped 22:00 ET and already IN PROGRESS at snapshot time, so game_date 2026-08-25 and this is pricing-inert for tonight. Supersedes 460 (the 08-25 00:33Z clearing) - the fifth out/clear cycle for her since 08-05. Deep bench: she appears in none of the last ten archived box scores, so minutes_est 0 records the availability fact only and no Phoenix teammate minutes are reallocated - a healthy scratch who has not played frees no minutes.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 494
     },
     {
       "player": "Shay Ciezki",
@@ -6333,7 +6333,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league report + the WSH @ PHX event report (event:401857175), NEW in the 0233Z diff (22:33 ET): \"Ciezki (coach's decision) has been ruled out for Tuesday's game against Washington.\" - status Out, type Coach's Decision, Phoenix Mercury, estimated return 2026-08-27, the same Phoenix coach's-decision pair as Kara Dunn. Game in progress at snapshot time, so pricing-inert; game_date 2026-08-25. Supersedes 461 (the 08-25 00:33Z clearing). Deep bench - absent from all ten most recent archived box scores - so minutes_est 0 is the availability fact and nothing is reallocated.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 495
     },
     {
       "player": "Natasha Cloud",
@@ -6475,6 +6475,58 @@
       "source": "ESPN news API",
       "url": "https://www.espn.com/wnba/",
       "quote": "'Sources: DeWanna Bonner signing with Dream after Mercury buyout' (published 2026-08-26T22:51Z) - 'Free agent DeWanna Bonner is signing with the Dream following her contract buyout with the Mercury.' Supersedes the 2026-08-24 buyout entry with the destination now known: she is off Phoenix for good (the panel still carries her PHO state, and she did not appear in the 2026-08-25 WSH@PHX box at all), and she has not yet played a game for Atlanta. Held OUT / 0 minutes until an Atlanta appearance enters the panel - per the 2026-08-08 amendment gate 3 a traded player is unpriceable until her first game with the new team is in the panel, so this override is belt-and-braces on top of TEAM_CHANGED, not a minutes call. No Atlanta debut date is reported in the item.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kelsey Plum",
+      "added": "2026-08-27T00:38:00Z",
+      "game_date": "2026-08-27",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/0038Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0038Z diff (20:38 ET): league injury report lists Plum Day-To-Day (Lower Leg) - \"Plum (leg) is listed as questionable for Thursday's game versus Washington.\", Phoenix Mercury, return_date 2026-08-27. A downgrade from index 459 (the 08-25 until-cleared 'in'), which it supersedes, pinned to the game the report itself names (2026-08-27 PHO-WAS). Deliberately NO minutes haircut: the report says questionable, not out, and a haircut here would manufacture unders on a starter-level scorer off a single ambiguous tag. Note for the owner, not a model change: her panel state is now FRESH (she played 2026-08-25, 17 min OFF THE BENCH after starting 08-07 and 08-09), so the STALE_PLAYER gate that governed her earlier entries no longer binds and any Plum prop this week is likely to carry a ROLE_START?/ROLE_MIN? advisory flag - a role change the talent model is slow on by design. Flag only; the routine adjusts nothing.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Marta Suarez",
+      "added": "2026-08-27T00:38:00Z",
+      "game_date": "2026-08-27",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/0038Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPDATED in the 0038Z diff: still Out, now typed Concussion with a fresh comment - \"Suarez (concussion protocol) has been ruled out for Thursday's game against Washington.\", Phoenix Mercury, return_date 2026-08-29. Supersedes index 426, whose game_date (2026-08-22) has expired; this re-pins the same absence to the game the report now names, 2026-08-27 PHO-WAS. minutes_est 0 records the availability fact only - she is deep bench (3-7 minutes in her last three appearances, DNP on 08-22 and 08-25), so no Phoenix teammate minutes are reallocated. game_date is pinned rather than until-cleared because concussion protocol has no fixed end and the feed's own return estimate (08-29) is past Thursday; a later firing re-logs it if she is still out.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kara Dunn",
+      "added": "2026-08-27T00:38:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/0038Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED from the league injury report in the 0038Z diff (was Out, Coach's Decision, Phoenix Mercury, index 479 pinned to 2026-08-25). Clears the out override; NO minutes assertion - she has exactly one 2026 box-score row and did not play in it, so a healthy-scratch clearing frees no minutes and asserts no role. Sixth out/clear cycle for her since 08-05.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Shay Ciezki",
+      "added": "2026-08-27T00:38:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/0038Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED from the league injury report in the 0038Z diff (was Out, Coach's Decision, Phoenix Mercury, index 480 pinned to 2026-08-25) - the same Phoenix coach's-decision pair as Kara Dunn, cleared together. Clears the out override; NO minutes assertion - her last appearance was 2026-06-27 (8 min) and she has DNP'd every game since, so nothing is reallocated.",
       "author": "news-watch",
       "superseded_by": null
     }
