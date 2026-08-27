@@ -5683,7 +5683,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW Out (Lower Leg), Indiana Fever, IND@CHI per-event report (event 401857168, STATUS_SCHEDULED, 19:00 ET) at 1833Z (14:33 ET); return_date 2026-08-28, so she is out for tonight and the next two Indiana games, not a same-day question. The ESPN league report 502'd on this firing, so this comes from the per-event feed alone - which is the stronger of the two sources for a game-day scratch anyway. Supersedes index 389 (the 08-21 'questionable' for 08-22). Definite Out with a forward return date, so minutes_est 0: this is the starting centre's role removed, and pricing any Boston prop off her full-role state tonight would be exactly the information gap the panel gate exists to stop. No Boston prop is on the current sheet, so this is inert for pricing; it exists so the sheet cannot pick her up and so the archive carries the scratch. NOT a licence to re-price her team-mates: the routine does not redistribute minutes.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 506
     },
     {
       "player": "Caitlin Clark",
@@ -5761,7 +5761,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED at 2232Z (18:32 ET), was Day-To-Day (Back): dropped from BOTH the league report and the IND@CHI per-event report (event 401857168) about 28 minutes before the 19:00 ET tip, while Aliyah Boston's Out persists on both - so this is a real clearing, not a feed outage (38 league rows plus all four event reports present this snapshot). Supersedes index 431 (today's 1833Z questionable). Status returned to base panel state, no minutes assertion: a clearing says available, it does not say how many minutes, and the routine does not invent one.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 503
     },
     {
       "player": "Myisha Hines-Allen",
@@ -6099,7 +6099,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0133Z diff: Nivar (Atlanta Dream) listed Out, type Coach's Decision — \"Nivar (coach's decision) has been ruled out for Monday's game against the Sparks.\" Date-scoped to tonight's ATL@LA (2026-08-24 ET, 22:00 tip); supersedes the 2026-08-24 clear. Same in-and-out coach's-decision pattern as 08-18/08-20/08-22.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 507
     },
     {
       "player": "Jaylyn Sherrod",
@@ -6203,7 +6203,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report, NEW in the 2133Z diff (17:33 ET): 'Williams is out for Tuesday's game against the Wings with an illness.' - status Out, type Illness, Portland Fire, return_date 2026-08-28, and the per-event report for 401857174 (POR@DAL, 20:00 ET tonight) carries the same Out. First override entry for this player. She is a bench rotation piece, not a starter: last eight panel games 11/12/16/17/12/13/19/13 minutes, zero starts, single-digit scoring in seven of eight. An Out is an availability fact, so minutes_est 0; no Portland teammate minutes are reallocated, because a 13-minute reserve's absence does not identify who absorbs them and the routine does not invent that.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 505
     },
     {
       "player": "Ashten Prechtel",
@@ -6476,7 +6476,7 @@
       "url": "https://www.espn.com/wnba/",
       "quote": "'Sources: DeWanna Bonner signing with Dream after Mercury buyout' (published 2026-08-26T22:51Z) - 'Free agent DeWanna Bonner is signing with the Dream following her contract buyout with the Mercury.' Supersedes the 2026-08-24 buyout entry with the destination now known: she is off Phoenix for good (the panel still carries her PHO state, and she did not appear in the 2026-08-25 WSH@PHX box at all), and she has not yet played a game for Atlanta. Held OUT / 0 minutes until an Atlanta appearance enters the panel - per the 2026-08-08 amendment gate 3 a traded player is unpriceable until her first game with the new team is in the panel, so this override is belt-and-braces on top of TEAM_CHANGED, not a minutes call. No Atlanta debut date is reported in the item.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 504
     },
     {
       "player": "Kelsey Plum",
@@ -6592,6 +6592,97 @@
       "source": "avail:2026-08-27/2038Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Season-ending. League injury report UPDATED this snapshot (Out -> Out, type now 'Leg'), and news_watch carried the reason at 2026-08-27 15:53 ET: \"Aces' NaLyssa Smith to miss rest of season with leg injury - Aces starting forward NaLyssa Smith will be out the rest of the WNBA season after sustaining a left leg injury in Sunday's 88-78 victory at Toronto.\" Supersedes index 445 (2026-08-24, the in-game exit with feed return_date 2026-08-28, written as until-cleared because that timeline was untrustworthy - it was). Effective pricing state is UNCHANGED: she was already out/0 minutes and stays so. The point of the supersede is durability - a stale 8/28 return date in the feed could otherwise produce a spurious CLEARED read that puts a season-ended player back into pricing. Conservative direction as always: 'out' removes her rather than inventing reduced minutes. Inert for the current sheet - no Las Vegas props are playable on it.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Awa Fam",
+      "added": "2026-08-27T21:37:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/2137Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2137Z diff (17:37 ET): league report lists Fam (Seattle Storm) Out - Not Injury Related, \"Fam had her contract temporarily suspended Thursday.\", return_date 2026-09-17. Until-cleared (game_date null) rather than pinned: a suspended contract with a mid-September return date is not a one-game scratch. Unlike the usual deep-bench churn this one removes a real rotation state - she played 17, 14, 22, 29, 25 and 17 minutes in her last six (started 08-23, 17 min on 08-26), so the panel's freshest state for her is a rotation state that is now unavailable. No prior override entry for her; nothing superseded. Inert for the current sheet - Seattle's last game was 08-26 and they are not on the 08-27 or 08-28 slates.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kennedy Burke",
+      "added": "2026-08-27T21:37:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/2137Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2137Z diff (17:37 ET): league report lists Burke (Connecticut Sun) Out - Not Injury Related, \"Connecticut announced Thursday that Burke will miss the Sun's next two games.\", return_date 2026-09-17. Until-cleared (game_date null): the report itself names a multi-game absence, so pinning it to one slate would under-record it. This is the most material entry in the diff - Burke is a Connecticut STARTER, 21/26/24/31/33/21 minutes in her last six including 21 min on 08-26, and Connecticut plays IND@CON (event 2768) on Friday 2026-08-28 at 7:30pm ET, which is on the current sheet. Conservative direction as always: 'out' removes her rather than inventing reduced minutes, and no teammate minutes are reallocated by hand. No prior entry for her; nothing superseded.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Caitlin Clark",
+      "added": "2026-08-27T21:37:00Z",
+      "game_date": "2026-08-28",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/2137Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW Day-To-Day (Back), Indiana Fever, in the 2137Z diff (17:37 ET): \"Clark (back) is probable for Friday's game against the Sun.\", return_date 2026-08-28. Friday = 2026-08-28 ET, the IND@CON game (event 2768), so this is forward-looking doubt on a game that is on the current sheet - and she carries an OPEN bet on it (threes under 2.5). Recorded as 'questionable' with NO minutes assertion, exactly as entry 431 recorded the identical back flag on 08-23: 'probable' is the softest tag on the report and she has started and played 32-41 minutes in each of her last six, so there is no defensible haircut to assert - inventing one would move a projection in the direction of a bet already held. The entry exists so the doubt is on the record and a later downgrade has something to supersede. Supersedes entry 436 (the 'in' of 08-23, pinned to a game that has expired).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "DeWanna Bonner",
+      "added": "2026-08-27T21:37:00Z",
+      "game_date": "2026-08-28",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/2137Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2137Z diff (17:37 ET): league report lists Bonner Out - Rest, now under ATLANTA DREAM, \"Bonner (rest) is out for Friday's game against the Fire.\", return_date 2026-08-30. Friday = 2026-08-28 ET, ATL@PDX (event 2767), on the current sheet. Pinned to that game rather than until-cleared because the report gives a definite two-day return (08-30) for a rest day, not an injury. Supersedes entry 491, the until-cleared 'out' written on the Mercury buyout/Dream signing news - that state is now resolved: she is rostered in Atlanta and merely resting. She is unpriceable for Atlanta regardless until her first Dream game enters the panel (her panel team is still PHX, 30 min on 08-22), so the TEAM_CHANGED gate covers pricing; this entry records the availability fact.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Serah Williams",
+      "added": "2026-08-27T21:37:00Z",
+      "game_date": "2026-08-28",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/2137Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPDATED in the 2137Z diff (17:37 ET): Out -> Day-To-Day, Portland Fire, type still Illness - \"Williams is questionable for Friday's game against Atlanta with an illness.\", return_date 2026-08-28. A status UPGRADE from the Out of 08-25 (entry 470, which this supersedes and whose game_date has expired). Pinned to 2026-08-28, the ATL@PDX game (event 2767) the report names, which is on the current sheet. 'questionable' with NO minutes assertion: she is a bench piece (16/17/12/13/19/13 minutes, no starts) and an illness questionable is genuine two-sided doubt - asserting a number would be inventing precision the feed does not have. Upgrading her out of 'out' is the conservative read of an upgrade only in the sense that it stops asserting a zero the report no longer supports.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Aliyah Boston",
+      "added": "2026-08-27T21:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/2137Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED from the league injury report in the 2137Z diff; was Out - Lower Leg (Indiana Fever), \"Boston (lower leg) has been ruled out for Sunday's game against the Sky.\", return_date 2026-08-28 (entry 430, which this supersedes). The feed's own return date was Friday 2026-08-28 and she has now dropped off the report, so the read is that she is available for IND@CON (event 2768) - a game on the current sheet on which she carries an OPEN bet (threes under 0.5). Unlike the deep-bench clearings this one restores a genuine starter: 29/37/27/29/30 minutes in her five appearances before the DNP of 08-23. Clears the out override with NO minutes assertion - the panel already carries her ~30-minute starter state and a two-game absence is not evidence for a haircut. Until-cleared game_date.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Indya Nivar",
+      "added": "2026-08-27T21:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-27/2137Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED from the league injury report in the 2137Z diff; was Out - Coach's Decision (Atlanta Dream), \"Nivar (coach's decision) has been ruled out for Monday's game against the Sparks.\", return_date 2026-08-28 (entry 462, which this supersedes and whose game_date 2026-08-24 has expired). Clears the out override with NO minutes assertion - a healthy-scratch clearing frees no minutes and asserts no role. She is inert for pricing: 1, 1, 4 and 1 minutes in her four 2026 appearances and DNPs since 07-11. Fifth out/clear cycle for her (entries 401/422/446/462).",
       "author": "news-watch",
       "superseded_by": null
     }
