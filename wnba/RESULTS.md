@@ -14,14 +14,14 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 | staked | $213.00 |
 | P&L | $+1.80 (+0.8% ROI) |
 | mean EV said (model) | +19.33% (n=211) |
-| mean CLV (vs close) | -3.50% (n=209) |
-| mean CLV* (shade-adj) | -2.57% (n=209) |
-| closing line moved | 44 of 209 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| mean CLV (vs close) | -3.62% (n=212) |
+| mean CLV* (shade-adj) | -2.66% (n=212) |
+| closing line moved | 44 of 212 stamped (the rest closed at the bet line: CLV ≈ vig there) |
 | model calibration | expected 127.8W vs observed 109W (z=-2.68) |
 | Model-expected P&L | $+42.00 |
-| CLV-expected P&L | $-7.42 |
+| CLV-expected P&L | $-7.79 |
 
-CLV t-stat: -5.56 (iid); -2.92 clustered by match date (28 dates)
+CLV t-stat: -5.79 (iid); -3.01 clustered by match date (28 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
@@ -35,9 +35,9 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-27 | Shakira Austin | rebounds | under | 9.5 | 104 | 1.0 | +10.1% |  |  |  |  |  |
 | 2026-08-27 | Marine Johannes | points | over | 5.5 | -125 | 1.0 | +19.4% |  |  |  |  |  |
 | 2026-08-27 | Jonquel Jones | points | under | 13.5 | -102 | 1.0 | +17.7% |  |  |  |  |  |
-| 2026-08-26 | Laura Juskaite | points | under | 12.5 | -114 | 1.0 | +21.8% | 14 | lost | -1.00 |  |  |
-| 2026-08-26 | Isabelle Harrison | assists | under | 1.5 | 108 | 1.0 | +12.8% | 1 | won | +1.08 |  |  |
-| 2026-08-26 | Kiki Rice | rebounds | under | 4.5 | -180 | 1.0 | +11.3% | 3 | won | +0.56 |  |  |
+| 2026-08-26 | Laura Juskaite | points | under | 12.5 | -114 | 1.0 | +21.8% | 14 | lost | -1.00 | -3.9% | -0.8% |
+| 2026-08-26 | Isabelle Harrison | assists | under | 1.5 | 108 | 1.0 | +12.8% | 1 | won | +1.08 | -15.0% | -11.1% |
+| 2026-08-26 | Kiki Rice | rebounds | under | 4.5 | -180 | 1.0 | +11.3% | 3 | won | +0.56 | -17.9% | -14.0% |
 | 2026-08-26 | Veronica Burton | assists | under | 6.5 | -154 | 3.0 | +13.8% | 7 | lost | -3.00 | -5.5% | -2.3% |
 | 2026-08-25 | Sydney Taylor | points | over | 13.5 | 100 | 1.0 | +23.0% | 4 | lost | -1.00 | -9.6% | -13.1% |
 | 2026-08-25 | Arike Ogunbowale | threes | under | 1.5 | 118 | 1.0 | +20.4% | 3 | lost | -1.00 | -4.2% | -0.6% |
