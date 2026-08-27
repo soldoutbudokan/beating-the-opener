@@ -9,13 +9,13 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2768_rebounds_kelsey mitchell_under,2026-08-28,2026-08-28 23:30:00,2768,rebounds,Kelsey Mitchell,IND,CON@IND,under,2.5,-162.0,0.736,0.1904,True,-250,-227,4.0,1.61,,2.5,,True,False
 2769_assists_nneka ogwumike_over,2026-08-28,2026-08-29 02:00:00,2769,assists,Nneka Ogwumike,LAS,WAS@LAS,over,2.5,-102.0,0.5991,0.1864,True,-139,-129,2.5,3.11,,2.5,,True,False
 2770_rebounds_kiki rice_under,2026-08-28,2026-08-29 02:00:00,2770,rebounds,Kiki Rice,TOR,TOR@LVA,under,4.5,-162.0,0.7287,0.1786,True,-241,-219,3.5,3.26,,4.5,,True,False
-2765_points_jonquel jones_under,2026-08-27,2026-08-28 00:00:00,2765,points,Jonquel Jones,NYL,GSV@NYL,under,14.5,-128.0,0.6606,0.1768,True,-178,-165,0.0,12.35,,13.5,MOVED_OFF_OPEN,False,True
+2767_rebounds_bridget carleton_over,2026-08-28,2026-08-28 23:30:00,2767,rebounds,Bridget Carleton,PDX,PDX@ATL,over,4.5,108.0,0.565,0.1753,True,-121,-114,2.0,5.11,,4.5,,True,False
 2768_threes_aliyah boston_under,2026-08-28,2026-08-28 23:30:00,2768,threes,Aliyah Boston,IND,CON@IND,under,0.5,164.0,0.4417,0.166,True,134,140,1.5,0.82,,0.5,,True,False
-2767_rebounds_bridget carleton_over,2026-08-28,2026-08-28 23:30:00,2767,rebounds,Bridget Carleton,PDX,PDX@ATL,over,4.5,106.0,0.565,0.164,True,-121,-114,2.0,5.11,,4.5,,True,False
 2765_points_breanna stewart_under,2026-08-27,2026-08-28 00:00:00,2765,points,Breanna Stewart,NYL,GSV@NYL,under,20.5,-120.0,0.6296,0.1543,True,-157,-146,0.0,18.47,,21.5,MOVED_OFF_OPEN,False,True
 2766_rebounds_alyssa thomas_over,2026-08-27,2026-08-28 02:00:00,2766,rebounds,Alyssa Thomas,PHO,WAS@PHO,over,8.5,116.0,0.5337,0.1527,True,-107,-101,1.5,8.96,,8.5,,False,True
+2765_points_jonquel jones_under,2026-08-27,2026-08-28 00:00:00,2765,points,Jonquel Jones,NYL,GSV@NYL,under,14.5,-135.0,0.6606,0.15,True,-178,-165,0.0,12.35,,13.5,MOVED_OFF_OPEN,False,True
+2767_rebounds_emily engstler_under,2026-08-28,2026-08-28 23:30:00,2767,rebounds,Emily Engstler,PDX,PDX@ATL,under,5.5,118.0,0.5235,0.1412,True,-103,103,1.5,5.5,,5.5,,True,False
 2770_threes_aja wilson_under,2026-08-28,2026-08-29 02:00:00,2770,threes,A'ja Wilson,LVA,TOR@LVA,under,0.5,172.0,0.4177,0.1361,True,147,154,1.0,0.87,,0.5,,True,False
 2766_assists_sonia citron_under,2026-08-27,2026-08-28 02:00:00,2766,assists,Sonia Citron,WAS,WAS@PHO,under,5.5,-136.0,0.6518,0.1311,True,-172,-159,2.5,4.68,,5.5,,False,True
-2767_rebounds_emily engstler_under,2026-08-28,2026-08-28 23:30:00,2767,rebounds,Emily Engstler,PDX,PDX@ATL,under,5.5,116.0,0.5235,0.1307,True,-103,103,1.5,5.5,,5.5,,True,False
+2767_assists_carla leite_under,2026-08-28,2026-08-28 23:30:00,2767,assists,Carla Leite,PDX,PDX@ATL,under,6.5,118.0,0.5165,0.1259,True,-100,106,0.0,6.5,,6.5,MOVED_OFF_OPEN,False,False
 2768_threes_caitlin clark_under,2026-08-28,2026-08-28 23:30:00,2768,threes,Caitlin Clark,IND,CON@IND,under,2.5,136.0,0.4756,0.1224,True,117,123,1.0,2.77,,2.5,,True,False
-2767_assists_carla leite_under,2026-08-28,2026-08-28 23:30:00,2767,assists,Carla Leite,PDX,PDX@ATL,under,6.5,116.0,0.5165,0.1156,True,-100,106,1.5,6.5,,6.5,,True,False
