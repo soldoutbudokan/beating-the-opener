@@ -10,7 +10,7 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 | metric | value |
 |---|---|
-| settled | 219 (115W-104L), 0 push, 5 void, 11 open |
+| settled | 219 (115W-104L), 0 push, 5 void, 14 open |
 | staked | $219.00 |
 | P&L | $+7.30 (+3.3% ROI) |
 | mean EV said (model) | +19.22% (n=219) |
@@ -27,6 +27,9 @@ Calibration reads the model's own claims against results: expected wins = sum of
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-08-29 | Jonquel Jones | threes | under | 1.5 | 124 | 1.0 | +22.5% |  |  |  |  |  |
+| 2026-08-29 | Sydney Taylor | points | over | 12.5 | -104 | 1.0 | +16.8% |  |  |  |  |  |
+| 2026-08-29 | Kamilla Cardoso | rebounds | under | 9.5 | -102 | 1.0 | +14.5% |  |  |  |  |  |
 | 2026-08-28 | Laura Juskaite | assists | under | 2.5 | -130 | 1.0 | +23.4% |  |  |  |  |  |
 | 2026-08-28 | Makayla Timpson | points | under | 8.5 | -106 | 1.0 | +20.1% |  |  |  |  |  |
 | 2026-08-28 | Kelsey Mitchell | rebounds | under | 2.5 | -162 | 1.0 | +19.0% |  |  |  |  |  |
@@ -224,6 +227,3 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-05 | Sabrina Ionescu | assists | under | 5.5 | -102 | 1.0 | +18.8% | 6 | lost | -1.00 | -9.5% | -6.1% |
 | 2026-08-05 | Natisha Hiedeman | assists | under | 5.5 | -132 | 1.0 | +17.1% | 6 | lost | -1.00 | -1.1% | +1.8% |
 | 2026-08-05 | Angel Reese | assists | over | 2.5 | 148 | 1.0 | +16.3% | 4 | won | +1.48 | +6.7% | +2.6% |
-| 2026-08-05 | Rhyne Howard | assists | over | 3.5 | 136 | 1.0 | +25.3% | 8 | won | +1.36 | +18.0% | +14.0% |
-| 2026-08-05 | Rhyne Howard | rebounds | over | 3.5 | 106 | 1.0 | +18.2% | 6 | won | +1.06 | -6.6% | -12.5% |
-| 2026-08-05 | Shakira Austin | assists | under | 2.5 | 106 | 1.0 | +17.9% | 2 | won | +1.06 | -14.1% | -10.7% |
