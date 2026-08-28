@@ -234,3 +234,6 @@ key,placed_at,match_date,event_id,market,player,side,line,odds_taken,stake,model
 2767_rebounds_emily engstler_under,2026-08-27 13:22:09,2026-08-28,2767,rebounds,Emily Engstler,under,5.5,116,1.0,0.5235,0.1308,open,,,,,,,owner fill 2026-08-27; deliberate flat $1 staking (sheet Kelly stake was $1.50)
 2768_threes_caitlin clark_under,2026-08-27 13:22:09,2026-08-28,2768,threes,Caitlin Clark,under,2.5,134,1.0,0.4756,0.1129,open,,,,,,,owner fill 2026-08-27
 2767_rebounds_bridget carleton_over,2026-08-27 13:22:13,2026-08-28,2767,rebounds,Bridget Carleton,over,4.5,108,1.0,0.565,0.1752,open,,,,,,,"owner fill 2026-08-27; deliberate flat $1 staking (sheet Kelly stake was $2.00); filled at +108, sheet quoted +106"
+2771_threes_jonquel jones_under,2026-08-28 09:21:10,2026-08-29,2771,threes,Jonquel Jones,under,1.5,124,1.0,0.5467,0.2246,open,,,,,,,owner fill 2026-08-28; deliberate flat $1 staking (sheet Kelly stake was $2.50)
+2771_points_sydney taylor_over,2026-08-28 09:21:10,2026-08-29,2771,points,Sydney Taylor,over,12.5,-104,1.0,0.5955,0.1681,open,,,,,,,owner fill 2026-08-28; deliberate flat $1 staking (sheet Kelly stake was $2.50)
+2771_rebounds_kamilla cardoso_under,2026-08-28 09:21:10,2026-08-29,2771,rebounds,Kamilla Cardoso,under,9.5,-102,1.0,0.5784,0.1455,open,,,,,,,owner fill 2026-08-28; deliberate flat $1 staking (sheet Kelly stake was $2.00)
