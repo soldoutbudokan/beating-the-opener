@@ -6749,7 +6749,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report: 'Harrison is questionable for Friday's game against the Aces due to a right foot injury.' Foot, return_date 2026-08-28. First entry for her. No minutes estimate - status record only; her points-under row on TOR@LVA is already quarantined by SUSPECT_EV.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 521
     },
     {
       "player": "Emma Cannon",
@@ -6852,6 +6852,19 @@
       "source": "avail:2026-08-28/1734Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 1734Z diff (13:34 ET): ESPN league injury report lists Ayayi (Phoenix) Out - Not Injury Related, comment 'out', return_date 2026-09-17 (the FIBA window, same shape as the Golden State listings earlier on 08-28). Open-ended until the report clears her.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Isabelle Harrison",
+      "added": "2026-08-28T20:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/2037Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared: no longer on the ESPN league injury report as of the 2026-08-28/2037Z snapshot. Supersedes index 512, which had her Day-To-Day/questionable (right foot) for tonight's TOR@LVA. Status record only - no minutes estimate, so nothing about the projection moves; confirm in the lineup near tip.",
       "author": "news-watch",
       "superseded_by": null
     }
