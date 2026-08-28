@@ -6802,6 +6802,32 @@
       "quote": "Cleared: no longer on the ESPN league injury report as of the 2026-08-28/0036Z snapshot. Supersedes the coach's-decision Out for 2026-08-26 (index 496).",
       "author": "news-watch",
       "superseded_by": null
+    },
+    {
+      "player": "Gabby Williams",
+      "added": "2026-08-28T02:37:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/0237Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0237Z diff (22:37 ET): ESPN league injury report lists Williams (Golden State) Out - Not Injury Related, return_date 2026-09-18 (the FIBA window). She played tonight (23 min vs NY, game final), so the Out starts with Golden State's next game; open-ended until the report clears her.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Janelle Salaun",
+      "added": "2026-08-28T02:37:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/0237Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0237Z diff (22:37 ET): ESPN league injury report lists Salaun (Golden State) Out - Not Injury Related, comment 'out', return_date 2026-09-18 (the FIBA window). Open-ended until the report clears her.",
+      "author": "news-watch",
+      "superseded_by": null
     }
   ]
 }
