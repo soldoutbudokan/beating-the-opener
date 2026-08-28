@@ -6632,7 +6632,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW Day-To-Day (Back), Indiana Fever, in the 2137Z diff (17:37 ET): \"Clark (back) is probable for Friday's game against the Sun.\", return_date 2026-08-28. Friday = 2026-08-28 ET, the IND@CON game (event 2768), so this is forward-looking doubt on a game that is on the current sheet - and she carries an OPEN bet on it (threes under 2.5). Recorded as 'questionable' with NO minutes assertion, exactly as entry 431 recorded the identical back flag on 08-23: 'probable' is the softest tag on the report and she has started and played 32-41 minutes in each of her last six, so there is no defensible haircut to assert - inventing one would move a projection in the direction of a bet already held. The entry exists so the doubt is on the record and a later downgrade has something to supersede. Supersedes entry 436 (the 'in' of 08-23, pinned to a game that has expired).",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 524
     },
     {
       "player": "DeWanna Bonner",
@@ -6710,7 +6710,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report: 'Maley (coach's decision) has been ruled out for Thursday's game against Golden State.' Coach's Decision, return_date 2026-08-29. Supersedes the 2026-08-26/2237Z 'in' entry (index 488). A coach's-decision Out is still an Out for pricing; scoped to tonight's GSV@NYL.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 522
     },
     {
       "player": "Elizabeth Balogun",
@@ -6723,7 +6723,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report: 'Balogun (coach's decision) has been ruled out for Thursday's game against Golden State.' Coach's Decision, return_date 2026-08-29. Supersedes the 2026-08-26/2237Z 'in' entry (index 489). Scoped to tonight's GSV@NYL.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 523
     },
     {
       "player": "A'ja Wilson",
@@ -6865,6 +6865,45 @@
       "source": "avail:2026-08-28/2037Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Cleared: no longer on the ESPN league injury report as of the 2026-08-28/2037Z snapshot. Supersedes index 512, which had her Day-To-Day/questionable (right foot) for tonight's TOR@LVA. Status record only - no minutes estimate, so nothing about the projection moves; confirm in the lineup near tip.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Anneli Maley",
+      "added": "2026-08-28T21:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/2134Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared from the ESPN league injury report in the 2134Z diff (17:34 ET). Prior listing was a Coach's Decision for Thursday's (8/27) game vs Golden State - that game is over and New York is not on tonight's slate, so this is an expiring entry, not a return from injury. No minutes adjustment.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Elizabeth Balogun",
+      "added": "2026-08-28T21:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/2134Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared from the ESPN league injury report in the 2134Z diff (17:34 ET). Prior listing was a Coach's Decision for Thursday's (8/27) game vs Golden State - that game is over and New York is not on tonight's slate, so this is an expiring entry, not a return from injury. No minutes adjustment.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Caitlin Clark",
+      "added": "2026-08-28T21:34:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/2134Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared from the CON@IND event injury report in the 2134Z diff (17:34 ET); she had been Day-To-Day (Back) and listed probable for tonight, return_date 2026-08-28. Read as active for tonight. Conservative: status in, no minutes estimate, so pricing is unchanged from the base model.",
       "author": "news-watch",
       "superseded_by": null
     }
