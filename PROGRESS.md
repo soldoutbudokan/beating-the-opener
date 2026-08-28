@@ -1587,3 +1587,17 @@ possible cricket odds proxy "used carefully". Session findings:
   post-gates snapshot quoted in it (112 settled, 66W–46L, +14.9% ROI,
   calibration z −0.23, raw CLV −2.98% vs the registered ≈ −3%) was
   recomputed this session from `bets.csv` and reconciles with RESULTS.md.
+
+- **2026-08-28 (news-watch firing, container rebuild)** — The 23:35 ET
+  firing landed in a fresh container: Python deps (pandas, pyarrow, scipy,
+  scikit-learn) had to be installed and every gitignored derived file was
+  absent, so the full chain ran before pricing (`scrape_bettingpros` →
+  `fetch_wehoop` → `fetch_espn_box` → `build_props` → `grade_props` →
+  `features` → `talent --build` → `build_modelset`), same as 2026-08-21.
+  Panel came back current through 2026-08-26 (106,790 player-games) and no
+  `PANEL_STALE` flag appears on the sheet. Settlement sweep printed
+  `NOTHING_TO_SETTLE` (no `BOX_FEED_BEHIND`, no `SHADE_UNAVAILABLE`); the
+  one pre-today open bet, DeWanna Bonner assists under 1.5 for 2026-08-25,
+  has no box row in either feed and sits inside `settle_bets.py`'s 3-day
+  grace window, so it stays open until a later firing settles or voids it.
+  Nothing in the model, the gates or the pricing path was changed.
