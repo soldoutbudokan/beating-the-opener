@@ -12,7 +12,7 @@ key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,st
 2768_threes_aliyah boston_under,2026-08-28,2026-08-28 23:30:00,2768,threes,Aliyah Boston,IND,CON@IND,under,0.5,168.0,0.4409,0.1816,True,134,141,1.5,0.82,,0.5,,False,True
 2770_points_chelsea gray_under,2026-08-28,2026-08-29 02:00:00,2770,points,Chelsea Gray,LVA,TOR@LVA,under,12.5,-102.0,0.5877,0.1638,True,-132,-124,0.0,11.6,,10.5,MOVED_OFF_OPEN,False,False
 2767_rebounds_emily engstler_under,2026-08-28,2026-08-28 23:30:00,2767,rebounds,Emily Engstler,PDX,PDX@ATL,under,5.5,116.0,0.523,0.1296,True,-103,103,1.5,5.5,,5.5,,False,True
+2768_threes_caitlin clark_under,2026-08-28,2026-08-28 23:30:00,2768,threes,Caitlin Clark,IND,CON@IND,under,2.5,138.0,0.4742,0.1286,True,118,124,1.0,2.78,,2.5,,False,True
 2767_assists_carla leite_under,2026-08-28,2026-08-28 23:30:00,2767,assists,Carla Leite,PDX,PDX@ATL,under,6.5,118.0,0.5159,0.1246,True,-100,106,0.0,6.51,,6.5,MOVED_OFF_OPEN,False,False
-2768_threes_caitlin clark_under,2026-08-28,2026-08-28 23:30:00,2768,threes,Caitlin Clark,IND,CON@IND,under,2.5,136.0,0.4742,0.1191,True,118,124,1.0,2.78,,2.5,,False,True
 2770_threes_aja wilson_under,2026-08-28,2026-08-29 02:00:00,2770,threes,A'ja Wilson,LVA,TOR@LVA,under,0.5,168.0,0.4169,0.1174,True,148,155,1.0,0.87,,0.5,,False,True
 2769_points_cameron brink_under,2026-08-28,2026-08-29 02:00:00,2769,points,Cameron Brink,LAS,WAS@LAS,under,9.5,-120.0,0.609,0.1165,True,-144,-135,2.0,8.49,,9.5,,True,False
