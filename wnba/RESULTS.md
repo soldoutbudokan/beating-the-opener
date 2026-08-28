@@ -6,19 +6,19 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $103.80** (start $100)
+**Bankroll: $107.30** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 211 (109W-102L), 0 push, 5 void, 19 open |
-| staked | $211.00 |
-| P&L | $+3.80 (+1.8% ROI) |
-| mean EV said (model) | +19.33% (n=211) |
+| settled | 219 (115W-104L), 0 push, 5 void, 11 open |
+| staked | $219.00 |
+| P&L | $+7.30 (+3.3% ROI) |
+| mean EV said (model) | +19.22% (n=219) |
 | mean CLV (vs close) | -3.62% (n=212) |
 | mean CLV* (shade-adj) | -2.66% (n=212) |
 | closing line moved | 44 of 212 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 127.8W vs observed 109W (z=-2.68) |
-| Model-expected P&L | $+41.72 |
+| model calibration | expected 132.7W vs observed 115W (z=-2.48) |
+| Model-expected P&L | $+43.03 |
 | CLV-expected P&L | $-7.68 |
 
 CLV t-stat: -5.79 (iid); -3.01 clustered by match date (28 dates)
@@ -37,14 +37,14 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-28 | Emily Engstler | rebounds | under | 5.5 | 116 | 1.0 | +13.1% |  |  |  |  |  |
 | 2026-08-28 | Caitlin Clark | threes | under | 2.5 | 134 | 1.0 | +11.3% |  |  |  |  |  |
 | 2026-08-28 | Bridget Carleton | rebounds | over | 4.5 | 108 | 1.0 | +17.5% |  |  |  |  |  |
-| 2026-08-27 | Breanna Stewart | points | under | 21.5 | -115 | 1.0 | +24.9% |  |  |  |  |  |
-| 2026-08-27 | Leonie Fiebich | points | under | 10.5 | -114 | 1.0 | +21.0% |  |  |  |  |  |
-| 2026-08-27 | Kahleah Copper | points | over | 19.5 | -115 | 1.0 | +13.7% |  |  |  |  |  |
-| 2026-08-27 | Alyssa Thomas | rebounds | over | 8.5 | 116 | 1.0 | +13.6% |  |  |  |  |  |
-| 2026-08-27 | Sonia Citron | assists | under | 5.5 | -148 | 1.0 | +10.2% |  |  |  |  |  |
-| 2026-08-27 | Shakira Austin | rebounds | under | 9.5 | 104 | 1.0 | +10.1% |  |  |  |  |  |
-| 2026-08-27 | Marine Johannes | points | over | 5.5 | -125 | 1.0 | +19.4% |  |  |  |  |  |
-| 2026-08-27 | Jonquel Jones | points | under | 13.5 | -102 | 1.0 | +17.7% |  |  |  |  |  |
+| 2026-08-27 | Breanna Stewart | points | under | 21.5 | -115 | 1.0 | +24.9% | 16 | won | +0.87 |  |  |
+| 2026-08-27 | Leonie Fiebich | points | under | 10.5 | -114 | 1.0 | +21.0% | 3 | won | +0.88 |  |  |
+| 2026-08-27 | Kahleah Copper | points | over | 19.5 | -115 | 1.0 | +13.7% | 35 | won | +0.87 |  |  |
+| 2026-08-27 | Alyssa Thomas | rebounds | over | 8.5 | 116 | 1.0 | +13.6% | 10 | won | +1.16 |  |  |
+| 2026-08-27 | Sonia Citron | assists | under | 5.5 | -148 | 1.0 | +10.2% | 4 | won | +0.68 |  |  |
+| 2026-08-27 | Shakira Austin | rebounds | under | 9.5 | 104 | 1.0 | +10.1% | 7 | won | +1.04 |  |  |
+| 2026-08-27 | Marine Johannes | points | over | 5.5 | -125 | 1.0 | +19.4% | 0 | lost | -1.00 |  |  |
+| 2026-08-27 | Jonquel Jones | points | under | 13.5 | -102 | 1.0 | +17.7% | 18 | lost | -1.00 |  |  |
 | 2026-08-26 | Laura Juskaite | points | under | 12.5 | -114 | 1.0 | +21.8% | 14 | lost | -1.00 | -3.9% | -0.8% |
 | 2026-08-26 | Isabelle Harrison | assists | under | 1.5 | 108 | 1.0 | +12.8% | 1 | won | +1.08 | -15.0% | -11.1% |
 | 2026-08-26 | Kiki Rice | rebounds | under | 4.5 | -180 | 1.0 | +11.3% | 3 | won | +0.56 | -17.9% | -14.0% |
