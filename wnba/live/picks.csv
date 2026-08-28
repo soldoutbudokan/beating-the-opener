@@ -1,21 +1,21 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2770_assists_kiki rice_under,2026-08-28,2026-08-29 02:00:00,2770,assists,Kiki Rice,TOR,TOR@LVA,under,5.5,-140.0,0.8591,0.4728,True,-502,-427,0.0,3.33,,5.5,SUSPECT_EV(47%);PLAYER_ALREADY_BET(rebounds under 4.5),False,False
 2770_points_isabelle harrison_under,2026-08-28,2026-08-29 02:00:00,2770,points,Isabelle Harrison,TOR,TOR@LVA,under,14.5,-118.0,0.7838,0.4481,True,-318,-283,0.0,10.3,,14.5,SUSPECT_EV(45%);ROLE_MIN?,False,False
+2770_assists_kiki rice_under,2026-08-28,2026-08-29 02:00:00,2770,assists,Kiki Rice,TOR,TOR@LVA,under,5.5,-146.0,0.8591,0.4476,True,-502,-427,0.0,3.33,,5.5,SUSPECT_EV(45%);PLAYER_ALREADY_BET(rebounds under 4.5),False,False
 2770_assists_laura juskaite_under,2026-08-28,2026-08-29 02:00:00,2770,assists,Laura Juskaite,TOR,TOR@LVA,under,2.5,104.0,0.6964,0.4206,True,-208,-191,0.0,1.82,,2.5,MOVED_OFF_OPEN;SUSPECT_EV(42%),False,True
 2768_assists_kelsey mitchell_over,2026-08-28,2026-08-28 23:30:00,2768,assists,Kelsey Mitchell,IND,CON@IND,over,2.5,122.0,0.5658,0.2561,True,-121,-114,0.0,2.94,,2.5,SUSPECT_EV(26%);PLAYER_ALREADY_BET(rebounds under 2.5),False,False
-2771_threes_jonquel jones_under,2026-08-29,2026-08-29 17:00:00,2771,threes,Jonquel Jones,NYL,CHI@NYL,under,1.5,124.0,0.5467,0.2247,True,-113,-106,2.5,1.53,,1.5,,True,False
-2769_assists_rae burrell_over,2026-08-28,2026-08-29 02:00:00,2769,assists,Rae Burrell,LAS,WAS@LAS,over,2.5,112.0,0.5773,0.224,True,-127,-119,2.5,3.0,,2.5,,True,False
-2769_assists_erica wheeler_over,2026-08-28,2026-08-29 02:00:00,2769,assists,Erica Wheeler,LAS,WAS@LAS,over,3.5,-122.0,0.6709,0.2208,True,-186,-172,3.5,4.64,,3.5,,True,False
-2769_rebounds_shakira austin_under,2026-08-28,2026-08-29 02:00:00,2769,rebounds,Shakira Austin,WAS,WAS@LAS,under,9.5,108.0,0.5866,0.2201,True,-132,-123,2.5,8.87,,9.5,,True,False
-2769_rebounds_ariel atkins_over,2026-08-28,2026-08-29 02:00:00,2769,rebounds,Ariel Atkins,LAS,WAS@LAS,over,2.5,118.0,0.5552,0.2103,True,-116,-109,2.5,2.97,,2.5,,True,False
+2769_rebounds_ariel atkins_over,2026-08-28,2026-08-29 02:00:00,2769,rebounds,Ariel Atkins,LAS,WAS@LAS,over,2.5,122.0,0.5552,0.2325,True,-116,-109,2.5,2.97,,2.5,,True,False
+2771_threes_jonquel jones_under,2026-08-29,2026-08-29 17:00:00,2771,threes,Jonquel Jones,NYL,CHI@NYL,under,1.5,124.0,0.5468,0.2248,True,-113,-106,2.5,1.53,,1.5,,False,True
+2769_assists_rae burrell_over,2026-08-28,2026-08-29 02:00:00,2769,assists,Rae Burrell,LAS,WAS@LAS,over,2.5,110.0,0.5773,0.2124,True,-127,-119,2.5,3.0,,2.5,,True,False
+2769_rebounds_shakira austin_under,2026-08-28,2026-08-29 02:00:00,2769,rebounds,Shakira Austin,WAS,WAS@LAS,under,9.5,106.0,0.5866,0.2083,True,-132,-123,2.5,8.87,,9.5,,True,False
+2769_assists_erica wheeler_over,2026-08-28,2026-08-29 02:00:00,2769,assists,Erica Wheeler,LAS,WAS@LAS,over,3.5,-125.0,0.6709,0.2076,True,-186,-172,3.5,4.64,,3.5,,True,False
 2769_assists_nneka ogwumike_over,2026-08-28,2026-08-29 02:00:00,2769,assists,Nneka Ogwumike,LAS,WAS@LAS,over,2.5,-102.0,0.5999,0.188,True,-139,-130,2.5,3.11,,2.5,,False,True
 2768_points_makayla timpson_under,2026-08-28,2026-08-28 23:30:00,2768,points,Makayla Timpson,IND,CON@IND,under,8.5,-110.0,0.6165,0.177,True,-149,-139,2.5,7.47,,8.5,,False,True
-2771_points_sydney taylor_over,2026-08-29,2026-08-29 17:00:00,2771,points,Sydney Taylor,CHI,CHI@NYL,over,12.5,-104.0,0.5955,0.1681,True,-137,-128,2.5,14.43,,12.5,,True,False
+2771_points_sydney taylor_over,2026-08-29,2026-08-29 17:00:00,2771,points,Sydney Taylor,CHI,CHI@NYL,over,12.5,-104.0,0.5954,0.1679,True,-136,-128,2.5,14.43,,12.5,,False,True
 2770_points_chelsea gray_under,2026-08-28,2026-08-29 02:00:00,2770,points,Chelsea Gray,LVA,TOR@LVA,under,12.5,-104.0,0.5875,0.1524,True,-132,-124,0.0,11.6,,10.5,MOVED_OFF_OPEN,False,False
-2771_rebounds_kamilla cardoso_under,2026-08-29,2026-08-29 17:00:00,2771,rebounds,Kamilla Cardoso,CHI,CHI@NYL,under,9.5,-102.0,0.5784,0.1455,True,-128,-120,2.0,8.94,,9.5,,True,False
+2771_rebounds_kamilla cardoso_under,2026-08-29,2026-08-29 17:00:00,2771,rebounds,Kamilla Cardoso,CHI,CHI@NYL,under,9.5,-102.0,0.5785,0.1457,True,-128,-120,2.0,8.94,,9.5,,False,True
 2768_points_aaliyah edwards_under,2026-08-28,2026-08-28 23:30:00,2768,points,Aaliyah Edwards,CON,CON@IND,under,12.5,-125.0,0.6328,0.139,True,-159,-148,0.0,10.93,,11.5,MOVED_OFF_OPEN;ROLE_START?,False,False
-2770_threes_aja wilson_under,2026-08-28,2026-08-29 02:00:00,2770,threes,A'ja Wilson,LVA,TOR@LVA,under,0.5,172.0,0.4168,0.1338,True,148,155,1.0,0.88,,0.5,,False,True
 2767_rebounds_emily engstler_under,2026-08-28,2026-08-28 23:30:00,2767,rebounds,Emily Engstler,PDX,PDX@ATL,under,5.5,116.0,0.5219,0.1272,True,-102,104,1.5,5.51,,5.5,,False,True
 2768_threes_caitlin clark_under,2026-08-28,2026-08-28 23:30:00,2768,threes,Caitlin Clark,IND,CON@IND,under,2.5,136.0,0.474,0.1187,True,118,124,1.0,2.78,,2.5,,False,True
-2769_points_cameron brink_under,2026-08-28,2026-08-29 02:00:00,2769,points,Cameron Brink,LAS,WAS@LAS,under,9.5,-120.0,0.6091,0.1168,True,-144,-135,2.0,8.48,,9.5,,True,False
+2770_threes_aja wilson_under,2026-08-28,2026-08-29 02:00:00,2770,threes,A'ja Wilson,LVA,TOR@LVA,under,0.5,168.0,0.4168,0.1171,True,148,155,1.0,0.88,,0.5,,False,True
 2767_assists_carla leite_under,2026-08-28,2026-08-28 23:30:00,2767,assists,Carla Leite,PDX,PDX@ATL,under,6.5,116.0,0.5146,0.1115,True,101,106,1.5,6.51,,6.5,,True,False
+2769_points_cameron brink_under,2026-08-28,2026-08-29 02:00:00,2769,points,Cameron Brink,LAS,WAS@LAS,under,9.5,-122.0,0.6091,0.1085,True,-144,-135,2.0,8.48,,9.5,,True,False
