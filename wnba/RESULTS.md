@@ -14,14 +14,14 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 | staked | $219.00 |
 | P&L | $+7.30 (+3.3% ROI) |
 | mean EV said (model) | +19.22% (n=219) |
-| mean CLV (vs close) | -3.59% (n=216) |
-| mean CLV* (shade-adj) | -2.62% (n=216) |
-| closing line moved | 47 of 216 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| mean CLV (vs close) | -3.66% (n=220) |
+| mean CLV* (shade-adj) | -2.70% (n=220) |
+| closing line moved | 49 of 220 stamped (the rest closed at the bet line: CLV ≈ vig there) |
 | model calibration | expected 132.7W vs observed 115W (z=-2.48) |
 | Model-expected P&L | $+43.03 |
-| CLV-expected P&L | $-7.76 |
+| CLV-expected P&L | $-8.05 |
 
-CLV t-stat: -5.76 (iid); -3.07 clustered by match date (29 dates)
+CLV t-stat: -5.94 (iid); -3.14 clustered by match date (29 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
@@ -39,10 +39,10 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-28 | Bridget Carleton | rebounds | over | 4.5 | 108 | 1.0 | +17.5% |  |  |  |  |  |
 | 2026-08-27 | Breanna Stewart | points | under | 21.5 | -115 | 1.0 | +24.9% | 16 | won | +0.87 | +15.3% | +18.3% |
 | 2026-08-27 | Leonie Fiebich | points | under | 10.5 | -114 | 1.0 | +21.0% | 3 | won | +0.88 | +1.6% | +4.8% |
-| 2026-08-27 | Kahleah Copper | points | over | 19.5 | -115 | 1.0 | +13.7% | 35 | won | +0.87 |  |  |
-| 2026-08-27 | Alyssa Thomas | rebounds | over | 8.5 | 116 | 1.0 | +13.6% | 10 | won | +1.16 |  |  |
-| 2026-08-27 | Sonia Citron | assists | under | 5.5 | -148 | 1.0 | +10.2% | 4 | won | +0.68 |  |  |
-| 2026-08-27 | Shakira Austin | rebounds | under | 9.5 | 104 | 1.0 | +10.1% | 7 | won | +1.04 |  |  |
+| 2026-08-27 | Kahleah Copper | points | over | 19.5 | -115 | 1.0 | +13.7% | 35 | won | +0.87 | +3.2% | +0.1% |
+| 2026-08-27 | Alyssa Thomas | rebounds | over | 8.5 | 116 | 1.0 | +13.6% | 10 | won | +1.16 | -11.2% | -16.8% |
+| 2026-08-27 | Sonia Citron | assists | under | 5.5 | -148 | 1.0 | +10.2% | 4 | won | +0.68 | -13.2% | -10.1% |
+| 2026-08-27 | Shakira Austin | rebounds | under | 9.5 | 104 | 1.0 | +10.1% | 7 | won | +1.04 | -7.1% | -1.6% |
 | 2026-08-27 | Marine Johannes | points | over | 5.5 | -125 | 1.0 | +19.4% | 0 | lost | -1.00 | -13.6% | -16.7% |
 | 2026-08-27 | Jonquel Jones | points | under | 13.5 | -102 | 1.0 | +17.7% | 18 | lost | -1.00 | -11.9% | -8.5% |
 | 2026-08-26 | Laura Juskaite | points | under | 12.5 | -114 | 1.0 | +21.8% | 14 | lost | -1.00 | -3.9% | -0.8% |
