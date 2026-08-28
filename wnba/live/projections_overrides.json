@@ -6658,7 +6658,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED in the 2137Z diff (17:37 ET): Out -> Day-To-Day, Portland Fire, type still Illness - \"Williams is questionable for Friday's game against Atlanta with an illness.\", return_date 2026-08-28. A status UPGRADE from the Out of 08-25 (entry 470, which this supersedes and whose game_date has expired). Pinned to 2026-08-28, the ATL@PDX game (event 2767) the report names, which is on the current sheet. 'questionable' with NO minutes assertion: she is a bench piece (16/17/12/13/19/13 minutes, no starts) and an illness questionable is genuine two-sided doubt - asserting a number would be inventing precision the feed does not have. Upgrading her out of 'out' is the conservative read of an upgrade only in the sense that it stops asserting a zero the report no longer supports.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 528
     },
     {
       "player": "Aliyah Boston",
@@ -6943,6 +6943,19 @@
       "source": "avail:2026-08-28/2237Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED in the 2237Z diff (18:37 ET): Cloud goes Out -> Day-To-Day (Knee) on the league report - \"Cloud (knee) is listed as questionable for Saturday's game against the Liberty.\" (Chicago Sky, return_date 2026-08-29). This is the upgrade entry 481 asked to be superseded on, and it firms the 08-29 game (CHI @ NYL, event 2771) in the direction of her playing. Status stays questionable, not in: Day-To-Day off a knee that pulled her out of the 8/25 game mid-game is not a clearance, and the per-event report for 08-29 is not published yet. Still NO minutes haircut and no minutes assertion - she is a 30-36 minute starter in the last archived box scores, so neither zeroing her nor restoring a healthy state is supportable on a day-to-day tag. Supersedes 481. Relevant to the three open 08-29 CHI @ NYL bets (Jones, Taylor, Cardoso), none of them hers; supersede again when the event report publishes.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Serah Williams",
+      "added": "2026-08-28T23:36:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/2336Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2336Z diff (19:36 ET): Williams (was Day-To-Day, Illness, Portland Fire, return_date 2026-08-28) no longer appears on the ESPN league injury report or on any per-event report. Supersedes entry 505 (the 08-27 questionable), whose game_date 2026-08-28 is the POR @ ATL game that tipped at 19:30 ET and was IN_PROGRESS at capture - so the drop is artifact-suspect: ESPN clears injury rows at tip, and the lineups feed cannot arbitrate because it flags EVERY non-starter on both teams as dnp=true six minutes in (all five Portland and all five Atlanta reserves read the same). The benign reading is equally available: her return_date was today and the 08-25 Out had already been upgraded to Day-To-Day yesterday. Recorded as in with NO minutes claim - a clearing is evidence of availability, not of a role, and she is a 12-19 minute reserve with no starts. Inert for pricing: her only pinned game has tipped, and nothing is asserted about Portland's next game.",
       "author": "news-watch",
       "superseded_by": null
     }
