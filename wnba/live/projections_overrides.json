@@ -5826,7 +5826,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED at 2333Z (19:33 ET), was Day-To-Day (Back): dropped from the ESPN league report while 34 Out rows persist unchanged (35 rows this snapshot, no adds, no other changes) - a real clearing, not a feed outage. Confirmed by the same snapshot's lineup feed for LV@TOR (event 401857170, STATUS_IN_PROGRESS): listed as a STARTER, reason COACH'S DECISION, dnp=false. Supersedes index 428 (today's 1732Z questionable). Status returned to base panel state, no minutes assertion: a clearing says available, it does not say how many minutes, and the routine does not invent one. Inert for pricing - her game is already underway - it exists so the archive carries the resolution.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 511
     },
     {
       "player": "Shakira Austin",
@@ -6125,7 +6125,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED in the 0133Z diff: Burrell (Los Angeles Sparks) downgraded Day-To-Day → Out, type Illness — \"Burrell (illness) is listed as out for Monday's game against the Dream.\" Confirmed by the per-event report for ATL@LA (event 401857172). Supersedes the 2026-08-24 18:36Z questionable entry; date-scoped to tonight's ET slate.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 514
     },
     {
       "player": "Tonie Morgan",
@@ -6138,7 +6138,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0438Z diff: Morgan (Los Angeles Sparks) listed Out, type Undisclosed — \"Morgan (undisclosed) exited Monday's 78-71 loss to the Dream in the fourth quarter and did not return, finishing with zero points (0-5 FG, 0-1 3Pt), three assists and one rebound across 15 minutes.\" An in-game injury exit, not the coach's-decision in-and-out pattern of her earlier entries, so it is scoped until-cleared (game_date null) rather than to one date; ESPN's return_date is 2026-08-28, which is exactly LAS's next game (WAS@LAS, 2026-08-28 ET). No LAS game is on the current sheet (CHI@CON, PDX@DAL, WAS@PHO) and she carries no prop on it, so this is record-only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 515
     },
     {
       "player": "Dorka Juhasz",
@@ -6437,7 +6437,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Cleared from the ESPN injury report at 2237Z (prior listing was a coach's decision for the 8/22 game vs Indiana).",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 509
     },
     {
       "player": "Elizabeth Balogun",
@@ -6450,7 +6450,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Cleared from the ESPN injury report at 2237Z (prior listing was a coach's decision for the 8/22 game vs Indiana).",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 510
     },
     {
       "player": "Maria Conde",
@@ -6489,7 +6489,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0038Z diff (20:38 ET): league injury report lists Plum Day-To-Day (Lower Leg) - \"Plum (leg) is listed as questionable for Thursday's game versus Washington.\", Phoenix Mercury, return_date 2026-08-27. A downgrade from index 459 (the 08-25 until-cleared 'in'), which it supersedes, pinned to the game the report itself names (2026-08-27 PHO-WAS). Deliberately NO minutes haircut: the report says questionable, not out, and a haircut here would manufacture unders on a starter-level scorer off a single ambiguous tag. Note for the owner, not a model change: her panel state is now FRESH (she played 2026-08-25, 17 min OFF THE BENCH after starting 08-07 and 08-09), so the STALE_PLAYER gate that governed her earlier entries no longer binds and any Plum prop this week is likely to carry a ROLE_START?/ROLE_MIN? advisory flag - a role change the talent model is slow on by design. Flag only; the routine adjusts nothing.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 508
     },
     {
       "player": "Marta Suarez",
@@ -6541,7 +6541,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0238Z diff (22:38 ET): league AND per-event report (401857177, TOR@SEA) list Green (Toronto Tempo) Out - Coach's Decision, \"Green (coach's decision) has been ruled out for Wednesday's game against Seattle.\", return_date 2026-08-28. A Coach's Decision Out counts as Out under the v3 T3 rule. Wednesday = 2026-08-26 ET, and that game is already IN PROGRESS at capture time, so this is a record of the scratch rather than a pricing input; dated to that game only, and the stated return_date 2026-08-28 is Toronto's next game, so nothing carries forward. Supersedes entry 420 (the until-cleared 'in' of 2026-08-23) - the same out/in cycle entries 211/306/326/345/405/420 record for a deep-bench player who is inert for pricing.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 516
     },
     {
       "player": "Flau'jae Johnson",
@@ -6683,6 +6683,123 @@
       "source": "avail:2026-08-27/2137Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the league injury report in the 2137Z diff; was Out - Coach's Decision (Atlanta Dream), \"Nivar (coach's decision) has been ruled out for Monday's game against the Sparks.\", return_date 2026-08-28 (entry 462, which this supersedes and whose game_date 2026-08-24 has expired). Clears the out override with NO minutes assertion - a healthy-scratch clearing frees no minutes and asserts no role. She is inert for pricing: 1, 1, 4 and 1 minutes in her four 2026 appearances and DNPs since 07-11. Fifth out/clear cycle for her (entries 401/422/446/462).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kelsey Plum",
+      "added": "2026-08-28T00:36:00Z",
+      "game_date": "2026-08-27",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/0036Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report: 'Plum (leg) has been ruled out for Thursday's game against the Mystics.' Lower Leg, return_date 2026-08-29. Downgrade from the Day-To-Day entry logged at 2026-08-27/0038Z (index 492), which this supersedes. Targets tonight's WAS@PHO only.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Anneli Maley",
+      "added": "2026-08-28T00:36:00Z",
+      "game_date": "2026-08-27",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/0036Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report: 'Maley (coach's decision) has been ruled out for Thursday's game against Golden State.' Coach's Decision, return_date 2026-08-29. Supersedes the 2026-08-26/2237Z 'in' entry (index 488). A coach's-decision Out is still an Out for pricing; scoped to tonight's GSV@NYL.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Elizabeth Balogun",
+      "added": "2026-08-28T00:36:00Z",
+      "game_date": "2026-08-27",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/0036Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report: 'Balogun (coach's decision) has been ruled out for Thursday's game against Golden State.' Coach's Decision, return_date 2026-08-29. Supersedes the 2026-08-26/2237Z 'in' entry (index 489). Scoped to tonight's GSV@NYL.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "A'ja Wilson",
+      "added": "2026-08-28T00:36:00Z",
+      "game_date": "2026-08-28",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/0036Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report: 'Wilson (head/back) is questionable for Friday's game against the Tempo.' Back, return_date 2026-08-28. Downgrade from off-report ('in', index 441, 2026-08-23), which this supersedes. No minutes estimate: a questionable star's minutes are unknowable from the report and any number here would manufacture an edge - this entry exists to record the status and to mark her picks for manual availability check near tip (LVA hosts TOR).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Isabelle Harrison",
+      "added": "2026-08-28T00:36:00Z",
+      "game_date": "2026-08-28",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/0036Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report: 'Harrison is questionable for Friday's game against the Aces due to a right foot injury.' Foot, return_date 2026-08-28. First entry for her. No minutes estimate - status record only; her points-under row on TOR@LVA is already quarantined by SUSPECT_EV.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Emma Cannon",
+      "added": "2026-08-28T00:36:00Z",
+      "game_date": "2026-08-28",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/0036Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report: 'Cannon is probable for Friday's game against the Mystics due to a right knee injury.' Knee, listed Day-To-Day, return_date 2026-08-28. First entry for her. Probable and no minutes estimate - record only (LAS hosts WAS).",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Rae Burrell",
+      "added": "2026-08-28T00:36:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/0036Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared: no longer on the ESPN league injury report as of the 2026-08-28/0036Z snapshot. Her last entry (index 464) had her Out with illness for 2026-08-24. Supersedes it. Status record only - no minutes estimate, so nothing about the projection moves; she carries a playable assists-over row on WAS@LAS.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Tonie Morgan",
+      "added": "2026-08-28T00:36:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/0036Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared: no longer on the ESPN league injury report as of the 2026-08-28/0036Z snapshot. Supersedes the open-ended Out logged 2026-08-25/0438Z (index 465, undisclosed, exited the 08-24 game early), which had been zeroing her minutes indefinitely.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Zaay Green",
+      "added": "2026-08-28T00:36:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/0036Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared: no longer on the ESPN league injury report as of the 2026-08-28/0036Z snapshot. Supersedes the coach's-decision Out for 2026-08-26 (index 496).",
       "author": "news-watch",
       "superseded_by": null
     }
