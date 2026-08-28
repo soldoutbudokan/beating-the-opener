@@ -6346,7 +6346,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED in the 0233Z diff: Cloud is now listed **Out** (Knee) on both the league report and the CHI @ CON event report (event:401857173), upgraded from the Day-To-Day tag the 0132Z snapshot carried after she left Tuesday's game; estimated return still 2026-08-29. Supersedes 478 (0132Z). The 'Out' attaches to tonight's game, which is FINAL, and the report's own return estimate is the date of Chicago's next game (2026-08-29, CHI @ NYL), so nothing priceable falls inside the gap: the status is recorded as questionable for 08-29 rather than out. Deliberately NO minutes haircut - she is a 30-36 minute starter in the last four archived box scores, so an out entry here would zero her and reallocate a starter's minutes to Sky teammates on nothing firmer than an in-game exit with a same-day-as-next-game return estimate. Supersede if the 08-29 event report firms it either way.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 527
     },
     {
       "player": "Sami Whitcomb",
@@ -6385,7 +6385,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 1837Z diff (14:37 ET): both her rows - league and per-event (401857176) - dropped, having read \"Marshall (coach's decision) is out for Tuesday's game against the Sky\" (status Out, type Coach's Decision, return_date 2026-08-26). That CHI@CON game (8/25) is final, and the Connecticut report in this same snapshot has already been rewritten for TONIGHT's GS @ CON (19:00 ET, event 401857176 = event 2763): Nelson-Ododa, Griner and Lacan all carry 'Wednesday against the Valkyries' comments and Marshall is in neither the league nor the per-event list. So this is the routine post-game expiry of a game-specific coach's-decision inactive - the same pattern as indices 357 and 454 on this player - not an injury clearance. Feed verified healthy: league+event rows 58 -> 56, the only delta being the two Marshall drops; every other row unchanged. Supersedes index 472 (the Out that targeted the now-final 2026-08-25 game); base panel state restored with NO minutes assertion, the conservative choice - she is deep bench (4-7 minutes in every 2026 appearance) and has been a coach's-decision scratch four times this month, so another one tonight stays entirely possible; this entry asserts availability-neutrality, not a role. No Marshall prop is on the current sheet, so it is inert for pricing.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 526
     },
     {
       "player": "Olivia Nelson-Ododa",
@@ -6684,7 +6684,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the league injury report in the 2137Z diff; was Out - Coach's Decision (Atlanta Dream), \"Nivar (coach's decision) has been ruled out for Monday's game against the Sparks.\", return_date 2026-08-28 (entry 462, which this supersedes and whose game_date 2026-08-24 has expired). Clears the out override with NO minutes assertion - a healthy-scratch clearing frees no minutes and asserts no role. She is inert for pricing: 1, 1, 4 and 1 minutes in her four 2026 appearances and DNPs since 07-11. Fifth out/clear cycle for her (entries 401/422/446/462).",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 525
     },
     {
       "player": "Kelsey Plum",
@@ -6904,6 +6904,45 @@
       "source": "avail:2026-08-28/2134Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Cleared from the CON@IND event injury report in the 2134Z diff (17:34 ET); she had been Day-To-Day (Back) and listed probable for tonight, return_date 2026-08-28. Read as active for tonight. Conservative: status in, no minutes estimate, so pricing is unchanged from the base model.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Indya Nivar",
+      "added": "2026-08-28T22:37:00Z",
+      "game_date": "2026-08-28",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/2237Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2237Z diff (18:37 ET) on BOTH the league report and the POR @ ATL event report (event:401857180 = tonight, 19:30 ET): \"Nivar (coach's decision) has been ruled out for Friday's game against Portland.\" (Atlanta Dream, Out, Coach's Decision, return_date 2026-08-30). Sixth out/clear cycle for her this month (entries 329/378/422/462/507); supersedes 507, the post-game clear of the last one. Ruled out for a game that has not started, so the out targets 2026-08-28 with minutes_est 0. Inert for pricing either way: 1, 1, 4 and 1 minutes in her four 2026 appearances, no Nivar prop on the sheet, and a healthy scratch of a 1-minute bench player frees no minutes worth reallocating to Atlanta teammates.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Rayah Marshall",
+      "added": "2026-08-28T22:37:00Z",
+      "game_date": "2026-08-28",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/2237Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 2237Z diff (18:37 ET) on the CON @ IND event report (event:401857181 = tonight, 19:30 ET): Rayah Marshall, Connecticut Sun, Out, Coach's Decision, return_date 2026-08-30 (per-event row only; no league-report row this time). Fifth coach's-decision scratch this month for her (entries 325/423/472 and their clears 357/454/484); supersedes 484, the post-game clear of the last one. Game has not started, so the out targets 2026-08-28 with minutes_est 0. Inert for pricing: deep bench at 4-7 minutes in every 2026 appearance, no Marshall prop on the sheet, and her minutes are too few to reallocate to Connecticut teammates.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Natasha Cloud",
+      "added": "2026-08-28T22:37:00Z",
+      "game_date": "2026-08-29",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-28/2237Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "UPDATED in the 2237Z diff (18:37 ET): Cloud goes Out -> Day-To-Day (Knee) on the league report - \"Cloud (knee) is listed as questionable for Saturday's game against the Liberty.\" (Chicago Sky, return_date 2026-08-29). This is the upgrade entry 481 asked to be superseded on, and it firms the 08-29 game (CHI @ NYL, event 2771) in the direction of her playing. Status stays questionable, not in: Day-To-Day off a knee that pulled her out of the 8/25 game mid-game is not a clearance, and the per-event report for 08-29 is not published yet. Still NO minutes haircut and no minutes assertion - she is a 30-36 minute starter in the last archived box scores, so neither zeroing her nor restoring a healthy state is supportable on a day-to-day tag. Supersedes 481. Relevant to the three open 08-29 CHI @ NYL bets (Jones, Taylor, Cardoso), none of them hers; supersede again when the event report publishes.",
       "author": "news-watch",
       "superseded_by": null
     }
