@@ -7048,7 +7048,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "League injury report lists Reese (Atlanta Dream) as Suspension with return_date 2026-09-17. The report's own comment is her line from Friday's 101-83 loss to Portland (38 min, 16 pts, 16 reb), so the suspension begins with Atlanta's next game. Until-cleared (game_date null): unavailable, minutes 0, superseded the moment the feed clears her.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 537
     },
     {
       "player": "A'ja Wilson",
@@ -7060,6 +7060,19 @@
       "source": "avail:2026-08-29/0238Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the league injury report (was Day-To-Day, entry 511, added 2026-08-29T01:37Z). No minutes estimate attached - the base model's own state prices her from here.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Angel Reese",
+      "added": "2026-08-29T04:35:00Z",
+      "game_date": "2026-08-30",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-29/0435Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Supersedes #535 (which read the league report's return_date 2026-09-17 as an open-ended, until-cleared absence). The 0435Z snapshot dropped BOTH Reese rows (league + event:401857180) from the injury report, and the ESPN news item published 03:45Z scopes it: \"picked up her eighth technical foul Friday against Portland, meaning she will be suspended for Sunday's game against Minnesota unless the league rescinds the tech on review.\" So the absence is ONE game - Atlanta's next, 2026-08-30 vs MIN - not a run to 9/17. Out, minutes 0 for that game only; she played 38 min as a starter in Friday's POR@ATL. Re-check before the 8/30 slate: a rescinded tech clears her entirely.",
       "author": "news-watch",
       "superseded_by": null
     }
