@@ -2210,7 +2210,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW on the ESPN league injury report at 0138Z, Las Vegas: \"Evans (leg) has been ruled out for Tuesday's game against the Mystics\" (Out - Leg, return_date 2026-08-13). Targets WAS@LVA (2026-08-11 ET, event 2723). Supersedes the 2026-08-06 'in' entry. minutes_est 0 is the plain reading of a ruled-out designation. Her panel state is current (20 min on 8/8, 14 min on 8/9), so this removes real minutes rather than stale ones. NOTE for the owner: A'ja Wilson rebounds over is an open bet in this event and Michaela Onyenwere threes under sits on the same sheet - Evans out nudges Las Vegas usage toward the players still available, which the model does not re-allocate; confirm the lineup near tip per PROTOCOL.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 533
     },
     {
       "player": "Maddy Westbeld",
@@ -3211,7 +3211,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2134Z diff (was Out, Coach's Decision, Los Angeles Sparks). Supersedes entry 222. This is the ordinary post-game roll-off of a coach's-decision DNP, not a return from injury: the entry it supersedes was dated to the completed 2026-08-13 game (LAS at New York), and that game is over, so the league report simply dropped the row. Recorded as available, open-ended, with NO minutes estimate - nothing here shows a role either way. Los Angeles Sparks next plays 2026-08-15; tonight's sheet is DAL@IND and POR@SEA, so this is inert for 2026-08-14.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 530
     },
     {
       "player": "Anneli Maley",
@@ -5540,7 +5540,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED from the league injury report in the 0032Z diff; was Out (Coach's Decision), Las Vegas Aces, 'Latson (coach's decision) is inactive for Thursday's game against Connecticut', return_date 2026-08-23 (entry 380, which this supersedes). Las Vegas is not on tonight's 3-game slate, so this cannot be the tip-off drop-off artifact - it is a one-game coach's decision expiring at its own stated return date, ahead of LV's next game. Treated as available with no minutes assumption; deep bench, so inert for pricing - logged to close out the Out entry and for the archive.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 532
     },
     {
       "player": "Zaay Green",
@@ -6762,7 +6762,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report: 'Cannon is probable for Friday's game against the Mystics due to a right knee injury.' Knee, listed Day-To-Day, return_date 2026-08-28. First entry for her. Probable and no minutes estimate - record only (LAS hosts WAS).",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 534
     },
     {
       "player": "Rae Burrell",
@@ -6969,6 +6969,71 @@
       "source": "avail:2026-08-29/0037Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0037Z diff (20:37 ET Fri 8/28) on the ESPN league injury report: Kahleah Copper, Phoenix Mercury, Day-To-Day (Ankle), return_date 2026-08-29 - \"Copper (ankle) is listed as probable for Saturday's game versus the Tempo.\" First Copper entry in this file. The tag is fresh: she played 32 minutes and scored 35 for Phoenix on 8/27, and has started every archived 2026 game (30-37 minutes in the last six). Recorded questionable, not out and not in - a new Day-To-Day is not a clearance, and probable is not a state the schema carries. NO minutes haircut and no minutes assertion: an ankle tag on a 30+ minute starter the day after a full game supports neither zeroing her nor asserting a healthy state, so pricing is unchanged from the base model. Targets the 8/29 PHO game vs Toronto; the per-event report for that game is not published yet - supersede when it is. No Copper prop is on the current sheet and no open bet is hers.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Alissa Pili",
+      "added": "2026-08-29T01:37:00Z",
+      "game_date": "2026-08-28",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-29/0137Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0137Z diff (21:37 ET) on BOTH the league report and the WSH @ LA event report (event:401857183 = tonight, 22:00 ET tip): \"Pili (coach's decision) has been ruled out for Friday's game against the Mystics.\" (Los Angeles Sparks, Out, Coach's Decision, return_date 2026-08-30). A healthy scratch of a specific, not-yet-started game, so the out targets 2026-08-28 with minutes_est 0 rather than running until cleared. Supersedes 244, the 2026-08-14 clear. Low pricing impact: 7 appearances in 2026, 15 minutes on 2026-08-18 her high of the stretch and 2-6 before that, and no Pili prop is on the sheet - the freed minutes are a bench fragment, not a reallocation worth estimating for LA teammates.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Karlie Samuelson",
+      "added": "2026-08-29T01:37:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-29/0137Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0137Z diff (21:37 ET) on the league report and the POR @ ATL event report (event:401857180, FINAL at capture): \"Samuelson (knee) won't return to Friday's game versus Atlanta. She finished with zero points (0-2 FG, 0-1 3Pt) and two rebounds over nine minutes.\" (Portland Fire, Out, Knee, return_date 2026-08-30). An in-game injury exit, not a scratch, so unlike the two coach's-decision outs in this same diff it is NOT tied to a single game: the league report will carry the knee until it clears, and a game-dated override would silently expire on a player who is still hurt. Written until-cleared with minutes_est 0; a later snapshot clearing her supersedes it. Rotation regular (33 games in 2026, 14-19 minutes in each of her last five), so this one does move Portland minutes - but no Samuelson prop is on tonight's sheet and Portland's next game is 2026-08-30, so nothing prices off it yet. First entry for her in the log; supersedes nothing.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Ta'Niya Latson",
+      "added": "2026-08-29T01:37:00Z",
+      "game_date": "2026-08-28",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-29/0137Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0137Z diff (21:37 ET) on BOTH the league report and the TOR @ LV event report (event:401857182 = tonight, 22:00 ET tip): \"Latson (coach's decision) has been ruled out for Friday's game against the Tempo.\" (Las Vegas Aces, Out, Coach's Decision, return_date 2026-09-17). Game-specific healthy scratch of a game that has not started, so the out targets 2026-08-28 with minutes_est 0. Supersedes 419, the 2026-08-23 clear; third out/clear cycle for her (entries 272/380). Her role had already collapsed on its own - 24 minutes on 2026-08-09 but 10, 3, 5 and 3 since - so the scratch mostly confirms a bench state the panel is already tracking, and no Latson prop is on the sheet. The 2026-09-17 return_date (the FIBA break) is the feed's placeholder, not a ruling on later games; a future firing judges those from its own diff.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Dana Evans",
+      "added": "2026-08-29T01:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-29/0137Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared: no longer on the ESPN league injury report as of the 2026-08-29/0137Z snapshot (previous status Out). Supersedes index 167, her 2026-08-11 out - the last entry she has, because the diff only reports changes and she sat as a steady Out in between, so the log went quiet while she was unavailable. Status record only - no minutes estimate, so nothing about the projection moves. Her panel state is stale in the direction that matters (last minutes 2026-08-09, 14; a DNP row on 2026-08-23), so any prop on her would carry the usual stale-state risk and the 14-day gate; confirm in the lineup near tip.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Emma Cannon",
+      "added": "2026-08-29T01:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-29/0137Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared: no longer on the ESPN league injury report as of the 2026-08-29/0137Z snapshot (previous status Day-To-Day). Supersedes index 513, which had her questionable for tonight's WSH @ LA. Status record only - no minutes estimate, so nothing about the projection moves. Bench role (4-12 minutes in her last four appearances, DNP 2026-08-24) and no Cannon prop on the sheet; confirm in the lineup near tip.",
       "author": "news-watch",
       "superseded_by": null
     }
