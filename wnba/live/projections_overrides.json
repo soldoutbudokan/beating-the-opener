@@ -7074,6 +7074,19 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Supersedes #535 (which read the league report's return_date 2026-09-17 as an open-ended, until-cleared absence). The 0435Z snapshot dropped BOTH Reese rows (league + event:401857180) from the injury report, and the ESPN news item published 03:45Z scopes it: \"picked up her eighth technical foul Friday against Portland, meaning she will be suspended for Sunday's game against Minnesota unless the league rescinds the tech on review.\" So the absence is ONE game - Atlanta's next, 2026-08-30 vs MIN - not a run to 9/17. Out, minutes 0 for that game only; she played 38 min as a starter in Friday's POR@ATL. Re-check before the 8/30 slate: a rescinded tech clears her entirely.",
       "author": "news-watch",
+      "superseded_by": 538
+    },
+    {
+      "player": "Angel Reese",
+      "added": "2026-08-29T05:35:00Z",
+      "game_date": "2026-08-30",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "ESPN news API (news_watch item 868ccc24dc7cc, published 2026-08-29T04:21:49Z)",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/news",
+      "quote": "Supersedes #537, which held her out of 8/30 vs MIN on the eighth technical. \"The WNBA rescinded the technical foul that Dream forward Angel Reese picked up Friday against Portland, meaning she remains at seven on the season and will not be suspended for Sunday's game against Minnesota.\" The conditional #537 named (\"unless the league rescinds the tech on review\") resolved in her favour, so the one-game absence is void: available 8/30. No minutes estimate - the base model's own state prices her (38 min as a starter in Friday's POR@ATL). The 0532Z injury snapshot is byte-identical to 0435Z and still carries no Reese row, consistent with no suspension.",
+      "author": "news-watch",
       "superseded_by": null
     }
   ]
