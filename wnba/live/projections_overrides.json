@@ -3399,7 +3399,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 0137Z diff (was Day-To-Day, Knee, Portland Fire). Dropped from both the league report and the POR@SEA per-event report roughly 50 minutes before that 22:00 ET tip, i.e. cleared to play rather than rolled off after a game. Supersedes entry 225 (questionable, game_date 2026-08-14). Status only, no minutes claim: she has been in and out of the report all month and the ramp is unknown, so no minutes override is the assumption least favourable to a news-driven bet. No PDX props on the current sheet - inert today.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 539
     },
     {
       "player": "Aaliyah Edwards",
@@ -6944,7 +6944,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED in the 2237Z diff (18:37 ET): Cloud goes Out -> Day-To-Day (Knee) on the league report - \"Cloud (knee) is listed as questionable for Saturday's game against the Liberty.\" (Chicago Sky, return_date 2026-08-29). This is the upgrade entry 481 asked to be superseded on, and it firms the 08-29 game (CHI @ NYL, event 2771) in the direction of her playing. Status stays questionable, not in: Day-To-Day off a knee that pulled her out of the 8/25 game mid-game is not a clearance, and the per-event report for 08-29 is not published yet. Still NO minutes haircut and no minutes assertion - she is a 30-36 minute starter in the last archived box scores, so neither zeroing her nor restoring a healthy state is supportable on a day-to-day tag. Supersedes 481. Relevant to the three open 08-29 CHI @ NYL bets (Jones, Taylor, Cardoso), none of them hers; supersede again when the event report publishes.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 540
     },
     {
       "player": "Serah Williams",
@@ -7086,6 +7086,32 @@
       "source": "ESPN news API (news_watch item 868ccc24dc7cc, published 2026-08-29T04:21:49Z)",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/news",
       "quote": "Supersedes #537, which held her out of 8/30 vs MIN on the eighth technical. \"The WNBA rescinded the technical foul that Dream forward Angel Reese picked up Friday against Portland, meaning she remains at seven on the season and will not be suspended for Sunday's game against Minnesota.\" The conditional #537 named (\"unless the league rescinds the tech on review\") resolved in her favour, so the one-game absence is void: available 8/30. No minutes estimate - the base model's own state prices her (38 min as a starter in Friday's POR@ATL). The 0532Z injury snapshot is byte-identical to 0435Z and still carries no Reese row, consistent with no suspension.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Carla Leite",
+      "added": "2026-08-29T16:33:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-29/1633Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN league injury report, NEW this snapshot: Leite (Portland Fire) listed Out, type 'Not Injury Related' - 'The Fire temporarily suspended Leite's contract Saturday.' Return date carried as 2026-09-17. Until-cleared (game_date null): a suspended contract is not a day-to-day question, and POR is not on today's slate (CHI@NY, TOR@PHX), so this is currently inert - it exists so no future sheet prices her stale state. Supersedes the 2026-08-15 'in' entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Natasha Cloud",
+      "added": "2026-08-29T16:33:00Z",
+      "game_date": "2026-08-29",
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-29/1633Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "ESPN injury report, CLEARED this snapshot: Cloud (Chicago Sky, Knee) was Day-To-Day with return date 2026-08-29 in the 15:33Z snapshot and is off the report entirely at 16:33Z, ahead of CHI @ NY (13:00 ET). Read as available. minutes_est left null on purpose - clearing a Day-To-Day tag is evidence she plays, not evidence about her workload, so the base model's own minutes state stands rather than a news-invented number. Supersedes the 2026-08-28 'questionable' entry for the same game date. ESPN lineups were still empty at snapshot time; confirm at tip.",
       "author": "news-watch",
       "superseded_by": null
     }
