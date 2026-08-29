@@ -1,5 +1,4 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2771_threes_jonquel jones_under,2026-08-29,2026-08-29 17:00:00,2771,threes,Jonquel Jones,NYL,CHI@NYL,under,1.5,120.0,0.5469,0.2031,True,-113,-106,2.5,1.53,,1.5,,False,True
-2771_rebounds_kamilla cardoso_under,2026-08-29,2026-08-29 17:00:00,2771,rebounds,Kamilla Cardoso,CHI,CHI@NYL,under,9.5,100.0,0.5787,0.1575,True,-128,-120,0.0,8.94,,9.5,MOVED_OFF_OPEN,False,True
-2771_points_sydney taylor_over,2026-08-29,2026-08-29 17:00:00,2771,points,Sydney Taylor,CHI,CHI@NYL,over,12.5,-114.0,0.5953,0.1175,True,-136,-128,2.0,14.43,,12.5,,False,True
-2771_assists_sabrina ionescu_over,2026-08-29,2026-08-29 17:00:00,2771,assists,Sabrina Ionescu,NYL,CHI@NYL,over,4.5,-140.0,0.6445,0.1048,True,-167,-155,2.0,5.56,,4.5,,True,False
+2771_threes_jonquel jones_under,2026-08-29,2026-08-29 17:00:00,2771,threes,Jonquel Jones,NYL,CHI@NYL,under,1.5,124.0,0.5469,0.225,True,-113,-106,2.5,1.53,,1.5,,False,True
+2771_rebounds_kamilla cardoso_under,2026-08-29,2026-08-29 17:00:00,2771,rebounds,Kamilla Cardoso,CHI,CHI@NYL,under,9.5,-102.0,0.5788,0.1463,True,-128,-120,2.0,8.94,,9.5,,False,True
+2771_points_sydney taylor_over,2026-08-29,2026-08-29 17:00:00,2771,points,Sydney Taylor,CHI,CHI@NYL,over,12.5,-113.0,0.5952,0.122,True,-136,-128,2.0,14.42,,12.5,,False,True
