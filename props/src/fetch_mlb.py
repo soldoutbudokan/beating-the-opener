@@ -28,6 +28,14 @@ ROOT = os.path.join(os.path.dirname(__file__), "..")
 OUT = os.path.join(ROOT, "data", "mlb")
 API = "https://statsapi.mlb.com/api/v1"
 KEEP_TYPES = {"R", "F", "D", "L", "W"}  # regular + postseason rounds
+# a played game is "Final" OR "Completed Early" (rain-shortened; full
+# boxscore, counted by statsapi's season totals) - found by the Market-6 QC
+# gate 2026-08-29: 40 such games across 2015-2026 were being skipped
+FINAL_STATUSES = ("Final", "Completed Early")
+
+
+def is_final(status):
+    return status.astype(str).str.startswith(FINAL_STATUSES)
 PAUSE = 0.15
 WORKERS = 8
 
@@ -87,12 +95,12 @@ def fetch_schedule(season, abbr):
     # stale gameDate + "Postponed", makeup-day row is Final) - prefer the
     # played row explicitly, then the latest officialDate
     df = pd.DataFrame(rows)
-    df["_pri"] = (df.status == "Final").astype(int)
+    df["_pri"] = is_final(df.status).astype(int)
     df = (df.sort_values(["officialDate", "_pri"], kind="mergesort")
           .drop_duplicates("gamePk", keep="last")
           .drop(columns="_pri").reset_index(drop=True))
     print(f"{season}: {len(df)} scheduled games "
-          f"({(df.status == 'Final').sum()} final)", flush=True)
+          f"({int(is_final(df.status).sum())} final incl. completed-early)", flush=True)
     return df
 
 
@@ -147,7 +155,7 @@ def fetch_season(season):
     old_b = pd.read_parquet(bpath) if os.path.exists(bpath) else pd.DataFrame()
     have = set(old_p["gamePk"].unique()) if len(old_p) else set()
 
-    finals = sched[(sched.status == "Final") & ~sched.gamePk.isin(have)]
+    finals = sched[is_final(sched.status) & ~sched.gamePk.isin(have)]
     rows = list(finals.to_dict("records"))
     got_p, got_b, fails = [], [], [0]
 

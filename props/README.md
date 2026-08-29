@@ -66,6 +66,21 @@ Pre-registered scope (the four passing markets), dev:
 - One asterisk: the pre-registered n≥400-at-EV≥3% landed at 291 (scope
   shrank the cell); every quality gate cleared with margin.
 
+## MLB pitcher props, from scratch (2026-08-29, PROGRESS.md Market 6)
+
+The from-scratch programme's first MLB run, on the pitcher family
+{strikeouts, outs_recorded} — FanDuel quotes a coherent close on 100% of
+K props and posts the opener on 43–51%, and the close beats the open
+(+0.0038 LL, t=3.1 dev) — so the venue and the wedge both exist. A
+K-per-BF / K-per-PA Kalman engine with a strictly-prior expected-lineup
+log5 factor beats the EW blend market-free (K MSE −4.3%) and closes 44%
+of the incumbent's gap to the opener (+0.034 → **+0.019**, t=6.2 on dev
+2025) but not the registered striking-distance gate (≤ +0.010); the
+recalibration iteration made it worse. The K opener's implied mean is 7%
+more accurate than the engine's — the sharpest prop market in the repo.
+Holdout 2026 unspent; no live arm. Gates, verdicts and forward paths:
+PROGRESS.md.
+
 ## Caveats that survive into any live design
 
 1. The sim buys FanDuel's **opening** price. Live must catch openers

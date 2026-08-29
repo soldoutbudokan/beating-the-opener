@@ -38,7 +38,7 @@ Easiest → hardest, tackled one at a time:
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
 | 4 | NHL player props | `props/` | **striking distance, unproven** | Registrations N + N2 complete 2026-08-24: talent engine then attempts (Corsi) engine closed 83% of the shots/blocked gap (pooled +0.0078 t=5.7 → **+0.0014 t=1.4** — statistically indistinguishable from the opener; blocked +0.0002 t=0.1); spend condition (dev ≤ 0.000) not met → **holdout unspent**; next: information layer (lineups/PP/goalies), 2026-27 prospective arm (owner decision) |
 | 5 | NBA player props | `props/` | parked | **control** — G1 fail both iterations (+0.0247); calibration fine, discrimination gap; **holdout unspent** (awaits Stage D injury data) |
-| 6 | MLB pitcher props | `props/` | **A complete, registered 2026-08-29** | strikeouts + outs_recorded from the committed 2025-26 archive; benchmark below; talent-engine registration K pushed before any engine code; dev = 2025, holdout = 2026 (unspent) |
+| 6 | MLB pitcher props | `props/` | **control at the serious-effort level** | registration K run 2026-08-29: QC PASS, K-G1 PASS (engine beats the EW blend on K and outs market-free), **K-G2 FAIL both iterations** — dev cell +0.03419 (incumbent) → **+0.01924 (t=6.2)** it.1 → +0.02150 it.2 (not adopted) vs gate ≤ +0.010; spend condition unmet → **2026 holdout unspent**; no prospective arm, no live arm |
 
 ## Common protocol (all markets)
 
@@ -1172,6 +1172,82 @@ reproduce byte-comparably at evaluation time.
   iterations; the 2026 holdout is single-shot and the only place a
   market-beat claim can come from.
 
+
+**Registration K verdicts (2026-08-29, all budgets spent).**
+- **QC gate: FAIL then PASS — and it earned its keep.** First run: coverage
+  100% but the 2016 independent-aggregation check landed at 96.1% (7/180
+  cells, four relievers short by 1–2 BF/outs). Cause found by per-game
+  comparison against statsapi's game logs: `fetch_mlb.py` fetched only
+  `status == "Final"` games, so **rain-shortened "Completed Early" games
+  (59 across 2015–2026) were skipped** — and the coverage check used the
+  same denominator, so it could not see them. Fixed (`FINAL_STATUSES`,
+  applied to the eval-era data too: 2025 +5 games, 2026 +2 — the
+  modelset/benchmark were built from the July fetch and are unchanged;
+  a rebuild would move a handful of grades). Second run: coverage
+  100.0% every season 2015–2026 (24,653 games, 0 failed requests);
+  agreement 2016 99.4% (one remaining single-out mismatch, consistent
+  with a late official scoring change), 2019 100%, 2022 100% →
+  `QC_PASS`. Handedness fetched for all 4,239 ids (`fetch_mlb_people.py`).
+- **K-G1 PASS on both stats** (`talent_mlb.py`; 237k pitcher-games, 572k
+  batter-games, 2,758 pitchers). Walk-forward next-start MSE 2021–2024
+  (n=18,697 starts, bf ≥ 10): **K 5.1895 vs EW blend 5.4204 (−4.3%)**,
+  **outs 13.979 vs 14.068 (−0.6%)**. Decomposition (all tuning-era
+  choices): the expected-lineup log5 term is worth 5.30 → 5.19 (γ=0.5
+  tuned ≤2020; lineup coverage 99.9%); the workload path selected on
+  ≤2020 next-start BF MSE was **(iii) pitches-per-start Kalman ÷
+  pitches-per-BF Kalman** (13.851 vs level-BF 13.860 vs EW 13.888).
+  Grid-boundary note, recorded for the fourth time: every rate state
+  chose the lowest process noise and p0 in the registered grid
+  (q=1e-4, p0=0.05); the level filters chose the top of theirs (p0=1.0).
+- **K-G2 iteration 1 (`fp_model_mlb.py --talent`): FAIL on striking
+  distance, PASS on the rest.** Same-data incumbent EW baseline
+  **+0.03419 (t=8.8)**, cal −1.9pp. Engine: pooled cell **+0.01924
+  (clustered t=6.2)**, 44% of the gap closed; calibration +0.78pp
+  pooled — but **outs +6.4pp**, strikeouts −1.2pp; per market
+  strikeouts +0.01708 (t=5.2), outs +0.02545 (t=3.9). K distribution
+  chosen on ≤2020 threshold likelihood: NegBin (r=31; 0.64760 vs the
+  Binomial-over-BF mixture 0.64800 — the generative mixture lost
+  narrowly; r refit pre-odds = 21). K-G3: behind the same-line close
+  (+0.0215, t=6.8) — no tripwire. ROI at consensus open EV>5% −1.65%
+  (t=−1.0); FD cell at FD close EV>10% n=1,960 ROI −3.7% (t=−1.6) with
+  mean claimed EV +21% — the claimed edges are the model's error, not
+  the market's; placebo 0 bets in every cell. No-move share 15.7%.
+- **Iteration 2 (menu a, `--recal`): NOT adopted — worse.** Fit strictly
+  pre-odds: K μ' = 0.795 + 0.813·μ, outs μ' = 5.33 + 0.685·μ (both
+  reduce 2023–24 MSE out-of-sample), outs distribution on the last 4
+  seasons (validated 2023–24: tails within ±2pp vs +2.6/+4.2pp for the
+  full window), NegBin r refit on the recalibrated μ (329 ≈ Poisson).
+  Dev: pooled **+0.02150 (t=4.9)**, strikeouts +0.01770 (cal +0.5pp),
+  outs +0.03240 (cal +4.4pp). Calibration improved and log loss got
+  worse: the pre-odds fit on *all* starts (openers, bulk relievers,
+  spot starters — where μ is genuinely unreliable) shrinks the mean
+  toward the average, which costs discrimination on the prop-priced
+  population of regular starters. **The NHL N iteration-2 lesson
+  reproduced: a panel-wide pre-odds recalibration does not transfer to
+  the priced population.** Iteration 1 stands as the model of record.
+- **Spend condition (dev ≤ 0.000) not met → Stage C not run; the
+  2026 holdout (3,141 K + 2,932 outs props) is UNSPENT.** No
+  `k-prospective-1`, no live design, nothing in `live/`.
+- **Where the gap is (post-hoc diagnostic, reported only, never
+  claimable):** on dev outs props the opener's implied mean is no
+  better than the engine's (MSE 14.43 vs 14.47) — that gap is
+  distribution *shape* on a selected population; on strikeouts the
+  opener's mean is **7% better** (4.89 vs 5.28) — real discrimination
+  the box-score panel cannot see. The K market is the sharpest prop
+  market this programme has met: the incumbent's +0.034 sits above
+  NBA's +0.025, and the engine's +0.019 is where NBA's baseline started.
+- **Forward paths, each needing a fresh registration:** (1) calibration
+  and distribution fit on the *prop-shaped* population (regular
+  starters with bf_hat ≥ 20 and ≥ 10 prior starts) — the outs head's
+  +4–6pp calibration and the shrinkage failure both point there;
+  (2) the N2-analogue observation model from Statcast (pitches → swings
+  → whiffs → K; CSW%/stuff as the de-noised K-rate observation) — the
+  only candidate that targets the 7% mean gap; (3) point-in-time
+  lineup/pitch-count capture (the T3 analogue) for a prospective arm.
+  MLB stays a research market; the season-end scrape of the archive
+  (BP retains ~13 months) keeps the option of scoring (1)/(2) on
+  2026 data open.
+
 ## Prior art (read before modelling)
 
 - `nba/README.md` — the from-scratch control: the three upper bounds and the
@@ -1779,3 +1855,15 @@ possible cricket odds proxy "used carefully". Session findings:
   class, K-G1/G2/G3, Stage-C spend condition, FD cell, prospective arm,
   Stage-D list) pushed **before any engine code**. Training-era statsapi
   fetch (2015–2022) started; QC next, then `talent_mlb.py`.
+- **2026-08-29 (registration K run + verdict)** — Training-era statsapi
+  fetch 2015–2022 complete (0 failures); **QC gate caught the
+  Completed-Early skip in `fetch_mlb.py`** (59 games), fixed, re-run →
+  PASS; K-G1 PASS on K (−4.3% MSE) and outs; K-G2 it.1 +0.01924 (t=6.2)
+  vs gate ≤ +0.010 → FAIL; it.2 (linear μ recal + windowed outs
+  distribution, pre-odds) +0.02150 → not adopted; spend condition unmet
+  → **holdout unspent, MLB pitcher props = control at the serious-effort
+  level.** Code: `props/src/talent_mlb.py`, `fp_model_mlb.py`,
+  `qc_mlb_hist.py`, `fetch_mlb_people.py`; `fp_benchmark.py` MLB split.
+  Forward paths recorded (prop-shaped calibration population, Statcast
+  observation model, lineup capture). Cricket odds-source hunt started
+  the same session (owner: "try the cricket thing in stages").
