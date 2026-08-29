@@ -6736,7 +6736,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report: 'Wilson (head/back) is questionable for Friday's game against the Tempo.' Back, return_date 2026-08-28. Downgrade from off-report ('in', index 441, 2026-08-23), which this supersedes. No minutes estimate: a questionable star's minutes are unknowable from the report and any number here would manufacture an edge - this entry exists to record the status and to mark her picks for manual availability check near tip (LVA hosts TOR).",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 536
     },
     {
       "player": "Isabelle Harrison",
@@ -7034,6 +7034,32 @@
       "source": "avail:2026-08-29/0137Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Cleared: no longer on the ESPN league injury report as of the 2026-08-29/0137Z snapshot (previous status Day-To-Day). Supersedes index 513, which had her questionable for tonight's WSH @ LA. Status record only - no minutes estimate, so nothing about the projection moves. Bench role (4-12 minutes in her last four appearances, DNP 2026-08-24) and no Cannon prop on the sheet; confirm in the lineup near tip.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Angel Reese",
+      "added": "2026-08-29T02:38:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-29/0238Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "League injury report lists Reese (Atlanta Dream) as Suspension with return_date 2026-09-17. The report's own comment is her line from Friday's 101-83 loss to Portland (38 min, 16 pts, 16 reb), so the suspension begins with Atlanta's next game. Until-cleared (game_date null): unavailable, minutes 0, superseded the moment the feed clears her.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "A'ja Wilson",
+      "added": "2026-08-29T02:38:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-29/0238Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED from the league injury report (was Day-To-Day, entry 511, added 2026-08-29T01:37Z). No minutes estimate attached - the base model's own state prices her from here.",
       "author": "news-watch",
       "superseded_by": null
     }
