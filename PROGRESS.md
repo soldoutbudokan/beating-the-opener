@@ -1642,6 +1642,75 @@ population is neutral-venue tournament cricket, unlike BBL.
   it is dev-grade only. The Odds API cross-check ($30, owner decision)
   would add a bookmaker benchmark on the same matches from 2020.
 
+**Stage A amendment (2026-08-29, before any verdict was recorded):
+onset rule v1 was defective and is replaced by v2.** The registered v1
+onset ("first > 0.08 move in 60 min") fired on thin-book jumps a median
+**33 h before** the labelled start (56% > 24 h early), so the "pre-toss
+close" it defined was a stale early quote and 78% of matched rows lost
+their day-before price (214 rows survived; iteration 1 on that defective
+population read +0.00103, t=0.1 — disclosed, not counted). **v2**: walk
+back from resolution (the price settling at 0/1) and take the end of the
+last calm 2-hour window (range < 0.05) at least 1.5 h before it, bounded
+to ±12 h of the label when one exists. Validation against the labels:
+onset − label median **−9 min** (IQR −25 to +1 min), 943/980 markets
+found, 941 agree with the Cricsheet date, 778 have a day-before price.
+The population is otherwise exactly as registered (volume ≥ $5k, result
+normal, both reference prices defined).
+
+**Stage A benchmark (v2 population, n = 693, 2024-06-12 → 2026-08-22,
+median first quote 94 h out).**
+
+| cell | n | LL(open T−24h) | LL(close pre-toss) | open − close (clustered t) | median volume |
+|---|---|---|---|---|---|
+| **all** | 693 | 0.63494 | 0.61810 | **+0.01684 (t=3.3)** | — |
+| IPL | 137 | 0.7112 | — | +0.0248 (t=2.0) | $1.18M |
+| T20Is | 227 | 0.5242 | — | +0.0254 (t=2.5) | $107k |
+| The Hundred | 53 | 0.6723 | — | +0.0260 (t=3.4) | $148k |
+| T20 Blast | 103 | 0.6672 | — | −0.0010 (t=−0.1) | $36k |
+| PSL | 43 | 0.6528 | — | +0.0027 (t=0.2) | $120k |
+| BBL | 33 | 0.6653 | — | +0.0096 (t=0.8) | $74k |
+| SA20 / MLC / ILT20 / LPL / CPL | 25 / 23 / 21 / 14 / 13 | — | — | mixed, all |t| < 2 | $14–117k |
+
+Open calibration +0.2pp; the line moved (> 1pp) on 79% of markets and
+**pointed at the winner 56.7% of the time (n=550)**. **Verdict on the
+market: unlike the BBL bookmaker average (close no better than open,
+moves at the toss winner 46%), the exchange's pre-toss close IS
+informative** — the two-gate texture props/ Phase 1 called "informative
+mover". Something arrives in the last day (XIs, pitch, money) and the
+exchange prices it.
+
+**Stage B verdicts (both registered iterations spent).**
+- Iteration 1 (α=0.002, σ=40, home_adv=0 from pre-2018 BBL):
+  **+0.04441 (clustered t=3.8) → P-G1 FAIL**; calibration −2.94pp
+  (P-G2 fail by 0.4pp); vs pre-toss close +0.061 (no tripwire); ROI at
+  the open EV>5% −3.2% (t=−0.5), placebo 0 bets.
+- Iteration 2 (re-tuned on 8,220 pre-2024-06 matches: α=0.005, σ=40,
+  home_adv=3): **+0.05155 (t=4.3) → FAIL, worse**; calibration −2.0pp.
+  Iteration 1 stands as the model of record. **Cricket-vs-exchange from
+  scratch = control on the registered population.**
+- Post-hoc split, reported only, never claimable: **franchise leagues
+  (n=466): iteration 1 model − open = −0.0000 (t=0.0), calibration
+  +0.4pp — exact parity with the exchange's day-before price**;
+  internationals (n=227): +0.136 (t=4.9), calibration −9.9pp — a
+  ratings model fed franchise-league deliveries cannot price
+  associate-vs-full-member mismatches the exchange already has at 90%+
+  (its LL there is 0.52). The registered gate pooled both, so the
+  verdict stands; the split is the forward path.
+- `pm-prospective-1` stays registered on the population as amended
+  (v2 timestamps), scored once at n ≥ 300 or 2027-06-30; no betting.
+- Forward paths, each a fresh registration: (1) a franchise-league-only
+  cell (IPL/PSL/Hundred/BBL/SA20/MLC/ILT20/CPL/LPL/Blast) — the model is
+  at the open there and the exchange's close beats its open by ~+0.02
+  on IPL/Hundred, so the WNBA-shaped question (can a strictly-prior
+  model plus a point-in-time XI/pitch layer beat the day-before price?)
+  is live for the first time in this repo's cricket work; (2) per-
+  competition σ and a dispersion fit for lopsided fixtures; (3) The
+  Odds API pull ($30, owner decision) to put a bookmaker open/close on
+  the same 2020+ IPL matches; (4) OddsPortal openers via the Chrome
+  extension if the owner connects it. Live implication: none — and any
+  live design would be on an exchange, not FanDuel, which is a
+  different protocol entirely.
+
 
 ## Push log
 
@@ -2005,3 +2074,14 @@ population is neutral-venue tournament cricket, unlike BBL.
   holdout, model = the frozen 2026-07-31 player model with a neutral-
   venue home rule, two iterations, gates). Price archive still
   downloading; benchmark table + verdict follow.
+- **2026-08-29 (cricket Stage A/B run + verdict)** — price archive
+  complete (2,158 markets, 900k+ 10-min rows, committed under
+  `cricket/data/raw/polymarket/`); **onset v1 found defective and
+  amended to v2 before any verdict** (median −9 min vs label);
+  benchmark n=693: **the exchange's pre-toss close beats its day-before
+  price (+0.0168, t=3.3; 56.7% directional)** — an informative close,
+  unlike BBL's bookmaker average; player model iteration 1 +0.0444
+  (t=3.8) FAIL, iteration 2 +0.0516 FAIL → control on the registered
+  population; post-hoc: parity with the open on franchise leagues
+  (n=466, −0.0000), the miss is all internationals. Prospective arm
+  registered; forward paths recorded (franchise-only cell, The Odds API).

@@ -1,5 +1,18 @@
 # cricket (BBL) — the second control market
 
+> **2026-08-29 revisit — a second cricket benchmark, on an exchange.** The
+> owner asked for cricket "in stages"; the data stage found one free,
+> reachable, still-accruing odds source — **Polymarket** (≈2,000 T20
+> match-winner markets since 2024-06, 10-minute price paths, IPL at ~$2M a
+> match) — and PROGRESS.md "Cricket revisit" / registration P record the
+> rest. Two things below change in that light: (1) on the exchange the
+> **pre-toss close does beat the day-before price** (+0.017 LL, t=3.3, 57%
+> directional over 693 matches) — the "no wedge" finding here is a fact
+> about the BBL bookmaker average, not about T20 cricket; (2) the frozen
+> player model that failed the BBL holdout sits at **exact parity with the
+> exchange's day-before price on franchise leagues** (n=466) and fails
+> only on internationals. Every number below stands as measured.
+
 Fourth market tested with the beating-the-opener methodology, and the second
 **negative result** (with NBA): the one cricket market with free open/close
 history — **Big Bash League match odds** — shows an opener that is *not*

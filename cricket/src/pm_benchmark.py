@@ -136,14 +136,58 @@ def match_markets(mk, cs):
     return pd.DataFrame(rows)
 
 
-def onset_time(t, p):
-    """First 10-min point moving > 0.08 vs 60 min earlier or hitting an
-    extreme, after >= 6 pre-points. Returns the timestamp 60 min earlier
-    (the last quiet point) or None."""
-    for i in range(6, len(t)):
-        j = max(0, i - 6)
-        if abs(p[i] - p[j]) > 0.08 or p[i] > 0.97 or p[i] < 0.03:
-            return t[j]
+def _label_ts(v):
+    if v is None or pd.isna(v):
+        return None
+    try:
+        x = str(v).replace("Z", "+00:00")
+        if x.endswith("+00"):
+            x += ":00"
+        ts = pd.Timestamp(x)
+        ts = ts.tz_localize("UTC") if ts.tzinfo is None else ts.tz_convert("UTC")
+        return ts.timestamp()
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def onset_time(t, p, label=None):
+    """Onset v2 (amended 2026-08-29 after the v1 rule — first > 0.08 move
+    in 60 min — was found to fire on thin-book jumps a median 33 h before
+    the labelled start). The match is the last volatile stretch before the
+    price settles at 0/1: walk back from resolution (first point after
+    which p stays > 0.97 or < 0.03) and return the END of the last calm
+    2-hour window (range < 0.05) that lies >= 1.5 h before resolution —
+    i.e. the last quiet point before the toss/in-play walk. If a label
+    exists the onset must fall within [label - 12 h, label + 12 h] (the
+    label's hour is wrong by a few hours on doubleheaders; its date is
+    reliable); otherwise None."""
+    t = np.asarray(t, float)
+    p = np.asarray(p, float)
+    if len(t) < 12:
+        return None
+    ext = (p > 0.97) | (p < 0.03)
+    res = None
+    for i in range(len(t) - 1, -1, -1):
+        if not ext[i]:
+            res = i + 1
+            break
+    if res is None or res >= len(t):
+        res = len(t) - 1
+    t_res = t[res]
+    lo_t = t_res - 14 * 3600     # a T20 + toss never exceeds ~6 h; search 14 h back
+    i = res
+    while i > 0 and t[i] > t_res - 1.5 * 3600:
+        i -= 1
+    while i > 0 and t[i] > lo_t:
+        j = i
+        while j > 0 and t[j] > t[i] - 2 * 3600:
+            j -= 1
+        if i - j >= 6 and (p[j:i + 1].max() - p[j:i + 1].min()) < 0.05:
+            on = t[i]
+            if label is not None and abs(on - label) > 12 * 3600:
+                return None
+            return on
+        i -= 1
     return None
 
 
@@ -155,7 +199,8 @@ def benchmark(mk, xw, prices):
         if len(g) < 30:
             continue
         t, p = g.t.to_numpy(), g.p.to_numpy(float)
-        on = onset_time(t, p)
+        lab = _label_ts(r.get("game_start_label"))
+        on = onset_time(t, p, lab)
         if on is None:
             continue
         on_dt = pd.Timestamp(on, unit="s", tz="UTC")
