@@ -1,6 +1,6 @@
 """Parse Cricsheet ball-by-ball JSON zips into match + delivery tables.
 
-Input: data/raw/cricsheet/{bbl,ipl,psl,cpl,ntb,t20s}_json.zip, downloaded
+Input: data/raw/cricsheet/{bbl,ipl,psl,cpl,ntb,t20s,hnd,sat,ilt,mlc,wpl,lpl,bpl,ssm}_json.zip, downloaded
 from https://cricsheet.org/downloads/<comp>_json.zip (stable upstream, so
 the zips and parsed parquets are gitignored — re-download any time; this
 script records the exact source).
@@ -23,7 +23,9 @@ import pandas as pd
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 RAWDIR = os.path.join(ROOT, "data", "raw", "cricsheet")
-COMPS = ["bbl", "ipl", "psl", "cpl", "ntb", "t20s"]
+COMPS = ["bbl", "ipl", "psl", "cpl", "ntb", "t20s",
+         # added 2026-08-29 for the Polymarket benchmark (all T20 leagues it lists)
+         "hnd", "sat", "ilt", "mlc", "wpl", "lpl", "bpl", "ssm", "wbb"]
 BOWLER_WICKETS = {"bowled", "caught", "lbw", "stumped", "caught and bowled",
                   "hit wicket"}
 
@@ -37,7 +39,7 @@ def parse_match(comp, mid, blob):
     outcome = info.get("outcome", {})
     row = {
         "match_id": f"{comp}_{mid}",
-        "comp": comp,
+        "comp": comp, "gender": info.get("gender"),
         "date": info["dates"][0],
         "team1": teams[0], "team2": teams[1],
         "venue": info.get("venue"), "city": info.get("city"),

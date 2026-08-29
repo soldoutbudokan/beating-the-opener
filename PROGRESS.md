@@ -1559,6 +1559,90 @@ quotes; the market's own devigged/mid price is the placebo. The two-gate
 wedge test (does the Polymarket close beat its own T−24 h price?) runs
 before any model, exactly as props/ Phase 1 did.
 
+### Registration P — cricket T20 match odds vs Polymarket — gates registered 2026-08-29, before any model is scored on this population
+
+**Population (Stage A, fixed now; code = `cricket/src/pm_benchmark.py`
+as committed at this push).** Polymarket match-winner markets (exactly two
+named outcomes, non-prop question) uniquely matched to a Cricsheet T20
+match — date window ±1 day around the labelled game date, widened to ±2
+only if empty, label-less markets searched between market creation and
+resolution, gender-aware, token-wise team aliases; multi-candidate cases
+are dropped as ambiguous, never guessed — with `result == "normal"` and a
+winner, market volume ≥ $5,000, ≥ 50 pre-onset 10-minute quotes, onset
+date within 1 day of the Cricsheet date, and both reference prices
+defined. ODI/Test markets, ties, no-results and abandoned matches are
+out. Crosswalk at registration: 2,158 markets → 980 matched (IPL 159,
+T20Is 441, T20 Blast 112, Hundred 61, PSL 45, BBL 34, SA20 31, MLC 31,
+ILT20 25, LPL 24, CPL 15), 59 ambiguous; the price archive is still
+downloading, so the benchmark table below is filled in after this push
+and the model never runs before it exists.
+
+**Reference timestamps (the "opener" and "close" on an exchange, fixed
+now).** `onset` = first 10-minute point at which the price has moved
+> 0.08 from 60 minutes earlier or hit an extreme (> 0.97 / < 0.03), after
+≥ 6 prior points — empirically the toss (the price starts moving a median
+50 min *before* the labelled start, and the label itself is a per-league
+default slot wrong by hours on ~30% of markets, so the label is never
+used for timing). **close** = last price ≤ onset − 45 min (pre-toss —
+the BBL finding that the market moves toward the toss winner, who wins
+49% of the time, makes anything later a noise benchmark). **open** = last
+price ≤ onset − 24 h (the day-before price; first quotes arrive a median
+69 h out, 93% ≥ 24 h). Prices are outcome-0 mid-prices (the two tokens
+sum to ≈ 1; P(outcome 1) = 1 − p). Placebo = the market's own price.
+
+**Stage A wedge (recorded, not a gate):** LL(open) − LL(close) with
+date-clustered t, moved share (> 1pp) and directional share — the same
+two-gate texture read as props/ Phase 1 and cricket's BBL screen. If the
+pre-toss close is no better than the day-before price, that is the BBL
+"nothing arrives" texture again and is recorded as the market's verdict
+for this benchmark; the model still gets scored (a from-scratch model can
+beat a market that does not update).
+
+**Splits.** **Dev = every matched market resolved on or before
+2026-08-23** (the Cricsheet cut at registration; ≈ 850–900 rows across
+2024-06 → 2026-08). **Holdout = prospective**: markets resolved after
+this push, scored ONCE when n ≥ 300 or on 2027-06-30, whichever first
+(the running calendar: Asia Cup / CPL Sept 2026, BBL Dec 2026, SA20 +
+ILT20 Jan 2027, PSL + IPL spring 2027). No historical holdout is carved
+out of dev — the prospective arm is the only place a claim can come from.
+
+**Model (Stage B, fixed now).** `cricket/src/fp_player_model.py`'s
+`ratings_pass` exactly as committed 2026-07-31: cross-league per-player
+batting/bowling values from ball-by-ball, aggregated over the strictly
+prior appearance-weighted expected XI, expected margin = 120 balls ×
+value difference (+ home advantage), P via a Normal. Now fed all 15
+Cricsheet T20 competitions on disk (2005 → 2026-08-23). Home advantage
+applies only when outcome 0's team name shares a token with the
+Cricsheet venue city (Chennai Super Kings at Chennai; India at an Indian
+ground); neutral venues get 0 — stated now because most of this
+population is neutral-venue tournament cricket, unlike BBL.
+- **Iteration 1**: hyperparameters (α, σ, home_adv) **tuned on pre-2018
+  BBL only**, the rule of the 2026-07-31 registration, re-derived on the
+  enlarged competition set and printed before scoring.
+- **Iteration 2 (only if 1 fails P-G1)**: the same grid re-tuned on all
+  Cricsheet matches dated **before 2024-06-01** (the pre-benchmark era,
+  market-free). Nothing else may change. **At most two iterations.**
+- **P-G1 (dev)**: LL(model) − LL(open) ≤ **+0.010** (striking distance).
+- **P-G2 (dev)**: |mean P(outcome 0) − realized| ≤ **2.5pp**.
+- **P-G3 tripwire (dev)**: beats the pre-toss close by > 0.005 at
+  clustered t > 2 → leakage investigation (the expected-XI roster is
+  strictly prior; the toss and tonight's XI never enter).
+- **ROI (dev, reported)**: flat $1 at the open, paying a 1¢ spread
+  (buy at p + 0.01), EV > 2% / 5% tiers with clustered t; the placebo
+  column bets the market's own price (0 bets by construction).
+- **Prospective arm `pm-prospective-1`**: registered at this push
+  regardless of the dev verdict (scoring is free; the population is
+  accruing). Scored once as above with the same gates read as claims:
+  LL gap ≤ 0.000 = the from-scratch model matches the exchange's
+  day-before price; t ≤ −2 = beats it. **No betting under any outcome
+  without a separate owner decision** — Polymarket is not FanDuel, and
+  the live question (fees, slippage at size, resolution risk) is a
+  different registration.
+- Multiple-testing note: dev here is the whole history of the source;
+  it is dev-grade only. The Odds API cross-check ($30, owner decision)
+  would add a bookmaker benchmark on the same matches from 2020.
+
+
 ## Push log
 
 - **2026-07-31** — Programme opened. PROGRESS.md created (recreated from
@@ -1913,3 +1997,11 @@ before any model, exactly as props/ Phase 1 did.
   cricket. Cricsheet re-ingested (9,900 matches). `fetch_polymarket.py`
   written and running; Stage A (benchmark + wedge test + gates) next,
   registered before any model.
+- **2026-08-29 (cricket Stage A + registration P)** — Cricsheet
+  extended to 15 T20 competitions (12,348 matches incl. women's);
+  `pm_benchmark.py` crosswalk 980/2,158 markets; **registration P
+  pushed before any model is scored on the Polymarket population**
+  (timestamps, population, dev = all history to 2026-08-23, prospective
+  holdout, model = the frozen 2026-07-31 player model with a neutral-
+  venue home rule, two iterations, gates). Price archive still
+  downloading; benchmark table + verdict follow.
