@@ -6958,6 +6958,19 @@
       "quote": "CLEARED in the 2336Z diff (19:36 ET): Williams (was Day-To-Day, Illness, Portland Fire, return_date 2026-08-28) no longer appears on the ESPN league injury report or on any per-event report. Supersedes entry 505 (the 08-27 questionable), whose game_date 2026-08-28 is the POR @ ATL game that tipped at 19:30 ET and was IN_PROGRESS at capture - so the drop is artifact-suspect: ESPN clears injury rows at tip, and the lineups feed cannot arbitrate because it flags EVERY non-starter on both teams as dnp=true six minutes in (all five Portland and all five Atlanta reserves read the same). The benign reading is equally available: her return_date was today and the 08-25 Out had already been upgraded to Day-To-Day yesterday. Recorded as in with NO minutes claim - a clearing is evidence of availability, not of a role, and she is a 12-19 minute reserve with no starts. Inert for pricing: her only pinned game has tipped, and nothing is asserted about Portland's next game.",
       "author": "news-watch",
       "superseded_by": null
+    },
+    {
+      "player": "Kahleah Copper",
+      "added": "2026-08-29T00:37:00Z",
+      "game_date": "2026-08-29",
+      "status": "questionable",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-29/0037Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0037Z diff (20:37 ET Fri 8/28) on the ESPN league injury report: Kahleah Copper, Phoenix Mercury, Day-To-Day (Ankle), return_date 2026-08-29 - \"Copper (ankle) is listed as probable for Saturday's game versus the Tempo.\" First Copper entry in this file. The tag is fresh: she played 32 minutes and scored 35 for Phoenix on 8/27, and has started every archived 2026 game (30-37 minutes in the last six). Recorded questionable, not out and not in - a new Day-To-Day is not a clearance, and probable is not a state the schema carries. NO minutes haircut and no minutes assertion: an ankle tag on a 30+ minute starter the day after a full game supports neither zeroing her nor asserting a healthy state, so pricing is unchanged from the base model. Targets the 8/29 PHO game vs Toronto; the per-event report for that game is not published yet - supersede when it is. No Copper prop is on the current sheet and no open bet is hers.",
+      "author": "news-watch",
+      "superseded_by": null
     }
   ]
 }
