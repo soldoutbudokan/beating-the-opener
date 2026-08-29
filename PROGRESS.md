@@ -38,6 +38,7 @@ Easiest → hardest, tackled one at a time:
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
 | 4 | NHL player props | `props/` | **striking distance, unproven** | Registrations N + N2 complete 2026-08-24: talent engine then attempts (Corsi) engine closed 83% of the shots/blocked gap (pooled +0.0078 t=5.7 → **+0.0014 t=1.4** — statistically indistinguishable from the opener; blocked +0.0002 t=0.1); spend condition (dev ≤ 0.000) not met → **holdout unspent**; next: information layer (lineups/PP/goalies), 2026-27 prospective arm (owner decision) |
 | 5 | NBA player props | `props/` | parked | **control** — G1 fail both iterations (+0.0247); calibration fine, discrimination gap; **holdout unspent** (awaits Stage D injury data) |
+| 6 | MLB pitcher props | `props/` | **A complete, registered 2026-08-29** | strikeouts + outs_recorded from the committed 2025-26 archive; benchmark below; talent-engine registration K pushed before any engine code; dev = 2025, holdout = 2026 (unspent) |
 
 ## Common protocol (all markets)
 
@@ -1005,6 +1006,172 @@ and the betting sheet unchanged.** `wnba/src/minutes_engine.py` +
   base the fp_live news overrides modify (betting change = owner
   decision).
 
+## Market 6 — MLB pitcher props (`props/`) — owner-directed 2026-08-29
+
+Owner ask (2026-08-29): take the WNBA lessons to another market with
+gettable odds and public data, ideally tradeable at FanDuel, and backtest.
+Screen run this session from this machine (statsapi.mlb.com, SBR and
+Polymarket are reachable here; the BettingPros key serves no sport beyond
+the five already archived, so a *new* sport would need a new odds source):
+
+- **NFL props** (season opens 2026-09-10): one archived season, 64 dates,
+  every market fails the informative-close gate at current power — the
+  re-screen waits on 2026 data, as FINDINGS.md already says.
+- **NBA props**: the Stage-D injury-report job, season opens late October.
+- **MLB pitcher props — chosen.** The archive already holds them and the
+  old-era "venue empty" verdict was a property of the *anchored move
+  model's* trade cell (FD-sourced opener ∧ FD close ∧ side agrees →
+  16 bets), not of the market: on the fp population FanDuel quotes a
+  coherent close on **100% of strikeout props and posts the opener itself
+  on 43–51%**, the close beats the open on Ks in both seasons (+0.0038
+  t=3.1 dev; +0.0049 t=2.6 holdout — the two-gate wedge, reproduced),
+  openers post the night before (median ≈ 11pm ET), and FD's K line is
+  still at the open at close 88% of the time (the market moves the juice,
+  rarely the half-integer line). Two seasons are archived, the season is
+  running (through 2026-09-27 + playoffs), and the generative story is the
+  cleanest in the repo: **K = batters faced × K-rate**, i.e. the WNBA
+  minutes × per-minute-rate architecture with BF as "minutes", the
+  opposing lineup as the defense factor, and the posted lineup/pitch-count
+  news as the T3-analogue information layer.
+
+**Stage A complete (2026-08-29).** Pipeline unchanged from the 2026-07-28
+build (`fetch_mlb` → `build_props` → `map_events` → `grade_props` →
+`features` → `build_modelset`; graded 2025-03-18 .. 2026-07-27; K/outs
+book-0 match 99.4%, void 4.8% — pitcher props void unless started).
+Benchmark (`fp_benchmark.py --sport MLB --markets …`; conventions as
+Markets 1/4/5: matched, non-void, coherent consensus open, no push; over =
+actual > open_line; **dev = 2025 season, holdout = 2026**):
+
+| market | split | n | LL(open) | open−close same line (t, n) | over rate | implied | FD close | FD-sourced open |
+|---|---|---|---|---|---|---|---|---|
+| strikeouts | dev 2025 | 4,847 | 0.68854 | **+0.00378 (t=3.1, n=4,211)** | 0.502 | 0.497 | 100% | 43% |
+| strikeouts | holdout 2026 | 3,141 | 0.68556 | +0.00494 (t=2.6, n=2,471) | 0.497 | 0.497 | 100% | 51% |
+| outs_recorded | dev 2025 | 1,671 | 0.68195 | +0.00055 (t=0.5, n=1,443) | 0.486 | 0.507 | 99% | 2% |
+| outs_recorded | holdout 2026 | 2,932 | 0.68382 | +0.00279 (t=1.7, n=2,269) | 0.514 | 0.508 | 100% | 0% |
+| pitcher family (5 mkts) | dev 2025 | 14,843 | 0.68587 | +0.00161 (t=3.4) | 0.485 | 0.496 | — | 14% |
+
+Unlike WNBA there is **no over-shade on Ks** (implied 0.497 vs realized
+0.502); outs carries a 2pp over-shade on dev that does not persist on
+holdout. hits_allowed / walks_allowed / earned_runs have no FanDuel quote
+in the archive at all — reported as diagnostics only, never a cell.
+Registered pitcher family for this market: **{strikeouts, outs_recorded}**.
+
+### Registration K — pitcher talent engine — gates registered 2026-08-29, before any engine code exists
+
+**Data (acquisition, not modelling).** Training era 2015–2022 fetched
+from statsapi itself (`fetch_mlb.py --seasons 2015 … 2022`, same parser as
+the 2023–2026 fetch — single source end to end), gitignored/regenerable;
+plus `people` handedness (pitchHand/batSide) for every id in the panel.
+**QC gate before any tuning (pre-registered):** (a) per-season boxscore
+coverage ≥ 98% of that season's scheduled finals (types R + postseason);
+(b) independent-aggregation agreement: for a random 60 pitcher-seasons in
+each of 2016, 2019, 2022, the boxscore-summed season totals of {K, BF,
+outs} equal statsapi's own `stats=season` totals on ≥ 98% of cells (that
+endpoint is computed upstream from the official play-by-play, so a missed
+or double-counted game shows up as a mismatch). Fail → investigate and
+fix before the engine sees anything.
+
+**Engine class (fixed now).** The T1/N template, adapted:
+- Per-pitcher scalar Kalman on `kr` = K per batter faced (obs k/bf,
+  R = rvar/bf), all appearances (starts and relief) feed the state; career
+  curves by the delta method over career *appearances* (BUCKET=30,
+  MAX_BUCKET=15 → flat past 450 games), groups {SP, RP} by prior-season
+  majority role (rookies SP); season key = the schedule season (not
+  `dt.year` — MLB postseason is the same key anyway); offseason inflation
+  ×10; grids and tuning exactly as N.
+- Per-batter scalar Kalman on `br` = K per plate appearance (obs so/pa,
+  R = rvar/pa), one group, BUCKET=100 games, MAX_BUCKET=12.
+- Workload ("minutes"): the pre-start BF estimate `bf_hat`. Three
+  candidate paths, **selected once by tuning-era next-start MSE (starts
+  before 2021-01-01), never on dev**: (i) the incumbent EW blend
+  0.6·bf_ewf + 0.4·bf_ews; (ii) a Kalman level filter on BF per start;
+  (iii) pitches-per-start Kalman ÷ pitches-per-BF Kalman.
+- Opponent: strictly-prior expected lineup = the opponent's starting nine
+  (batting-order slots 100–900) from its most recent game against a
+  starter of the same hand within the last 10 days, else its last game —
+  never tonight's lineup (the nba/ availability leak) — lineup K
+  propensity = mean of the nine `br` states (rookies at the league prior);
+  combined with the pitcher's `kr` by **log5 against the walk-forward
+  league K/PA rate**, with one scalar γ on the lineup term (γ=1 = pure
+  log5) fit on ≤2020 starts.
+- Park: per-venue K factor, shrunk, refit walk-forward on prior seasons
+  only. No umpire, weather or pitch-tracking inputs in this registration
+  (Stage-D candidates, listed below).
+- Distributions: strikeouts = Binomial(BF, p) mixed over BF ~ discretised
+  Normal(bf_hat, σ_bf(bf_hat)) with σ_bf fit ≤2020 — the generative
+  distribution — with NegBin (r by pre-odds threshold likelihood, the N2
+  machinery) as the alternative; **choice made on ≤2020 threshold
+  likelihood with synthetic half-integer lines, never on dev.**
+  outs_recorded = empirical conditional distribution of outs given the
+  predicted mean (bucketed), fit ≤2020 and refit walk-forward — the
+  inning-boundary multimodality (mass at 15/18) is why a Normal is wrong
+  at 15.5/16.5/17.5 lines. Calibration constants (c, home) fit strictly
+  pre-odds (< 2025-03-18).
+- The consensus line enters only as the scoring threshold. No market-
+  derived column of any kind is an input; talent columns are joined at
+  scoring time (the wnba `--talent` pattern) so no new column enters the
+  modelset and the |corr| > 0.12 leakage guard is unaffected.
+
+**Isolation rule.** `data/mlb/` 2023–2026 parquets, `panel_mlb.pkl`,
+`modelset_mlb.pkl`, `dist_params_mlb.json` and `fp_benchmark.py`'s
+population are untouched by the engine; the benchmark above must
+reproduce byte-comparably at evaluation time.
+
+- **K-G1 (market-free)**: walk-forward next-start prediction on starts
+  2021-03-01 .. 2024-12-31 (bf ≥ 10): per-start MSE of K and of outs —
+  engine path (kr × bf_hat × lineup/park factors; outs from the selected
+  workload path) vs the incumbent per-game EW blend 0.6·{k,outs}_ewf +
+  0.4·{k,outs}_ews (MLB alphas f=0.25/s=0.08, shift-then-ewm, computed
+  identically in the module). **Cell rule fixed now: the registered cell
+  for K-G2/Stage C = the subset of {strikeouts, outs_recorded} whose
+  stat passes K-G1; if neither passes → stop market-free, nothing touches
+  dev or holdout.** No iteration cap on the market-free stage (the T1
+  convention: fix before it touches props), but every variant tunes on
+  ≤2020 only.
+- **K-G2 (dev = 2025 props)**: `fp_model_mlb.py --talent`: cell markets
+  priced from the engine; the incumbent EW-blend path (per-game blend ×
+  opponent factor (opp_so_pa_ew/league)^0.5, pre-odds calibration —
+  the Market-4/5 Stage-B class) computed on the same rows as the
+  same-data baseline and reported alongside. Gates: pooled cell
+  LL(model) − LL(open) ≤ **+0.010** (striking distance, the standard G1)
+  AND improve on the same-data EW baseline, AND pooled |mean P(over) −
+  realized| ≤ **2.5pp**. **At most two iterations**; iteration 2 must
+  come from this menu, fixed now: (a) engine-aware pre-odds
+  recalibration (linear μ or threshold-likelihood dispersion, the N/N2
+  option), (b) platoon-split states (kr vs LHB/RHB, br vs LHP/RHP from
+  play-by-play), (c) workload path switch among the three candidates.
+- **K-G3 tripwire**: beats the same-line close by > 0.001 LL at |t| > 3
+  → halt, leakage investigation (the K close is genuinely sharper than
+  its open here, so this tripwire carries real weight, unlike NHL's).
+- **Stage C (holdout = 2026 props, scored ONCE) — spend condition
+  registered now: run only if K-G2's pooled dev cell gap ≤ 0.000** (the
+  Market-1 lesson made a rule, as in N). If run: pooled + per-stat LL gap
+  vs open with date-clustered t (≤ −2 = the opener beaten from scratch);
+  flat $1 ROI at consensus open, EV > 2% / 5%, clustered t, devigged-open
+  placebo; no-move share for CLV context; **and the FanDuel cell**: rows
+  with a coherent FD quote, priced at FD's close (the price available
+  after the opener), EV > 5% / 10% tiers with clustered t and placebo —
+  the venue question answered on the same sheet. "Improved but still
+  positive" → record, park, holdout stays unspent.
+- **Prospective arm `k-prospective-1`** (registered at the lock push, if
+  K-G2 passes): props dated after the push, scored once at season end
+  from a post-hoc `scrape_bp.py --sport MLB` (BettingPros serves
+  historical openers for ~13 months, so no daily routine is needed for a
+  *scoring* arm). Same metrics as Stage C. **No live betting off this
+  market under any outcome without a separate owner decision**, and any
+  live design starts from a fresh PROTOCOL (opener-capture timing, the
+  MOVED_OFF_OPEN/STALE gates, lineup-posting cadence) — none of that is
+  registered here.
+- **Stage-D candidates recorded now**, each needing a fresh registration:
+  point-in-time posted lineups and probable-pitcher changes (the T3
+  analogue), umpire K-zone effects (officials are in the boxscore),
+  Statcast whiff/CSW rates as a de-noised observation model (the N2
+  analogue: pitches → swings → whiffs → K), minor-league priors for
+  debut starters.
+- Multiple-testing note, stated openly: dev 2025 is reused by both
+  iterations; the 2026 holdout is single-shot and the only place a
+  market-beat claim can come from.
+
 ## Prior art (read before modelling)
 
 - `nba/README.md` — the from-scratch control: the three upper bounds and the
@@ -1601,3 +1768,14 @@ possible cricket odds proxy "used carefully". Session findings:
   has no box row in either feed and sits inside `settle_bets.py`'s 3-day
   grace window, so it stays open until a later firing settles or voids it.
   Nothing in the model, the gates or the pricing path was changed.
+
+- **2026-08-29 (new market, owner-directed: "apply the WNBA lessons to
+  another market … back test")** — Screen from this machine (statsapi,
+  SBR, Polymarket reachable; BP key covers no new sport): **MLB pitcher
+  props chosen** over NFL (one underpowered season, opens 09-10) and NBA
+  (late October, Stage-D job). Stage A complete on the existing pipeline:
+  `fp_benchmark.py` gains the MLB split (dev 2025 / holdout 2026) and
+  venue columns; benchmark table + **registration K** (QC gate, engine
+  class, K-G1/G2/G3, Stage-C spend condition, FD cell, prospective arm,
+  Stage-D list) pushed **before any engine code**. Training-era statsapi
+  fetch (2015–2022) started; QC next, then `talent_mlb.py`.
