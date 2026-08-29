@@ -1,5 +1,5 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2772_rebounds_natasha mack_under,2026-08-29,2026-08-30 02:00:00,2772,rebounds,Natasha Mack,PHO,TOR@PHO,under,7.5,110.0,0.752,0.5793,True,-270,-244,0.0,5.64,,7.5,SUSPECT_EV(58%);ROLE_MIN?;ROLE_START?,False,False
+2772_rebounds_natasha mack_under,2026-08-29,2026-08-30 02:00:00,2772,rebounds,Natasha Mack,PHO,TOR@PHO,under,7.5,104.0,0.752,0.5342,True,-270,-244,0.0,5.64,,7.5,SUSPECT_EV(53%);ROLE_MIN?;ROLE_START?,False,False
 2772_assists_kiki rice_under,2026-08-29,2026-08-30 02:00:00,2772,assists,Kiki Rice,TOR,TOR@PHO,under,4.5,110.0,0.6974,0.4646,True,-209,-192,0.0,3.52,,4.5,SUSPECT_EV(46%),False,False
 2773_assists_rhyne howard_over,2026-08-30,2026-08-30 19:00:00,2773,assists,Rhyne Howard,ATL,MIN@ATL,over,3.5,128.0,0.5819,0.3267,True,-129,-121,0.0,4.07,,3.5,SUSPECT_EV(33%),False,False
 2771_threes_jonquel jones_under,2026-08-29,2026-08-29 17:00:00,2771,threes,Jonquel Jones,NYL,CHI@NYL,under,1.5,126.0,0.5467,0.2355,True,-113,-106,2.5,1.53,,1.5,,False,True
