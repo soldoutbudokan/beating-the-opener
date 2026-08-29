@@ -1522,6 +1522,43 @@ possible cricket odds proxy "used carefully". Session findings:
   ML/puck-line openers) is the natural follow-up registration if the
   props cell dies, using the same archived game-market offers.
 
+
+## Cricket revisit — odds-source hunt (owner-directed 2026-08-29: "try the cricket thing in stages")
+
+Stage 0 = get the data. Probed from the owner's Mac (open network) with a
+six-route parallel sweep plus direct follow-ups; every claim below was
+tested with real requests this session.
+
+| route | verdict | what it gives | blocker |
+|---|---|---|---|
+| **Polymarket** (Gamma + CLOB APIs) | **usable now, free** | 7,592 closed cricket events since 2024-06 (T20 WC 2024 onward; 1,000–1,500/month through 2026) → **≈2,000 match-winner markets** (two named outcomes; IPL 2025+2026 ≈ 145, PSL 51, Hundred 62, BBL 36, SA20 32, MLC 31, T20 Blast 163, T20 WC/qualifiers 262, plus internationals); 10-minute price paths from market creation to resolution; first quote **median 69 h before start, 93% ≥ 24 h**; median volume per match IPL **$2.07M**, Hundred $166k, PSL $113k, MLC $110k, BBL $74k, SA20 $35k | no bookmaker "opener" — open/close are *pre-registered timestamps*; `gameStartTime` is a per-league default slot, wrong by hours on ~30% of markets (doubleheaders, qualifiers) → the true start/toss must be recovered from the price path (in-play onset; the price starts moving a median 50 min *before* the labelled start = the toss) and cross-checked against Cricsheet dates; exchange caveats (thin books outside IPL, fees, UMA resolution) as recorded 2026-08-24 |
+| **The Odds API** (paid) | usable with payment | 5-min snapshots of every bookmaker's board: `cricket_ipl` from **2020-09-18** (≈490 IPL matches over 7 seasons), BBL from 2020-11, CPL/Hundred/T20Is from 2022, PSL/Blast from 2023; match winner only | historical endpoint is paid-only: IPL 2020–26 at 2 snapshots/match ≈ 9,800 credits → **$30 (one month of the 20K plan)**; all covered T20 comps ≈ 49k credits → $59; sign-up needs owner email + reCAPTCHA + card; FanDuel-on-cricket unverified (their cricket example shows only UK books); nothing before mid-2020; no SA20/ILT20 keys |
+| **Betfair historic data** | owner action — effectively dead here | true first-traded open + pre-off close, all cricket since 2015-05; BASIC free with an account, ADVANCED £49/month for cricket | every `*.betfair.com` host is Cloudflare-403 from this machine (egress 38.45.1.178, Toronto hosting ASN — Betfair blocks CA/US); needs a KYC'd account in a permitted jurisdiction *and* a residential connection there. Free by-product: Betfair Australia publishes BBL10–15 price CSVs |
+| **OddsPortal** (live site) | partial | old results pages still embed the **last 50 matches of each season with per-bookmaker closing odds** (IPL 2008→2025, ~900 matches) | pagination and the match pages now run on a Next.js front end whose `backend.oddsportal.com` API 403s without a browser session (`/api/auth-token` → `hasAuthToken:false`); opening odds unreachable without the Chrome extension (not connected on this machine) |
+| **SofaScore** | dead from here | per-event JSON with initial (opening) and final odds | HTTP 403 on every host/path — datacenter-IP block |
+| **BetExplorer** | dead | — | has never carried cricket (7 sports; `/cricket/*` 404 with a passing football control; single 2012 Wayback capture is a 404) |
+| aussportsbetting / GitHub / Kaggle datasets | dead | aussportsbetting 403 and no IPL file; GitHub search finds only scrapers of the OddsPortal results pages (closing odds) and a 2015 ODI World Cup Betfair dump | — |
+
+**Decision (Stage 0 → Stage A): Polymarket is the benchmark for the cricket
+revisit**, with The Odds API as the optional bookmaker cross-check the owner
+can buy for $30. It is the only route that is free, reachable, timestamped,
+already ≈2,000 T20 matches deep, deep enough in IPL to matter ($2M a
+match is more than any sportsbook limit the owner will meet), and — unlike
+every previous cricket source — *still accruing*, so a prospective arm is
+possible. Ball-by-ball play data re-downloaded from Cricsheet (9,900 T20
+matches, 2.27M deliveries, 2005 → 2026-08-23). Archiver:
+`cricket/src/fetch_polymarket.py` → committed
+`cricket/data/raw/polymarket/{markets,prices}.parquet`.
+
+**Recorded before Stage A is registered (so the design is honest):** the
+benchmark timestamps must be fixed in advance — candidate "open" = last
+price at (T_start − 24 h), "close" = last price ≥ 45 min before the in-play
+onset (pre-toss, per the BBL toss-noise finding); population = match-winner
+markets matched to a Cricsheet match, ≥ $5k volume, ≥ 50 pre-start
+quotes; the market's own devigged/mid price is the placebo. The two-gate
+wedge test (does the Polymarket close beat its own T−24 h price?) runs
+before any model, exactly as props/ Phase 1 did.
+
 ## Push log
 
 - **2026-07-31** — Programme opened. PROGRESS.md created (recreated from
@@ -1867,3 +1904,12 @@ possible cricket odds proxy "used carefully". Session findings:
   Forward paths recorded (prop-shaped calibration population, Statcast
   observation model, lineup capture). Cricket odds-source hunt started
   the same session (owner: "try the cricket thing in stages").
+- **2026-08-29 (cricket odds-source hunt)** — six-route sweep + direct
+  follow-ups (table in the new "Cricket revisit" section): **Polymarket
+  usable now** (≈2,000 T20 match-winner markets since 2024-06, 10-min
+  price paths, IPL $2M/match), The Odds API the $30 bookmaker option
+  (2020+), Betfair blocked by jurisdiction from this machine, OddsPortal
+  closing-only/partial, SofaScore IP-blocked, BetExplorer never had
+  cricket. Cricsheet re-ingested (9,900 matches). `fetch_polymarket.py`
+  written and running; Stage A (benchmark + wedge test + gates) next,
+  registered before any model.
