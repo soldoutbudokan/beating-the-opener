@@ -1712,6 +1712,59 @@ exchange prices it.
   different protocol entirely.
 
 
+### Registration Q — cricket v2: beat both cells (owner-directed 2026-08-30)
+
+Owner goal: "keep going until you come up with a model that beats the
+league AND international markets … be creative on data and techniques …
+think in a meta way, with knowledge of how markets work." This
+registration restructures the cricket work for open-ended iteration
+without corrupting the record:
+
+- **Dev is openly reused.** The registration-P population (n=693, both
+  reference prices, onset v2) is now a *development* set: every
+  evaluation on it is logged in this file, none is a claim. **The only
+  claim generator remains `pm-prospective-1`** (markets resolved after
+  2026-08-29), plus any later prospective arm registered at a lock push.
+- **Iteration discipline**: model variants may iterate without limit on
+  matches dated **< 2024-06-01** (train era, market-free); a variant may
+  be evaluated on dev only after it improves the train-era walk-forward
+  next-match log loss (a market-free criterion), and every dev touch is
+  logged with its result.
+- **Goal gates (dev-grade by construction, stated so the goal has a
+  definite meaning):** LL(model) − LL(open T−24h) **< 0.000 on BOTH
+  cells** (franchise = all non-t20s comps; international = t20s) **and
+  pooled clustered t ≤ −1.5**. Meeting them = "dev beat, prospective
+  pending", recorded in exactly those words.
+- **Market-property finding recorded first (the meta wedge, measured on
+  dev before any v2 model existed):** the exchange's day-before price
+  shows **favorite–longshot bias in internationals** — favorites at
+  0.5–0.6 implied win 65.1% (+11.3pp, n=63), at 0.8–0.9 implied win
+  92.3% (+7.3pp, n=26) — mostly corrected by the pre-toss close (which
+  still shows +5.0/+3.8pp). Franchise leagues tilt the other way
+  (0.6–0.7 favorites win 55.2%, −7.0pp, n=67). None of this enters the
+  model as an input (prices are never features); it says a *correctly
+  calibrated* from-scratch model is paid by the market's own bias
+  exactly where iteration 1 was weakest, and the WNBA over-shade
+  precedent applies: bias harvesting is legitimate when the model's own
+  probability is market-free.
+- **Model class v2 (fixed now; all fitting/tuning < 2024-06-01):**
+  (a) **team Elo** per gender across all 15 competitions (K, home-adv,
+  season regression, format handling tuned on train; the mismatch
+  backbone the player model lacks); (b) **player-composition v2** —
+  batting AND bowling values incorporating wicket value, phase-of-
+  innings roles (ball-by-ball over numbers, being added to the ingest),
+  venue par-score normalization, balls-faced weighting; (c) a **blend**
+  of (a) and (b) on the logit scale with segment-dependent weights
+  (internationals vs franchise, data-richness-dependent) fit on train;
+  (d) dispersion: P(win) mapping with per-segment scale, replacing the
+  single σ=40 Normal. Candidate additions if needed, each still
+  market-free: dead-rubber/tournament-stage flags from standings,
+  cross-gender pooling forbidden, ICC-ranking reconstruction from
+  results only.
+- The ban list stands: no market-derived quantity is ever a model input;
+  the exchange price is scoring benchmark and settlement only.
+
+
 ## Push log
 
 - **2026-07-31** — Programme opened. PROGRESS.md created (recreated from
@@ -2085,3 +2138,10 @@ exchange prices it.
   population; post-hoc: parity with the open on franchise leagues
   (n=466, −0.0000), the miss is all internationals. Prospective arm
   registered; forward paths recorded (franchise-only cell, The Odds API).
+- **2026-08-30 (registration Q)** — owner: focus cricket, iterate until
+  both cells are beaten, creative data/techniques allowed. Q pushed
+  before any v2 code touches dev: dev openly downgraded to a logged
+  development set (prospective arm = only claim), train-era-first
+  iteration rule, goal gates (both cells < 0.000, pooled t <= -1.5),
+  the favorite-longshot-bias finding, and the v2 model class (team Elo
+  + player-composition v2 + logit blend + per-segment dispersion).
