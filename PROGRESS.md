@@ -1765,6 +1765,42 @@ without corrupting the record:
   the exchange price is scoring benchmark and settlement only.
 
 
+### Registration Q — iteration log (updated every push)
+
+Model: `cricket/src/pm_model2.py`. Train = walk-forward LL on 2018→2024-05,
+frozen mask (≥10 prior real matches; n = 1,083 intl-male / 637 intl-female /
+2,763 franchise). Dev = the registration-P population (n=693; franchise 466 /
+international 227; open LL 0.6889 / 0.5242). Goal gates: both dev cells
+< 0.000, pooled clustered t ≤ −1.5.
+
+| it | change (all fit/tuned on train) | train blend LL | dev franchise | dev intl | pooled |
+|---|---|---|---|---|---|
+| 1 | Elo (pooled params) + player-v2 (phase/wicket/balls-weight) + per-segment logit blend | 0.66230 | +0.0069 | +0.0871 | +0.0332 (t=3.6) |
+| 2 | per-segment Elo params, v1-player as third component, cubic-logit link | 0.66017 | — | — | — (no dev touch) |
+| 3 | MOV-Elo (crude margin), wider K grid, gender-split intl segments | 0.65874 | +0.0075 | +0.0901 | +0.0346 |
+| 4 | cross-format Elo food (3,810 ODI/ODM/IT20 intl results, weight 0.5) + frozen eval mask fix | 0.65376 | +0.0071 | +0.0850 | +0.0326 |
+| 5 | cubic replaced by piecewise-monotone capped logit map (dev diagnostic: the cubic manufactured catastrophic tails — SA-W/IND-W priced 0.06 vs market 0.34) | 0.65416* | +0.0067 | +0.0837 | +0.0319 |
+| 6 | knockout temperature (stage field added to the ingest) | 0.65404 | +0.0067 | +0.0836 | +0.0319 |
+| 7 | walk-forward dead-rubber flags (standings reconstruction; 198 train group games; penalty 0.2 toward the alive team) | 0.65374 | +0.0061 | +0.0837 | +0.0315 |
+| 8 | chase-aware runs-equivalent MOV margin (wickets-in-hand + balls-to-spare), mov grid widened | **0.65324** | **+0.0058** | **+0.0770** | **+0.0291 (t=3.3)** |
+
+*it-5 traded −0.0004 train-mean for tail-capping, adopted for cause (the
+dev tail diagnostic), recorded openly.
+
+Dev diagnostics recorded en route: the intl loss is concentrated — the top
+20 of 227 rows carry 14.6 of 19.3 LL units; women's fixtures carry 11.0 on
+72 rows; at implied 0.9+ the model is on the right side 100% of the time
+but under-confident (the sharpness, not the ordering, is what is missing);
+franchise loss lives in LATE season (dead rubbers/playoffs) while
+mid-season the model BEATS the exchange (−0.0164 over n=110) — the first
+sub-zero cell slice in this repo's cricket work. ROI at the open (+1¢
+spread), EV>5%: −0.99% (t=−0.2) at it-8, from −7.4% at it-5; placebo 0
+bets throughout. In flight: point-in-time ICC T20I rankings via Wayback
+(the tier anchor the qualifier crowds use), region/conditions factors,
+and — if the backtest ceiling proves to be squad news — the prospective
+squad-aware arm (the WNBA T3 pattern) as the registered path to the
+international cell.
+
 ## Push log
 
 - **2026-07-31** — Programme opened. PROGRESS.md created (recreated from
@@ -2145,3 +2181,9 @@ without corrupting the record:
   iteration rule, goal gates (both cells < 0.000, pooled t <= -1.5),
   the favorite-longshot-bias finding, and the v2 model class (team Elo
   + player-composition v2 + logit blend + per-segment dispersion).
+- **2026-08-30 (Q iterations 1-8)** — `pm_model2.py` built and iterated
+  per the Q rules (train-first, logged dev touches): dev intl +0.0871 →
+  **+0.0770**, franchise +0.0069 → **+0.0058**, pooled +0.0332 →
+  +0.0291; iteration table + diagnostics in the Q log. Ingest gains
+  stage + over columns, cross-format intl results, chase-aware margins.
+  ICC-rankings Wayback scrape in flight.
