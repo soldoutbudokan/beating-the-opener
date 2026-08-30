@@ -6,37 +6,41 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $110.11** (start $100)
+**Bankroll: $111.05** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 229 (121W-108L), 0 push, 6 void, 3 open |
-| staked | $229.00 |
-| P&L | $+10.11 (+4.4% ROI) |
-| mean EV said (model) | +19.13% (n=229) |
-| mean CLV (vs close) | -3.57% (n=225) |
-| mean CLV* (shade-adj) | -2.58% (n=225) |
-| closing line moved | 50 of 225 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 138.5W vs observed 121W (z=-2.40) |
-| Model-expected P&L | $+44.90 |
-| CLV-expected P&L | $-8.04 |
+| settled | 232 (123W-109L), 0 push, 6 void, 4 open |
+| staked | $232.00 |
+| P&L | $+11.05 (+4.8% ROI) |
+| mean EV said (model) | +19.12% (n=232) |
+| mean CLV (vs close) | -3.68% (n=232) |
+| mean CLV* (shade-adj) | -2.65% (n=232) |
+| closing line moved | 51 of 232 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| model calibration | expected 140.2W vs observed 123W (z=-2.34) |
+| Model-expected P&L | $+45.44 |
+| CLV-expected P&L | $-8.53 |
 
-CLV t-stat: -5.89 (iid); -3.16 clustered by match date (30 dates)
+CLV t-stat: -6.16 (iid); -3.31 clustered by match date (31 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-08-29 | Jonquel Jones | threes | under | 1.5 | 124 | 1.0 | +22.5% |  |  |  |  |  |
-| 2026-08-29 | Sydney Taylor | points | over | 12.5 | -104 | 1.0 | +16.8% |  |  |  |  |  |
-| 2026-08-29 | Kamilla Cardoso | rebounds | under | 9.5 | -102 | 1.0 | +14.5% |  |  |  |  |  |
-| 2026-08-28 | Laura Juskaite | assists | under | 2.5 | -130 | 1.0 | +23.4% | 2 | won | +0.77 |  |  |
+| 2026-08-30 | Allisha Gray | assists | over | 2.5 | 102 | 1.0 | +23.1% |  |  |  |  |  |
+| 2026-08-30 | Kayla McBride | points | over | 16.5 | -114 | 1.0 | +20.3% |  |  |  |  |  |
+| 2026-08-30 | Napheesa Collier | assists | over | 2.5 | 122 | 1.0 | +15.4% |  |  |  |  |  |
+| 2026-08-30 | Olivia Miles | threes | over | 1.5 | -118 | 1.0 | +18.9% |  |  |  |  |  |
+| 2026-08-29 | Jonquel Jones | threes | under | 1.5 | 124 | 1.0 | +22.5% | 3 | lost | -1.00 | -7.6% | -3.6% |
+| 2026-08-29 | Sydney Taylor | points | over | 12.5 | -104 | 1.0 | +16.8% | 13 | won | +0.96 | +6.2% | +2.8% |
+| 2026-08-29 | Kamilla Cardoso | rebounds | under | 9.5 | -102 | 1.0 | +14.5% | 4 | won | +0.98 | -4.2% | +1.1% |
+| 2026-08-28 | Laura Juskaite | assists | under | 2.5 | -130 | 1.0 | +23.4% | 2 | won | +0.77 | -20.1% | -16.6% |
 | 2026-08-28 | Makayla Timpson | points | under | 8.5 | -106 | 1.0 | +20.1% | 10 | lost | -1.00 | -7.2% | -3.7% |
 | 2026-08-28 | Kelsey Mitchell | rebounds | under | 2.5 | -162 | 1.0 | +19.0% | 3 | lost | -1.00 | +13.0% | +16.6% |
-| 2026-08-28 | Nneka Ogwumike | assists | over | 2.5 | -102 | 1.0 | +18.6% | 5 | won | +0.98 |  |  |
-| 2026-08-28 | Kiki Rice | rebounds | under | 4.5 | -162 | 1.0 | +17.8% | 1 | won | +0.62 |  |  |
+| 2026-08-28 | Nneka Ogwumike | assists | over | 2.5 | -102 | 1.0 | +18.6% | 5 | won | +0.98 | -1.0% | -4.9% |
+| 2026-08-28 | Kiki Rice | rebounds | under | 4.5 | -162 | 1.0 | +17.8% | 1 | won | +0.62 | -14.3% | -10.0% |
 | 2026-08-28 | Aliyah Boston | threes | under | 0.5 | 164 | 1.0 | +16.6% | 0 | won | +1.64 | +1.5% | +6.1% |
-| 2026-08-28 | A'ja Wilson | threes | under | 0.5 | 172 | 1.0 | +13.6% | 0 | won | +1.72 |  |  |
+| 2026-08-28 | A'ja Wilson | threes | under | 0.5 | 172 | 1.0 | +13.6% | 0 | won | +1.72 | -8.1% | -3.6% |
 | 2026-08-28 | Emily Engstler | rebounds | under | 5.5 | 116 | 1.0 | +13.1% | 6 | lost | -1.00 | -6.4% | -0.7% |
 | 2026-08-28 | Caitlin Clark | threes | under | 2.5 | 134 | 1.0 | +11.3% | 6 | lost | -1.00 | -3.7% | +0.4% |
 | 2026-08-28 | Bridget Carleton | rebounds | over | 4.5 | 108 | 1.0 | +17.5% | 6 | won | +1.08 | -7.8% | -13.2% |
@@ -223,7 +227,3 @@ Calibration reads the model's own claims against results: expected wins = sum of
 | 2026-08-05 | Kamilla Cardoso | assists | over | 2.5 | 154 | 1.0 | +29.0% | 3 | won | +1.54 | +32.5% | +28.1% |
 | 2026-08-05 | Jonquel Jones | threes | under | 1.5 | 124 | 1.0 | +22.1% | 1 | won | +1.24 | -6.5% | -1.6% |
 | 2026-08-05 | Rae Burrell | points | under | 15.5 | -108 | 1.0 | +20.4% | 13 | won | +0.93 | -9.8% | -6.5% |
-| 2026-08-05 | Erica Wheeler | assists | under | 6.5 | -158 | 1.0 | +18.9% | 5 | won | +0.63 | -5.3% | -2.6% |
-| 2026-08-05 | Sabrina Ionescu | assists | under | 5.5 | -102 | 1.0 | +18.8% | 6 | lost | -1.00 | -9.5% | -6.1% |
-| 2026-08-05 | Natisha Hiedeman | assists | under | 5.5 | -132 | 1.0 | +17.1% | 6 | lost | -1.00 | -1.1% | +1.8% |
-| 2026-08-05 | Angel Reese | assists | over | 2.5 | 148 | 1.0 | +16.3% | 4 | won | +1.48 | +6.7% | +2.6% |
