@@ -6502,7 +6502,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "UPDATED in the 0038Z diff: still Out, now typed Concussion with a fresh comment - \"Suarez (concussion protocol) has been ruled out for Thursday's game against Washington.\", Phoenix Mercury, return_date 2026-08-29. Supersedes index 426, whose game_date (2026-08-22) has expired; this re-pins the same absence to the game the report now names, 2026-08-27 PHO-WAS. minutes_est 0 records the availability fact only - she is deep bench (3-7 minutes in her last three appearances, DNP on 08-22 and 08-25), so no Phoenix teammate minutes are reallocated. game_date is pinned rather than until-cleared because concussion protocol has no fixed end and the feed's own return estimate (08-29) is past Thursday; a later firing re-logs it if she is still out.",
       "author": "news-watch",
-      "superseded_by": 546
+      "superseded_by": 547
     },
     {
       "player": "Kara Dunn",
@@ -7190,6 +7190,19 @@
       "source": "avail:2026-08-30/1335Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN injury feed CLEARED (was Out): she has dropped off the league injury report, so the standing 2026-08-14 out entry is no longer supported and is superseded. No minutes estimate - her last panel game is 2026-08-12, which is 18 days before tonight, so fp_live's STALE_PLAYER gate blocks her regardless of this entry.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Marta Suarez",
+      "added": "2026-08-30T13:37:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-30/1337Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 1337Z diff (09:37 ET Sun 8/30): Suarez drops off the ESPN league injury report entirely (was Out - Concussion, Phoenix Mercury, return_date 2026-08-29, no comment text). Unlike the rest of the CLEARED batch in this diff - stale one-game Coach's-Decision and rest rows whose return_date simply rolled over to 2026-08-30 - this one is corroborated by a box score rather than by a row expiring: she played 17 minutes for Phoenix on 2026-08-29 vs Toronto, in the panel rebuilt this firing. Recorded 'in' with no minutes assertion, superseding entry 493 (out, game_date 2026-08-27, already expired) so the file's live state matches the feed. Phoenix is not on tonight's slate and this changes no price - the base model already prices her from the 8/29 game. Logged by the second of two news-watch firings that ran this hour; the first (avail:2026-08-30/1335Z, entries 541-546) covered the rest of the same diff and its judgments stand unchanged.",
       "author": "news-watch",
       "superseded_by": null
     }
