@@ -6021,7 +6021,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0033Z diff: Buenavida (Minnesota Lynx) listed Out, type Coach's Decision — \"Buenavida (coach's decision) is listed as out for Monday's game against Golden State.\" Confirmed by the per-event report for GS@MIN (event 401857171). Date-scoped to tonight's ET slate only; supersedes the 2026-08-23 clear.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 549
     },
     {
       "player": "Liatu King",
@@ -7216,6 +7216,19 @@
       "source": "avail:2026-08-30/1733Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 1733Z diff (13:33 ET Sun 8/30): Williams drops off the ESPN league injury report entirely (was Day-To-Day, Foot, Minnesota Lynx - the 'probable for Sunday's game against the Dream' listing captured at 1335Z). NOT a tip-off artifact: all four of today's events (MIN@ATL 15:00 ET, LA@SEA, GS@POR, CON@DAL) are still STATUS_SCHEDULED in this snapshot and the feed is healthy (62 injury rows), so the row expired rather than being cleared at tip. Supersedes entry 542, which had already returned her to 'in' on the Out->Day-To-Day upgrade; this records the completion of that upgrade and asserts nothing new. Still NO minutes estimate, for the same reason as 542: her last panel game (2026-08-21) is 31 min and 9 days stale, inside the 14-day gate, and inventing a ramp below that base state would manufacture under-edges out of news that says she is healthy. Pricing-inert - the base panel state was already what fp_live projects from.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Elena Buenavida",
+      "added": "2026-08-30T18:33:00Z",
+      "game_date": "2026-08-30",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-30/1833Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 1833Z diff (14:33 ET Sun 8/30): Buenavida (Minnesota Lynx) listed Out, type Coach's Decision - \"Buenavida (coach's decision) has been ruled out for Sunday's game against the Dream\", return_date 2026-09-18. Corroborated by the per-event report for MIN@ATL (event 401857186), so this is not a league-feed-only artifact. Coach's Decision counts as Out per the v3 T3 rule; minutes_est 0. Date-scoped to tonight's ET slate, superseding index 456 (the 08-24-dated out, long expired). Prices nothing on the current sheet - she carries no props - but the entry keeps the file's live state matching the feed. Caveat on this snapshot: the per-event report for CON@DAL (event 401857189) failed with an SSL handshake timeout, so that game's event-level report is missing here; the league-level rows still cover both CON and DAL.",
       "author": "news-watch",
       "superseded_by": null
     }

@@ -1,24 +1,23 @@
 key,date,tip,event_id,market,player,team,game,side,fd_line,fd_cost,model_p,ev,strong,min_odds_3pct,min_odds_6pct,stake,mu_model,mu_open,open_line,flags,play,already_bet
-2775_points_kayla thornton_under,2026-08-30,2026-08-30 23:00:00,2775,points,Kayla Thornton,GSV,GSV@PDX,under,8.5,100.0,0.7217,0.4434,True,-234,-213,0.0,6.14,,7.5,MOVED_OFF_OPEN;SUSPECT_EV(44%),False,False
+2775_points_kayla thornton_under,2026-08-30,2026-08-30 23:00:00,2775,points,Kayla Thornton,GSV,GSV@PDX,under,9.5,-128.0,0.7827,0.3942,True,-316,-282,0.0,6.14,,7.5,MOVED_OFF_OPEN;SUSPECT_EV(39%),False,False
 2776_points_awak kuier_under,2026-08-30,2026-08-31 00:30:00,2776,points,Awak Kuier,DAL,CON@DAL,under,9.5,-118.0,0.7538,0.3926,True,-272,-246,0.0,6.56,,8.5,MOVED_OFF_OPEN;SUSPECT_EV(39%);ROLE_MIN?,False,False
-2774_threes_erica wheeler_over,2026-08-30,2026-08-30 21:00:00,2774,threes,Erica Wheeler,LAS,LAS@SEA,over,1.5,188.0,0.462,0.3307,True,123,130,0.0,1.56,,1.5,SUSPECT_EV(33%),False,False
-2776_points_jessica shepard_under,2026-08-30,2026-08-31 00:30:00,2776,points,Jessica Shepard,DAL,CON@DAL,under,15.5,-125.0,0.6969,0.2544,True,-209,-191,0.0,12.67,,15.5,SUSPECT_EV(25%),False,False
-2773_assists_allisha gray_over,2026-08-30,2026-08-30 19:00:00,2773,assists,Allisha Gray,ATL,MIN@ATL,over,2.5,102.0,0.6105,0.2331,True,-145,-135,3.0,3.17,,2.5,,False,True
-2776_threes_arike ogunbowale_under,2026-08-30,2026-08-31 00:30:00,2776,threes,Arike Ogunbowale,DAL,CON@DAL,under,1.5,118.0,0.5508,0.2007,True,-114,-108,2.5,1.52,,1.5,,True,False
-2775_points_megan dileo_under,2026-08-30,2026-08-30 23:00:00,2775,points,Megan DiLeo,PDX,GSV@PDX,under,14.5,-130.0,0.6764,0.1968,True,-191,-176,0.0,12.1,,14.5,MOVED_OFF_OPEN,False,False
-2775_points_bridget carleton_under,2026-08-30,2026-08-30 23:00:00,2775,points,Bridget Carleton,PDX,GSV@PDX,under,15.5,-128.0,0.6707,0.1947,True,-186,-172,3.5,13.1,,15.5,,True,False
-2773_assists_rhyne howard_over,2026-08-30,2026-08-30 19:00:00,2773,assists,Rhyne Howard,ATL,MIN@ATL,over,3.5,104.0,0.5833,0.1898,True,-130,-122,0.0,4.08,,3.5,MOVED_OFF_OPEN,False,False
-2774_points_dearica hamby_over,2026-08-30,2026-08-30 21:00:00,2774,points,Dearica Hamby,LAS,LAS@SEA,over,12.5,-110.0,0.6102,0.1649,True,-145,-135,2.5,14.68,,12.5,,True,False
-2775_assists_veronica burton_under,2026-08-30,2026-08-30 23:00:00,2775,assists,Veronica Burton,GSV,GSV@PDX,under,6.5,-118.0,0.6301,0.1642,True,-157,-146,2.5,5.74,,6.5,,True,False
-2773_assists_napheesa collier_over,2026-08-30,2026-08-30 19:00:00,2773,assists,Napheesa Collier,MIN,MIN@ATL,over,2.5,122.0,0.5211,0.1567,True,-102,104,2.0,2.72,,2.5,,False,True
-2776_threes_diamond miller_under,2026-08-30,2026-08-31 00:30:00,2776,threes,Diamond Miller,CON,CON@DAL,under,1.5,-130.0,0.6495,0.1491,True,-170,-158,2.5,1.24,,1.5,,True,False
-2773_threes_kayla mcbride_over,2026-08-30,2026-08-30 19:00:00,2773,threes,Kayla McBride,MIN,MIN@ATL,over,2.5,-152.0,0.6914,0.1463,True,-204,-187,0.0,3.57,,2.5,PLAYER_ALREADY_BET(points over 16.5),False,False
-2776_rebounds_aaliyah edwards_under,2026-08-30,2026-08-31 00:30:00,2776,rebounds,Aaliyah Edwards,CON,CON@DAL,under,5.5,-125.0,0.6298,0.1337,True,-157,-146,2.5,4.77,,5.5,ROLE_MIN?;ROLE_START?,True,False
-2776_assists_paige bueckers_under,2026-08-30,2026-08-31 00:30:00,2776,assists,Paige Bueckers,DAL,CON@DAL,under,6.5,-132.0,0.6448,0.1333,True,-167,-155,2.5,5.64,,6.5,,True,False
-2776_rebounds_alanna smith_under,2026-08-30,2026-08-31 00:30:00,2776,rebounds,Alanna Smith,DAL,CON@DAL,under,5.5,-122.0,0.6199,0.128,True,-151,-140,2.0,4.84,,5.5,,True,False
-2774_rebounds_nneka ogwumike_over,2026-08-30,2026-08-30 21:00:00,2774,rebounds,Nneka Ogwumike,LAS,LAS@SEA,over,7.5,-144.0,0.6616,0.121,True,-179,-166,2.5,9.13,,7.5,,True,False
-2773_points_olivia miles_over,2026-08-30,2026-08-30 19:00:00,2773,points,Olivia Miles,MIN,MIN@ATL,over,18.5,-118.0,0.603,0.114,True,-141,-131,0.0,20.82,,18.5,PLAYER_ALREADY_BET(threes over 1.5),False,False
-2775_rebounds_tiffany hayes_under,2026-08-30,2026-08-30 23:00:00,2775,rebounds,Tiffany Hayes,GSV,GSV@PDX,under,3.5,-154.0,0.6724,0.109,True,-188,-173,2.5,2.73,,3.5,,True,False
-2773_points_angel reese_over,2026-08-30,2026-08-30 19:00:00,2773,points,Angel Reese,ATL,MIN@ATL,over,15.5,-106.0,0.5705,0.1087,True,-124,-116,0.0,17.1,,17.5,MOVED_OFF_OPEN,False,False
-2775_threes_emily engstler_under,2026-08-30,2026-08-30 23:00:00,2775,threes,Emily Engstler,PDX,GSV@PDX,under,1.5,-158.0,0.6741,0.1008,True,-189,-174,2.0,1.17,,1.5,,True,False
-2774_rebounds_cameron brink_under,2026-08-30,2026-08-30 21:00:00,2774,rebounds,Cameron Brink,LAS,LAS@SEA,under,6.5,-152.0,0.6639,0.1007,True,-181,-167,0.0,5.44,,5.5,MOVED_OFF_OPEN,False,False
+2774_threes_erica wheeler_over,2026-08-30,2026-08-30 21:00:00,2774,threes,Erica Wheeler,LAS,LAS@SEA,over,1.5,188.0,0.462,0.3306,True,123,130,0.0,1.56,,1.5,SUSPECT_EV(33%),False,False
+2775_assists_kaitlyn chen_under,2026-08-30,2026-08-30 23:00:00,2775,assists,Kaitlyn Chen,GSV,GSV@PDX,under,2.5,100.0,0.6573,0.3146,True,-176,-163,0.0,1.97,,2.5,MOVED_OFF_OPEN;SUSPECT_EV(31%),False,False
+2776_points_jessica shepard_under,2026-08-30,2026-08-31 00:30:00,2776,points,Jessica Shepard,DAL,CON@DAL,under,15.5,-125.0,0.6969,0.2545,True,-209,-191,0.0,12.67,,15.5,SUSPECT_EV(25%),False,False
+2773_assists_allisha gray_over,2026-08-30,2026-08-30 19:00:00,2773,assists,Allisha Gray,ATL,MIN@ATL,over,2.5,102.0,0.6109,0.2339,True,-145,-136,3.0,3.17,,2.5,,False,True
+2776_threes_arike ogunbowale_under,2026-08-30,2026-08-31 00:30:00,2776,threes,Arike Ogunbowale,DAL,CON@DAL,under,1.5,118.0,0.5508,0.2008,True,-114,-108,2.5,1.52,,1.5,,True,False
+2775_points_megan dileo_under,2026-08-30,2026-08-30 23:00:00,2775,points,Megan DiLeo,PDX,GSV@PDX,under,14.5,-130.0,0.6765,0.1968,True,-191,-176,0.0,12.1,,14.5,MOVED_OFF_OPEN,False,False
+2773_assists_rhyne howard_over,2026-08-30,2026-08-30 19:00:00,2773,assists,Rhyne Howard,ATL,MIN@ATL,over,3.5,104.0,0.5837,0.1908,True,-130,-122,0.0,4.09,,3.5,MOVED_OFF_OPEN,False,False
+2775_points_bridget carleton_under,2026-08-30,2026-08-30 23:00:00,2775,points,Bridget Carleton,PDX,GSV@PDX,under,15.5,-130.0,0.6708,0.1867,True,-186,-172,3.5,13.1,,15.5,,True,False
+2774_points_dearica hamby_over,2026-08-30,2026-08-30 21:00:00,2774,points,Dearica Hamby,LAS,LAS@SEA,over,12.5,-108.0,0.6101,0.1751,True,-145,-135,2.5,14.68,,12.5,,True,False
+2776_threes_diamond miller_under,2026-08-30,2026-08-31 00:30:00,2776,threes,Diamond Miller,CON,CON@DAL,under,1.5,-125.0,0.6495,0.1691,True,-170,-158,3.0,1.24,,1.5,,True,False
+2773_threes_kayla mcbride_over,2026-08-30,2026-08-30 19:00:00,2773,threes,Kayla McBride,MIN,MIN@ATL,over,2.5,-146.0,0.6914,0.165,True,-204,-187,0.0,3.57,,2.5,PLAYER_ALREADY_BET(points over 16.5),False,False
+2775_assists_veronica burton_under,2026-08-30,2026-08-30 23:00:00,2775,assists,Veronica Burton,GSV,GSV@PDX,under,6.5,-118.0,0.6295,0.163,True,-157,-146,2.5,5.74,,6.5,,True,False
+2773_assists_napheesa collier_over,2026-08-30,2026-08-30 19:00:00,2773,assists,Napheesa Collier,MIN,MIN@ATL,over,2.5,122.0,0.5215,0.1577,True,-102,104,2.0,2.73,,2.5,,False,True
+2776_rebounds_aaliyah edwards_under,2026-08-30,2026-08-31 00:30:00,2776,rebounds,Aaliyah Edwards,CON,CON@DAL,under,5.5,-125.0,0.6293,0.1328,True,-157,-146,2.5,4.77,,5.5,ROLE_MIN?;ROLE_START?,True,False
+2776_assists_paige bueckers_under,2026-08-30,2026-08-31 00:30:00,2776,assists,Paige Bueckers,DAL,CON@DAL,under,6.5,-132.0,0.6442,0.1322,True,-166,-154,2.5,5.64,,6.5,,True,False
+2773_points_angel reese_over,2026-08-30,2026-08-30 19:00:00,2773,points,Angel Reese,ATL,MIN@ATL,over,15.5,-104.0,0.5704,0.1189,True,-124,-116,0.0,17.1,,17.5,MOVED_OFF_OPEN,False,False
+2776_rebounds_alanna smith_under,2026-08-30,2026-08-31 00:30:00,2776,rebounds,Alanna Smith,DAL,CON@DAL,under,5.5,-125.0,0.6194,0.1149,True,-150,-140,2.0,4.84,,5.5,,True,False
+2774_rebounds_nneka ogwumike_over,2026-08-30,2026-08-30 21:00:00,2774,rebounds,Nneka Ogwumike,LAS,LAS@SEA,over,7.5,-148.0,0.6622,0.1096,True,-180,-166,2.5,9.13,,7.5,,True,False
+2775_rebounds_tiffany hayes_under,2026-08-30,2026-08-30 23:00:00,2775,rebounds,Tiffany Hayes,GSV,GSV@PDX,under,3.5,-154.0,0.672,0.1084,True,-187,-173,2.5,2.73,,3.5,,True,False
+2775_threes_emily engstler_under,2026-08-30,2026-08-30 23:00:00,2775,threes,Emily Engstler,PDX,GSV@PDX,under,1.5,-158.0,0.6742,0.1009,True,-189,-174,2.0,1.17,,1.5,,True,False
