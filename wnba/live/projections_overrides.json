@@ -7178,7 +7178,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN injury feed UPDATED Out -> Day-To-Day (Knee), comment 'day-to-day'. PDX hosts GSV tonight and she did play 9 minutes on 2026-08-28, so the standing out entry from 2026-08-29 is stale and is superseded. Left as questionable with no minutes estimate: a number below her 9-min base state would only manufacture unders on a deep-bench role.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 551
     },
     {
       "player": "Aziaha James",
@@ -7242,6 +7242,19 @@
       "source": "avail:2026-08-30/2033Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "Cleared: no longer on the ESPN league injury report as of the 2026-08-30/2033Z snapshot (previous status Day-To-Day, right knee, questionable for tonight's LAS@SEA). Supersedes index 543. Status record only - no minutes estimate, so nothing about the projection moves; she is a bench piece (4-12 minutes in recent appearances) and carries no prop on the sheet. Not yet listed in the snapshot's lineups feed, so confirm in the lineup near tip.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Karlie Samuelson",
+      "added": "2026-08-30T23:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-30/2333Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 2333Z diff (19:33 ET): she has dropped off the Portland Fire injury report entirely, having been carried as Day-To-Day (Knee) since the 1335Z upgrade and Out before that (in-game knee exit, 2026-08-28 vs ATL). Confirmed by the same snapshot's lineup feed for GS @ POR (in progress at capture): Karlie Samuelson is listed as an active non-starter with dnp=false, i.e. she is playing tonight. Supersedes the questionable entry from avail:2026-08-30/1335Z. Recorded as available with NO minutes estimate - her role is deep-bench (9 minutes on 2026-08-28) and stamping a number on a returnee would price a bet rather than remove a stale one. game_date null; her game is already underway, so this is record-only for tonight and applies whenever her props next post.",
       "author": "news-watch",
       "superseded_by": null
     }
