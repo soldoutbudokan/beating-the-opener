@@ -7139,7 +7139,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN injury feed UPDATED Out -> Day-To-Day (Foot): 'Williams (foot) is probable for Sunday's game against the Dream' (MIN@ATL tonight). Supersedes the standing 2026-08-22 out entry, which would otherwise zero a probable starter. Deliberately NO minutes estimate: her last panel game (2026-08-21) is 31 min and 9 days stale - inside the 14-day gate - and any ramp number below that base state would manufacture under-edges on her props out of the same news that says she is probable. Leaving the base state alone is the assumption least favourable to a news-driven bet (the Plum rule).",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 548
     },
     {
       "player": "Emma Cannon",
@@ -7203,6 +7203,19 @@
       "source": "avail:2026-08-30/1337Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 1337Z diff (09:37 ET Sun 8/30): Suarez drops off the ESPN league injury report entirely (was Out - Concussion, Phoenix Mercury, return_date 2026-08-29, no comment text). Unlike the rest of the CLEARED batch in this diff - stale one-game Coach's-Decision and rest rows whose return_date simply rolled over to 2026-08-30 - this one is corroborated by a box score rather than by a row expiring: she played 17 minutes for Phoenix on 2026-08-29 vs Toronto, in the panel rebuilt this firing. Recorded 'in' with no minutes assertion, superseding entry 493 (out, game_date 2026-08-27, already expired) so the file's live state matches the feed. Phoenix is not on tonight's slate and this changes no price - the base model already prices her from the 8/29 game. Logged by the second of two news-watch firings that ran this hour; the first (avail:2026-08-30/1335Z, entries 541-546) covered the rest of the same diff and its judgments stand unchanged.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Courtney Williams",
+      "added": "2026-08-30T17:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-30/1733Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "CLEARED in the 1733Z diff (13:33 ET Sun 8/30): Williams drops off the ESPN league injury report entirely (was Day-To-Day, Foot, Minnesota Lynx - the 'probable for Sunday's game against the Dream' listing captured at 1335Z). NOT a tip-off artifact: all four of today's events (MIN@ATL 15:00 ET, LA@SEA, GS@POR, CON@DAL) are still STATUS_SCHEDULED in this snapshot and the feed is healthy (62 injury rows), so the row expired rather than being cleared at tip. Supersedes entry 542, which had already returned her to 'in' on the Out->Day-To-Day upgrade; this records the completion of that upgrade and asserts nothing new. Still NO minutes estimate, for the same reason as 542: her last panel game (2026-08-21) is 31 min and 9 days stale, inside the 14-day gate, and inventing a ramp below that base state would manufacture under-edges out of news that says she is healthy. Pricing-inert - the base panel state was already what fp_live projects from.",
       "author": "news-watch",
       "superseded_by": null
     }
