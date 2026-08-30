@@ -7152,7 +7152,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN injury feed NEW: 'Cannon is questionable for Sunday's game against the Storm due to a right knee injury' (LAS@SEA tonight). Supersedes the 2026-08-29 'in' entry. Record-only: questionable with no minutes estimate does not move the model - it marks that her availability tonight is uncertain, and the display-side Day-To-Day annotation carries it to the sheet.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 550
     },
     {
       "player": "Kahleah Copper",
@@ -7229,6 +7229,19 @@
       "source": "avail:2026-08-30/1833Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 1833Z diff (14:33 ET Sun 8/30): Buenavida (Minnesota Lynx) listed Out, type Coach's Decision - \"Buenavida (coach's decision) has been ruled out for Sunday's game against the Dream\", return_date 2026-09-18. Corroborated by the per-event report for MIN@ATL (event 401857186), so this is not a league-feed-only artifact. Coach's Decision counts as Out per the v3 T3 rule; minutes_est 0. Date-scoped to tonight's ET slate, superseding index 456 (the 08-24-dated out, long expired). Prices nothing on the current sheet - she carries no props - but the entry keeps the file's live state matching the feed. Caveat on this snapshot: the per-event report for CON@DAL (event 401857189) failed with an SSL handshake timeout, so that game's event-level report is missing here; the league-level rows still cover both CON and DAL.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Emma Cannon",
+      "added": "2026-08-30T20:33:00Z",
+      "game_date": null,
+      "status": "in",
+      "minutes_est": null,
+      "minutes_range": null,
+      "source": "avail:2026-08-30/2033Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "Cleared: no longer on the ESPN league injury report as of the 2026-08-30/2033Z snapshot (previous status Day-To-Day, right knee, questionable for tonight's LAS@SEA). Supersedes index 543. Status record only - no minutes estimate, so nothing about the projection moves; she is a bench piece (4-12 minutes in recent appearances) and carries no prop on the sheet. Not yet listed in the snapshot's lineups feed, so confirm in the lineup near tip.",
       "author": "news-watch",
       "superseded_by": null
     }
