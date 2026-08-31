@@ -42,11 +42,22 @@
 >    once at n ≥ 300 or 2027-06-30. Nothing to decide unless you want the
 >    lock date moved.
 >
-> **Not started, deliberately:** a continuous "meta-model" for confidence
-> (predicting the model's own reliability per row from coverage, layoff,
-> tournament status and prior-match counts, rather than the hand-cut
-> per-class buckets used now). It generalises what is already there and is
-> the natural next modelling step if the market-beat is worth more effort.
+> **Written but NOT YET EVALUATED — the first thing to run tomorrow:** a
+> continuous "meta-model" for confidence lives in `pm_model2.py`
+> (`fit_meta_scale` / `apply_meta_scale`): a second stage that predicts how
+> far to trust the first stage's logit on *this row* from coverage, each
+> side's layoff, prior-match counts, fixture class, tournament status and the
+> size of the gap itself — fitted on the training era from the model's own
+> residuals, no market quantity anywhere. It generalises every hand-cut
+> confidence rule now in the model, so it should either subsume them or
+> confirm they were already at the ceiling. **It has never completed a run:**
+> the tuning search grew past three hours once the conditions-familiarity
+> dimension was added, and the run was killed rather than leave the machine
+> occupied overnight. Before trusting any number from it, narrow the blend
+> grids (they are now far wider than the settled values need) so a full pass
+> returns in tens of minutes, then compare `meta-scale train LL` against the
+> per-class map on the same line of output — the code prints both and adopts
+> the meta scale only if it wins on train.
 >
 > Everything below is the full write-up. No betting, no live arm, nothing
 > under any `live/` directory.

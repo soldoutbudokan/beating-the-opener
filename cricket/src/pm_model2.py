@@ -94,6 +94,15 @@ def load():
     m["home1_learned"] = learned_home(m)
     m["home1_country"] = venue_country_home(m)
     m["famil"] = conditions_familiarity(m)
+    last_seen, g1, g2 = {}, [], []
+    for r in m.itertuples():
+        d0 = pd.Timestamp(r.date)
+        for team, out in ((r.team1, g1), (r.team2, g2)):
+            prev = last_seen.get(team)
+            out.append((d0 - prev).days if prev is not None else 60)
+        for team in (r.team1, r.team2):
+            last_seen[team] = d0
+    m["gap1"], m["gap2"] = g1, g2
     m["home1"] = m.home1_name          # default; run_elo picks per segment
     m["y1"] = (m.winner == m.team1).astype(float)
     m["seg"] = np.where(m.comp == "t20s",
@@ -810,6 +819,65 @@ def fit_blend(m, zs, nmin, rich, ko=None, rot=None):
     return params
 
 
+META_L2 = (0.3, 1.0, 3.0, 10.0)
+
+
+def meta_features(m, z, rich):
+    """Row-level reliability features - all strictly prior and market-free.
+    The point: how much to trust the rating gap varies continuously (with
+    data coverage, layoff, fixture class, tournament status), and hand-cut
+    per-class buckets only approximate that."""
+    n = len(m)
+    days1 = m.gap1.to_numpy(float)
+    days2 = m.gap2.to_numpy(float)
+    X = np.column_stack([
+        np.ones(n),
+        np.clip(rich, 0, 1),
+        np.log1p(m.nreal.to_numpy(float)) / 5.0,
+        m.major.to_numpy(float),
+        m.ko.to_numpy(float),
+        (m.fclass.to_numpy() == "FF").astype(float),
+        (m.fclass.to_numpy() == "AA").astype(float),
+        (m.seg.to_numpy() == "fr").astype(float),
+        np.log1p(np.minimum(days1, 400)) / 6.0,
+        np.log1p(np.minimum(days2, 400)) / 6.0,
+        np.minimum(np.abs(z), 4.0) / 4.0,
+    ])
+    return X
+
+
+def fit_meta_scale(m, z, rich, train_mask, l2):
+    """p = sigmoid(z * softplus(w.x)): a second-stage model that predicts how
+    reliable the first stage's logit is on THIS row, fitted on train by
+    gradient descent on log loss with an L2 pull toward a constant scale."""
+    from scipy.optimize import minimize
+    X = meta_features(m, z, rich)
+    y = m.y1.to_numpy(float)
+    Xt, zt, yt = X[train_mask], z[train_mask], y[train_mask]
+
+    def sp(a):
+        return np.log1p(np.exp(np.clip(a, -30, 30)))
+
+    def obj(w):
+        s_ = sp(Xt @ w)
+        p = 1.0 / (1.0 + np.exp(-np.clip(zt * s_, -30, 30)))
+        p = np.clip(p, 1e-9, 1 - 1e-9)
+        nll = -(yt * np.log(p) + (1 - yt) * np.log(1 - p)).mean()
+        return nll + l2 * float(np.sum(w[1:] ** 2)) / len(yt)
+
+    w0 = np.zeros(X.shape[1])
+    w0[0] = 0.5413                      # softplus(0.5413) ~= 1.0
+    r = minimize(obj, w0, method="L-BFGS-B",
+                 options={"maxiter": 400, "ftol": 1e-10})
+    return r.x, float(r.fun)
+
+
+def apply_meta_scale(m, z, rich, w):
+    X = meta_features(m, z, rich)
+    s_ = np.log1p(np.exp(np.clip(X @ w, -30, 30)))
+    return z * s_
+
+
 def online_recalibrate(m, z, params_by_seg, win, prior_n, only_seg=None):
     """Walk-forward logistic recalibration of the blended logit, per segment,
     using ONLY this model's own earlier predictions and their results (no
@@ -905,6 +973,8 @@ def main():
     for c_ in ("ko", "dr1", "dr2", "sr1", "sr2", "major"):
         xc[c_] = 0
     xc["famil"] = conditions_familiarity(xc.assign(comp="t20s"))
+    xc["gap1"] = 60
+    xc["gap2"] = 60
     f1x, f2x = xc.team1.isin(TIER_FULL), xc.team2.isin(TIER_FULL)
     xc["fclass"] = np.where(f1x & f2x, "FF", np.where(~f1x & ~f2x, "AA", "FA"))
     xc["bkey"] = xc.seg + "|" + xc.fclass
@@ -936,6 +1006,21 @@ def main():
     zs = {"elo": logit(p_elo), "pl2": logit(p_pl), "pl1": logit(p_v1)}
     params = fit_blend(m, zs, m.nreal.to_numpy(), rich, rot=rot)
     z_blend = blended_p(m, zs, params, rich, rot)
+    # meta-model: continuous per-row confidence, fitted on train only
+    tr_meta = (((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy()
+               & (m.nreal.to_numpy() >= MIN_PRIOR))
+    best_w, best_meta = None, np.inf
+    for l2 in META_L2:
+        w_, f_ = fit_meta_scale(m, z_blend, rich, tr_meta, l2)
+        if f_ < best_meta:
+            best_meta, best_w = f_, w_
+    z_meta = apply_meta_scale(m, z_blend, rich, best_w)
+    base_ll = ll(inv(z_blend[tr_meta]), m.y1.to_numpy()[tr_meta]).mean()
+    meta_ll = ll(inv(z_meta[tr_meta]), m.y1.to_numpy()[tr_meta]).mean()
+    print(f"  meta-scale: train LL {meta_ll:.5f} vs per-class map {base_ll:.5f}"
+          f"  (adopted: {meta_ll < base_ll})")
+    if meta_ll < base_ll:
+        z_blend = z_meta
     p_blend_raw = inv(z_blend)
     # online recalibration hyper-params chosen on train only
     tr0 = ((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy() & (m.nreal.to_numpy() >= MIN_PRIOR)
