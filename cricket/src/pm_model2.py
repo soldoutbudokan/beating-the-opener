@@ -29,6 +29,30 @@ ELO_GRID = {"K": (16, 24, 32, 48, 64, 96), "home": (0, 40, 80),
             "mov": (0.0, 0.5, 1.0, 2.0)}   # mov: K multiplier 1 + mov*log1p(|margin runs|/20)
 XFMT_GRID = (0.0, 0.25, 0.5)   # weight of cross-format international results
                                # (ODI/ODM/IT20) as extra Elo observations
+# membership-tier prior on the INITIAL rating: results cannot resolve the
+# class gap between tiers that rarely play each other (dev diagnostic: mixed
+# full-member-vs-associate fixtures carry ~10 of 17 intl LL-loss units).
+# Public, stable membership lists; the tier GAPS are fit on train.
+TIER_FULL = {"India", "Australia", "England", "Pakistan", "South Africa",
+             "New Zealand", "Sri Lanka", "Bangladesh", "West Indies",
+             "Afghanistan", "Zimbabwe", "Ireland"}
+TIER_MID = {"Scotland", "Netherlands", "Nepal", "Oman", "United Arab Emirates",
+            "Namibia", "United States of America", "Canada",
+            "Papua New Guinea", "Hong Kong", "Uganda", "Jersey", "Italy",
+            "Kenya", "Qatar", "Kuwait", "Bahrain", "Malaysia", "Singapore",
+            "Thailand", "Bermuda", "Denmark", "Germany", "Guernsey"}
+TIER_A_GRID = (0, 150, 300, 450)   # full-member offset above MID
+TIER_B_GRID = (0, 150, 300)        # MID offset above the rest
+
+
+def tier_offsets(a, b):
+    def off(team):
+        if team in TIER_FULL:
+            return a
+        if team in TIER_MID:
+            return 0.0
+        return -b
+    return off
 VAL_ALPHA = 0.002              # per-ball EW decay (v1's tuned choice)
 WICKET_GRID = (4.0, 6.0, 8.0)
 SHRINK_GRID = (150.0, 300.0)
@@ -52,7 +76,10 @@ def load():
     m = pd.read_parquet(os.path.join(ROOT, "data", "matches_cs.parquet"))
     m = m[(m.result == "normal") & m.winner.notna()].copy()
     m = m.sort_values(["date", "match_id"]).reset_index(drop=True)
-    m["home1"] = [home_flag(t, c) for t, c in zip(m.team1, m.city)]
+    m["home1_name"] = [home_flag(t, c) for t, c in zip(m.team1, m.city)]
+    m["home1_learned"] = learned_home(m)
+    m["home1_country"] = venue_country_home(m)
+    m["home1"] = m.home1_name          # default; run_elo picks per segment
     m["y1"] = (m.winner == m.team1).astype(float)
     m["seg"] = np.where(m.comp == "t20s",
                         np.where(m.gender == "female", "intl_f", "intl_m"), "fr")
@@ -62,6 +89,7 @@ def load():
     x = pd.read_parquet(os.path.join(ROOT, "data", "matches_extra.parquet"))
     x = x[(x.result == "normal") & x.winner.notna()].copy()
     x["home1"] = [home_flag(t, c) for t, c in zip(x.team1, x.city)]
+    x["venue"] = None
     x["y1"] = (x.winner == x.team1).astype(float)
     x["seg"] = np.where(x.gender == "female", "intl_f", "intl_m")
     x["margin_runs"] = 20.0
@@ -99,6 +127,54 @@ def load():
         cnt[k2] += 1
     m["nreal"] = nreal
     return m, d, x
+
+
+def venue_country_home(m):
+    """Home indicator via venue -> country, learned from which domestic
+    league plays at each venue (and from city names for venues seen only in
+    internationals, via the same league-derived city map)."""
+    vmap, cmap = {}, {}
+    for r in m.itertuples():
+        c = COMP_COUNTRY.get(r.comp)
+        if not c:
+            continue
+        if isinstance(getattr(r, "venue", None), str):
+            vmap.setdefault(r.venue, c)
+        if isinstance(getattr(r, "city", None), str):
+            cmap.setdefault(r.city, c)
+    out = np.zeros(len(m), int)
+    for i, r in enumerate(m.itertuples()):
+        country = vmap.get(getattr(r, "venue", None)) or cmap.get(getattr(r, "city", None))
+        if country and r.team1 == country:
+            out[i] = 1
+    return out
+
+
+def learned_home(m, lookback_days=1100, share=0.35):
+    """Walk-forward home indicator: team1 is home when it has played a
+    dominant share of this VENUE's matches over the prior ~3 years and more
+    than team2 (learned, never the venue string). The name-token rule missed
+    ~3 of 10 IPL sides (Rajasthan at Jaipur, Gujarat at Ahmedabad, Punjab at
+    Mohali). Falls back to the name-token rule when the venue is new."""
+    out = np.zeros(len(m), int)
+    dates = pd.to_datetime(m.date).to_numpy()
+    hist = defaultdict(list)          # venue -> [(date, team1, team2)]
+    for i, r in enumerate(m.itertuples()):
+        v = r.venue if isinstance(getattr(r, "venue", None), str) else None
+        prev = hist.get(v, []) if v else []
+        lo = dates[i] - np.timedelta64(lookback_days, "D")
+        recent = [(t1, t2) for dt, t1, t2 in prev if dt >= lo]
+        if len(recent) >= 8:
+            n = len(recent)
+            s1 = sum((r.team1 == a) + (r.team1 == b) for a, b in recent) / n
+            s2 = sum((r.team2 == a) + (r.team2 == b) for a, b in recent) / n
+            if s1 >= share and s1 > s2:
+                out[i] = 1
+        else:
+            out[i] = home_flag(r.team1, r.city)
+        if v:
+            hist[v].append((dates[i], r.team1, r.team2))
+    return out
 
 
 def add_dead_rubber(m):
@@ -149,9 +225,13 @@ def add_dead_rubber(m):
 
 
 # ------------------------------------------------------------------ Elo
-def run_elo(m, K, home, regress, scale=400.0, mov=0.0, xfmt=0.0):
+def run_elo(m, K, home, regress, scale=400.0, mov=0.0, xfmt=0.0, tier=None,
+            home_mode="name"):
     """`extra` rows (cross-format internationals) update ratings at weight
-    xfmt and are never scored."""
+    xfmt and are never scored. `tier`: (a, b) membership-class offsets on
+    the initial rating (intl segments only)."""
+    off = tier_offsets(*tier) if tier else (lambda t: 0.0)
+    hcol = m[f"home1_{home_mode}"].to_numpy() if f"home1_{home_mode}" in m else m.home1.to_numpy()
     """Per-gender pool; franchise teams regress toward their comp mean at
     each season boundary. Returns pre-match P(team1) and prior-match counts."""
     R = {}
@@ -172,8 +252,13 @@ def run_elo(m, K, home, regress, scale=400.0, mov=0.0, xfmt=0.0):
                     mean = comp_sum[ck] / max(comp_cnt[ck], 1)
                     R[kk] = R.get(kk, 1500.0) + regress * (mean - R.get(kk, 1500.0))
                 season_seen[(kk, ck)] = yr
-        r1, r2 = R.get(k1, 1500.0), R.get(k2, 1500.0)
-        e1 = 1.0 / (1.0 + 10 ** (-((r1 - r2 + home * r.home1) / scale)))
+        r1 = R.get(k1)
+        if r1 is None:
+            r1 = 1500.0 + off(r.team1)
+        r2 = R.get(k2)
+        if r2 is None:
+            r2 = 1500.0 + off(r.team2)
+        e1 = 1.0 / (1.0 + 10 ** (-((r1 - r2 + home * hcol[i]) / scale)))
         p1[i] = e1
         n_min[i] = min(n[k1], n[k2])
         kk_mult = 1.0 + mov * np.log1p(abs(r.margin_runs) / 20.0)
@@ -198,19 +283,32 @@ def tune_elo(m):
     for seg in ("intl_m", "intl_f", "fr"):
         ms = m[m.seg == seg]
         xf_opts = XFMT_GRID if seg != "fr" else (0.0,)
+        tier_opts = ([(a, b) for a in TIER_A_GRID for b in TIER_B_GRID]
+                     if seg != "fr" else [(0, 0)])
         tr = (ms.date >= EVAL_LO) & (ms.date < TRAIN_END) & (ms.extra == 0) \
             & (ms.get("nreal", pd.Series(99, index=ms.index)) >= MIN_PRIOR)
         best, best_ll = None, np.inf
+        # staged search: core Elo first (tier=0), then the tier offsets with
+        # the core fixed — the full product is ~15k sequential passes.
+        yv = ms.y1.to_numpy()
         for K, home, regress, scale, mov in itertools.product(*ELO_GRID.values()):
             for xf in xf_opts:
-                p1, nmin = run_elo(ms, K, home, regress, scale, mov, xf)
-                mask = tr.to_numpy()
-                cur = ll(p1[mask], ms.y1.to_numpy()[mask]).mean()
+                for hm in HOME_MODES:
+                    p1, _ = run_elo(ms, K, home, regress, scale, mov, xf, (0, 0), hm)
+                    cur = ll(p1[tr.to_numpy()], yv[tr.to_numpy()]).mean()
+                    if cur < best_ll:
+                        best_ll, best = cur, (K, home, regress, scale, mov, xf, (0, 0), hm)
+        if len(tier_opts) > 1:
+            K, home, regress, scale, mov, xf, _, hm = best
+            for tier in tier_opts:
+                p1, _ = run_elo(ms, K, home, regress, scale, mov, xf, tier, hm)
+                cur = ll(p1[tr.to_numpy()], yv[tr.to_numpy()]).mean()
                 if cur < best_ll:
-                    best_ll, best = cur, (K, home, regress, scale, mov, xf)
+                    best_ll, best = cur, (K, home, regress, scale, mov, xf, tier, hm)
         out[seg] = (best, best_ll)
         print(f"  elo[{seg}]: K={best[0]} home={best[1]} regress={best[2]} "
-              f"scale={best[3]:.0f} mov={best[4]} xfmt={best[5]}  train LL={best_ll:.5f}")
+              f"scale={best[3]:.0f} mov={best[4]} xfmt={best[5]} tier={best[6]} "
+              f"home_mode={best[7]}  train LL={best_ll:.5f}")
     return out
 
 
@@ -220,8 +318,8 @@ def run_elo_seg(m, elo_params):
     p1 = np.empty(len(m)); nmin = np.empty(len(m), int)
     for seg in ("intl_m", "intl_f", "fr"):
         idx = (m.seg == seg).to_numpy()
-        (K, home, regress, scale, mov, xf), _ = elo_params[seg]
-        ps, ns = run_elo(m[idx], K, home, regress, scale, mov, xf)
+        (K, home, regress, scale, mov, xf, tier, hm), _ = elo_params[seg]
+        ps, ns = run_elo(m[idx], K, home, regress, scale, mov, xf, tier, hm)
         p1[idx] = ps; nmin[idx] = ns
     return p1, nmin
 
@@ -330,6 +428,24 @@ KO_GRID = (0.6, 0.8, 1.0)     # knockout temperature (late-season dev finding)
 DR_GRID = (0.0, 0.2, 0.4)     # logit penalty toward the alive team when the
                               # other is a dead rubber (eliminated/locked)
 PLAYOFF_SPOTS = {"hnd": 3}    # default 4; ntb (divisional groups) excluded
+HOME_MODES = ("name", "learned", "country")   # per-segment, tuned on train
+# each domestic league sits in one country, so the venues it uses identify
+# that country; an international at such a venue is a home game for that
+# country's team. (Team names ARE country names in internationals, so no
+# extra mapping is needed.) Market-free, public, and it fixes the fact that
+# "India" never token-matches "Mumbai".
+COMP_COUNTRY = {"ipl": "India", "wpl": "India", "bbl": "Australia",
+                "wbb": "Australia", "psl": "Pakistan", "cpl": "West Indies",
+                "ntb": "England", "hnd": "England", "sat": "South Africa",
+                "ilt": "United Arab Emirates",
+                "mlc": "United States of America", "lpl": "Sri Lanka",
+                "bpl": "Bangladesh", "ssm": "New Zealand"}
+ONLINE_N = (200, 400, 800)         # rolling window for online recalibration
+ONLINE_PRIOR = (20.0, 60.0)        # pseudo-observations pulling toward the
+                                   # train-fit map (shrinks early windows)
+RICH_GRID = (0.0, 0.5, 1.0)   # exponent on data-richness scaling of the
+                              # player component (associates barely appear in
+                              # the ball-by-ball archive -> shrink their value)
 S1_GRID = (0.8, 1.0, 1.25)
 S2_GRID = (0.5, 1.0, 1.5, 2.0)
 S3_GRID = (0.0, 0.5, 1.0)
@@ -358,9 +474,12 @@ def fit_blend(m, zs, nmin, rich, ko=None):
         kof = (ko if ko is not None else m.ko.to_numpy())[mask]
         drd = (m.dr1.to_numpy() - m.dr2.to_numpy())[mask]   # +1: team1 dead
         dr_opts = DR_GRID if seg == "fr" else (0.0,)
+        rv = np.clip(rich[mask], 0.0, 1.0)
         best, best_ll = None, np.inf
-        for w in grid:
-            z = sum(wi * zs[n][mask] for wi, n in zip(w, names))
+        for w, rex in itertools.product(grid, RICH_GRID):
+            scale_pl = rv ** rex if rex else np.ones_like(rv)
+            z = sum(wi * (zs[n][mask] * (scale_pl if n != "elo" else 1.0))
+                    for wi, n in zip(w, names))
             for s1, s2, s3 in itertools.product(S1_GRID, S2_GRID, S3_GRID):
                 zm0 = zmap(z, s1, s2, s3)
                 for tk in KO_GRID:
@@ -369,26 +488,76 @@ def fit_blend(m, zs, nmin, rich, ko=None):
                         p = inv(zm1 - dr * drd)
                         cur = ll(p, y[mask]).mean()
                         if cur < best_ll:
-                            best_ll, best = cur, (w, s1, s2, s3, tk, dr)
+                            best_ll, best = cur, (w, s1, s2, s3, tk, dr, rex)
         params[seg] = best
         print(f"  blend[{seg}]: w={dict(zip(names, best[0]))} slopes="
-              f"{best[1:4]} t_ko={best[4]} dr={best[5]} (train LL {best_ll:.5f}, "
-              f"n={int(mask.sum())}, ko n={int(kof.sum())}, dr n={int((drd != 0).sum())})")
+              f"{best[1:4]} t_ko={best[4]} dr={best[5]} rich_exp={best[6]} "
+              f"(train LL {best_ll:.5f}, n={int(mask.sum())}, ko n={int(kof.sum())}, "
+              f"dr n={int((drd != 0).sum())})")
     return params
 
 
-def blended_p(m, zs, params):
+def online_recalibrate(m, z, params_by_seg, win, prior_n):
+    """Walk-forward logistic recalibration of the blended logit, per segment,
+    using ONLY this model's own earlier predictions and their results (no
+    market data, no future data). Pulls toward the train-fit identity map
+    with `prior_n` pseudo-observations, so early windows are not noisy.
+
+    Why: the blend's confidence is fit on the train era, where the model has
+    ~0.013 of skill over a coin flip on franchise cricket; in a different
+    regime (or a sample of tighter games) that confidence is too high, and
+    log loss punishes it. Tracking realized reliability online fixes the
+    scale without anyone telling us the answer.
+    """
+    z = np.asarray(z, float)
+    y = m.y1.to_numpy(float)
+    out = np.array(z, copy=True)
+    for seg in m.seg.unique():
+        idx = np.flatnonzero((m.seg == seg).to_numpy())
+        zi, yi = z[idx], y[idx]
+        a, b = 0.0, 1.0
+        for j in range(len(idx)):
+            lo = max(0, j - win)
+            if j >= 25 and j % 10 == 0:      # refit every 10 matches
+                zz, yy = zi[lo:j], yi[lo:j]
+                # ridge-ish logistic on (1, z) with a prior at (0, 1)
+                aa, bb = a, b
+                for _ in range(8):
+                    pp = 1.0 / (1.0 + np.exp(-(aa + bb * zz)))
+                    w = np.clip(pp * (1 - pp), 1e-6, None)
+                    r = yy - pp
+                    g = np.array([r.sum() - prior_n * aa,
+                                  (r * zz).sum() - prior_n * (bb - 1.0)])
+                    H = np.array([[w.sum() + prior_n, (w * zz).sum()],
+                                  [(w * zz).sum(), (w * zz * zz).sum() + prior_n]])
+                    try:
+                        step = np.linalg.solve(H, g)
+                    except np.linalg.LinAlgError:
+                        break
+                    aa, bb = aa + step[0], bb + step[1]
+                    if np.max(np.abs(step)) < 1e-6:
+                        break
+                if np.isfinite(aa) and np.isfinite(bb):
+                    a, b = float(np.clip(aa, -1.5, 1.5)), float(np.clip(bb, 0.05, 2.0))
+            out[idx[j]] = a + b * zi[j]
+    return out
+
+
+def blended_p(m, zs, params, rich):
     names = list(zs)
     out = np.empty(len(m))
     for seg in ("intl_m", "intl_f", "fr"):
         mask = (m.seg == seg).to_numpy()
-        w, s1, s2, s3, tk, dr = params[seg]
-        z = sum(wi * zs[n][mask] for wi, n in zip(w, names))
+        w, s1, s2, s3, tk, dr, rex = params[seg]
+        rv = np.clip(rich[mask], 0.0, 1.0)
+        scale_pl = rv ** rex if rex else np.ones_like(rv)
+        z = sum(wi * (zs[n][mask] * (scale_pl if n != "elo" else 1.0))
+                for wi, n in zip(w, names))
         zm = zmap(z, s1, s2, s3)
         kof = m.ko.to_numpy()[mask]
         drd = (m.dr1.to_numpy() - m.dr2.to_numpy())[mask]
-        out[mask] = inv(np.where(kof == 1, tk * zm, zm) - dr * drd)
-    return out
+        out[mask] = np.where(kof == 1, tk * zm, zm) - dr * drd
+    return out           # NOTE: returns the blended LOGIT (z), not p
 
 
 def main():
@@ -399,9 +568,13 @@ def main():
     print(f"matches {len(m)} ({m.date.min()}..{m.date.max()}), deliveries {len(d)}, "
           f"extra intl results {len(x)}")
     x["nreal"] = 0
-    mx = pd.concat([m, x[["match_id", "comp", "gender", "date", "team1", "team2",
-                          "city", "winner", "result", "home1", "y1", "seg",
-                          "margin_runs", "extra", "nreal"]]], ignore_index=True)
+    xc = x[["match_id", "comp", "gender", "date", "team1", "team2", "city",
+            "venue", "winner", "result", "home1", "y1", "seg", "margin_runs",
+            "extra", "nreal"]].copy()
+    xc["home1_name"] = xc.home1
+    xc["home1_learned"] = xc.home1
+    xc["home1_country"] = venue_country_home(xc.assign(comp="t20s"))
+    mx = pd.concat([m, xc], ignore_index=True)
     mx = mx.sort_values(["date", "match_id"]).reset_index(drop=True)
     elo_params = tune_elo(mx)
     p_elo_x, nmin_x = run_elo_seg(mx, elo_params)
@@ -427,12 +600,26 @@ def main():
     p_v1 = _n.cdf(diff1 / 40.0)
     zs = {"elo": logit(p_elo), "pl2": logit(p_pl), "pl1": logit(p_v1)}
     params = fit_blend(m, zs, m.nreal.to_numpy(), rich)
-    p_blend = blended_p(m, zs, params)
+    z_blend = blended_p(m, zs, params, rich)
+    p_blend_raw = inv(z_blend)
+    # online recalibration hyper-params chosen on train only
+    tr0 = ((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy() & (m.nreal.to_numpy() >= MIN_PRIOR)
+    best_on, best_on_ll, best_z = None, np.inf, None
+    for win in ONLINE_N:
+        for pn in ONLINE_PRIOR:
+            zr = online_recalibrate(m, z_blend, params, win, pn)
+            cur = ll(inv(zr[tr0]), m.y1.to_numpy()[tr0]).mean()
+            if cur < best_on_ll:
+                best_on_ll, best_on, best_z = cur, (win, pn), zr
+    print(f"  online recal: win={best_on[0]} prior={best_on[1]} "
+          f"(train LL {best_on_ll:.5f} vs raw {ll(p_blend_raw[tr0], m.y1.to_numpy()[tr0]).mean():.5f})")
+    p_blend = inv(best_z)
 
     tr = ((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy() & (m.nreal.to_numpy() >= MIN_PRIOR)
     y = m.y1.to_numpy()
     print("\ntrain-era walk-forward LL (2018..2024-05, >=10 prior real matches):")
-    for name, p in (("elo", p_elo), ("player2", p_pl), ("player1", p_v1), ("blend", p_blend)):
+    for name, p in (("elo", p_elo), ("player2", p_pl), ("player1", p_v1),
+                    ("blend_raw", p_blend_raw), ("blend", p_blend)):
         print(f"  {name:8s} {ll(p[tr], y[tr]).mean():.5f}")
         for seg in ("intl_m", "intl_f", "fr"):
             msk = tr & (m.seg == seg).to_numpy()
