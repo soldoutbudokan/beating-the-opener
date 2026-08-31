@@ -6,31 +6,31 @@ Quarter-Kelly, $100 starting bankroll, picks from the [wnba-props model](README.
 
 `EV said` is the model's own claim for that bet at the price actually taken (`model_p x decimal_odds - 1`). Read it against `CLV`: the model's claim vs the market's verdict on the same bet. A large positive `EV said` next to a negative `CLV` means the market never came to us - the claimed edge was not visible to anyone else. Note CLV's break-even is not zero: paying a two-way price and seeing no line movement scores about `1/booksum - 1`, i.e. roughly -5% to -7% at typical prop prices, so `CLV` near -6% means the line simply did not move.
 
-**Bankroll: $111.05** (start $100)
+**Bankroll: $108.93** (start $100)
 
 | metric | value |
 |---|---|
-| settled | 232 (123W-109L), 0 push, 6 void, 4 open |
-| staked | $232.00 |
-| P&L | $+11.05 (+4.8% ROI) |
-| mean EV said (model) | +19.12% (n=232) |
-| mean CLV (vs close) | -3.68% (n=232) |
-| mean CLV* (shade-adj) | -2.65% (n=232) |
-| closing line moved | 51 of 232 stamped (the rest closed at the bet line: CLV ≈ vig there) |
-| model calibration | expected 140.2W vs observed 123W (z=-2.34) |
-| Model-expected P&L | $+45.44 |
-| CLV-expected P&L | $-8.53 |
+| settled | 236 (124W-112L), 0 push, 6 void, 0 open |
+| staked | $236.00 |
+| P&L | $+8.93 (+3.8% ROI) |
+| mean EV said (model) | +19.12% (n=236) |
+| mean CLV (vs close) | -3.67% (n=236) |
+| mean CLV* (shade-adj) | -2.73% (n=236) |
+| closing line moved | 51 of 236 stamped (the rest closed at the bet line: CLV ≈ vig there) |
+| model calibration | expected 142.6W vs observed 124W (z=-2.51) |
+| Model-expected P&L | $+46.21 |
+| CLV-expected P&L | $-8.65 |
 
-CLV t-stat: -6.16 (iid); -3.31 clustered by match date (31 dates)
+CLV t-stat: -6.23 (iid); -3.40 clustered by match date (32 dates)
 
 Calibration reads the model's own claims against results: expected wins = sum of `model_p` over settled bets. A negative z means the claimed probabilities are running hot (the audit's under-side finding); it converges much faster than ROI.
 
 | date | player | market | side | line | odds | stake | EV said | actual | result | P&L | CLV | CLV* |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-08-30 | Allisha Gray | assists | over | 2.5 | 102 | 1.0 | +23.1% |  |  |  |  |  |
-| 2026-08-30 | Kayla McBride | points | over | 16.5 | -114 | 1.0 | +20.3% |  |  |  |  |  |
-| 2026-08-30 | Napheesa Collier | assists | over | 2.5 | 122 | 1.0 | +15.4% |  |  |  |  |  |
-| 2026-08-30 | Olivia Miles | threes | over | 1.5 | -118 | 1.0 | +18.9% |  |  |  |  |  |
+| 2026-08-30 | Allisha Gray | assists | over | 2.5 | 102 | 1.0 | +23.1% | 2 | lost | -1.00 | +1.0% | -3.0% |
+| 2026-08-30 | Kayla McBride | points | over | 16.5 | -114 | 1.0 | +20.3% | 17 | won | +0.88 | -11.2% | -14.5% |
+| 2026-08-30 | Napheesa Collier | assists | over | 2.5 | 122 | 1.0 | +15.4% | 2 | lost | -1.00 | -5.6% | -9.9% |
+| 2026-08-30 | Olivia Miles | threes | over | 1.5 | -118 | 1.0 | +18.9% | 1 | lost | -1.00 | +3.2% | -0.1% |
 | 2026-08-29 | Jonquel Jones | threes | under | 1.5 | 124 | 1.0 | +22.5% | 3 | lost | -1.00 | -7.6% | -3.6% |
 | 2026-08-29 | Sydney Taylor | points | over | 12.5 | -104 | 1.0 | +16.8% | 13 | won | +0.96 | +6.2% | +2.8% |
 | 2026-08-29 | Kamilla Cardoso | rebounds | under | 9.5 | -102 | 1.0 | +14.5% | 4 | won | +0.98 | -4.2% | +1.1% |
