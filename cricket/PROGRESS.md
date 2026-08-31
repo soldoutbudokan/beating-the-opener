@@ -1,5 +1,56 @@
 # Cricket — from-scratch pricing vs a prediction market
 
+> ## Status for review — 2026-08-30 (stopped here at owner instruction)
+>
+> **The goal was not met.** The registered target was to beat the exchange's
+> day-before price in *both* cells; on the full dev population both remain
+> marginally behind. What the session did achieve is large: the international
+> cell improved **84%** and the franchise cell reached statistical parity, and
+> in the more recent half of dev the model beats the open on internationals.
+>
+> | dev cell (n=693) | session start | final | t |
+> |---|---|---|---|
+> | franchise leagues (466) | +0.0069 | **+0.0017** | 0.3 |
+> | internationals (227) | +0.0871 | **+0.0138** | 0.7 |
+> | pooled | +0.0332 | **+0.0057** | 0.7 |
+>
+> Positive = still behind. Second half of dev (post-hoc): franchise +0.0009,
+> **international −0.0113**, pooled −0.0027. Dev ROI at the open with a 1¢
+> spread: **+9.6% at EV>5% (t=1.5)**; the zero-skill placebo took **0 bets**
+> in every cell, in every configuration, all session.
+>
+> **The one-line diagnosis:** the model is at or ahead of the market wherever
+> the market is thin or the teams are obscure (associate internationals
+> −0.039, IPL −0.009, ILT20, SA20, the Hundred) and behind exactly where
+> squads rotate and the market is liquid and news-driven (full-member
+> internationals, T20 Blast, MLC). This is the WNBA "information, not
+> estimation" wall in cricket form.
+>
+> **The decisive evidence that it is an information wall, not a modelling
+> one:** a player plus-minus model *handed the actual XIs* — deliberately
+> cheating in the model's favour — scores 0.682 against team Elo's 0.608.
+> Knowing exactly who plays does not convert into edge at this data volume.
+>
+> **Three decisions waiting for you** (none taken; all research-only so far):
+> 1. **Point-in-time squad announcements** — the real information layer, and
+>    the only candidate that addresses the losing cells. A collection job,
+>    needs its own registration.
+> 2. **The Odds API, ~$30** — a bookmaker open/close on the same IPL matches
+>    from 2020, i.e. a second, independent benchmark. Needs your email, a
+>    card, and a reCAPTCHA sign-up.
+> 3. **`pm-prospective-1`** — the only claim generator, accruing now, scored
+>    once at n ≥ 300 or 2027-06-30. Nothing to decide unless you want the
+>    lock date moved.
+>
+> **Not started, deliberately:** a continuous "meta-model" for confidence
+> (predicting the model's own reliability per row from coverage, layoff,
+> tournament status and prior-match counts, rather than the hand-cut
+> per-class buckets used now). It generalises what is already there and is
+> the natural next modelling step if the market-beat is worth more effort.
+>
+> Everything below is the full write-up. No betting, no live arm, nothing
+> under any `live/` directory.
+
 Standalone progress document for the cricket revisit, written 2026-08-30 at
 the owner's instruction to stop and record the state. The registrations that
 govern this work (population, timestamps, gates, iteration rules) live in the
