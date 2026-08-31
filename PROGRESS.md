@@ -1880,6 +1880,42 @@ and — if the backtest ceiling proves to be squad news — the prospective
 squad-aware arm (the WNBA T3 pattern) as the registered path to the
 international cell.
 
+**Q final state (2026-08-30, owner: stop and record).** Model of record
+`cricket/src/pm_model2.py`; standalone write-up
+[`cricket/PROGRESS.md`](cricket/PROGRESS.md).
+
+| dev cell | session start | final | clustered t |
+|---|---|---|---|
+| franchise (466) | +0.0069 | **+0.0017** | 0.3 |
+| international (227) | +0.0871 | **+0.0188** | 0.9 |
+| pooled (693) | +0.0332 | **+0.0073** | 0.9 |
+
+**The registered goal gate (both cells < 0.000, pooled t <= -1.5) was NOT
+met.** Dev ROI at the open with a 1c spread: +8.36% at EV>5% (t=1.3),
++4.87% at EV>2%; placebo 0 bets throughout. Second half of dev (post-hoc):
+franchise +0.0009, international **-0.0050**, pooled -0.0009.
+
+Final per-cell dev picture - the model beats the open on men's associate
+internationals (-0.0393, n=59), women's associate (-0.0149, n=19), IPL
+(-0.0094, n=137), ILT20 (-0.0079), SA20 (-0.0043) and the Hundred
+(-0.0011); it loses on women's mismatches (+0.1773, n=11, t=2.3), men's
+mismatches (+0.0432, n=24, t=2.4), women's full-member (+0.0378, n=44),
+men's full-member (+0.0315, n=70), T20 Blast (+0.0118, n=103) and MLC
+(+0.0249). Ahead where the market is thin or the teams obscure; behind
+where squads rotate and the market is liquid - information, not
+estimation.
+
+Final adopted terms beyond it-15: series-continuity expected XI (0.84/0.86
+overlap vs 0.61/0.70 for the smoothed roster), per-fixture-class online
+recalibration (FF/FA/AA - associate matches are predictable at AUC 0.81
+while full-member T20Is are near coin-flips at 0.68, so one confidence
+scale served neither), major-tournament multiplier, and widened
+cross-format weight (ODI results now carry 1.5-2.0x, i.e. at least as much
+as a team's own sparse T20I record) and women's tier gap (800).
+
+Iterating stopped here at the owner's instruction. The only claim
+generator remains `pm-prospective-1` (`cricket/src/pm_prospective.py`).
+
 ## Push log
 
 - **2026-07-31** — Programme opened. PROGRESS.md created (recreated from
@@ -2266,3 +2302,10 @@ international cell.
   +0.0291; iteration table + diagnostics in the Q log. Ingest gains
   stage + over columns, cross-format intl results, chase-aware margins.
   ICC-rankings Wayback scrape in flight.
+- **2026-08-30 (cricket Q, final)** — iteration stopped at owner
+  instruction after 20+ logged dev touches. Dev: franchise +0.0017,
+  international +0.0188, pooled +0.0073 (ROI at open +8.4% EV>5%, placebo
+  0 bets); goal gate NOT met, recent-half at parity. Standalone progress
+  document added at `cricket/PROGRESS.md`; three approaches recorded as
+  rejected (ridge Bradley-Terry, XI plus-minus even with oracle XIs,
+  same-day call-ups) and the overfit isotonic bound withdrawn.
