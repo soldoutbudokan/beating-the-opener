@@ -47,6 +47,8 @@ def parse_match(comp, mid, blob):
         "result": outcome.get("result", "normal"),
         "toss_winner": info.get("toss", {}).get("winner"),
         "stage": (info.get("event") or {}).get("stage"),
+        "event_name": (info.get("event") or {}).get("name"),
+        "match_number": (info.get("event") or {}).get("match_number"),
         "xi1": info.get("players", {}).get(teams[0], []),
         "xi2": info.get("players", {}).get(teams[1], []),
     }
