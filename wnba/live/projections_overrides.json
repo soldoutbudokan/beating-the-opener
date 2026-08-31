@@ -6697,7 +6697,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "ESPN league injury report: 'Plum (leg) has been ruled out for Thursday's game against the Mystics.' Lower Leg, return_date 2026-08-29. Downgrade from the Day-To-Day entry logged at 2026-08-27/0038Z (index 492), which this supersedes. Targets tonight's WAS@PHO only.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 553
     },
     {
       "player": "Anneli Maley",
@@ -7268,6 +7268,19 @@
       "source": "avail:2026-08-31/0032Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 0032Z diff (20:32 ET Sun 8/30): Marshall (Connecticut Sun) listed Out, type Coach's Decision - \"Marshall (coach's decision) has been ruled out for Sunday's game against Dallas\", return_date 2026-09-17. Corroborated by the per-event report for CON @ DAL (event 401857189, 20:30 ET, still STATUS_SCHEDULED at capture), so this is not a league-feed-only artifact. Coach's Decision counts as Out per the v3 T3 rule; minutes_est 0, date-scoped to tonight's ET slate. Seventh out/in cycle on this player since 08-18 (indices 325/357/423/454/472/484/526) - she is a game-to-game rotational DNP, not an injury. Supersedes index 526 (out, dated 2026-08-28). Prices nothing on the current sheet: she carries no FanDuel prop and her panel state is unchanged.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Kelsey Plum",
+      "added": "2026-08-31T13:45:00Z",
+      "game_date": null,
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "ESPN news API (news_watch item b55f61d2c76e3, published 2026-08-31T12:45Z)",
+      "url": "https://www.espn.com/wnba/",
+      "quote": "\"A'ja Wilson, Kelsey Plum to miss the FIBA Women's World Cup\" (2026-08-31 08:45 ET): \"Kelsey Plum and A'Ja Wilson will miss the FIBA Women's World Cup for health reasons, with the Mercury announcing that Plum will miss the rest of the 2026 season.\" Season-ending per the team's own announcement, so this is until-cleared (game_date null) rather than date-scoped: it covers every remaining Phoenix game when play resumes 2026-09-17 after the World Cup break. Supersedes index 508 (out, date-scoped to 2026-08-27). Prices nothing today - the WNBA is on the FIBA break through 2026-09-16 and no props are posted - but it must be in force before PHO's first post-break sheet (POR vs PHX, 2026-09-17), where her panel state would otherwise price her as an active starter.",
       "author": "news-watch",
       "superseded_by": null
     }
