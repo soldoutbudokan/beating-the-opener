@@ -6931,7 +6931,7 @@
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "NEW in the 2237Z diff (18:37 ET) on the CON @ IND event report (event:401857181 = tonight, 19:30 ET): Rayah Marshall, Connecticut Sun, Out, Coach's Decision, return_date 2026-08-30 (per-event row only; no league-report row this time). Fifth coach's-decision scratch this month for her (entries 325/423/472 and their clears 357/454/484); supersedes 484, the post-game clear of the last one. Game has not started, so the out targets 2026-08-28 with minutes_est 0. Inert for pricing: deep bench at 4-7 minutes in every 2026 appearance, no Marshall prop on the sheet, and her minutes are too few to reallocate to Connecticut teammates.",
       "author": "news-watch",
-      "superseded_by": null
+      "superseded_by": 552
     },
     {
       "player": "Natasha Cloud",
@@ -7255,6 +7255,19 @@
       "source": "avail:2026-08-30/2333Z",
       "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
       "quote": "CLEARED in the 2333Z diff (19:33 ET): she has dropped off the Portland Fire injury report entirely, having been carried as Day-To-Day (Knee) since the 1335Z upgrade and Out before that (in-game knee exit, 2026-08-28 vs ATL). Confirmed by the same snapshot's lineup feed for GS @ POR (in progress at capture): Karlie Samuelson is listed as an active non-starter with dnp=false, i.e. she is playing tonight. Supersedes the questionable entry from avail:2026-08-30/1335Z. Recorded as available with NO minutes estimate - her role is deep-bench (9 minutes on 2026-08-28) and stamping a number on a returnee would price a bet rather than remove a stale one. game_date null; her game is already underway, so this is record-only for tonight and applies whenever her props next post.",
+      "author": "news-watch",
+      "superseded_by": null
+    },
+    {
+      "player": "Rayah Marshall",
+      "added": "2026-08-31T00:33:00Z",
+      "game_date": "2026-08-30",
+      "status": "out",
+      "minutes_est": 0,
+      "minutes_range": null,
+      "source": "avail:2026-08-31/0032Z",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/injuries",
+      "quote": "NEW in the 0032Z diff (20:32 ET Sun 8/30): Marshall (Connecticut Sun) listed Out, type Coach's Decision - \"Marshall (coach's decision) has been ruled out for Sunday's game against Dallas\", return_date 2026-09-17. Corroborated by the per-event report for CON @ DAL (event 401857189, 20:30 ET, still STATUS_SCHEDULED at capture), so this is not a league-feed-only artifact. Coach's Decision counts as Out per the v3 T3 rule; minutes_est 0, date-scoped to tonight's ET slate. Seventh out/in cycle on this player since 08-18 (indices 325/357/423/454/472/484/526) - she is a game-to-game rotational DNP, not an injury. Supersedes index 526 (out, dated 2026-08-28). Prices nothing on the current sheet: she carries no FanDuel prop and her panel state is unchanged.",
       "author": "news-watch",
       "superseded_by": null
     }
