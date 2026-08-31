@@ -27,7 +27,7 @@ MIN_PRIOR = 10                 # both teams need this many prior matches
 ELO_GRID = {"K": (16, 24, 32, 48, 64, 96), "home": (0, 40, 80),
             "regress": (0.0, 0.2, 0.4), "scale": (300.0, 400.0),
             "mov": (0.0, 0.5, 1.0, 2.0)}   # mov: K multiplier 1 + mov*log1p(|margin runs|/20)
-XFMT_GRID = (0.0, 0.25, 0.5)   # weight of cross-format international results
+XFMT_GRID = (0.0, 0.25, 0.5, 0.75, 1.0)   # weight of cross-format results
                                # (ODI/ODM/IT20) as extra Elo observations
 # membership-tier prior on the INITIAL rating: results cannot resolve the
 # class gap between tiers that rarely play each other (dev diagnostic: mixed
@@ -46,8 +46,11 @@ SEED_GRID = (0.0, 100.0, 200.0, 350.0)   # debutant seeded at
                                          # team's first fixture reveals its
                                          # class (associates play associates),
                                          # and the opponent is known pre-match
-TIER_A_GRID = (0, 150, 300, 450)   # full-member offset above MID
-TIER_B_GRID = (0, 150, 300)        # MID offset above the rest
+# both grids were boundary-limited on the first fit (women chose the maximum
+# 450, i.e. still under-separated: women's associates trail full members by
+# far more than men's do). Widened 2026-08-30.
+TIER_A_GRID = (0, 150, 300, 450, 600, 800)   # full-member offset above MID
+TIER_B_GRID = (0, 150, 300, 450)             # MID offset above the rest
 
 
 def tier_offsets(a, b):
@@ -376,6 +379,85 @@ def run_elo_seg(m, elo_params):
     return p1, nmin
 
 
+# ------------------------------------------------------ Bradley-Terry
+BT_LAMBDA = (0.5, 1.0, 3.0)        # ridge strength toward the tier prior
+BT_HALFLIFE = (365.0, 730.0, 1460.0)   # days
+BT_REFIT_DAYS = 30
+
+
+def _bt_fit(i1, i2, hcol, y, w, n_teams, prior, lam, iters=25):
+    """Weighted ridge Bradley-Terry by Newton's method, ridge centred on
+    `prior` (the membership-tier offsets). Returns (ratings, home_coef)."""
+    r = prior.copy()
+    h = 0.0
+    for _ in range(iters):
+        z = r[i1] - r[i2] + h * hcol
+        p = 1.0 / (1.0 + np.exp(-z))
+        resid = w * (y - p)
+        g = np.zeros(n_teams + 1)
+        np.add.at(g, i1, resid)
+        np.add.at(g, i2, -resid)
+        g[-1] = float((resid * hcol).sum())
+        g[:n_teams] -= lam * (r - prior)
+        wp = w * p * (1 - p)
+        diag = np.zeros(n_teams + 1)
+        np.add.at(diag, i1, wp)
+        np.add.at(diag, i2, wp)
+        diag[-1] = float((wp * hcol * hcol).sum())
+        diag[:n_teams] += lam
+        diag = np.maximum(diag, 1e-6)
+        step = g / diag                      # diagonal (Jacobi) Newton step
+        step = np.clip(step, -0.5, 0.5)
+        r = r + 0.7 * step[:n_teams]
+        h = h + 0.7 * step[-1]
+        if np.max(np.abs(step)) < 1e-5:
+            break
+    return r, h
+
+
+def bt_ratings(m, halflife, lam, tier, refit_days=BT_REFIT_DAYS,
+               home_col="home1_country"):
+    """Time-decayed, ridge-regularised Bradley-Terry ratings, refit every
+    `refit_days` on all STRICTLY PRIOR matches.
+
+    Why not Elo: international schedules are sparse and clustered (associates
+    play only associates, for a fortnight, then not for a year). Elo's
+    sequential single-match updates propagate that badly, while a joint
+    maximum-likelihood fit uses every indirect comparison at once and the
+    ridge keeps rarely-seen teams at their membership-tier prior instead of
+    drifting. Results only; no market quantity anywhere.
+    """
+    teams = pd.unique(pd.concat([m.team1, m.team2]))
+    tidx = {t: i for i, t in enumerate(teams)}
+    off = tier_offsets(*tier) if tier else (lambda t: 0.0)
+    prior = np.array([off(t) / 300.0 for t in teams], float)
+    dates = pd.to_datetime(m.date).to_numpy()
+    y = m.y1.to_numpy(float)
+    hcol = (m[home_col].to_numpy(float) if home_col in m
+            else np.zeros(len(m), float))
+    i1 = m.team1.map(tidx).to_numpy()
+    i2 = m.team2.map(tidx).to_numpy()
+    base_w = (np.where(m.extra.to_numpy() == 1, 0.5, 1.0)
+              if "extra" in m else np.ones(len(m)))
+    out = np.zeros(len(m))
+    r, h = prior.copy(), 0.0
+    last_fit = None
+    for i in range(len(m)):
+        d = dates[i]
+        if last_fit is None or (d - last_fit) / np.timedelta64(1, "D") >= refit_days:
+            j = int(np.searchsorted(dates, d))       # strictly prior rows
+            if j >= 30:
+                age = (d - dates[:j]) / np.timedelta64(1, "D")
+                w = base_w[:j] * 0.5 ** (age / halflife)
+                keep = w > 1e-3
+                if keep.sum() >= 30:
+                    r, h = _bt_fit(i1[:j][keep], i2[:j][keep], hcol[:j][keep],
+                                   y[:j][keep], w[keep], len(teams), prior, lam)
+            last_fit = d
+        out[i] = r[i1[i]] - r[i2[i]] + h * hcol[i]
+    return out
+
+
 # ------------------------------------------------- player composition v2
 def per_match_player_tables(d):
     bat = (d.groupby(["match_id", "batter", "phase"])
@@ -395,14 +477,30 @@ def player_pass(m, bat_g, bowl_g, wicket_val, shrink):
     bval = defaultdict(float); bwt = defaultdict(float); bballs = defaultdict(float)
     oval = defaultdict(float); owt = defaultdict(float); oballs = defaultdict(float)
     roster = defaultdict(dict)
+    last_xi = {}                      # team -> its most recent XI
+    last_series_xi = {}               # (team, event) -> its last XI in that event
     hist_q = {}                       # team -> EW quality of XIs actually fielded
     diff = np.empty(len(m)); rich = np.empty(len(m)); rot = np.empty(len(m))
 
-    def team_value(team):
+    def expected_xi(team, event):
+        """Who is likely to play, strictly from prior matches. Measured
+        overlap with the actual XI (2026-08-30): last XI in the SAME series
+        0.84 international / 0.86 franchise, last XI anywhere 0.69 / 0.74,
+        appearance-weighted roster 0.61 / 0.70. Series continuity is the
+        single most informative pre-match fact available to us, and the
+        smoothed roster was throwing it away."""
+        xi = last_series_xi.get((team, event)) if event else None
+        if not xi:
+            xi = last_xi.get(team)
+        if xi:
+            return [(p, 1.0) for p in xi]
         ros = roster[team]
-        if not ros:
+        return sorted(ros.items(), key=lambda kv: -kv[1])[:11] if ros else []
+
+    def team_value(team, event=None):
+        top = expected_xi(team, event)
+        if not top:
             return 0.0, 0.0
-        top = sorted(ros.items(), key=lambda kv: -kv[1])[:11]
         bw = sum(w * bballs[p] for p, w in top)
         tb = (sum(w * bballs[p] * bval[p] * min(bwt[p] / shrink, 1.0) for p, w in top)
               / bw) if bw > 0 else 0.0
@@ -418,7 +516,8 @@ def player_pass(m, bat_g, bowl_g, wicket_val, shrink):
         return float(np.mean(vals)) if vals else np.nan
 
     for i, r in enumerate(m.itertuples()):
-        (v1, s1), (v2, s2) = team_value(r.team1), team_value(r.team2)
+        ev = getattr(r, "event_name", None)
+        (v1, s1), (v2, s2) = team_value(r.team1, ev), team_value(r.team2, ev)
         diff[i] = 120.0 * (v1 - v2)
         rich[i] = min(s1, s2)
         # rotation signal: expected-XI quality vs the EW quality of the XIs
@@ -427,8 +526,7 @@ def player_pass(m, bat_g, bowl_g, wicket_val, shrink):
         # rotated - the single biggest thing a results-only rating misses.
         rq = []
         for team in (r.team1, r.team2):
-            ros = roster[team]
-            top = [p for p, _ in sorted(ros.items(), key=lambda kv: -kv[1])[:11]]
+            top = [p for p, _ in expected_xi(team, ev)]
             q_now = xi_quality(top) if top else np.nan
             q_hist = hist_q.get(team, np.nan)
             rq.append(q_now - q_hist if np.isfinite(q_now) and np.isfinite(q_hist) else 0.0)
@@ -465,6 +563,10 @@ def player_pass(m, bat_g, bowl_g, wicket_val, shrink):
             played |= set(bo.bowler)
         for team, xi in ((r.team1, r.xi1), (r.team2, r.xi2)):
             names = set(xi) if len(xi) else played
+            if len(xi):
+                last_xi[team] = list(xi)
+                if ev:
+                    last_series_xi[(team, ev)] = list(xi)
             q = xi_quality(list(names))
             if np.isfinite(q):
                 hist_q[team] = (0.8 * hist_q[team] + 0.2 * q
@@ -768,10 +870,6 @@ def main():
     b.to_parquet(os.path.join(ROOT, "data", "pm_preds_v2.parquet"), index=False)
 
 
-if __name__ == "__main__":
-    main()
-
-
 def dev_stability(b):
     """Honesty check: dev has been iterated on, so report it split by time.
     A model that only wins on one half is fitting the half it was tuned to
@@ -784,3 +882,9 @@ def dev_stability(b):
         for seg, gg in list(g.groupby("seg")) + [("pooled", g)]:
             d, t = clustered_t((gg.ll_model - gg.ll_open).values, gg.date)
             print(f"  {half:22s} {seg:14s} n={len(gg):4d} model-open={d:+.5f} (t={t:.1f})")
+
+
+if __name__ == "__main__":
+    main()
+
+

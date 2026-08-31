@@ -1765,6 +1765,46 @@ without corrupting the record:
   the exchange price is scoring benchmark and settlement only.
 
 
+
+**Correction (2026-08-30, same session): the isotonic "oracle" above was
+overfit and its conclusion is withdrawn.** Cross-validated (5-fold) on the
+same dev rows: franchise as-is **0.6876** vs CV-isotonic 0.6874 and
+CV-linear 0.6898; international as-is **0.5631** vs CV-isotonic 0.6242 and
+CV-linear 0.5953. In other words the model's probability map is already at
+or better than anything a recalibration can honestly buy, and the
+international shortfall is an **ordering** deficit, not a calibration one.
+The in-sample isotonic number (0.5059) was a mirage of 227 points and a free
+monotone fit; it is recorded here only so the mistake is not repeated. What
+the diagnostic does still support: the exchange's day-before price is
+immature (its own favourites at implied 0.595 win 67%), which is why a
+correctly-confident model is paid at all.
+
+**Where the remaining loss actually is (dev, by cell).** We already beat the
+exchange's open on: men's associate-vs-associate internationals **-0.0409**
+(n=59), IPL **-0.0094** (n=137), ILT20 -0.0079 (n=21), SA20 -0.0043 (n=25),
+The Hundred -0.0011 (n=53). We lose on **full-member internationals**
+(women +0.0739 n=44, men +0.0701 n=70), women's mismatches (+0.1913, n=11)
+and T20 Blast (+0.0118, n=103). The pattern is coherent: the model is at or
+ahead of the market wherever the market is thin or the teams are obscure,
+and behind exactly where squads rotate and the market is liquid and
+news-driven - the WNBA "information, not estimator" wall, in cricket form.
+
+**Expected-XI rewrite (adopted).** Measured overlap with the actual XI:
+appearance-weighted roster 0.61 international / 0.70 franchise; last XI
+anywhere 0.69 / 0.74; **last XI in the SAME series 0.84 / 0.86**. The model
+now takes the series-continuity XI when available. Train effect: player
+component intl_m 0.6613 -> 0.6613 (unchanged), intl_f 0.6154 -> 0.6014,
+fr 0.6960 -> 0.6890; blend 0.63804 -> 0.63643.
+
+**Tested and rejected, recorded so they are not retried:** ridge Bradley-
+Terry ratings refit every 30 days with tier-centred priors (train intl_m
+0.610 vs Elo 0.608, intl_f 0.557 vs 0.529 - a joint MLE does not beat Elo
+here); same-day international call-ups as a franchise availability signal
+(0.08% of expected-XI weight - leagues schedule around international
+windows); historical ICC ratings before 2026-02 (the Wikipedia table was
+transcluded from a template that has since been deleted, so the history is
+not recoverable; current ratings are archived for the prospective arm).
+
 ### Registration Q — iteration log (updated every push)
 
 Model: `cricket/src/pm_model2.py`. Train = walk-forward LL on 2018→2024-05,
