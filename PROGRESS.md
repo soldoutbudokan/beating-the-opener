@@ -1887,8 +1887,8 @@ international cell.
 | dev cell | session start | final | clustered t |
 |---|---|---|---|
 | franchise (466) | +0.0069 | **+0.0017** | 0.3 |
-| international (227) | +0.0871 | **+0.0188** | 0.9 |
-| pooled (693) | +0.0332 | **+0.0073** | 0.9 |
+| international (227) | +0.0871 | **+0.0138** | 0.7 |
+| pooled (693) | +0.0332 | **+0.0057** | 0.7 |
 
 **The registered goal gate (both cells < 0.000, pooled t <= -1.5) was NOT
 met.** Dev ROI at the open with a 1c spread: +8.36% at EV>5% (t=1.3),
@@ -2309,3 +2309,15 @@ generator remains `pm-prospective-1` (`cricket/src/pm_prospective.py`).
   document added at `cricket/PROGRESS.md`; three approaches recorded as
   rejected (ridge Bradley-Terry, XI plus-minus even with oracle XIs,
   same-day call-ups) and the overfit isotonic bound withdrawn.
+- **2026-08-30 (cricket Q, continued after the goal hook re-opened it)** —
+  three further structural terms tested: **per-(segment x fixture class)
+  probability maps** (adopted: intl +0.0188 -> +0.0139; the tuner gives
+  mismatches a 4.0 ceiling and full-member T20Is 1.8), **conditions
+  familiarity by venue region** (adopted on 3 of 5 classes; 58.3% vs 41.5%
+  on 20% of internationals; calibration -2.5pp -> -1.2pp), and
+  **per-competition recalibration** (rejected, franchise +0.0017 ->
+  +0.0049). Rest/travel and ±4-day international call-ups measured as
+  no-signal. Final dev: franchise +0.0017, international +0.0138, pooled
+  +0.0057, ROI at the open +9.6% at EV>5% (t=1.5), placebo 0 bets;
+  recent half franchise +0.0009, international **-0.0113**, pooled
+  -0.0027. The registered goal gate on FULL dev remains unmet.

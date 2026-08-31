@@ -105,25 +105,36 @@ Components:
   major-tournament confidence multipliers, venue-country home detection
   (inferred from which domestic league uses a venue — "India" never
   token-matches "Mumbai").
-- **A piecewise-monotone capped probability map** with a per-segment
-  confidence ceiling, plus **walk-forward online recalibration** keyed by
-  segment *and fixture class* (full-vs-full / mixed / associate-vs-associate),
-  learning from the model's own past predictions only.
+- **Conditions familiarity**: a side from the venue's *region* (subcontinent,
+  Gulf, Oceania, Europe, Africa, Caribbean, Americas, East Asia) wins 58.3%
+  against 41.5% when the opponent is the regional side, over 20% of
+  international matches - a far larger effect than country-exact home
+  advantage, and the reason the tuner kept valuing "home" at nearly nothing.
+- **A piecewise-monotone capped probability map fitted per segment x fixture
+  class** (mismatches need a sharp map - the model ranks them perfectly and
+  the market correctly prices 0.97 - while full-member T20Is are near
+  coin-flips and need a flat one), plus **walk-forward online recalibration**
+  keyed the same way, learning from the model's own past predictions only.
 
 ## 5. Result (dev, n = 693)
 
 | cell | session start | final | clustered t |
 |---|---|---|---|
 | franchise leagues (466) | +0.0069 | **+0.0017** | 0.3 |
-| internationals (227) | +0.0871 | **+0.0188** | 0.9 |
-| pooled | +0.0332 | **+0.0073** | 0.9 |
+| internationals (227) | +0.0871 | **+0.0138** | 0.7 |
+| pooled | +0.0332 | **+0.0057** | 0.7 |
 
 Positive = still behind the exchange's day-before price. **The registered
 goal gate — both cells below 0.000 with pooled t ≤ −1.5 — was not met.**
 
-Flat-stake ROI at the open (paying a 1¢ spread), dev: **+8.4% at EV > 5%
-(clustered t = 1.3)**, +4.9% at EV > 2%; the zero-skill placebo that bets the
+Flat-stake ROI at the open (paying a 1¢ spread), dev: **+9.6% at EV > 5%
+(clustered t = 1.5)**, +6.6% at EV > 2%; the zero-skill placebo that bets the
 market's own price takes **0 bets** in every cell and every configuration.
+
+Split by time (post-hoc; neither half is a claim), the second half of dev
+sits at or past parity: franchise +0.0009, **international -0.0113**,
+pooled -0.0027. The residual full-dev deficit is concentrated in the first
+half, which is dominated by World Cup qualifying fixtures.
 
 Where the model already beats the open, and where it does not:
 
@@ -134,10 +145,6 @@ Where the model already beats the open, and where it does not:
 | IPL −0.009 (n=137) | women's full-member +0.038 (n=44) |
 | ILT20 −0.008, SA20 −0.004, Hundred −0.001 | men's full-member +0.032 (n=70) |
 | | T20 Blast +0.012 (n=103), MLC +0.025 (n=23) |
-
-Split by time (post-hoc; neither half is a claim), the second half of dev —
-where the adaptive recalibration has enough history to work — sits at
-parity: franchise +0.0009, **international −0.0050**, pooled −0.0009.
 
 ## 6. What this says
 
@@ -156,8 +163,13 @@ retried:
    deliberate cheat in the model's favour) — 0.682 vs Elo's 0.608. With 1,591
    players over 3,413 matches the system is hopelessly underdetermined, so
    "know the squad" does not mechanically convert into edge at this volume.
-3. **Same-day international call-ups** as a franchise availability signal —
-   0.08% of expected-XI weight; leagues schedule around international windows.
+3. **International call-ups** as a franchise availability signal — 0.08% of
+   expected-XI weight same-day, 0.5% within ±4 days; leagues genuinely
+   schedule around international windows.
+4. **Rest and travel** in franchise T20 — no signal at all (win rate 0.493
+   when a side is more rested, 0.496 when less, 0.496 when equal).
+5. **Per-competition adaptive recalibration** — chose a 100-match window and
+   pushed franchise dev +0.0017 -> +0.0049. Reverted to per-fixture-class.
 
 One earlier claim was **withdrawn**: an in-sample isotonic "oracle" suggested
 the model's ordering was already good enough to beat the open in both cells.

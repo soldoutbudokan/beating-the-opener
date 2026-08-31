@@ -93,6 +93,7 @@ def load():
     m["home1_name"] = [home_flag(t, c) for t, c in zip(m.team1, m.city)]
     m["home1_learned"] = learned_home(m)
     m["home1_country"] = venue_country_home(m)
+    m["famil"] = conditions_familiarity(m)
     m["home1"] = m.home1_name          # default; run_elo picks per segment
     m["y1"] = (m.winner == m.team1).astype(float)
     m["seg"] = np.where(m.comp == "t20s",
@@ -113,6 +114,13 @@ def load():
     m["fclass"] = np.where(m.seg == "fr", "fr",
                            np.where(f1 & f2, "FF",
                                     np.where(~f1 & ~f2, "AA", "FA")))
+    # blend key (the probability MAP) stays coarse; the online recalibration
+    # key is finer for franchise, where each competition has its own texture
+    # (dev: IPL -0.009 but T20 Blast +0.012 and MLC +0.025) and its own
+    # realised reliability to learn from.
+    m["bkey"] = m.seg + "|" + m.fclass
+    # per-COMPETITION recalibration was tried and reverted (2026-08-30): it
+    # picked a 100-match window and pushed franchise dev +0.0017 -> +0.0049.
     m["rkey"] = m.seg + "|" + m.fclass
     x = pd.read_parquet(os.path.join(ROOT, "data", "matches_extra.parquet"))
     x = x[(x.result == "normal") & x.winner.notna()].copy()
@@ -175,6 +183,32 @@ def venue_country_home(m):
         country = vmap.get(getattr(r, "venue", None)) or cmap.get(getattr(r, "city", None))
         if country and r.team1 == country:
             out[i] = 1
+    return out
+
+
+def conditions_familiarity(m):
+    """+1 when team1's home region matches the venue's region and team2's
+    does not, -1 for the reverse, else 0. Venue region comes from the same
+    league-derived venue->country map used for the home indicator."""
+    vmap, cmap = {}, {}
+    for r in m.itertuples():
+        c = COMP_COUNTRY.get(r.comp)
+        if not c:
+            continue
+        if isinstance(getattr(r, "venue", None), str):
+            vmap.setdefault(r.venue, c)
+        if isinstance(getattr(r, "city", None), str):
+            cmap.setdefault(r.city, c)
+    out = np.zeros(len(m), int)
+    for i, r in enumerate(m.itertuples()):
+        country = (vmap.get(getattr(r, "venue", None))
+                   or cmap.get(getattr(r, "city", None)))
+        reg = REGION.get(country) if country else None
+        if reg is None:
+            continue
+        a = REGION.get(r.team1) == reg
+        b = REGION.get(r.team2) == reg
+        out[i] = int(a) - int(b)
     return out
 
 
@@ -620,6 +654,7 @@ def tune_player(m, bat_g, bowl_g):
 # without the cubic's tail blow-ups (which turned modest wrong-side errors
 # into catastrophic 0.06-vs-market-0.34 rows — dev diagnostic 2026-08-30).
 KO_GRID = (0.6, 0.8, 1.0)     # knockout temperature (late-season dev finding)
+FAM_GRID = (0.0, 0.15, 0.3)    # logit bonus for conditions familiarity
 MAJOR_GRID = (0.8, 1.0, 1.25)  # confidence multiplier for major tournaments.
                                # Teams field full strength at a World Cup and
                                # rotate through bilateral series, so the same
@@ -639,6 +674,40 @@ HOME_MODES = ("name", "learned", "country")   # per-segment, tuned on train
 # country's team. (Team names ARE country names in internationals, so no
 # extra mapping is needed.) Market-free, public, and it fixes the fact that
 # "India" never token-matches "Mumbai".
+# conditions familiarity: pitches and conditions cluster by region, and a
+# side from the region is at home in them even at a neutral venue in it
+# (Sri Lanka in Sharjah, Australia in New Zealand). Distinct from the home
+# indicator, which is country-exact.
+REGION = {
+    "India": "sub", "Pakistan": "sub", "Sri Lanka": "sub", "Bangladesh": "sub",
+    "Nepal": "sub", "Afghanistan": "sub", "United Arab Emirates": "gulf",
+    "Oman": "gulf", "Qatar": "gulf", "Kuwait": "gulf", "Bahrain": "gulf",
+    "Saudi Arabia": "gulf", "Australia": "oce", "New Zealand": "oce",
+    "Papua New Guinea": "oce", "Fiji": "oce", "Vanuatu": "oce", "Samoa": "oce",
+    "England": "eur", "Ireland": "eur", "Scotland": "eur", "Netherlands": "eur",
+    "Jersey": "eur", "Guernsey": "eur", "Denmark": "eur", "Germany": "eur",
+    "Italy": "eur", "Spain": "eur", "France": "eur", "Norway": "eur",
+    "Sweden": "eur", "Finland": "eur", "Belgium": "eur", "Austria": "eur",
+    "Switzerland": "eur", "Croatia": "eur", "Czech Republic": "eur",
+    "Hungary": "eur", "Romania": "eur", "Bulgaria": "eur", "Portugal": "eur",
+    "Greece": "eur", "Serbia": "eur", "Slovenia": "eur", "Estonia": "eur",
+    "Isle of Man": "eur", "Gibraltar": "eur", "Luxembourg": "eur",
+    "Malta": "eur", "Cyprus": "eur", "Turkey": "eur", "Israel": "eur",
+    "South Africa": "afr", "Zimbabwe": "afr", "Namibia": "afr", "Kenya": "afr",
+    "Uganda": "afr", "Nigeria": "afr", "Ghana": "afr", "Tanzania": "afr",
+    "Rwanda": "afr", "Botswana": "afr", "Malawi": "afr", "Mozambique": "afr",
+    "Eswatini": "afr", "Cameroon": "afr", "Seychelles": "afr",
+    "Sierra Leone": "afr", "Gambia": "afr", "Lesotho": "afr", "Zambia": "afr",
+    "West Indies": "car", "Canada": "ame", "United States of America": "ame",
+    "Bermuda": "car", "Bahamas": "car", "Belize": "ame", "Panama": "ame",
+    "Argentina": "ame", "Brazil": "ame", "Chile": "ame", "Peru": "ame",
+    "Mexico": "ame", "Costa Rica": "ame", "Cayman Islands": "car",
+    "Turks and Caicos Island": "car", "Suriname": "car",
+    "Singapore": "asia", "Malaysia": "asia", "Thailand": "asia",
+    "Hong Kong": "asia", "Japan": "asia", "China": "asia", "Indonesia": "asia",
+    "Philippines": "asia", "South Korea": "asia", "Myanmar": "asia",
+    "Cambodia": "asia", "Mongolia": "asia", "Bhutan": "sub", "Maldives": "sub",
+}
 COMP_COUNTRY = {"ipl": "India", "wpl": "India", "bbl": "Australia",
                 "wbb": "Australia", "psl": "Pakistan", "cpl": "West Indies",
                 "ntb": "England", "hnd": "England", "sat": "South Africa",
@@ -687,17 +756,26 @@ def fit_blend(m, zs, nmin, rich, ko=None, rot=None):
     params = {}
     grid = [w for w in itertools.product((0, 0.25, 0.5, 0.75, 1.0), repeat=len(names))
             if abs(sum(w) - 1.0) < 1e-9]
-    for seg in ("intl_m", "intl_f", "fr"):
-        mask = tr & (m.seg == seg).to_numpy() & (nmin >= MIN_PRIOR)  # nmin arg = nreal
+    # keyed by segment x fixture class: mismatches need a SHARP map (the
+    # model orders them perfectly and the market correctly prices 0.97),
+    # full-member T20Is need a FLAT one (near coin-flips). Sharing one map
+    # across both served neither - dev diagnostic 2026-08-30.
+    keys = sorted(set(m.bkey[tr & (nmin >= MIN_PRIOR)]))
+    for seg in keys:
+        mask = tr & (m.bkey == seg).to_numpy() & (nmin >= MIN_PRIOR)
+        if mask.sum() < 120:            # too thin to fit its own map
+            continue  # nmin arg = nreal
         kof = (ko if ko is not None else m.ko.to_numpy())[mask]
         drd = (m.dr1.to_numpy() - m.dr2.to_numpy())[mask]   # +1: team1 dead
         srd = (m.sr1.to_numpy() - m.sr2.to_numpy())[mask]   # +1: team1 leads a decided series
-        dr_opts = DR_GRID if seg == "fr" else (0.0,)
-        sr_opts = SR_GRID if seg != "fr" else (0.0,)
+        dr_opts = DR_GRID if seg.startswith("fr") else (0.0,)
+        sr_opts = SR_GRID if not seg.startswith("fr") else (0.0,)
         rv = np.clip(rich[mask], 0.0, 1.0)
         rt = np.clip((rot if rot is not None else np.zeros(len(m)))[mask], -3, 3)
         mj = m.major.to_numpy()[mask]
-        mj_opts = MAJOR_GRID if seg != "fr" else (1.0,)
+        fam = m.famil.to_numpy()[mask]
+        fam_opts = FAM_GRID if not seg.startswith("fr") else (0.0,)
+        mj_opts = MAJOR_GRID if not seg.startswith("fr") else (1.0,)
         best, best_ll = None, np.inf
         for w, rex in itertools.product(grid, RICH_GRID):
             scale_pl = rv ** rex if rex else np.ones_like(rv)
@@ -713,17 +791,19 @@ def fit_blend(m, zs, nmin, rich, ko=None, rot=None):
                             base = zm1 - dr * drd + sr * srd
                             for rc in ROT_GRID:
                                 for mjv in mj_opts:
-                                    p = inv(np.where(mj == 1, mjv * base, base)
-                                            + rc * rt)
-                                    cur = ll(p, y[mask]).mean()
-                                    if cur < best_ll:
-                                        best_ll, best = cur, (w, s1, s2, s3, tk,
-                                                              dr, rex, sr, rc,
-                                                              zc, mjv)
+                                    b0 = np.where(mj == 1, mjv * base, base) + rc * rt
+                                    for fv in fam_opts:
+                                        p = inv(b0 + fv * fam)
+                                        cur = ll(p, y[mask]).mean()
+                                        if cur < best_ll:
+                                            best_ll, best = cur, (w, s1, s2, s3,
+                                                                  tk, dr, rex, sr,
+                                                                  rc, zc, mjv, fv)
         params[seg] = best
         print(f"  blend[{seg}]: w={dict(zip(names, best[0]))} slopes="
               f"{best[1:4]} t_ko={best[4]} dr={best[5]} rich_exp={best[6]} "
               f"sr={best[7]} rot={best[8]} zcap={best[9]} major={best[10]} "
+              f"fam={best[11]} "
               f"(train LL {best_ll:.5f}, n={int(mask.sum())}, "
               f"ko n={int(kof.sum())}, dr n={int((drd != 0).sum())}, "
               f"sr n={int((srd != 0).sum())})")
@@ -774,7 +854,7 @@ def online_recalibrate(m, z, params_by_seg, win, prior_n, only_seg=None):
                     if np.max(np.abs(step)) < 1e-6:
                         break
                 if np.isfinite(aa) and np.isfinite(bb):
-                    a, b = float(np.clip(aa, -1.5, 1.5)), float(np.clip(bb, 0.05, 2.0))
+                    a, b = float(np.clip(aa, -1.5, 1.5)), float(np.clip(bb, 0.05, 4.0))
             out[idx[j]] = a + b * zi[j]
     return out
 
@@ -782,9 +862,16 @@ def online_recalibrate(m, z, params_by_seg, win, prior_n, only_seg=None):
 def blended_p(m, zs, params, rich, rot=None):
     names = list(zs)
     out = np.empty(len(m))
-    for seg in ("intl_m", "intl_f", "fr"):
-        mask = (m.seg == seg).to_numpy()
-        w, s1, s2, s3, tk, dr, rex, sr, rc, zc, mjv = params[seg]
+    for seg in m.bkey.unique():
+        if seg not in params:                  # thin class -> segment fallback
+            cand = [k for k in params if k.startswith(seg.split("|")[0])]
+            if not cand:
+                continue
+            seg_params = params[sorted(cand)[0]]
+        else:
+            seg_params = params[seg]
+        mask = (m.bkey == seg).to_numpy()
+        w, s1, s2, s3, tk, dr, rex, sr, rc, zc, mjv, fv = seg_params
         rv = np.clip(rich[mask], 0.0, 1.0)
         rt = np.clip((rot if rot is not None else np.zeros(len(m)))[mask], -3, 3)
         scale_pl = rv ** rex if rex else np.ones_like(rv)
@@ -796,7 +883,8 @@ def blended_p(m, zs, params, rich, rot=None):
         srd = (m.sr1.to_numpy() - m.sr2.to_numpy())[mask]
         base = np.where(kof == 1, tk * zm, zm) - dr * drd + sr * srd
         mj = m.major.to_numpy()[mask]
-        out[mask] = np.where(mj == 1, mjv * base, base) + rc * rt
+        out[mask] = (np.where(mj == 1, mjv * base, base) + rc * rt
+                     + fv * m.famil.to_numpy()[mask])
     return out           # NOTE: returns the blended LOGIT (z), not p
 
 
@@ -816,8 +904,10 @@ def main():
     xc["home1_country"] = venue_country_home(xc.assign(comp="t20s"))
     for c_ in ("ko", "dr1", "dr2", "sr1", "sr2", "major"):
         xc[c_] = 0
+    xc["famil"] = conditions_familiarity(xc.assign(comp="t20s"))
     f1x, f2x = xc.team1.isin(TIER_FULL), xc.team2.isin(TIER_FULL)
     xc["fclass"] = np.where(f1x & f2x, "FF", np.where(~f1x & ~f2x, "AA", "FA"))
+    xc["bkey"] = xc.seg + "|" + xc.fclass
     xc["rkey"] = xc.seg + "|" + xc.fclass
     mx = pd.concat([m, xc], ignore_index=True)
     mx = mx.sort_values(["date", "match_id"]).reset_index(drop=True)
