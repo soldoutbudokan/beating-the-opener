@@ -24,10 +24,16 @@ ROOT = os.path.join(os.path.dirname(__file__), "..")
 TRAIN_END = "2024-06-01"
 EVAL_LO = "2018-01-01"
 MIN_PRIOR = 10                 # both teams need this many prior matches
-ELO_GRID = {"K": (16, 24, 32, 48, 64, 96), "home": (0, 40, 80),
-            "regress": (0.0, 0.2, 0.4), "scale": (300.0, 400.0),
-            "mov": (0.0, 0.5, 1.0, 2.0)}   # mov: K multiplier 1 + mov*log1p(|margin runs|/20)
-XFMT_GRID = (0.0, 0.25, 0.5, 0.75, 1.0)   # weight of cross-format results
+# narrowed around the values train has repeatedly chosen (K 16/32/48,
+# regress 0, scale 300-400, mov 0-0.5) so the wider tier/cross-format ranges
+# below fit in the same budget
+ELO_GRID = {"K": (16, 32, 48), "home": (0, 40, 80),
+            "regress": (0.0, 0.2), "scale": (300.0, 400.0),
+            "mov": (0.0, 0.5, 1.0)}   # mov: K multiplier 1 + mov*log1p(|margin runs|/20)
+XFMT_GRID = (0.5, 1.0, 1.5, 2.0)   # weight of cross-format results. Chose
+                                   # the 1.0 boundary twice: ODI form carries
+                                   # at least as much about a team as its own
+                                   # sparse T20I record, especially for women.
                                # (ODI/ODM/IT20) as extra Elo observations
 # membership-tier prior on the INITIAL rating: results cannot resolve the
 # class gap between tiers that rarely play each other (dev diagnostic: mixed
@@ -49,8 +55,8 @@ SEED_GRID = (0.0, 100.0, 200.0, 350.0)   # debutant seeded at
 # both grids were boundary-limited on the first fit (women chose the maximum
 # 450, i.e. still under-separated: women's associates trail full members by
 # far more than men's do). Widened 2026-08-30.
-TIER_A_GRID = (0, 150, 300, 450, 600, 800)   # full-member offset above MID
-TIER_B_GRID = (0, 150, 300, 450)             # MID offset above the rest
+TIER_A_GRID = (300, 600, 800, 1200)   # full-member offset above MID
+TIER_B_GRID = (0, 150, 300, 450)      # MID offset above the rest
 
 
 def tier_offsets(a, b):
@@ -93,8 +99,21 @@ def load():
                         np.where(m.gender == "female", "intl_f", "intl_m"), "fr")
     st = m.get("stage", pd.Series(None, index=m.index)).fillna("").str.lower()
     m["ko"] = st.str.contains("final|qualifier|eliminator|play-off|playoff|semi").astype(int)
+    ev = m.get("event_name", pd.Series("", index=m.index)).fillna("").str.lower()
+    m["major"] = ev.str.contains("world cup|champions trophy|asia cup|world t20"
+                                 ).astype(int)
     m = add_dead_rubber(m)
     m = add_series_state(m)
+    # fixture class: the two international regimes behave nothing alike -
+    # associate matches are highly predictable (dev AUC 0.81) while
+    # full-member T20Is are near coin-flips (0.68), so one confidence scale
+    # cannot serve both. Structural, public, market-free.
+    f1 = m.team1.isin(TIER_FULL)
+    f2 = m.team2.isin(TIER_FULL)
+    m["fclass"] = np.where(m.seg == "fr", "fr",
+                           np.where(f1 & f2, "FF",
+                                    np.where(~f1 & ~f2, "AA", "FA")))
+    m["rkey"] = m.seg + "|" + m.fclass
     x = pd.read_parquet(os.path.join(ROOT, "data", "matches_extra.parquet"))
     x = x[(x.result == "normal") & x.winner.notna()].copy()
     x["home1"] = [home_flag(t, c) for t, c in zip(x.team1, x.city)]
@@ -601,6 +620,10 @@ def tune_player(m, bat_g, bowl_g):
 # without the cubic's tail blow-ups (which turned modest wrong-side errors
 # into catastrophic 0.06-vs-market-0.34 rows — dev diagnostic 2026-08-30).
 KO_GRID = (0.6, 0.8, 1.0)     # knockout temperature (late-season dev finding)
+MAJOR_GRID = (0.8, 1.0, 1.25)  # confidence multiplier for major tournaments.
+                               # Teams field full strength at a World Cup and
+                               # rotate through bilateral series, so the same
+                               # rating gap should be trusted differently.
 ROT_GRID = (0.0, 0.25, 0.5, 1.0)   # coefficient on the XI-quality delta
 SR_GRID = (-0.3, -0.15, 0.0, 0.15, 0.3)   # logit shift for the leader of a
                               # decided bilateral series. Sign left to train:
@@ -673,6 +696,8 @@ def fit_blend(m, zs, nmin, rich, ko=None, rot=None):
         sr_opts = SR_GRID if seg != "fr" else (0.0,)
         rv = np.clip(rich[mask], 0.0, 1.0)
         rt = np.clip((rot if rot is not None else np.zeros(len(m)))[mask], -3, 3)
+        mj = m.major.to_numpy()[mask]
+        mj_opts = MAJOR_GRID if seg != "fr" else (1.0,)
         best, best_ll = None, np.inf
         for w, rex in itertools.product(grid, RICH_GRID):
             scale_pl = rv ** rex if rex else np.ones_like(rv)
@@ -687,15 +712,18 @@ def fit_blend(m, zs, nmin, rich, ko=None, rot=None):
                         for sr in sr_opts:
                             base = zm1 - dr * drd + sr * srd
                             for rc in ROT_GRID:
-                                p = inv(base + rc * rt)
-                                cur = ll(p, y[mask]).mean()
-                                if cur < best_ll:
-                                    best_ll, best = cur, (w, s1, s2, s3, tk, dr,
-                                                          rex, sr, rc, zc)
+                                for mjv in mj_opts:
+                                    p = inv(np.where(mj == 1, mjv * base, base)
+                                            + rc * rt)
+                                    cur = ll(p, y[mask]).mean()
+                                    if cur < best_ll:
+                                        best_ll, best = cur, (w, s1, s2, s3, tk,
+                                                              dr, rex, sr, rc,
+                                                              zc, mjv)
         params[seg] = best
         print(f"  blend[{seg}]: w={dict(zip(names, best[0]))} slopes="
               f"{best[1:4]} t_ko={best[4]} dr={best[5]} rich_exp={best[6]} "
-              f"sr={best[7]} rot={best[8]} zcap={best[9]} "
+              f"sr={best[7]} rot={best[8]} zcap={best[9]} major={best[10]} "
               f"(train LL {best_ll:.5f}, n={int(mask.sum())}, "
               f"ko n={int(kof.sum())}, dr n={int((drd != 0).sum())}, "
               f"sr n={int((srd != 0).sum())})")
@@ -717,10 +745,11 @@ def online_recalibrate(m, z, params_by_seg, win, prior_n, only_seg=None):
     z = np.asarray(z, float)
     y = m.y1.to_numpy(float)
     out = np.array(z, copy=True)
-    for seg in m.seg.unique():
-        if only_seg is not None and seg != only_seg:
+    keys = m.rkey if "rkey" in m else m.seg
+    for seg in keys.unique():
+        if only_seg is not None and not str(seg).startswith(only_seg):
             continue
-        idx = np.flatnonzero((m.seg == seg).to_numpy())
+        idx = np.flatnonzero((keys == seg).to_numpy())
         zi, yi = z[idx], y[idx]
         a, b = 0.0, 1.0
         for j in range(len(idx)):
@@ -755,7 +784,7 @@ def blended_p(m, zs, params, rich, rot=None):
     out = np.empty(len(m))
     for seg in ("intl_m", "intl_f", "fr"):
         mask = (m.seg == seg).to_numpy()
-        w, s1, s2, s3, tk, dr, rex, sr, rc, zc = params[seg]
+        w, s1, s2, s3, tk, dr, rex, sr, rc, zc, mjv = params[seg]
         rv = np.clip(rich[mask], 0.0, 1.0)
         rt = np.clip((rot if rot is not None else np.zeros(len(m)))[mask], -3, 3)
         scale_pl = rv ** rex if rex else np.ones_like(rv)
@@ -765,8 +794,9 @@ def blended_p(m, zs, params, rich, rot=None):
         kof = m.ko.to_numpy()[mask]
         drd = (m.dr1.to_numpy() - m.dr2.to_numpy())[mask]
         srd = (m.sr1.to_numpy() - m.sr2.to_numpy())[mask]
-        out[mask] = (np.where(kof == 1, tk * zm, zm) - dr * drd + sr * srd
-                     + rc * rt)
+        base = np.where(kof == 1, tk * zm, zm) - dr * drd + sr * srd
+        mj = m.major.to_numpy()[mask]
+        out[mask] = np.where(mj == 1, mjv * base, base) + rc * rt
     return out           # NOTE: returns the blended LOGIT (z), not p
 
 
@@ -784,8 +814,11 @@ def main():
     xc["home1_name"] = xc.home1
     xc["home1_learned"] = xc.home1
     xc["home1_country"] = venue_country_home(xc.assign(comp="t20s"))
-    for c_ in ("ko", "dr1", "dr2", "sr1", "sr2"):
+    for c_ in ("ko", "dr1", "dr2", "sr1", "sr2", "major"):
         xc[c_] = 0
+    f1x, f2x = xc.team1.isin(TIER_FULL), xc.team2.isin(TIER_FULL)
+    xc["fclass"] = np.where(f1x & f2x, "FF", np.where(~f1x & ~f2x, "AA", "FA"))
+    xc["rkey"] = xc.seg + "|" + xc.fclass
     mx = pd.concat([m, xc], ignore_index=True)
     mx = mx.sort_values(["date", "match_id"]).reset_index(drop=True)
     elo_params = tune_elo(mx)
