@@ -1787,6 +1787,45 @@ international 227; open LL 0.6889 / 0.5242). Goal gates: both dev cells
 *it-5 traded −0.0004 train-mean for tail-capping, adopted for cause (the
 dev tail diagnostic), recorded openly.
 
+**Q iterations 9-16 (2026-08-30, continued).** Model of record now
+`pm_model2.py` with: per-segment Elo (gender-split internationals) with
+**membership-tier priors** and opponent-based seeding for debutants,
+cross-format international results as extra Elo observations, chase-aware
+margin-of-victory, walk-forward dead-rubber flags (franchise standings) and
+bilateral-series state (internationals), a phase/wicket-aware player-
+composition component with coverage scaling, a rotation term (expected-XI
+quality vs the XI that earned the rating), a piecewise-monotone capped logit
+map with a per-segment confidence ceiling, and a **walk-forward online
+recalibration** that uses only the model's own past predictions.
+
+| it | change | dev franchise | dev intl | pooled |
+|---|---|---|---|---|
+| 9 | membership-tier Elo priors | +0.0060 | **+0.0303** | +0.0140 (t=1.8) |
+| 11 | learned home venue + coverage-scaled player weight | +0.0055 | +0.0288 | +0.0131 |
+| 13 | + online recalibration (pooled hyper-params) | **-0.0011 (t=-0.2)** | +0.0393 | +0.0121 |
+| 15 | + opponent seeding, series state, rotation term, confidence ceiling | **-0.0013 (t=-0.2)** | +0.0390 | +0.0119 (t=1.2) |
+
+**The franchise cell now beats the exchange's day-before price** (LL 0.6876
+vs 0.6889), with dev ROI at the open (+1c spread) **+5.1% at EV>5%
+(t=0.9)** and the placebo taking 0 bets. Internationals remain behind.
+
+Two diagnostics that reframe what is left, both recorded before the next
+iteration:
+- **Ordering is not the problem.** An in-sample isotonic oracle on dev
+  (post-hoc, optimistic, never a claim) gives franchise **0.6739** and
+  international **0.5059** from the model's own ranking - both beat the
+  open (0.6889 / 0.5242) and international approaches the pre-toss close
+  (0.4988). What is missing is the probability map.
+- **The day-before price is immature, not merely biased.** On dev
+  internationals the market's own favourites at implied 0.595 win 67.0%,
+  at 0.912 win 92.5%, at 0.965 win 100% (n=115/40/13) - and the model is
+  *less* confident than the market in every band, with its tuned ceiling
+  (max 0.917) binding. This is the same fact as the exchange's close
+  beating its open by +0.017: 24 hours out the price has not converged.
+  A model calibrated to RESULTS (never to prices) is therefore paid for
+  being correctly confident - which is what the remaining work targets.
+
+
 Dev diagnostics recorded en route: the intl loss is concentrated — the top
 20 of 227 rows carry 14.6 of 19.3 LL units; women's fixtures carry 11.0 on
 72 rows; at implied 0.9+ the model is on the right side 100% of the time

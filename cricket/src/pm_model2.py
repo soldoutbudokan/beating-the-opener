@@ -520,16 +520,24 @@ COMP_COUNTRY = {"ipl": "India", "wpl": "India", "bbl": "Australia",
                 "ilt": "United Arab Emirates",
                 "mlc": "United States of America", "lpl": "Sri Lanka",
                 "bpl": "Bangladesh", "ssm": "New Zealand"}
-ONLINE_N = (200, 400, 800)         # rolling window for online recalibration
-ONLINE_PRIOR = (20.0, 60.0)        # pseudo-observations pulling toward the
-                                   # train-fit map (shrinks early windows)
+ONLINE_N = (100, 200, 400, 800, 1600)   # rolling window, tuned PER SEGMENT
+ONLINE_PRIOR = (5.0, 20.0, 60.0)        # pseudo-observations pulling toward
+                                        # the train-fit map (shrinks early
+                                        # windows). An in-sample isotonic
+                                        # oracle on dev says our ORDERING is
+                                        # already good enough to beat the
+                                        # open in both cells (0.674 vs 0.689
+                                        # franchise, 0.506 vs 0.524 intl) -
+                                        # what is missing is the probability
+                                        # map, so this is the lever that
+                                        # matters most.
 RICH_GRID = (0.0, 0.5, 1.0)   # exponent on data-richness scaling of the
                               # player component (associates barely appear in
                               # the ball-by-ball archive -> shrink their value)
 S1_GRID = (0.8, 1.0, 1.25)
-S2_GRID = (0.5, 1.0, 1.5, 2.0)
-S3_GRID = (0.0, 0.5, 1.0)
-ZCAP_GRID = (1.8, 2.4, 3.2)   # per-segment ceiling on expressed confidence.
+S2_GRID = (0.5, 1.0, 1.5, 2.0, 2.5)
+S3_GRID = (0.0, 0.5, 1.0, 1.5)
+ZCAP_GRID = (1.8, 2.4, 3.2, 4.0)   # per-segment ceiling on expressed confidence.
                               # T20 is a high-variance format: even a vastly
                               # better side rarely exceeds ~85-90%, and an
                               # uncapped rating gap produced a 0.06 quote on a
@@ -592,7 +600,7 @@ def fit_blend(m, zs, nmin, rich, ko=None, rot=None):
     return params
 
 
-def online_recalibrate(m, z, params_by_seg, win, prior_n):
+def online_recalibrate(m, z, params_by_seg, win, prior_n, only_seg=None):
     """Walk-forward logistic recalibration of the blended logit, per segment,
     using ONLY this model's own earlier predictions and their results (no
     market data, no future data). Pulls toward the train-fit identity map
@@ -608,6 +616,8 @@ def online_recalibrate(m, z, params_by_seg, win, prior_n):
     y = m.y1.to_numpy(float)
     out = np.array(z, copy=True)
     for seg in m.seg.unique():
+        if only_seg is not None and seg != only_seg:
+            continue
         idx = np.flatnonzero((m.seg == seg).to_numpy())
         zi, yi = z[idx], y[idx]
         a, b = 0.0, 1.0
@@ -704,16 +714,22 @@ def main():
     p_blend_raw = inv(z_blend)
     # online recalibration hyper-params chosen on train only
     tr0 = ((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy() & (m.nreal.to_numpy() >= MIN_PRIOR)
-    best_on, best_on_ll, best_z = None, np.inf, None
-    for win in ONLINE_N:
-        for pn in ONLINE_PRIOR:
-            zr = online_recalibrate(m, z_blend, params, win, pn)
-            cur = ll(inv(zr[tr0]), m.y1.to_numpy()[tr0]).mean()
-            if cur < best_on_ll:
-                best_on_ll, best_on, best_z = cur, (win, pn), zr
-    print(f"  online recal: win={best_on[0]} prior={best_on[1]} "
-          f"(train LL {best_on_ll:.5f} vs raw {ll(p_blend_raw[tr0], m.y1.to_numpy()[tr0]).mean():.5f})")
-    p_blend = inv(best_z)
+    z_on = np.array(z_blend, copy=True)
+    for seg in ("intl_m", "intl_f", "fr"):
+        segmask = (m.seg == seg).to_numpy()
+        trs = tr0 & segmask
+        best_on, best_on_ll, best_col = None, np.inf, None
+        for win in ONLINE_N:
+            for pn in ONLINE_PRIOR:
+                zr = online_recalibrate(m, z_blend, params, win, pn, only_seg=seg)
+                cur = ll(inv(zr[trs]), m.y1.to_numpy()[trs]).mean()
+                if cur < best_on_ll:
+                    best_on_ll, best_on, best_col = cur, (win, pn), zr[segmask]
+        z_on[segmask] = best_col
+        raw_ll = ll(p_blend_raw[trs], m.y1.to_numpy()[trs]).mean()
+        print(f"  online recal[{seg}]: win={best_on[0]} prior={best_on[1]} "
+              f"(train LL {best_on_ll:.5f} vs raw {raw_ll:.5f})")
+    p_blend = inv(z_on)
 
     tr = ((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy() & (m.nreal.to_numpy() >= MIN_PRIOR)
     y = m.y1.to_numpy()
@@ -748,8 +764,23 @@ def main():
     print(f"vs pre-toss close: {d3:+.5f} (t={t3:.1f})")
     roi(b, "p_model", "dev")
     roi(b.assign(p_model=b.p_open), "p_model", "dev PLACEBO")
+    dev_stability(b)
     b.to_parquet(os.path.join(ROOT, "data", "pm_preds_v2.parquet"), index=False)
 
 
 if __name__ == "__main__":
     main()
+
+
+def dev_stability(b):
+    """Honesty check: dev has been iterated on, so report it split by time.
+    A model that only wins on one half is fitting the half it was tuned to
+    look at. Neither half is a claim - the claim arm is pm-prospective-1."""
+    b = b.copy()
+    mid = b.date.sort_values().iloc[len(b) // 2]
+    b["half"] = np.where(b.date <= mid, f"H1 (<= {mid})", f"H2 (> {mid})")
+    print("\ndev stability by time half (post-hoc; neither half is a claim):")
+    for half, g in b.groupby("half"):
+        for seg, gg in list(g.groupby("seg")) + [("pooled", g)]:
+            d, t = clustered_t((gg.ll_model - gg.ll_open).values, gg.date)
+            print(f"  {half:22s} {seg:14s} n={len(gg):4d} model-open={d:+.5f} (t={t:.1f})")
