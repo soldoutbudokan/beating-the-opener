@@ -49,6 +49,9 @@ def parse_match(comp, mid, blob):
         "stage": (info.get("event") or {}).get("stage"),
         "event_name": (info.get("event") or {}).get("name"),
         "match_number": (info.get("event") or {}).get("match_number"),
+        # Blast North/South, WC groups (labels are mixed str/int upstream)
+        "group": (None if (info.get("event") or {}).get("group") is None
+                  else str((info.get("event") or {}).get("group"))),
         "xi1": info.get("players", {}).get(teams[0], []),
         "xi2": info.get("players", {}).get(teams[1], []),
     }

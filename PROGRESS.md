@@ -2321,3 +2321,19 @@ generator remains `pm-prospective-1` (`cricket/src/pm_prospective.py`).
   +0.0057, ROI at the open +9.6% at EV>5% (t=1.5), placebo 0 bets;
   recent half franchise +0.0009, international **-0.0113**, pooled
   -0.0027. The registered goal gate on FULL dev remains unmet.
+- **2026-09-01 (cricket Q, session re-opened: "continue trying to beat the
+  market")** — in flight, results to follow in this log. The fresh container
+  reproduces the data exactly (Cricsheet 12,348 matches / 2.82M deliveries
+  to 2026-08-23; benchmark n=693, open 0.63494, close +0.01684 t=3.3).
+  `pm_model2.py` made fast without changing its search space: the blend
+  tuner now evaluates every context-term combination as one array per
+  probability map (the full product grid that ran past three hours on
+  2026-08-31), the Elo/player stages are cached per variant (`--cache`),
+  and dev scoring is pinned to markets resolved ≤ 2026-08-23 (`DEV_END`),
+  later rows going to `pm-prospective-1` only. Three candidates coded
+  behind flags, none scored yet: `--women-tiers` (ICC Women's Championship
+  ten as the women's top tier), `--opp` (opponent-quality-adjusted per-ball
+  player values), `--blast-groups` (Blast dead rubbers from Cricsheet's
+  North/South labels; ingest now keeps `group`). `pm_diag.py` added for
+  the loss decomposition. Polymarket and Wikipedia are unreachable from
+  this container (proxy 403), so the archive stays at its 2026-08-29 snapshot.

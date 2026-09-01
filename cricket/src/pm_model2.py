@@ -59,11 +59,43 @@ TIER_A_GRID = (300, 600, 800, 1200)   # full-member offset above MID
 TIER_B_GRID = (0, 150, 300, 450)      # MID offset above the rest
 
 
+# women's tiers (2026-09-01 candidate, --women-tiers): the men's membership
+# list is a poor class map for women's cricket - Zimbabwe and Afghanistan are
+# full members with weak or absent women's sides, while Thailand and Scotland
+# are associates that beat "full" women's teams. The public, stable structure
+# is the ICC Women's Championship group (the ten sides in the ODI championship
+# and the T20 World Cup core), then the sides with a standing women's T20I
+# programme. Gaps are still fit on train.
+USE_WOMEN_TIERS = False
+TIER_FULL_F = {"Australia", "England", "India", "New Zealand", "South Africa",
+               "West Indies", "Pakistan", "Sri Lanka", "Bangladesh", "Ireland"}
+TIER_MID_F = {"Thailand", "Scotland", "Zimbabwe", "Netherlands",
+              "United States of America", "United Arab Emirates",
+              "Papua New Guinea", "Nepal", "Uganda", "Namibia", "Hong Kong",
+              "Malaysia", "Tanzania", "Kenya", "Brazil", "Italy", "Japan",
+              "Indonesia", "Vanuatu", "Samoa", "Nigeria", "Rwanda",
+              "Botswana", "Mozambique", "Zambia", "Argentina", "France",
+              "Germany", "Denmark", "Austria", "Jersey", "Canada", "Qatar",
+              "Kuwait", "Bahrain", "Oman", "Bhutan", "Singapore", "Mexico"}
+
+
+def full_set(gender=None):
+    return TIER_FULL_F if (USE_WOMEN_TIERS and gender == "female") else TIER_FULL
+
+
+def mid_set(gender=None):
+    return TIER_MID_F if (USE_WOMEN_TIERS and gender == "female") else TIER_MID
+
+
+def is_full(teams, genders):
+    return np.array([t in full_set(g) for t, g in zip(teams, genders)], bool)
+
+
 def tier_offsets(a, b):
-    def off(team):
-        if team in TIER_FULL:
+    def off(team, gender=None):
+        if team in full_set(gender):
             return a
-        if team in TIER_MID:
+        if team in mid_set(gender):
             return 0.0
         return -b
     return off
@@ -118,8 +150,8 @@ def load():
     # associate matches are highly predictable (dev AUC 0.81) while
     # full-member T20Is are near coin-flips (0.68), so one confidence scale
     # cannot serve both. Structural, public, market-free.
-    f1 = m.team1.isin(TIER_FULL)
-    f2 = m.team2.isin(TIER_FULL)
+    f1 = is_full(m.team1, m.gender)
+    f2 = is_full(m.team2, m.gender)
     m["fclass"] = np.where(m.seg == "fr", "fr",
                            np.where(f1 & f2, "FF",
                                     np.where(~f1 & ~f2, "AA", "FA")))
@@ -280,50 +312,69 @@ def add_series_state(m):
     return m
 
 
+USE_BLAST_GROUPS = False   # --blast-groups (candidate 2026-09-01): the T20
+                           # Blast plays in North/South groups of nine with
+                           # four qualifiers each; Cricsheet labels the group,
+                           # so its dead rubbers can be reconstructed too.
+
+
+def _flag_pool(m, grp, spots):
+    """Standings walk over one pool of group games (in-place on m)."""
+    teams = pd.concat([grp.team1, grp.team2])
+    total = teams.value_counts()
+    n_gp = int(total.mode().iloc[0])
+    pts = defaultdict(int)
+    played = defaultdict(int)
+    for idx, r in grp.iterrows():
+        # standings BEFORE this match
+        if played and len(pts) >= spots + 1:
+            rows = [(pts[t], pts[t] + 2 * (n_gp - played[t])) for t in total.index]
+            cur = sorted((c for c, _ in rows), reverse=True)
+            mx = sorted((x for _, x in rows), reverse=True)
+            cut_cur = cur[spots - 1] if len(cur) >= spots else 0
+            cut_mx = mx[spots] if len(mx) > spots else 0
+            flags = []
+            for t in (r.team1, r.team2):
+                maxp = pts[t] + 2 * (n_gp - played[t])
+                dead = maxp < cut_cur                 # cannot reach current cutoff
+                locked = pts[t] > cut_mx              # cannot be caught by 5th's max
+                flags.append(int(dead or locked))
+            if flags[0] != flags[1]:
+                m.loc[idx, "dr1"], m.loc[idx, "dr2"] = flags
+        w = r.winner
+        for t in (r.team1, r.team2):
+            played[t] += 1
+        pts[w] += 2
+
+
 def add_dead_rubber(m):
     """Walk-forward dead-rubber flags for franchise group games: within each
     (comp, gap-clustered season), a team is DEAD when it can no longer reach
     the playoff cutoff, LOCKED when it cannot fall out of it, assuming 2 pts
     a win and the season's per-team group-game count (public preseason).
     dr1/dr2 = 1 when that side's team is dead-or-locked and the other is not
-    yet decided. ntb (divisional groups) and internationals excluded."""
+    yet decided. Internationals excluded; ntb (North/South groups) only with
+    USE_BLAST_GROUPS, pooled per labelled group."""
     m = m.copy()
     m["dr1"] = 0
     m["dr2"] = 0
     dates = pd.to_datetime(m.date)
-    for comp, gc in m[(m.comp != "t20s") & (m.comp != "ntb")].groupby("comp"):
+    keep = (m.comp != "t20s") & ((m.comp != "ntb") | USE_BLAST_GROUPS)
+    for comp, gc in m[keep].groupby("comp"):
         gd = dates[gc.index]
         season = (gd.diff().dt.days.fillna(999) > 45).cumsum()
         spots = PLAYOFF_SPOTS.get(comp, 4)
         for _, sc in gc.groupby(season):
             grp = sc[sc.ko == 0]
-            if len(grp) < 10:
-                continue
-            teams = pd.concat([grp.team1, grp.team2])
-            total = teams.value_counts()
-            n_gp = int(total.mode().iloc[0])
-            pts = defaultdict(int)
-            played = defaultdict(int)
-            for idx, r in grp.iterrows():
-                # standings BEFORE this match
-                if played and len(pts) >= spots + 1:
-                    rows = [(pts[t], pts[t] + 2 * (n_gp - played[t])) for t in total.index]
-                    cur = sorted((c for c, _ in rows), reverse=True)
-                    mx = sorted((x for _, x in rows), reverse=True)
-                    cut_cur = cur[spots - 1] if len(cur) >= spots else 0
-                    cut_mx = mx[spots] if len(mx) > spots else 0
-                    flags = []
-                    for t in (r.team1, r.team2):
-                        maxp = pts[t] + 2 * (n_gp - played[t])
-                        dead = maxp < cut_cur                 # cannot reach current cutoff
-                        locked = pts[t] > cut_mx              # cannot be caught by 5th's max
-                        flags.append(int(dead or locked))
-                    if flags[0] != flags[1]:
-                        m.loc[idx, "dr1"], m.loc[idx, "dr2"] = flags
-                w = r.winner
-                for t in (r.team1, r.team2):
-                    played[t] += 1
-                pts[w] += 2
+            if comp == "ntb":
+                glab = grp.group.fillna("") if "group" in grp else pd.Series("", index=grp.index)
+                pools = [g for lab, g in grp.groupby(glab) if lab != ""]
+            else:
+                pools = [grp]
+            for pool in pools:
+                if len(pool) < 10:
+                    continue
+                _flag_pool(m, pool, spots)
     return m
 
 
@@ -358,10 +409,10 @@ def run_elo(m, K, home, regress, scale=400.0, mov=0.0, xfmt=0.0, tier=None,
         r1, r2 = R.get(k1), R.get(k2)
         if r1 is None:
             r1 = (r2 - seed_delta if (r2 is not None and seed_delta)
-                  else 1500.0 + off(r.team1))
+                  else 1500.0 + off(r.team1, g))
         if r2 is None:
             r2 = (R[k1] - seed_delta if (k1 in R and seed_delta)
-                  else 1500.0 + off(r.team2))
+                  else 1500.0 + off(r.team2, g))
         e1 = 1.0 / (1.0 + 10 ** (-((r1 - r2 + home * hcol[i]) / scale)))
         p1[i] = e1
         n_min[i] = min(n[k1], n[k2])
@@ -522,19 +573,29 @@ def bt_ratings(m, halflife, lam, tier, refit_days=BT_REFIT_DAYS,
 
 # ------------------------------------------------- player composition v2
 def per_match_player_tables(d):
-    bat = (d.groupby(["match_id", "batter", "phase"])
+    bat = (d.groupby(["match_id", "batting_team", "batter", "phase"])
            .agg(balls=("runs_batter", "size"), runs=("runs_batter", "sum"))
            .reset_index())
-    bowl = (d.groupby(["match_id", "bowler", "phase"])
+    bowl = (d.groupby(["match_id", "batting_team", "bowler", "phase"])
             .agg(balls=("runs_total", "size"), runs=("runs_total", "sum"),
                  wkts=("wicket", "sum")).reset_index())
     return ({k: v for k, v in bat.groupby("match_id")},
             {k: v for k, v in bowl.groupby("match_id")})
 
 
-def player_pass(m, bat_g, bowl_g, wicket_val, shrink):
+OPP_GRID = (0.0, 0.5, 1.0)   # opponent-quality adjustment of per-ball values
+                             # (--opp, candidate 2026-09-01): a run scored off
+                             # a strong attack, or conceded to strong batters,
+                             # is worth more than the league baseline says.
+                             # Internationals mix tiers, so unadjusted values
+                             # flatter players who feast on weak opposition.
+
+
+def player_pass(m, bat_g, bowl_g, wicket_val, shrink, opp=0.0):
     """Chronological pass; returns diff (runs per 120 balls, team1 - team2)
-    and a per-team data-richness weight."""
+    and a per-team data-richness weight. `opp` credits each ball by the
+    strictly-prior quality of the opposing XI actually fielded (the XI is
+    post-match information used only in the UPDATE, like the roster)."""
     base = defaultdict(lambda: np.array([1.25, 1.20, 1.55]))   # per (comp,gender) phase rpb
     bval = defaultdict(float); bwt = defaultdict(float); bballs = defaultdict(float)
     oval = defaultdict(float); owt = defaultdict(float); oballs = defaultdict(float)
@@ -577,6 +638,16 @@ def player_pass(m, bat_g, bowl_g, wicket_val, shrink):
                 + oval[p] * min(owt[p] / shrink, 1.0) for p in names]
         return float(np.mean(vals)) if vals else np.nan
 
+    def xi_bowl_q(names):
+        w = sum(oballs[p] for p in names)
+        return (sum(oballs[p] * oval[p] * min(owt[p] / shrink, 1.0)
+                    for p in names) / w) if w > 0 else 0.0
+
+    def xi_bat_q(names):
+        w = sum(bballs[p] for p in names)
+        return (sum(bballs[p] * bval[p] * min(bwt[p] / shrink, 1.0)
+                    for p in names) / w) if w > 0 else 0.0
+
     for i, r in enumerate(m.itertuples()):
         ev = getattr(r, "event_name", None)
         (v1, s1), (v2, s2) = team_value(r.team1, ev), team_value(r.team2, ev)
@@ -595,9 +666,25 @@ def player_pass(m, bat_g, bowl_g, wicket_val, shrink):
         rot[i] = 120.0 * (rq[0] - rq[1])
         bk = (r.comp, r.gender)
         bt, bo = bat_g.get(r.match_id), bowl_g.get(r.match_id)
+        oq = {}
+        if opp:
+            # strictly-prior quality of each side's actual XI (fallback: the
+            # players who appear in the scorecard when Cricsheet has no XI)
+            for team, xi in ((r.team1, r.xi1), (r.team2, r.xi2)):
+                names = list(xi) if len(xi) else []
+                if not names:
+                    if bt is not None:
+                        names += list(bt.batter[bt.batting_team == team])
+                    if bo is not None:
+                        names += list(bo.bowler[bo.batting_team != team])
+                oq[team] = (xi_bowl_q(names), xi_bat_q(names))
         if bt is not None:
-            for p, ph, balls, runs in zip(bt.batter, bt.phase, bt.balls, bt.runs):
+            for p, ph, balls, runs, bteam in zip(bt.batter, bt.phase, bt.balls,
+                                                 bt.runs, bt.batting_team):
                 delta = runs / balls - base[bk][ph]
+                if opp:
+                    bowl_team = r.team2 if bteam == r.team1 else r.team1
+                    delta += opp * oq.get(bowl_team, (0.0, 0.0))[0]
                 a = 1 - (1 - VAL_ALPHA) ** balls
                 bval[p] = (1 - a) * bval[p] + a * delta
                 bwt[p] = bwt[p] * (1 - VAL_ALPHA) ** balls + balls
@@ -605,8 +692,11 @@ def player_pass(m, bat_g, bowl_g, wicket_val, shrink):
             for p, nb in pm_balls.items():
                 bballs[p] = 0.7 * bballs[p] + 0.3 * nb if bballs[p] else float(nb)
         if bo is not None:
-            for p, ph, balls, runs, wk in zip(bo.bowler, bo.phase, bo.balls, bo.runs, bo.wkts):
+            for p, ph, balls, runs, wk, bteam in zip(bo.bowler, bo.phase, bo.balls,
+                                                     bo.runs, bo.wkts, bo.batting_team):
                 delta = (base[bk][ph] - runs / balls) + wicket_val * wk / balls
+                if opp:
+                    delta += opp * oq.get(bteam, (0.0, 0.0))[1]
                 a = 1 - (1 - VAL_ALPHA) ** balls
                 oval[p] = (1 - a) * oval[p] + a * delta
                 owt[p] = owt[p] * (1 - VAL_ALPHA) ** balls + balls
@@ -641,19 +731,21 @@ def player_pass(m, bat_g, bowl_g, wicket_val, shrink):
     return diff, rich, rot
 
 
-def tune_player(m, bat_g, bowl_g):
+def tune_player(m, bat_g, bowl_g, opp_grid=(0.0,)):
     tr = ((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy()
     y = m.y1.to_numpy()
     best, best_ll = None, np.inf
-    for wv, sh in itertools.product(WICKET_GRID, SHRINK_GRID):
-        diff, rich, rot = player_pass(m, bat_g, bowl_g, wv, sh)
+    for wv, sh, op in itertools.product(WICKET_GRID, SHRINK_GRID, opp_grid):
+        diff, rich, rot = player_pass(m, bat_g, bowl_g, wv, sh, op)
         mask = tr & (rich > 0.3)
         for sig in SIGMA_GRID:
             from scipy.stats import norm as _n
             p = _n.cdf(diff[mask] / sig)
             cur = ll(p, y[mask]).mean()
+            print(f"    player2 grid: wicket_val={wv} shrink={sh} opp={op} "
+                  f"sigma={sig} train LL={cur:.5f}")
             if cur < best_ll:
-                best_ll, best = cur, (wv, sh, sig, diff, rich, rot)
+                best_ll, best = cur, (wv, sh, sig, diff, rich, rot, op)
     return best, best_ll
 
 
@@ -756,9 +848,13 @@ def zmap(z, s1, s2, s3, zcap=3.2):
 
 
 def fit_blend(m, zs, nmin, rich, ko=None, rot=None):
-    """Per-segment simplex weights over the components plus a cubic-logit
-    link z' = b*z + c*z^3 (b = temperature, c sharpens extremes), all on
-    train-era rows."""
+    """Per-segment simplex weights over the components plus the piecewise
+    map and the context terms, all on train-era rows. The search space is
+    the full product grid (unchanged since 2026-08-30); the context terms
+    (knockout temperature, dead rubber, series state, rotation, major
+    tournament, familiarity) are evaluated for every combination at once
+    as one (combos x rows) array per map, which is what turned a 3-hour
+    pass into minutes (2026-09-01)."""
     y = m.y1.to_numpy()
     tr = ((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy()
     names = list(zs)
@@ -785,6 +881,16 @@ def fit_blend(m, zs, nmin, rich, ko=None, rot=None):
         fam = m.famil.to_numpy()[mask]
         fam_opts = FAM_GRID if not seg.startswith("fr") else (0.0,)
         mj_opts = MAJOR_GRID if not seg.startswith("fr") else (1.0,)
+        # every context-term combination, evaluated together per map
+        combos = list(itertools.product(KO_GRID, dr_opts, sr_opts, ROT_GRID,
+                                        mj_opts, fam_opts))
+        tk_c, dr_c, sr_c, rc_c, mj_c, fv_c = (np.array(c, float)[:, None]
+                                              for c in zip(*combos))
+        sgn = (2.0 * y[mask] - 1.0)[None, :]
+        ko_row = (kof == 1)[None, :]
+        mj_row = (mj == 1)[None, :]
+        add1 = -dr_c * drd[None, :] + sr_c * srd[None, :]
+        add2 = rc_c * rt[None, :] + fv_c * fam[None, :]
         best, best_ll = None, np.inf
         for w, rex in itertools.product(grid, RICH_GRID):
             scale_pl = rv ** rex if rex else np.ones_like(rv)
@@ -792,22 +898,15 @@ def fit_blend(m, zs, nmin, rich, ko=None, rot=None):
                     for wi, n in zip(w, names))
             for s1, s2, s3, zc in itertools.product(S1_GRID, S2_GRID, S3_GRID,
                                                     ZCAP_GRID):
-                zm0 = zmap(z, s1, s2, s3, zc)
-                for tk in KO_GRID:
-                    zm1 = np.where(kof == 1, tk * zm0, zm0)
-                    for dr in dr_opts:
-                        for sr in sr_opts:
-                            base = zm1 - dr * drd + sr * srd
-                            for rc in ROT_GRID:
-                                for mjv in mj_opts:
-                                    b0 = np.where(mj == 1, mjv * base, base) + rc * rt
-                                    for fv in fam_opts:
-                                        p = inv(b0 + fv * fam)
-                                        cur = ll(p, y[mask]).mean()
-                                        if cur < best_ll:
-                                            best_ll, best = cur, (w, s1, s2, s3,
-                                                                  tk, dr, rex, sr,
-                                                                  rc, zc, mjv, fv)
+                zm0 = zmap(z, s1, s2, s3, zc)[None, :]
+                base = np.where(ko_row, tk_c * zm0, zm0) + add1
+                b0 = np.where(mj_row, mj_c * base, base) + add2
+                cur = np.logaddexp(0.0, -b0 * sgn).mean(axis=1)   # = log loss
+                j = int(np.argmin(cur))
+                if cur[j] < best_ll:
+                    tk, dr, sr, rc, mjv, fv = combos[j]
+                    best_ll, best = float(cur[j]), (w, s1, s2, s3, tk, dr, rex,
+                                                    sr, rc, zc, mjv, fv)
         params[seg] = best
         print(f"  blend[{seg}]: w={dict(zip(names, best[0]))} slopes="
               f"{best[1:4]} t_ko={best[4]} dr={best[5]} rich_exp={best[6]} "
@@ -956,13 +1055,25 @@ def blended_p(m, zs, params, rich, rot=None):
     return out           # NOTE: returns the blended LOGIT (z), not p
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--dev", action="store_true")
-    args = ap.parse_args()
-    m, d, x = load()
-    print(f"matches {len(m)} ({m.date.min()}..{m.date.max()}), deliveries {len(d)}, "
-          f"extra intl results {len(x)}")
+def cache_paths(tag):
+    return (os.path.join(ROOT, "data", f"pm_components_{tag}.parquet"),
+            os.path.join(ROOT, "data", f"pm_components_{tag}.json"))
+
+
+DEV_END = "2026-08-23"        # registration P: dev = markets resolved on or
+                              # before the Cricsheet cut at registration;
+                              # later rows belong to pm-prospective-1
+
+
+USE_OPP = False
+
+
+def build_components(m, d, x):
+    """The slow, data-only stages: per-segment Elo tuning, the two player
+    passes and their tuning. Nothing here touches the blend, so the outputs
+    are cached (--cache) while the blend/meta/recalibration stages iterate.
+    Delete data/pm_components.* after any change to load(), the Elo or the
+    player code."""
     x["nreal"] = 0
     xc = x[["match_id", "comp", "gender", "date", "team1", "team2", "city",
             "venue", "winner", "result", "home1", "y1", "seg", "margin_runs",
@@ -975,7 +1086,7 @@ def main():
     xc["famil"] = conditions_familiarity(xc.assign(comp="t20s"))
     xc["gap1"] = 60
     xc["gap2"] = 60
-    f1x, f2x = xc.team1.isin(TIER_FULL), xc.team2.isin(TIER_FULL)
+    f1x, f2x = is_full(xc.team1, xc.gender), is_full(xc.team2, xc.gender)
     xc["fclass"] = np.where(f1x & f2x, "FF", np.where(~f1x & ~f2x, "AA", "FA"))
     xc["bkey"] = xc.seg + "|" + xc.fclass
     xc["rkey"] = xc.seg + "|" + xc.fclass
@@ -988,8 +1099,9 @@ def main():
     pos = pd.Series(np.arange(real.sum()), index=order).reindex(m.match_id).to_numpy()
     p_elo, nmin = p_elo_x[real][pos], nmin_x[real][pos]
     bat_g, bowl_g = per_match_player_tables(d)
-    (wv, sh, sig, diff, rich, rot), pll = tune_player(m, bat_g, bowl_g)
-    print(f"player2: wicket_val={wv} shrink={sh} sigma={sig}  train LL={pll:.5f}")
+    (wv, sh, sig, diff, rich, rot, op), pll = tune_player(
+        m, bat_g, bowl_g, OPP_GRID if USE_OPP else (0.0,))
+    print(f"player2: wicket_val={wv} shrink={sh} sigma={sig} opp={op}  train LL={pll:.5f}")
     from scipy.stats import norm as _n
     p_pl = _n.cdf(diff / sig)
     # v1 player component (the July model class, alpha=0.002, sigma=40):
@@ -1003,24 +1115,92 @@ def main():
                              - (vals1[r.match_id][r.team2][0] + vals1[r.match_id][r.team2][1]))
                       for r in m.itertuples()])
     p_v1 = _n.cdf(diff1 / 40.0)
+    comp = pd.DataFrame({"match_id": m.match_id.to_numpy(), "p_elo": p_elo,
+                         "nmin": nmin, "p_pl": p_pl, "rich": rich, "rot": rot,
+                         "p_v1": p_v1, "diff2": diff})
+    info = {"elo": {s: [list(v[0][:6]) + [list(v[0][6])] + list(v[0][7:]), v[1]]
+                    for s, v in elo_params.items()},
+            "player2": [wv, sh, sig, pll, op]}
+    return comp, info
+
+
+def components(m, d, x, use_cache, tag="base"):
+    COMP_CACHE, PARAM_CACHE = cache_paths(tag)
+    if use_cache and os.path.exists(COMP_CACHE):
+        comp = pd.read_parquet(COMP_CACHE)
+        if len(comp) == len(m) and (comp.match_id.to_numpy() == m.match_id.to_numpy()).all():
+            import json
+            info = json.load(open(PARAM_CACHE)) if os.path.exists(PARAM_CACHE) else {}
+            print(f"components: loaded from cache ({COMP_CACHE})")
+            for s, v in info.get("elo", {}).items():
+                print(f"  elo[{s}] (cached): {v[0]}  train LL={v[1]:.5f}")
+            if "player2" in info:
+                print(f"  player2 (cached): wicket_val={info['player2'][0]} "
+                      f"shrink={info['player2'][1]} sigma={info['player2'][2]} "
+                      f"train LL={info['player2'][3]:.5f}")
+            return comp
+        print("components: cache does not match the match table; rebuilding")
+    comp, info = build_components(m, d, x)
+    if use_cache:
+        import json
+        comp.to_parquet(COMP_CACHE, index=False)
+        json.dump(info, open(PARAM_CACHE, "w"), indent=1, default=float)
+    return comp
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dev", action="store_true")
+    ap.add_argument("--cache", action="store_true",
+                    help="reuse data/pm_components.parquet (Elo + player "
+                         "stages) when it matches the match table")
+    ap.add_argument("--no-meta", action="store_true",
+                    help="skip the meta-scale stage (per-class map only)")
+    ap.add_argument("--women-tiers", action="store_true",
+                    help="women's-specific membership tiers for the Elo "
+                         "prior and the fixture class (candidate 2026-09-01)")
+    ap.add_argument("--blast-groups", action="store_true",
+                    help="dead-rubber flags for the T20 Blast from its "
+                         "labelled North/South groups (candidate 2026-09-01)")
+    ap.add_argument("--opp", action="store_true",
+                    help="opponent-quality-adjusted player values "
+                         "(candidate 2026-09-01; coefficient tuned on train)")
+    args = ap.parse_args()
+    global USE_WOMEN_TIERS, USE_OPP, USE_BLAST_GROUPS
+    USE_WOMEN_TIERS = bool(args.women_tiers)
+    USE_OPP = bool(args.opp)
+    USE_BLAST_GROUPS = bool(args.blast_groups)   # blend-stage only: no cache tag
+    tag = "base" + ("_wt" if USE_WOMEN_TIERS else "") + ("_opp" if USE_OPP else "")
+    print(f"variant: {tag}")
+    m, d, x = load()
+    print(f"matches {len(m)} ({m.date.min()}..{m.date.max()}), deliveries {len(d)}, "
+          f"extra intl results {len(x)}")
+    comp = components(m, d, x, args.cache, tag)
+    p_elo = comp.p_elo.to_numpy()
+    p_pl = comp.p_pl.to_numpy()
+    p_v1 = comp.p_v1.to_numpy()
+    rich = comp.rich.to_numpy()
+    rot = comp.rot.to_numpy()
     zs = {"elo": logit(p_elo), "pl2": logit(p_pl), "pl1": logit(p_v1)}
     params = fit_blend(m, zs, m.nreal.to_numpy(), rich, rot=rot)
     z_blend = blended_p(m, zs, params, rich, rot)
     # meta-model: continuous per-row confidence, fitted on train only
     tr_meta = (((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy()
                & (m.nreal.to_numpy() >= MIN_PRIOR))
-    best_w, best_meta = None, np.inf
-    for l2 in META_L2:
-        w_, f_ = fit_meta_scale(m, z_blend, rich, tr_meta, l2)
-        if f_ < best_meta:
-            best_meta, best_w = f_, w_
-    z_meta = apply_meta_scale(m, z_blend, rich, best_w)
-    base_ll = ll(inv(z_blend[tr_meta]), m.y1.to_numpy()[tr_meta]).mean()
-    meta_ll = ll(inv(z_meta[tr_meta]), m.y1.to_numpy()[tr_meta]).mean()
-    print(f"  meta-scale: train LL {meta_ll:.5f} vs per-class map {base_ll:.5f}"
-          f"  (adopted: {meta_ll < base_ll})")
-    if meta_ll < base_ll:
-        z_blend = z_meta
+    if not args.no_meta:
+        best_w, best_meta, best_l2 = None, np.inf, None
+        for l2 in META_L2:
+            w_, f_ = fit_meta_scale(m, z_blend, rich, tr_meta, l2)
+            if f_ < best_meta:
+                best_meta, best_w, best_l2 = f_, w_, l2
+        z_meta = apply_meta_scale(m, z_blend, rich, best_w)
+        base_ll = ll(inv(z_blend[tr_meta]), m.y1.to_numpy()[tr_meta]).mean()
+        meta_ll = ll(inv(z_meta[tr_meta]), m.y1.to_numpy()[tr_meta]).mean()
+        print(f"  meta-scale: train LL {meta_ll:.5f} vs per-class map {base_ll:.5f}"
+              f"  l2={best_l2}  (adopted: {meta_ll < base_ll})")
+        print("  meta-scale weights:", np.round(best_w, 3).tolist())
+        if meta_ll < base_ll:
+            z_blend = z_meta
     p_blend_raw = inv(z_blend)
     # online recalibration hyper-params chosen on train only
     tr0 = ((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy() & (m.nreal.to_numpy() >= MIN_PRIOR)
@@ -1063,7 +1243,9 @@ def main():
     b["p_model"] = np.where(b.outcome0_is_team1, p1, 1 - p1)
     b["seg"] = np.where(b.comp == "t20s", "international", "franchise")
     b["ll_model"], b["ll_open"], b["ll_close"] = ll(b.p_model, b.y), ll(b.p_open, b.y), ll(b.p_close, b.y)
-    print(f"\n== DEV (registration-P population): n={len(b)} ==")
+    b.to_parquet(os.path.join(ROOT, "data", "pm_preds_v2.parquet"), index=False)
+    b = b[b.date <= DEV_END].copy()       # later rows: pm-prospective-1 only
+    print(f"\n== DEV (registration-P population, resolved <= {DEV_END}): n={len(b)} ==")
     dd, t = clustered_t((b.ll_model - b.ll_open).values, b.date)
     print(f"pooled model-open = {dd:+.5f} (clustered t={t:.1f})  cal={100*(b.p_model.mean()-b.y.mean()):+.2f}pp")
     for seg, g in b.groupby("seg"):
@@ -1075,7 +1257,6 @@ def main():
     roi(b, "p_model", "dev")
     roi(b.assign(p_model=b.p_open), "p_model", "dev PLACEBO")
     dev_stability(b)
-    b.to_parquet(os.path.join(ROOT, "data", "pm_preds_v2.parquet"), index=False)
 
 
 def dev_stability(b):
