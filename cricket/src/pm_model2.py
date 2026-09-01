@@ -919,6 +919,8 @@ def fit_blend(m, zs, nmin, rich, ko=None, rot=None):
 
 
 META_L2 = (0.3, 1.0, 3.0, 10.0)
+META_L2_WIDE = (0.03, 0.1, 0.3, 1.0, 3.0, 10.0)   # --meta-l2-wide: 0.3 was the
+                                                 # boundary choice on 2026-09-01
 
 
 def meta_features(m, z, rich, dis=None):
@@ -1166,6 +1168,13 @@ def main():
     ap.add_argument("--women-tiers", action="store_true",
                     help="women's-specific membership tiers for the Elo "
                          "prior and the fixture class (candidate 2026-09-01)")
+    ap.add_argument("--meta-seg", action="store_true",
+                    help="fit the meta-scale per segment (candidate 2026-09-01)")
+    ap.add_argument("--meta-l2-wide", action="store_true",
+                    help="wider L2 grid for the meta-scale (candidate 2026-09-01)")
+    ap.add_argument("--recal-opt", action="store_true",
+                    help="let the online recalibration switch off per segment "
+                         "when raw beats every window on train (2026-09-01)")
     ap.add_argument("--meta-dis", action="store_true",
                     help="add component disagreement |z_elo - z_pl2| to the "
                          "meta-scale features (candidate 2026-09-01)")
@@ -1199,19 +1208,29 @@ def main():
                & (m.nreal.to_numpy() >= MIN_PRIOR))
     if not args.no_meta:
         dis = (np.abs(zs["elo"] - zs["pl2"]) if args.meta_dis else None)
-        best_w, best_meta, best_l2 = None, np.inf, None
-        for l2 in META_L2:
-            w_, f_ = fit_meta_scale(m, z_blend, rich, tr_meta, l2, dis)
-            if f_ < best_meta:
-                best_meta, best_w, best_l2 = f_, w_, l2
-        z_meta = apply_meta_scale(m, z_blend, rich, best_w, dis)
-        base_ll = ll(inv(z_blend[tr_meta]), m.y1.to_numpy()[tr_meta]).mean()
-        meta_ll = ll(inv(z_meta[tr_meta]), m.y1.to_numpy()[tr_meta]).mean()
-        print(f"  meta-scale: train LL {meta_ll:.5f} vs per-class map {base_ll:.5f}"
-              f"  l2={best_l2}  (adopted: {meta_ll < base_ll})")
-        print("  meta-scale weights:", np.round(best_w, 3).tolist())
-        if meta_ll < base_ll:
-            z_blend = z_meta
+        l2_grid = META_L2_WIDE if args.meta_l2_wide else META_L2
+        # one fit over all segments, or one per segment (--meta-seg): the
+        # reliability drivers differ between franchise and international
+        # cricket, and a shared slope vector serves neither
+        groups = ([(seg, (m.seg == seg).to_numpy()) for seg in ("intl_m", "intl_f", "fr")]
+                  if args.meta_seg else [("all", np.ones(len(m), bool))])
+        z_new = np.array(z_blend, copy=True)
+        for gname, gmask in groups:
+            trg = tr_meta & gmask
+            best_w, best_meta, best_l2 = None, np.inf, None
+            for l2 in l2_grid:
+                w_, f_ = fit_meta_scale(m, z_blend, rich, trg, l2, dis)
+                if f_ < best_meta:
+                    best_meta, best_w, best_l2 = f_, w_, l2
+            z_meta = apply_meta_scale(m, z_blend, rich, best_w, dis)
+            base_ll = ll(inv(z_blend[trg]), m.y1.to_numpy()[trg]).mean()
+            meta_ll = ll(inv(z_meta[trg]), m.y1.to_numpy()[trg]).mean()
+            print(f"  meta-scale[{gname}]: train LL {meta_ll:.5f} vs per-class map "
+                  f"{base_ll:.5f}  l2={best_l2}  (adopted: {meta_ll < base_ll})")
+            print(f"  meta-scale[{gname}] weights:", np.round(best_w, 3).tolist())
+            if meta_ll < base_ll:
+                z_new[gmask] = z_meta[gmask]
+        z_blend = z_new
     p_blend_raw = inv(z_blend)
     # online recalibration hyper-params chosen on train only
     tr0 = ((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy() & (m.nreal.to_numpy() >= MIN_PRIOR)
@@ -1226,8 +1245,13 @@ def main():
                 cur = ll(inv(zr[trs]), m.y1.to_numpy()[trs]).mean()
                 if cur < best_on_ll:
                     best_on_ll, best_on, best_col = cur, (win, pn), zr[segmask]
-        z_on[segmask] = best_col
         raw_ll = ll(p_blend_raw[trs], m.y1.to_numpy()[trs]).mean()
+        if args.recal_opt and raw_ll <= best_on_ll:
+            # --recal-opt: the recalibration is one more train-chosen option,
+            # and "off" is on the menu (2026-09-01: the baseline applied it
+            # to franchise where it LOST on train, 0.67838 vs 0.67797)
+            best_on, best_col = ("off", "-"), z_blend[segmask]
+        z_on[segmask] = best_col
         print(f"  online recal[{seg}]: win={best_on[0]} prior={best_on[1]} "
               f"(train LL {best_on_ll:.5f} vs raw {raw_ll:.5f})")
     p_blend = inv(z_on)
