@@ -2334,6 +2334,7 @@ generator remains `pm-prospective-1` (`cricket/src/pm_prospective.py`).
   behind flags, none scored yet: `--women-tiers` (ICC Women's Championship
   ten as the women's top tier), `--opp` (opponent-quality-adjusted per-ball
   player values), `--blast-groups` (Blast dead rubbers from Cricsheet's
-  North/South labels; ingest now keeps `group`). `pm_diag.py` added for
-  the loss decomposition. Polymarket and Wikipedia are unreachable from
+  North/South labels; ingest now keeps `group`), `--meta-dis` (component
+  disagreement as a meta-scale reliability feature). `pm_diag.py` added
+  for the loss decomposition. Polymarket and Wikipedia are unreachable from
   this container (proxy 403), so the archive stays at its 2026-08-29 snapshot.

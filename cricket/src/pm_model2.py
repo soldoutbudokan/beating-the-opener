@@ -921,15 +921,20 @@ def fit_blend(m, zs, nmin, rich, ko=None, rot=None):
 META_L2 = (0.3, 1.0, 3.0, 10.0)
 
 
-def meta_features(m, z, rich):
+def meta_features(m, z, rich, dis=None):
     """Row-level reliability features - all strictly prior and market-free.
     The point: how much to trust the rating gap varies continuously (with
     data coverage, layoff, fixture class, tournament status), and hand-cut
-    per-class buckets only approximate that."""
+    per-class buckets only approximate that. `dis` (--meta-dis): how far
+    the team-rating and player-composition components disagree on this
+    row, in logits - a market-free proxy for a fixture the evidence does
+    not settle (dev diagnostic 2026-09-01: where the model and the
+    exchange pick different favourites the model is right 48% of the
+    time, so its confidence should be lowest exactly there)."""
     n = len(m)
     days1 = m.gap1.to_numpy(float)
     days2 = m.gap2.to_numpy(float)
-    X = np.column_stack([
+    cols = [
         np.ones(n),
         np.clip(rich, 0, 1),
         np.log1p(m.nreal.to_numpy(float)) / 5.0,
@@ -941,16 +946,18 @@ def meta_features(m, z, rich):
         np.log1p(np.minimum(days1, 400)) / 6.0,
         np.log1p(np.minimum(days2, 400)) / 6.0,
         np.minimum(np.abs(z), 4.0) / 4.0,
-    ])
-    return X
+    ]
+    if dis is not None:
+        cols.append(np.minimum(np.asarray(dis, float), 3.0) / 3.0)
+    return np.column_stack(cols)
 
 
-def fit_meta_scale(m, z, rich, train_mask, l2):
+def fit_meta_scale(m, z, rich, train_mask, l2, dis=None):
     """p = sigmoid(z * softplus(w.x)): a second-stage model that predicts how
     reliable the first stage's logit is on THIS row, fitted on train by
     gradient descent on log loss with an L2 pull toward a constant scale."""
     from scipy.optimize import minimize
-    X = meta_features(m, z, rich)
+    X = meta_features(m, z, rich, dis)
     y = m.y1.to_numpy(float)
     Xt, zt, yt = X[train_mask], z[train_mask], y[train_mask]
 
@@ -971,8 +978,8 @@ def fit_meta_scale(m, z, rich, train_mask, l2):
     return r.x, float(r.fun)
 
 
-def apply_meta_scale(m, z, rich, w):
-    X = meta_features(m, z, rich)
+def apply_meta_scale(m, z, rich, w, dis=None):
+    X = meta_features(m, z, rich, dis)
     s_ = np.log1p(np.exp(np.clip(X @ w, -30, 30)))
     return z * s_
 
@@ -1159,6 +1166,9 @@ def main():
     ap.add_argument("--women-tiers", action="store_true",
                     help="women's-specific membership tiers for the Elo "
                          "prior and the fixture class (candidate 2026-09-01)")
+    ap.add_argument("--meta-dis", action="store_true",
+                    help="add component disagreement |z_elo - z_pl2| to the "
+                         "meta-scale features (candidate 2026-09-01)")
     ap.add_argument("--blast-groups", action="store_true",
                     help="dead-rubber flags for the T20 Blast from its "
                          "labelled North/South groups (candidate 2026-09-01)")
@@ -1188,12 +1198,13 @@ def main():
     tr_meta = (((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy()
                & (m.nreal.to_numpy() >= MIN_PRIOR))
     if not args.no_meta:
+        dis = (np.abs(zs["elo"] - zs["pl2"]) if args.meta_dis else None)
         best_w, best_meta, best_l2 = None, np.inf, None
         for l2 in META_L2:
-            w_, f_ = fit_meta_scale(m, z_blend, rich, tr_meta, l2)
+            w_, f_ = fit_meta_scale(m, z_blend, rich, tr_meta, l2, dis)
             if f_ < best_meta:
                 best_meta, best_w, best_l2 = f_, w_, l2
-        z_meta = apply_meta_scale(m, z_blend, rich, best_w)
+        z_meta = apply_meta_scale(m, z_blend, rich, best_w, dis)
         base_ll = ll(inv(z_blend[tr_meta]), m.y1.to_numpy()[tr_meta]).mean()
         meta_ll = ll(inv(z_meta[tr_meta]), m.y1.to_numpy()[tr_meta]).mean()
         print(f"  meta-scale: train LL {meta_ll:.5f} vs per-class map {base_ll:.5f}"
