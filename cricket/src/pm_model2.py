@@ -878,6 +878,12 @@ def zmap(z, s1, s2, s3, zcap=3.2):
     return np.sign(z) * np.minimum(out, zcap)
 
 
+MIN_CLASS = 120   # rows a segment x class needs for its own map; the FA
+                  # (full member v associate) classes sit at 94 (women) and
+                  # 115 (men) train rows and inherited the AA map by
+                  # alphabetical fallback until --min-class (2026-09-02)
+
+
 def fit_blend(m, zs, nmin, rich, ko=None, rot=None):
     """Per-segment simplex weights over the components plus the piecewise
     map and the context terms, all on train-era rows. The search space is
@@ -899,7 +905,7 @@ def fit_blend(m, zs, nmin, rich, ko=None, rot=None):
     keys = sorted(set(m.bkey[tr & (nmin >= MIN_PRIOR)]))
     for seg in keys:
         mask = tr & (m.bkey == seg).to_numpy() & (nmin >= MIN_PRIOR)
-        if mask.sum() < 120:            # too thin to fit its own map
+        if mask.sum() < MIN_CLASS:      # too thin to fit its own map
             continue  # nmin arg = nreal
         kof = (ko if ko is not None else m.ko.to_numpy())[mask]
         drd = (m.dr1.to_numpy() - m.dr2.to_numpy())[mask]   # +1: team1 dead
@@ -1227,6 +1233,8 @@ def main():
     ap.add_argument("--opp", action="store_true",
                     help="opponent-quality-adjusted player values "
                          "(candidate 2026-09-01; coefficient tuned on train)")
+    ap.add_argument("--min-class", type=int, default=120,
+                    help="min train rows for a segment x class map (default 120)")
     ap.add_argument("--venue", action="store_true",
                     help="venue par normalisation of player values on top of "
                          "--opp (candidate 2026-09-02)")
@@ -1234,7 +1242,8 @@ def main():
                     help="--opp with the wider grids (all three boundaries "
                          "bound on the first fit)")
     args = ap.parse_args()
-    global USE_WOMEN_TIERS, USE_OPP, USE_OPP_WIDE, USE_VENUE, USE_BLAST_GROUPS
+    global USE_WOMEN_TIERS, USE_OPP, USE_OPP_WIDE, USE_VENUE, USE_BLAST_GROUPS, MIN_CLASS
+    MIN_CLASS = int(args.min_class)
     USE_WOMEN_TIERS = bool(args.women_tiers)
     USE_VENUE = bool(args.venue)
     USE_OPP_WIDE = bool(args.opp_wide)
