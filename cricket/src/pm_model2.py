@@ -584,6 +584,11 @@ def per_match_player_tables(d):
 
 
 OPP_GRID = (0.0, 0.5, 1.0)   # opponent-quality adjustment of per-ball values
+# --opp-wide: the first --opp fit chose opp=1.0, wicket_val=4.0 and
+# shrink=150 - every one a grid boundary (2026-09-01)
+OPP_GRID_W = (1.0, 1.5, 2.0)
+WICKET_GRID_W = (2.0, 4.0)
+SHRINK_GRID_W = (75.0, 150.0)
                              # (--opp, candidate 2026-09-01): a run scored off
                              # a strong attack, or conceded to strong batters,
                              # is worth more than the league baseline says.
@@ -731,11 +736,12 @@ def player_pass(m, bat_g, bowl_g, wicket_val, shrink, opp=0.0):
     return diff, rich, rot
 
 
-def tune_player(m, bat_g, bowl_g, opp_grid=(0.0,)):
+def tune_player(m, bat_g, bowl_g, opp_grid=(0.0,), wicket_grid=WICKET_GRID,
+                shrink_grid=SHRINK_GRID):
     tr = ((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy()
     y = m.y1.to_numpy()
     best, best_ll = None, np.inf
-    for wv, sh, op in itertools.product(WICKET_GRID, SHRINK_GRID, opp_grid):
+    for wv, sh, op in itertools.product(wicket_grid, shrink_grid, opp_grid):
         diff, rich, rot = player_pass(m, bat_g, bowl_g, wv, sh, op)
         mask = tr & (rich > 0.3)
         for sig in SIGMA_GRID:
@@ -1075,6 +1081,7 @@ DEV_END = "2026-08-23"        # registration P: dev = markets resolved on or
 
 
 USE_OPP = False
+USE_OPP_WIDE = False
 
 
 def build_components(m, d, x):
@@ -1108,8 +1115,12 @@ def build_components(m, d, x):
     pos = pd.Series(np.arange(real.sum()), index=order).reindex(m.match_id).to_numpy()
     p_elo, nmin = p_elo_x[real][pos], nmin_x[real][pos]
     bat_g, bowl_g = per_match_player_tables(d)
-    (wv, sh, sig, diff, rich, rot, op), pll = tune_player(
-        m, bat_g, bowl_g, OPP_GRID if USE_OPP else (0.0,))
+    if USE_OPP_WIDE:
+        (wv, sh, sig, diff, rich, rot, op), pll = tune_player(
+            m, bat_g, bowl_g, OPP_GRID_W, WICKET_GRID_W, SHRINK_GRID_W)
+    else:
+        (wv, sh, sig, diff, rich, rot, op), pll = tune_player(
+            m, bat_g, bowl_g, OPP_GRID if USE_OPP else (0.0,))
     print(f"player2: wicket_val={wv} shrink={sh} sigma={sig} opp={op}  train LL={pll:.5f}")
     from scipy.stats import norm as _n
     p_pl = _n.cdf(diff / sig)
@@ -1184,12 +1195,17 @@ def main():
     ap.add_argument("--opp", action="store_true",
                     help="opponent-quality-adjusted player values "
                          "(candidate 2026-09-01; coefficient tuned on train)")
+    ap.add_argument("--opp-wide", action="store_true",
+                    help="--opp with the wider grids (all three boundaries "
+                         "bound on the first fit)")
     args = ap.parse_args()
-    global USE_WOMEN_TIERS, USE_OPP, USE_BLAST_GROUPS
+    global USE_WOMEN_TIERS, USE_OPP, USE_OPP_WIDE, USE_BLAST_GROUPS
     USE_WOMEN_TIERS = bool(args.women_tiers)
-    USE_OPP = bool(args.opp)
+    USE_OPP_WIDE = bool(args.opp_wide)
+    USE_OPP = bool(args.opp) or USE_OPP_WIDE
     USE_BLAST_GROUPS = bool(args.blast_groups)   # blend-stage only: no cache tag
-    tag = "base" + ("_wt" if USE_WOMEN_TIERS else "") + ("_opp" if USE_OPP else "")
+    tag = ("base" + ("_wt" if USE_WOMEN_TIERS else "")
+           + ("_oppw" if USE_OPP_WIDE else "_opp" if USE_OPP else ""))
     print(f"variant: {tag}")
     m, d, x = load()
     print(f"matches {len(m)} ({m.date.min()}..{m.date.max()}), deliveries {len(d)}, "
