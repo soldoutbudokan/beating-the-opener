@@ -1221,8 +1221,11 @@ def main():
     ap.add_argument("--cache", action="store_true",
                     help="reuse data/pm_components.parquet (Elo + player "
                          "stages) when it matches the match table")
-    ap.add_argument("--no-meta", action="store_true",
-                    help="skip the meta-scale stage (per-class map only)")
+    ap.add_argument("--meta", dest="meta", action="store_true", default=False,
+                    help="run the meta-scale stage (rejected 2026-09-02: wins "
+                         "train, loses dev in every form; off by default)")
+    ap.add_argument("--no-meta", dest="meta", action="store_false",
+                    help="(default) skip the meta-scale stage")
     ap.add_argument("--women-tiers", action="store_true",
                     help="women's-specific membership tiers for the Elo "
                          "prior and the fixture class (candidate 2026-09-01)")
@@ -1281,7 +1284,7 @@ def main():
     # meta-model: continuous per-row confidence, fitted on train only
     tr_meta = (((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy()
                & (m.nreal.to_numpy() >= MIN_PRIOR))
-    if not args.no_meta:
+    if args.meta:
         dis = (np.abs(zs["elo"] - zs["pl2"]) if args.meta_dis else None)
         l2_grid = META_L2_WIDE if args.meta_l2_wide else META_L2
         # one fit over all segments, or one per segment (--meta-seg): the
