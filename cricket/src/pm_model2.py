@@ -596,11 +596,25 @@ SHRINK_GRID_W = (75.0, 150.0)
                              # flatter players who feast on weak opposition.
 
 
-def player_pass(m, bat_g, bowl_g, wicket_val, shrink, opp=0.0):
+VEN_GRID = (0.0, 0.5, 1.0)   # --venue (candidate 2026-09-02): venue par
+                             # normalisation of per-ball values, the item of
+                             # registration Q's model class (b) never built.
+                             # The venue's strictly-prior EW runs-per-ball
+                             # relative to the competition baseline is
+                             # removed from every batting delta and added
+                             # to every bowling delta, shrunk by matches seen.
+VEN_ALPHA = 0.15
+VEN_SHRINK = 5.0
+
+
+def player_pass(m, bat_g, bowl_g, wicket_val, shrink, opp=0.0, ven=0.0):
     """Chronological pass; returns diff (runs per 120 balls, team1 - team2)
     and a per-team data-richness weight. `opp` credits each ball by the
     strictly-prior quality of the opposing XI actually fielded (the XI is
-    post-match information used only in the UPDATE, like the roster)."""
+    post-match information used only in the UPDATE, like the roster);
+    `ven` removes the venue's strictly-prior scoring offset."""
+    vrpb = {}                          # (venue, gender) -> EW runs per ball
+    vcnt = defaultdict(int)
     base = defaultdict(lambda: np.array([1.25, 1.20, 1.55]))   # per (comp,gender) phase rpb
     bval = defaultdict(float); bwt = defaultdict(float); bballs = defaultdict(float)
     oval = defaultdict(float); owt = defaultdict(float); oballs = defaultdict(float)
@@ -671,6 +685,11 @@ def player_pass(m, bat_g, bowl_g, wicket_val, shrink, opp=0.0):
         rot[i] = 120.0 * (rq[0] - rq[1])
         bk = (r.comp, r.gender)
         bt, bo = bat_g.get(r.match_id), bowl_g.get(r.match_id)
+        voff = 0.0
+        vkey = (getattr(r, "venue", None), r.gender)
+        if ven and isinstance(vkey[0], str) and vkey in vrpb:
+            comp_rpb = float(np.mean(base[bk]))
+            voff = (vrpb[vkey] - comp_rpb) * vcnt[vkey] / (vcnt[vkey] + VEN_SHRINK)
         oq = {}
         if opp:
             # strictly-prior quality of each side's actual XI (fallback: the
@@ -686,7 +705,7 @@ def player_pass(m, bat_g, bowl_g, wicket_val, shrink, opp=0.0):
         if bt is not None:
             for p, ph, balls, runs, bteam in zip(bt.batter, bt.phase, bt.balls,
                                                  bt.runs, bt.batting_team):
-                delta = runs / balls - base[bk][ph]
+                delta = runs / balls - base[bk][ph] - ven * voff
                 if opp:
                     bowl_team = r.team2 if bteam == r.team1 else r.team1
                     delta += opp * oq.get(bowl_team, (0.0, 0.0))[0]
@@ -699,7 +718,7 @@ def player_pass(m, bat_g, bowl_g, wicket_val, shrink, opp=0.0):
         if bo is not None:
             for p, ph, balls, runs, wk, bteam in zip(bo.bowler, bo.phase, bo.balls,
                                                      bo.runs, bo.wkts, bo.batting_team):
-                delta = (base[bk][ph] - runs / balls) + wicket_val * wk / balls
+                delta = (base[bk][ph] - runs / balls) + wicket_val * wk / balls + ven * voff
                 if opp:
                     delta += opp * oq.get(bteam, (0.0, 0.0))[1]
                 a = 1 - (1 - VAL_ALPHA) ** balls
@@ -713,6 +732,11 @@ def player_pass(m, bat_g, bowl_g, wicket_val, shrink, opp=0.0):
                 rpb = g2.runs.sum() / g2.balls.sum()
                 base[bk] = base[bk].copy()
                 base[bk][ph] = 0.99 * base[bk][ph] + 0.01 * rpb
+            if isinstance(vkey[0], str) and bt.balls.sum() >= 60:
+                mrpb = bt.runs.sum() / bt.balls.sum()
+                vrpb[vkey] = (mrpb if vkey not in vrpb
+                              else (1 - VEN_ALPHA) * vrpb[vkey] + VEN_ALPHA * mrpb)
+                vcnt[vkey] += 1
         played = set()
         if bt is not None:
             played |= set(bt.batter)
@@ -737,21 +761,22 @@ def player_pass(m, bat_g, bowl_g, wicket_val, shrink, opp=0.0):
 
 
 def tune_player(m, bat_g, bowl_g, opp_grid=(0.0,), wicket_grid=WICKET_GRID,
-                shrink_grid=SHRINK_GRID):
+                shrink_grid=SHRINK_GRID, ven_grid=(0.0,)):
     tr = ((m.date >= EVAL_LO) & (m.date < TRAIN_END)).to_numpy()
     y = m.y1.to_numpy()
     best, best_ll = None, np.inf
-    for wv, sh, op in itertools.product(wicket_grid, shrink_grid, opp_grid):
-        diff, rich, rot = player_pass(m, bat_g, bowl_g, wv, sh, op)
+    for wv, sh, op, vn in itertools.product(wicket_grid, shrink_grid, opp_grid,
+                                            ven_grid):
+        diff, rich, rot = player_pass(m, bat_g, bowl_g, wv, sh, op, vn)
         mask = tr & (rich > 0.3)
         for sig in SIGMA_GRID:
             from scipy.stats import norm as _n
             p = _n.cdf(diff[mask] / sig)
             cur = ll(p, y[mask]).mean()
             print(f"    player2 grid: wicket_val={wv} shrink={sh} opp={op} "
-                  f"sigma={sig} train LL={cur:.5f}")
+                  f"ven={vn} sigma={sig} train LL={cur:.5f}")
             if cur < best_ll:
-                best_ll, best = cur, (wv, sh, sig, diff, rich, rot, op)
+                best_ll, best = cur, (wv, sh, sig, diff, rich, rot, op, vn)
     return best, best_ll
 
 
@@ -1082,6 +1107,7 @@ DEV_END = "2026-08-23"        # registration P: dev = markets resolved on or
 
 USE_OPP = False
 USE_OPP_WIDE = False
+USE_VENUE = False
 
 
 def build_components(m, d, x):
@@ -1115,13 +1141,19 @@ def build_components(m, d, x):
     pos = pd.Series(np.arange(real.sum()), index=order).reindex(m.match_id).to_numpy()
     p_elo, nmin = p_elo_x[real][pos], nmin_x[real][pos]
     bat_g, bowl_g = per_match_player_tables(d)
-    if USE_OPP_WIDE:
-        (wv, sh, sig, diff, rich, rot, op), pll = tune_player(
+    if USE_VENUE:
+        # venue par on top of the --opp fit (wicket 4, shrink 150, opp 1.0
+        # were its choices; the venue coefficient is the open dimension)
+        (wv, sh, sig, diff, rich, rot, op, vn), pll = tune_player(
+            m, bat_g, bowl_g, (1.0,), (4.0,), (150.0,), VEN_GRID)
+    elif USE_OPP_WIDE:
+        (wv, sh, sig, diff, rich, rot, op, vn), pll = tune_player(
             m, bat_g, bowl_g, OPP_GRID_W, WICKET_GRID_W, SHRINK_GRID_W)
     else:
-        (wv, sh, sig, diff, rich, rot, op), pll = tune_player(
+        (wv, sh, sig, diff, rich, rot, op, vn), pll = tune_player(
             m, bat_g, bowl_g, OPP_GRID if USE_OPP else (0.0,))
-    print(f"player2: wicket_val={wv} shrink={sh} sigma={sig} opp={op}  train LL={pll:.5f}")
+    print(f"player2: wicket_val={wv} shrink={sh} sigma={sig} opp={op} ven={vn}"
+          f"  train LL={pll:.5f}")
     from scipy.stats import norm as _n
     p_pl = _n.cdf(diff / sig)
     # v1 player component (the July model class, alpha=0.002, sigma=40):
@@ -1140,7 +1172,7 @@ def build_components(m, d, x):
                          "p_v1": p_v1, "diff2": diff})
     info = {"elo": {s: [list(v[0][:6]) + [list(v[0][6])] + list(v[0][7:]), v[1]]
                     for s, v in elo_params.items()},
-            "player2": [wv, sh, sig, pll, op]}
+            "player2": [wv, sh, sig, pll, op, vn]}
     return comp, info
 
 
@@ -1195,17 +1227,21 @@ def main():
     ap.add_argument("--opp", action="store_true",
                     help="opponent-quality-adjusted player values "
                          "(candidate 2026-09-01; coefficient tuned on train)")
+    ap.add_argument("--venue", action="store_true",
+                    help="venue par normalisation of player values on top of "
+                         "--opp (candidate 2026-09-02)")
     ap.add_argument("--opp-wide", action="store_true",
                     help="--opp with the wider grids (all three boundaries "
                          "bound on the first fit)")
     args = ap.parse_args()
-    global USE_WOMEN_TIERS, USE_OPP, USE_OPP_WIDE, USE_BLAST_GROUPS
+    global USE_WOMEN_TIERS, USE_OPP, USE_OPP_WIDE, USE_VENUE, USE_BLAST_GROUPS
     USE_WOMEN_TIERS = bool(args.women_tiers)
+    USE_VENUE = bool(args.venue)
     USE_OPP_WIDE = bool(args.opp_wide)
-    USE_OPP = bool(args.opp) or USE_OPP_WIDE
+    USE_OPP = bool(args.opp) or USE_OPP_WIDE or USE_VENUE
     USE_BLAST_GROUPS = bool(args.blast_groups)   # blend-stage only: no cache tag
     tag = ("base" + ("_wt" if USE_WOMEN_TIERS else "")
-           + ("_oppw" if USE_OPP_WIDE else "_opp" if USE_OPP else ""))
+           + ("_ven" if USE_VENUE else "_oppw" if USE_OPP_WIDE else "_opp" if USE_OPP else ""))
     print(f"variant: {tag}")
     m, d, x = load()
     print(f"matches {len(m)} ({m.date.min()}..{m.date.max()}), deliveries {len(d)}, "
