@@ -34,7 +34,7 @@ Easiest → hardest, tackled one at a time:
 |---|--------|-------|-------|--------|
 | 1 | WNBA player props | `wnba/` | **LIVE** | talent engine beats opener on dev (Aug–Oct −0.0077, ROI +8.6%); **betting re-opened 2026-07-31** (FD EV>10%, protocol-pinned); news-watch live (news → overrides → picks → notify); fp-prospective-1/2 scoring firewalled |
 | 1b | WNBA game lines | `wnba/` | prospective | v1 + v2 **ML head = control** (v2 GV2-1 +0.020 vs ≤+0.010 after the one-ball rework halved v1's gap); v2 **spread head passed dev gates** (+0.0072, cal −1.5pp) → `fp-games-prospective-1` accruing on games 2026-08-01+, scored at season end; no betting |
-| 2 | BBL cricket match odds | `cricket/` | done | **control #3 confirmed** — player model passed dev gates, holdout FAIL (+0.052, t=3.6, ROI −34%); benchmark n=297 is structurally too small; future cricket → IPL pending odds source |
+| 2 | cricket T20 match odds | `cricket/` | **parity, prospective** | BBL bookmaker average: **control #3 confirmed** (holdout FAIL +0.052, t=3.6). Polymarket revisit (registrations P/Q, 2026-08-29 →): from-scratch model at **parity with the exchange's day-before price on dev in both cells** (franchise +0.0002, international +0.0008, t=0.0; ROI at the open +13.2% EV>5%, t=2.0) after opponent-adjusted player values; goal gate (both < 0, t ≤ −1.5) not met; `pm-prospective-1/2` accruing; no betting |
 | 3 | Soccer 1X2 | `soccer/` | parked | **control** — G1 fail after both iterations (+0.0164 vs ≤+0.015); calibration excellent; **holdout unspent** |
 | 4 | NHL player props | `props/` | **striking distance, unproven** | Registrations N + N2 complete 2026-08-24: talent engine then attempts (Corsi) engine closed 83% of the shots/blocked gap (pooled +0.0078 t=5.7 → **+0.0014 t=1.4** — statistically indistinguishable from the opener; blocked +0.0002 t=0.1); spend condition (dev ≤ 0.000) not met → **holdout unspent**; next: information layer (lineups/PP/goalies), 2026-27 prospective arm (owner decision) |
 | 5 | NBA player props | `props/` | parked | **control** — G1 fail both iterations (+0.0247); calibration fine, discrimination gap; **holdout unspent** (awaits Stage D injury data) |
@@ -1916,6 +1916,88 @@ as a team's own sparse T20I record) and women's tier gap (800).
 Iterating stopped here at the owner's instruction. The only claim
 generator remains `pm-prospective-1` (`cricket/src/pm_prospective.py`).
 
+**Q iterations 17-25 (2026-09-01/02, session re-opened: "continue trying
+to beat the market").** Fresh container; data and the 2026-08-30 baseline
+reproduced exactly first (Cricsheet 12,348 matches to 2026-08-23; benchmark
+n=693, open 0.63494; dev franchise +0.0017 / international +0.0138 / pooled
++0.0057). The blend tuner was rewritten to evaluate every context-term
+combination as one array per probability map - the same product grid that
+ran past three hours on 2026-08-31 now finishes in a minute, and the
+Elo/player stages are cached per variant - so the session could run
+fourteen full evaluations. Rule unchanged: a variant reaches dev only after
+it improves the train-era walk-forward log loss, and every dev touch is
+logged here.
+
+| it | change (all fit/tuned on train) | train blend LL | dev franchise | dev intl | pooled (t) | ROI EV>5% |
+|---|---|---|---|---|---|---|
+| 16 | 2026-08-30 model of record, reproduced | 0.63187 | +0.0017 | +0.0138 | +0.0057 (0.7) | +9.6% (1.5) |
+| 17 | meta-scale (the 2026-08-31 confidence model, evaluated for the first time; raw train 0.63227 -> 0.63058) | 0.63121 | +0.0031 | +0.0105 | +0.0055 (0.7) | +7.2% |
+| 18 | T20 Blast dead rubbers from Cricsheet's North/South group labels | 0.63146 | **+0.0009** | +0.0138 | +0.0051 (0.6) | +9.9% |
+| 19 | women's-specific tiers (ICC Women's Championship ten as the top tier) | 0.63155 | +0.0017 | +0.0167 | +0.0066 (0.8) | +10.5% |
+| 20 | online recalibration allowed to switch off per segment (franchise: raw beat every window on train) | 0.63162 | +0.0094 | +0.0138 | +0.0109 (1.3) | +3.8% |
+| 21 | meta-scale fitted per segment | 0.62999 | +0.0021 | +0.0116 | +0.0052 (0.6) | +8.6% |
+| 22 | **opponent-quality-adjusted per-ball values** (coefficient 1.0; player component 0.66783 -> 0.66062, women's 0.601 -> 0.581) | 0.63068 | +0.0011 | **+0.0008** | **+0.0010 (0.1)** | **+13.3% (2.0)** |
+| 23 | **22 + 18** | 0.63028 | **+0.0002 (0.0)** | **+0.0008 (0.0)** | **+0.0004 (0.0)** | **+13.2% (2.0)** |
+| 24 | 23 + per-segment meta-scale + component-disagreement feature + wider L2 (best train of the session, L2 at the grid floor) | 0.62801 | +0.0056 | +0.0031 | +0.0048 (0.6) | +2.9% |
+| 25 | 23 with the full-member-v-associate classes given their own maps (row floor 120 -> 90; fits on 94 and 115 rows) | 0.62975 | +0.0002 | +0.0062 | +0.0022 (0.3) | +10.7% |
+
+Train-only, no dev touch: component disagreement as a meta feature alone
+(0.63097; dev seen only inside it-24), the wider opponent grid (shrink 75
+lifts the player component to 0.65599 but the blend to 0.63071, no gain;
+opp >= 1.5 makes the values diverge, so 1.0 is a real optimum), venue par
+normalisation (player 0.66062 -> 0.66050, blend unchanged at 0.63068).
+
+**Model of record = it-23** (`pm_model2.py` defaults, `--no-opp` /
+`--no-blast-groups` for the ablations). Dev, n=693: **franchise +0.00018
+(t=0.0), international +0.00079 (t=0.0), pooled +0.00038 (t=0.0)**; LL
+0.6891 vs 0.6889 and 0.5250 vs 0.5242; calibration +1.2pp / -1.0pp; vs
+the pre-toss close +0.0172 (t=1.8, no tripwire); ROI at the open with a
+1c spread **+13.2% at EV>5% (n=469, t=2.0)**, +11.3% at EV>2%, placebo 0
+bets. Second half of dev (post-hoc): franchise +0.0001, international
+-0.0187, pooled -0.0055. **The registered goal gate (both cells < 0.000
+AND pooled clustered t <= -1.5) is NOT met**: both cells are now within
+0.001 of the exchange's day-before price, but the t condition needs a
+pooled gap of about -0.012 at this sample (SE ~0.008), an order of
+magnitude beyond anything measured in either direction.
+
+Where the residual sits (it-23, LL units = gap x n): men's full-member
+T20Is +0.026 (n=70, +1.8 units), women's full-v-associate +0.107 (n=11,
++1.2), women's full-member +0.024 (n=44, +1.0); men's associates -0.052
+(n=59, -3.1). One row - Switzerland v Croatia, priced 0.977 and lost -
+costs 2.26 units, i.e. 0.010 of the international gap on its own; the
+model's 0.9+ band is otherwise calibrated (implied 0.972, won 0.963,
+n=54). Franchise: LPL +0.099 (n=14), Blast +0.010 (n=103), MLC +0.027
+(n=23); IPL -0.010 (n=137), CPL -0.060 (n=13).
+
+Two population facts recorded, neither acted on: (1) nine dev matches
+carry two markets each (re-listed IPL 2025, LPL and PSL markets, some thin
+and broken - one has a pre-toss "close" of 0.05 on a $6k book), 18 of 693
+rows; with one market per match (highest volume) it-23 reads franchise
+-0.0009, international +0.0008, pooled -0.0003. The registered population
+stands; a one-market-per-match rule is proposed for any future
+registration. (2) The archive is frozen at its 2026-08-29 snapshot -
+Polymarket and Wikipedia are unreachable from this container (proxy 403).
+
+Tested and rejected this session, so they are not retried: women's tier
+structure (train gain, dev loss in the international cell); letting the
+online recalibration switch off (it costs 0.0004 on train and pays 0.008
+on dev franchise - the recalibration is tracking a regime change between
+the train era and 2024+); **every meta-scale variant** (shared, per
+segment, with the disagreement feature, with a wider penalty grid - all
+win on train, some by a lot, and all lose on dev; its largest weight sits
+on prior-match count, i.e. it learns that full members were coin-flips in
+2018-24, and the exchange's era disagrees); dedicated maps for the
+mismatch classes (overfit at ~100 rows); the wider opponent grid; venue
+par normalisation.
+
+**Prospective arms.** `pm-prospective-1` keeps the 2026-08-30 recipe
+(reproducible with `--no-opp --no-blast-groups`; lock 2026-08-30).
+**`pm-prospective-2` registered at this push**: the it-23 recipe as
+committed, scored on markets resolving after 2026-09-02, once, at n >= 300
+or 2027-06-30, same thresholds (both cells < 0.000 and pooled t <= -1.5
+read as claims; gap <= 0.000 = matches the exchange's day-before price).
+No betting under any outcome without a separate owner decision.
+
 ## Push log
 
 - **2026-07-31** — Programme opened. PROGRESS.md created (recreated from
@@ -2338,3 +2420,18 @@ generator remains `pm-prospective-1` (`cricket/src/pm_prospective.py`).
   disagreement as a meta-scale reliability feature). `pm_diag.py` added
   for the loss decomposition. Polymarket and Wikipedia are unreachable from
   this container (proxy 403), so the archive stays at its 2026-08-29 snapshot.
+- **2026-09-02 (cricket Q, iterations 17-25 + verdict)** — the
+  2026-08-31 meta-scale evaluated at last (wins train, loses dev; every
+  variant of it does), then eight more logged dev touches. Adopted:
+  **opponent-quality-adjusted per-ball player values** (international
+  dev +0.0138 → +0.0008 in one step) and **Blast dead rubbers from group
+  labels** (franchise +0.0017 → +0.0002). Model of record it-23: dev
+  franchise **+0.0002**, international **+0.0008**, pooled **+0.0004**,
+  all t=0.0; ROI at the open +13.2% at EV>5% (t=2.0), placebo 0 bets.
+  Goal gate still NOT met (both cells must be below zero and pooled
+  t ≤ −1.5). Rejected and recorded: women's tiers, recal-off, all meta
+  variants, mismatch-class maps, wider opp grid, venue par. Duplicate
+  markets (9 matches, 18 rows) recorded, population unchanged.
+  `pm-prospective-2` registered on the it-23 recipe (markets resolving
+  after 2026-09-02). Defaults consolidated so `pm_model2.py --dev`
+  reproduces it-23. Research only; nothing live.

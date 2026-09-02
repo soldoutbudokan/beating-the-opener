@@ -11,7 +11,10 @@
 > about the BBL bookmaker average, not about T20 cricket; (2) the frozen
 > player model that failed the BBL holdout sits at **exact parity with the
 > exchange's day-before price on franchise leagues** (n=466) and fails
-> only on internationals. Every number below stands as measured.
+> only on internationals. **2026-09-02:** after opponent-adjusted player
+> values the from-scratch model sits within 0.001 of the exchange's
+> day-before price in *both* cells (franchise +0.0002, international
+> +0.0008, t=0.0) — see `PROGRESS.md`. Every number below stands as measured.
 
 Fourth market tested with the beating-the-opener methodology, and the second
 **negative result** (with NBA): the one cricket market with free open/close

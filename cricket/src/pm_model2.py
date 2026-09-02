@@ -1,13 +1,22 @@
-"""Cricket v2 (registration Q): team Elo backbone + phase/wicket-aware
-player-composition values + per-segment logit blend.
+"""Cricket v2 (registration Q): team Elo backbone + phase/wicket-aware,
+opponent-adjusted player-composition values + per-(segment x fixture
+class) logit blend + walk-forward online recalibration.
 
 Everything is fit/tuned on matches dated < 2024-06-01 (train era). The
 train-era walk-forward log loss (2018 -> train end, teams with history) is
 the market-free iteration criterion; dev (the registration-P population) is
 scored only via --dev and every touch is logged in PROGRESS.md.
 
+Model of record (2026-09-02) = the defaults: `--opp` (opponent-quality-
+adjusted per-ball values, coefficient 1.0 on train) and `--blast-groups`
+(T20 Blast dead rubbers from Cricsheet's North/South labels). Everything
+else behind a flag was tried and is recorded in PROGRESS.md as rejected:
+--women-tiers, --recal-opt, --meta-* (every meta-scale variant wins on
+train and loses on dev), --opp-wide, --venue, --min-class 90.
+
 Usage: python3 src/pm_model2.py            # tune + train-era report
        python3 src/pm_model2.py --dev      # + score the dev benchmark
+       python3 src/pm_model2.py --cache --dev   # reuse the Elo/player stages
 """
 import argparse
 import itertools
@@ -1227,12 +1236,17 @@ def main():
     ap.add_argument("--meta-dis", action="store_true",
                     help="add component disagreement |z_elo - z_pl2| to the "
                          "meta-scale features (candidate 2026-09-01)")
-    ap.add_argument("--blast-groups", action="store_true",
+    ap.add_argument("--blast-groups", dest="blast_groups", action="store_true",
+                    default=True,
                     help="dead-rubber flags for the T20 Blast from its "
-                         "labelled North/South groups (candidate 2026-09-01)")
-    ap.add_argument("--opp", action="store_true",
+                         "labelled North/South groups (adopted 2026-09-02; default)")
+    ap.add_argument("--no-blast-groups", dest="blast_groups", action="store_false",
+                    help="ablation: drop the Blast dead-rubber flags")
+    ap.add_argument("--opp", dest="opp", action="store_true", default=True,
                     help="opponent-quality-adjusted player values "
-                         "(candidate 2026-09-01; coefficient tuned on train)")
+                         "(adopted 2026-09-02; default; coefficient tuned on train)")
+    ap.add_argument("--no-opp", dest="opp", action="store_false",
+                    help="ablation: unadjusted per-ball values")
     ap.add_argument("--min-class", type=int, default=120,
                     help="min train rows for a segment x class map (default 120)")
     ap.add_argument("--venue", action="store_true",

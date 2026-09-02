@@ -7,10 +7,15 @@ claim. This script scores ONLY markets that resolved after the model was
 locked, rebuilding the benchmark rows the same way pm_benchmark.py does and
 pricing them with pm_model2's frozen recipe.
 
+Two arms are registered, one per locked recipe (root PROGRESS.md, Q):
+  pm-prospective-1  lock 2026-08-30, recipe `pm_model2.py --no-opp --no-blast-groups`
+  pm-prospective-2  lock 2026-09-02, recipe `pm_model2.py` (the defaults)
+
 Run it after refreshing the archive:
     python3 src/fetch_polymarket.py          # new markets + prices
     python3 src/fp_ingest.py                 # new Cricsheet results
-    python3 src/pm_prospective.py --lock-date 2026-08-30
+    python3 src/pm_model2.py --dev           # writes data/pm_preds_v2.parquet
+    python3 src/pm_prospective.py --lock-date 2026-09-02
 
 Reports, per cell and pooled: LL(model) - LL(open T-24h) with date-clustered
 t, calibration, LL vs the pre-toss close, flat-stake ROI at the open with the
