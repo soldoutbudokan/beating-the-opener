@@ -4,6 +4,12 @@
 bankrolls, CLV, open positions and the evidence behind them, at a glance.
 Rebuilt automatically every time a bet settles.
 
+**New here, or not technical? Read [OVERVIEW.md](OVERVIEW.md) first** — a
+plain-language guide to what the model does, how the live and research
+processes work, where the results stand, and what the 2026-09-04 audit
+([issue #1](https://github.com/soldoutbudokan/beating-the-opener/issues/1))
+found.
+
 > ## ▶️ WNBA live betting RE-OPENED — 2026-07-31 (v3, from-scratch)
 >
 > The anchored architecture was retired on the morning of 2026-07-31 (its

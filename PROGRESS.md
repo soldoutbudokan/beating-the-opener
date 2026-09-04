@@ -2435,3 +2435,11 @@ No betting under any outcome without a separate owner decision.
   `pm-prospective-2` registered on the it-23 recipe (markets resolving
   after 2026-09-02). Defaults consolidated so `pm_model2.py --dev`
   reproduces it-23. Research only; nothing live.
+- **2026-09-04 (overview + audit review)** — Added `OVERVIEW.md`, a
+  plain-language guide to the model, the live and research processes,
+  the current results, the issue #1 audit, and a reviewer's judgement of
+  it (every ledger figure recomputed; all matched the audit). Records
+  one fact the audit could not verify: the `news-watch` trigger has
+  been disabled since 2026-08-31 21:57 UTC (last firing 21:31), which
+  is why every live file stops at 08-30/31. No code, model, ledger, or
+  routine change; research only.
