@@ -1,0 +1,35 @@
+name: Research process checks
+
+on:
+  pull_request:
+    paths:
+      - 'tools/research.py'
+      - 'tests/test_research_process.py'
+      - 'research/**'
+      - '.github/workflows/research-process.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/research.py'
+      - 'tests/test_research_process.py'
+      - 'research/**'
+      - '.github/workflows/research-process.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  offline-checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /tools/research.py
+            /tests/
+            /research/
+      - name: Run offline boundary checks
+        run: python3 -m unittest discover -s tests -p 'test_research_process.py' -v

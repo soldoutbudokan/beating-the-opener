@@ -1,0 +1,21 @@
+{
+  "all_bundle_members_roundtrip_verified": true,
+  "brief_bytes": 5434,
+  "brief_seconds": 0.0010800670024764258,
+  "bundle_seconds": 0.5927977169994847,
+  "interpretation": "One local demonstration, not an end-to-end research speedup benchmark. The bundle is a disposable reproduction of evidence already published in PR #2.",
+  "models_run": 0,
+  "original_input_hashes_unchanged": true,
+  "pack": {
+    "bundle_bytes": 6063206,
+    "bundle_sha256": "7ec619139967fa6241b5accb1ed08f8a2482e0e516a5870a691c384c3355d07e",
+    "files": 36,
+    "input_bytes": 17259683
+  },
+  "python_version": "3.12.13",
+  "receipt_sha256": "e75111f1fbd3c5ee723abf32e9e3591f271679951b9e13a2b187fe133605c1c3",
+  "results_sha256": "8509b7ffcdbaa5b7cb348a432e18e1de531b655601109369c52dbad43688e942",
+  "source_commit": "64acad8248ef6536ef7c655d733293f6763263cc",
+  "source_directory": "wnba/research/rich_context/results",
+  "summary_input_bytes": 43938
+}

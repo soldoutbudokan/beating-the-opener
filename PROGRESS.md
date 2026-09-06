@@ -2443,3 +2443,36 @@ No betting under any outcome without a separate owner decision.
   been disabled since 2026-08-31 21:57 UTC (last firing 21:31), which
   is why every live file stops at 08-30/31. No code, model, ledger, or
   routine change; research only.
+
+
+## Research process improvement — owner-directed 2026-09-06
+
+The owner requested a separate PR to improve the process after the richer-WNBA
+information experiment. Work is based on current main and does not depend on
+PR #2 being merged. The explicit PR request governs delivery; this branch is
+not merged under the standing routine/fill publishing rule.
+
+- New-work guidance lives in `research/WORKFLOW.md`, with a short experiment
+  template: inspect an existing error, name a decision, bound the source pilot
+  and comparison, specify useful improvement before results, and record a stop
+  or next-test decision. Earlier registrations and reported scores are preserved.
+- For new experiments, timing and future-data invariance are the leakage checks.
+  A predictive feature's correlation with an outcome is not by itself leakage;
+  the old common-protocol correlation threshold is insufficient. This is a dated
+  process clarification, not a change to any completed registered experiment.
+- `tools/research.py` adds three standard-library-only, offline helpers: source
+  sample checks retaining failed requests in the denominator; a decision brief
+  from completed rich-context summaries/receipt; deterministic evidence bundles
+  with content checksums. Outputs refuse overwrites. The review adapter checks
+  summary arithmetic, not individual predictions or the validity of declared
+  test freshness. It never promotes a model or chooses the highest-ROI rule.
+- Validated on the unchanged PR #2 commit `64acad8248ef6536ef7c655d733293f6763263cc`: the brief reads 43,938 bytes; all 36 result files compress from 17,259,683 bytes to 6,063,206 bytes, with every member's original checksum verified after extraction. Timings in `research/examples/efficiency-check.json` are one-machine helper measurements, not an end-to-end research speedup claim. No model was fitted or scored.
+- Eighteen offline regression checks pass: future/equal/ambiguous timestamps,
+  duplicate and missing requests, weak-family coverage, altered receipts, paired
+  populations, ROI/void accounting, abstention, deterministic bundles, and
+  path/overwrite boundaries. A focused GitHub Actions workflow runs the same
+  synthetic checks without research archives or model dependencies.
+- The generated brief, original-evidence links and a deliberately failing
+  synthetic source pilot make the process reviewable. Existing WNBA code,
+  original experiment files, live ledgers, routines and protected test periods
+  are unchanged. No new data-access claim or betting-edge claim is made.
