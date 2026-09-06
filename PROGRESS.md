@@ -2481,3 +2481,13 @@ model, live file, bet, or routine is changed. Model scores pending.
   remain in the registered 2025 comparison. Exact settings and held-forward
   distribution calibration are in `results/fit_report.json` under the
   rich-context research directory. No 2025 model score has been read.
+
+
+### Completed fixed 2025 richer-information comparison — 2026-09-06
+
+- Published the pre-2025 fit checkpoint as `058a5ab` before the single 2025 evaluation. The completed receipt identifies unchanged implementation `411010a101f0c6da76dcb4ed67bf7ecab443635c6fc702c9b45285bfed72f671` and main results `8509b7ffcdbaa5b7cb348a432e18e1de531b655601109369c52dbad43688e942`.
+- Main comparison: 7,604 quotes, 7,473 played outcomes, 131 voids, 308 games, 116 dates. Box-only regression log loss 0.687662; richer regression 0.687912; richer tree 0.688050; opener 0.685983. Rich-minus-box difference +0.000250, 95% date-bootstrap interval [-0.000555,+0.001071]: no demonstrated added-information gain. The 24-hour source-delay sensitivity preserves that conclusion.
+- Fixed 5% rule simulated returns: incumbent +3.67%, box regression +4.75%, rich regression +4.36%, rich tree +5.54%. Both 5% and 10% rules, both delays, all forecast rows and selected bets are retained. The native repaired incumbent probability score (0.688298) is reported separately; the research baseline is not an exact deployed-model replay.
+- Independent stored-output checks reproduced probabilities, log loss, chronological selection, returns, void handling and all 16 return intervals. A later exploratory always-under control lost 1.84% (8-hour delay); it is clearly distinguished from the registered comparison. No models were rerun after opening 2025 results.
+- Added a plain-language REPORT.md, a chart generated from saved results, an isolated reproduction wrapper, and a reusable verifier. These reporting helpers were added after evaluation, outside the frozen model recipe. All 24 focused tests pass. The report records missing upcoming-role/injury information, older play-by-play quality failures, retrospective data timing, partial quote matching and incomplete row-level feature lineage.
+- Owner requested a PR: publish the research branch for review, do not merge into main. This work does not modify original model code, live ledgers, 2026 arms, routines or the website. No model is promoted on these development results.

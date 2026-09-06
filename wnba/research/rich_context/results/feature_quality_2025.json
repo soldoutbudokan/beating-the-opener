@@ -1,0 +1,73 @@
+{
+  "coverage": {
+    "assisted_makes": 12599,
+    "assisted_makes_with_creator_id": 12599,
+    "availability_rule": "max(tip + 8h, last timestamped play + 1h); date-only + 2d",
+    "box_player_games": 5847,
+    "excluded_allstar_games": 1,
+    "field_goal_events": 41982,
+    "forecast_features": "postgame states, strictly before forecast_at",
+    "pbp_games": 311,
+    "pbp_rows": 120904,
+    "reconciliation": {
+      "assist": {
+        "available_games": 311,
+        "invalid_games": 4,
+        "mismatched_player_rows": 6,
+        "valid_games": 307
+      },
+      "rebound": {
+        "available_games": 311,
+        "invalid_games": 3,
+        "mismatched_player_rows": 4,
+        "valid_games": 308
+      },
+      "shot": {
+        "available_games": 311,
+        "invalid_games": 8,
+        "mismatched_player_rows": 18,
+        "valid_games": 303
+      }
+    },
+    "shot_distance_coverage": 1.0,
+    "shot_zone_coverage": 1.0,
+    "team_games": 622
+  },
+  "created_at_utc": "2026-09-06T04:35:37+00:00",
+  "existing_results_modified": false,
+  "explanation": "These counts measure agreement between archived play-by-play and box scores. They do not rerun or change the 2025 prediction test, model selection, forecasts, or profitability results.",
+  "feature_code_sha256": "496f1b72ef23ce9772aa5f7f348a8693b517da997af76921eddd0fde0a257857",
+  "forecast_evaluation_performed": false,
+  "forecast_generation_performed": false,
+  "model_fit_performed": false,
+  "purpose": "Post-report, quality-only recomputation of the reported 2025 source reconciliation counts.",
+  "reconciliation_rule": "A game passes a feature family only when every player count agrees with the box score. Shots compare FGA, FGM, 3PA and 3PM; assists compare credited assists; rebounds compare offensive and defensive rebounds. A failed family is missing for that game, rather than set to zero.",
+  "reproducer": "python -m wnba.research.rich_context.tools.check_feature_quality",
+  "reproducer_sha256": "4020c23332787bdd3176e136c69eefb9374c4118838870863b957154e598c3b7",
+  "schema_version": 1,
+  "scope": "Completed 2025 games; the schedule's All-Star game is excluded.",
+  "source_commit": "db0d4921daa58aec06da2931eec713d9e9a52c6e",
+  "source_repository": "sportsdataverse/wehoop-wnba-data",
+  "verified_assets": [
+    {
+      "filename": "player_box_2025.parquet",
+      "sha256": "e50e3130a1f60e0063314f899d9d0d96a56868c785e557d96f3ab7c0fd5559ff",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2025.parquet"
+    },
+    {
+      "filename": "team_box_2025.parquet",
+      "sha256": "1c19ec04ecc9958f06fae09234961e3f4b61cf8fb8d359d392561dfd74bbd2e1",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2025.parquet"
+    },
+    {
+      "filename": "play_by_play_2025.parquet",
+      "sha256": "d4c8a43b3700ec5a113b6eb0ca93591a62d32b4bcdabe6c6cd0b2c61bb8dc07e",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2025.parquet"
+    },
+    {
+      "filename": "wnba_schedule_2025.parquet",
+      "sha256": "109d4b7d41cdfd39889e517483e3e847579352ffb3671783f56569d40097f7ce",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2025.parquet"
+    }
+  ]
+}

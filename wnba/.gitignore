@@ -1,6 +1,5 @@
 data/wehoop/
 data/rich_context/
-data/rich_context/
 data/*.pkl
 __pycache__/
 *.pyc

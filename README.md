@@ -10,6 +10,11 @@ processes work, where the results stand, and what the 2026-09-04 audit
 ([issue #1](https://github.com/soldoutbudokan/beating-the-opener/issues/1))
 found.
 
+**[Richer WNBA data: what the experiment found](wnba/research/rich_context/REPORT.md)**
+— shot patterns, assisted baskets, teammate context and opponent opportunities,
+tested against the simpler model. The added information did not demonstrate
+better forecasts in the fixed 2025 development comparison.
+
 > ## ▶️ WNBA live betting RE-OPENED — 2026-07-31 (v3, from-scratch)
 >
 > The anchored architecture was retired on the morning of 2026-07-31 (its
