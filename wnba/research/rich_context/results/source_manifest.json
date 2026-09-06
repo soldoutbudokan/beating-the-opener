@@ -1,0 +1,694 @@
+{
+  "assets": [
+    {
+      "bytes": 2302720,
+      "filename": "play_by_play_2010.parquet",
+      "kind": "pbp",
+      "season": 2010,
+      "sha256": "a9879c9b2f7d2ec46015e6a96f8c8c38204d1a0a97b4ac3e6db0222dc80c7f37",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2010.parquet"
+    },
+    {
+      "bytes": 2275395,
+      "filename": "play_by_play_2011.parquet",
+      "kind": "pbp",
+      "season": 2011,
+      "sha256": "efd28bc7716b69c35da53a14bd76d241ec40884419048f782686707a1fbe3e4d",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2011.parquet"
+    },
+    {
+      "bytes": 2314485,
+      "filename": "play_by_play_2012.parquet",
+      "kind": "pbp",
+      "season": 2012,
+      "sha256": "f3c9ee60355237b88b4854e2d0c30dcaedfb12b02ce90acb68a8f3b1972401c9",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2012.parquet"
+    },
+    {
+      "bytes": 2536379,
+      "filename": "play_by_play_2013.parquet",
+      "kind": "pbp",
+      "season": 2013,
+      "sha256": "05a32415b2b1720f8500f13fabad3424d34e75846fb14f71a213af986c5c0935",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2013.parquet"
+    },
+    {
+      "bytes": 2585824,
+      "filename": "play_by_play_2014.parquet",
+      "kind": "pbp",
+      "season": 2014,
+      "sha256": "03319935815ee2908b33f4b3c4111787abf5db4a1350f91980ed2b1be0fbe3fe",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2014.parquet"
+    },
+    {
+      "bytes": 2628645,
+      "filename": "play_by_play_2015.parquet",
+      "kind": "pbp",
+      "season": 2015,
+      "sha256": "d43672425b384c683151c50ee50c93677d831653d1eddb3dcecb22bad1ba5aa7",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2015.parquet"
+    },
+    {
+      "bytes": 2592915,
+      "filename": "play_by_play_2016.parquet",
+      "kind": "pbp",
+      "season": 2016,
+      "sha256": "57bb5d33d16016d968cf86b36f93e83d338b5adb9358cd9a5832e58f7caf89fa",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2016.parquet"
+    },
+    {
+      "bytes": 2622262,
+      "filename": "play_by_play_2017.parquet",
+      "kind": "pbp",
+      "season": 2017,
+      "sha256": "f0ac2fe74959976b0affe6b75cbf15860adc53a543da22f71059f755dc4d8387",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2017.parquet"
+    },
+    {
+      "bytes": 2663291,
+      "filename": "play_by_play_2018.parquet",
+      "kind": "pbp",
+      "season": 2018,
+      "sha256": "24ad34e8cf6c7ebbc15162d8754b32544ad08f26d11dfcc9243f90cfb57f11bd",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2018.parquet"
+    },
+    {
+      "bytes": 2742747,
+      "filename": "play_by_play_2019.parquet",
+      "kind": "pbp",
+      "season": 2019,
+      "sha256": "dfeb138a9ceb40e01ddf91fc5dc06ceea38a337e7016595082845c08d8c9273b",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2019.parquet"
+    },
+    {
+      "bytes": 1841354,
+      "filename": "play_by_play_2020.parquet",
+      "kind": "pbp",
+      "season": 2020,
+      "sha256": "62409c104de9d5b9212c5509bc789b0911e131f5b08eb42b8e6933f5c26bc777",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2020.parquet"
+    },
+    {
+      "bytes": 2626774,
+      "filename": "play_by_play_2021.parquet",
+      "kind": "pbp",
+      "season": 2021,
+      "sha256": "b0cb0f7d1d8d1d8e03972688febcd61e74a65d31603cb1389799f7fdd29f1b6e",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2021.parquet"
+    },
+    {
+      "bytes": 3020571,
+      "filename": "play_by_play_2022.parquet",
+      "kind": "pbp",
+      "season": 2022,
+      "sha256": "3a48744cf034bfd89f3d8484c0c9c0fb9ee588d8645c0b5792e93f206a187e7e",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2022.parquet"
+    },
+    {
+      "bytes": 3325896,
+      "filename": "play_by_play_2023.parquet",
+      "kind": "pbp",
+      "season": 2023,
+      "sha256": "951520d25d51808e0faf8f1720191ebc130102bc13ccec840f5757701c3fb252",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2023.parquet"
+    },
+    {
+      "bytes": 3390029,
+      "filename": "play_by_play_2024.parquet",
+      "kind": "pbp",
+      "season": 2024,
+      "sha256": "17b0f8a74a7be05412ed2eaaf16cf68df232a201aee90eadf700124bc9cb681d",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2024.parquet"
+    },
+    {
+      "bytes": 4060185,
+      "filename": "play_by_play_2025.parquet",
+      "kind": "pbp",
+      "season": 2025,
+      "sha256": "d4c8a43b3700ec5a113b6eb0ca93591a62d32b4bcdabe6c6cd0b2c61bb8dc07e",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/pbp/parquet/play_by_play_2025.parquet"
+    },
+    {
+      "bytes": 82400,
+      "filename": "player_box_2003.parquet",
+      "kind": "player_box",
+      "season": 2003,
+      "sha256": "9077ae2f6c9f0d819590f27eafa142997d2712c2f93336bcc9d58a2acab39bd7",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2003.parquet"
+    },
+    {
+      "bytes": 86979,
+      "filename": "player_box_2004.parquet",
+      "kind": "player_box",
+      "season": 2004,
+      "sha256": "0328e141eda3e9201896de121d66c1e28b6ca16590256419d81e3b8d0ef6779f",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2004.parquet"
+    },
+    {
+      "bytes": 92164,
+      "filename": "player_box_2005.parquet",
+      "kind": "player_box",
+      "season": 2005,
+      "sha256": "ed59999e906790db88d071e7ed3c05863de8b3a64cb019e623c784d0579ab259",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2005.parquet"
+    },
+    {
+      "bytes": 104827,
+      "filename": "player_box_2006.parquet",
+      "kind": "player_box",
+      "season": 2006,
+      "sha256": "0741a88b8d461426d787030b64b05c36619a3b1c5896ac34f5a883c8289030fc",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2006.parquet"
+    },
+    {
+      "bytes": 100653,
+      "filename": "player_box_2007.parquet",
+      "kind": "player_box",
+      "season": 2007,
+      "sha256": "e47c8a6ebfa891de3383403610052f112d6261fb810b3482de31b2c48c71b3a5",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2007.parquet"
+    },
+    {
+      "bytes": 105798,
+      "filename": "player_box_2008.parquet",
+      "kind": "player_box",
+      "season": 2008,
+      "sha256": "25538e521b2b5832e6742495f4bfdaf2669d3df0d7eaebdb7bd6344d4c821988",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2008.parquet"
+    },
+    {
+      "bytes": 100648,
+      "filename": "player_box_2009.parquet",
+      "kind": "player_box",
+      "season": 2009,
+      "sha256": "6eea02701cbe6c89305f628d3684606c8b38b1ed325f83dc9c0ce842eec77ce0",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2009.parquet"
+    },
+    {
+      "bytes": 93362,
+      "filename": "player_box_2010.parquet",
+      "kind": "player_box",
+      "season": 2010,
+      "sha256": "40376e04093c77a6619c50cf2657aed6aeb3468f2533c598ece7f9c78fcce358",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2010.parquet"
+    },
+    {
+      "bytes": 94791,
+      "filename": "player_box_2011.parquet",
+      "kind": "player_box",
+      "season": 2011,
+      "sha256": "32695cbabfe580e6ac5a620ff6a84cab5a7a8463a6260592dfa81d194c099536",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2011.parquet"
+    },
+    {
+      "bytes": 96200,
+      "filename": "player_box_2012.parquet",
+      "kind": "player_box",
+      "season": 2012,
+      "sha256": "0f42d7d4bf0c212331d6837f2ac5b8c2bb0be5e6cf08a68447e3cd280af2f7d4",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2012.parquet"
+    },
+    {
+      "bytes": 100087,
+      "filename": "player_box_2013.parquet",
+      "kind": "player_box",
+      "season": 2013,
+      "sha256": "fab613af6d25f5aa884384335bedcc5f8e40dc83810d2f60a20e3b9f115da340",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2013.parquet"
+    },
+    {
+      "bytes": 101389,
+      "filename": "player_box_2014.parquet",
+      "kind": "player_box",
+      "season": 2014,
+      "sha256": "c386324b17d2c6e6ef169c3702c79e87b1732c007f641c547aea7f639cee51f8",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2014.parquet"
+    },
+    {
+      "bytes": 103497,
+      "filename": "player_box_2015.parquet",
+      "kind": "player_box",
+      "season": 2015,
+      "sha256": "681e51b119d9055dcf47c5fd8116ce02c0f4c0c3f92de085287048da1798d1c8",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2015.parquet"
+    },
+    {
+      "bytes": 101935,
+      "filename": "player_box_2016.parquet",
+      "kind": "player_box",
+      "season": 2016,
+      "sha256": "7d360405ef865aec51e0e777c684116684354fe7fccbe40b48591561b6e7dc15",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2016.parquet"
+    },
+    {
+      "bytes": 103444,
+      "filename": "player_box_2017.parquet",
+      "kind": "player_box",
+      "season": 2017,
+      "sha256": "61b6ed5e77cab59549fe355c3dd1cdc57fc6d39d53b218e740faa71092120a62",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2017.parquet"
+    },
+    {
+      "bytes": 104655,
+      "filename": "player_box_2018.parquet",
+      "kind": "player_box",
+      "season": 2018,
+      "sha256": "5a5d4777d030b10721f559932c73bf21702945cd75b7ec0ce46cd84c6b936e88",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2018.parquet"
+    },
+    {
+      "bytes": 104467,
+      "filename": "player_box_2019.parquet",
+      "kind": "player_box",
+      "season": 2019,
+      "sha256": "eb4ce445ef7c91315e0c085da3ae52e6548aeb685c81760843308808dc4b3dfa",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2019.parquet"
+    },
+    {
+      "bytes": 80840,
+      "filename": "player_box_2020.parquet",
+      "kind": "player_box",
+      "season": 2020,
+      "sha256": "419823f7f596d4657e3e51a3989289cc0b1ed52609ddef7a3b25eb94591ce5f6",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2020.parquet"
+    },
+    {
+      "bytes": 100373,
+      "filename": "player_box_2021.parquet",
+      "kind": "player_box",
+      "season": 2021,
+      "sha256": "198a6f55a7ddeb9f20101ebee912e9185e6861f9bfda733db6585a68c51cb016",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2021.parquet"
+    },
+    {
+      "bytes": 110029,
+      "filename": "player_box_2022.parquet",
+      "kind": "player_box",
+      "season": 2022,
+      "sha256": "957e7a504f06cd0007b744d0369a25f2f1afd8dedf57783c9d3f240bed76d9dd",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2022.parquet"
+    },
+    {
+      "bytes": 116693,
+      "filename": "player_box_2023.parquet",
+      "kind": "player_box",
+      "season": 2023,
+      "sha256": "ce79b78367e0d4aaf046157ad00f4c02973746ab412c8762e48d3fff7ba497bf",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2023.parquet"
+    },
+    {
+      "bytes": 145496,
+      "filename": "player_box_2024.parquet",
+      "kind": "player_box",
+      "season": 2024,
+      "sha256": "f242d762e9695f46a7f789cee34a334d547d0eee3180d8c133bceaa9892e8143",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2024.parquet"
+    },
+    {
+      "bytes": 173203,
+      "filename": "player_box_2025.parquet",
+      "kind": "player_box",
+      "season": 2025,
+      "sha256": "e50e3130a1f60e0063314f899d9d0d96a56868c785e557d96f3ab7c0fd5559ff",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/player_box/parquet/player_box_2025.parquet"
+    },
+    {
+      "bytes": 56171,
+      "filename": "wnba_schedule_2003.parquet",
+      "kind": "schedule",
+      "season": 2003,
+      "sha256": "998e5e3410d50cb0a6209c3e92d3ba89b3a038cae6f6d8ab9ca2fb3124d7f9d7",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2003.parquet"
+    },
+    {
+      "bytes": 55455,
+      "filename": "wnba_schedule_2004.parquet",
+      "kind": "schedule",
+      "season": 2004,
+      "sha256": "7ee232ac53b1ff1bf57b6f4df4e16aead4f3de05955ed4918fbad73b74b12d5f",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2004.parquet"
+    },
+    {
+      "bytes": 54939,
+      "filename": "wnba_schedule_2005.parquet",
+      "kind": "schedule",
+      "season": 2005,
+      "sha256": "94813792b72d03e923718052679306dbb630a758fd959932f41d69c07728571c",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2005.parquet"
+    },
+    {
+      "bytes": 57004,
+      "filename": "wnba_schedule_2006.parquet",
+      "kind": "schedule",
+      "season": 2006,
+      "sha256": "651865c0c9eaaeba06d4eb3855b7b401df0f47c3259a4fba42682f468674db8f",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2006.parquet"
+    },
+    {
+      "bytes": 56200,
+      "filename": "wnba_schedule_2007.parquet",
+      "kind": "schedule",
+      "season": 2007,
+      "sha256": "8213b16b202bddfcb6a5dfe7f2de4d33219a7f9bccce4269c7310abce8fa2ec9",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2007.parquet"
+    },
+    {
+      "bytes": 57617,
+      "filename": "wnba_schedule_2008.parquet",
+      "kind": "schedule",
+      "season": 2008,
+      "sha256": "57069508fa6d31d197d540b54ea6a71de1b628c1f21ee581b16080dbe39c87bc",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2008.parquet"
+    },
+    {
+      "bytes": 56627,
+      "filename": "wnba_schedule_2009.parquet",
+      "kind": "schedule",
+      "season": 2009,
+      "sha256": "55b8165a3a447e27d88f33690bfe46e0805c6e0ac71389d105f250a61be71a33",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2009.parquet"
+    },
+    {
+      "bytes": 54678,
+      "filename": "wnba_schedule_2010.parquet",
+      "kind": "schedule",
+      "season": 2010,
+      "sha256": "f2cf05ffe31ca43883735bd05a5964a2b523af6f387bbe0365584707eeb96432",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2010.parquet"
+    },
+    {
+      "bytes": 55087,
+      "filename": "wnba_schedule_2011.parquet",
+      "kind": "schedule",
+      "season": 2011,
+      "sha256": "8ff05da30b04dd04b572f96a989a39b17cba344a819a2f43d48a46360f4e5e2d",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2011.parquet"
+    },
+    {
+      "bytes": 55324,
+      "filename": "wnba_schedule_2012.parquet",
+      "kind": "schedule",
+      "season": 2012,
+      "sha256": "c75acf3f3fb1d1e4ac56c0f681c1dd58c191715beb72e95c5db2e5677b5e9fdb",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2012.parquet"
+    },
+    {
+      "bytes": 56624,
+      "filename": "wnba_schedule_2013.parquet",
+      "kind": "schedule",
+      "season": 2013,
+      "sha256": "ab9da55a786eecb60bee040090dce52ff94e8905c34b55f296068477c7042de7",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2013.parquet"
+    },
+    {
+      "bytes": 56682,
+      "filename": "wnba_schedule_2014.parquet",
+      "kind": "schedule",
+      "season": 2014,
+      "sha256": "9f5d0e5587a1b58f826fad281ec0593d3b0fdbcd61274017803cf0fc4342a64b",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2014.parquet"
+    },
+    {
+      "bytes": 56617,
+      "filename": "wnba_schedule_2015.parquet",
+      "kind": "schedule",
+      "season": 2015,
+      "sha256": "60136a12059bac8bb230595532ff5564cffe9d17bb836283313797a183e8815d",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2015.parquet"
+    },
+    {
+      "bytes": 56160,
+      "filename": "wnba_schedule_2016.parquet",
+      "kind": "schedule",
+      "season": 2016,
+      "sha256": "5c4af591665e783d68de21d821b6326737e99318f5273942dfbc7c20cf50b7d9",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2016.parquet"
+    },
+    {
+      "bytes": 56405,
+      "filename": "wnba_schedule_2017.parquet",
+      "kind": "schedule",
+      "season": 2017,
+      "sha256": "1c713a31c171f697535b36fedc2346facd7e0fa2a41b8c829322e41aaae6ec40",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2017.parquet"
+    },
+    {
+      "bytes": 56495,
+      "filename": "wnba_schedule_2018.parquet",
+      "kind": "schedule",
+      "season": 2018,
+      "sha256": "5682159a05cd0bd1721733fbc671db5ad21669b9e0590c33bd0b7ab2391fd60c",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2018.parquet"
+    },
+    {
+      "bytes": 56345,
+      "filename": "wnba_schedule_2019.parquet",
+      "kind": "schedule",
+      "season": 2019,
+      "sha256": "8c7ad494fcb94b590f9ddcb630a1a2f25f7e6b1d83e0579c9f91a4c28ff9b42e",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2019.parquet"
+    },
+    {
+      "bytes": 48930,
+      "filename": "wnba_schedule_2020.parquet",
+      "kind": "schedule",
+      "season": 2020,
+      "sha256": "b48472b819ffb308b6fd6ad3232ffb5ab7dc69567284ee67c9896d8ee8a34a52",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2020.parquet"
+    },
+    {
+      "bytes": 55612,
+      "filename": "wnba_schedule_2021.parquet",
+      "kind": "schedule",
+      "season": 2021,
+      "sha256": "e252b0fb9ec09a3636e02d8a2557387ae88192cf4186a9799d45d36dc88c5491",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2021.parquet"
+    },
+    {
+      "bytes": 58018,
+      "filename": "wnba_schedule_2022.parquet",
+      "kind": "schedule",
+      "season": 2022,
+      "sha256": "75d80f3863249f52d78a6a17cd64db0a41220c95123713f79e2be26ce8a23b5f",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2022.parquet"
+    },
+    {
+      "bytes": 85069,
+      "filename": "wnba_schedule_2023.parquet",
+      "kind": "schedule",
+      "season": 2023,
+      "sha256": "733e13fd1241d35e804c310b5275178fb9104b2cd1e5aa13ad8443733696b056",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2023.parquet"
+    },
+    {
+      "bytes": 84577,
+      "filename": "wnba_schedule_2024.parquet",
+      "kind": "schedule",
+      "season": 2024,
+      "sha256": "5d20832586db38d0b5f6ebb18f1a3c7a5b639c83f52bfd049a6838eab01df1ae",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2024.parquet"
+    },
+    {
+      "bytes": 98609,
+      "filename": "wnba_schedule_2025.parquet",
+      "kind": "schedule",
+      "season": 2025,
+      "sha256": "109d4b7d41cdfd39889e517483e3e847579352ffb3671783f56569d40097f7ce",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/schedules/parquet/wnba_schedule_2025.parquet"
+    },
+    {
+      "bytes": 37177,
+      "filename": "team_box_2003.parquet",
+      "kind": "team_box",
+      "season": 2003,
+      "sha256": "181a8d02ae05be065aedd5b939ed266b96591c7ff94455b9ebf84c17d457043a",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2003.parquet"
+    },
+    {
+      "bytes": 37913,
+      "filename": "team_box_2004.parquet",
+      "kind": "team_box",
+      "season": 2004,
+      "sha256": "3fa6d58250612a95206cec8b77173b63513b6ba42178974e757e9fcefd9c50c4",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2004.parquet"
+    },
+    {
+      "bytes": 39143,
+      "filename": "team_box_2005.parquet",
+      "kind": "team_box",
+      "season": 2005,
+      "sha256": "7117671795812a7afb711b11b5b3f87454e2d5c2e35deb36c6a3947a5312c65a",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2005.parquet"
+    },
+    {
+      "bytes": 40823,
+      "filename": "team_box_2006.parquet",
+      "kind": "team_box",
+      "season": 2006,
+      "sha256": "16257e199b197296fd2b53ae098027e3eee0097d3dc15142c2ac8499b3a0a11e",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2006.parquet"
+    },
+    {
+      "bytes": 40257,
+      "filename": "team_box_2007.parquet",
+      "kind": "team_box",
+      "season": 2007,
+      "sha256": "29f3db5143ee7d8afa4f38adc91b840cd774a4d80d02d6d32b861601502ccf52",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2007.parquet"
+    },
+    {
+      "bytes": 41246,
+      "filename": "team_box_2008.parquet",
+      "kind": "team_box",
+      "season": 2008,
+      "sha256": "1272c4949821dbd15276bfff491f43fb51b82bef59021d43b04abbd0d2c7c9aa",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2008.parquet"
+    },
+    {
+      "bytes": 40133,
+      "filename": "team_box_2009.parquet",
+      "kind": "team_box",
+      "season": 2009,
+      "sha256": "6b70981a9cad8fc01a56c6a5da478137692c5133cede49ff5e719a1d2518bf4b",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2009.parquet"
+    },
+    {
+      "bytes": 39765,
+      "filename": "team_box_2010.parquet",
+      "kind": "team_box",
+      "season": 2010,
+      "sha256": "a7aaf7c84b7d042127239e3810a22b2aec13503d5b12dd66f5a0ec4294e64bd3",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2010.parquet"
+    },
+    {
+      "bytes": 40679,
+      "filename": "team_box_2011.parquet",
+      "kind": "team_box",
+      "season": 2011,
+      "sha256": "6dc734831fa668b12a6698eb4dfa029eb43db8f2ce0d6b872ee5aabb1e8d881a",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2011.parquet"
+    },
+    {
+      "bytes": 40609,
+      "filename": "team_box_2012.parquet",
+      "kind": "team_box",
+      "season": 2012,
+      "sha256": "7fea5eadcbe1a4c7b38d4e3202a4ed72a5bdbe43808dc123c1b049b59e41d48a",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2012.parquet"
+    },
+    {
+      "bytes": 40628,
+      "filename": "team_box_2013.parquet",
+      "kind": "team_box",
+      "season": 2013,
+      "sha256": "d4c391acc0cff1ee3a571a66ef0713394c675655497a034a00b4f8b023170be8",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2013.parquet"
+    },
+    {
+      "bytes": 40730,
+      "filename": "team_box_2014.parquet",
+      "kind": "team_box",
+      "season": 2014,
+      "sha256": "a31694a2fd01c8fd454ddc69b796708010f01122a9598c9bc07ef42a20fd5437",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2014.parquet"
+    },
+    {
+      "bytes": 40804,
+      "filename": "team_box_2015.parquet",
+      "kind": "team_box",
+      "season": 2015,
+      "sha256": "a96bce2da7f948985d1c74d7f16ffdc73868eb0edaae3dfb729708b5c148e951",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2015.parquet"
+    },
+    {
+      "bytes": 40674,
+      "filename": "team_box_2016.parquet",
+      "kind": "team_box",
+      "season": 2016,
+      "sha256": "d0c16acb924cdf81449829da6fbc465ca52dc28380cfb95675bc637b2983d85f",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2016.parquet"
+    },
+    {
+      "bytes": 40862,
+      "filename": "team_box_2017.parquet",
+      "kind": "team_box",
+      "season": 2017,
+      "sha256": "5790df7751e99b005bf3eba07d6020e8b03bc6219dc01b6f47d3ec4e06c6ee3d",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2017.parquet"
+    },
+    {
+      "bytes": 41131,
+      "filename": "team_box_2018.parquet",
+      "kind": "team_box",
+      "season": 2018,
+      "sha256": "677f5e14dddcaa8e289d03e2b2ee1fbbccee9105777a9d01319087a3d74bf65b",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2018.parquet"
+    },
+    {
+      "bytes": 41102,
+      "filename": "team_box_2019.parquet",
+      "kind": "team_box",
+      "season": 2019,
+      "sha256": "52890ad5e2c5a893f7493d6f23e69c01d62fe26e00b9f1b779d5e7f65fdaf849",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2019.parquet"
+    },
+    {
+      "bytes": 35358,
+      "filename": "team_box_2020.parquet",
+      "kind": "team_box",
+      "season": 2020,
+      "sha256": "e636f54194d2aa51533316bfe58a2b0393e80a486718bc3acc9ee27282dc4b53",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2020.parquet"
+    },
+    {
+      "bytes": 40196,
+      "filename": "team_box_2021.parquet",
+      "kind": "team_box",
+      "season": 2021,
+      "sha256": "02e574a18b06c883247bd67d0e4b29423f0b6a5cba04c8b1579bf12d7af28d8e",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2021.parquet"
+    },
+    {
+      "bytes": 42711,
+      "filename": "team_box_2022.parquet",
+      "kind": "team_box",
+      "season": 2022,
+      "sha256": "7919b2f7de526350476c868d1048162cc9b3bf6f9f059f41298e1d40450f871c",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2022.parquet"
+    },
+    {
+      "bytes": 46373,
+      "filename": "team_box_2023.parquet",
+      "kind": "team_box",
+      "season": 2023,
+      "sha256": "b809463e42effd99a86f8e73af460e42ac2484b1759a3713e2081b6eb90d7d04",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2023.parquet"
+    },
+    {
+      "bytes": 50234,
+      "filename": "team_box_2024.parquet",
+      "kind": "team_box",
+      "season": 2024,
+      "sha256": "dc88ccea42bb293489e62a2fac1d9e56dc353e841b7b4b93620e07a31927cc47",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2024.parquet"
+    },
+    {
+      "bytes": 54334,
+      "filename": "team_box_2025.parquet",
+      "kind": "team_box",
+      "season": 2025,
+      "sha256": "1c19ec04ecc9958f06fae09234961e3f4b61cf8fb8d359d392561dfd74bbd2e1",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/wehoop-wnba-data/db0d4921daa58aec06da2931eec713d9e9a52c6e/wnba/team_box/parquet/team_box_2025.parquet"
+    }
+  ],
+  "availability_note": "These are historical files retrieved after the games, not original publication-time snapshots. Later source corrections may be present. Research features must use completed prior games only; no 2026 files are included. ESPN athlete/game/team IDs are shared across these tables.",
+  "complete": true,
+  "downloaded_files": 85,
+  "expected_files": 85,
+  "failures": [],
+  "recorded_at_utc": "2026-09-06T03:53:52+00:00",
+  "schema_version": 1,
+  "source_commit": "db0d4921daa58aec06da2931eec713d9e9a52c6e",
+  "source_repository": "sportsdataverse/wehoop-wnba-data",
+  "total_bytes": 48271529
+}

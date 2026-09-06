@@ -1,0 +1,1829 @@
+{
+  "game_id_joins": [
+    {
+      "box_games": 220,
+      "box_games_without_pbp": [],
+      "pbp_games": 221,
+      "pbp_games_without_boxes": [
+        300725014
+      ],
+      "season": 2010,
+      "shared_games": 220
+    },
+    {
+      "box_games": 225,
+      "box_games_without_pbp": [
+        310603006,
+        400182104
+      ],
+      "pbp_games": 223,
+      "pbp_games_without_boxes": [],
+      "season": 2011,
+      "shared_games": 223
+    },
+    {
+      "box_games": 221,
+      "box_games_without_pbp": [
+        320818014,
+        400421426
+      ],
+      "pbp_games": 220,
+      "pbp_games_without_boxes": [
+        320916014
+      ],
+      "season": 2012,
+      "shared_games": 219
+    },
+    {
+      "box_games": 222,
+      "box_games_without_pbp": [
+        400445710
+      ],
+      "pbp_games": 221,
+      "pbp_games_without_boxes": [],
+      "season": 2013,
+      "shared_games": 221
+    },
+    {
+      "box_games": 223,
+      "box_games_without_pbp": [
+        400539586
+      ],
+      "pbp_games": 222,
+      "pbp_games_without_boxes": [],
+      "season": 2014,
+      "shared_games": 222
+    },
+    {
+      "box_games": 226,
+      "box_games_without_pbp": [],
+      "pbp_games": 226,
+      "pbp_games_without_boxes": [],
+      "season": 2015,
+      "shared_games": 226
+    },
+    {
+      "box_games": 218,
+      "box_games_without_pbp": [
+        400864466,
+        400864469
+      ],
+      "pbp_games": 216,
+      "pbp_games_without_boxes": [],
+      "season": 2016,
+      "shared_games": 216
+    },
+    {
+      "box_games": 220,
+      "box_games_without_pbp": [],
+      "pbp_games": 220,
+      "pbp_games_without_boxes": [],
+      "season": 2017,
+      "shared_games": 220
+    },
+    {
+      "box_games": 221,
+      "box_games_without_pbp": [
+        401018818,
+        401018956
+      ],
+      "pbp_games": 219,
+      "pbp_games_without_boxes": [],
+      "season": 2018,
+      "shared_games": 219
+    },
+    {
+      "box_games": 221,
+      "box_games_without_pbp": [
+        401105109,
+        401156333
+      ],
+      "pbp_games": 219,
+      "pbp_games_without_boxes": [],
+      "season": 2019,
+      "shared_games": 219
+    },
+    {
+      "box_games": 147,
+      "box_games_without_pbp": [
+        401241311
+      ],
+      "pbp_games": 146,
+      "pbp_games_without_boxes": [],
+      "season": 2020,
+      "shared_games": 146
+    },
+    {
+      "box_games": 211,
+      "box_games_without_pbp": [],
+      "pbp_games": 211,
+      "pbp_games_without_boxes": [],
+      "season": 2021,
+      "shared_games": 211
+    },
+    {
+      "box_games": 241,
+      "box_games_without_pbp": [],
+      "pbp_games": 241,
+      "pbp_games_without_boxes": [],
+      "season": 2022,
+      "shared_games": 241
+    },
+    {
+      "box_games": 262,
+      "box_games_without_pbp": [],
+      "pbp_games": 262,
+      "pbp_games_without_boxes": [],
+      "season": 2023,
+      "shared_games": 262
+    },
+    {
+      "box_games": 264,
+      "box_games_without_pbp": [],
+      "pbp_games": 264,
+      "pbp_games_without_boxes": [],
+      "season": 2024,
+      "shared_games": 264
+    },
+    {
+      "box_games": 312,
+      "box_games_without_pbp": [],
+      "pbp_games": 312,
+      "pbp_games_without_boxes": [],
+      "season": 2025,
+      "shared_games": 312
+    }
+  ],
+  "schema_columns_2025": {
+    "pbp": [
+      "athlete_id_1",
+      "athlete_id_2",
+      "athlete_id_3",
+      "athlete_name_1",
+      "athlete_name_2",
+      "athlete_name_3",
+      "away_score",
+      "away_team_abbrev",
+      "away_team_id",
+      "away_team_mascot",
+      "away_team_name",
+      "away_team_name_alt",
+      "away_timeout_called",
+      "clock_display_value",
+      "clock_minutes",
+      "clock_seconds",
+      "coordinate_x",
+      "coordinate_x_raw",
+      "coordinate_y",
+      "coordinate_y_raw",
+      "end_game_seconds_remaining",
+      "end_half_seconds_remaining",
+      "end_quarter_seconds_remaining",
+      "game_date",
+      "game_date_time",
+      "game_half",
+      "game_id",
+      "game_play_number",
+      "game_spread",
+      "game_spread_available",
+      "half",
+      "home_favorite",
+      "home_score",
+      "home_team_abbrev",
+      "home_team_id",
+      "home_team_mascot",
+      "home_team_name",
+      "home_team_name_alt",
+      "home_team_spread",
+      "home_timeout_called",
+      "id",
+      "lag_half",
+      "lag_qtr",
+      "lead_half",
+      "lead_qtr",
+      "period",
+      "period_display_value",
+      "period_number",
+      "points_attempted",
+      "qtr",
+      "score_value",
+      "scoring_play",
+      "season",
+      "season_type",
+      "sequence_number",
+      "shooting_play",
+      "short_description",
+      "start_game_seconds_remaining",
+      "start_half_seconds_remaining",
+      "start_quarter_seconds_remaining",
+      "team_id",
+      "text",
+      "time",
+      "type_abbreviation",
+      "type_id",
+      "type_text",
+      "wallclock"
+    ],
+    "player_box": [
+      "active",
+      "assists",
+      "athlete_display_name",
+      "athlete_headshot_href",
+      "athlete_id",
+      "athlete_jersey",
+      "athlete_position_abbreviation",
+      "athlete_position_name",
+      "athlete_short_name",
+      "blocks",
+      "defensive_rebounds",
+      "did_not_play",
+      "ejected",
+      "field_goals_attempted",
+      "field_goals_made",
+      "fouls",
+      "free_throws_attempted",
+      "free_throws_made",
+      "game_date",
+      "game_date_time",
+      "game_id",
+      "home_away",
+      "minutes",
+      "offensive_rebounds",
+      "opponent_team_abbreviation",
+      "opponent_team_alternate_color",
+      "opponent_team_color",
+      "opponent_team_display_name",
+      "opponent_team_id",
+      "opponent_team_location",
+      "opponent_team_logo",
+      "opponent_team_name",
+      "opponent_team_score",
+      "plus_minus",
+      "points",
+      "reason",
+      "rebounds",
+      "season",
+      "season_type",
+      "starter",
+      "steals",
+      "team_abbreviation",
+      "team_alternate_color",
+      "team_color",
+      "team_display_name",
+      "team_id",
+      "team_location",
+      "team_logo",
+      "team_name",
+      "team_score",
+      "team_short_display_name",
+      "team_slug",
+      "team_uid",
+      "team_winner",
+      "three_point_field_goals_attempted",
+      "three_point_field_goals_made",
+      "turnovers"
+    ],
+    "schedule": [
+      "PBP",
+      "attendance",
+      "away_abbreviation",
+      "away_alternate_color",
+      "away_color",
+      "away_display_name",
+      "away_id",
+      "away_is_active",
+      "away_linescores",
+      "away_location",
+      "away_logo",
+      "away_name",
+      "away_records",
+      "away_score",
+      "away_short_display_name",
+      "away_uid",
+      "away_venue_id",
+      "away_winner",
+      "broadcast",
+      "broadcast_market",
+      "broadcast_name",
+      "conference_competition",
+      "date",
+      "format_regulation_periods",
+      "game_date",
+      "game_date_time",
+      "game_id",
+      "game_json",
+      "game_json_url",
+      "highlights",
+      "home_abbreviation",
+      "home_alternate_color",
+      "home_color",
+      "home_display_name",
+      "home_id",
+      "home_is_active",
+      "home_linescores",
+      "home_location",
+      "home_logo",
+      "home_name",
+      "home_records",
+      "home_score",
+      "home_short_display_name",
+      "home_uid",
+      "home_venue_id",
+      "home_winner",
+      "id",
+      "neutral_site",
+      "notes_headline",
+      "notes_type",
+      "play_by_play_available",
+      "player_box",
+      "recent",
+      "season",
+      "season_type",
+      "start_date",
+      "status_clock",
+      "status_display_clock",
+      "status_period",
+      "status_type_alt_detail",
+      "status_type_completed",
+      "status_type_description",
+      "status_type_detail",
+      "status_type_id",
+      "status_type_name",
+      "status_type_short_detail",
+      "status_type_state",
+      "team_box",
+      "time_valid",
+      "type_abbreviation",
+      "type_id",
+      "uid",
+      "venue_address_city",
+      "venue_address_state",
+      "venue_full_name",
+      "venue_id",
+      "venue_indoor"
+    ],
+    "team_box": [
+      "assists",
+      "blocks",
+      "defensive_rebounds",
+      "fast_break_points",
+      "field_goal_pct",
+      "field_goals_attempted",
+      "field_goals_made",
+      "flagrant_fouls",
+      "fouls",
+      "free_throw_pct",
+      "free_throws_attempted",
+      "free_throws_made",
+      "game_date",
+      "game_date_time",
+      "game_id",
+      "largest_lead",
+      "offensive_rebounds",
+      "opponent_team_abbreviation",
+      "opponent_team_alternate_color",
+      "opponent_team_color",
+      "opponent_team_display_name",
+      "opponent_team_id",
+      "opponent_team_location",
+      "opponent_team_logo",
+      "opponent_team_name",
+      "opponent_team_score",
+      "opponent_team_short_display_name",
+      "opponent_team_slug",
+      "opponent_team_uid",
+      "points_in_paint",
+      "season",
+      "season_type",
+      "steals",
+      "team_abbreviation",
+      "team_alternate_color",
+      "team_color",
+      "team_display_name",
+      "team_home_away",
+      "team_id",
+      "team_location",
+      "team_logo",
+      "team_name",
+      "team_score",
+      "team_short_display_name",
+      "team_slug",
+      "team_turnovers",
+      "team_uid",
+      "team_winner",
+      "technical_fouls",
+      "three_point_field_goal_pct",
+      "three_point_field_goals_attempted",
+      "three_point_field_goals_made",
+      "total_rebounds",
+      "total_technical_fouls",
+      "total_turnovers",
+      "turnover_points",
+      "turnovers"
+    ]
+  },
+  "schema_version": 1,
+  "source_commit": "db0d4921daa58aec06da2931eec713d9e9a52c6e",
+  "tables": [
+    {
+      "bytes": 2302720,
+      "columns": 62,
+      "distinct_raw_shot_coordinate_pairs": 1367,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2010-05-15T00:00:00+00:00",
+      "events_with_wallclock": 0,
+      "explicit_points_attempted_column": false,
+      "field_goal_attempt_events": 29374,
+      "games": 221,
+      "kind": "pbp",
+      "latest_date": "2010-09-16T00:00:00+00:00",
+      "rows": 86688,
+      "rows_by_season_type": {
+        "2": 80413,
+        "3": 6275
+      },
+      "season": 2010,
+      "shots_with_actor_id": 29374,
+      "shots_with_assist_text": 7736,
+      "shots_with_bounded_raw_coordinates": 29374,
+      "shots_with_distance_text": 18804,
+      "shots_with_zero_coordinate_pair": 0,
+      "substitution_events": 9303
+    },
+    {
+      "bytes": 2275395,
+      "columns": 62,
+      "distinct_raw_shot_coordinate_pairs": 1388,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2011-06-04T00:00:00+00:00",
+      "events_with_wallclock": 0,
+      "explicit_points_attempted_column": false,
+      "field_goal_attempt_events": 29405,
+      "games": 223,
+      "kind": "pbp",
+      "latest_date": "2011-10-07T00:00:00+00:00",
+      "rows": 85358,
+      "rows_by_season_type": {
+        "2": 77910,
+        "3": 7448
+      },
+      "season": 2011,
+      "shots_with_actor_id": 29405,
+      "shots_with_assist_text": 7481,
+      "shots_with_bounded_raw_coordinates": 29405,
+      "shots_with_distance_text": 19613,
+      "shots_with_zero_coordinate_pair": 0,
+      "substitution_events": 9065
+    },
+    {
+      "bytes": 2314485,
+      "columns": 62,
+      "distinct_raw_shot_coordinate_pairs": 1420,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2012-05-18T00:00:00+00:00",
+      "events_with_wallclock": 0,
+      "explicit_points_attempted_column": false,
+      "field_goal_attempt_events": 29330,
+      "games": 220,
+      "kind": "pbp",
+      "latest_date": "2012-10-21T00:00:00+00:00",
+      "rows": 84349,
+      "rows_by_season_type": {
+        "2": 77703,
+        "3": 6646
+      },
+      "season": 2012,
+      "shots_with_actor_id": 29329,
+      "shots_with_assist_text": 7352,
+      "shots_with_bounded_raw_coordinates": 29325,
+      "shots_with_distance_text": 15112,
+      "shots_with_zero_coordinate_pair": 0,
+      "substitution_events": 9089
+    },
+    {
+      "bytes": 2536379,
+      "columns": 63,
+      "distinct_raw_shot_coordinate_pairs": 1439,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2013-05-24T00:00:00+00:00",
+      "events_with_wallclock": 83229,
+      "explicit_points_attempted_column": false,
+      "field_goal_attempt_events": 29300,
+      "games": 221,
+      "kind": "pbp",
+      "latest_date": "2013-10-10T00:00:00+00:00",
+      "rows": 83292,
+      "rows_by_season_type": {
+        "2": 76950,
+        "3": 6342
+      },
+      "season": 2013,
+      "shots_with_actor_id": 29298,
+      "shots_with_assist_text": 7012,
+      "shots_with_bounded_raw_coordinates": 29257,
+      "shots_with_distance_text": 18301,
+      "shots_with_zero_coordinate_pair": 2,
+      "substitution_events": 8961
+    },
+    {
+      "bytes": 2585824,
+      "columns": 63,
+      "distinct_raw_shot_coordinate_pairs": 1437,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2014-05-16T00:00:00+00:00",
+      "events_with_wallclock": 83713,
+      "explicit_points_attempted_column": false,
+      "field_goal_attempt_events": 29568,
+      "games": 222,
+      "kind": "pbp",
+      "latest_date": "2014-09-12T00:00:00+00:00",
+      "rows": 84065,
+      "rows_by_season_type": {
+        "2": 77272,
+        "3": 6793
+      },
+      "season": 2014,
+      "shots_with_actor_id": 29568,
+      "shots_with_assist_text": 7619,
+      "shots_with_bounded_raw_coordinates": 29534,
+      "shots_with_distance_text": 18541,
+      "shots_with_zero_coordinate_pair": 4,
+      "substitution_events": 9159
+    },
+    {
+      "bytes": 2628645,
+      "columns": 63,
+      "distinct_raw_shot_coordinate_pairs": 1461,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2015-06-05T00:00:00+00:00",
+      "events_with_wallclock": 85195,
+      "explicit_points_attempted_column": false,
+      "field_goal_attempt_events": 29614,
+      "games": 226,
+      "kind": "pbp",
+      "latest_date": "2015-10-14T00:00:00+00:00",
+      "rows": 85196,
+      "rows_by_season_type": {
+        "2": 77538,
+        "3": 7658
+      },
+      "season": 2015,
+      "shots_with_actor_id": 29614,
+      "shots_with_assist_text": 7383,
+      "shots_with_bounded_raw_coordinates": 29598,
+      "shots_with_distance_text": 18863,
+      "shots_with_zero_coordinate_pair": 3,
+      "substitution_events": 9821
+    },
+    {
+      "bytes": 2592915,
+      "columns": 63,
+      "distinct_raw_shot_coordinate_pairs": 1488,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2016-05-14T00:00:00+00:00",
+      "events_with_wallclock": 84024,
+      "explicit_points_attempted_column": false,
+      "field_goal_attempt_events": 29179,
+      "games": 216,
+      "kind": "pbp",
+      "latest_date": "2016-10-20T00:00:00+00:00",
+      "rows": 84024,
+      "rows_by_season_type": {
+        "2": 78302,
+        "3": 5722
+      },
+      "season": 2016,
+      "shots_with_actor_id": 29179,
+      "shots_with_assist_text": 7659,
+      "shots_with_bounded_raw_coordinates": 29153,
+      "shots_with_distance_text": 18521,
+      "shots_with_zero_coordinate_pair": 6,
+      "substitution_events": 9033
+    },
+    {
+      "bytes": 2622262,
+      "columns": 63,
+      "distinct_raw_shot_coordinate_pairs": 1477,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2017-05-13T00:00:00+00:00",
+      "events_with_wallclock": 84902,
+      "explicit_points_attempted_column": false,
+      "field_goal_attempt_events": 29913,
+      "games": 220,
+      "kind": "pbp",
+      "latest_date": "2017-10-04T00:00:00+00:00",
+      "rows": 84903,
+      "rows_by_season_type": {
+        "2": 79244,
+        "3": 5659
+      },
+      "season": 2017,
+      "shots_with_actor_id": 29913,
+      "shots_with_assist_text": 7853,
+      "shots_with_bounded_raw_coordinates": 29894,
+      "shots_with_distance_text": 20060,
+      "shots_with_zero_coordinate_pair": 3,
+      "substitution_events": 9406
+    },
+    {
+      "bytes": 2663291,
+      "columns": 63,
+      "distinct_raw_shot_coordinate_pairs": 1483,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2018-05-18T00:00:00+00:00",
+      "events_with_wallclock": 84795,
+      "explicit_points_attempted_column": false,
+      "field_goal_attempt_events": 30267,
+      "games": 219,
+      "kind": "pbp",
+      "latest_date": "2018-09-12T00:00:00+00:00",
+      "rows": 84811,
+      "rows_by_season_type": {
+        "2": 78582,
+        "3": 6229
+      },
+      "season": 2018,
+      "shots_with_actor_id": 30264,
+      "shots_with_assist_text": 8374,
+      "shots_with_bounded_raw_coordinates": 30267,
+      "shots_with_distance_text": 20268,
+      "shots_with_zero_coordinate_pair": 0,
+      "substitution_events": 10342
+    },
+    {
+      "bytes": 2742747,
+      "columns": 63,
+      "distinct_raw_shot_coordinate_pairs": 1525,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2019-05-24T00:00:00+00:00",
+      "events_with_wallclock": 84516,
+      "explicit_points_attempted_column": false,
+      "field_goal_attempt_events": 30210,
+      "games": 219,
+      "kind": "pbp",
+      "latest_date": "2019-10-10T00:00:00+00:00",
+      "rows": 84517,
+      "rows_by_season_type": {
+        "2": 78498,
+        "3": 6019
+      },
+      "season": 2019,
+      "shots_with_actor_id": 30210,
+      "shots_with_assist_text": 8319,
+      "shots_with_bounded_raw_coordinates": 30210,
+      "shots_with_distance_text": 20176,
+      "shots_with_zero_coordinate_pair": 0,
+      "substitution_events": 9952
+    },
+    {
+      "bytes": 1841354,
+      "columns": 63,
+      "distinct_raw_shot_coordinate_pairs": 1391,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2020-07-25T00:00:00+00:00",
+      "events_with_wallclock": 56358,
+      "explicit_points_attempted_column": false,
+      "field_goal_attempt_events": 19937,
+      "games": 146,
+      "kind": "pbp",
+      "latest_date": "2020-10-06T00:00:00+00:00",
+      "rows": 56361,
+      "rows_by_season_type": {
+        "2": 50800,
+        "3": 5561
+      },
+      "season": 2020,
+      "shots_with_actor_id": 19937,
+      "shots_with_assist_text": 5624,
+      "shots_with_bounded_raw_coordinates": 19937,
+      "shots_with_distance_text": 13339,
+      "shots_with_zero_coordinate_pair": 0,
+      "substitution_events": 6806
+    },
+    {
+      "bytes": 2626774,
+      "columns": 63,
+      "distinct_raw_shot_coordinate_pairs": 1473,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2021-05-14T00:00:00+00:00",
+      "events_with_wallclock": 80472,
+      "explicit_points_attempted_column": false,
+      "field_goal_attempt_events": 28944,
+      "games": 211,
+      "kind": "pbp",
+      "latest_date": "2021-10-17T00:00:00+00:00",
+      "rows": 80485,
+      "rows_by_season_type": {
+        "2": 73948,
+        "3": 6537
+      },
+      "season": 2021,
+      "shots_with_actor_id": 28944,
+      "shots_with_assist_text": 8020,
+      "shots_with_bounded_raw_coordinates": 28944,
+      "shots_with_distance_text": 19253,
+      "shots_with_zero_coordinate_pair": 0,
+      "substitution_events": 9430
+    },
+    {
+      "bytes": 3020571,
+      "columns": 63,
+      "distinct_raw_shot_coordinate_pairs": 1538,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2022-05-06T00:00:00+00:00",
+      "events_with_wallclock": 93141,
+      "explicit_points_attempted_column": false,
+      "field_goal_attempt_events": 32864,
+      "games": 241,
+      "kind": "pbp",
+      "latest_date": "2022-09-18T00:00:00+00:00",
+      "rows": 93166,
+      "rows_by_season_type": {
+        "2": 84729,
+        "3": 8437
+      },
+      "season": 2022,
+      "shots_with_actor_id": 32864,
+      "shots_with_assist_text": 9790,
+      "shots_with_bounded_raw_coordinates": 32864,
+      "shots_with_distance_text": 21578,
+      "shots_with_zero_coordinate_pair": 0,
+      "substitution_events": 11593
+    },
+    {
+      "bytes": 3325896,
+      "columns": 65,
+      "distinct_raw_shot_coordinate_pairs": 1566,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2023-05-19T00:00:00+00:00",
+      "events_with_wallclock": 102190,
+      "explicit_points_attempted_column": false,
+      "field_goal_attempt_events": 35987,
+      "games": 262,
+      "kind": "pbp",
+      "latest_date": "2023-10-18T00:00:00+00:00",
+      "rows": 102191,
+      "rows_by_season_type": {
+        "2": 94780,
+        "3": 7411
+      },
+      "season": 2023,
+      "shots_with_actor_id": 35985,
+      "shots_with_assist_text": 10413,
+      "shots_with_bounded_raw_coordinates": 35987,
+      "shots_with_distance_text": 23275,
+      "shots_with_zero_coordinate_pair": 1,
+      "substitution_events": 12232
+    },
+    {
+      "bytes": 3390029,
+      "columns": 67,
+      "distinct_raw_shot_coordinate_pairs": 1605,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2024-05-14T00:00:00+00:00",
+      "events_with_wallclock": 101501,
+      "explicit_points_attempted_column": true,
+      "field_goal_attempt_events": 36081,
+      "games": 264,
+      "kind": "pbp",
+      "latest_date": "2024-10-20T00:00:00+00:00",
+      "rows": 101501,
+      "rows_by_season_type": {
+        "2": 93427,
+        "3": 8074
+      },
+      "season": 2024,
+      "shots_with_actor_id": 36081,
+      "shots_with_assist_text": 10844,
+      "shots_with_bounded_raw_coordinates": 36081,
+      "shots_with_distance_text": 25432,
+      "shots_with_zero_coordinate_pair": 1,
+      "substitution_events": 11513
+    },
+    {
+      "bytes": 4060185,
+      "columns": 67,
+      "distinct_raw_shot_coordinate_pairs": 1631,
+      "duplicate_game_event_rows": 0,
+      "earliest_date": "2025-05-16T00:00:00+00:00",
+      "events_with_wallclock": 121342,
+      "explicit_points_attempted_column": true,
+      "field_goal_attempt_events": 42193,
+      "games": 312,
+      "kind": "pbp",
+      "latest_date": "2025-10-10T00:00:00+00:00",
+      "rows": 121342,
+      "rows_by_season_type": {
+        "2": 111924,
+        "3": 9418
+      },
+      "season": 2025,
+      "shots_with_actor_id": 42193,
+      "shots_with_assist_text": 12680,
+      "shots_with_bounded_raw_coordinates": 42193,
+      "shots_with_distance_text": 29628,
+      "shots_with_zero_coordinate_pair": 1,
+      "substitution_events": 15299
+    },
+    {
+      "bytes": 82400,
+      "columns": 56,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2003-06-03T00:00:00+00:00",
+      "games": 195,
+      "kind": "player_box",
+      "latest_date": "2003-09-16T00:00:00+00:00",
+      "rows": 4279,
+      "rows_by_season_type": {
+        "2": 3995,
+        "3": 284
+      },
+      "season": 2003
+    },
+    {
+      "bytes": 86979,
+      "columns": 56,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2004-05-20T00:00:00+00:00",
+      "games": 214,
+      "kind": "player_box",
+      "latest_date": "2004-10-12T00:00:00+00:00",
+      "rows": 4694,
+      "rows_by_season_type": {
+        "2": 4322,
+        "3": 372
+      },
+      "season": 2004
+    },
+    {
+      "bytes": 92164,
+      "columns": 56,
+      "duplicate_game_athlete_rows": 1,
+      "earliest_date": "2005-05-21T00:00:00+00:00",
+      "games": 230,
+      "kind": "player_box",
+      "latest_date": "2005-09-20T00:00:00+00:00",
+      "rows": 5079,
+      "rows_by_season_type": {
+        "2": 4706,
+        "3": 373
+      },
+      "season": 2005
+    },
+    {
+      "bytes": 104827,
+      "columns": 56,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2006-05-20T00:00:00+00:00",
+      "games": 256,
+      "kind": "player_box",
+      "latest_date": "2006-09-09T00:00:00+00:00",
+      "rows": 6076,
+      "rows_by_season_type": {
+        "2": 5657,
+        "3": 419
+      },
+      "season": 2006
+    },
+    {
+      "bytes": 100653,
+      "columns": 56,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2007-05-19T00:00:00+00:00",
+      "games": 241,
+      "kind": "player_box",
+      "latest_date": "2007-09-16T00:00:00+00:00",
+      "rows": 5919,
+      "rows_by_season_type": {
+        "2": 5396,
+        "3": 523
+      },
+      "season": 2007
+    },
+    {
+      "bytes": 105798,
+      "columns": 56,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2008-05-17T00:00:00+00:00",
+      "games": 252,
+      "kind": "player_box",
+      "latest_date": "2008-10-05T00:00:00+00:00",
+      "rows": 6245,
+      "rows_by_season_type": {
+        "2": 5708,
+        "3": 537
+      },
+      "season": 2008
+    },
+    {
+      "bytes": 100648,
+      "columns": 56,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2009-06-06T00:00:00+00:00",
+      "games": 243,
+      "kind": "player_box",
+      "latest_date": "2009-10-09T00:00:00+00:00",
+      "rows": 5348,
+      "rows_by_season_type": {
+        "2": 4884,
+        "3": 464
+      },
+      "season": 2009
+    },
+    {
+      "bytes": 93362,
+      "columns": 56,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2010-05-15T00:00:00+00:00",
+      "games": 220,
+      "kind": "player_box",
+      "latest_date": "2010-09-16T00:00:00+00:00",
+      "rows": 4831,
+      "rows_by_season_type": {
+        "2": 4479,
+        "3": 352
+      },
+      "season": 2010
+    },
+    {
+      "bytes": 94791,
+      "columns": 56,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2011-06-03T00:00:00+00:00",
+      "games": 225,
+      "kind": "player_box",
+      "latest_date": "2011-10-07T00:00:00+00:00",
+      "rows": 4953,
+      "rows_by_season_type": {
+        "2": 4535,
+        "3": 418
+      },
+      "season": 2011
+    },
+    {
+      "bytes": 96200,
+      "columns": 57,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2012-05-18T00:00:00+00:00",
+      "games": 221,
+      "kind": "player_box",
+      "latest_date": "2012-10-21T00:00:00+00:00",
+      "rows": 4889,
+      "rows_by_season_type": {
+        "2": 4471,
+        "3": 418
+      },
+      "season": 2012
+    },
+    {
+      "bytes": 100087,
+      "columns": 57,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2013-05-24T00:00:00+00:00",
+      "games": 222,
+      "kind": "player_box",
+      "latest_date": "2013-10-10T00:00:00+00:00",
+      "rows": 4961,
+      "rows_by_season_type": {
+        "2": 4587,
+        "3": 374
+      },
+      "season": 2013
+    },
+    {
+      "bytes": 101389,
+      "columns": 57,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2014-05-16T00:00:00+00:00",
+      "games": 223,
+      "kind": "player_box",
+      "latest_date": "2014-09-12T00:00:00+00:00",
+      "rows": 5228,
+      "rows_by_season_type": {
+        "2": 4807,
+        "3": 421
+      },
+      "season": 2014
+    },
+    {
+      "bytes": 103497,
+      "columns": 57,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2015-06-05T00:00:00+00:00",
+      "games": 226,
+      "kind": "player_box",
+      "latest_date": "2015-10-14T00:00:00+00:00",
+      "rows": 5379,
+      "rows_by_season_type": {
+        "2": 4871,
+        "3": 508
+      },
+      "season": 2015
+    },
+    {
+      "bytes": 101935,
+      "columns": 57,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2016-05-14T00:00:00+00:00",
+      "games": 218,
+      "kind": "player_box",
+      "latest_date": "2016-10-20T00:00:00+00:00",
+      "rows": 5176,
+      "rows_by_season_type": {
+        "2": 4825,
+        "3": 351
+      },
+      "season": 2016
+    },
+    {
+      "bytes": 103444,
+      "columns": 57,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2017-05-13T00:00:00+00:00",
+      "games": 220,
+      "kind": "player_box",
+      "latest_date": "2017-10-04T00:00:00+00:00",
+      "rows": 5183,
+      "rows_by_season_type": {
+        "2": 4823,
+        "3": 360
+      },
+      "season": 2017
+    },
+    {
+      "bytes": 104655,
+      "columns": 57,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2018-05-18T00:00:00+00:00",
+      "games": 221,
+      "kind": "player_box",
+      "latest_date": "2018-09-12T00:00:00+00:00",
+      "rows": 5187,
+      "rows_by_season_type": {
+        "2": 4786,
+        "3": 401
+      },
+      "season": 2018
+    },
+    {
+      "bytes": 104467,
+      "columns": 57,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2019-05-24T00:00:00+00:00",
+      "games": 221,
+      "kind": "player_box",
+      "latest_date": "2019-10-10T00:00:00+00:00",
+      "rows": 5211,
+      "rows_by_season_type": {
+        "2": 4828,
+        "3": 383
+      },
+      "season": 2019
+    },
+    {
+      "bytes": 80840,
+      "columns": 57,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2020-07-25T00:00:00+00:00",
+      "games": 147,
+      "kind": "player_box",
+      "latest_date": "2020-10-06T00:00:00+00:00",
+      "rows": 3544,
+      "rows_by_season_type": {
+        "2": 3173,
+        "3": 371
+      },
+      "season": 2020
+    },
+    {
+      "bytes": 100373,
+      "columns": 57,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2021-05-14T00:00:00+00:00",
+      "games": 211,
+      "kind": "player_box",
+      "latest_date": "2021-10-17T00:00:00+00:00",
+      "rows": 4626,
+      "rows_by_season_type": {
+        "2": 4255,
+        "3": 371
+      },
+      "season": 2021
+    },
+    {
+      "bytes": 110029,
+      "columns": 57,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2022-05-06T00:00:00+00:00",
+      "games": 241,
+      "kind": "player_box",
+      "latest_date": "2022-09-18T00:00:00+00:00",
+      "rows": 5307,
+      "rows_by_season_type": {
+        "2": 4793,
+        "3": 514
+      },
+      "season": 2022
+    },
+    {
+      "bytes": 116693,
+      "columns": 57,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2023-05-19T00:00:00+00:00",
+      "games": 262,
+      "kind": "player_box",
+      "latest_date": "2023-10-18T00:00:00+00:00",
+      "rows": 5796,
+      "rows_by_season_type": {
+        "2": 5376,
+        "3": 420
+      },
+      "season": 2023
+    },
+    {
+      "bytes": 145496,
+      "columns": 57,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2024-05-14T00:00:00+00:00",
+      "games": 264,
+      "kind": "player_box",
+      "latest_date": "2024-10-20T00:00:00+00:00",
+      "rows": 5929,
+      "rows_by_season_type": {
+        "2": 5412,
+        "3": 517
+      },
+      "season": 2024
+    },
+    {
+      "bytes": 173203,
+      "columns": 57,
+      "duplicate_game_athlete_rows": 0,
+      "earliest_date": "2025-05-16T00:00:00+00:00",
+      "games": 312,
+      "kind": "player_box",
+      "latest_date": "2025-10-10T00:00:00+00:00",
+      "rows": 7140,
+      "rows_by_season_type": {
+        "2": 6572,
+        "3": 568
+      },
+      "season": 2025
+    },
+    {
+      "bytes": 56171,
+      "columns": 68,
+      "earliest_date": "2003-05-22T00:00:00+00:00",
+      "games": 256,
+      "kind": "schedule",
+      "latest_date": "2003-09-16T00:00:00+00:00",
+      "rows": 256,
+      "rows_by_season_type": {
+        "2": 237,
+        "3": 19
+      },
+      "season": 2003
+    },
+    {
+      "bytes": 55455,
+      "columns": 68,
+      "earliest_date": "2004-05-20T00:00:00+00:00",
+      "games": 238,
+      "kind": "schedule",
+      "latest_date": "2004-10-12T00:00:00+00:00",
+      "rows": 238,
+      "rows_by_season_type": {
+        "2": 219,
+        "3": 19
+      },
+      "season": 2004
+    },
+    {
+      "bytes": 54939,
+      "columns": 67,
+      "earliest_date": "2005-05-21T00:00:00+00:00",
+      "games": 239,
+      "kind": "schedule",
+      "latest_date": "2005-09-20T00:00:00+00:00",
+      "rows": 239,
+      "rows_by_season_type": {
+        "2": 222,
+        "3": 17
+      },
+      "season": 2005
+    },
+    {
+      "bytes": 57004,
+      "columns": 69,
+      "earliest_date": "2006-05-20T00:00:00+00:00",
+      "games": 258,
+      "kind": "schedule",
+      "latest_date": "2006-09-09T00:00:00+00:00",
+      "rows": 258,
+      "rows_by_season_type": {
+        "2": 239,
+        "3": 19
+      },
+      "season": 2006
+    },
+    {
+      "bytes": 56200,
+      "columns": 69,
+      "earliest_date": "2007-05-19T00:00:00+00:00",
+      "games": 243,
+      "kind": "schedule",
+      "latest_date": "2007-09-16T00:00:00+00:00",
+      "rows": 243,
+      "rows_by_season_type": {
+        "2": 222,
+        "3": 21
+      },
+      "season": 2007
+    },
+    {
+      "bytes": 57617,
+      "columns": 69,
+      "earliest_date": "2008-05-17T00:00:00+00:00",
+      "games": 259,
+      "kind": "schedule",
+      "latest_date": "2008-10-05T00:00:00+00:00",
+      "rows": 259,
+      "rows_by_season_type": {
+        "2": 238,
+        "3": 21
+      },
+      "season": 2008
+    },
+    {
+      "bytes": 56627,
+      "columns": 69,
+      "earliest_date": "2009-06-06T00:00:00+00:00",
+      "games": 243,
+      "kind": "schedule",
+      "latest_date": "2009-10-09T00:00:00+00:00",
+      "rows": 243,
+      "rows_by_season_type": {
+        "2": 222,
+        "3": 21
+      },
+      "season": 2009
+    },
+    {
+      "bytes": 54678,
+      "columns": 69,
+      "earliest_date": "2010-05-15T00:00:00+00:00",
+      "games": 221,
+      "kind": "schedule",
+      "latest_date": "2010-09-16T00:00:00+00:00",
+      "rows": 221,
+      "rows_by_season_type": {
+        "2": 205,
+        "3": 16
+      },
+      "season": 2010
+    },
+    {
+      "bytes": 55087,
+      "columns": 69,
+      "earliest_date": "2011-06-03T00:00:00+00:00",
+      "games": 225,
+      "kind": "schedule",
+      "latest_date": "2011-10-07T00:00:00+00:00",
+      "rows": 225,
+      "rows_by_season_type": {
+        "2": 206,
+        "3": 19
+      },
+      "season": 2011
+    },
+    {
+      "bytes": 55324,
+      "columns": 69,
+      "earliest_date": "2012-05-18T00:00:00+00:00",
+      "games": 223,
+      "kind": "schedule",
+      "latest_date": "2012-10-21T00:00:00+00:00",
+      "rows": 223,
+      "rows_by_season_type": {
+        "2": 204,
+        "3": 19
+      },
+      "season": 2012
+    },
+    {
+      "bytes": 56624,
+      "columns": 69,
+      "earliest_date": "2013-05-24T00:00:00+00:00",
+      "games": 222,
+      "kind": "schedule",
+      "latest_date": "2013-10-10T00:00:00+00:00",
+      "rows": 222,
+      "rows_by_season_type": {
+        "2": 205,
+        "3": 17
+      },
+      "season": 2013
+    },
+    {
+      "bytes": 56682,
+      "columns": 69,
+      "earliest_date": "2014-05-16T00:00:00+00:00",
+      "games": 223,
+      "kind": "schedule",
+      "latest_date": "2014-09-12T00:00:00+00:00",
+      "rows": 223,
+      "rows_by_season_type": {
+        "2": 205,
+        "3": 18
+      },
+      "season": 2014
+    },
+    {
+      "bytes": 56617,
+      "columns": 69,
+      "earliest_date": "2015-06-05T00:00:00+00:00",
+      "games": 226,
+      "kind": "schedule",
+      "latest_date": "2015-10-14T00:00:00+00:00",
+      "rows": 226,
+      "rows_by_season_type": {
+        "2": 205,
+        "3": 21
+      },
+      "season": 2015
+    },
+    {
+      "bytes": 56160,
+      "columns": 69,
+      "earliest_date": "2016-05-14T00:00:00+00:00",
+      "games": 220,
+      "kind": "schedule",
+      "latest_date": "2016-10-20T00:00:00+00:00",
+      "rows": 220,
+      "rows_by_season_type": {
+        "2": 204,
+        "3": 16
+      },
+      "season": 2016
+    },
+    {
+      "bytes": 56405,
+      "columns": 69,
+      "earliest_date": "2017-05-13T00:00:00+00:00",
+      "games": 220,
+      "kind": "schedule",
+      "latest_date": "2017-10-04T00:00:00+00:00",
+      "rows": 220,
+      "rows_by_season_type": {
+        "2": 205,
+        "3": 15
+      },
+      "season": 2017
+    },
+    {
+      "bytes": 56495,
+      "columns": 69,
+      "earliest_date": "2018-05-18T00:00:00+00:00",
+      "games": 222,
+      "kind": "schedule",
+      "latest_date": "2018-09-12T00:00:00+00:00",
+      "rows": 222,
+      "rows_by_season_type": {
+        "2": 205,
+        "3": 17
+      },
+      "season": 2018
+    },
+    {
+      "bytes": 56345,
+      "columns": 69,
+      "earliest_date": "2019-05-24T00:00:00+00:00",
+      "games": 221,
+      "kind": "schedule",
+      "latest_date": "2019-10-10T00:00:00+00:00",
+      "rows": 221,
+      "rows_by_season_type": {
+        "2": 205,
+        "3": 16
+      },
+      "season": 2019
+    },
+    {
+      "bytes": 48930,
+      "columns": 69,
+      "earliest_date": "2020-07-25T00:00:00+00:00",
+      "games": 147,
+      "kind": "schedule",
+      "latest_date": "2020-10-06T00:00:00+00:00",
+      "rows": 147,
+      "rows_by_season_type": {
+        "2": 132,
+        "3": 15
+      },
+      "season": 2020
+    },
+    {
+      "bytes": 55612,
+      "columns": 69,
+      "earliest_date": "2021-05-14T00:00:00+00:00",
+      "games": 211,
+      "kind": "schedule",
+      "latest_date": "2021-10-17T00:00:00+00:00",
+      "rows": 211,
+      "rows_by_season_type": {
+        "2": 194,
+        "3": 17
+      },
+      "season": 2021
+    },
+    {
+      "bytes": 58018,
+      "columns": 69,
+      "earliest_date": "2022-05-06T00:00:00+00:00",
+      "games": 241,
+      "kind": "schedule",
+      "latest_date": "2022-09-18T00:00:00+00:00",
+      "rows": 241,
+      "rows_by_season_type": {
+        "2": 218,
+        "3": 23
+      },
+      "season": 2022
+    },
+    {
+      "bytes": 85069,
+      "columns": 76,
+      "earliest_date": "2023-05-19T00:00:00+00:00",
+      "games": 263,
+      "kind": "schedule",
+      "latest_date": "2023-10-18T00:00:00+00:00",
+      "rows": 263,
+      "rows_by_season_type": {
+        "2": 243,
+        "3": 20
+      },
+      "season": 2023
+    },
+    {
+      "bytes": 84577,
+      "columns": 77,
+      "earliest_date": "2024-05-14T00:00:00+00:00",
+      "games": 264,
+      "kind": "schedule",
+      "latest_date": "2024-10-20T00:00:00+00:00",
+      "rows": 264,
+      "rows_by_season_type": {
+        "2": 242,
+        "3": 22
+      },
+      "season": 2024
+    },
+    {
+      "bytes": 98609,
+      "columns": 77,
+      "earliest_date": "2025-05-16T00:00:00+00:00",
+      "games": 312,
+      "kind": "schedule",
+      "latest_date": "2025-10-10T00:00:00+00:00",
+      "rows": 312,
+      "rows_by_season_type": {
+        "2": 288,
+        "3": 24
+      },
+      "season": 2025
+    },
+    {
+      "bytes": 37177,
+      "columns": 54,
+      "earliest_date": "2003-06-03T00:00:00+00:00",
+      "games": 197,
+      "kind": "team_box",
+      "latest_date": "2003-09-16T00:00:00+00:00",
+      "rows": 394,
+      "rows_by_season_type": {
+        "2": 368,
+        "3": 26
+      },
+      "season": 2003
+    },
+    {
+      "bytes": 37913,
+      "columns": 54,
+      "earliest_date": "2004-05-20T00:00:00+00:00",
+      "games": 214,
+      "kind": "team_box",
+      "latest_date": "2004-10-12T00:00:00+00:00",
+      "rows": 428,
+      "rows_by_season_type": {
+        "2": 394,
+        "3": 34
+      },
+      "season": 2004
+    },
+    {
+      "bytes": 39143,
+      "columns": 54,
+      "earliest_date": "2005-05-21T00:00:00+00:00",
+      "games": 230,
+      "kind": "team_box",
+      "latest_date": "2005-09-20T00:00:00+00:00",
+      "rows": 460,
+      "rows_by_season_type": {
+        "2": 426,
+        "3": 34
+      },
+      "season": 2005
+    },
+    {
+      "bytes": 40823,
+      "columns": 54,
+      "earliest_date": "2006-05-20T00:00:00+00:00",
+      "games": 256,
+      "kind": "team_box",
+      "latest_date": "2006-09-09T00:00:00+00:00",
+      "rows": 512,
+      "rows_by_season_type": {
+        "2": 474,
+        "3": 38
+      },
+      "season": 2006
+    },
+    {
+      "bytes": 40257,
+      "columns": 54,
+      "earliest_date": "2007-05-19T00:00:00+00:00",
+      "games": 243,
+      "kind": "team_box",
+      "latest_date": "2007-09-16T00:00:00+00:00",
+      "rows": 486,
+      "rows_by_season_type": {
+        "2": 444,
+        "3": 42
+      },
+      "season": 2007
+    },
+    {
+      "bytes": 41246,
+      "columns": 54,
+      "earliest_date": "2008-05-17T00:00:00+00:00",
+      "games": 257,
+      "kind": "team_box",
+      "latest_date": "2008-10-05T00:00:00+00:00",
+      "rows": 514,
+      "rows_by_season_type": {
+        "2": 472,
+        "3": 42
+      },
+      "season": 2008
+    },
+    {
+      "bytes": 40133,
+      "columns": 54,
+      "earliest_date": "2009-06-06T00:00:00+00:00",
+      "games": 243,
+      "kind": "team_box",
+      "latest_date": "2009-10-09T00:00:00+00:00",
+      "rows": 486,
+      "rows_by_season_type": {
+        "2": 444,
+        "3": 42
+      },
+      "season": 2009
+    },
+    {
+      "bytes": 39765,
+      "columns": 54,
+      "earliest_date": "2010-05-15T00:00:00+00:00",
+      "games": 221,
+      "kind": "team_box",
+      "latest_date": "2010-09-16T00:00:00+00:00",
+      "rows": 442,
+      "rows_by_season_type": {
+        "2": 410,
+        "3": 32
+      },
+      "season": 2010
+    },
+    {
+      "bytes": 40679,
+      "columns": 54,
+      "earliest_date": "2011-06-03T00:00:00+00:00",
+      "games": 225,
+      "kind": "team_box",
+      "latest_date": "2011-10-07T00:00:00+00:00",
+      "rows": 450,
+      "rows_by_season_type": {
+        "2": 412,
+        "3": 38
+      },
+      "season": 2011
+    },
+    {
+      "bytes": 40609,
+      "columns": 54,
+      "earliest_date": "2012-05-18T00:00:00+00:00",
+      "games": 222,
+      "kind": "team_box",
+      "latest_date": "2012-10-21T00:00:00+00:00",
+      "rows": 444,
+      "rows_by_season_type": {
+        "2": 406,
+        "3": 38
+      },
+      "season": 2012
+    },
+    {
+      "bytes": 40628,
+      "columns": 54,
+      "earliest_date": "2013-05-24T00:00:00+00:00",
+      "games": 222,
+      "kind": "team_box",
+      "latest_date": "2013-10-10T00:00:00+00:00",
+      "rows": 444,
+      "rows_by_season_type": {
+        "2": 410,
+        "3": 34
+      },
+      "season": 2013
+    },
+    {
+      "bytes": 40730,
+      "columns": 54,
+      "earliest_date": "2014-05-16T00:00:00+00:00",
+      "games": 223,
+      "kind": "team_box",
+      "latest_date": "2014-09-12T00:00:00+00:00",
+      "rows": 446,
+      "rows_by_season_type": {
+        "2": 410,
+        "3": 36
+      },
+      "season": 2014
+    },
+    {
+      "bytes": 40804,
+      "columns": 54,
+      "earliest_date": "2015-06-05T00:00:00+00:00",
+      "games": 226,
+      "kind": "team_box",
+      "latest_date": "2015-10-14T00:00:00+00:00",
+      "rows": 452,
+      "rows_by_season_type": {
+        "2": 410,
+        "3": 42
+      },
+      "season": 2015
+    },
+    {
+      "bytes": 40674,
+      "columns": 54,
+      "earliest_date": "2016-05-14T00:00:00+00:00",
+      "games": 219,
+      "kind": "team_box",
+      "latest_date": "2016-10-20T00:00:00+00:00",
+      "rows": 438,
+      "rows_by_season_type": {
+        "2": 408,
+        "3": 30
+      },
+      "season": 2016
+    },
+    {
+      "bytes": 40862,
+      "columns": 54,
+      "earliest_date": "2017-05-13T00:00:00+00:00",
+      "games": 220,
+      "kind": "team_box",
+      "latest_date": "2017-10-04T00:00:00+00:00",
+      "rows": 440,
+      "rows_by_season_type": {
+        "2": 410,
+        "3": 30
+      },
+      "season": 2017
+    },
+    {
+      "bytes": 41131,
+      "columns": 54,
+      "earliest_date": "2018-05-18T00:00:00+00:00",
+      "games": 221,
+      "kind": "team_box",
+      "latest_date": "2018-09-12T00:00:00+00:00",
+      "rows": 442,
+      "rows_by_season_type": {
+        "2": 408,
+        "3": 34
+      },
+      "season": 2018
+    },
+    {
+      "bytes": 41102,
+      "columns": 54,
+      "earliest_date": "2019-05-24T00:00:00+00:00",
+      "games": 221,
+      "kind": "team_box",
+      "latest_date": "2019-10-10T00:00:00+00:00",
+      "rows": 442,
+      "rows_by_season_type": {
+        "2": 410,
+        "3": 32
+      },
+      "season": 2019
+    },
+    {
+      "bytes": 35358,
+      "columns": 54,
+      "earliest_date": "2020-07-25T00:00:00+00:00",
+      "games": 147,
+      "kind": "team_box",
+      "latest_date": "2020-10-06T00:00:00+00:00",
+      "rows": 294,
+      "rows_by_season_type": {
+        "2": 264,
+        "3": 30
+      },
+      "season": 2020
+    },
+    {
+      "bytes": 40196,
+      "columns": 54,
+      "earliest_date": "2021-05-14T00:00:00+00:00",
+      "games": 211,
+      "kind": "team_box",
+      "latest_date": "2021-10-17T00:00:00+00:00",
+      "rows": 422,
+      "rows_by_season_type": {
+        "2": 388,
+        "3": 34
+      },
+      "season": 2021
+    },
+    {
+      "bytes": 42711,
+      "columns": 54,
+      "earliest_date": "2022-05-06T00:00:00+00:00",
+      "games": 241,
+      "kind": "team_box",
+      "latest_date": "2022-09-18T00:00:00+00:00",
+      "rows": 482,
+      "rows_by_season_type": {
+        "2": 436,
+        "3": 46
+      },
+      "season": 2022
+    },
+    {
+      "bytes": 46373,
+      "columns": 57,
+      "earliest_date": "2023-05-19T00:00:00+00:00",
+      "games": 262,
+      "kind": "team_box",
+      "latest_date": "2023-10-18T00:00:00+00:00",
+      "rows": 524,
+      "rows_by_season_type": {
+        "2": 484,
+        "3": 40
+      },
+      "season": 2023
+    },
+    {
+      "bytes": 50234,
+      "columns": 57,
+      "earliest_date": "2024-05-14T00:00:00+00:00",
+      "games": 264,
+      "kind": "team_box",
+      "latest_date": "2024-10-20T00:00:00+00:00",
+      "rows": 528,
+      "rows_by_season_type": {
+        "2": 484,
+        "3": 44
+      },
+      "season": 2024
+    },
+    {
+      "bytes": 54334,
+      "columns": 57,
+      "earliest_date": "2025-05-16T00:00:00+00:00",
+      "games": 312,
+      "kind": "team_box",
+      "latest_date": "2025-10-10T00:00:00+00:00",
+      "rows": 624,
+      "rows_by_season_type": {
+        "2": 576,
+        "3": 48
+      },
+      "season": 2025
+    }
+  ],
+  "warnings": [
+    "Coordinates contain numeric missing-value sentinels. Non-null does not mean usable.",
+    "points_attempted exists only in 2024--2025; earlier seasons require shot/free-throw type and text parsing. wallclock is absent in 2010--2012.",
+    "Older descriptions use 'made', 'missed', '22 ft' and 'Assisted by'; newer descriptions use 'makes', 'misses', '22-foot' and 'assists'. Parse both.",
+    "Only shooting_play=True with points_attempted=2 or 3 identifies field-goal attempts; shooting_play also includes free throws.",
+    "For made assisted shots actor 1 is shooter and actor 2 is assister. On blocked attempts actor 2 is the blocker; require explicit assist text.",
+    "Substitution actor 1 enters and actor 2 leaves. Full lineup reconstruction requires starters and reconciliation, not event counts alone.",
+    "Do not model from game_spread, home_team_spread, home_favorite, lead_* or current-game outcomes.",
+    "Player-box active/reason fields can disagree with recorded participation; they are not historical pregame injury reports.",
+    "Historical availability is not established by file retrieval time; lag all game-derived features and disclose source revisions."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "assisted_makes": 133366,
+  "assisted_makes_with_creator_id": 133350,
+  "availability_rule": "max(tip + 8h, last timestamped play + 1h); date-only + 2d",
+  "box_player_games": 101068,
+  "excluded_allstar_games": 19,
+  "field_goal_events": 489519,
+  "forecast_features": "postgame states, strictly before forecast_at",
+  "pbp_games": 3630,
+  "pbp_rows": 1396755,
+  "reconciliation": {
+    "assist": {
+      "available_games": 3630,
+      "invalid_games": 146,
+      "mismatched_player_rows": 280,
+      "valid_games": 3484
+    },
+    "rebound": {
+      "available_games": 3630,
+      "invalid_games": 174,
+      "mismatched_player_rows": 352,
+      "valid_games": 3456
+    },
+    "shot": {
+      "available_games": 3630,
+      "invalid_games": 1128,
+      "mismatched_player_rows": 2065,
+      "valid_games": 2502
+    }
+  },
+  "shot_distance_coverage": 0.9999039873835336,
+  "shot_zone_coverage": 0.9999754861404767,
+  "team_games": 10558
+}

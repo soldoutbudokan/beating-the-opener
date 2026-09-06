@@ -2465,3 +2465,11 @@ Inputs are queried at the reported opener time after a declared historical
 publication delay. Source quality, uncertainty, pushes, coherent paired
 quotes, and all losing comparisons must be reported. No existing registered
 model, live file, bet, or routine is changed. Model scores pending.
+
+- Preparation checkpoint, before scoring: downloaded and fingerprinted 85
+  historical source files (48.27 MB), including 1,402,249 play-by-play events.
+  Implemented source reconciliation, postgame state queries, corrected
+  incumbent, two controlled regressions, a small tree model, and the fixed
+  chronological evaluation. Prepared 72 box-derived predictors and 124
+  additional play-by-play/relationship predictors. Boundary checks pass.
+  No 2025 model result has been examined at this checkpoint.
