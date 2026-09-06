@@ -2473,3 +2473,11 @@ model, live file, bet, or routine is changed. Model scores pending.
   chronological evaluation. Prepared 72 box-derived predictors and 124
   additional play-by-play/relationship predictors. Boundary checks pass.
   No 2025 model result has been examined at this checkpoint.
+
+- Pre-2025 fitting checkpoint: fixed grids selected on 2023 and all four
+  models validated on 2024. Count-prediction improvements over the incumbent
+  were modest; richer ridge did not consistently improve on box-only ridge.
+  Small trees helped assists and threes most in this validation. All models
+  remain in the registered 2025 comparison. Exact settings and held-forward
+  distribution calibration are in `results/fit_report.json` under the
+  rich-context research directory. No 2025 model score has been read.

@@ -1,0 +1,1164 @@
+{
+  "distribution": {
+    "assists": {
+      "box_ridge": {
+        "alpha": 0.05104313031354857,
+        "calibration_n": 4736,
+        "calibration_nll": 1.669775674050944,
+        "calibration_year": 2024,
+        "scale": 1.0000243965824887
+      },
+      "incumbent": {
+        "alpha": 0.06479495953784747,
+        "calibration_n": 4736,
+        "calibration_nll": 1.6840623349497537,
+        "calibration_year": 2024,
+        "scale": 0.98134216061977
+      },
+      "rich_boost": {
+        "alpha": 0.051853524751109804,
+        "calibration_n": 4736,
+        "calibration_nll": 1.6655329514791455,
+        "calibration_year": 2024,
+        "scale": 1.000444103444191
+      },
+      "rich_ridge": {
+        "alpha": 0.05277513398812339,
+        "calibration_n": 4736,
+        "calibration_nll": 1.6718153325297727,
+        "calibration_year": 2024,
+        "scale": 1.0039299415800935
+      }
+    },
+    "points": {
+      "box_ridge": {
+        "alpha": 0.3765852035364927,
+        "calibration_n": 4736,
+        "calibration_nll": 2.9466132108267615,
+        "calibration_year": 2024,
+        "scale": 0.9902918019938558
+      },
+      "incumbent": {
+        "alpha": 0.39545509003780766,
+        "calibration_n": 4736,
+        "calibration_nll": 2.96237659748385,
+        "calibration_year": 2024,
+        "scale": 0.9911025486914271
+      },
+      "rich_boost": {
+        "alpha": 0.37593442420845724,
+        "calibration_n": 4736,
+        "calibration_nll": 2.9460366020444235,
+        "calibration_year": 2024,
+        "scale": 0.9974381719193626
+      },
+      "rich_ridge": {
+        "alpha": 0.37802715563410133,
+        "calibration_n": 4736,
+        "calibration_nll": 2.947755603546985,
+        "calibration_year": 2024,
+        "scale": 0.9860100403124153
+      }
+    },
+    "rebounds": {
+      "box_ridge": {
+        "alpha": 0.10618772673903948,
+        "calibration_n": 4736,
+        "calibration_nll": 2.0671586235562236,
+        "calibration_year": 2024,
+        "scale": 0.9849904378378377
+      },
+      "incumbent": {
+        "alpha": 0.1190137773181345,
+        "calibration_n": 4736,
+        "calibration_nll": 2.0882900902386883,
+        "calibration_year": 2024,
+        "scale": 0.98480844598578
+      },
+      "rich_boost": {
+        "alpha": 0.11030817805218587,
+        "calibration_n": 4736,
+        "calibration_nll": 2.070810665715071,
+        "calibration_year": 2024,
+        "scale": 0.9952937986289697
+      },
+      "rich_ridge": {
+        "alpha": 0.10578321787489468,
+        "calibration_n": 4736,
+        "calibration_nll": 2.0676189949239325,
+        "calibration_year": 2024,
+        "scale": 0.9897964610526522
+      }
+    },
+    "threes": {
+      "box_ridge": {
+        "alpha": 0.17867661231297294,
+        "calibration_n": 4736,
+        "calibration_nll": 1.057954768055188,
+        "calibration_year": 2024,
+        "scale": 0.9856881846972031
+      },
+      "incumbent": {
+        "alpha": 0.19530540551480474,
+        "calibration_n": 4736,
+        "calibration_nll": 1.06480358426915,
+        "calibration_year": 2024,
+        "scale": 0.9781642804977851
+      },
+      "rich_boost": {
+        "alpha": 0.1778540284514117,
+        "calibration_n": 4736,
+        "calibration_nll": 1.0536986641674941,
+        "calibration_year": 2024,
+        "scale": 0.9800442970339773
+      },
+      "rich_ridge": {
+        "alpha": 0.17907646875328512,
+        "calibration_n": 4736,
+        "calibration_nll": 1.0577056576552637,
+        "calibration_year": 2024,
+        "scale": 0.9924166530040378
+      }
+    }
+  },
+  "ridge_effects": {
+    "assists": {
+      "box_ridge": [
+        {
+          "effect_per_training_sd": 0.13319181741292438,
+          "feature": "minutes_change_last"
+        },
+        {
+          "effect_per_training_sd": 0.11272563193387589,
+          "feature": "poi_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.10780497520452109,
+          "feature": "ass_rate_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.09421517972072818,
+          "feature": "tur_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.08623334203783278,
+          "feature": "ass_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.06892735900374701,
+          "feature": "opp_pts_against_ew"
+        },
+        {
+          "effect_per_training_sd": -0.06614427898149158,
+          "feature": "min_ews"
+        },
+        {
+          "effect_per_training_sd": 0.060077103053645005,
+          "feature": "teammate_shooting_demand_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.0580968103480917,
+          "feature": "rest"
+        },
+        {
+          "effect_per_training_sd": -0.056193182825736286,
+          "feature": "fga_ews"
+        },
+        {
+          "effect_per_training_sd": 0.04460571199813051,
+          "feature": "started_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.044455412134914066,
+          "feature": "talent_ste"
+        },
+        {
+          "effect_per_training_sd": -0.03948517806001427,
+          "feature": "fta_ews"
+        },
+        {
+          "effect_per_training_sd": 0.03758446170682746,
+          "feature": "reb_ews"
+        },
+        {
+          "effect_per_training_sd": 0.0366684485314865,
+          "feature": "incumbent_mean"
+        },
+        {
+          "effect_per_training_sd": -0.03341509363642994,
+          "feature": "tm_pts_for_ew"
+        },
+        {
+          "effect_per_training_sd": -0.03284200536049948,
+          "feature": "historical_rebounding_share_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.03137354779148519,
+          "feature": "historical_shooting_share_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.030625535109736566,
+          "feature": "poi_rate_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.027466507263421893,
+          "feature": "tur_ews"
+        }
+      ],
+      "rich_ridge": [
+        {
+          "effect_per_training_sd": 0.11424818011696028,
+          "feature": "minutes_change_last"
+        },
+        {
+          "effect_per_training_sd": -0.041990412217741364,
+          "feature": "rest"
+        },
+        {
+          "effect_per_training_sd": 0.040294993704024736,
+          "feature": "tur_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.03518651716364838,
+          "feature": "opp_pts_against_ew"
+        },
+        {
+          "effect_per_training_sd": -0.0337436263562353,
+          "feature": "ass_rate_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.03280236116230415,
+          "feature": "pbp_created_points_per_min_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.032549660501565575,
+          "feature": "pbp_created_makes_per_min_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.02932882832381536,
+          "feature": "poi_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.02603057050946989,
+          "feature": "pbp_receiver_concentration_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.022919662279531048,
+          "feature": "started_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.02239206167036684,
+          "feature": "talent_ste"
+        },
+        {
+          "effect_per_training_sd": 0.021822948818721846,
+          "feature": "poi_rate_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.021369070721614175,
+          "feature": "opp_pbp_allowed_off_rebounds_ew"
+        },
+        {
+          "effect_per_training_sd": -0.021315145450990808,
+          "feature": "fga_ews"
+        },
+        {
+          "effect_per_training_sd": -0.019979372232224846,
+          "feature": "tm_ast_for_ew"
+        },
+        {
+          "effect_per_training_sd": -0.019551870936726858,
+          "feature": "min_ews"
+        },
+        {
+          "effect_per_training_sd": -0.018178354565651568,
+          "feature": "pbp_off_rebounds_per_min_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.017541544318057774,
+          "feature": "tm_pts_for_ew"
+        },
+        {
+          "effect_per_training_sd": -0.017499003274723555,
+          "feature": "fta_ews"
+        },
+        {
+          "effect_per_training_sd": -0.017465489237100267,
+          "feature": "pbp_q4_recorded_participation_ewf"
+        }
+      ]
+    },
+    "points": {
+      "box_ridge": [
+        {
+          "effect_per_training_sd": 0.4951027289730573,
+          "feature": "minutes_change_last"
+        },
+        {
+          "effect_per_training_sd": -0.4224712004688032,
+          "feature": "tpm_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.37128310429886957,
+          "feature": "poi_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.3651249060425766,
+          "feature": "historical_shooting_share_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.31671353697397675,
+          "feature": "min_ews"
+        },
+        {
+          "effect_per_training_sd": 0.31280897321724205,
+          "feature": "fga_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.28138112197495396,
+          "feature": "tpa_ews"
+        },
+        {
+          "effect_per_training_sd": 0.22434873148574086,
+          "feature": "started_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.17759212134149482,
+          "feature": "fta_ews"
+        },
+        {
+          "effect_per_training_sd": 0.17574127250748792,
+          "feature": "ass_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.15865309518323034,
+          "feature": "rest"
+        },
+        {
+          "effect_per_training_sd": -0.14999066822542523,
+          "feature": "incumbent_mean"
+        },
+        {
+          "effect_per_training_sd": 0.1461301226157491,
+          "feature": "tpa_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.134677953474096,
+          "feature": "historical_rebounding_share_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.12685991527291854,
+          "feature": "tur_ews"
+        },
+        {
+          "effect_per_training_sd": -0.12614272602878676,
+          "feature": "talent_poi"
+        },
+        {
+          "effect_per_training_sd": 0.12379509571062768,
+          "feature": "teammate_rebounding_demand_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.11846052697829293,
+          "feature": "min_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.10677789951369411,
+          "feature": "poi_rate_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.10600675981769957,
+          "feature": "poi_ews"
+        }
+      ],
+      "rich_ridge": [
+        {
+          "effect_per_training_sd": 0.4128597116940839,
+          "feature": "minutes_change_last"
+        },
+        {
+          "effect_per_training_sd": -0.1299684430227759,
+          "feature": "tpm_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.11799568829514788,
+          "feature": "poi_rate_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.11239250847468306,
+          "feature": "rest"
+        },
+        {
+          "effect_per_training_sd": 0.10848310418317934,
+          "feature": "started_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.09629687977331385,
+          "feature": "tpm_rate_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.09291062948928348,
+          "feature": "min_ews"
+        },
+        {
+          "effect_per_training_sd": -0.08389916659649836,
+          "feature": "talent_poi"
+        },
+        {
+          "effect_per_training_sd": 0.081866159514978,
+          "feature": "historical_shooting_share_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.08150772476875794,
+          "feature": "tpa_ews"
+        },
+        {
+          "effect_per_training_sd": -0.08013467192731281,
+          "feature": "poi_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.07582131084575999,
+          "feature": "fga_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.06764578801658203,
+          "feature": "poi_ews"
+        },
+        {
+          "effect_per_training_sd": -0.06526383225943429,
+          "feature": "pbp_q4_recorded_participation_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.06485066672563856,
+          "feature": "tpa_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.06153969063125153,
+          "feature": "tur_ews"
+        },
+        {
+          "effect_per_training_sd": 0.057563721365924775,
+          "feature": "pbp_recorded_actions_per_min_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.05553230322733335,
+          "feature": "tm_pts_for_ew"
+        },
+        {
+          "effect_per_training_sd": -0.055465538248246994,
+          "feature": "incumbent_mean"
+        },
+        {
+          "effect_per_training_sd": 0.05503994034428579,
+          "feature": "pbp_fga_per_min_ewf"
+        }
+      ]
+    },
+    "rebounds": {
+      "box_ridge": [
+        {
+          "effect_per_training_sd": 0.19760059246320516,
+          "feature": "minutes_change_last"
+        },
+        {
+          "effect_per_training_sd": -0.06865461657935625,
+          "feature": "reb_rate_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.05671290609223978,
+          "feature": "started_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.05037189830794131,
+          "feature": "min_ews"
+        },
+        {
+          "effect_per_training_sd": -0.05010634989905763,
+          "feature": "reb_ews"
+        },
+        {
+          "effect_per_training_sd": -0.04726915996948332,
+          "feature": "opp_oreb_for_ew"
+        },
+        {
+          "effect_per_training_sd": 0.04651473917770077,
+          "feature": "opp_pts_against_ew"
+        },
+        {
+          "effect_per_training_sd": 0.045968763855303435,
+          "feature": "poi_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.04193651783133327,
+          "feature": "poi_rate_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.04187681118828614,
+          "feature": "rest"
+        },
+        {
+          "effect_per_training_sd": 0.03680018834725032,
+          "feature": "talent_poi"
+        },
+        {
+          "effect_per_training_sd": 0.036253756170766545,
+          "feature": "blo_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.035983917664235206,
+          "feature": "opp_fga_for_ew"
+        },
+        {
+          "effect_per_training_sd": -0.03515078206338941,
+          "feature": "reb_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.03396666246807727,
+          "feature": "talent_blo"
+        },
+        {
+          "effect_per_training_sd": -0.03338500317795541,
+          "feature": "opp_ast_for_ew"
+        },
+        {
+          "effect_per_training_sd": 0.03240396840538321,
+          "feature": "opp_tpa_for_ew"
+        },
+        {
+          "effect_per_training_sd": 0.03227710609823765,
+          "feature": "tm_pts_against_ew"
+        },
+        {
+          "effect_per_training_sd": -0.031613103973420126,
+          "feature": "tur_ews"
+        },
+        {
+          "effect_per_training_sd": -0.02859230960683031,
+          "feature": "incumbent_mean"
+        }
+      ],
+      "rich_ridge": [
+        {
+          "effect_per_training_sd": 0.19973892398782556,
+          "feature": "minutes_change_last"
+        },
+        {
+          "effect_per_training_sd": 0.055122795013436275,
+          "feature": "opp_pbp_allowed_def_rebounds_ew"
+        },
+        {
+          "effect_per_training_sd": -0.0498374908357596,
+          "feature": "min_ews"
+        },
+        {
+          "effect_per_training_sd": -0.0460736440467543,
+          "feature": "reb_ews"
+        },
+        {
+          "effect_per_training_sd": 0.045837238075169845,
+          "feature": "started_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.04198393423682027,
+          "feature": "poi_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.04092980977819729,
+          "feature": "rest"
+        },
+        {
+          "effect_per_training_sd": -0.038930699446608055,
+          "feature": "pbp_q4_recorded_participation_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.03803136966065627,
+          "feature": "poi_rate_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.03789983370098942,
+          "feature": "blo_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.0354229684014905,
+          "feature": "pbp_def_rebounds_per_min_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.03452865228081118,
+          "feature": "reb_rate_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.034442318587998996,
+          "feature": "opp_pbp_off_rebounds_ew"
+        },
+        {
+          "effect_per_training_sd": -0.03419595506678104,
+          "feature": "tur_ews"
+        },
+        {
+          "effect_per_training_sd": 0.03102640268308394,
+          "feature": "opp_pbp_allowed_off_rebounds_ew"
+        },
+        {
+          "effect_per_training_sd": 0.030940902323549846,
+          "feature": "talent_poi"
+        },
+        {
+          "effect_per_training_sd": 0.03081377780730297,
+          "feature": "tm_pts_against_ew"
+        },
+        {
+          "effect_per_training_sd": 0.030339984044926736,
+          "feature": "talent_blo"
+        },
+        {
+          "effect_per_training_sd": -0.02975342405964818,
+          "feature": "context_miss_rebounds"
+        },
+        {
+          "effect_per_training_sd": -0.028350160406262974,
+          "feature": "context_three_rebounds"
+        }
+      ]
+    },
+    "threes": {
+      "box_ridge": [
+        {
+          "effect_per_training_sd": 0.15794087325338893,
+          "feature": "tpa_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.14451806747511642,
+          "feature": "tpm_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.11123276061966353,
+          "feature": "tpa_ews"
+        },
+        {
+          "effect_per_training_sd": -0.07719218532817729,
+          "feature": "incumbent_mean"
+        },
+        {
+          "effect_per_training_sd": -0.07689887235757167,
+          "feature": "tpm_ews"
+        },
+        {
+          "effect_per_training_sd": -0.04933796224237021,
+          "feature": "tpm_rate_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.04876684388198502,
+          "feature": "minutes_change_last"
+        },
+        {
+          "effect_per_training_sd": -0.04389508712828044,
+          "feature": "min_ews"
+        },
+        {
+          "effect_per_training_sd": -0.028365504740230304,
+          "feature": "opp_ast_for_ew"
+        },
+        {
+          "effect_per_training_sd": -0.02753915670486502,
+          "feature": "poi_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.023924199740504325,
+          "feature": "opp_pts_for_ew"
+        },
+        {
+          "effect_per_training_sd": 0.02231700568642267,
+          "feature": "ass_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.021857839668954118,
+          "feature": "started_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.020668282645004317,
+          "feature": "opp_fta_for_ew"
+        },
+        {
+          "effect_per_training_sd": 0.019586278085587067,
+          "feature": "poi_ews"
+        },
+        {
+          "effect_per_training_sd": 0.01944178070566845,
+          "feature": "tur_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.01890248368175913,
+          "feature": "teammate_rebounding_demand_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.018358824687036018,
+          "feature": "ass_rate_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.018196552298601384,
+          "feature": "tur_ews"
+        },
+        {
+          "effect_per_training_sd": 0.01793542342742367,
+          "feature": "ste_ewf"
+        }
+      ],
+      "rich_ridge": [
+        {
+          "effect_per_training_sd": -0.047134106186172156,
+          "feature": "tpm_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.041450712148885065,
+          "feature": "tpm_rate_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.03917464191666614,
+          "feature": "minutes_change_last"
+        },
+        {
+          "effect_per_training_sd": -0.026163761860847477,
+          "feature": "incumbent_mean"
+        },
+        {
+          "effect_per_training_sd": 0.025471690798948208,
+          "feature": "tpa_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.024275642721559777,
+          "feature": "tpa_ews"
+        },
+        {
+          "effect_per_training_sd": -0.018990969694310765,
+          "feature": "tpm_ews"
+        },
+        {
+          "effect_per_training_sd": -0.017324075526744705,
+          "feature": "pbp_three_accuracy_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.013533618205815664,
+          "feature": "opp_pbp_allowed_driving_share_ew"
+        },
+        {
+          "effect_per_training_sd": -0.013472011503742134,
+          "feature": "talent_tpm"
+        },
+        {
+          "effect_per_training_sd": 0.011514122120749001,
+          "feature": "context_three_match"
+        },
+        {
+          "effect_per_training_sd": -0.01083161597312232,
+          "feature": "poi_ewf"
+        },
+        {
+          "effect_per_training_sd": 0.01077283024717965,
+          "feature": "opp_pbp_allowed_shot_distance_ew"
+        },
+        {
+          "effect_per_training_sd": -0.01073566746000816,
+          "feature": "min_ews"
+        },
+        {
+          "effect_per_training_sd": 0.010211164692641047,
+          "feature": "pbp_recorded_actions_per_min_ewf"
+        },
+        {
+          "effect_per_training_sd": -0.01009938569995777,
+          "feature": "tm_pbp_three_accuracy_ew"
+        },
+        {
+          "effect_per_training_sd": -0.01009353873822884,
+          "feature": "opp_ast_for_ew"
+        },
+        {
+          "effect_per_training_sd": -0.009646405440797708,
+          "feature": "rest"
+        },
+        {
+          "effect_per_training_sd": -0.009472614809442826,
+          "feature": "opp_pbp_allowed_def_rebounds_ew"
+        },
+        {
+          "effect_per_training_sd": 0.008933670147318768,
+          "feature": "pbp_three_share_ewf"
+        }
+      ]
+    }
+  },
+  "selection_year": 2023,
+  "tuning": {
+    "assists": {
+      "box_ridge": {
+        "chosen": 1000.0,
+        "grid": [
+          {
+            "complexity": 10.0,
+            "poisson_deviance": 1.3142281704101306
+          },
+          {
+            "complexity": 100.0,
+            "poisson_deviance": 1.3145675030673207
+          },
+          {
+            "complexity": 1000.0,
+            "poisson_deviance": 1.3141598333052655
+          },
+          {
+            "complexity": 10000.0,
+            "poisson_deviance": 1.3149721529286074
+          }
+        ]
+      },
+      "incumbent": {
+        "chosen": null,
+        "grid": [
+          {
+            "complexity": null,
+            "poisson_deviance": 1.3428318613327708
+          }
+        ]
+      },
+      "rich_boost": {
+        "chosen": 7,
+        "grid": [
+          {
+            "complexity": 7,
+            "poisson_deviance": 1.313439617556418
+          },
+          {
+            "complexity": 15,
+            "poisson_deviance": 1.3183173589493438
+          }
+        ]
+      },
+      "rich_ridge": {
+        "chosen": 10000.0,
+        "grid": [
+          {
+            "complexity": 10.0,
+            "poisson_deviance": 1.3484033695645665
+          },
+          {
+            "complexity": 100.0,
+            "poisson_deviance": 1.3436982035213567
+          },
+          {
+            "complexity": 1000.0,
+            "poisson_deviance": 1.3316846310677886
+          },
+          {
+            "complexity": 10000.0,
+            "poisson_deviance": 1.32137704234207
+          }
+        ]
+      }
+    },
+    "points": {
+      "box_ridge": {
+        "chosen": 1000.0,
+        "grid": [
+          {
+            "complexity": 10.0,
+            "poisson_deviance": 3.5636181995649028
+          },
+          {
+            "complexity": 100.0,
+            "poisson_deviance": 3.5627352390388607
+          },
+          {
+            "complexity": 1000.0,
+            "poisson_deviance": 3.5626922034200823
+          },
+          {
+            "complexity": 10000.0,
+            "poisson_deviance": 3.5756766426925712
+          }
+        ]
+      },
+      "incumbent": {
+        "chosen": null,
+        "grid": [
+          {
+            "complexity": null,
+            "poisson_deviance": 3.656865102577772
+          }
+        ]
+      },
+      "rich_boost": {
+        "chosen": 7,
+        "grid": [
+          {
+            "complexity": 7,
+            "poisson_deviance": 3.5766897542174525
+          },
+          {
+            "complexity": 15,
+            "poisson_deviance": 3.5883483452909624
+          }
+        ]
+      },
+      "rich_ridge": {
+        "chosen": 10000.0,
+        "grid": [
+          {
+            "complexity": 10.0,
+            "poisson_deviance": 3.6346808400467725
+          },
+          {
+            "complexity": 100.0,
+            "poisson_deviance": 3.616240990187586
+          },
+          {
+            "complexity": 1000.0,
+            "poisson_deviance": 3.599879287612264
+          },
+          {
+            "complexity": 10000.0,
+            "poisson_deviance": 3.5967866404493134
+          }
+        ]
+      }
+    },
+    "rebounds": {
+      "box_ridge": {
+        "chosen": 10000.0,
+        "grid": [
+          {
+            "complexity": 10.0,
+            "poisson_deviance": 1.5641340894109648
+          },
+          {
+            "complexity": 100.0,
+            "poisson_deviance": 1.5628506079440887
+          },
+          {
+            "complexity": 1000.0,
+            "poisson_deviance": 1.560834628896385
+          },
+          {
+            "complexity": 10000.0,
+            "poisson_deviance": 1.5587522922689736
+          }
+        ]
+      },
+      "incumbent": {
+        "chosen": null,
+        "grid": [
+          {
+            "complexity": null,
+            "poisson_deviance": 1.593299392720898
+          }
+        ]
+      },
+      "rich_boost": {
+        "chosen": 15,
+        "grid": [
+          {
+            "complexity": 7,
+            "poisson_deviance": 1.5576179585563699
+          },
+          {
+            "complexity": 15,
+            "poisson_deviance": 1.5572725198414845
+          }
+        ]
+      },
+      "rich_ridge": {
+        "chosen": 10000.0,
+        "grid": [
+          {
+            "complexity": 10.0,
+            "poisson_deviance": 1.5894380908389438
+          },
+          {
+            "complexity": 100.0,
+            "poisson_deviance": 1.5844949088171916
+          },
+          {
+            "complexity": 1000.0,
+            "poisson_deviance": 1.5758709252763319
+          },
+          {
+            "complexity": 10000.0,
+            "poisson_deviance": 1.5665614390667708
+          }
+        ]
+      }
+    },
+    "threes": {
+      "box_ridge": {
+        "chosen": 1000.0,
+        "grid": [
+          {
+            "complexity": 10.0,
+            "poisson_deviance": 1.0090375720579858
+          },
+          {
+            "complexity": 100.0,
+            "poisson_deviance": 1.00847206415741
+          },
+          {
+            "complexity": 1000.0,
+            "poisson_deviance": 1.0081688429770983
+          },
+          {
+            "complexity": 10000.0,
+            "poisson_deviance": 1.0117508872654137
+          }
+        ]
+      },
+      "incumbent": {
+        "chosen": null,
+        "grid": [
+          {
+            "complexity": null,
+            "poisson_deviance": 1.0186358239170334
+          }
+        ]
+      },
+      "rich_boost": {
+        "chosen": 7,
+        "grid": [
+          {
+            "complexity": 7,
+            "poisson_deviance": 1.0058802919467977
+          },
+          {
+            "complexity": 15,
+            "poisson_deviance": 1.0082608165521505
+          }
+        ]
+      },
+      "rich_ridge": {
+        "chosen": 10000.0,
+        "grid": [
+          {
+            "complexity": 10.0,
+            "poisson_deviance": 1.033055530541516
+          },
+          {
+            "complexity": 100.0,
+            "poisson_deviance": 1.029345329955389
+          },
+          {
+            "complexity": 1000.0,
+            "poisson_deviance": 1.0214667488134777
+          },
+          {
+            "complexity": 10000.0,
+            "poisson_deviance": 1.017225162579898
+          }
+        ]
+      }
+    }
+  },
+  "validation_2024": {
+    "assists": {
+      "box_ridge": {
+        "mae": 1.1921793536329623,
+        "mean_error": -5.437070229268375e-05,
+        "n": 4736,
+        "poisson_deviance": 1.2706963155175752
+      },
+      "incumbent": {
+        "mae": 1.2185708609186636,
+        "mean_error": 0.04237282666475917,
+        "n": 4736,
+        "poisson_deviance": 1.303715673531913
+      },
+      "rich_boost": {
+        "mae": 1.200088224154379,
+        "mean_error": -0.0009893224318784485,
+        "n": 4736,
+        "poisson_deviance": 1.2624520980080411
+      },
+      "rich_ridge": {
+        "mae": 1.1936555154018569,
+        "mean_error": -0.00872427268598121,
+        "n": 4736,
+        "poisson_deviance": 1.2752317516720573
+      }
+    },
+    "points": {
+      "box_ridge": {
+        "mae": 4.041978505270842,
+        "mean_error": 0.08730920365618394,
+        "n": 4736,
+        "poisson_deviance": 3.581848937434071
+      },
+      "incumbent": {
+        "mae": 4.078173068094199,
+        "mean_error": 0.07995241979427928,
+        "n": 4736,
+        "poisson_deviance": 3.6670368884170865
+      },
+      "rich_boost": {
+        "mae": 4.057865018262282,
+        "mean_error": 0.022874340544572998,
+        "n": 4736,
+        "poisson_deviance": 3.5834616231766163
+      },
+      "rich_ridge": {
+        "mae": 4.052179434492451,
+        "mean_error": 0.12636293689970007,
+        "n": 4736,
+        "poisson_deviance": 3.590370221533653
+      }
+    },
+    "rebounds": {
+      "box_ridge": {
+        "mae": 1.7651812595510847,
+        "mean_error": 0.05676067031424238,
+        "n": 4736,
+        "poisson_deviance": 1.5531231484918793
+      },
+      "incumbent": {
+        "mae": 1.7839926851889114,
+        "mean_error": 0.057459513398737255,
+        "n": 4736,
+        "poisson_deviance": 1.6058805172010524
+      },
+      "rich_boost": {
+        "mae": 1.7668688732450584,
+        "mean_error": 0.017612893706762844,
+        "n": 4736,
+        "poisson_deviance": 1.56545922286097
+      },
+      "rich_ridge": {
+        "mae": 1.7613111402882093,
+        "mean_error": 0.03839869245478424,
+        "n": 4736,
+        "poisson_deviance": 1.553092683229245
+      }
+    },
+    "threes": {
+      "box_ridge": {
+        "mae": 0.7028736216071491,
+        "mean_error": 0.012281585144558283,
+        "n": 4736,
+        "poisson_deviance": 1.0612005147852663
+      },
+      "incumbent": {
+        "mae": 0.7026320604701949,
+        "mean_error": 0.01888230282468105,
+        "n": 4736,
+        "poisson_deviance": 1.0772059687920876
+      },
+      "rich_boost": {
+        "mae": 0.7045182285841763,
+        "mean_error": 0.017223466965531977,
+        "n": 4736,
+        "poisson_deviance": 1.0527521811814418
+      },
+      "rich_ridge": {
+        "mae": 0.7022126280469099,
+        "mean_error": 0.006463475943426464,
+        "n": 4736,
+        "poisson_deviance": 1.0606538661459597
+      }
+    }
+  },
+  "validation_and_distribution_year": 2024
+}
