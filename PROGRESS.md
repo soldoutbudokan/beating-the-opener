@@ -2443,3 +2443,25 @@ No betting under any outcome without a separate owner decision.
   been disabled since 2026-08-31 21:57 UTC (last firing 21:31), which
   is why every live file stops at 08-30/31. No code, model, ledger, or
   routine change; research only.
+
+
+## Rich WNBA context experiment — owner-directed 2026-09-06
+
+The owner requested richer basketball data, relationships between that data,
+line predictions, a backtest, and a PR. Work is isolated on
+`codex/wnba-rich-context-research`; the explicit PR request takes precedence
+over the standing direct-to-main workflow for this change.
+
+The plan is at `wnba/research/rich_context/PROTOCOL.md`, recorded before model
+comparisons. Four fixed comparisons separate new information from a new
+estimator: corrected incumbent, box-only ridge, rich ridge, and a small
+rich-feature tree model. Public historical play-by-play supplies shot mix,
+assisted scoring, recorded role, opponent opportunities, and prior-team
+context. Training starts in 2015; 2023 chooses from small fixed settings;
+2024 provides chronological validation and later distribution calibration;
+2025 is a single reused-development report. No 2026 data enters.
+
+Inputs are queried at the reported opener time after a declared historical
+publication delay. Source quality, uncertainty, pushes, coherent paired
+quotes, and all losing comparisons must be reported. No existing registered
+model, live file, bet, or routine is changed. Model scores pending.
