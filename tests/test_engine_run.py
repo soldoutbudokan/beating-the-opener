@@ -117,21 +117,23 @@ class RunnerTests(unittest.TestCase):
                 run.derived_results(model, 1, changed, ['prior use'])
 
     def test_verifier_rederives_result_even_when_hash_review_passes(self):
+        from tests.test_engine_scoring import forecast
         with tempfile.TemporaryDirectory() as temp, patch.object(run, 'implementation', return_value=IMPLEMENTATION):
             root = Path(temp); prior = root/'prior.json'; run.dump(prior, {'prior_2025_uses': ['prior use']})
-            report = reports(); recipe = {'recipe_hash': 'a'*64, 'shrinkage': 1}
+            row = forecast(pr2_power_p_open=.6)
+            report = {scenario: run.structural_report([row]) for scenario in ('8h', '24h')}
+            recipe = {'recipe_hash': 'a'*64, 'shrinkage': 1}
             run.dump(root/'recipe.json', recipe); sha = run.digest(root/'recipe.json')
             run.dump(root/'fit.json', {'recipes': {'1': sha}, 'implementation': IMPLEMENTATION})
             run.dump(root/'evaluation_lock.json', {'recipe_hash': recipe['recipe_hash'], 'recipe_sha256': sha, 'attempt': 1})
             run.dump(root/'scores.json', report); run.dump(root/'timing.json', timing())
             result = run.derived_results(report, 1, timing(), ['prior use'])
             run.dump(root/'results.json', result)
-            payload = ''.join(json.dumps({'scenario': s, 'row': {'quote_id': 'q'}})+'\n' for s in ('8h', '24h'))
+            payload = ''.join(json.dumps({'scenario': s, 'row': row})+'\n' for s in ('8h', '24h'))
             (root/'forecasts.jsonl.gz').write_bytes(gzip.compress(payload.encode()))
             for scenario in ('8h', '24h'):
                 (root/f'input_records_{scenario}.json.gz').write_bytes(gzip.compress(b'[]'))
             with patch.object(run, 'PRIOR_USES', prior), patch('research.engine.review.review_structural'), \
-                 patch('research.engine.scoring.verify_saved_report', return_value={'status': 'PASS'}), \
                  patch.object(run, 'saved_distributions', return_value={'status': 'PASS'}), \
                  patch.object(run, 'frozen_population', return_value={'status': 'PASS'}):
                 self.assertEqual(set(run.verify_stage(root)), {'8h', '24h'})
@@ -169,6 +171,57 @@ class RunnerTests(unittest.TestCase):
             forecast['input_manifest_hash'] = payload_digest(full)
             with self.assertRaisesRegex(ValueError, 'future/protected'):
                 run.saved_distributions([row], recipe, [source])
+
+
+class StructuralReportTests(unittest.TestCase):
+    def rows(self):
+        from tests.test_engine_scoring import forecast
+        return [forecast(pr2_power_p_open=.8),
+                forecast('q2', 'g2', day=2, actual=2, count_p_actual=.1, pr2_power_p_open=.3),
+                forecast('q3', 'g3', day=3, actual=5, count_p_actual=.2, pr2_power_p_open=.9),
+                forecast('q4', 'g4', day=4, actual=None, actual_minutes=0., void=True,
+                         count_p_actual=None, baseline_count_p_actual=None, pr2_power_p_open=.1)]
+
+    def test_power_sensitivity_preserves_all_primary_metrics_and_gates(self):
+        from research.engine.scoring import build_report, evaluate_gates
+        rows = self.rows(); original = copy.deepcopy(rows)
+        core = build_report(rows, resamples=200, seed=7)
+        wrapped = run.structural_report(rows, resamples=200, seed=7)
+        primary = copy.deepcopy(wrapped)
+        power = primary['scores'].pop('power_opener_sensitivity')
+        self.assertEqual(primary, core)
+        self.assertEqual(rows, original)
+        gates = dict(calibration_overall_limit=.015, calibration_bucket_limit=.025,
+                     log_loss_limit=.687662, expected_settled=7473,
+                     expected_markets=('points', 'rebounds', 'assists', 'threes'),
+                     close_gain_tripwire=.001, close_t_tripwire=3)
+        self.assertEqual(evaluate_gates(wrapped['scores'], **gates),
+                         evaluate_gates(core['scores'], **gates))
+        # Only the over and under outcomes settle; the push and DNP do not
+        # enter either opener probability score or its paired comparison.
+        self.assertEqual(power['n'], 2)
+        expected_loss = -(math.log(.8) + math.log(.7)) / 2
+        self.assertAlmostEqual(power['log_loss'], expected_loss)
+        self.assertAlmostEqual(power['brier'], (.2**2 + .3**2) / 2)
+        self.assertAlmostEqual(power['paired']['estimate'], core['scores']['log_loss'] - expected_loss)
+        self.assertEqual(power['paired']['n'], 2)
+        self.assertEqual(run.verify_structural_report(rows, wrapped, resamples=200, seed=7)['status'], 'PASS')
+
+    def test_missing_or_tampered_power_sensitivity_is_rejected(self):
+        rows = self.rows()
+        report = run.structural_report(rows, resamples=200, seed=7)
+        changed = copy.deepcopy(report)
+        changed['scores']['power_opener_sensitivity']['log_loss'] += .01
+        with self.assertRaisesRegex(ValueError, 'power-opener sensitivity differs'):
+            run.verify_structural_report(rows, changed, resamples=200, seed=7)
+        missing = copy.deepcopy(report)
+        del missing['scores']['power_opener_sensitivity']
+        with self.assertRaises((KeyError, ValueError)):
+            run.verify_structural_report(rows, missing, resamples=200, seed=7)
+        changed = copy.deepcopy(report)
+        changed['scores']['log_loss'] += .01
+        with self.assertRaisesRegex(ValueError, 'Saved report differs'):
+            run.verify_structural_report(rows, changed, resamples=200, seed=7)
 
 
 class SavedManifestCacheTests(unittest.TestCase):

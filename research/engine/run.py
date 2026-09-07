@@ -16,6 +16,7 @@ import math
 from pathlib import Path
 import subprocess
 import sys
+from time import perf_counter
 
 ROOT = Path(__file__).resolve().parents[2]
 REGISTRATION = '69c2a32e13a024f7dcd01541d42b77b784b13810'
@@ -442,19 +443,73 @@ def derived_results(models, attempt, timing, prior_uses):
         'models':{k:v['scores'] for k,v in models.items()},'prior_2025_uses':prior_uses}
 
 
-def evaluate_stage(raw, recipe_path, output, attempt=1):
+def _power_opener_sensitivity(rows, *, resamples=10000, seed=20260907):
+    """The exact frozen PR2 power opener, reported alongside the primary method.
+
+    This comparator cannot select a model, change a gate, or replace the
+    shared scorer's proportional-price contract and betting controls.
+    """
+    from .scoring import validate_rows, paired_comparison, _log_loss
+    rows = validate_rows(rows)
+    settled = [row for row in rows if not row['void'] and row['actual'] != row['line']]
+    probabilities = []
+    for row in settled:
+        probability = float(row['pr2_power_p_open'])
+        if not math.isfinite(probability) or not 0 <= probability <= 1:
+            raise ValueError('Invalid frozen PR2 power opener probability')
+        probabilities.append(probability)
+    losses = [_log_loss(p, row['actual'] > row['line']) for p, row in zip(probabilities, settled)]
+    brier = [(p - float(row['actual'] > row['line'])) ** 2 for p, row in zip(probabilities, settled)]
+    return {'method': 'exact frozen PR2 80-step power de-vig',
+            'primary_method': 'proportional no-vig probability from the exact paired prices',
+            'gate_or_selection_effect': 'none; both methods reported without choosing',
+            'n': len(settled), 'log_loss': math.fsum(losses) / len(losses) if losses else None,
+            'brier': math.fsum(brier) / len(brier) if brier else None,
+            'paired': paired_comparison(rows, alternative_probability='pr2_power_p_open',
+                                        resamples=resamples, seed=seed)}
+
+
+def structural_report(rows, *, resamples=10000, seed=20260907):
     from .scoring import build_report
+    report = build_report(rows, resamples=resamples, seed=seed)
+    report['scores']['power_opener_sensitivity'] = _power_opener_sensitivity(
+        rows, resamples=resamples, seed=seed)
+    return report
+
+
+def verify_structural_report(rows, report, *, resamples=10000, seed=20260907):
+    from .scoring import verify_saved_report
+    from .store import canonical_json
+    primary = dict(report)
+    primary['scores'] = dict(report['scores'])
+    saved_power = primary['scores'].pop('power_opener_sensitivity')
+    verification = verify_saved_report(rows, primary, resamples=resamples, seed=seed)
+    expected_power = _power_opener_sensitivity(rows, resamples=resamples, seed=seed)
+    if canonical_json(saved_power) != canonical_json(expected_power):
+        raise ValueError('Saved power-opener sensitivity differs from forecast reproduction')
+    return dict(verification, power_opener_sensitivity='PASS')
+
+
+def evaluate_stage(raw, recipe_path, output, attempt=1):
+    from .quotes import QuoteArchive, preflight_quotes
+    from .sources import load_frozen_quotes
     recipe, fit_record = frozen_fit(recipe_path, raw)
     timing = timing_checks()
+    preflight = preflight_quotes(load_frozen_quotes(scenario='8h').to_dict('records'),
+                                 archive=QuoteArchive(ROOT/'wnba/data/raw/bp'))
+    print('All 7604 frozen quote contracts passed synthetic schema/archive preflight', flush=True)
     out = new_directory(output)
     lock = reserve_evaluation(recipe_path, recipe, out, attempt)
     dump(out/'recipe.json',recipe)
     dump(out/'timing.json', timing)
     dump(out/'evaluation_lock.json', lock)
     dump(out/'fit.json', fit_record)
-    all_rows,models,sources={}, {}, {}
+    dump(out/'quote_preflight.json', preflight)
+    all_rows,models,sources,runtime={}, {}, {}, {}
     for hours in (8,24):
+        forecast_started = perf_counter()
         rows,manifest=make_forecasts(raw,recipe,hours)
+        forecast_seconds = perf_counter() - forecast_started
         frozen_population(rows)
         input_records = manifest.pop('input_records')
         input_path = out/f'input_records_{hours}h.json.gz'
@@ -462,9 +517,16 @@ def evaluate_stage(raw, recipe_path, output, attempt=1):
             f.write(gzip.compress(json.dumps(input_records, sort_keys=True, allow_nan=False).encode(), mtime=0))
         manifest['input_records_file'] = input_path.name
         manifest['input_records_sha256'] = digest(input_path)
+        verification_started = perf_counter()
         saved_distributions(rows, recipe, input_records)
+        verification_seconds = perf_counter() - verification_started
         label=f'{hours}h';all_rows[label]=rows;sources[label]=manifest
-        models[label]=build_report(rows)
+        scoring_started = perf_counter()
+        models[label]=structural_report(rows)
+        runtime[label] = {'source_loading_and_forecast_seconds': forecast_seconds,
+                          'source_manifest_and_distribution_verification_seconds': verification_seconds,
+                          'scoring_seconds': perf_counter() - scoring_started}
+        print(json.dumps({'scenario':label, 'runtime':runtime[label]}), flush=True)
     rawbytes=''.join(json.dumps({'scenario':key,'row':r},sort_keys=True,allow_nan=False)+'\n'
                      for key,rows in all_rows.items() for r in rows).encode()
     with (out/'forecasts.jsonl.gz').open('xb') as f:f.write(gzip.compress(rawbytes,mtime=0))
@@ -473,7 +535,11 @@ def evaluate_stage(raw, recipe_path, output, attempt=1):
     dump(out/'results.json',result)
     # A complete receipt is written only after independent arithmetic and
     # distribution verification succeeds. Interrupted failures keep the lock.
+    verification_started = perf_counter()
     verification = verify_stage(out, check_receipt=False)
+    runtime['independent_verification_seconds'] = perf_counter() - verification_started
+    runtime['meaning'] = 'Observed wall-clock metadata on this machine; no performance number selects a statistical model.'
+    dump(out/'runtime.json', runtime)
     dump(out/'verification.json', verification)
     receipt={'schema_version':'structural-receipt-v1','status':'complete','evidence_kind':'reused-development',
         'registration_commit':REGISTRATION,'results_sha256':digest(out/'results.json'),
@@ -485,7 +551,6 @@ def evaluate_stage(raw, recipe_path, output, attempt=1):
 
 
 def verify_stage(run,output=None, *, check_receipt=True):
-    from .scoring import verify_saved_report
     from .review import review_structural
     root=Path(run)
     if check_receipt:
@@ -500,7 +565,7 @@ def verify_stage(run,output=None, *, check_receipt=True):
         raise ValueError('Sensitivity changed the frozen quote population')
     recipe=json.loads((root/'recipe.json').read_text())
     inputs={k:json.loads(gzip.decompress((root/f'input_records_{k}.json.gz').read_bytes())) for k in groups}
-    verification={k:{'scores':verify_saved_report(rows,reports[k]),
+    verification={k:{'scores':verify_structural_report(rows,reports[k]),
                      'distributions':saved_distributions(rows, recipe, inputs[k]),
                      'population': frozen_population(rows)} for k,rows in groups.items()}
     result=json.loads((root/'results.json').read_text())

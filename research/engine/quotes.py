@@ -10,7 +10,7 @@ from pathlib import Path
 
 from research.clocks import parse
 
-MARKET_IDS = {'points': 393, 'rebounds': 394, 'assists': 395, 'threes': 398}
+MARKET_IDS = {'points': 393, 'rebounds': 397, 'assists': 391, 'threes': 390}
 
 
 def decimal_odds(american):
@@ -112,12 +112,22 @@ class QuoteArchive:
             return {'status': 'missing_offer', 'p_over_nonpush': None}
         if str(offer.get('event_id')) != event:
             raise ValueError('Archived event identity differs')
+        if str(offer.get('market_id')) != str(MARKET_IDS[row['market']]):
+            raise ValueError('Archived market identity differs')
+        if str(offer.get('player_id')) != str(int(row['bp_player_id'])):
+            raise ValueError('Archived player identity differs')
         return paired_reference(offer, str(int(row['open_book'])), row['open_line'],
                                 row['tip_at'], row['forecast_at'])
 
 
 def score_quote(row):
-    """Preserve PR #2's exact quote contract; outcome labels are added later."""
+    """Preserve PR #2's prices and expose both named opener probabilities.
+
+    The shared scorer defines p_open_nonpush using proportional no-vig odds.
+    PR #2 saved a power-devig probability; retain that exact value separately
+    so it cannot be mistaken for the shared scorer's price-derived field.
+    Outcome labels and model forecasts are added later.
+    """
     if int(row['season']) != 2025:
         raise ValueError('Only frozen reused-2025 quotes are admitted')
     if row['open_book'] != row['open_book_under']:
@@ -128,11 +138,51 @@ def score_quote(row):
     tip = parse('quote.tip_at', row['tip_at'])
     if max(over_at, under_at) != as_of or not as_of < tip:
         raise ValueError('Frozen quote clock contract changed')
+    over, under = decimal_odds(row['open_over']), decimal_odds(row['open_under'])
+    power_probability = float(row['p_open'])
+    if not math.isfinite(power_probability) or not 0 <= power_probability <= 1:
+        raise ValueError('Invalid frozen power-devig probability')
     return {'game_id': str(int(row['game_id'])), 'player_id': str(int(row['athlete_id'])),
             'quote_id': quote_id(row), 'book': str(int(row['open_book'])), 'market': row['market'],
-            'line': float(row['open_line']), 'over_odds': decimal_odds(row['open_over']),
-            'under_odds': decimal_odds(row['open_under']), 'over_at': over_at.isoformat(),
+            'line': float(row['open_line']), 'over_odds': over,
+            'under_odds': under, 'over_at': over_at.isoformat(),
             'under_at': under_at.isoformat(), 'quote_available_at': as_of.isoformat(),
             'as_of': as_of.isoformat(), 'tip_at': tip.isoformat(), 'date': row['date'],
-            'p_open_nonpush': float(row['p_open']),
+            'p_open_nonpush': (1 / over) / (1 / over + 1 / under),
+            'pr2_power_p_open': power_probability,
             'baseline_p_over_nonpush': float(row['box_ridge_p_over_nonpush'])}
+
+
+def preflight_quotes(rows, archive=None):
+    """Validate every quote boundary without fitting or outcome scoring.
+
+    The strict scorer receives synthetic predictions and grades only. Actual
+    counts, participation and fitted forecast fields from the supplied rows
+    are never read. Optional archive checks use quote identities and prices;
+    close-reference coverage is source metadata, not a performance result.
+    """
+    from .scoring import validate_rows
+
+    sentinels, references = [], Counter()
+    for original in rows:
+        row = score_quote(original)
+        # A zero-count sentinel is consistent across all quoted lines for a
+        # player-game. At a zero line its mass is an explicit push.
+        push = .25 if row['line'] == 0 else 0.
+        row.update(p_over=.5, p_push=push, p_under=.5-push,
+                   p_dnp=.1, minutes_values=[1.], minutes_probs=[1.],
+                   model_mean=1., model_median=1, actual=0,
+                   actual_minutes=1., void=False, count_p_actual=.25)
+        sentinels.append(row)
+        if archive is not None:
+            reference = archive.reference(original)
+            references[reference['status']] += 1
+            row['close_p_over_nonpush'] = reference['p_over_nonpush']
+    checked = validate_rows(sentinels)
+    if len(checked) != len(sentinels):
+        raise ValueError('Quote preflight found duplicate rows')
+    return {'status': 'PASS', 'quotes': len(checked),
+            'basis': 'Quote schema and archive checks with synthetic forecasts and outcomes; no scores computed',
+            'opener_method': 'proportional no-vig from saved paired prices',
+            'retained_pr2_opener_method': 'power devig',
+            'close_reference_statuses': dict(references)}
