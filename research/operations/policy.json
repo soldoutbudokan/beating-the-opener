@@ -1,0 +1,13 @@
+{
+  "schema": "operations-policy-v1",
+  "policy_id": "research-shadow-2026-09",
+  "required_sources": {
+    "bettingpros": {
+      "max_age_seconds": 10800,
+      "required_markets": ["points", "rebounds", "assists", "threes", "pra", "pts_ast", "pts_reb", "reb_ast"]
+    },
+    "polymarket": {"max_age_seconds": 10800}
+  },
+  "max_clock_skew_seconds": 0,
+  "models": []
+}
