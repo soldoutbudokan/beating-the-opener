@@ -9,7 +9,7 @@ on:
       - 'cricket/research/**'
       - '.github/workflows/**'
   push:
-    branches: [main]
+    branches: [main, 'codex/**']
     paths:
       - 'tools/**'
       - 'tests/**'
