@@ -1,0 +1,4 @@
+# Recount environment: Python 3.12.13
+numpy==2.3.5
+pandas==2.2.3
+pyarrow==25.0.1

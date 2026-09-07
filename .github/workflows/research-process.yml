@@ -5,6 +5,10 @@ on:
     paths:
       - 'tools/research.py'
       - 'tests/test_research_process.py'
+      - 'tests/test_research_clocks.py'
+      - 'tests/test_process_audit_review.py'
+      - 'tools/process_audit.py'
+      - 'tools/verify_process_audit.py'
       - 'research/**'
       - '.github/workflows/research-process.yml'
   push:
@@ -12,6 +16,10 @@ on:
     paths:
       - 'tools/research.py'
       - 'tests/test_research_process.py'
+      - 'tests/test_research_clocks.py'
+      - 'tests/test_process_audit_review.py'
+      - 'tools/process_audit.py'
+      - 'tools/verify_process_audit.py'
       - 'research/**'
       - '.github/workflows/research-process.yml'
 
@@ -32,4 +40,4 @@ jobs:
             /tests/
             /research/
       - name: Run offline boundary checks
-        run: python3 -m unittest discover -s tests -p 'test_research_process.py' -v
+        run: python3 -m unittest discover -s tests -v

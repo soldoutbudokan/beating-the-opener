@@ -2489,4 +2489,46 @@ recipe and a reached endpoint. Unrecoverable artifacts leave the window sealed.
 The 2026-08-03 ASG amendment is preserved. Human news-to-minutes scoring waits
 for all overlapping protected windows to be released. All later phases retain
 the owner's gates, two-iteration limits and separate registrations. Live files,
-routine scripts and routine state are outside this change. Results pending.
+routine scripts and routine state are outside this change. Results are recorded below.
+
+
+### Phase 0 result — 2026-09-07: collect missing frozen inputs
+
+Report: `research/audits/2026-09-process-audit.md`; generated brief, compact
+metrics, receipt, compressed count evidence and plain-language note are in
+`research/audits/2026-09-process-audit/`. Registration and review adapter were
+pushed at `5bfd24d0f669eba88b793d4153ea4a3ebd4556be` before measurements.
+
+- The six validity requirements are triaged across WNBA live/current source,
+  PR #2 and cricket. Their source is unchanged from the September issue #1
+  audit. Repairs required for research and owner-only live proposals are explicit.
+- Archive: 242 availability snapshots, 554 overrides, 413 seen news IDs and
+  zero raw news payloads. Of 221 overrides matched to one event, 195 precede
+  tip and 26 do not; 333 remain unresolved, including 211 until-cleared
+  entries. The brief's blanket pregame timestamp assumption does not hold.
+- Props: 6,711 coherent unique opening pairs; isolated ESPN eligibility proxy
+  6,324, crossing 3,000 on August 15. This is NOT the registered wehoop n.
+  Exact frozen calibration/input artifacts and identifiable original
+  August 1-3 opener-arm forecasts are missing. Live CSV base probabilities
+  exist but cannot establish the registered replay from their metadata.
+  Both props arms are BLOCKED, potentially overdue; no score was computed.
+- The WNBA game arm includes playoffs and is not due at the September 24
+  regular-season end (official last possible Finals game October 31).
+  Cricket archive has zero closed markets after either lock, despite
+  1,163,261 intermediate price observations. Arm-one recipe history and
+  closure-versus-resolution semantics need reconciliation before scoring.
+- Zero post-endpoint news entries unlocked: human minutes/status accuracy
+  remains unestimated. No prospective arm released, no model fitted, no
+  live/routine change. Phase 1 and later phases have not started.
+- All 26 focused offline checks pass. Independent source recount exactly
+  reproduces the saved evidence and verifies 1,302 input hashes. Outputs
+  refuse overwrites. Actual pinned-wehoop dual-clock verification remains
+  blocked; synthetic clock tests are not a claim about unseen source bytes.
+- 2025 reuse is inventoried by documented experiment in the report and
+  carried into the generated brief. No new independent or betting-edge claim.
+
+Decision: collect the missing frozen replay artifacts and pinned schedules;
+keep the human baseline and subsequent gated stages blocked as documented.
+Raw narrative-news archiving on every successful firing is a concrete proposal
+for the owner, not an implemented or authorized routine change. PR delivery
+governs this programme; this work is not merged under the routine/fill rule.

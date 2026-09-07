@@ -1,0 +1,157 @@
+{
+  "archive_summary": {
+    "availability": {
+      "days": 28,
+      "first": "2026-08-04T15:09:00Z",
+      "injury_status_rows": {
+        "Day-To-Day": 1141,
+        "Out": 11747,
+        "Suspension": 4
+      },
+      "last": "2026-08-31T15:33:00Z",
+      "lineup_rows": 7624,
+      "snapshots": 242
+    },
+    "cricket": {
+      "closure_counts": {},
+      "closure_max": "2026-08-29T18:53:16Z",
+      "duplicate_price_ids": 0,
+      "market_rows": 2158,
+      "median_price_spacing_seconds": 600.0,
+      "price_rows": 1163261,
+      "price_time_max": "2026-08-29T18:50:14Z",
+      "price_time_min": "2024-06-07T15:40:03Z",
+      "priced_markets": 2055,
+      "resolution_warning": "closed_time is a closure timestamp; no separately validated resolution time is archived."
+    },
+    "news": {
+      "raw_payload_files": 0,
+      "seen_ids": 413
+    }
+  },
+  "as_of": "2026-09-07",
+  "decision": "collect missing input",
+  "gates": [
+    {
+      "id": "AUDIT",
+      "reason": "All six validity requirements checked across live WNBA, PR #2 and cricket; repairs and owner-only live proposals recorded.",
+      "status": "PASS"
+    },
+    {
+      "id": "CLOCKS",
+      "reason": "Explicit source contracts and synthetic assertions pass; checked archive clocks parse, but real pinned wehoop dual-column comparison is unavailable.",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "WINDOWS",
+      "reason": "Five endpoints and release rules recorded. Props proxy crosses 3000 on Aug 15; exact frozen scoring artifacts missing. Other arms are not due.",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "NEWS",
+      "reason": "554 entries and 242 snapshots inventoried; zero post-endpoint entries unlocked. 26 matched entries are at/after tip and 333 lack a unique event.",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "RECEIPT",
+      "reason": "Checksummed count evidence and implementation; source recount and no-overwrite verification provided.",
+      "status": "PASS"
+    }
+  ],
+  "news_baseline": {
+    "eligible_entries": 0,
+    "entries": 554,
+    "matched_entries": 0,
+    "metrics": null,
+    "reason": "No complete protected-arm result releases the post-endpoint window; accuracy metrics remain unestimated."
+  },
+  "prior_2025_uses": [
+    "WNBA fundamentals v1: 2025 fitting/evaluation and rejection (WNBA README; train_eval.py).",
+    "WNBA anchored v2: weekly fitting, feature/distribution/selection and economic-rule analysis across 2025-26 (WNBA README; train_eval_v2.py).",
+    "July WNBA audits/remediation: repeated 2025 join, source, quote, shade, threshold and conditional-return diagnostics (AUDIT.md).",
+    "WNBA fp A/B/C: 2025 benchmark, development gates and distribution/calibration assessment (PROGRESS Market 1).",
+    "WNBA fp revisit: 2025 expanding recalibration, threes defense, absence and season-phase/expansion diagnostics.",
+    "WNBA T1: 2025 talent-model selection and late-season breakdown before prospective-2.",
+    "WNBA T2: both 2025 minutes-distribution/grid-calibration iterations rejected.",
+    "WNBA oracle minutes: 2025 oracle minutes/rate and error-tail diagnostics, post-hoc.",
+    "WNBA M: 2025 share-of-minutes engine, both delivery/calibration iterations and phase diagnostics.",
+    "WNBA GG/GV2: rotation and possession game models, moneyline/spread selection on 2025 and spent early 2026.",
+    "WNBA v3 live-rule design: 2025 expected-value buckets, FanDuel thresholds and claim/return calibration.",
+    "PR #2: four 2025 models, 8/24-hour scenarios, fixed quote comparison, economic rules, later under controls and dispersion review.",
+    "Cricket P: 2025 within all-history development; onset revision, wedge, two model iterations and franchise split.",
+    "Cricket Q: 2025 within reused 693-market development; logged iterations 1-25 plus variants, maps, XI choices, opponent adjustment and diagnostics.",
+    "Other sports: MLB K calendar-2025 dev; NHL N/N2 and NBA props 2025-26 dev splits; multi-sport price screens.",
+    "Other sports: soccer variants/regime replays spanning 2025; NBA game holdout seasons containing 2025 and later upper-bound diagnostics."
+  ],
+  "programme_status": {
+    "phase_0": "audit complete; scoring blocked",
+    "phase_1": "not started; needs pinned source clocks and separate registration",
+    "phase_2": "not started; requires Phase 1 calibration PASS, then source pilot PASS/PASS_UNDER_ASSUMPTION before extraction",
+    "phase_3": "not started; requires Phase 2 decision and scored game arm",
+    "phase_4": "not started; requires Phase 2 decision and scored cricket arms"
+  },
+  "protected_arms": [
+    {
+      "archive_upper_bound": 6711,
+      "arm": "fp-prospective-1",
+      "blocker": "Registered wehoop-qualified count, frozen calibration/input artifacts and original 2026-08-01..03 base forecasts are unavailable.",
+      "count_proxy": 6324,
+      "endpoint": "3000 eligible non-push props from 2026-08-01 or season end, whichever first",
+      "qualified_n": null,
+      "recipe_commit": "5f6e021f9",
+      "release_rule": "Only after the complete registered score is published, and all overlapping arms are released; no release date established.",
+      "released_at": null,
+      "status": "BLOCKED"
+    },
+    {
+      "archive_upper_bound": 6711,
+      "arm": "fp-prospective-2",
+      "blocker": "Registered wehoop-qualified count, frozen calibration/input artifacts and original 2026-08-01..03 base forecasts are unavailable.",
+      "count_proxy": 6324,
+      "endpoint": "3000 eligible non-push props from 2026-08-01 or season end, whichever first",
+      "qualified_n": null,
+      "recipe_commit": "3d2251ed2",
+      "release_rule": "Only after the complete registered score is published, and all overlapping arms are released; no release date established.",
+      "released_at": null,
+      "status": "BLOCKED"
+    },
+    {
+      "archive_upper_bound": 85,
+      "arm": "fp-games-prospective-1",
+      "endpoint": "2026 season end including playoffs; current last possible Finals game 2026-10-31, subject to change",
+      "qualified_n": null,
+      "recipe_commit": "e9b8d6bb5",
+      "release_rule": "Only after the complete registered score is published, and all overlapping arms are released; no release date established.",
+      "released_at": null,
+      "status": "WAIT"
+    },
+    {
+      "archive_upper_bound": 0,
+      "arm": "pm-prospective-1",
+      "endpoint": "300 eligible markets or 2027-06-30, whichever first",
+      "qualified_n": 0,
+      "recipe_commit": "UNRESOLVED: P 348e16dda vs later Q/Aug-30 recipe",
+      "release_rule": "Only after the complete registered score is published, and all overlapping arms are released; no release date established.",
+      "released_at": null,
+      "status": "WAIT"
+    },
+    {
+      "archive_upper_bound": 0,
+      "arm": "pm-prospective-2",
+      "endpoint": "300 eligible markets or 2027-06-30, whichever first",
+      "qualified_n": 0,
+      "recipe_commit": "76f3c27a5 / default consolidation 9164a0355",
+      "release_rule": "Only after the complete registered score is published, and all overlapping arms are released; no release date established.",
+      "released_at": null,
+      "status": "WAIT"
+    }
+  ],
+  "reason": "Recover the registered WNBA replay artifacts and pinned wehoop schedule inputs; the count proxy is already beyond the props endpoint. Preserve the protected windows and exclude after-tip overrides from future pregame tests. Phase 1 fitting has not started.",
+  "schema_version": "process-audit-v1",
+  "validation": {
+    "count_passes": 2,
+    "models_fitted": 0,
+    "offline_checks": 26,
+    "protected_arms_scored": 0
+  }
+}

@@ -293,6 +293,15 @@ def review_process_audit(path, receipt_path):
         require(evidence.resolve().is_relative_to(root), 'Evidence escapes audit directory')
         require(digest(evidence) == row['sha256'], 'Audit evidence checksum differs: ' + row['path'])
     require(receipt['evidence'], 'Audit evidence manifest is empty')
+    implementation_root = Path(__file__).resolve().parents[1]
+    require(receipt.get('implementation'), 'Audit implementation manifest is empty')
+    for row in receipt['implementation']:
+        relative = Path(row['path'])
+        require(not relative.is_absolute() and '..' not in relative.parts,
+                'Implementation path must stay within repository')
+        source = implementation_root / relative
+        require(source.resolve().is_relative_to(implementation_root), 'Implementation path escapes repository')
+        require(digest(source) == row['sha256'], 'Audit implementation checksum differs: ' + row['path'])
     gates = result['gates']
     require({g['id'] for g in gates} == {'AUDIT', 'CLOCKS', 'WINDOWS', 'NEWS', 'RECEIPT'}
             and len(gates) == 5, 'Audit gates missing or duplicated')
@@ -314,6 +323,18 @@ def review_process_audit(path, receipt_path):
             require(arm.get('released_at') is None, 'Unscored arm cannot release outcomes')
         else:
             require(arm.get('evaluation_receipt'), 'Scored arm requires a one-time evaluation receipt')
+            relative = Path(arm['evaluation_receipt'])
+            require(not relative.is_absolute() and '..' not in relative.parts,
+                    'Evaluation receipt must stay within audit directory')
+            evaluation = root / relative
+            require(evaluation.resolve().is_relative_to(root), 'Evaluation receipt escapes audit directory')
+            require(any(r['path'] == relative.as_posix() for r in receipt['evidence']),
+                    'Evaluation receipt must be part of hashed evidence')
+            evaluated = json.loads(evaluation.read_text())
+            require(evaluated['arm'] == arm['arm'] and evaluated['status'] == 'complete',
+                    'Evaluation receipt belongs to wrong or incomplete arm')
+            require(evaluated.get('recipe_sha256') and evaluated.get('results_sha256'),
+                    'Evaluation receipt lacks recipe/results hashes')
             timestamp(arm['released_at'])
     news = result['news_baseline']
     for key in ('entries', 'eligible_entries', 'matched_entries'):

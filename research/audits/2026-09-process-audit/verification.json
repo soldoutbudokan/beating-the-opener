@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "protected_arms_scored": 0,
+  "source_files_verified": 1302,
+  "count_reproduction": true,
+  "scope": "Counts, timestamp classifications, hashes and protected bookkeeping; no accuracy/ROI metrics exist."
+}

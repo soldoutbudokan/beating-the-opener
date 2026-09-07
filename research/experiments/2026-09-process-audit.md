@@ -87,5 +87,18 @@ or in routine scripts is changed. No routine is enabled/disabled.
 
 ## Complete after the registered audit
 
-Results and decision: pending. The report will preserve this registration and
-link its pre-results commit. Each later phase receives its own PR and plan.
+**What happened:** the audit inventoried 242 availability snapshots and 554
+overrides. Of 221 uniquely timed dated entries, 26 were at/after tip. A count-only
+ESPN proxy exceeds the props endpoint, but the exact wehoop count, frozen
+calibration and original opener-arm forecast artifacts are not recoverable from
+this checkout. No protected arm was scored and no news accuracy was estimated.
+The two audit passes changed only the detail of saved timing evidence, not counts.
+
+**Decision:** collect the missing frozen inputs and pinned wehoop schedules.
+The [audit](../audits/2026-09-process-audit.md) records all five endpoints,
+the triage, prior 2025 uses, owner-only archive proposal and next conditions.
+Phase 1 fitting and later phases have not started. There is no new model claim.
+
+**Verification:** 26 offline checks and independent source recount pass; 1,302
+source-file hashes verified. Review command above generates the decision brief.
+Pre-results registration: `5bfd24d0f669eba88b793d4153ea4a3ebd4556be`.
