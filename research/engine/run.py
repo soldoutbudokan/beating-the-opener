@@ -269,15 +269,97 @@ def make_forecasts(raw, recipe, hours=8):
                        'input_records': input_records}
 
 
+def _saved_instant(value):
+    parsed = datetime.fromisoformat(value.replace('Z', '+00:00'))
+    if parsed.tzinfo is None:
+        raise ValueError('Saved source clock lacks timezone')
+    return parsed
+
+
+class _SavedManifestVerifier:
+    """Verify exact canonical bytes while reusing immutable source fragments.
+
+    This cache is local to one verification call. Keys contain the actual
+    request, schema and checked reference sequence, never the claimed hash.
+    Each source record's canonical JSON and clock fields are detached once;
+    subsequent caller mutations cannot change the bytes being certified.
+    """
+    def __init__(self, input_records):
+        from .store import canonical_json
+        self._canonical_json = canonical_json
+        self._record_json = None
+        self._clocks = None
+        self._verified = {}
+        if input_records is not None:
+            # JSON-decoding the canonical string gives an immutable-by-ownership
+            # snapshot for clock checks without retaining caller-owned mappings.
+            self._record_json = tuple(canonical_json(record).encode('utf-8')
+                                      for record in input_records)
+            self._clocks = tuple(self._source_clocks(json.loads(record))
+                                 for record in self._record_json)
+
+    @staticmethod
+    def _source_clocks(source):
+        return (source['season'], _saved_instant(source['available_at']),
+                _saved_instant(source['effective_at']), source['kind'], source['event_id'])
+
+    @staticmethod
+    def _check_clocks(clocks, request):
+        as_of = _saved_instant(request['as_of'])
+        for season, available, effective, kind, event in clocks:
+            if season >= 2026 or available >= as_of:
+                raise ValueError('Saved forecast consumes future/protected evidence')
+            if kind in ('historical_outcome', 'final_roster') and (
+                    event == request['event_id'] or effective >= as_of):
+                raise ValueError('Saved forecast consumes target-game outcome/roster')
+
+    def verify(self, manifest, request, expected_hash):
+        if manifest.get('request') != request:
+            raise ValueError('Saved input manifest hash or request differs')
+        if 'observation_ids' not in manifest:
+            if set(manifest) != {'schema', 'request', 'observations'}:
+                raise ValueError('Saved input manifest has unsupported fields')
+            raw = self._canonical_json(manifest).encode('utf-8')
+            actual_hash = hashlib.sha256(raw).hexdigest()
+            if actual_hash != expected_hash:
+                raise ValueError('Saved input manifest hash or request differs')
+            self._check_clocks((self._source_clocks(source) for source in manifest['observations']), request)
+            return actual_hash
+        if set(manifest) != {'schema', 'request', 'observation_ids'}:
+            raise ValueError('Saved input manifest has unsupported fields')
+        if self._record_json is None:
+            raise ValueError('Shared saved source records are missing')
+        ids = manifest['observation_ids']
+        if (not isinstance(ids, (list, tuple)) or
+                any(type(i) is not int or not 0 <= i < len(self._record_json) for i in ids)):
+            raise ValueError('Saved source record reference is invalid')
+        schema_json = self._canonical_json(manifest['schema']).encode('utf-8')
+        request_json = self._canonical_json(request).encode('utf-8')
+        key = (schema_json, request_json, tuple(ids))
+        actual_hash = self._verified.get(key)
+        if actual_hash is None:
+            # These are exactly canonical_json's sorted keys and separators;
+            # individual records retain their original order and canonical bytes.
+            raw = (b'{"observations":[' + b','.join(self._record_json[i] for i in ids) +
+                   b'],"request":' + request_json + b',"schema":' + schema_json + b'}')
+            actual_hash = hashlib.sha256(raw).hexdigest()
+            if actual_hash != expected_hash:
+                raise ValueError('Saved input manifest hash or request differs')
+            self._check_clocks((self._clocks[i] for i in ids), request)
+            self._verified[key] = actual_hash
+        # A caller can claim a different hash on a repeated manifest. The cache
+        # saves verification work, never this per-row equality check.
+        if actual_hash != expected_hash:
+            raise ValueError('Saved input manifest hash or request differs')
+        return actual_hash
+
+
 def saved_distributions(rows, recipe=None, input_records=None):
     from .model import price_forecast
     from .store import payload_digest
     from scipy.stats import nbinom, poisson
-    def stamp(value):
-        parsed = datetime.fromisoformat(value.replace('Z', '+00:00'))
-        if parsed.tzinfo is None:
-            raise ValueError('Saved source clock lacks timezone')
-        return parsed
+    stamp = _saved_instant
+    manifests = _SavedManifestVerifier(input_records)
     implementation_hash = payload_digest({'implementation': implementation()})
     expected_model_hash = payload_digest({'recipe_hash': recipe['recipe_hash'], 'implementation_hash': implementation_hash}) if recipe else None
     for row in rows:
@@ -296,27 +378,11 @@ def saved_distributions(rows, recipe=None, input_records=None):
                 row['implementation_hash'] != implementation_hash or f['implementation_hash'] != implementation_hash):
             raise ValueError('Saved forecast model identity differs from code and recipe')
         request, manifest = f['request'], f['input_manifest']
-        if 'observation_ids' in manifest:
-            if input_records is None:
-                raise ValueError('Shared saved source records are missing')
-            ids = manifest['observation_ids']
-            if any(type(i) is not int or not 0 <= i < len(input_records) for i in ids):
-                raise ValueError('Saved source record reference is invalid')
-            manifest = {'schema': manifest['schema'], 'request': manifest['request'],
-                        'observations': [input_records[i] for i in ids]}
         if (request['entity_id'] != row['player_id'] or request['event_id'] != row['game_id'] or
                 stamp(request['as_of']) != stamp(row['as_of']) or
                 stamp(request['tip_at']) != stamp(row['tip_at']) or request['season'] != 2025):
             raise ValueError('Saved forecast request differs from quote identity/clock')
-        if manifest['request'] != request or payload_digest(manifest) != f['input_manifest_hash']:
-            raise ValueError('Saved input manifest hash or request differs')
-        for source in manifest['observations']:
-            if source['season'] >= 2026 or stamp(source['available_at']) >= stamp(request['as_of']):
-                raise ValueError('Saved forecast consumes future/protected evidence')
-            if source['kind'] in ('historical_outcome', 'final_roster') and (
-                    source['event_id'] == request['event_id'] or
-                    stamp(source['effective_at']) >= stamp(request['as_of'])):
-                raise ValueError('Saved forecast consumes target-game outcome/roster')
+        manifests.verify(manifest, request, f['input_manifest_hash'])
         baseline = row['baseline_distribution']
         mu, alpha = baseline['mean'], baseline['alpha']
         dist = poisson(mu) if alpha <= 0 else nbinom(1/alpha,1/(1+alpha*mu))

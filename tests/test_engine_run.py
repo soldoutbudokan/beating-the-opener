@@ -171,5 +171,69 @@ class RunnerTests(unittest.TestCase):
                 run.saved_distributions([row], recipe, [source])
 
 
+class SavedManifestCacheTests(unittest.TestCase):
+    """Caching must preserve canonical hashes and never trust a claimed hash."""
+
+    def fixture(self):
+        from research.engine.store import payload_digest
+        request = {'entity_id': 'p', 'event_id': 'g', 'team_id': 'A', 'opponent_id': 'B',
+                   'season': 2025, 'as_of': '2025-06-01T00:00:00Z', 'tip_at': '2025-06-02T00:00:00Z'}
+        records = [{'source_id': 'historical-évidence', 'record_id': str(i), 'entity_id': 'p',
+                    'kind': 'historical_outcome', 'event_id': f'old-{i}', 'season': 2024,
+                    'available_at': '2024-06-01T08:00:00Z', 'effective_at': '2024-06-01T00:00:00Z',
+                    'payload_hash': str(i)*64} for i in range(2)]
+        compact = {'schema': 'structural-inputs-v1', 'request': request, 'observation_ids': [0, 1]}
+        full = {'schema': compact['schema'], 'request': request, 'observations': records}
+        return request, records, compact, full, payload_digest(full)
+
+    def test_cached_and_embedded_manifests_keep_canonical_hash(self):
+        request, records, compact, full, expected = self.fixture()
+        verifier = run._SavedManifestVerifier(records)
+        # Full embedded and compact manifests encode exactly the same input.
+        verifier.verify(full, request, expected)
+        verifier.verify(compact, request, expected)
+        verifier.verify(copy.deepcopy(compact), copy.deepcopy(request), expected)
+        # Reordering consumed observations must preserve the caller's actual
+        # order in the hash; a cache keyed only by the supplied hash is unsafe.
+        reordered = copy.deepcopy(compact)
+        reordered['observation_ids'].reverse()
+        with self.assertRaises(ValueError):
+            verifier.verify(reordered, request, expected)
+
+    def test_same_claimed_hash_cannot_hide_changed_reference_or_request(self):
+        request, records, compact, _, expected = self.fixture()
+        verifier = run._SavedManifestVerifier(records)
+        verifier.verify(compact, request, expected)
+        changed = copy.deepcopy(compact); changed['observation_ids'] = [1]
+        with self.assertRaises(ValueError):
+            verifier.verify(changed, request, expected)
+        changed = copy.deepcopy(compact); changed['request']['team_id'] = 'C'
+        with self.assertRaises(ValueError):
+            verifier.verify(changed, changed['request'], expected)
+        changed = copy.deepcopy(compact); changed['observation_ids'] = [False, True]
+        with self.assertRaises(ValueError):
+            verifier.verify(changed, request, expected)
+
+    def test_fresh_verification_rejects_changed_shared_records(self):
+        request, records, compact, full, expected = self.fixture()
+        run._SavedManifestVerifier(records).verify(compact, request, expected)
+        records[0]['payload_hash'] = 'changed'
+        with self.assertRaises(ValueError):
+            run._SavedManifestVerifier(records).verify(compact, request, expected)
+        # Updating the claimed checksum still cannot legitimize future data.
+        from research.engine.store import payload_digest
+        records[0]['available_at'] = request['as_of']
+        with self.assertRaises(ValueError):
+            run._SavedManifestVerifier(records).verify(compact, request, payload_digest(full))
+
+    def test_cached_identity_does_not_accept_extra_manifest_fields(self):
+        request, records, compact, _, expected = self.fixture()
+        verifier = run._SavedManifestVerifier(records)
+        verifier.verify(compact, request, expected)
+        changed = copy.deepcopy(compact); changed['unexpected'] = 'not hashed'
+        with self.assertRaises(ValueError):
+            verifier.verify(changed, request, expected)
+
+
 if __name__ == '__main__':
     unittest.main()
