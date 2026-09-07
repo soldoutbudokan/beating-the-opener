@@ -1,8 +1,15 @@
 # Structural and news research programme
 
 PR #4 contains the implementation and tests for the owner-directed programme.
-It remains unmerged. The dated registrations in `experiments/` define the
-statistical gates; implementation does not waive them.
+It was merged on September 7, 2026, after the owner authorized merging and the
+published code passed review and CI. The dated registrations in `experiments/`
+define the statistical gates; implementation does not waive them.
+
+The owner's next instruction is to build the model and operating process
+together toward reliable, minimally supervised market comparisons. The
+[operations guide](operations/README.md) describes scheduled collection,
+health monitoring and model eligibility. The [bounded follow-up registration](experiments/2026-09-autonomous-process-diagnosis.md)
+preserves the original experiment while diagnosing its saved forecasts.
 
 ## Components
 

@@ -1,0 +1,108 @@
+name: Market data collection
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'research/operations/**'
+      - '.github/workflows/market-data-collection.yml'
+
+# Only this capture job can append its explicitly allowed data paths. The
+# offline research checks retain read-only permissions in their own workflow.
+permissions:
+  contents: write
+
+concurrency:
+  group: market-data-collection
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    if: github.repository == 'soldoutbudokan/beating-the-opener' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      COLLECTION_RUN_ID: gh-${{ github.run_id }}-${{ github.run_attempt }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: true
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /research/operations/
+            /research/engine/requirements.txt
+            /cricket/data/raw/polymarket/markets.parquet
+            /cricket/data/raw/polymarket/prices.parquet
+            /cricket/src/fetch_polymarket.py
+            /wnba/src/live_pipeline.py
+            /data/operations/
+      - name: Install pinned dependencies
+        run: |
+          python3.12 -m venv .venv
+          .venv/bin/python -m pip install -r research/engine/requirements.txt
+      - name: Preserve previous notification state
+        run: |
+          if [ -f data/operations/status.json ]; then
+            cp data/operations/status.json "$RUNNER_TEMP/previous-operations-status.json"
+          fi
+      - name: Capture sources and measure coverage
+        id: capture
+        continue-on-error: true
+        env:
+          BETTINGPROS_API_KEY: ${{ secrets.BETTINGPROS_API_KEY }}
+        shell: bash
+        run: |
+          probe_args=()
+          if [ ! -f data/operations/state.json ] || [ "$(date -u +%H)" = 03 ]; then
+            probe_args=(--probe-resolved)
+          fi
+          .venv/bin/python -m research.operations.collection \
+            --repo . --output data/operations --run-id "$COLLECTION_RUN_ID" \
+            "${probe_args[@]}"
+      - name: Evaluate data health and model eligibility
+        id: control
+        if: always() && steps.capture.outcome != 'skipped'
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p "data/operations/runs/$COLLECTION_RUN_ID/control"
+          previous_status_args=()
+          if [ -f "$RUNNER_TEMP/previous-operations-status.json" ]; then
+            previous_status_args=(--previous "$RUNNER_TEMP/previous-operations-status.json")
+          fi
+          control_exit_code=0
+          .venv/bin/python -m research.operations.control \
+            --health data/operations/health.json \
+            --policy research/operations/policy.json "${previous_status_args[@]}" \
+            --output "data/operations/runs/$COLLECTION_RUN_ID/control/status.json" \
+            --decisions "data/operations/runs/$COLLECTION_RUN_ID/control/decisions.jsonl" || control_exit_code=$?
+          if [ -f "data/operations/runs/$COLLECTION_RUN_ID/control/status.json" ]; then
+            cp "data/operations/runs/$COLLECTION_RUN_ID/control/status.json" data/operations/status.json
+          fi
+          exit "$control_exit_code"
+      - name: Preserve captured observations and status
+        id: publish
+        if: always() && steps.capture.outcome != 'skipped'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          .venv/bin/python -m research.operations.publish \
+            --repo . --output data/operations --run-id "$COLLECTION_RUN_ID"
+      - name: Report operational result
+        if: always()
+        env:
+          CAPTURE_OUTCOME: ${{ steps.capture.outcome }}
+          CONTROL_OUTCOME: ${{ steps.control.outcome }}
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+        run: |
+          printf 'Capture: %s\nControl: %s\nPersistence: %s\n' \
+            "$CAPTURE_OUTCOME" "$CONTROL_OUTCOME" "$PUBLISH_OUTCOME" >> "$GITHUB_STEP_SUMMARY"
+          if [ "$CAPTURE_OUTCOME" != success ] || [ "$CONTROL_OUTCOME" != success ] || [ "$PUBLISH_OUTCOME" != success ]; then
+            exit 1
+          fi

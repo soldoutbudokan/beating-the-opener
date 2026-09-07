@@ -1,0 +1,6 @@
+{
+  "schema": "operations-notification-cursor-v1",
+  "seen_event_ids": [],
+  "last_reported_watch_problem": null,
+  "last_notification_at": null
+}
