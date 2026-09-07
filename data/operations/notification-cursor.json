@@ -1,6 +1,9 @@
 {
-  "schema": "operations-notification-cursor-v1",
-  "seen_event_ids": [],
+  "last_notification_at": "2026-09-07T21:34:32Z",
   "last_reported_watch_problem": null,
-  "last_notification_at": null
+  "schema": "operations-notification-cursor-v1",
+  "seen_event_ids": [
+    "0d7ef74e543117209f677c1e",
+    "c7551517fec816cb53ac45b9"
+  ]
 }
