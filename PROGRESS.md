@@ -2547,3 +2547,16 @@ opener/close gates, controls, invariance tests and saved-row reproduction. The
 Source recovery and software-only fixtures are preparatory work. Phase 2 awaits
 Phase 1 calibration; the later markets also await their protected endpoints.
 All prior uses of 2025 remain disclosed. No live/routine change or merge.
+
+### Owner-directed overdue props execution — 2026-09-07
+
+The owner clarified that fresh-download reconstruction of each pinned recipe's
+pre-2026 parameters is authorized and that both props arms should be scored now,
+with missing original bundles disclosed. This supersedes the Phase 0 artifact
+block without rewriting its historical audit. The [execution amendment](research/experiments/2026-09-overdue-props-reconstruction.md)
+preserves pinned code, original gates, the August 4 ASG transition, separate
+August 1–3 reconstruction caveats, count-defined endpoints and one-run receipts.
+Both scores precede release for the human-news baseline. The owner also requested
+an immediate Polymarket fetch/resolved-market backfill check and a diagnosis of
+FanDuel source-book coverage and the live FanDuel-only filter. No routine state
+change or live model replacement is authorized by these research checks.
