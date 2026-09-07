@@ -1,0 +1,55 @@
+{
+  "completed_at": "2026-09-07T16:26:49.697772+00:00",
+  "evidence": [
+    {
+      "path": "counts.json.gz",
+      "sha256": "162f55416a178749b116d9423a58d1d8295f1b118f5f0ee3aaff324950efbd55"
+    },
+    {
+      "path": "timestamps.md",
+      "sha256": "dd53095b661d0a3717fbfbc7a729815e00db323905752bd3d44dbef8973d1fc0"
+    },
+    {
+      "path": "note.md",
+      "sha256": "bd576ae353c70b87fe4500d2be967611f024995d2dfce72f9a42bd8d67d559fd"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "16c9abdf342576799640ede767473efec50e29ffa91062738a14b235d075e4af"
+    },
+    {
+      "path": "calendar-source.json",
+      "sha256": "6a5856ff546f2bf7aeac693e38f6091ae0940ea0066b5c4ebf91b012f3d3104a"
+    }
+  ],
+  "implementation": [
+    {
+      "path": "tools/research.py",
+      "sha256": "5c915ba09a6ccb104431e0659dd5da7e512dee3f6b6c735318d4ab4018436fc2"
+    },
+    {
+      "path": "tools/process_audit.py",
+      "sha256": "a67f7e5a02a4e091acced1e5524ae8b8299e4f27b56bdc36dcb71032845b8694"
+    },
+    {
+      "path": "tools/verify_process_audit.py",
+      "sha256": "3afff3fd7d9243df5e6375c24b987d41aeba9dc15b6bdc5bfc7aad5978848fcd"
+    },
+    {
+      "path": "research/clocks.py",
+      "sha256": "e893cea4fa85f327c4f66568f7c9f05cec23f1eee35d7bb3e1da74ee08f3009c"
+    },
+    {
+      "path": "research/__init__.py",
+      "sha256": "6ad9e5bc8808bdb3f0e9ad36bcdfdbf4e30fc500b924380d242a55706a76a0cc"
+    }
+  ],
+  "kind": "count-only process audit; no protected evaluation",
+  "models_fitted": 0,
+  "protected_arms_scored": 0,
+  "registration_commit": "5bfd24d0f669eba88b793d4153ea4a3ebd4556be",
+  "results_sha256": "a53ea212d82d810b132db67c496f493cb19951887faecbd656de08133565aaf6",
+  "schema_version": "process-audit-receipt-v1",
+  "source_commit": "d2b5e685ce10d9670fc93bf8c22810bc8cc5df83",
+  "status": "complete"
+}

@@ -1,0 +1,9 @@
+{
+  "source": "https://www.wnba.com/keydates",
+  "title": "Key Dates: 2026 WNBA Season",
+  "checked_on": "2026-09-07",
+  "regular_season_last_day": "2026-09-24",
+  "finals_begin": "2026-10-17",
+  "finals_last_possible_game": "2026-10-31",
+  "qualification": "Dates are subject to change; actual postseason completion controls the game-arm endpoint."
+}

@@ -2476,3 +2476,87 @@ not merged under the standing routine/fill publishing rule.
   synthetic source pilot make the process reviewable. Existing WNBA code,
   original experiment files, live ledgers, routines and protected test periods
   are unchanged. No new data-access claim or betting-edge claim is made.
+
+
+## News / structural programme — Phase 0 registration, 2026-09-07
+
+Owner-directed programme superseding PR #2; one PR per phase against main.
+Plan: `research/experiments/2026-09-process-audit.md`. The process-audit review
+adapter is committed before measurements. Phase 0 audits validity, source clocks,
+news assets, prior 2025 reuse, and protected-arm endpoints; no modelling.
+Count-only accrual precedes any scoring, which requires the exact registered
+recipe and a reached endpoint. Unrecoverable artifacts leave the window sealed.
+The 2026-08-03 ASG amendment is preserved. Human news-to-minutes scoring waits
+for all overlapping protected windows to be released. All later phases retain
+the owner's gates, two-iteration limits and separate registrations. Live files,
+routine scripts and routine state are outside this change. Results are recorded below.
+
+
+### Phase 0 result — 2026-09-07: collect missing frozen inputs
+
+Report: `research/audits/2026-09-process-audit.md`; generated brief, compact
+metrics, receipt, compressed count evidence and plain-language note are in
+`research/audits/2026-09-process-audit/`. Registration and review adapter were
+pushed at `5bfd24d0f669eba88b793d4153ea4a3ebd4556be` before measurements.
+
+- The six validity requirements are triaged across WNBA live/current source,
+  PR #2 and cricket. Their source is unchanged from the September issue #1
+  audit. Repairs required for research and owner-only live proposals are explicit.
+- Archive: 242 availability snapshots, 554 overrides, 413 seen news IDs and
+  zero raw news payloads. Of 221 overrides matched to one event, 195 precede
+  tip and 26 do not; 333 remain unresolved, including 211 until-cleared
+  entries. The brief's blanket pregame timestamp assumption does not hold.
+- Props: 6,711 coherent unique opening pairs; isolated ESPN eligibility proxy
+  6,324, crossing 3,000 on August 15. This is NOT the registered wehoop n.
+  Exact frozen calibration/input artifacts and identifiable original
+  August 1-3 opener-arm forecasts are missing. Live CSV base probabilities
+  exist but cannot establish the registered replay from their metadata.
+  Both props arms are BLOCKED, potentially overdue; no score was computed.
+- The WNBA game arm includes playoffs and is not due at the September 24
+  regular-season end (official last possible Finals game October 31).
+  Cricket archive has zero closed markets after either lock, despite
+  1,163,261 intermediate price observations. Arm-one recipe history and
+  closure-versus-resolution semantics need reconciliation before scoring.
+- Zero post-endpoint news entries unlocked: human minutes/status accuracy
+  remains unestimated. No prospective arm released, no model fitted, no
+  live/routine change. Phase 1 and later phases have not started.
+- All 26 focused offline checks pass. Independent source recount exactly
+  reproduces the saved evidence and verifies 1,302 input hashes. Outputs
+  refuse overwrites. Actual pinned-wehoop dual-clock verification remains
+  blocked; synthetic clock tests are not a claim about unseen source bytes.
+- 2025 reuse is inventoried by documented experiment in the report and
+  carried into the generated brief. No new independent or betting-edge claim.
+
+Decision: collect the missing frozen replay artifacts and pinned schedules;
+keep the human baseline and subsequent gated stages blocked as documented.
+Raw narrative-news archiving on every successful firing is a concrete proposal
+for the owner, not an implemented or authorized routine change. PR delivery
+governs this programme; this work is not merged under the routine/fill rule.
+
+
+## News / structural programme — full implementation registration, 2026-09-07
+
+The owner requested the full stack with tests before merging PR #4 and authorized
+one combined PR or several smaller ones. The unmerged programme PR will contain
+separate registration, implementation and result commits.
+
+[Phase 1 registration](research/experiments/2026-09-structural-props.md) fixes the
+source pilot, two-recipe budget, frozen 2025 quote population, calibration/count/
+opener/close gates, controls, invariance tests and saved-row reproduction. The
+`structural-v1` review adapter is pushed before fitting or new model scores.
+Source recovery and software-only fixtures are preparatory work. Phase 2 awaits
+Phase 1 calibration; the later markets also await their protected endpoints.
+All prior uses of 2025 remain disclosed. No live/routine change or merge.
+
+### Owner-directed overdue props execution — 2026-09-07
+
+The owner clarified that fresh-download reconstruction of each pinned recipe's
+pre-2026 parameters is authorized and that both props arms should be scored now,
+with missing original bundles disclosed. This supersedes the Phase 0 artifact
+block without rewriting its historical audit. The [execution amendment](research/experiments/2026-09-overdue-props-reconstruction.md)
+preserves pinned code, original gates, the August 4 ASG transition, separate
+August 1–3 reconstruction caveats, count-defined endpoints and one-run receipts.
+Both scores precede release for the human-news baseline. The owner also requested
+an immediate Polymarket fetch/resolved-market backfill check and a diagnosis of
+FanDuel source-book coverage and the live FanDuel-only filter. No routine state
+change or live model replacement is authorized by these research checks.
