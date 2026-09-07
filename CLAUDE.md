@@ -24,6 +24,13 @@ from the `nba-win-prob` repo, and the repo's only from-scratch model) and
 its scripts from inside its directory. Push directly to main (solo project).
 
 Rules that apply everywhere:
+- For new research, use `research/WORKFLOW.md` and its short experiment template:
+  inspect the existing errors, pilot the needed source, bound the comparison,
+  and lead with a decision brief. Use timestamp and future-data invariance
+  checks for leakage; a feature/outcome correlation cutoff is not sufficient.
+  Preserve earlier registrations and results. A current explicit user request
+  for a PR governs that task's delivery; do not merge that PR under the standing
+  routine/fill publishing workflow below.
 - **Do not resume live betting, un-pause the experiment, or re-enable
   `edge-watch` without the user explicitly asking.** The pause is a decision,
   not an outage.

@@ -1,0 +1,7 @@
+query_id,family,entity_id,event_id,source_id,prediction_at,available_at,matched,value
+sample-1,role,example-player-1,example-game-1,example-note-1,2025-05-20T12:00:00Z,2025-05-20T10:00:00Z,true,normal
+sample-2,role,example-player-2,example-game-1,,2025-05-20T12:00:00Z,,false,
+sample-3,role,example-player-3,example-game-1,example-note-3,2025-05-20T12:00:00Z,2025-05-20T11:00:00Z,true,limited
+sample-1,shot_profile,example-player-1,example-game-1,example-history-1,2025-05-20T12:00:00Z,2025-05-18T12:00:00Z,true,0.5
+sample-2,shot_profile,example-player-2,example-game-1,example-history-2,2025-05-20T12:00:00Z,2025-05-18T12:00:00Z,true,0.4
+sample-3,shot_profile,example-player-3,example-game-1,example-history-3,2025-05-20T12:00:00Z,2025-05-18T12:00:00Z,true,0.3

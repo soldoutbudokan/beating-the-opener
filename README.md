@@ -10,6 +10,10 @@ processes work, where the results stand, and what the 2026-09-04 audit
 ([issue #1](https://github.com/soldoutbudokan/beating-the-opener/issues/1))
 found.
 
+**Working on the next model? Start with the [research workflow](research/WORKFLOW.md)**
+— check a small data sample, run one useful comparison, and publish a clear
+decision with reproducible evidence.
+
 > ## ▶️ WNBA live betting RE-OPENED — 2026-07-31 (v3, from-scratch)
 >
 > The anchored architecture was retired on the morning of 2026-07-31 (its
