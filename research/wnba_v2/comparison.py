@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 from copy import deepcopy
 import json
 import math
@@ -129,7 +130,7 @@ def freeze_scalars(rows, recipe):
     return result
 
 
-def raw_reconciler(data, competitive_games=None):
+def raw_reconciler(data, competitive_games=None, *, omitted_player_keys=(), omitted_team_keys=()):
     """Independent raw-to-observation arithmetic, without the source adapter."""
     players = {}
     minutes_by_team = {}
@@ -138,8 +139,6 @@ def raw_reconciler(data, competitive_games=None):
         if competitive_games is not None and row["game_id"] not in competitive_games:
             continue
         key = row["game_id"], row["athlete_id"]
-        previous.require(key not in players, "Duplicate raw player identity")
-        players[key] = row
         roster_by_team.setdefault((row["game_id"], row["team_id"]), set())
         if row["athlete_id"] is not None and pd.notna(row["athlete_id"]):
             roster_by_team[(row["game_id"], row["team_id"])].add(row["athlete_id"])
@@ -147,11 +146,17 @@ def raw_reconciler(data, competitive_games=None):
         if pd.notna(minutes):
             team = row["game_id"], row["team_id"]
             minutes_by_team[team] = minutes_by_team.get(team, 0.) + float(minutes)
+        if key in omitted_player_keys:
+            continue
+        previous.require(key not in players, "Duplicate raw player identity")
+        players[key] = row
     teams = {}
     for row in data.team_box.to_dict("records"):
         if competitive_games is not None and row["game_id"] not in competitive_games:
             continue
         key = row["game_id"], row["team_id"]
+        if key in omitted_team_keys:
+            continue
         previous.require(key not in teams, "Duplicate raw team identity")
         teams[key] = row
     schedules = {row["game_id"]: row for row in data.schedule.to_dict("records")}
@@ -178,14 +183,22 @@ def raw_reconciler(data, competitive_games=None):
             return
         p, game = observation.payload, observation.event_id
         team = p["team_id"]
+        previous.require(observation.season == schedules[game]["season"] == observation.effective_at.year,
+                         "Observation season differs from schedule/event year")
+        previous.require(observation.season == teams[(game, team)]["season"], "Raw team season differs")
+        previous.require((game, team) not in omitted_team_keys, "Quarantined team key was consumed")
+        if p["record_type"] == "player_box":
+            previous.require((game, observation.entity_id) not in omitted_player_keys, "Quarantined player key was consumed")
         expected = team_values(game, team)
         for key, value in expected.items():
             previous.close(p[key], value, "Raw team measurement differs: " + key)
         if p["record_type"] == "team_box":
+            previous.require(observation.entity_id == team, "Team entity differs from payload team")
             previous.close(p["points"], float(teams[(game, team)]["team_score"]), "Raw team score differs")
             previous.close(p["roster_count"], len(roster_by_team.get((game, team), set())), "Raw roster count differs")
         else:
             raw = players[(game, observation.entity_id)]
+            previous.require(observation.season == raw["season"], "Raw player season differs")
             previous.close(raw["team_id"], team, "Raw player team differs")
             previous.close(raw["opponent_team_id"], p["opponent_id"], "Raw player opponent differs")
             minutes, dnp = nullable(raw.get("minutes")), flag(raw.get("did_not_play"))
@@ -208,12 +221,117 @@ def raw_reconciler(data, competitive_games=None):
     return validate
 
 
-def source_check(data, observations, sample, recipe, deadline):
+def quarantine_inventory(data, observations, *, enabled):
+    """Identify only fully omitted legacy keys; never deduplicate a used row."""
+    audit = data.quality["wnba_v2_source_audit"]
+    raw_players, raw_teams = data.player_box.to_dict("records"), data.team_box.to_dict("records")
+    previous.require(len(audit["player_rows"]) == len(raw_players) and len(audit["team_rows"]) == len(raw_teams),
+                     "Full raw source audit is required")
+    groups = {"player": {}, "team": {}}
+    for kind, raw, rows, entity in (("player", raw_players, audit["player_rows"], "athlete_id"),
+                                    ("team", raw_teams, audit["team_rows"], "team_id")):
+        previous.require({r["source_row"] for r in rows} == set(range(len(raw))), "Raw audit ordinals are incomplete")
+        for row in rows:
+            original_row = raw[row["source_row"]]
+            key = original_row["game_id"], original_row[entity]
+            previous.require(key == (row["game_id"], row["player_id" if kind == "player" else "team_id"]), "Audit identity differs from raw row")
+            previous.require(original_row["team_id"] == row["team_id"], "Audit team differs from raw row")
+            groups[kind].setdefault(key, []).append((original_row["season"], row))
+    allowed = {"player": set(), "team": set()}
+    if enabled:
+        for kind in allowed:
+            for key, rows in groups[kind].items():
+                if all(int(year) < 2015 and row["status"] == "omitted" for year, row in rows):
+                    allowed[kind].add(key)
+        # Omitted players still appear in raw roster counts and may contribute
+        # to team-duration fallbacks. They are not fully quarantined when their
+        # associated team context is admitted to the model.
+        admitted_teams = {(o.event_id, o.entity_id) for o in observations if o.payload.get("record_type") == "team_box"}
+        allowed["player"] = {key for key in allowed["player"] if all(
+            (row["game_id"], row["team_id"]) not in admitted_teams for _, row in groups["player"][key])}
+    for row in observations:
+        kind = "player" if row.payload.get("record_type") == "player_box" else "team"
+        key = row.event_id, row.entity_id
+        previous.require(key not in allowed[kind], "Quarantined key appears in normalized observations")
+        previous.require(key in groups[kind] and len(groups[kind][key]) == 1 and
+                         groups[kind][key][0][1]["status"] == "included", "Included identity is ambiguous or absent from audit")
+    expected = {(kind, key) for kind in groups for key, rows in groups[kind].items()
+                if any(row["status"] == "included" for _, row in rows)}
+    actual = [("player" if o.payload.get("record_type") == "player_box" else "team", (o.event_id, o.entity_id)) for o in observations]
+    previous.require(len(actual) == len(set(actual)) and set(actual) == expected,
+                     "Included raw audit and normalized observations are not a bijection")
+    breakdown = {}
+    for kind in groups:
+        rows = [(year, row) for key in allowed[kind] for year, row in groups[kind][key]]
+        breakdown[kind] = {str(year): {"rows": sum(y == year for y, _ in rows),
+            "causes": dict(Counter(reason for y, row in rows if y == year
+                                   for reason in row["omissions" if kind == "player" else "issues"]))}
+            for year in sorted({year for year, _ in rows})}
+    return {"enabled": enabled, "player_keys": sorted([list(k) for k in allowed["player"]]),
+            "team_keys": sorted([list(k) for k in allowed["team"]]),
+            "player_rows": sum(len(groups["player"][k]) for k in allowed["player"]),
+            "team_rows": sum(len(groups["team"][k]) for k in allowed["team"]),
+            "quarantined_keys_consumed": 0,
+            "quarantined_player_team_lineage_used": 0,
+            "by_season_and_cause": breakdown,
+            "meaning": "Only all-omitted pre-2015 keys are quarantined; raw records and audit remain intact."}
+
+
+def verify_admitted_sources(data, observations, deadline=float("inf"), *, quarantine_pre2015=False):
+    """Source-only verification also reusable for the post-selection 2025 seed.
+
+    This does not run predictions, estimate parameters or permit 2025 labels in
+    the comparison. Its caller must enforce candidate selection before seed use.
+    """
+    for family in ("player_box", "team_box", "pbp", "schedule"):
+        frame = getattr(data, family)
+        if not frame.empty:
+            previous.require("season" in frame, "Source family lacks explicit seasons")
+            years = pd.to_numeric(frame.season, errors="raise")
+            previous.require(years.le(2025).all() and years.ge(2003).all() and years.eq(np.floor(years)).all(),
+                             "Source verification cannot inspect 2026 history")
+    previous.require(all(o.season <= 2025 and o.effective_at.year <= 2025 for o in observations),
+                     "Source verification cannot inspect 2026 history")
+    previous.require(all(o.kind is ObservationKind.HISTORICAL_OUTCOME and
+                         o.payload.get("record_type") in ("player_box", "team_box") for o in observations),
+                     "Admitted source must be a historical player or team box")
+    clocks = previous.independent_clocks(data)
+    quarantine = quarantine_inventory(data, observations, enabled=quarantine_pre2015)
+    omitted_players = {tuple(k) for k in quarantine["player_keys"]}
+    omitted_teams = {tuple(k) for k in quarantine["team_keys"]}
+    audit = data.quality["wnba_v2_source_audit"]
+    # A modern competitive omission cannot become an implicit quarantine.
+    hard_players = [r for r in audit["player_rows"] if r["game_id"] in clocks and r["status"] != "included" and
+                    (r["game_id"], r["player_id"]) not in omitted_players]
+    hard_teams = [r for r in audit["team_rows"] if r["game_id"] in clocks and r["issues"] and
+                  (r["game_id"], r["team_id"]) not in omitted_teams]
+    previous.require(not hard_players and not hard_teams, "Nonquarantined competitive source omissions or conflicts remain")
+    validate = raw_reconciler(data, clocks, omitted_player_keys=omitted_players, omitted_team_keys=omitted_teams)
+    checked = 0
+    for row in observations:
+        previous.check_time(deadline)
+        previous.require(row.event_id in clocks and [row.effective_at, row.available_at] == clocks[row.event_id],
+                         "Admitted source clock differs")
+        validate(row)
+        checked += 1
+    return {"status": "PASS_UNDER_ASSUMPTION", "quarantine": quarantine,
+            "admitted_records_reconciled": checked, "historical_timing": "assumed",
+            "max_source_season": max((o.season for o in observations), default=None)}
+
+
+def source_check(data, observations, sample, recipe, deadline, *, quarantine_pre2015=False):
     selected = {r["game_id"] for r in sample}
     clock = previous.independent_clocks(data)
     sides = {r["game_id"]: previous.scheduled_sides(r) for r in data.schedule.to_dict("records")}
     engine = model.ParticipationModel(observations, seed_configuration(recipe))
-    reconcile = raw_reconciler(data, clock)
+    try:
+        admitted = verify_admitted_sources(data, observations, deadline, quarantine_pre2015=quarantine_pre2015)
+    except ValueError as error:
+        return {"status": "FAIL", "setup_failure": str(error),
+                "meaning": "Admitted-source verification failed before scalar fitting"}
+    omitted_players = {tuple(k) for k in admitted["quarantine"]["player_keys"]}
+    omitted_teams = {tuple(k) for k in admitted["quarantine"]["team_keys"]}
+    reconcile = raw_reconciler(data, clock, omitted_player_keys=omitted_players, omitted_team_keys=omitted_teams)
     team_outcomes = {(o.event_id, o.entity_id): o for o in observations if o.payload.get("record_type") == "team_box"}
     rows = []
     for year in (2023, 2024):
@@ -257,9 +375,10 @@ def source_check(data, observations, sample, recipe, deadline):
             sample_rows.append(existing if existing is not None else dict(row, status="FAIL", reason="Requested raw row has no reconciled observation"))
     hard_causes = {"conflicting_player_identity", "invalid_player_identity", "player_schedule_season_conflict",
                    "explicit_dnp_conflict", "invalid_player_measurements", "player_team_opponent_conflict"}
-    hard_conflicts = [r for r in audit if r["game_id"] in clock and hard_causes.intersection(r["omissions"])]
+    hard_conflicts = [r for r in audit if r["game_id"] in clock and hard_causes.intersection(r["omissions"]) and
+                      (r["game_id"], r["player_id"]) not in omitted_players]
     hard_team_conflicts = [r for r in data.quality["wnba_v2_source_audit"]["team_rows"]
-                           if r["game_id"] in clock and r["issues"]]
+                           if r["game_id"] in clock and r["issues"] and (r["game_id"], r["team_id"]) not in omitted_teams]
     coverage = {}
     denominators = {}
     for year in range(2015, 2025):
@@ -282,6 +401,7 @@ def source_check(data, observations, sample, recipe, deadline):
               all(r["coverage"] >= .99 for r in coverage.values()))
     return {"status": "PASS_UNDER_ASSUMPTION" if passed else "FAIL", "coverage": coverage,
             "rows": sample_rows, "hard_conflicts": hard_conflicts, "hard_team_conflicts": hard_team_conflicts, "denominators": denominators,
+            "admitted_source_verification": admitted,
             "independent_state_tolerance": 1e-10,
             "meaning": "State, identities and clocks reconcile; historical source availability is assumed."}
 
@@ -399,9 +519,14 @@ def render(results):
     return "\n".join(lines)
 
 
-def run(raw, fit_directory, bundle, seal, output, registration, commit, *, budget_seconds=600):
+def run(raw, fit_directory, bundle, seal, output, registration, commit, *, budget_seconds=600,
+        source_policy=None, source_policy_commit=None):
     previous.require(type(budget_seconds) is int and 0 < budget_seconds <= BUDGET_SECONDS, "Budget exceeds fixed600 seconds")
     reg = registration_identity(registration, commit)
+    previous.require(bool(source_policy) == bool(source_policy_commit), "Source policy requires an exact registration and commit")
+    policy = registration_identity(source_policy, source_policy_commit) if source_policy else None
+    previous.require(policy is None or policy["path"] == "research/experiments/2026-09-wnba-v2-source-quarantine.md",
+                     "Unrecognized source-policy registration")
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
     deadline = perf_counter() + budget_seconds
@@ -414,12 +539,13 @@ def run(raw, fit_directory, bundle, seal, output, registration, commit, *, budge
     try:
         observations = sources.observations(data, availability_hours=8)
         previous.require(all(o.season <= 2024 and o.effective_at.year <= 2024 for o in observations), "Excluded source observation")
-        check = source_check(data, observations, sample, recipe, deadline)
+        check = source_check(data, observations, sample, recipe, deadline, quarantine_pre2015=policy is not None)
     except ValueError as error:
         check = {"status": "FAIL", "setup_failure": str(error), "meaning": "Source validation stopped before calibration"}
     previous.write(output / "source-quality.json", data.quality)
     previous.write(output / "source-check.json", check)
     results = {"schema": "wnba-participation-comparison-v1", "registration": reg,
+               "source_policy": policy,
                "inherited_recipe_provenance": provenance, "source_status": check["status"],
                "new_rate_or_minutes_fits": 0, "source_asset_max_season": 2024, "market_prices_read": 0}
     if check["status"] == "PASS_UNDER_ASSUMPTION":
@@ -454,6 +580,7 @@ def run(raw, fit_directory, bundle, seal, output, registration, commit, *, budge
         stream.write(render(results))
     code = [Path(__file__), Path(model.__file__), Path(sources.__file__)]
     receipt = {"schema": "wnba-v2-comparison-receipt-v1", "status": "complete", "registration": reg,
+               "source_policy": policy,
                "budget_seconds": budget_seconds, "implementation": [{"path": p.name, "sha256": digest(p)} for p in code],
                "artifacts": [{"path": p.name, "sha256": digest(p)} for p in sorted(output.iterdir()) if p.is_file()]}
     previous.write(output / "receipt.json", receipt)
@@ -467,8 +594,11 @@ def main(argv=None):
         parser.add_argument("--" + name, type=Path, required=True)
     parser.add_argument("--registration-commit", required=True)
     parser.add_argument("--budget-seconds", type=int, default=600)
+    parser.add_argument("--source-policy", type=Path)
+    parser.add_argument("--source-policy-commit")
     a = parser.parse_args(argv)
-    run(a.raw, a.fit_directory, a.bundle, a.seal, a.output, a.registration, a.registration_commit, budget_seconds=a.budget_seconds)
+    run(a.raw, a.fit_directory, a.bundle, a.seal, a.output, a.registration, a.registration_commit,
+        budget_seconds=a.budget_seconds, source_policy=a.source_policy, source_policy_commit=a.source_policy_commit)
 
 
 if __name__ == "__main__":
