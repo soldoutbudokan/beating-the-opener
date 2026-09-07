@@ -2476,3 +2476,17 @@ not merged under the standing routine/fill publishing rule.
   synthetic source pilot make the process reviewable. Existing WNBA code,
   original experiment files, live ledgers, routines and protected test periods
   are unchanged. No new data-access claim or betting-edge claim is made.
+
+
+## News / structural programme — Phase 0 registration, 2026-09-07
+
+Owner-directed programme superseding PR #2; one PR per phase against main.
+Plan: `research/experiments/2026-09-process-audit.md`. The process-audit review
+adapter is committed before measurements. Phase 0 audits validity, source clocks,
+news assets, prior 2025 reuse, and protected-arm endpoints; no modelling.
+Count-only accrual precedes any scoring, which requires the exact registered
+recipe and a reached endpoint. Unrecoverable artifacts leave the window sealed.
+The 2026-08-03 ASG amendment is preserved. Human news-to-minutes scoring waits
+for all overlapping protected windows to be released. All later phases retain
+the owner's gates, two-iteration limits and separate registrations. Live files,
+routine scripts and routine state are outside this change. Results pending.

@@ -277,6 +277,80 @@ def review_results(path, receipt_path, comparison, evidence_kind, minimum_gain=N
             'decision_limit': 'This report cannot authorize model adoption or live betting. Test freshness and any useful-gain threshold must be established in the original plan, not declared after seeing results.'}
 
 
+def review_process_audit(path, receipt_path):
+    """Validate the explicit Phase 0 schema; never opens protected outcomes."""
+    result = json.loads(Path(path).read_text())
+    receipt = json.loads(Path(receipt_path).read_text())
+    require(result['schema_version'] == 'process-audit-v1', 'Wrong process audit schema')
+    require(receipt['status'] == 'complete', 'Audit receipt is incomplete')
+    require(digest(path) == receipt['results_sha256'], 'Audit result checksum differs')
+    root = Path(receipt_path).resolve().parent
+    for row in receipt['evidence']:
+        relative = Path(row['path'])
+        require(not relative.is_absolute() and '..' not in relative.parts,
+                'Evidence must stay within the audit directory')
+        evidence = root / relative
+        require(evidence.resolve().is_relative_to(root), 'Evidence escapes audit directory')
+        require(digest(evidence) == row['sha256'], 'Audit evidence checksum differs: ' + row['path'])
+    require(receipt['evidence'], 'Audit evidence manifest is empty')
+    gates = result['gates']
+    require({g['id'] for g in gates} == {'AUDIT', 'CLOCKS', 'WINDOWS', 'NEWS', 'RECEIPT'}
+            and len(gates) == 5, 'Audit gates missing or duplicated')
+    require(all(g['status'] in {'PASS', 'FAIL', 'BLOCKED'} and g['reason'] for g in gates),
+            'Invalid audit gate status/reason')
+    arms = result['protected_arms']
+    expected = {'fp-prospective-1', 'fp-prospective-2', 'fp-games-prospective-1',
+                'pm-prospective-1', 'pm-prospective-2'}
+    require({a['arm'] for a in arms} == expected and len(arms) == 5, 'Missing/duplicate protected arm')
+    for arm in arms:
+        if arm['qualified_n'] is not None:
+            count(arm['qualified_n'], 'qualified_n')
+        count(arm['archive_upper_bound'], 'archive_upper_bound')
+        if arm['qualified_n'] is not None:
+            require(arm['qualified_n'] <= arm['archive_upper_bound'], 'Qualified count exceeds upper bound')
+        require(arm['status'] in {'WAIT', 'BLOCKED', 'SCORED'}, 'Invalid protected arm status')
+        require(bool(arm['endpoint']) and bool(arm['release_rule']), 'Missing endpoint/release rule')
+        if arm['status'] != 'SCORED':
+            require(arm.get('released_at') is None, 'Unscored arm cannot release outcomes')
+        else:
+            require(arm.get('evaluation_receipt'), 'Scored arm requires a one-time evaluation receipt')
+            timestamp(arm['released_at'])
+    news = result['news_baseline']
+    for key in ('entries', 'eligible_entries', 'matched_entries'):
+        count(news[key], key)
+    require(news['matched_entries'] <= news['eligible_entries'] <= news['entries'], 'News counts disagree')
+    if not news['eligible_entries']:
+        require(news['metrics'] is None, 'Protected news outcomes cannot have metrics')
+    require(result['prior_2025_uses'], 'Prior uses of 2025 must be disclosed')
+    require(result['decision'] in {'stop', 'collect missing input', 'prepare independent test'},
+            'Invalid audit decision')
+    result = dict(result, results_sha256=digest(path), receipt_sha256=digest(receipt_path))
+    return result
+
+
+def render_process_audit(result):
+    lines = ['# Phase 0 decision', '', '**Decision: ' + result['decision'] + '.** ' + result['reason'], '',
+             '2025 has repeatedly informed development and is not an independent test.', '',
+             '| Gate | Status | Finding |', '| --- | --- | --- |']
+    lines += [f"| {cell(g['id'])} | {cell(g['status'])} | {cell(g['reason'])} |" for g in result['gates']]
+    lines += ['', '| Protected arm | Qualified n | Archive upper bound | Status |', '| --- | ---: | ---: | --- |']
+    for arm in result['protected_arms']:
+        n = 'unknown' if arm['qualified_n'] is None else str(arm['qualified_n'])
+        lines.append(f"| {cell(arm['arm'])} | {n} | {arm['archive_upper_bound']} | {arm['status']} |")
+    news = result['news_baseline']
+    lines += ['', f"Human baseline: {news['entries']} logged entries, {news['eligible_entries']} unlocked, "
+              f"{news['matched_entries']} matched for scoring. {news['reason']}", '',
+              '## Prior uses of 2025', '']
+    lines += ['- ' + cell(item) for item in result['prior_2025_uses']]
+    lines += ['', '## Verification limits', '',
+              'This adapter checks the audit schema, gate coverage, protected-release bookkeeping, '
+              'count arithmetic and saved evidence checksums. It does not independently establish '
+              'recipe fidelity, timestamp truth, archive completeness or historical model validity.', '',
+              f"Results SHA-256: `{result['results_sha256']}`", '',
+              f"Receipt SHA-256: `{result['receipt_sha256']}`", '']
+    return '\n'.join(lines)
+
+
 def cell(value):
     return str(value).replace('|', '/').replace('\n', ' ').replace('<', '&lt;')
 
@@ -395,7 +469,8 @@ def main(argv=None):
     review = commands.add_parser('review', help='Make a brief from the completed rich-context JSON format')
     review.add_argument('--results', type=Path, required=True)
     review.add_argument('--receipt', type=Path, required=True)
-    review.add_argument('--comparison', required=True)
+    review.add_argument('--adapter', choices=('rich-context', 'process-audit-v1'), default='rich-context')
+    review.add_argument('--comparison')
     review.add_argument('--evidence-kind', choices=('development', 'reused-development', 'untouched-test'), required=True)
     review.add_argument('--minimum-gain', type=float)
     review.add_argument('--json', action='store_true')
@@ -411,8 +486,15 @@ def main(argv=None):
             emit(result, args.output)
             return 2 if result['status'] == 'STOP' else 0
         if args.command == 'review':
-            result = review_results(args.results, args.receipt, args.comparison, args.evidence_kind, args.minimum_gain)
-            emit(result if args.json else render_review(result), args.output)
+            if args.adapter == 'process-audit-v1':
+                require(args.evidence_kind == 'reused-development', 'Phase 0 is reused development evidence')
+                require(args.comparison is None and args.minimum_gain is None, 'Phase 0 does not compare models')
+                result = review_process_audit(args.results, args.receipt)
+                emit(result if args.json else render_process_audit(result), args.output)
+            else:
+                require(args.comparison is not None, '--comparison is required for rich-context')
+                result = review_results(args.results, args.receipt, args.comparison, args.evidence_kind, args.minimum_gain)
+                emit(result if args.json else render_review(result), args.output)
         if args.command == 'pack':
             emit(pack_evidence(args.root, args.files, args.output))
         return 0
