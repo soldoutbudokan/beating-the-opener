@@ -34,6 +34,8 @@ jobs:
             /tests/
             /research/
             /cricket/research/
+            /cricket/src/fetch_polymarket.py
+            /wnba/src/live_pipeline.py
       - name: Install pinned research dependencies
         run: |
           python3 -m venv .venv
