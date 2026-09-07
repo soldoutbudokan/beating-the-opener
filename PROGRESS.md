@@ -2532,3 +2532,18 @@ keep the human baseline and subsequent gated stages blocked as documented.
 Raw narrative-news archiving on every successful firing is a concrete proposal
 for the owner, not an implemented or authorized routine change. PR delivery
 governs this programme; this work is not merged under the routine/fill rule.
+
+
+## News / structural programme — full implementation registration, 2026-09-07
+
+The owner requested the full stack with tests before merging PR #4 and authorized
+one combined PR or several smaller ones. The unmerged programme PR will contain
+separate registration, implementation and result commits.
+
+[Phase 1 registration](research/experiments/2026-09-structural-props.md) fixes the
+source pilot, two-recipe budget, frozen 2025 quote population, calibration/count/
+opener/close gates, controls, invariance tests and saved-row reproduction. The
+`structural-v1` review adapter is pushed before fitting or new model scores.
+Source recovery and software-only fixtures are preparatory work. Phase 2 awaits
+Phase 1 calibration; the later markets also await their protected endpoints.
+All prior uses of 2025 remain disclosed. No live/routine change or merge.

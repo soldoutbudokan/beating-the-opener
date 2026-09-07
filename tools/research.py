@@ -490,7 +490,7 @@ def main(argv=None):
     review = commands.add_parser('review', help='Make a brief from the completed rich-context JSON format')
     review.add_argument('--results', type=Path, required=True)
     review.add_argument('--receipt', type=Path, required=True)
-    review.add_argument('--adapter', choices=('rich-context', 'process-audit-v1'), default='rich-context')
+    review.add_argument('--adapter', choices=('rich-context', 'process-audit-v1', 'structural-v1'), default='rich-context')
     review.add_argument('--comparison')
     review.add_argument('--evidence-kind', choices=('development', 'reused-development', 'untouched-test'), required=True)
     review.add_argument('--minimum-gain', type=float)
@@ -507,7 +507,14 @@ def main(argv=None):
             emit(result, args.output)
             return 2 if result['status'] == 'STOP' else 0
         if args.command == 'review':
-            if args.adapter == 'process-audit-v1':
+            if args.adapter == 'structural-v1':
+                sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+                from research.engine.review import review_structural, render_structural
+                require(args.evidence_kind == 'reused-development', 'Structural research reuses 2025')
+                require(args.comparison is None and args.minimum_gain is None, 'Structural gates are in the registration')
+                result = review_structural(args.results, args.receipt)
+                emit(result if args.json else render_structural(result), args.output)
+            elif args.adapter == 'process-audit-v1':
                 require(args.evidence_kind == 'reused-development', 'Phase 0 is reused development evidence')
                 require(args.comparison is None and args.minimum_gain is None, 'Phase 0 does not compare models')
                 result = review_process_audit(args.results, args.receipt)
