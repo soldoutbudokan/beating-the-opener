@@ -490,7 +490,7 @@ def main(argv=None):
     review = commands.add_parser('review', help='Make a brief from the completed rich-context JSON format')
     review.add_argument('--results', type=Path, required=True)
     review.add_argument('--receipt', type=Path, required=True)
-    review.add_argument('--adapter', choices=('rich-context', 'process-audit-v1', 'structural-v1'), default='rich-context')
+    review.add_argument('--adapter', choices=('rich-context', 'process-audit-v1', 'structural-v1', 'prospective-props-v1'), default='rich-context')
     review.add_argument('--comparison')
     review.add_argument('--evidence-kind', choices=('development', 'reused-development', 'untouched-test'), required=True)
     review.add_argument('--minimum-gain', type=float)
@@ -507,7 +507,14 @@ def main(argv=None):
             emit(result, args.output)
             return 2 if result['status'] == 'STOP' else 0
         if args.command == 'review':
-            if args.adapter == 'structural-v1':
+            if args.adapter == 'prospective-props-v1':
+                sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+                from research.prospective_props.review import review as review_props, render as render_props
+                require(args.comparison is None and args.minimum_gain is None, 'Prospective gates are fixed in the original registrations')
+                raw = args.results.read_bytes()
+                result, receipt = json.loads(raw), json.loads(args.receipt.read_text())
+                emit(review_props(result, receipt, results_bytes=raw) if args.json else render_props(result, receipt, results_bytes=raw), args.output)
+            elif args.adapter == 'structural-v1':
                 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
                 from research.engine.review import review_structural, render_structural
                 require(args.evidence_kind == 'reused-development', 'Structural research reuses 2025')

@@ -3,24 +3,18 @@ name: Research process checks
 on:
   pull_request:
     paths:
-      - 'tools/research.py'
-      - 'tests/test_research_process.py'
-      - 'tests/test_research_clocks.py'
-      - 'tests/test_process_audit_review.py'
-      - 'tools/process_audit.py'
-      - 'tools/verify_process_audit.py'
+      - 'tools/**'
+      - 'tests/**'
       - 'research/**'
+      - 'cricket/research/**'
       - '.github/workflows/research-process.yml'
   push:
     branches: [main]
     paths:
-      - 'tools/research.py'
-      - 'tests/test_research_process.py'
-      - 'tests/test_research_clocks.py'
-      - 'tests/test_process_audit_review.py'
-      - 'tools/process_audit.py'
-      - 'tools/verify_process_audit.py'
+      - 'tools/**'
+      - 'tests/**'
       - 'research/**'
+      - 'cricket/research/**'
       - '.github/workflows/research-process.yml'
 
 permissions:
@@ -29,15 +23,20 @@ permissions:
 jobs:
   offline-checks:
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
           sparse-checkout-cone-mode: false
           sparse-checkout: |
-            /tools/research.py
+            /tools/
             /tests/
             /research/
-      - name: Run offline boundary checks
-        run: python3 -m unittest discover -s tests -v
+            /cricket/research/
+      - name: Install pinned research dependencies
+        run: |
+          python3 -m venv .venv
+          .venv/bin/python -m pip install -r research/engine/requirements.txt
+      - name: Run arithmetic, source, timing and model invariance checks
+        run: .venv/bin/python -m unittest discover -s tests -v
