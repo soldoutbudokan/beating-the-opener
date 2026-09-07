@@ -1,0 +1,138 @@
+{
+  "actionable_bet_notifications": false,
+  "active_incidents": [
+    {
+      "code": "SOURCE_FAILED",
+      "first_seen_at": "2026-09-07T20:59:49.090030Z",
+      "incident_id": "ad069d093a240e7d4fa8a023",
+      "severity": "error",
+      "subject": "polymarket",
+      "summary": "polymarket: collection reported degraded; inspect its run report."
+    },
+    {
+      "code": "RUN_FAILED",
+      "first_seen_at": "2026-09-07T20:59:49.090030Z",
+      "incident_id": "e9ebfec75459f6019173a5a7",
+      "severity": "error",
+      "subject": "collector",
+      "summary": "The latest collection run did not complete successfully."
+    }
+  ],
+  "data_status": "DATA_DEGRADED",
+  "generated_at": "2026-09-07T20:59:49.090030Z",
+  "mode": "research-shadow",
+  "model_status": "MODEL_NOT_READY",
+  "models": [],
+  "new_events": [
+    {
+      "at": "2026-09-07T20:59:49.090030Z",
+      "code": "SOURCE_FAILED",
+      "event_id": "c7551517fec816cb53ac45b9",
+      "first_seen_at": "2026-09-07T20:59:49.090030Z",
+      "incident_id": "ad069d093a240e7d4fa8a023",
+      "kind": "INCIDENT_OPENED",
+      "run_id": "gh-34161339167-1",
+      "severity": "error",
+      "subject": "polymarket",
+      "summary": "polymarket: collection reported degraded; inspect its run report."
+    },
+    {
+      "at": "2026-09-07T20:59:49.090030Z",
+      "code": "RUN_FAILED",
+      "event_id": "0d7ef74e543117209f677c1e",
+      "first_seen_at": "2026-09-07T20:59:49.090030Z",
+      "incident_id": "e9ebfec75459f6019173a5a7",
+      "kind": "INCIDENT_OPENED",
+      "run_id": "gh-34161339167-1",
+      "severity": "error",
+      "subject": "collector",
+      "summary": "The latest collection run did not complete successfully."
+    }
+  ],
+  "policy_id": "research-shadow-2026-09",
+  "ready_models": [],
+  "recent_events": [
+    {
+      "at": "2026-09-07T20:59:49.090030Z",
+      "code": "SOURCE_FAILED",
+      "event_id": "c7551517fec816cb53ac45b9",
+      "first_seen_at": "2026-09-07T20:59:49.090030Z",
+      "incident_id": "ad069d093a240e7d4fa8a023",
+      "kind": "INCIDENT_OPENED",
+      "run_id": "gh-34161339167-1",
+      "severity": "error",
+      "subject": "polymarket",
+      "summary": "polymarket: collection reported degraded; inspect its run report."
+    },
+    {
+      "at": "2026-09-07T20:59:49.090030Z",
+      "code": "RUN_FAILED",
+      "event_id": "0d7ef74e543117209f677c1e",
+      "first_seen_at": "2026-09-07T20:59:49.090030Z",
+      "incident_id": "e9ebfec75459f6019173a5a7",
+      "kind": "INCIDENT_OPENED",
+      "run_id": "gh-34161339167-1",
+      "severity": "error",
+      "subject": "collector",
+      "summary": "The latest collection run did not complete successfully."
+    }
+  ],
+  "run_id": "gh-34161339167-1",
+  "schema": "operations-status-v1",
+  "sources": {
+    "bettingpros": {
+      "age_seconds": 119.68983,
+      "collection_state": "NO_EVENTS",
+      "coverage": {
+        "assists": {
+          "books_with_fresh_pairs": [],
+          "coherent_offers": 0,
+          "offers": 0
+        },
+        "points": {
+          "books_with_fresh_pairs": [],
+          "coherent_offers": 0,
+          "offers": 0
+        },
+        "pra": {
+          "books_with_fresh_pairs": [],
+          "coherent_offers": 0,
+          "offers": 0
+        },
+        "pts_ast": {
+          "books_with_fresh_pairs": [],
+          "coherent_offers": 0,
+          "offers": 0
+        },
+        "pts_reb": {
+          "books_with_fresh_pairs": [],
+          "coherent_offers": 0,
+          "offers": 0
+        },
+        "reb_ast": {
+          "books_with_fresh_pairs": [],
+          "coherent_offers": 0,
+          "offers": 0
+        },
+        "rebounds": {
+          "books_with_fresh_pairs": [],
+          "coherent_offers": 0,
+          "offers": 0
+        },
+        "threes": {
+          "books_with_fresh_pairs": [],
+          "coherent_offers": 0,
+          "offers": 0
+        }
+      },
+      "status": "DATA_HEALTHY"
+    },
+    "polymarket": {
+      "age_seconds": 0.403574,
+      "collection_state": "DEGRADED",
+      "coverage": {},
+      "status": "DATA_DEGRADED"
+    }
+  },
+  "summary": "2 operating issue(s) need attention. No prospectively validated model is registered."
+}
