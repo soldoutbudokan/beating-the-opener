@@ -2582,3 +2582,16 @@ All 415 offline regression tests pass, including 24 new reconstruction and
 recovery integration checks. Independent code review found no remaining blocker
 in the recovery/freeze validation path. No empirical recovery has run at this
 implementation checkpoint.
+
+
+### WNBA private runtime storage verification — 2026-09-08
+
+The owner created an accessible private evidence repository for deployment. A
+pre-activation check found that a prior local restoration had not verified all
+persisted file bytes, despite validating its intact ZIP input. The new
+[storage-verification amendment](research/experiments/2026-09-wnba-v2-storage-verification.md)
+requires exclusive-write byte counts, synchronization and exact readback. A
+separate runtime-only repack preserves the model recipe, seed and research
+selection while binding the repaired writer to a new honest freeze. No model
+refit or new historical evaluation is authorized by this operational correction.
+Deployment must pass a real hosted run and restoration before the new PR.
