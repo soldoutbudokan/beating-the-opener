@@ -277,13 +277,21 @@ def parse_summary(raw, *, event, observed_at, frozen_at, now=None):
     for tid, team in team_payloads.items():
         team_players = [p for p in players.values() if p["team_id"] == tid]
         incomplete = any(p["actual_points"] is None and p["participation"] != "dnp" for p in team_players)
-        if not incomplete and sum(p["actual_points"] or 0 for p in team_players) != team["points"]:
+        known_points = sum(p["counts"]["points"] or 0 for p in player_payloads.values()
+                           if p["team_id"] == tid)
+        if known_points > team["points"]:
+            raise ValueError("reported player points exceed final team score")
+        if not incomplete and known_points != team["points"]:
             raise ValueError("reported player points do not reconcile to final team score")
         reconciliation[tid] = "incomplete_reported_counts" if incomplete else "reconciled"
         unknown_minutes = any(p["participation"] == "unknown" or
             (p["participation"] == "played" and not p["display_minutes"]) for p in team_players)
+        total = sum(p["display_minutes"] or 0 for p in team_players)
+        # Missing exposure cannot make an already impossible known total valid.
+        # Retain the registered conservative display-rounding allowance.
+        if total > 5 * duration + len(team_players):
+            raise ValueError("reported player minutes exceed game duration allowance")
         if not unknown_minutes:
-            total = sum(p["display_minutes"] or 0 for p in team_players)
             # Displayed integer minutes can round; one minute per listed player
             # is a conservative upper allowance, never invented elapsed time.
             if abs(total - 5 * duration) > len(team_players):

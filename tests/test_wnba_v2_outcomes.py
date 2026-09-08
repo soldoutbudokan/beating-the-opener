@@ -251,6 +251,47 @@ class OutcomesTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 parse(body)
 
+    def test_incomplete_points_cannot_hide_impossible_known_total(self):
+        body = summary()
+        player(body)["stats"][1] = "--"
+        body["header"]["competitions"][0]["competitors"][0]["score"] = "61"
+        # The other five known counts already sum to 62; the missing count
+        # cannot reduce that total to the final score.
+        with self.assertRaisesRegex(ValueError, "points exceed"):
+            parse(body)
+
+        body = summary()
+        player(body)["stats"][0:2] = ["0", "19"]
+        player(body)["didNotPlay"] = None
+        # Unknown participation leaves settlement unresolved, but its reported
+        # count still contributes to an impossible sum of 81 against 80.
+        with self.assertRaisesRegex(ValueError, "points exceed"):
+            parse(body)
+
+    def test_incomplete_minutes_cannot_hide_impossible_known_total(self):
+        body = summary()
+        athletes = body["boxscore"]["players"][0]["statistics"][0]["athletes"]
+        player(body)["stats"][0] = "--"
+        for athlete in athletes[1:]:
+            athlete["stats"][0] = "40"
+        extra = deepcopy(athletes[1])
+        extra["athlete"]["id"] = "999"
+        extra["stats"] = ["40", "0", "0", "0", "0-0"]
+        athletes.append(extra)
+        with self.assertRaisesRegex(ValueError, "minutes exceed game duration allowance"):
+            parse(body)
+
+    def test_feasible_partial_box_keeps_unknown_measurements_and_known_settlement(self):
+        body = summary()
+        missing = body["boxscore"]["players"][0]["statistics"][0]["athletes"][1]
+        missing["stats"][0:2] = ["--", "--"]
+        parsed = parse(body)
+        self.assertEqual(parsed["points_reconciliation"]["1"], "incomplete_reported_counts")
+        self.assertEqual(parsed["minutes_reconciliation"]["1"], "incomplete_reported_exposure")
+        self.assertIsNone(parsed["players"][missing["athlete"]["id"]]["actual_points"])
+        settlement = outcomes.settlement_records(parsed, [forecast()], {})[0]
+        self.assertEqual((settlement["participation"], settlement["actual_points"]), ("played", 18))
+
     def test_stale_clock_and_wrong_requested_date_are_not_acknowledged(self):
         for wrong_date in (False, True):
             with tempfile.TemporaryDirectory() as tmp:
