@@ -25,6 +25,19 @@ def observed_update(event="new-prior", effective=None, observed=None):
                    time_basis=TimeBasis.OBSERVED, assumed_available_at=None, time_note="")
 
 
+def measured_update(event, tip_hours, received_hours, *, minutes=20., points=8):
+    row = observed_update(event, FREEZE + timedelta(hours=tip_hours),
+                          FREEZE + timedelta(hours=received_hours))
+    payload = dict(row.payload, minutes=minutes, counts=dict(row.payload["counts"], points=points))
+    return replace(row, payload=payload, payload_hash=None)
+
+
+def forecast_distribution(forecast):
+    return {key: forecast[key] for key in (
+        "p_dnp", "minutes_probs", "count_components", "rate_mean", "rate_variance",
+        "history_rows", "pace_possessions_per_minute")}
+
+
 class FutureOnlyTests(unittest.TestCase):
     def test_seed_2025_can_forecast_after_freeze(self):
         engine = FutureOnlyModel([observation("seed", year=2025)], recipe(), frozen_at=FREEZE)
@@ -43,6 +56,81 @@ class FutureOnlyTests(unittest.TestCase):
         before = engine.predict(request(FREEZE + timedelta(hours=7)))
         after = engine.predict(request(FREEZE + timedelta(hours=9)))
         self.assertEqual((before["history_rows"], after["history_rows"]), (0, 1))
+
+    def test_late_player_correction_rebuilds_game_order_without_changing_old_forecast(self):
+        first = measured_update("first", 2, 8, minutes=10., points=4)
+        second = measured_update("second", 26, 32, minutes=35., points=23)
+        revised = measured_update("first", 2, 40, minutes=15., points=12)
+        engine = FutureOnlyModel([first, second, revised], recipe(), frozen_at=FREEZE)
+        baseline = FutureOnlyModel([first, second], recipe(), frozen_at=FREEZE)
+        before = request(FREEZE + timedelta(hours=39))
+        old_forecast = engine.predict(before)
+        self.assertEqual(old_forecast, baseline.predict(before))
+        boundary = request(revised.available_at)
+        self.assertEqual(engine.predict(boundary), baseline.predict(boundary))
+
+        # A reference with the corrected value available on time has the same
+        # eventual measurement history, although its receipt manifest differs.
+        on_time = replace(revised, observed_at=first.available_at)
+        reference = FutureOnlyModel([on_time, second], recipe(), frozen_at=FREEZE)
+        after = request(FREEZE + timedelta(hours=41))
+        actual = engine.predict(after)
+        expected = reference.predict(after)
+        self.assertEqual(forecast_distribution(actual), forecast_distribution(expected))
+        self.assertNotEqual(actual["rate_mean"], old_forecast["rate_mean"])
+        self.assertEqual(engine._player_cache["p1"][1]["last_tip"], second.effective_at)
+        # Reusing a cache built with the correction must also preserve replay.
+        self.assertEqual(engine.predict(before), old_forecast)
+
+    def test_late_first_receipt_uses_game_order(self):
+        first = measured_update("first", 2, 40, minutes=10., points=4)
+        second = measured_update("second", 26, 32, minutes=35., points=23)
+        engine = FutureOnlyModel([second, first], recipe(), frozen_at=FREEZE)
+        reference = FutureOnlyModel([replace(first, observed_at=FREEZE + timedelta(hours=8)), second],
+                                    recipe(), frozen_at=FREEZE)
+        self.assertEqual(engine.predict(request(FREEZE + timedelta(hours=39)))["history_rows"], 1)
+        self.assertEqual(forecast_distribution(engine.predict(request())),
+                         forecast_distribution(reference.predict(request())))
+
+    def test_late_team_correction_preserves_recent_pace_and_roster(self):
+        def team(event, tip_hours, received_hours, possessions, roster):
+            row = measured_update(event, tip_hours, received_hours)
+            return replace(row, entity_id="t1", record_id="team:" + event,
+                           payload={"record_type": "team_box", "possessions_estimate": possessions,
+                                    "duration_minutes": 40., "roster_count": roster}, payload_hash=None)
+
+        first = team("first", 2, 8, 60., 10)
+        second = team("second", 26, 32, 100., 12)
+        revised = team("first", 2, 40, 80., 11)
+        engine = FutureOnlyModel([first, second, revised], recipe(), frozen_at=FREEZE)
+        reference = FutureOnlyModel([replace(revised, observed_at=first.available_at), second],
+                                    recipe(), frozen_at=FREEZE)
+        before = request(FREEZE + timedelta(hours=39))
+        old_forecast = engine.predict(before)
+        actual = engine.predict(request())
+        self.assertEqual(forecast_distribution(actual), forecast_distribution(reference.predict(request())))
+        # Corrected first-game pace equals the prior, then the recent game
+        # supplies one update. The recent roster remains the current one.
+        self.assertAlmostEqual(actual["pace_possessions_per_minute"], (2.06 + 2.) / 2.)
+        self.assertEqual(engine._team_cache["t1"][1][1], 12.)
+        self.assertEqual(engine.predict(before), old_forecast)
+
+    def test_older_season_correction_cannot_roll_current_season_backward(self):
+        first = measured_update("first", 2, 8, minutes=10., points=4)
+        second_tip = datetime(2027, 5, 1, 20, tzinfo=UTC)
+        second = replace(measured_update("second", 26, 32, minutes=35., points=23),
+                         season=2027, effective_at=second_tip,
+                         observed_at=second_tip + timedelta(hours=4))
+        revised = replace(measured_update("first", 2, 40, minutes=15., points=12),
+                          observed_at=second_tip + timedelta(hours=8))
+        engine = FutureOnlyModel([first, second, revised], recipe(), frozen_at=FREEZE)
+        target = ForecastRequest("p1", "new-game", "t1", "t2", 2027,
+                                 second_tip + timedelta(days=3), second_tip + timedelta(days=2))
+        engine.predict(target)
+        state = engine._player_cache["p1"][1]
+        self.assertEqual(state["season"], 2027)
+        self.assertEqual(state["last_tip"], second_tip)
+        self.assertEqual(state["prior_season"], 15.)
 
     def test_assumed_clock_or_backdated_completion_rejected(self):
         row = observed_update()

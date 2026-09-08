@@ -73,6 +73,47 @@ class FutureOnlyModel(ParticipationModel):
         self.index = FutureOnlyIndex(observations, frozen_at=frozen_at)
         self.frozen_at = self.index.frozen_at
 
+    @staticmethod
+    def _chronological_records(entity, records, record_type):
+        # The index first chooses versions available at the forecast cutoff.
+        # Reconstruct their game chronology: a late receipt or correction must
+        # not make an old game the most recent player/team measurement.
+        return sorted((row for row in records if row.entity_id == entity and
+                       row.payload.get("record_type") == record_type and
+                       row.kind is ObservationKind.HISTORICAL_OUTCOME),
+                      key=lambda row: (row.effective_at, row.source_id, row.record_id))
+
+    def _player_state(self, entity, records):
+        selected = self._chronological_records(entity, records, "player_box")
+        keys = tuple(original._record_key(row) for row in selected)
+        old_keys, state = self._player_cache.get(entity, ((), self._new_state()))
+        if len(old_keys) > len(keys) or old_keys != keys[:len(old_keys)]:
+            old_keys, state = (), self._new_state()
+        for row in selected[len(old_keys):]:
+            self._update(state, row)
+        self._player_cache[entity] = keys, state
+        return state
+
+    def _team_state(self, entity, records):
+        cached = self._team_context_cache.get(entity)
+        if cached is not None and cached[0] is records:
+            return cached[1]
+        selected = self._chronological_records(entity, records, "team_box")
+        keys = tuple(original._record_key(row) for row in selected)
+        prior = [self.recipe["priors"]["pace"], 12.]
+        old_keys, state = self._team_cache.get(entity, ((), prior))
+        if len(old_keys) > len(keys) or old_keys != keys[:len(old_keys)]:
+            old_keys, state = (), prior
+        for row in selected[len(old_keys):]:
+            payload = row.payload
+            pace = (original._number(payload, "possessions_estimate", 80.) /
+                    original._number(payload, "duration_minutes", 40.))
+            state[0] = .12 * pace + .88 * state[0]
+            state[1] = original._number(payload, "roster_count", state[1])
+        self._team_cache[entity] = keys, state
+        self._team_context_cache[entity] = records, state
+        return state
+
     def predict(self, request, *, include_manifest=True):
         result = super().predict(request, include_manifest=include_manifest)
         result["future_only_boundary"] = {
