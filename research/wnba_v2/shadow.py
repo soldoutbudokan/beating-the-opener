@@ -108,9 +108,16 @@ def write_once(path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
     fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
     with os.fdopen(fd, "wb") as handle:
-        handle.write(data)
+        written = handle.write(data)
         handle.flush()
         os.fsync(handle.fileno())
+        if written != len(data):
+            raise OSError("EVIDENCE_SHORT_WRITE")
+    # Verify the stored file, not only the bytes supplied to the writer. Keep
+    # incomplete evidence in place on failure; never overwrite it or retry it
+    # as though the first write had not happened.
+    if path.read_bytes() != data:
+        raise OSError("EVIDENCE_READBACK_MISMATCH")
 
 
 def load(path):

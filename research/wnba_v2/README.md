@@ -94,3 +94,19 @@ raw assets and actual retrieval receipts with the new bundle in the authorized
 evidence destination. Private artifacts must not be added to the public code
 branch. A local restoration test or successful storage write alone does not
 establish a running durable prospective service.
+
+
+## Storage verification before activation
+
+Every exclusive evidence write now checks its returned byte count and exact
+persisted bytes after synchronization. A failed file remains failure evidence;
+it cannot be silently replaced. The storage-verification amendment documents
+the limitation in an earlier local restoration and requires hosted readback.
+
+`python -m research.wnba_v2.repackage_runtime --help` describes the separate
+runtime-only replacement command. It verifies the old bundle against its exact
+published implementation and anchored receipts, permits only the registered
+storage-code changes, and copies recipe, seed and source-audit bytes unchanged.
+The replacement receives a new actual freeze clock. This command cannot refit,
+reselect, publish or initialize a study. Original bundles and receipts remain
+historical evidence.

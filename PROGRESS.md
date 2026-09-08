@@ -2595,3 +2595,9 @@ separate runtime-only repack preserves the model recipe, seed and research
 selection while binding the repaired writer to a new honest freeze. No model
 refit or new historical evaluation is authorized by this operational correction.
 Deployment must pass a real hosted run and restoration before the new PR.
+
+The persisted-byte repair and runtime-only replacement adapter pass all 434
+offline regression tests. Independent review found no remaining blocker in the
+allowed-code-difference checks, unchanged model/seed preservation or write-failure
+handling. The original bundle remains historical evidence. Private hosted
+readback and the first collector run remain required activation gates.
