@@ -2560,3 +2560,44 @@ Both scores precede release for the human-news baseline. The owner also requeste
 an immediate Polymarket fetch/resolved-market backfill check and a diagnosis of
 FanDuel source-book coverage and the live FanDuel-only filter. No routine state
 change or live model replacement is authorized by these research checks.
+
+
+### WNBA v2 artifact recovery registration — 2026-09-08
+
+The owner requested reconstruction of unavailable working artifacts. The exact
+public historical source manifest and implementation can be restored from Git.
+A separate [reconstruction amendment](research/experiments/2026-09-wnba-v2-reconstruction.md)
+fixes the inherited recipe, unchanged comparison, two bounded executions, exact
+identity checks and a new honest freeze. Earlier studies and storage receipts
+remain historical records. Recovery does not imply hosted activation or private
+evidence disclosure. No new PR is opened before the requested stages are ready.
+
+Recovery implementation adds explicit provenance and complete-execution checks,
+while preserving the original seal-required path. Synthetic regression checks
+cover missing evidence, copied executions, altered candidate identities, input
+cutoffs, dependency pins and clock/budget failures. Empirical recovery follows
+only after this implementation is published; its evidence remains private.
+
+All 415 offline regression tests pass, including 24 new reconstruction and
+recovery integration checks. Independent code review found no remaining blocker
+in the recovery/freeze validation path. No empirical recovery has run at this
+implementation checkpoint.
+
+
+### WNBA private runtime storage verification — 2026-09-08
+
+The owner created an accessible private evidence repository for deployment. A
+pre-activation check found that a prior local restoration had not verified all
+persisted file bytes, despite validating its intact ZIP input. The new
+[storage-verification amendment](research/experiments/2026-09-wnba-v2-storage-verification.md)
+requires exclusive-write byte counts, synchronization and exact readback. A
+separate runtime-only repack preserves the model recipe, seed and research
+selection while binding the repaired writer to a new honest freeze. No model
+refit or new historical evaluation is authorized by this operational correction.
+Deployment must pass a real hosted run and restoration before the new PR.
+
+The persisted-byte repair and runtime-only replacement adapter pass all 434
+offline regression tests. Independent review found no remaining blocker in the
+allowed-code-difference checks, unchanged model/seed preservation or write-failure
+handling. The original bundle remains historical evidence. Private hosted
+readback and the first collector run remain required activation gates.

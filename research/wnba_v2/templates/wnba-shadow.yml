@@ -1,0 +1,67 @@
+# INACTIVE TEMPLATE. Install only in the authorized evidence repository after
+# the frozen study/bundle exists and this exact code commit has been reviewed.
+name: WNBA shadow forecasts
+
+on:
+  schedule:
+    - cron: '7 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wnba-shadow-forecast-writer
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    if: github.event.repository.private == true && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      WNBA_CODE_COMMIT: ${{ vars.WNBA_CODE_COMMIT }}
+      GITHUB_TOKEN: ${{ github.token }}
+      BETTINGPROS_API_KEY: ${{ secrets.BETTINGPROS_API_KEY }}
+    steps:
+      - name: Require an exact reviewed code commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$WNBA_CODE_COMMIT" =~ ^[0-9a-f]{40}$ ]]
+      - name: Restore authorized private evidence
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: state
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Restore frozen implementation
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: soldoutbudokan/beating-the-opener
+          ref: ${{ vars.WNBA_CODE_COMMIT }}
+          path: code
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /research/
+            /wnba/src/live_pipeline.py
+      - name: Install the frozen dependencies
+        working-directory: code
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3.12 -m venv "$RUNNER_TEMP/wnba-shadow-env"
+          "$RUNNER_TEMP/wnba-shadow-env/bin/python" -m pip install --disable-pip-version-check -r research/engine/requirements.txt
+      - name: Refresh outcomes and record a shadow capture
+        working-directory: code
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/wnba-shadow-env/bin/python" -m research.wnba_v2.runtime \
+            --data-repo "$GITHUB_WORKSPACE/state" \
+            --code-repo "$GITHUB_WORKSPACE/code" \
+            --repository "$GITHUB_REPOSITORY" \
+            --run-id "gh-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
