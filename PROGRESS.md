@@ -2560,3 +2560,14 @@ Both scores precede release for the human-news baseline. The owner also requeste
 an immediate Polymarket fetch/resolved-market backfill check and a diagnosis of
 FanDuel source-book coverage and the live FanDuel-only filter. No routine state
 change or live model replacement is authorized by these research checks.
+
+
+### WNBA v2 artifact recovery registration — 2026-09-08
+
+The owner requested reconstruction of unavailable working artifacts. The exact
+public historical source manifest and implementation can be restored from Git.
+A separate [reconstruction amendment](research/experiments/2026-09-wnba-v2-reconstruction.md)
+fixes the inherited recipe, unchanged comparison, two bounded executions, exact
+identity checks and a new honest freeze. Earlier studies and storage receipts
+remain historical records. Recovery does not imply hosted activation or private
+evidence disclosure. No new PR is opened before the requested stages are ready.
