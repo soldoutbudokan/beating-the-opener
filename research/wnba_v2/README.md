@@ -57,3 +57,40 @@ to demonstrate unattended operation.
 Keep fitted artifacts and private research evidence out of the public repository
 unless their publication has been explicitly authorized. The existing operations
 watch and Claude routine are separate and are not modified by this module.
+
+
+## Recovering unavailable fitted artifacts
+
+`comparison reconstruct` is a separately registered recovery path. It recreates
+only the original through-2022 box recipe and repeats the unchanged comparison;
+it never invents a seal for the unavailable original bundle. The reconstruction
+amendment fixes two executions with a shared 600-second limit per execution.
+The original `comparison` invocation still requires its actual old fit and seal.
+
+Supply a private expectation JSON before either execution with schema
+`wnba-v2-reconstruction-expectation-v1`, source `prior_conversation_record`, and
+the previously recorded `model_recipe_hash` and `variance_mode`. These are
+verification anchors, not newly selected values. Use distinct exclusive output
+directories for primary and reproduction:
+
+```sh
+python -m research.wnba_v2.comparison reconstruct \
+  --raw /ABSOLUTE/VERIFIED_RAW \
+  --output /ABSOLUTE/NEW_PRIMARY \
+  --expectation /ABSOLUTE/PRIVATE_EXPECTATION.json \
+  --registration research/experiments/2026-09-wnba-v2-reconstruction.md \
+  --registration-commit 1ac79e3d856580869ccf4051ec68ca395499b8b8
+```
+
+Repeat once into a different output directory for the registered reproduction.
+A stopped run is evidence, not permission to retry. Candidate preparation checks
+both completed executions, their input/implementation/dependency provenance,
+actual clocks, inherited recipe and every substantive artifact. A recorded
+candidate mismatch blocks freezing. Only then may preparation read the pinned
+2025 seed data and create a new freeze using the current clock.
+
+Keep the entire reconstruction directories, expectation, exact raw manifest,
+raw assets and actual retrieval receipts with the new bundle in the authorized
+evidence destination. Private artifacts must not be added to the public code
+branch. A local restoration test or successful storage write alone does not
+establish a running durable prospective service.

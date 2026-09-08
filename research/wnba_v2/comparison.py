@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 from collections import Counter
 from copy import deepcopy
+from datetime import datetime, timezone
 import json
 import math
 from pathlib import Path
@@ -531,6 +532,11 @@ def run(raw, fit_directory, bundle, seal, output, registration, commit, *, budge
     output.mkdir(parents=True, exist_ok=False)
     deadline = perf_counter() + budget_seconds
     recipe, provenance = previous.frozen_recipe(fit_directory, bundle, seal)
+    return _run_comparison(raw, recipe, provenance, output, reg, policy, deadline, budget_seconds)
+
+
+def _run_comparison(raw, recipe, provenance, output, reg, policy, deadline, budget_seconds,
+                    *, expectation=None, reconstruction_registration=None):
     previous.write(output / "inherited-recipe.json", recipe)
     data, sample = previous.load_sources(raw, output, deadline)
     from . import sources
@@ -571,6 +577,15 @@ def run(raw, fit_directory, bundle, seal, output, registration, commit, *, budge
                        calibration_denominators={"requested": len(calibration), "eligible": len(innovation_rows(calibration))},
                        decision=decision(check, scalars, variances, counts))
         candidate = model.configuration(recipe, scalars, results["decision"]["selected_variance_mode"])
+        if expectation is not None:
+            matches = (candidate["recipe_hash"] == expectation["model_recipe_hash"] and
+                       candidate["variance_mode"] == expectation["variance_mode"])
+            if not matches:
+                previous.write(output / "discrepancy.json", {
+                    "schema": "wnba-v2-reconstruction-discrepancy-v1",
+                    "expected": expectation, "actual_recipe_hash": candidate["recipe_hash"],
+                    "actual_variance_mode": candidate["variance_mode"], "freeze_allowed": False})
+            previous.require(matches, "Reconstructed candidate differs from the recorded identity; freeze blocked")
         previous.write(output / "candidate-recipe.json", candidate)
     else:
         results["decision"] = decision(check)
@@ -579,13 +594,94 @@ def run(raw, fit_directory, bundle, seal, output, registration, commit, *, budge
     with (output / "decision.md").open("x") as stream:
         stream.write(render(results))
     code = [Path(__file__), Path(model.__file__), Path(sources.__file__)]
+    if reconstruction_registration is not None:
+        from . import reconstruction
+        code.append(Path(reconstruction.__file__))
     receipt = {"schema": "wnba-v2-comparison-receipt-v1", "status": "complete", "registration": reg,
                "source_policy": policy,
                "budget_seconds": budget_seconds, "implementation": [{"path": p.name, "sha256": digest(p)} for p in code],
-               "artifacts": [{"path": p.name, "sha256": digest(p)} for p in sorted(output.iterdir()) if p.is_file()]}
+               "artifacts": [{"path": p.name, "sha256": digest(p)} for p in sorted(output.iterdir())
+                             if p.is_file() and p.name != "execution-start.json"]}
+    if reconstruction_registration is not None:
+        receipt["reconstruction_registration"] = reconstruction_registration
+        receipt["reconstruction_provenance"] = provenance
     previous.write(output / "receipt.json", receipt)
     print(json.dumps(results["decision"], sort_keys=True), flush=True)
     return results
+
+
+
+def checked_expectation(path):
+    import re
+    expectation = json.loads(Path(path).read_text())
+    previous.require(isinstance(expectation, dict) and
+                     expectation.get("schema") == "wnba-v2-reconstruction-expectation-v1" and
+                     isinstance(expectation.get("model_recipe_hash"), str) and
+                     re.fullmatch(r"[a-f0-9]{64}", expectation["model_recipe_hash"]) is not None and
+                     expectation.get("variance_mode") in {"constant", "rate"} and
+                     expectation.get("source") == "prior_conversation_record",
+                     "A prior recorded candidate identity is required before reconstruction")
+    return expectation
+
+
+def run_reconstruction(raw, output, expectation_path, registration, commit, *, budget_seconds=600):
+    """New recovery receipts; never impersonate an unavailable old bundle/seal."""
+    from . import reconstruction
+    from .prepare_candidate import REGISTRATION, QUARANTINE
+    previous.require(type(budget_seconds) is int and 0 < budget_seconds <= BUDGET_SECONDS,
+                     "Budget exceeds fixed600 seconds")
+    expectation = checked_expectation(expectation_path)
+    recovery_reg = registration_identity(registration, commit)
+    previous.require((recovery_reg["path"], recovery_reg["commit"]) == reconstruction.REGISTRATION,
+                     "Unrecognized reconstruction registration")
+    reg = registration_identity(previous.ROOT / REGISTRATION[0], REGISTRATION[1])
+    policy = registration_identity(previous.ROOT / QUARANTINE[0], QUARANTINE[1])
+    output = Path(output)
+    output.mkdir(parents=True, exist_ok=False)
+    started = datetime.now(timezone.utc)
+    tick = perf_counter()
+    deadline = tick + budget_seconds
+    previous.write(output / "expectation.json", expectation)
+    previous.write(output / "execution-start.json", {
+        "schema": "wnba-v2-reconstruction-execution-v1", "status": "started",
+        "started_at": started.isoformat(), "registration": recovery_reg,
+        "budget_seconds": budget_seconds, "expectation_sha256": digest(output / "expectation.json")})
+    status, error = "stopped", None
+    try:
+        recipe, provenance = reconstruction.recover_initial_recipe(
+            raw, output / "reconstruction", registration, commit,
+            deadline=deadline, budget_seconds=budget_seconds)
+        result = _run_comparison(raw, recipe, provenance, output, reg, policy, deadline,
+                                 budget_seconds, expectation=expectation,
+                                 reconstruction_registration=recovery_reg)
+        previous.check_time(deadline)
+        previous.require(result["decision"]["status"] == "RESEARCH_ONLY",
+                         "Reconstruction source or model gates stopped the candidate")
+        status = "complete"
+        return result
+    except BaseException as failure:
+        error = type(failure).__name__ + ": " + str(failure)
+        raise
+    finally:
+        previous.write(output / "execution.json", {
+            "schema": "wnba-v2-reconstruction-execution-v1", "status": status,
+            "started_at": started.isoformat(), "completed_at": datetime.now(timezone.utc).isoformat(),
+            "elapsed_seconds": perf_counter() - tick, "budget_seconds": budget_seconds,
+            "error": error, "registration": recovery_reg,
+            "comparison_receipt_sha256": digest(output / "receipt.json") if (output / "receipt.json").exists() else None,
+            "expectation_sha256": digest(output / "expectation.json"),
+            "original_artifact_identity_verified": False})
+
+
+def reconstruction_main(argv=None):
+    parser = argparse.ArgumentParser(description="Reconstruct the recorded candidate under a separate bounded receipt")
+    for name in ("raw", "output", "expectation", "registration"):
+        parser.add_argument("--" + name, type=Path, required=True)
+    parser.add_argument("--registration-commit", required=True)
+    parser.add_argument("--budget-seconds", type=int, default=600)
+    a = parser.parse_args(argv)
+    run_reconstruction(a.raw, a.output, a.expectation, a.registration,
+                       a.registration_commit, budget_seconds=a.budget_seconds)
 
 
 def main(argv=None):
@@ -602,4 +698,8 @@ def main(argv=None):
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "reconstruct":
+        reconstruction_main(sys.argv[2:])
+    else:
+        main()

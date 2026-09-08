@@ -2571,3 +2571,14 @@ fixes the inherited recipe, unchanged comparison, two bounded executions, exact
 identity checks and a new honest freeze. Earlier studies and storage receipts
 remain historical records. Recovery does not imply hosted activation or private
 evidence disclosure. No new PR is opened before the requested stages are ready.
+
+Recovery implementation adds explicit provenance and complete-execution checks,
+while preserving the original seal-required path. Synthetic regression checks
+cover missing evidence, copied executions, altered candidate identities, input
+cutoffs, dependency pins and clock/budget failures. Empirical recovery follows
+only after this implementation is published; its evidence remains private.
+
+All 415 offline regression tests pass, including 24 new reconstruction and
+recovery integration checks. Independent code review found no remaining blocker
+in the recovery/freeze validation path. No empirical recovery has run at this
+implementation checkpoint.

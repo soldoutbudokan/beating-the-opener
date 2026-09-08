@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
 import json
+import math
 from pathlib import Path
 import zipfile
 
@@ -69,8 +70,51 @@ def checked_comparison(directory):
         raise ValueError("Saved candidate decision does not reproduce its fixed gates")
     if results.get("registration") != receipt.get("registration") or results.get("source_policy") != receipt.get("source_policy"):
         raise ValueError("Saved result registrations differ from the execution receipt")
+    if "reconstruction_registration" in receipt:
+        verify_reconstruction_execution(directory, receipt, artifacts, results, recipe)
+    elif "expectation.json" in artifacts or "reconstruction_provenance" in receipt or (directory / "reconstruction").exists():
+        raise ValueError("Reconstruction evidence cannot omit its separate provenance")
     ParticipationModel((), recipe)
     return receipt, artifacts, results, recipe
+
+
+def verify_reconstruction_execution(directory, receipt, artifacts, results, recipe):
+    from . import reconstruction
+    from .comparison import checked_expectation
+    reg = receipt["reconstruction_registration"]
+    inherited, provenance = reconstruction.validate_reconstruction(
+        directory / "reconstruction", expected_recipe=recipe["base_recipe"], expected_registration=reg)
+    if (provenance != receipt.get("reconstruction_provenance") or
+            provenance != results.get("inherited_recipe_provenance")):
+        raise ValueError("Comparison differs from its reconstructed inheritance")
+    if "expectation.json" not in artifacts:
+        raise ValueError("Missing recorded candidate expectation")
+    expected = checked_expectation(directory / "expectation.json")
+    if (recipe["recipe_hash"] != expected["model_recipe_hash"] or
+            recipe["variance_mode"] != expected["variance_mode"]):
+        raise ValueError("Reconstructed candidate differs from the recorded identity")
+    execution = shadow.load(directory / "execution.json")
+    start = shadow.load(directory / "execution-start.json")
+    began, ended = shadow.instant(execution.get("started_at")), shadow.instant(execution.get("completed_at"))
+    elapsed, budget = execution.get("elapsed_seconds"), execution.get("budget_seconds")
+    if (execution.get("schema") != "wnba-v2-reconstruction-execution-v1" or execution.get("status") != "complete"
+            or start.get("schema") != execution["schema"] or start.get("status") != "started"
+            or any(start.get(k) != execution.get(k) for k in
+                   ("started_at", "registration", "budget_seconds", "expectation_sha256"))
+            or execution.get("registration") != reg or execution.get("error") is not None
+            or execution.get("original_artifact_identity_verified") is not False
+            or execution.get("expectation_sha256") != artifacts["expectation.json"]
+            or execution.get("comparison_receipt_sha256") != shadow.digest((directory / "receipt.json").read_bytes())
+            or not began <= ended <= datetime.now(timezone.utc)
+            or type(budget) is not int or not 0 < budget <= 600
+            or isinstance(elapsed, bool) or not isinstance(elapsed, (int, float))
+            or not math.isfinite(elapsed) or not 0 <= elapsed <= budget
+            or (ended - began).total_seconds() > budget + 1
+            or abs((ended - began).total_seconds() - elapsed) > 1):
+        raise ValueError("Incomplete or invalid bounded reconstruction execution")
+    inner = shadow.load(directory / "reconstruction/receipt.json")
+    if not began <= shadow.instant(inner["started_at"]) <= shadow.instant(inner["completed_at"]) <= ended:
+        raise ValueError("Inherited reconstruction clocks fall outside the comparison execution")
 
 
 def reproduced_candidate(primary, reproduction):
@@ -83,6 +127,11 @@ def reproduced_candidate(primary, reproduction):
         raise ValueError("Saved-input reproduction differs from the primary artifacts")
     if left[0]["implementation"] != right[0]["implementation"]:
         raise ValueError("Reproduction used different implementation bytes")
+    if left[0].get("reconstruction_registration") != right[0].get("reconstruction_registration"):
+        raise ValueError("Reconstruction registrations differ")
+    if "reconstruction_registration" in left[0]:
+        from .reconstruction import verify_reconstruction_pair
+        verify_reconstruction_pair(Path(primary) / "reconstruction", Path(reproduction) / "reconstruction")
     return left
 
 
@@ -118,6 +167,14 @@ def verify_provenance(receipt, implementations):
             raise ValueError("Source policy registration bytes differ")
     expected = {name: implementations["research/wnba_v2/" + name]["sha256"]
                 for name in ("comparison.py", "model.py", "sources.py")}
+    recovery = receipt.get("reconstruction_registration")
+    if recovery is not None:
+        from . import reconstruction
+        if (recovery.get("path"), recovery.get("commit")) != reconstruction.REGISTRATION:
+            raise ValueError("Unrecognized reconstruction registration")
+        if recovery.get("sha256") != implementations[reconstruction.REGISTRATION_PATH]["sha256"]:
+            raise ValueError("Reconstruction registration bytes differ")
+        expected["reconstruction.py"] = implementations["research/wnba_v2/reconstruction.py"]["sha256"]
     recorded = receipt.get("implementation", [])
     if (len(recorded) != len(expected)
             or {x.get("path"): x.get("sha256") for x in recorded} != expected):
@@ -145,6 +202,10 @@ def prepare(primary, reproduction, raw, output, code_repo, code_commit):
                  "source_policy": receipt.get("source_policy"),
                  "comparison_artifacts": artifacts, "code_commit": code_commit,
                  "seed_loaded_before_selection": False, "qualified": False}
+    if "reconstruction_registration" in receipt:
+        selection["reconstruction_registration"] = receipt["reconstruction_registration"]
+        selection["reconstruction_provenance"] = receipt["reconstruction_provenance"]
+        selection["original_artifact_identity_verified"] = False
     shadow.write_once(out / "selection.json", shadow.encode(selection))
     shadow.write_once(out / "recipe.json", shadow.encode(recipe))
     # This is deliberately after verified candidate selection and its durable
