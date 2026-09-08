@@ -4,6 +4,10 @@ This separate implementation prepares and measures a points model without
 changing the earlier experiments. It is a research system. Running successfully
 does not mean that its forecasts beat market prices.
 
+The [market-comparison process](MARKET_PROCESS.md) explains the continuation of
+PR #6: prospective correctness repairs, a separate read-only health check, and
+the evidence required before making a forecasting or execution claim.
+
 The source adapter distinguishes playing from measured playing time. A player
 can play while the box score displays zero minutes. Such a row informs
 participation and retains its points, but supplies no production-rate measurement
